@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kleench | Marketplace Engagement</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#48647d",
+              "primary-container": "#0077b6",
+              "on-primary-fixed-variant": "#004b74",
+              "on-background": "#1a1c1c",
+              "on-tertiary-fixed-variant": "#5a4300",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f3f3f3",
+              "surface-container-highest": "#e2e2e2",
+              "inverse-surface": "#2f3131",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#adcae7",
+              "primary-fixed": "#cde5ff",
+              "on-error-container": "#93000a",
+              "secondary": "#45617b",
+              "tertiary-container": "#8f6c00",
+              "outline": "#707881",
+              "on-surface": "#1a1c1c",
+              "background": "#f9f9f9",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#fff6ea",
+              "secondary-container": "#c3e0fe",
+              "surface": "#f9f9f9",
+              "on-tertiary": "#ffffff",
+              "surface-container-high": "#e8e8e8",
+              "surface-container": "#eeeeee",
+              "tertiary-fixed": "#ffdf9a",
+              "on-secondary-fixed": "#001d32",
+              "tertiary": "#715500",
+              "error": "#ba1a1a",
+              "on-primary-container": "#f3f7ff",
+              "outline-variant": "#bfc7d1",
+              "on-tertiary-fixed": "#251a00",
+              "surface-variant": "#e2e2e2",
+              "inverse-primary": "#94ccff",
+              "secondary-fixed": "#cde5ff",
+              "tertiary-fixed-dim": "#f8be00",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#001d32",
+              "surface-tint": "#006399",
+              "inverse-on-surface": "#f1f1f1",
+              "surface-bright": "#f9f9f9",
+              "primary-fixed-dim": "#94ccff",
+              "surface-dim": "#dadada",
+              "on-surface-variant": "#404850",
+              "on-secondary-fixed-variant": "#2d4962",
+              "primary": "#005d90",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation (Shared Component Logic) -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between px-6 py-3 w-full">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center h-10 w-10 rounded-full hover:bg-neutral-200/50 active:scale-95 duration-150 transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<span class="font-['Space_Grotesk'] font-black text-2xl text-sky-800 dark:text-sky-300">Kleench</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined p-2 text-neutral-500 hover:bg-neutral-200/50 rounded-full transition-colors active:scale-95" data-icon="search">search</button>
+<div class="h-10 w-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-white/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up professional user avatar profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzH5VgXMM3ZtY4_VE95Qkt_CQCz7BOF2SJR5PY9ABtUyXICD628-PgMVPC3R1GaA3EZwSTJoV5Br8xOMWTwl6vCxYCsVP3TD3-lPODIB4iCTOaG7G3V8pGKgawg0pYzbvaYMCYI7HEDG3X0ggiuj4NwXLxvo9rMqobbnFxRCnShIAdYAvdcJ_pZSI6LD-we_LwHJA6fcvqMJfIfTVg1QKqPEDAjKQUEmOwrmZvOK130rD4jMER9Sk4DkDcc4uhuq8Hy9BzGWTrnWDb"/>
+</div>
+</div>
+</nav>
+<main class="pt-16 pb-32">
+<!-- MediaGalleryDemo: Proof of Value -->
+<section class="relative w-full h-[530px] bg-surface-container overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+<img alt="Product Demo Video Thumbnail" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000" data-alt="High definition cinematic video thumbnail of a luxury digital service interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnNcke7YwZX88IoEJLo7Dfcc19IML6iF7VrfA6CnhVdWY-DbgDmiv6Yjr0OJ-Huo37Uc5vleD4vF1zwkbEIglqwDt6k2qPI0JQy-oYB6-O31aCMCkKuDXmQUMobqK9RF0QclU-Z9VI_MRyDFeqt-YZVavao2W_w6-nMNwjnABJewf9in-iZbcCgm-TI2kxi5rHY6baWtdgZE6NGeLeL_hL4FzUgvqFmJYcX2cJAVZDMSrsyCl_r6M6JYjElQX-cLhtVSKzDJUp9RN-"/>
+<div class="absolute inset-0 z-20 flex flex-col justify-end p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 animate-pulse">
+<span class="w-2 h-2 rounded-full bg-white"></span> LIVE PROOF
+                    </span>
+<span class="bg-white/10 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium">4K Demo</span>
+</div>
+<h1 class="font-headline text-4xl md:text-5xl font-extrabold text-white leading-tight max-w-2xl tracking-tight">
+                    Premium Smart Portfolio Automated Strategy
+                </h1>
+</div>
+<button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-20 h-20 bg-primary/90 backdrop-blur-lg rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-transform hover:bg-primary">
+<span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</section>
+<div class="max-w-4xl mx-auto px-6 mt-8">
+<!-- TrustValidationPanel -->
+<section class="flex flex-wrap items-center justify-between gap-6 p-6 bg-surface-container-low rounded-full">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Seller Avatar" class="w-14 h-14 rounded-full border-2 border-white object-cover" data-alt="Professional headshot of a verified male digital creator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCL1_6OjoRr4woiNx1rIYn_k7yp8YhY-4XHshRMBpI-TrThSuRy99gyBv4ICsnxJ5OpLEH5RyVhIzu06kUbqp-wloN3zLgDdX7RcAjaD9Wx_idOhFQckJDB-ZASoYcALskQRKFV86RHHjxT9DLLavg5nn4KG45zUsO9UG8xejg8hTY-n7ztfhnwZOnS8GWzJ8sbOqFCHtIJ-ujfjgxxwC84GI6C4FaBth6beB5_niAKd8-aTMtp9aWK6JnR3nlc5ZZFAv24CeXww1o"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full p-1 border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface text-lg leading-tight">EliteNodes Alpha</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary-container/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter border border-primary/20">Verified KYC</span>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.9</span>
+<span class="text-outline text-xs font-normal ml-1">(1.2k deals)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-outline text-xs font-medium uppercase tracking-widest mb-1">Current Floor</p>
+<div class="flex items-baseline gap-1">
+<span class="font-headline text-3xl font-black text-on-surface">1,450.00</span>
+<span class="font-bold text-primary">KLNC</span>
+</div>
+</div>
+</section>
+<!-- InformationLayer: Product Details -->
+<section class="mt-12 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2 space-y-6">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Master the Digital Economy</h2>
+<div class="space-y-4 text-on-surface-variant leading-relaxed">
+<p class="font-body text-lg">
+                                This automated strategy leverage high-frequency execution patterns specifically designed for the Kleench ecosystem. By integrating Proof of Value directly into the smart contract, you ensure that every transaction is backed by audited performance metrics.
+                            </p>
+<p class="font-body">
+                                Our solution bypasses traditional liquidity silos, offering a seamless engagement layer for both retail and institutional participants. Optimized for low latency and high trust validation.
+                            </p>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div class="bg-surface-container p-5 rounded-full border border-white/50">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="speed">speed</span>
+<p class="text-xs text-outline font-medium uppercase">Execution Speed</p>
+<p class="text-xl font-headline font-bold">14ms Average</p>
+</div>
+<div class="bg-surface-container p-5 rounded-full border border-white/50">
+<span class="material-symbols-outlined text-tertiary mb-2" data-icon="security">security</span>
+<p class="text-xs text-outline font-medium uppercase">Escrow Safety</p>
+<p class="text-xl font-headline font-bold">Tier 1 Multi-Sig</p>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-container-high p-6 rounded-full space-y-4">
+<h3 class="font-headline font-bold text-on-surface">Value Props</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+<span class="text-sm font-medium">Audited Smart Contracts</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+<span class="text-sm font-medium">Instant Liquidity Access</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+<span class="text-sm font-medium">KYC-Cleared Participants</span>
+</li>
+</ul>
+</div>
+<!-- ReferralPropagationTrigger -->
+<button class="w-full bg-tertiary-fixed-dim hover:bg-tertiary transition-all duration-300 py-4 px-6 rounded-full flex items-center justify-between group">
+<div class="text-left">
+<p class="text-[10px] font-bold text-on-tertiary-fixed uppercase tracking-widest">Growth Loop</p>
+<p class="text-on-tertiary-fixed font-headline font-bold">Share &amp; Earn 5%</p>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-fixed group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Detail Sections -->
+<section class="mt-16 pt-16 border-t border-surface-container-highest">
+<h3 class="font-headline text-xl font-bold mb-8">Performance History</h3>
+<div class="overflow-x-auto no-scrollbar">
+<div class="flex gap-6 min-w-max pb-4">
+<div class="w-72 bg-surface p-6 rounded-full border border-outline-variant/10 shadow-sm">
+<p class="text-xs font-bold text-outline uppercase mb-2">Q3 Performance</p>
+<p class="text-3xl font-headline font-black text-primary mb-4">+24.8%</p>
+<div class="h-12 w-full bg-primary-container/5 rounded-lg flex items-end gap-1 px-2 pb-1">
+<div class="w-full bg-primary h-[30%] rounded-t-sm opacity-40"></div>
+<div class="w-full bg-primary h-[45%] rounded-t-sm opacity-50"></div>
+<div class="w-full bg-primary h-[60%] rounded-t-sm opacity-60"></div>
+<div class="w-full bg-primary h-[55%] rounded-t-sm opacity-70"></div>
+<div class="w-full bg-primary h-[85%] rounded-t-sm opacity-100"></div>
+</div>
+</div>
+<div class="w-72 bg-surface p-6 rounded-full border border-outline-variant/10 shadow-sm">
+<p class="text-xs font-bold text-outline uppercase mb-2">Network Reach</p>
+<p class="text-3xl font-headline font-black text-on-surface mb-4">12.4k</p>
+<p class="text-sm text-on-surface-variant leading-tight">Total engaged nodes across the Kleench marketplace ecosystem this month.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- StickyCheckoutBar -->
+<div class="fixed bottom-0 left-0 w-full z-50 px-6 pb-8 pointer-events-none">
+<div class="max-w-4xl mx-auto w-full bg-surface-container-lowest/90 backdrop-blur-2xl p-4 rounded-full shadow-[0_-8px_32px_rgba(26,28,28,0.12)] border border-white/20 flex items-center justify-between pointer-events-auto">
+<div class="hidden sm:block pl-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">shield</span>
+<p class="text-[10px] font-bold text-outline uppercase tracking-wider">Protected by Kleench Escrow</p>
+</div>
+<p class="text-[10px] text-outline/60 mt-0.5">Funds are held securely until delivery is confirmed.</p>
+</div>
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-8 py-4 bg-tertiary-fixed-dim hover:bg-tertiary text-on-tertiary-fixed font-headline font-black text-lg rounded-full transition-all active:scale-95 flex items-center justify-center gap-3">
+                    Purchase with Wallet
+                    <span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation (Shared Component Logic - Suppressed per rules for transactional/details focus, but structure placeholder if needed) -->
+<!-- Navigation suppressed to prioritize focus on Content Canvas & CTA -->
+</body></html>

@@ -1,0 +1,154 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Kleench Brand Colors */
+  --trust-blue: #0077B6;
+  --trust-blue-dark: #005a8d;
+  --trust-blue-light: #0096e8;
+  --action-gold: #FFC300;
+  --action-gold-dark: #e6b000;
+  --action-gold-light: #ffd333;
+  --clean-slate: #FFFFFF;
+  --live-red: #FF3B30;
+
+  /* Typography */
+  --font-header: 'Agrandir', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Light surface palette */
+  --surface-white: #FFFFFF;
+  --surface-raised: #F8F9FA;
+  --surface-base: #FFFFFF;
+  --ink-primary: #0F172A;
+  --ink-secondary: #475569;
+  --ink-muted: #94A3B8;
+
+  /* Glass on light */
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.95);
+
+  /* Semantic Colors */
+  --font-size: 16px;
+  --background: var(--clean-slate);
+  --foreground: var(--ink-primary);
+  --card: var(--surface-white);
+  --card-foreground: var(--ink-primary);
+  --popover: var(--surface-white);
+  --popover-foreground: var(--ink-primary);
+  --primary: var(--trust-blue);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--ink-primary);
+  --muted: var(--surface-raised);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--action-gold);
+  --accent-foreground: var(--ink-primary);
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: var(--glass-border);
+  --input: transparent;
+  --input-background: var(--surface-white);
+  --switch-background: #cbd5e1;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--trust-blue);
+  --radius: 1rem;
+
+  /* Shadows - Enhanced for depth */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.08);
+  --glow-gold: 0 4px 20px rgba(255, 195, 0, 0.3);
+  --glow-blue: 0 4px 20px rgba(0, 119, 182, 0.25);
+
+  /* Mobile constraints */
+  --mobile-max-width: 448px;
+  --safe-top: 20px;
+  --safe-bottom: 24px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.3;
+  }
+}

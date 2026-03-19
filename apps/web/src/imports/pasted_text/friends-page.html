@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Friends - Kleench</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#cde5ff",
+                        "surface": "#f9f9f9",
+                        "on-primary-fixed": "#001d32",
+                        "secondary": "#45617b",
+                        "surface-tint": "#006399",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#f8be00",
+                        "tertiary-fixed": "#ffdf9a",
+                        "surface-dim": "#dadada",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#707881",
+                        "secondary-fixed-dim": "#adcae7",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "tertiary": "#715500",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary-fixed": "#001d32",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#f3f7ff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2f3131",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#251a00",
+                        "secondary-container": "#c3e0fe",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "on-secondary-fixed-variant": "#2d4962",
+                        "on-secondary-container": "#48647d",
+                        "on-tertiary-container": "#fff6ea",
+                        "outline-variant": "#bfc7d1",
+                        "secondary-fixed": "#cde5ff",
+                        "primary-container": "#0077b6",
+                        "primary": "#005d90",
+                        "on-primary-fixed-variant": "#004b74",
+                        "on-surface-variant": "#404850",
+                        "surface-bright": "#f9f9f9",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#94ccff",
+                        "inverse-primary": "#94ccff",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "tertiary-container": "#8f6c00"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #f9f9f9; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .glass-header { backdrop-filter: blur(24px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User Profile" data-alt="User profile avatar close up photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5DzgWtjzo7OtRs7uCpRGgYhtBfbQKK7edQ_bjFhSLg1OlxRmNVLDp7w3z71xyayfz50uaFugIL1vl98HJSYm9zSzy8zAc-cWdfHUeqS9WTOeJn-w8yXOhXG_8gyofSn5_tPIOnZ6ZI55tSNiYPK_T5GhC1UQL0dDJz3CBXqa1ZebW4Jz9bF6tycPC584VPXiHi6AsjpeiTvoFP4o1X_PvTz_Q7UR0s6iRhpKCJOy0GmvNFAZymj4uOVhIc_RWfkQ7w1baEmlUiqjC"/>
+</div>
+<h1 class="font-headline font-bold tracking-tight text-slate-900 text-xl">Friends</h1>
+</div>
+<div class="flex items-center">
+<div class="bg-primary-container/10 px-4 py-1.5 rounded-full">
+<span class="text-primary font-bold tracking-tight">$2,450.00</span>
+</div>
+</div>
+<!-- Separation Line -->
+<div class="absolute bottom-0 left-0 w-full h-px bg-slate-200/50"></div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Search Bar -->
+<section class="relative">
+<div class="flex items-center bg-surface-container-low rounded-2xl px-4 py-3 group transition-all focus-within:bg-primary-fixed">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline/60 font-body" placeholder="Find new connections..." type="text"/>
+</div>
+</section>
+<!-- Friend Requests - Bento Style Card -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h2 class="text-2xl font-bold tracking-tight">Pending Requests</h2>
+<span class="text-sm font-medium text-primary bg-primary-container/10 px-3 py-1 rounded-full">3 New</span>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-surface-container-lowest p-5 rounded-full shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Sarah J." class="w-14 h-14 rounded-full object-cover" data-alt="Profile photo of a smiling woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ1YwDGuQpJ0jUe5br9vUrmTTZ4XwgG1dR7IFXro0mhsQAYFtMJZ_xds_IBQasaSxN8Fsz4Fej0bZo_Z__c9mULM3C2Ag6KDA85u_7OJOYND4DWzj_mnCOEAA1QoYLwfSSOAsEJMp9RuphQiD1BYc1nB1ZciV0YX0ej_RmDLDRgxqCQUFE8u0VJg-3LsjLFc5wLkJJ6_BSC-GiUTNxKyWx1jkshZiBqRE-F5NxHPB7DoRBsBBDwGNYIbi-JnzdLjiqa2QdWwgXyqsM"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-tertiary-fixed-dim rounded-full flex items-center justify-center border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary-fixed font-bold">star</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-outline">Mutual friend: Alex M.</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined">close</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform shadow-md">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Friends List -->
+<section class="space-y-6">
+<h2 class="text-2xl font-bold tracking-tight">Your Friends</h2>
+<!-- List Items -->
+<div class="space-y-1">
+<!-- Live Status Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-3xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Marcus V." class="w-14 h-14 rounded-full object-cover grayscale-[0.2]" data-alt="Portrait of a young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHZb5qrK2omfxI6tP0nuNRoFR__j-jNjMEMRM7zoR8fDm-ink1X3ZRdCen1lSv0ZfZ5GiaTVID-mrvlm0QTDbvvPmis_6_AqNHV_THq9AZwR2DNnLF8R5IWIZLbNftBCYIHt3zhvbcp3VRgmAmg9GnNKJHDDr3-fDtfocCTtU0U6XsOpx1yISN_5wdHKV_h_8-ZfjpZ4RrYevvIx9TcIDCJ5mjmzMp6kQ9AHrXhWAGoiVqhbnY4kzn3amzctnWJRSNDRnp0LyzoTTB"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-fixed-dim rounded-full border-2 border-surface-container-low"></div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Marcus Vance</p>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-xs font-bold text-tertiary uppercase tracking-wider">Live</span>
+</div>
+</div>
+</div>
+<button class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">videocam</button>
+</div>
+<!-- Online Status Item -->
+<div class="flex items-center justify-between p-4 rounded-3xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Elena R." class="w-14 h-14 rounded-full object-cover" data-alt="Portrait of a young woman with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeo32SMqd3DFez8w2laYonAizNSTtPqIJYZLv0BtZUEa37D_O912arI2Pha2cmGURzmkVz9ourg-HRn_KeN0DLe3s9ClcKszU2_UCLIeYJa7vBSUh7RycSiKGInmpgAxzS_9RiToJMcLOlzVu7eryuOxK3kLJS60w67DtS72jMWLdJLOFhOjUNPyLyHVNZhiceec9W24nE0PI9QX-Z8i_yaUPBgmQnm8_FdI72i8gJkUG9Zxs3W9z9wVmgqe8VLDFNY9J9AI6WduAI"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-surface"></div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Elena Rodriguez</p>
+<p class="text-xs text-outline">Online</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chat_bubble</button>
+</div>
+<!-- Last Seen Status Item -->
+<div class="flex items-center justify-between p-4 rounded-3xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="David K." class="w-14 h-14 rounded-full object-cover opacity-80" data-alt="Close up portrait of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhhYnoM0_SyVf_ZTknL_Gekj7trAxthmmAHPUzypBUNi24aafCRQ1H5nNO5MhJLp_YMta9Yxk-0w7_Ak5CFlMpVEWv8XurrJG9aWtrrEu2ypjyirh-NUppDjl_j1CyrQ4Ij3V8sEDEvEUvJsrZnBjctfauNDOBpTn9-3fV4aaEAGuff-tapQ-jdR73nq5bPTBXCspTuL8lwnsL-hOaMnAFz_fXDrSzb4z3thDEMcj-S6LM6bDFPWYAFeBscQmVzF8BvaWAT0fJvHuq"/>
+</div>
+<div>
+<p class="font-bold text-on-surface-variant">David Kim</p>
+<p class="text-xs text-outline">Last seen 2h ago</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-outline/40 group-hover:text-primary transition-colors">more_horiz</button>
+</div>
+<!-- Offline Status Item -->
+<div class="flex items-center justify-between p-4 rounded-3xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Jasmine T." class="w-14 h-14 rounded-full object-cover opacity-80" data-alt="Portrait of a woman with curly hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBly3w0GW0OUasPFIqiVJDTWBCZFcZo5_cH4gYBbDc54v2uJ9ZF-wH03bKI7DhxLw7hVBUrQJySiTuOX2F2_rmCv7_mnhNIzAESXqRFRu7e-2-T52z6Cm2JM8SdtwwR2Fmac8ljkQoRwcNLd3XVEmzbOL7reDbPg38Eiix3kv5KtQeg96128KuuAH22PLnwbMWqlHvQ0rG2rTrUj4M6nm0LZfdBxW6j0jbiu0ttJjgOMgQrS_3o8jGYbvmUuepDqDmwg13qAKFzQ09k"/>
+</div>
+<div>
+<p class="font-bold text-on-surface-variant">Jasmine Thomas</p>
+<p class="text-xs text-outline">Last seen Yesterday</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-outline/40 group-hover:text-primary transition-colors">more_horiz</button>
+</div>
+</div>
+</section>
+<!-- Discovery Suggestions (Extra Value) -->
+<section class="mt-12 bg-primary text-on-primary rounded-[2rem] p-8 relative overflow-hidden shadow-xl">
+<div class="relative z-10 space-y-4">
+<h3 class="text-2xl font-headline font-bold leading-tight">Meet expert shoppers near you.</h3>
+<p class="text-on-primary-container/80 text-sm max-w-[200px]">Join verified circles to get exclusive deals.</p>
+<button class="bg-tertiary-fixed-dim text-on-tertiary-fixed font-bold py-3 px-6 rounded-xl text-sm shadow-lg active:scale-95 duration-200">
+                    Explore Communities
+                </button>
+</div>
+<div class="absolute -right-10 -bottom-10 w-48 h-48 bg-primary-container rounded-full opacity-20"></div>
+<div class="absolute right-4 top-8 flex -space-x-3 opacity-90">
+<img alt="User 1" class="w-12 h-12 rounded-full border-2 border-primary object-cover" data-alt="Avatar headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArSUfrQ8Br1FSrPHozIPgdwC7CJk23izLkSVR-WXJiHS4y6O3HMwSa0r7HVSRBrnOo7xMXtuQHNdOSsntfVNv4E9zUfkhkwIdU8SzG7JCA2MP_whi5UYZuuUJnIlKuIjatmrvc5hIIYATQ4Lx4ovWv0PGIQ2LxmNG8fhaJ6X3T84_Ntea221E1cGJJbwG_iv2UywQmMRr78SXxAXfuWPjLwni4PiyI4qfOfOK9-FPsV4_TINsmPXEiaghxWsyincAK3XBD5PBRkI97"/>
+<img alt="User 2" class="w-12 h-12 rounded-full border-2 border-primary object-cover" data-alt="Avatar headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChamIrR_m3FDIKP4zZ4VKxtETQQgZtdK8Gg6EYmIwuMm3-pVpZlBX6OVfTeZW0fv4M_hR0osMWO_xYlgWuGHg6tpY0mExcf4vDkQRA3MfV3g8AF7upiHAl51vgIQTL8gbJcPBCgBBAwrBKOUA5dc0haoK1HSazd4fjZbmHF39rZcxxCOZVH6PYHVVurmQFt0WmWAsuCefxVq61dDedm1BSRzUMrmReSzyCYKfSX6RjM94boSeO7AwtfyHlqUY3keH7SehLUOOPg1rA"/>
+<img alt="User 3" class="w-12 h-12 rounded-full border-2 border-primary object-cover" data-alt="Avatar headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjHJ0hpvXYUmj42yrnhs7LdXtyByRPxKVACir8bAzP1ylC4k4_u4O1fewEvIABfH1U4lOAkyI6w6KnOdpG2s0dgJje5Efx36BlZWE-MFFNqCU7_eA-dPeuBbtaYKDqNflw4jwcfs_mQCM_dcLyAOMGqyoXQsoINh7Srt6Z9GnjQcBn-mJT2b4F6sqLDFc3Mxn4w_6QabAXEVAdk-jWNoSvy8sEYDeqaIg66C3stpbU_wWzACHsHQ4Y0cuwG-dR4oxUP2wy1lWXIfWR"/>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-3xl bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_-8px_32px_rgba(0,0,0,0.06)] border-t border-slate-200/20">
+<div class="flex justify-around items-center w-full px-4 pb-6 pt-3">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-sky-600 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-be-vietnam text-[11px] font-medium tracking-wide">Home</span>
+</a>
+<!-- Discovery -->
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-sky-600 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-be-vietnam text-[11px] font-medium tracking-wide">Discovery</span>
+</a>
+<!-- Friends (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-sky-100 dark:bg-sky-900/40 text-sky-800 dark:text-sky-200 rounded-2xl px-5 py-2 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-be-vietnam text-[11px] font-bold tracking-wide">Friends</span>
+</a>
+<!-- Wallet -->
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-sky-600 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">account_balance_wallet</span>
+<span class="font-be-vietnam text-[11px] font-medium tracking-wide">Wallet</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-sky-600 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-be-vietnam text-[11px] font-medium tracking-wide">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Floating Action Button for Adding New Friend -->
+<div class="fixed bottom-28 right-6 z-40">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">person_add</span>
+</button>
+</div>
+</body></html>

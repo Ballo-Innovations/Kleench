@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kleench - Learning Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#e8e8e8",
+              "surface": "#f9f9f9",
+              "secondary-container": "#c3e0fe",
+              "on-tertiary-fixed-variant": "#5a4300",
+              "secondary-fixed-dim": "#adcae7",
+              "on-surface-variant": "#404850",
+              "on-primary-container": "#f3f7ff",
+              "primary-container": "#0077b6",
+              "tertiary-container": "#8f6c00",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#48647d",
+              "on-background": "#1a1c1c",
+              "tertiary-fixed-dim": "#f8be00",
+              "surface-dim": "#dadada",
+              "secondary": "#45617b",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "primary": "#005d90",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#004b74",
+              "secondary-fixed": "#cde5ff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#94ccff",
+              "on-tertiary-container": "#fff6ea",
+              "primary-fixed": "#cde5ff",
+              "outline": "#707881",
+              "inverse-surface": "#2f3131",
+              "background": "#f9f9f9",
+              "on-surface": "#1a1c1c",
+              "tertiary": "#715500",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#2d4962",
+              "surface-tint": "#006399",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e2e2e2",
+              "surface-container-low": "#f3f3f3",
+              "surface-container-highest": "#e2e2e2",
+              "outline-variant": "#bfc7d1",
+              "surface-container": "#eeeeee",
+              "on-tertiary-fixed": "#251a00",
+              "on-secondary-fixed": "#001d32",
+              "tertiary-fixed": "#ffdf9a",
+              "inverse-primary": "#94ccff",
+              "surface-bright": "#f9f9f9",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#001d32",
+              "inverse-on-surface": "#f1f1f1"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk", "sans-serif"],
+              "body": ["Be Vietnam Pro", "sans-serif"],
+              "label": ["Be Vietnam Pro", "sans-serif"],
+              "poppins": ["Poppins", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(24px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen pb-28">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sky-700" data-icon="search">search</span>
+</div>
+<h1 class="text-2xl font-bold text-sky-800 font-headline tracking-tight">Kleench</h1>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sky-700" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="pt-24 px-6 space-y-8">
+<!-- Continue Learning Card (Asymmetric Layout) -->
+<section>
+<div class="relative overflow-hidden rounded-[2rem] bg-primary text-on-primary p-6 shadow-xl">
+<!-- Abstract Background Ornament -->
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary-container rounded-full opacity-50 blur-3xl"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="px-3 py-1 bg-tertiary-fixed-dim text-on-tertiary-fixed font-semibold text-xs rounded-full uppercase tracking-wider font-poppins">In Progress</span>
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-container/30 backdrop-blur-md">
+<span class="material-symbols-outlined text-on-primary text-2xl" data-icon="auto_stories">auto_stories</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-on-primary/70 text-sm font-medium font-poppins">Continue Learning</p>
+<h2 class="text-2xl font-bold font-headline leading-tight">Mastering Crypto Basics</h2>
+</div>
+<div class="mt-4 space-y-2">
+<div class="flex justify-between items-end mb-1">
+<span class="text-xs font-semibold font-poppins text-on-primary">65% Complete</span>
+<span class="text-xs text-on-primary/60">Module 4 of 7</span>
+</div>
+<div class="h-2 w-full bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim" style="width: 65%"></div>
+</div>
+</div>
+<button class="mt-4 flex items-center justify-center gap-2 w-full py-4 bg-surface-container-lowest text-primary font-bold rounded-2xl shadow-lg active:scale-95 transition-transform duration-150">
+<span>Resume Course</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Category Picker (Horizontal Scroll) -->
+<section class="-mx-6">
+<div class="flex overflow-x-auto no-scrollbar gap-3 px-6 pb-2">
+<button class="px-5 py-3 bg-primary text-on-primary rounded-2xl font-semibold text-sm whitespace-nowrap shadow-md">All Subjects</button>
+<button class="px-5 py-3 bg-surface-container-low text-on-surface-variant rounded-2xl font-semibold text-sm whitespace-nowrap hover:bg-surface-container transition-colors">Blockchain</button>
+<button class="px-5 py-3 bg-surface-container-low text-on-surface-variant rounded-2xl font-semibold text-sm whitespace-nowrap hover:bg-surface-container transition-colors">Digital Marketing</button>
+<button class="px-5 py-3 bg-surface-container-low text-on-surface-variant rounded-2xl font-semibold text-sm whitespace-nowrap hover:bg-surface-container transition-colors">NFTs</button>
+<button class="px-5 py-3 bg-surface-container-low text-on-surface-variant rounded-2xl font-semibold text-sm whitespace-nowrap hover:bg-surface-container transition-colors">Security</button>
+<button class="px-5 py-3 bg-surface-container-low text-on-surface-variant rounded-2xl font-semibold text-sm whitespace-nowrap hover:bg-surface-container transition-colors">E-commerce</button>
+</div>
+</section>
+<!-- Trending Reels Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-1">
+<h3 class="text-xl font-bold font-headline tracking-tight text-on-surface">Trending Reels</h3>
+<button class="text-primary text-sm font-bold font-poppins">View all</button>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 -mx-6 px-6">
+<!-- Reel 1 -->
+<div class="relative flex-none w-40 aspect-[9/16] rounded-3xl overflow-hidden shadow-md group">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Cybersecurity concept visualization for learning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIcWF-LaA9HPrnSoeWlcK5YIObmq6c5asmR0pEjyskgw3IZbOS6GSE9HOJMJdK5zepKUw802o0UTVuBpMMgN-HWbB64uKqgiYXF2Bq5oQP_h87xfkSiofiy27LM7CvTM1kMxV9jBH6e7vV-e6YXfxJBJQWVkpg2EsQALWAShoG9jdL8yoVDjJAzpqiUDBo3jN-FU6EJZM2JAFl39hjf8eN7YSU9evkCGV2VX1cdYxwCpYtDLf678JLjGaZDPiSfnq-2bGf8Jy8Xr7I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="play_circle">play_circle</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 text-white/90 text-[10px] font-bold font-poppins">
+<span class="material-symbols-outlined text-xs" data-icon="visibility">visibility</span>
+<span>12.4K</span>
+</div>
+<p class="text-white text-xs font-semibold mt-1 line-clamp-2">Wallet Security Tips</p>
+</div>
+</div>
+<!-- Reel 2 -->
+<div class="relative flex-none w-40 aspect-[9/16] rounded-3xl overflow-hidden shadow-md group">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Crypto chart and analysis on mobile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI3pz2KQ6eZjjHwAqZicpgbnTeSFqxDVqCyDLf643urAaeXXProRV05xV7TPPrMHRVwDpKbt8NX2diwTHWOHIU6nIaxnxV5gOZnbDhtd70WZTNx8qv-dwWlKigSRSjFXPGUqPR_pLHBbEEDLYCEtgZYvWLyc5pCCscnc6-gRr43KLR-KkSwwqX0zuOkxf945I19mewaJobVM0X7BRk3QjzMvTqvHwf9jrAvlMwXtRlbOnZ-KIL6zdoxNlat8FUlhz7ArCFr2_Cudxl"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 text-white/90 text-[10px] font-bold font-poppins">
+<span class="material-symbols-outlined text-xs" data-icon="visibility">visibility</span>
+<span>8.1K</span>
+</div>
+<p class="text-white text-xs font-semibold mt-1 line-clamp-2">Market Psychology 101</p>
+</div>
+</div>
+<!-- Reel 3 -->
+<div class="relative flex-none w-40 aspect-[9/16] rounded-3xl overflow-hidden shadow-md group">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Digital art and NFT showcase" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUJCgXGndQwCc1fMItPcmda3X6Gh9KdTrGvEsHsBgz8aLB_TgcFMI0tt50aIZ8wMsCQxUQz_ebuxumNb-a_IbZJBwxhnGR8YY8PX63fytKYYnNh3mPFT59Z7Gzh6dCW3i083AVcoxMhkTECIXpNSz1wJL_piQ8Roc--5qu0fxWkhWbtBKa8thA4kAUgHdhsO7HMjd2UC8N3h5YACs61BCzmljxkzchrYxKw5C4BA1DLX58Ix3nkgKkFs5JAWwS60Sbpgj1dcGIFcnR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 text-white/90 text-[10px] font-bold font-poppins">
+<span class="material-symbols-outlined text-xs" data-icon="visibility">visibility</span>
+<span>15.2K</span>
+</div>
+<p class="text-white text-xs font-semibold mt-1 line-clamp-2">Why Mint on Kleench?</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Skill Hub Grid -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-1">
+<h3 class="text-xl font-bold font-headline tracking-tight text-on-surface">Skill Hub</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="grid_view">grid_view</span>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Course Card 1 -->
+<div class="bg-surface-container-lowest rounded-[1.5rem] overflow-hidden flex shadow-sm border border-outline-variant/10">
+<div class="w-32 flex-none relative">
+<img class="w-full h-full object-cover" data-alt="Business and technology conceptual image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm2p-91NYJGDXJgj4Z7KkH_eauouF7ONFbeI-QcjdPau8WmvYiKSwlrhpIrs5s_1MTSDqq6HLt5lWluzdNiDjgG8DEiDqEn4OoJyu9yc2BkxBcZfW_o98BWcRCw1IZxR_RHN_W1CIiNnAMaMCi5kR7cT2DQWm5mM-knyHl7wJpeR_uATpgtpdKFuiuHQWFj30P-948xjZrShXQO6aPc2R51dI6QXQqQGhFGEpKCyaCezEBX38PUJWmgUU8nCmWMffyIB9Ro_zdMCEX"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-primary-container font-bold font-poppins bg-primary-fixed px-2 py-0.5 rounded-full">MARKETING</span>
+<div class="flex items-center gap-0.5">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+</div>
+</div>
+<h4 class="font-bold text-sm mt-2 line-clamp-2 leading-snug">Social Growth Strategies for Web3 Founders</h4>
+<p class="text-[10px] text-on-surface-variant mt-1">Instructor: Dr. Elias Thorne</p>
+</div>
+<div class="flex justify-between items-center mt-3">
+<div class="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span>12h 45m</span>
+</div>
+<span class="text-primary font-bold text-xs">Join Now</span>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="bg-surface-container-lowest rounded-[1.5rem] overflow-hidden flex shadow-sm border border-outline-variant/10">
+<div class="w-32 flex-none relative">
+<img class="w-full h-full object-cover" data-alt="Server and network security infrastructure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6AzNJW2SSJ9Q7x4hIAveNAas2_k3IxCwm1LYUL56a7TkUVCXuLzLBDkG27I1aI6SugtXmMS1RV8yxNyoijVGJOKANBQ9i7bi0N0RaC_RKq5T9C_QYQXg0Of3McBLDHOmjFGjwHEwfg8dHnUCPjxJ4XomK6f2y466Kb8RJRC0ft2X9v_SNIekuxzVmM2Iu7Fvl8Qtr8oNbdjxg-hYeUEVaup_n38Om6_eR9jZvfDSIaM9wNbS16sWWR7KRyuzCSMK5ZvmngBVSHCJd"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-sky-700 font-bold font-poppins bg-sky-100 px-2 py-0.5 rounded-full">SECURITY</span>
+<div class="flex items-center gap-0.5">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">5.0</span>
+</div>
+</div>
+<h4 class="font-bold text-sm mt-2 line-clamp-2 leading-snug">The Vault: Advanced Smart Contract Auditing</h4>
+<p class="text-[10px] text-on-surface-variant mt-1">Instructor: Sarah Chen</p>
+</div>
+<div class="flex justify-between items-center mt-3">
+<div class="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span>24h total</span>
+</div>
+<span class="text-primary font-bold text-xs">Enroll</span>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="bg-surface-container-lowest rounded-[1.5rem] overflow-hidden flex shadow-sm border border-outline-variant/10">
+<div class="w-32 flex-none relative">
+<img class="w-full h-full object-cover" data-alt="Hand using finance app on smartphone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwyvPUWUiFmMyfhT_IIPXhyaRjoSjAk4JzBG8XPmgqlvs8JIQy9ndiulsbZxM5cNLTdronthcbjEgKRDODPf7AK8aj5rZd4CgA_y2h5pz_roqsZxUy__xp82_DFxNywy082LEI3-2ZN1McMAZvx70_X69eYNu756W0jaHdcabAPTTkw516zDW9FtnIceNLxudGZMG-F8yKg9d8AS4UqFwbSZ-9Dtlh31pm8cS3_lghCEX1vIe56UV59ckB-EThBgmNNOkRUh9qcXOo"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-tertiary-container font-bold font-poppins bg-tertiary-fixed px-2 py-0.5 rounded-full">ECOMMERCE</span>
+<div class="flex items-center gap-0.5">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.7</span>
+</div>
+</div>
+<h4 class="font-bold text-sm mt-2 line-clamp-2 leading-snug">Scaling Your Boutique Store with Kleench API</h4>
+<p class="text-[10px] text-on-surface-variant mt-1">Instructor: Marcus Vane</p>
+</div>
+<div class="flex justify-between items-center mt-3">
+<div class="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span>8h 20m</span>
+</div>
+<span class="text-primary font-bold text-xs">Join Now</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-slate-50/80 backdrop-blur-xl rounded-t-3xl z-50 shadow-[0_-8px_32px_rgba(26,28,28,0.06)]">
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-sky-600 transition-all px-4 py-2">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-poppins text-[10px] font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-sky-600 transition-all px-4 py-2">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-poppins text-[10px] font-medium">Friends</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-sky-600 transition-all px-4 py-2">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+<span class="font-poppins text-[10px] font-medium">Videos</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-sky-100 text-sky-800 rounded-2xl px-4 py-2 transition-all">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-poppins text-[10px] font-medium">Learning</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 hover:text-sky-600 transition-all px-4 py-2">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-poppins text-[10px] font-medium">Wallet</span>
+</div>
+</nav>
+<!-- Floating Action Button (FAB) - Suppression logic: Primary action on this screen might be 'Ask AI' or 'Create' -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-tertiary-fixed-dim text-on-tertiary-fixed rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-transform duration-150 z-40">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</button>
+</body></html>
