@@ -1,742 +1,298 @@
-import { Link, useNavigate } from "react-router";
-import { useState, useEffect } from "react";
-import { Coins, Gift, Send, Heart, MessageSquare, Share2, BookmarkPlus, ShoppingCart, Star, Eye, EyeOff, Lock, Delete } from "lucide-react";
+import { Link } from "react-router";
+import { useState } from "react";
+import { Search, Plus, Gift, Target, Share2, ChevronRight, ArrowRight, User, Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { ShareReferralModal } from "../components/ShareReferralModal";
+import kleenchLogo from "@/assets/kleench_logo.png";
 
-/* ─── Images ─── */
-const HERO_BG =
-  "https://images.unsplash.com/photo-1758843410814-45dd3afb0ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGNvbG9yZnVsJTIwZmx1aWQlMjBncmFkaWVudCUyMGRpZ2l0YWwlMjBhcnR8ZW58MXx8fHwxNzczOTA3MDY2fDA&ixlib=rb-4.1.0&q=80&w=1080";
-const CREATOR_AVATAR =
-  "https://images.unsplash.com/photo-1760543998147-117ae5649c5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGVudHJlcHJlbmV1ciUyMHNtaWxpbmclMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzM5MDcwNjZ8MA&ixlib=rb-4.1.0&q=80&w=400";
-
-const REELS = [
+const ACTIVE_OFFERS = [
   {
     id: 1,
-    label: "Code Faster",
-    image:
-      "https://images.unsplash.com/photo-1648757838556-2ca6ec323d55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBwcm9ncmFtbWluZyUyMGtleWJvYXJkJTIwaGFuZHN8ZW58MXx8fHwxNzczOTA2Njc0fDA&ixlib=rb-4.1.0&q=80&w=400",
+    title: "Solar Lights Promotion",
+    price: "80.00",
+    earn: "10.00",
+    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=200&q=80",
+    type: "Solar",
   },
   {
     id: 2,
-    label: "Agile Basics",
-    image:
-      "https://images.unsplash.com/photo-1769740333462-9a63bfa914bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBtZWV0aW5nJTIwcHJlc2VudGF0aW9ufGVufDF8fHx8MTc3MzkwNTUwNnww&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 3,
-    label: "UI Principles",
-    image:
-      "https://images.unsplash.com/photo-1748801583967-3038967d7279?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBVSSUyMGRlc2lnbiUyMHNjcmVlbiUyMHByb3RvdHlwZXxlbnwxfHx8fDE3NzM5MDY2Nzh8MA&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 4,
-    label: "Social Strategy",
-    image:
-      "https://images.unsplash.com/photo-1696041756040-c910a971f222?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nJTIwc29jaWFsJTIwbWVkaWElMjBzdHJhdGVneSUyMHdvcmtzaG9wfGVufDF8fHx8MTc3MzkwNzA2OXww&ixlib=rb-4.1.0&q=80&w=400",
+    title: "Cetane Network Feedback",
+    price: "8.00",
+    earn: "1.00",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&q=80",
+    type: "Network",
   },
 ];
 
-const SHOP_ITEMS = [
-  {
-    id: 1,
-    name: "Pro Noise-Cancelling Headphones",
-    seller: "AudioTech Store",
-    price: 89.99,
-    originalPrice: 129.99,
-    rating: 4.8,
-    reviews: 124,
-    image: "https://images.unsplash.com/photo-1612858249937-1cc0852093dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aXJlbGVzcyUyMGhlYWRwaG9uZXMlMjBwcm9kdWN0JTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDF8fHx8MTc3Mzg1NzU0NHww&ixlib=rb-4.1.0&q=80&w=400",
-    badge: "Hot",
-  },
-  {
-    id: 2,
-    name: "Premium Leather Sneakers",
-    seller: "Street Kicks Co.",
-    price: 119.00,
-    originalPrice: null,
-    rating: 4.6,
-    reviews: 87,
-    image: "https://images.unsplash.com/photo-1771726588700-e3baad15ae16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwc25lYWtlcnMlMjBzaG9lcyUyMHByb2R1Y3R8ZW58MXx8fHwxNzczOTA5NTI0fDA&ixlib=rb-4.1.0&q=80&w=400",
-    badge: null,
-  },
-  {
-    id: 3,
-    name: "Minimalist Wrist Watch",
-    seller: "TimePiece Lab",
-    price: 74.99,
-    originalPrice: 99.00,
-    rating: 4.9,
-    reviews: 203,
-    image: "https://images.unsplash.com/photo-1758887952896-8491d393afe2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsJTIwd2F0Y2glMjB3cmlzdCUyMHByb2R1Y3R8ZW58MXx8fHwxNzczOTA5NTI1fDA&ixlib=rb-4.1.0&q=80&w=400",
-    badge: "Sale",
-  },
-  {
-    id: 4,
-    name: "Glow Skincare Set",
-    seller: "Pure Botanics",
-    price: 44.50,
-    originalPrice: null,
-    rating: 4.7,
-    reviews: 56,
-    image: "https://images.unsplash.com/photo-1656103743126-656ce0ed6291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxza2luY2FyZSUyMGJlYXV0eSUyMHByb2R1Y3QlMjBmbGF0bGF5fGVufDF8fHx8MTc3MzgwMzQyM3ww&ixlib=rb-4.1.0&q=80&w=400",
-    badge: "New",
-  },
-  {
-    id: 5,
-    name: "Urban Laptop Backpack",
-    seller: "CarryOn Goods",
-    price: 59.00,
-    originalPrice: 79.00,
-    rating: 4.5,
-    reviews: 142,
-    image: "https://images.unsplash.com/photo-1585501954260-372cec60d355?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXB0b3AlMjBiYWclMjBiYWNrcGFjayUyMHByb2R1Y3R8ZW58MXx8fHwxNzczOTA5NTI2fDA&ixlib=rb-4.1.0&q=80&w=400",
-    badge: "Sale",
-  },
-  {
-    id: 6,
-    name: "Retro UV Sunglasses",
-    seller: "LensWorld",
-    price: 32.00,
-    originalPrice: null,
-    rating: 4.4,
-    reviews: 39,
-    image: "https://images.unsplash.com/photo-1662928245746-6b4a1e90f8e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdW5nbGFzc2VzJTIwZmFzaGlvbiUyMHByb2R1Y3R8ZW58MXx8fHwxNzczODA4NjY0fDA&ixlib=rb-4.1.0&q=80&w=400",
-    badge: null,
-  },
+const RECENT_EARNINGS = [
+  { id: 1, amount: "+ K5.00", title: "Friend Referral", type: "Refer & Earn", typeColor: "bg-[#ff8c00] text-white" },
+  { id: 2, amount: "+ K1.00", title: "Survey Completed", type: "Sponsor Collect", typeColor: "bg-orange-50 text-[#ff8c00]" },
+  { id: 3, amount: "+ K0.20", title: "Watched Adverts", type: "Sponsor Collect", typeColor: "bg-orange-50 text-[#ff8c00]" },
 ];
-
-const BADGE_STYLES: Record<string, string> = {
-  Hot:  "bg-[var(--live-red)] text-white",
-  Sale: "bg-[var(--action-gold)] text-[var(--ink-primary)]",
-  New:  "bg-[var(--trust-blue)] text-white",
-};
-
-const stagger = { animate: { transition: { staggerChildren: 0.07 } } };
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-  },
-};
 
 export function Home() {
   const [balanceHidden, setBalanceHidden] = useState(true);
-  const [pinModalOpen, setPinModalOpen] = useState(false);
-  const [enteredPin, setEnteredPin] = useState("");
-  const [shake, setShake] = useState(false);
-  const [userProfilePhoto, setUserProfilePhoto] = useState<string | null>(null);
-  const [shareModalOpen, setShareModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<{ title: string; price: number; id: number } | null>(null);
-  const [heroLiked, setHeroLiked] = useState(false);
-  const [wishlistedItems, setWishlistedItems] = useState<Set<number>>(new Set());
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Load user profile photo from localStorage
-    const savedPhoto = localStorage.getItem("userProfilePhoto");
-    if (savedPhoto) {
-      setUserProfilePhoto(savedPhoto);
-    }
-  }, []);
-
-  function handleEyeClick() {
+  const [pinInput, setPinInput] = useState("");
+  const [showPinModal, setShowPinModal] = useState(false);
+  const [pinError, setPinError] = useState("");
+  
+  const handleToggleBalance = () => {
     if (balanceHidden) {
-      setBalanceHidden(false);
+      setShowPinModal(true);
+      setPinInput("");
+      setPinError("");
     } else {
-      setEnteredPin("");
-      setPinModalOpen(true);
+      setBalanceHidden(true);
     }
-  }
+  };
 
-  function handlePinDigit(digit: string) {
-    if (enteredPin.length >= 4) return;
-    const next = enteredPin + digit;
-    setEnteredPin(next);
-    if (next.length === 4) {
-      if (next === "0000") {
-        setTimeout(() => {
-          setPinModalOpen(false);
-          setBalanceHidden(true);
-          setEnteredPin("");
-        }, 180);
-      } else {
-        setShake(true);
-        setTimeout(() => {
-          setEnteredPin("");
-          setShake(false);
-        }, 600);
+  const verifyPin = (pinStr: string) => {
+    const savedPin = localStorage.getItem("userPin") || "1234"; // Default fallback if no pin was set during onboarding
+    if (pinStr === savedPin) {
+      setBalanceHidden(false);
+      setShowPinModal(false);
+    } else {
+      setPinError("Incorrect PIN");
+      setTimeout(() => {
+        setPinInput("");
+        setPinError("");
+      }, 1000);
+    }
+  };
+
+  const handlePinPress = (digit: string) => {
+    if (pinInput.length < 4) {
+      const updated = pinInput + digit;
+      setPinInput(updated);
+      if (updated.length === 4) {
+        verifyPin(updated);
       }
     }
-  }
-
-  function handlePinDelete() {
-    setEnteredPin((p) => p.slice(0, -1));
-  }
-
-  function handleShareProduct(e: React.MouseEvent, item: typeof SHOP_ITEMS[0]) {
-    e.preventDefault();
-    e.stopPropagation();
-    setSelectedProduct({ title: item.name, price: item.price, id: item.id });
-    setShareModalOpen(true);
-  }
+  };
 
   return (
     <>
-      {/* ── PIN Modal ── */}
-      {pinModalOpen && (
-        <div
-          className="fixed inset-0 z-[200] flex items-end justify-center"
-          style={{ backgroundColor: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
-          onClick={() => { setPinModalOpen(false); setEnteredPin(""); }}
-        >
-          <motion.div
-            initial={{ y: 80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 80, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            className="w-full max-w-sm bg-white rounded-t-3xl px-6 pt-6 pb-10 flex flex-col items-center gap-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Handle bar */}
-            <div className="w-10 h-1 rounded-full bg-black/10" />
+      <div className="flex flex-col gap-6 pb-24 min-h-screen font-[var(--font-body)] relative z-10">
+        {/* Header Section */}
+        <div className="relative pt-12 pb-24 px-4 bg-gradient-to-b from-[#ff8c00] to-[#e67e00] rounded-b-[40px] shadow-[0_12px_40px_rgba(255,140,0,0.15)] overflow-hidden">
+          {/* Premium Orange Grid/Texture Overlay */}
+          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)', backgroundSize: '8px 8px' }} />
+          <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
-            {/* Lock icon + title */}
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 rounded-full bg-[var(--trust-blue)]/10 flex items-center justify-center">
-                <Lock size={22} className="text-[var(--trust-blue)]" strokeWidth={2.5} />
-              </div>
-              <h3
-                className="font-[var(--font-header)] text-[var(--ink-primary)]"
-                style={{ fontSize: "18px", fontWeight: 800 }}
-              >
-                Enter PIN
-              </h3>
-              <p
-                className="font-[var(--font-body)] text-[var(--ink-muted)] text-center"
-                style={{ fontSize: "13px" }}
-              >
-                Enter your 4-digit PIN to view your balance
-              </p>
+          {/* Top Bar */}
+          <div className="relative z-10 flex justify-between items-center mb-6">
+            <div className="flex items-center">
+              <img src={kleenchLogo} alt="KLEENCH" className="h-10 w-auto object-contain brightness-0 invert" />
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm">
+                <Target size={18} />
+              </button>
+              <button className="relative w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm">
+                <Gift size={18} />
+                <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#ff8c00]" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Content Overlapping Header */}
+        <div className="px-4 -mt-24 space-y-6 relative z-10 w-full max-w-md mx-auto">
+          {/* Opportunities Card */}
+          <div className="bg-white rounded-[28px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100/50">
+            <h2 className="text-[#191c1e] text-[22px] mb-4" style={{ fontFamily: 'Agrandir, sans-serif', fontWeight: 800, letterSpacing: "-0.02em" }}>
+              Opportunities to Earn
+            </h2>
+            
+            <div className="relative mb-6">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input type="text" placeholder="Search products, services or Courses" className="w-full bg-[#f8f9fb] rounded-2xl py-3.5 pl-11 pr-4 text-[13px] font-medium focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/20 transition-all border border-transparent placeholder-gray-400" />
             </div>
 
-            {/* PIN dots */}
-            <motion.div
-              animate={shake ? { x: [-8, 8, -6, 6, -3, 3, 0] } : { x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-4"
-            >
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="w-4 h-4 rounded-full border-2 transition-all duration-150"
-                  style={{
-                    backgroundColor: enteredPin.length > i
-                      ? "var(--trust-blue)"
-                      : "transparent",
-                    borderColor: enteredPin.length > i
-                      ? "var(--trust-blue)"
-                      : "#d1d5db",
-                  }}
-                />
+            <div className="flex justify-between items-end border-t border-gray-100 pt-5">
+              <div>
+                <div className="flex items-center gap-1.5 mb-1">
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">WALLET</p>
+                  <button onClick={handleToggleBalance} className="text-gray-400 p-1">
+                    {balanceHidden ? <EyeOff size={11} /> : <Eye size={11} />}
+                  </button>
+                </div>
+                <p className={`text-xl font-bold text-[#191c1e] ${balanceHidden ? 'font-mono' : ''}`} style={{ fontFamily: balanceHidden ? 'monospace' : 'Agrandir, sans-serif' }}>
+                  {balanceHidden ? '••••••' : 'K145.20'}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Rewards Today</p>
+                <p className={`text-xl font-bold text-[#ff8c00] ${balanceHidden ? 'font-mono' : ''}`} style={{ fontFamily: balanceHidden ? 'monospace' : 'Agrandir, sans-serif' }}>
+                  {balanceHidden ? '•••' : 'K3.40'}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] text-gray-400 font-bold mb-1 uppercase tracking-wider">Pending Escrow</p>
+                <p className={`text-xl font-bold text-gray-300 ${balanceHidden ? 'font-mono' : ''}`} style={{ fontFamily: balanceHidden ? 'monospace' : 'Agrandir, sans-serif' }}>
+                  {balanceHidden ? '••••' : 'K850'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Grid */}
+          <div className="grid grid-cols-2 gap-3">
+            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+              <Plus size={18} strokeWidth={3} /> Post Advert
+            </motion.button>
+            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+              <Plus size={18} strokeWidth={3} /> Sell Product
+            </motion.button>
+            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+              <Plus size={18} strokeWidth={3} /> Create Poll
+            </motion.button>
+            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+              <Share2 size={18} strokeWidth={3} /> Refer & Earn
+            </motion.button>
+          </div>
+
+          {/* Active Offers */}
+          <div>
+            <div className="flex justify-between items-center mb-4 px-1">
+              <h3 className="flex items-center gap-2 font-bold text-[#191c1e] text-[17px]" style={{fontFamily: 'Agrandir, sans-serif'}}>
+                <div className="w-5 h-5 rounded-full border-2 border-orange-100 flex items-center justify-center">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff8c00] shadow-[0_0_8px_rgba(255,140,0,0.6)] animate-pulse" />
+                </div>
+                Active Offers
+              </h3>
+              <span className="text-[11px] font-bold text-[#ff8c00] uppercase tracking-wider bg-orange-50 px-3 py-1 rounded-full">See all</span>
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              {ACTIVE_OFFERS.map((offer) => (
+                <Link to={`/offer/${offer.id}`} key={offer.id}>
+                  <div className="bg-white border border-gray-100/80 p-3 rounded-2xl flex items-center gap-4 shadow-[0_4px_16px_rgba(0,0,0,0.03)] transition-all hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center flex-shrink-0 overflow-hidden relative border border-orange-100/50">
+                      {offer.type === 'Solar' ? (
+                        <ImageWithFallback src={offer.image} alt={offer.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <User size={24} className="text-[#ff8c00]" />
+                      )}
+                      {offer.type !== 'Solar' && (
+                        <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-[#191c1e] mb-1.5 text-[15px] leading-tight" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+                        {offer.title}
+                      </h4>
+                      <p className="text-[13px] text-gray-500 font-medium">
+                        K{offer.price} <span className="opacity-40 line-through">K100.00</span>
+                      </p>
+                    </div>
+                    <ChevronRight className="text-gray-300 w-5 h-5 mr-1" />
+                  </div>
+                </Link>
               ))}
-            </motion.div>
+            </div>
 
-            {/* Error message */}
-            {enteredPin.length === 4 && (
-              <p
-                className="font-[var(--font-body)] text-center -mt-2"
-                style={{ fontSize: "12px", color: "var(--live-red)", fontWeight: 600 }}
-              >
-                Incorrect PIN. Try again.
-              </p>
-            )}
+            {/* Invite & Earn Banner */}
+            <div className="mt-4 relative rounded-2xl overflow-hidden bg-[#191c1e] h-[88px] flex items-center justify-between px-5 shadow-lg group cursor-pointer border border-[#191c1e]">
+              <div className="absolute inset-0 opacity-40">
+                <img src="https://images.unsplash.com/photo-1557683316-973673baf926?w=400&q=80" alt="bg" className="w-full h-full object-cover" />
+              </div>
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                  <Share2 size={18} className="text-white" />
+                </div>
+                <span className="text-white font-bold text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>Invite Friends & Earn</span>
+              </div>
+              <button className="relative z-10 bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white text-[13px] font-bold px-4 py-2.5 rounded-xl shadow-lg border border-white/10">
+                Invite & Earn
+              </button>
+            </div>
+          </div>
 
-            {/* Keypad */}
-            <div className="grid grid-cols-3 gap-3 w-full">
-              {["1","2","3","4","5","6","7","8","9","","0","del"].map((key) => {
-                if (key === "") return <div key="empty" />;
-                if (key === "del") return (
-                  <motion.button
-                    key="del"
-                    whileTap={{ scale: 0.88 }}
-                    onClick={handlePinDelete}
-                    className="h-14 rounded-2xl bg-[#f3f3f3] flex items-center justify-center"
-                  >
-                    <Delete size={18} className="text-[var(--ink-primary)]" strokeWidth={2} />
-                  </motion.button>
-                );
+          {/* Recent Earnings */}
+          <div className="mt-4 bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100/50">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-bold text-[#191c1e] text-[17px]" style={{fontFamily: 'Agrandir, sans-serif'}}>Recent Earnings</h3>
+              <span className="text-[10px] font-bold text-[#ff8c00] uppercase tracking-widest bg-orange-50 px-3 py-1.5 rounded-full">Live Timeline</span>
+            </div>
+            
+            <div className="flex flex-col gap-0 relative">
+              <div className="flex flex-col gap-1">
+                {RECENT_EARNINGS.map((item) => (
+                  <div key={item.id} className="flex justify-between items-center py-2.5 border-b border-gray-50 last:border-0">
+                    <div className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 text-[#ff8c00]" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-bold text-[#191c1e] text-[13px]">{item.amount} <span className="text-gray-400 font-medium ml-1 text-[12px]">- {item.title}</span></span>
+                      </div>
+                    </div>
+                    <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full ${item.typeColor}`}>
+                      {item.type}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* PIN Verification Modal */}
+      {showPinModal && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-end bg-black/40 backdrop-blur-sm">
+          <motion.div 
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="w-full max-w-md bg-white rounded-t-[32px] p-6 pb-12 shadow-2xl relative"
+          >
+            <button 
+              onClick={() => setShowPinModal(false)}
+              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-500"
+            >
+              ✕
+            </button>
+            <div className="text-center mb-8">
+              <h3 className="text-xl font-bold text-[#191c1e] mb-2" style={{ fontFamily: 'Agrandir, sans-serif' }}>Enter Security PIN</h3>
+              <p className="text-[14px] text-gray-500">Provide your 4-digit PIN to show balances</p>
+            </div>
+            
+            <div className="flex justify-center gap-4 mb-6">
+              {[0, 1, 2, 3].map((i) => (
+                <div key={i} className="w-5 h-5 rounded-full border-2 transition-all" style={{ backgroundColor: pinInput.length > i ? '#ff8c00' : 'transparent', borderColor: pinInput.length > i ? '#ff8c00' : '#e5e7eb' }} />
+              ))}
+            </div>
+            
+            {pinError && <p className="text-red-500 text-center text-sm font-bold mb-4">{pinError}</p>}
+            
+            <div className="grid grid-cols-3 gap-3">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "⌫"].map((key, idx) => {
+                if (key === "") return <div key={idx} />;
                 return (
                   <motion.button
-                    key={key}
-                    whileTap={{ scale: 0.88 }}
-                    onClick={() => handlePinDigit(key)}
-                    className="h-14 rounded-2xl bg-[#f3f3f3] font-[var(--font-header)] text-[var(--ink-primary)]"
-                    style={{ fontSize: "20px", fontWeight: 700 }}
+                    key={idx}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => {
+                      if (key === "⌫") {
+                        setPinInput(p => p.slice(0, -1));
+                      } else {
+                        handlePinPress(String(key));
+                      }
+                    }}
+                    className="h-16 rounded-2xl bg-[#f8f9fb] text-[#191c1e] text-2xl font-bold flex items-center justify-center font-[var(--font-header)]"
                   >
                     {key}
                   </motion.button>
                 );
               })}
             </div>
-
-            {/* Cancel */}
-            <button
-              onClick={() => { setPinModalOpen(false); setEnteredPin(""); }}
-              className="font-[var(--font-body)] text-[var(--ink-muted)]"
-              style={{ fontSize: "13px", fontWeight: 500 }}
-            >
-              Cancel
-            </button>
           </motion.div>
         </div>
-      )}
-
-      <motion.div
-        className="flex flex-col gap-6 pb-4"
-        variants={stagger}
-        initial="initial"
-        animate="animate"
-      >
-        {/* ── 1. Financial Header & Quick Actions ── */}
-        <motion.section variants={fadeUp} className="px-4 flex flex-col gap-4">
-          {/* Balance card */}
-          <div className="flex items-center justify-between bg-white rounded-2xl p-4 shadow-sm border border-black/[0.04]">
-            <div className="flex items-center gap-3">
-              {/* Avatar */}
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-[var(--surface-raised)] flex-shrink-0 ring-2 ring-[var(--action-gold)]/30">
-                <ImageWithFallback
-                  src={userProfilePhoto || CREATOR_AVATAR}
-                  alt="User avatar"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className="text-[var(--ink-muted)] font-[var(--font-body)]"
-                  style={{ fontSize: "12px", fontWeight: 500 }}
-                >
-                  Available Balance
-                </span>
-                <span
-                  className="font-[var(--font-header)] text-[var(--ink-primary)] leading-none mt-0.5"
-                  style={{ fontSize: "26px", fontWeight: 800, letterSpacing: "-0.02em" }}
-                >
-                  <span className="flex items-center gap-2">
-                    <span>{balanceHidden ? "$1,250.75" : "*****"}</span>
-                    <button
-                      onClick={handleEyeClick}
-                      className="text-[var(--ink-muted)] flex items-center"
-                      style={{ fontSize: "0px" }}
-                    >
-                      {balanceHidden
-                        ? <EyeOff size={16} strokeWidth={2} />
-                        : <Eye size={16} strokeWidth={2} />}
-                    </button>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick action pills */}
-          <div className="flex gap-2.5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
-            {/* Earnings — Gold */}
-            <Link to="/wallet">
-              <motion.button
-                whileTap={{ scale: 0.93 }}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[var(--action-gold)] text-[var(--ink-primary)] font-[var(--font-header)] whitespace-nowrap shadow-sm"
-                style={{ fontSize: "13px", fontWeight: 700 }}
-              >
-                <Coins size={16} />
-                Earnings
-              </motion.button>
-            </Link>
-            {/* Rewards — neutral */}
-            <Link to={`/profile/${localStorage.getItem("username") || "user"}`}>
-              <motion.button
-                whileTap={{ scale: 0.93 }}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#e8e8e8] text-[var(--ink-primary)] font-[var(--font-header)] whitespace-nowrap"
-                style={{ fontSize: "13px", fontWeight: 700 }}
-              >
-                <Gift size={16} />
-                Rewards
-              </motion.button>
-            </Link>
-            {/* Send — Trust Blue */}
-            <Link to="/wallet">
-              <motion.button
-                whileTap={{ scale: 0.93 }}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[var(--trust-blue)] text-white font-[var(--font-header)] whitespace-nowrap shadow-sm"
-                style={{ fontSize: "13px", fontWeight: 700 }}
-              >
-                <Send size={15} />
-                Send
-              </motion.button>
-            </Link>
-            {/* Save — neutral */}
-            <Link to="/learning">
-              <motion.button
-                whileTap={{ scale: 0.93 }}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#e8e8e8] text-[var(--ink-primary)] font-[var(--font-header)] whitespace-nowrap"
-                style={{ fontSize: "13px", fontWeight: 700 }}
-              >
-                <BookmarkPlus size={16} />
-                Save
-              </motion.button>
-            </Link>
-          </div>
-        </motion.section>
-
-        {/* ── 2. Main Hybrid Feed / Hero Feature Card ── */}
-        <motion.section variants={fadeUp} className="px-4">
-          <Link to="/learning/1">
-            <div
-              className="relative bg-[var(--surface-raised)] rounded-2xl overflow-hidden flex flex-col justify-end"
-              style={{ aspectRatio: "4/5" }}
-            >
-              {/* Background image */}
-              <ImageWithFallback
-                src={HERO_BG}
-                alt="Featured content background"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-
-              {/* Dark gradient overlay — bottom-heavy */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-              {/* ── Right sidebar: LIVE creator + actions ── */}
-              <div className="absolute right-4 top-4 bottom-24 flex flex-col items-center justify-end gap-4 z-10">
-                {/* Creator avatar + LIVE badge */}
-                <div className="relative mb-1">
-                  <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-white shadow-md">
-                    <ImageWithFallback
-                      src={CREATOR_AVATAR}
-                      alt="Creator avatar"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <motion.span
-                    animate={{ opacity: [1, 0.6, 1] }}
-                    transition={{ duration: 1.6, repeat: Infinity }}
-                    className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-[var(--live-red)] text-white px-1.5 py-[2px] rounded-full font-[var(--font-body)] uppercase tracking-wider shadow-md"
-                    style={{ fontSize: "8px", fontWeight: 700 }}
-                  >
-                    Live
-                  </motion.span>
-                </div>
-
-                {/* Heart */}
-                <motion.button
-                  whileTap={{ scale: 0.85 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setHeroLiked(!heroLiked);
-                  }}
-                  className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10"
-                >
-                  <Heart size={18} className={heroLiked ? "text-red-500 fill-red-500" : "text-white"} />
-                </motion.button>
-
-                {/* Chat */}
-                <motion.button
-                  whileTap={{ scale: 0.85 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/friends");
-                  }}
-                  className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10"
-                >
-                  <MessageSquare size={18} className="text-white" />
-                </motion.button>
-
-                {/* Share */}
-                <motion.button
-                  whileTap={{ scale: 0.85 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelectedProduct({ title: "Digital Masterclass: UX Architecture", price: 49.99, id: 1 });
-                    setShareModalOpen(true);
-                  }}
-                  className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10"
-                >
-                  <Share2 size={18} className="text-white" />
-                </motion.button>
-              </div>
-
-              {/* ── Bottom content info ── */}
-              <div className="relative z-10 p-5" style={{ width: "83%" }}>
-                {/* LEARNING tag */}
-                <span
-                  className="inline-block px-2.5 py-1 bg-[var(--trust-blue)]/80 backdrop-blur-sm text-white rounded font-[var(--font-header)] uppercase tracking-wider mb-3"
-                  style={{ fontSize: "10px", fontWeight: 700 }}
-                >
-                  Learning
-                </span>
-
-                {/* Title */}
-                <h2
-                  className="font-[var(--font-header)] text-white mb-2 leading-tight"
-                  style={{ fontSize: "22px", fontWeight: 800 }}
-                >
-                  Digital Masterclass:<br />UX Architecture
-                </h2>
-
-                {/* Description */}
-                <p
-                  className="text-white/80 font-[var(--font-body)] mb-4 line-clamp-2"
-                  style={{ fontSize: "13px" }}
-                >
-                  Learn how to build scalable design systems from industry leaders. Live Q&amp;A included.
-                </p>
-
-                {/* Price + CTA */}
-                <div className="flex items-center gap-3">
-                  <span
-                    className="font-[var(--font-header)] text-[var(--action-gold)]"
-                    style={{ fontSize: "20px", fontWeight: 800 }}
-                  >
-                    $49.99
-                  </span>
-                  <span
-                    className="bg-white text-[var(--trust-blue)] px-4 py-2 rounded-lg font-[var(--font-header)] shadow-md inline-block"
-                    style={{ fontSize: "13px", fontWeight: 700 }}
-                  >
-                    Join Now
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </motion.section>
-
-        {/* ── 3. Trending in Edutech ── */}
-        <motion.section
-          variants={fadeUp}
-          className="py-5"
-          style={{ backgroundColor: "#f3f3f3" }}
-        >
-          <div className="flex items-center justify-between pl-4 pr-4 mb-4">
-            <h3
-              className="font-[var(--font-header)] text-[var(--ink-primary)]"
-              style={{ fontSize: "17px", fontWeight: 800 }}
-            >
-              Trending in Edutech
-            </h3>
-            <Link
-              to="/learning"
-              className="font-[var(--font-body)] text-[var(--trust-blue)] uppercase tracking-wider"
-              style={{ fontSize: "11px", fontWeight: 700 }}
-            >
-              See all
-            </Link>
-          </div>
-
-          {/* 9:16 reel cards – horizontal scroll */}
-          <div
-            className="flex gap-4 overflow-x-auto pl-4 pr-4"
-            style={{ scrollbarWidth: "none" }}
-          >
-            {REELS.map((reel, i) => (
-              <motion.div
-                key={reel.id}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.15 + 0.08 * i }}
-                className="flex-shrink-0"
-                style={{ width: 140 }}
-              >
-                <Link to={`/product/${reel.id}`} className="block">
-                  <div
-                    className="relative rounded-2xl overflow-hidden bg-[var(--surface-raised)]"
-                    style={{ aspectRatio: "9/16" }}
-                  >
-                    <ImageWithFallback
-                      src={reel.image}
-                      alt={reel.label}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <p
-                        className="text-white font-[var(--font-header)] leading-tight"
-                        style={{ fontSize: "12px", fontWeight: 700 }}
-                      >
-                        {reel.label}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* ── 4. Shop ── */}
-        <motion.section variants={fadeUp} className="px-4 flex flex-col gap-4">
-          {/* Section header */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <h3
-                className="font-[var(--font-header)] text-[var(--ink-primary)]"
-                style={{ fontSize: "17px", fontWeight: 800 }}
-              >
-                Shop
-              </h3>
-              <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--action-gold)]/15 text-[var(--action-gold-dark)]"
-                    style={{ fontSize: "10px", fontWeight: 700 }}>
-                <ShoppingCart size={10} strokeWidth={2.5} />
-                Escrow Protected
-              </span>
-            </div>
-            <Link
-              to="/marketplace"
-              className="font-[var(--font-body)] text-[var(--trust-blue)] uppercase tracking-wider"
-              style={{ fontSize: "11px", fontWeight: 700 }}
-            >
-              See all
-            </Link>
-          </div>
-
-          {/* 2-column product grid */}
-          <div className="grid grid-cols-2 gap-3">
-            {SHOP_ITEMS.map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 + 0.07 * i }}
-              >
-                <Link to={`/product/${item.id}`} className="block">
-                  <div className="bg-white rounded-2xl overflow-hidden border border-black/[0.04] shadow-sm">
-                    {/* Product image */}
-                    <div className="relative" style={{ aspectRatio: "1/1" }}>
-                      <ImageWithFallback
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
-                      {/* Badge */}
-                      {item.badge && (
-                        <span
-                          className={`absolute top-2 left-2 px-2 py-0.5 rounded-full font-[var(--font-body)] ${BADGE_STYLES[item.badge]}`}
-                          style={{ fontSize: "9px", fontWeight: 700 }}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
-                      {/* Wishlist */}
-                      <motion.button
-                        whileTap={{ scale: 0.85 }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setWishlistedItems(prev => {
-                            const next = new Set(prev);
-                            if (next.has(item.id)) {
-                              next.delete(item.id);
-                            } else {
-                              next.add(item.id);
-                            }
-                            return next;
-                          });
-                        }}
-                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm"
-                      >
-                        <Heart size={13} className={wishlistedItems.has(item.id) ? "text-red-500 fill-red-500" : "text-[var(--ink-muted)]"} strokeWidth={2} />
-                      </motion.button>
-                      {/* Share */}
-                      <motion.button
-                        whileTap={{ scale: 0.85 }}
-                        onClick={(e) => handleShareProduct(e, item)}
-                        className="absolute top-2 right-10 w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm"
-                      >
-                        <Share2 size={13} className="text-[var(--ink-muted)]" strokeWidth={2} />
-                      </motion.button>
-                    </div>
-
-                    {/* Product info */}
-                    <div className="p-3 flex flex-col gap-1.5">
-                      <p
-                        className="font-[var(--font-body)] text-[var(--ink-primary)] leading-snug line-clamp-2"
-                        style={{ fontSize: "12px", fontWeight: 600 }}
-                      >
-                        {item.name}
-                      </p>
-                      <p
-                        className="font-[var(--font-body)] text-[var(--ink-muted)]"
-                        style={{ fontSize: "10px" }}
-                      >
-                        {item.seller}
-                      </p>
-
-                      {/* Rating */}
-                      <div className="flex items-center gap-1">
-                        <Star size={10} className="text-[var(--action-gold-dark)] fill-[var(--action-gold)]" strokeWidth={0} />
-                        <span
-                          className="font-[var(--font-body)] text-[var(--ink-secondary)]"
-                          style={{ fontSize: "10px", fontWeight: 600 }}
-                        >
-                          {item.rating}
-                        </span>
-                        <span
-                          className="font-[var(--font-body)] text-[var(--ink-muted)]"
-                          style={{ fontSize: "10px" }}
-                        >
-                          ({item.reviews})
-                        </span>
-                      </div>
-
-                      {/* Price row */}
-                      <div className="flex items-center justify-between mt-0.5">
-                        <div className="flex items-baseline gap-1.5">
-                          <span
-                            className="font-[var(--font-header)] text-[var(--ink-primary)]"
-                            style={{ fontSize: "15px", fontWeight: 800 }}
-                          >
-                            ${item.price.toFixed(2)}
-                          </span>
-                          {item.originalPrice && (
-                            <span
-                              className="font-[var(--font-body)] text-[var(--ink-muted)] line-through"
-                              style={{ fontSize: "10px" }}
-                            >
-                              ${item.originalPrice.toFixed(2)}
-                            </span>
-                          )}
-                        </div>
-                        <motion.button
-                          whileTap={{ scale: 0.88 }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            navigate(`/product/${item.id}`);
-                          }}
-                          className="w-7 h-7 rounded-lg bg-[var(--trust-blue)] flex items-center justify-center shadow-sm"
-                        >
-                          <ShoppingCart size={13} className="text-white" strokeWidth={2.5} />
-                        </motion.button>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-      </motion.div>
-
-      {/* ── Share Referral Modal ── */}
-      {shareModalOpen && selectedProduct && (
-        <ShareReferralModal
-          isOpen={shareModalOpen}
-          productTitle={selectedProduct.title}
-          productPrice={selectedProduct.price}
-          productId={selectedProduct.id}
-          onClose={() => setShareModalOpen(false)}
-        />
       )}
     </>
   );
 }
+

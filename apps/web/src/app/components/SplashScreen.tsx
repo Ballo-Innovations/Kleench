@@ -1,4 +1,4 @@
-import kleenchIcon from '@/assets/bab9fb3e64d4405d56f0e16a36664614cf4a09f8.png';
+import kleenchIcon from '@/assets/kleench_logo.png';
 import { motion } from "motion/react";
 import { useEffect } from "react";
 

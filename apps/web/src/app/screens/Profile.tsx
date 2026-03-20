@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router";
-import { ArrowLeft, ShieldCheck, Star, MessageCircle, UserPlus, Share2, Play, MapPin } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Star, MessageCircle, UserPlus, Share2, Play, MapPin, Phone, MessageSquare, Mail, AtSign } from "lucide-react";
 import { motion } from "motion/react";
 
 const profileData = {
@@ -32,10 +32,21 @@ const profileData = {
 };
 
 export function Profile() {
-  useParams(); // username param available for future use
-  const [activeTab, setActiveTab] = useState<"reels" | "marketplace">("reels");
+  const { username: profileUsername } = useParams();
+  const [activeTab, setActiveTab] = useState<"reels" | "marketplace" | "verification">("reels");
   const [isFollowing, setIsFollowing] = useState(false);
   const navigate = useNavigate();
+
+  // Load local user data
+  const localKycRaw = localStorage.getItem("userKyc");
+  const localKyc = localKycRaw ? JSON.parse(localKycRaw) : null;
+  const localPhoto = localStorage.getItem("userProfilePhoto");
+  
+  const isOwnProfile = !profileUsername || (localKyc && profileUsername === localKyc.userName);
+
+  const displayName = isOwnProfile && localKyc ? localKyc.fullName : profileData.name;
+  const displayUsername = isOwnProfile && localKyc ? `@${localKyc.userName}` : (profileUsername ? `@${profileUsername}` : profileData.username);
+  const initials = displayName.split(" ").map((n: string) => n[0]).join("").toUpperCase();
 
   return (
     <div className="w-full max-w-md mx-auto pb-4">
@@ -45,7 +56,7 @@ export function Profile() {
           <ArrowLeft size={16} className="text-[var(--ink-primary)]" />
         </Link>
         <span className="text-[10px] font-[var(--font-body)] font-bold text-[var(--ink-muted)] uppercase tracking-widest">
-          {profileData.username}
+          {displayUsername}
         </span>
         <button
           onClick={() => {
@@ -62,9 +73,13 @@ export function Profile() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="pb-3">
         <div className="flex items-start gap-3 mb-3">
           <div className="relative">
-            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-rose-500 via-purple-500 to-indigo-500 p-[2px] shadow-md">
-              <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center text-[var(--ink-primary)] text-lg font-[var(--font-header)] font-bold">
-                SM
+            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#ff8c00] to-[#e67e00] p-[2px] shadow-md">
+              <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center text-[var(--ink-primary)] text-lg font-[var(--font-header)] font-bold overflow-hidden">
+                {isOwnProfile && localPhoto ? (
+                  <img src={localPhoto} alt={displayName} className="w-full h-full object-cover" />
+                ) : (
+                  initials
+                )}
               </div>
             </div>
             {profileData.verified && (
@@ -74,7 +89,7 @@ export function Profile() {
             )}
           </div>
           <div className="flex-1 pt-0.5">
-            <h1 className="text-lg font-[var(--font-header)] font-bold text-[var(--ink-primary)] mb-0.5">{profileData.name}</h1>
+            <h1 className="text-lg font-[var(--font-header)] font-bold text-[var(--ink-primary)] mb-0.5">{displayName}</h1>
             <div className="flex items-center gap-1 mb-0.5">
               <MapPin size={10} className="text-[var(--ink-muted)]" />
               <p className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)]">{profileData.location}</p>
@@ -140,17 +155,17 @@ export function Profile() {
       {/* Tabs */}
       <div className="mb-3">
         <div className="flex rounded-lg bg-[var(--surface-raised)] p-1">
-          {(["reels", "marketplace"] as const).map((tab) => (
+          {(["reels", "marketplace", "verification"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-2 rounded-md text-[10px] font-[var(--font-body)] font-bold uppercase tracking-wider transition-all duration-300 ${
+              className={`flex-1 py-2 rounded-md text-[9px] font-[var(--font-body)] font-bold uppercase tracking-wider transition-all duration-300 ${
                 activeTab === tab
-                  ? "bg-gradient-to-r from-[var(--trust-blue)] to-[var(--trust-blue-dark)] text-white shadow-md"
+                  ? "bg-gradient-to-r from-[#ff8c00] to-[#e67e00] text-white shadow-md font-bold"
                   : "text-[var(--ink-muted)]"
               }`}
             >
-              {tab === "reels" ? "Learning Reels" : "Marketplace"}
+              {tab === "reels" ? "Reels" : tab === "marketplace" ? "Shop" : "Verification"}
             </button>
           ))}
         </div>
@@ -192,10 +207,51 @@ export function Profile() {
                     </span>
                   </div>
                   <h3 className="text-[10px] font-[var(--font-body)] font-bold text-[var(--ink-primary)] mb-0.5 line-clamp-2">{product.title}</h3>
-                  <span className="text-sm font-[var(--font-header)] font-bold text-[var(--trust-blue)]">${product.price}</span>
+                  <span className="text-sm font-[var(--font-header)] font-bold text-[#ff8c00]">${product.price}</span>
                 </Link>
               </motion.div>
             ))}
+          </motion.div>
+        )}
+
+        {activeTab === "verification" && (
+          <motion.div key="verification" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+            <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+              <h3 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">Account Verification</h3>
+              
+              <div className="space-y-4">
+                {[
+                  { label: "User Name", value: displayUsername, icon: AtSign },
+                  { label: "Full Names", value: displayName, icon: ShieldCheck },
+                  { label: "Phone (Calls)", value: isOwnProfile && localKyc ? localKyc.phoneCall : "+1 555-0123", icon: Phone },
+                  { label: "Phone (WhatsApp)", value: isOwnProfile && localKyc ? localKyc.phoneWhatsapp : "+1 555-0123", icon: MessageSquare },
+                  { label: "Email Address", value: isOwnProfile && localKyc ? localKyc.email : "sarah.m@example.com", icon: Mail },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-[#ff8c00]">
+                      <item.icon size={14} />
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">{item.label}</p>
+                      <p className="text-[13px] font-bold text-[#191c1e]">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {localKyc && (
+                <div className="mt-6 p-3 rounded-xl bg-green-50 border border-green-100 flex items-center gap-2">
+                  <ShieldCheck size={16} className="text-green-600" />
+                  <p className="text-[11px] font-bold text-green-700">Verified Kleench Member</p>
+                </div>
+              )}
+            </div>
+
+            <div className="bg-orange-50 p-4 rounded-2xl border border-orange-100">
+              <p className="text-[11px] text-[#ff8c00] font-medium leading-relaxed">
+                Your verification details are secure and used only to build trust within the Kleench ecosystem.
+              </p>
+            </div>
           </motion.div>
         )}
       </div>

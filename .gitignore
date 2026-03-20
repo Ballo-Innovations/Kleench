@@ -87,3 +87,5 @@ database-debug.log
 server/dist
 public/dist
 *.pem
+reference screens/
+DESIGN SKill.md

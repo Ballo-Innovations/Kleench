@@ -1,4 +1,4 @@
-import kleenchLogo from "@/assets/bab9fb3e64d4405d56f0e16a36664614cf4a09f8.png";
+import kleenchLogo from "../../assets/kleench_logo.png";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
@@ -16,60 +16,54 @@ export function Signup() {
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
-
     if (!fullName || !email || !password || !confirmPassword) {
-      setError("Please fill in all fields");
+      setError("Please fill in all fields.");
       return;
     }
-
     if (password.length < 8) {
       setError("Password must be at least 8 characters");
       return;
     }
-
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError("Passwords do not match.");
       return;
     }
-
-    // Simulate signup - set authentication status and navigate to onboarding
+    setError("");
+    
     localStorage.setItem("isAuthenticated", "true");
     localStorage.setItem("userName", fullName);
-    
     setTimeout(() => {
       navigate("/onboarding");
     }, 500);
   };
 
   return (
-    <div className="min-h-screen bg-[var(--clean-slate)] relative flex flex-col">
+    <div className="min-h-screen bg-[#fcfcfc] relative flex flex-col font-[var(--font-body)]">
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--trust-blue)] opacity-[0.06] rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-[var(--action-gold)] opacity-[0.04] rounded-full blur-[100px]" />
+        <div className="absolute top-0 right-0 w-[400px] h-[300px] bg-[#ff8c00] opacity-[0.05] rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-[var(--trust-blue)] opacity-[0.03] rounded-full blur-[100px]" />
+        <div className="absolute inset-0 opacity-[0.2]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)', backgroundSize: '16px 16px' }} />
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 relative z-10 w-full max-w-md mx-auto">
+      <div className="flex-1 flex flex-col items-center py-12 px-6 relative z-10">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 text-center"
+          className="mb-8 text-center"
         >
-          <img
-            src={kleenchLogo}
-            alt="Kleench Technologies Ltd"
-            className="h-12 w-auto object-contain mx-auto mb-2"
-          />
+          <div className="mx-auto flex justify-center mb-6">
+            <img src={kleenchLogo} alt="KLEENCH Logo" className="h-20 w-auto object-contain" />
+          </div>
           <h1
-            className="font-[var(--font-header)] text-[var(--ink-primary)]"
-            style={{ fontSize: "22px", fontWeight: 800, letterSpacing: "-0.02em" }}
+            className="font-[var(--font-header)] text-[#191c1e]"
+            style={{ fontSize: "32px", fontWeight: 800, letterSpacing: "-0.03em", fontFamily: 'Agrandir, sans-serif' }}
           >
             Create Account
           </h1>
-          <p className="text-[var(--ink-secondary)] font-[var(--font-body)] text-xs mt-1">
-            Join KLEENCH today
+          <p className="text-gray-500 font-medium text-sm mt-3">
+            Join Kleench today
           </p>
         </motion.div>
 
@@ -78,40 +72,40 @@ export function Signup() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="w-full"
+          className="w-full max-w-sm"
         >
-          <form onSubmit={handleSignup} className="space-y-3">
+          <form onSubmit={handleSignup} className="space-y-4">
             {/* Full Name */}
             <div>
-              <label className="block text-xs font-[var(--font-body)] font-semibold text-[var(--ink-primary)] mb-1.5">
+              <label className="block text-[13px] font-bold text-[#191c1e] mb-2 uppercase tracking-wide">
                 Full Name
               </label>
               <input
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg glass-strong border border-black/[0.06] font-[var(--font-body)] text-[var(--ink-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--trust-blue)] focus:border-transparent"
+                className="w-full px-5 py-3.5 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
                 placeholder="John Doe"
               />
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-xs font-[var(--font-body)] font-semibold text-[var(--ink-primary)] mb-1.5">
+              <label className="block text-[13px] font-bold text-[#191c1e] mb-2 uppercase tracking-wide">
                 Email
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg glass-strong border border-black/[0.06] font-[var(--font-body)] text-[var(--ink-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--trust-blue)] focus:border-transparent"
+                className="w-full px-5 py-3.5 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
                 placeholder="your@email.com"
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-xs font-[var(--font-body)] font-semibold text-[var(--ink-primary)] mb-1.5">
+              <label className="block text-[13px] font-bold text-[#191c1e] mb-2 uppercase tracking-wide">
                 Password
               </label>
               <div className="relative">
@@ -119,22 +113,22 @@ export function Signup() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg glass-strong border border-black/[0.06] font-[var(--font-body)] text-[var(--ink-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--trust-blue)] focus:border-transparent"
+                  className="w-full px-5 py-3.5 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
                   placeholder="At least 8 characters"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--ink-muted)]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
 
             {/* Confirm Password */}
             <div>
-              <label className="block text-xs font-[var(--font-body)] font-semibold text-[var(--ink-primary)] mb-1.5">
+              <label className="block text-[13px] font-bold text-[#191c1e] mb-2 uppercase tracking-wide">
                 Confirm Password
               </label>
               <div className="relative">
@@ -142,15 +136,15 @@ export function Signup() {
                   type={showConfirm ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg glass-strong border border-black/[0.06] font-[var(--font-body)] text-[var(--ink-primary)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--trust-blue)] focus:border-transparent"
+                  className="w-full px-5 py-3.5 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
                   placeholder="Confirm your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--ink-muted)]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
-                  {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
+                  {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
@@ -160,27 +154,28 @@ export function Signup() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="px-3 py-2.5 rounded-lg bg-red-50 border border-red-200"
+                className="px-4 py-3 rounded-xl bg-red-50 border border-red-200"
               >
-                <p className="text-red-600 text-xs font-[var(--font-body)]">{error}</p>
+                <p className="text-red-600 text-sm font-[var(--font-body)]">{error}</p>
               </motion.div>
             )}
 
             {/* Sign Up Button */}
             <motion.button
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.96 }}
               type="submit"
-              className="w-full py-3 rounded-lg bg-[var(--trust-blue)] text-white font-[var(--font-body)] font-semibold shadow-md mt-1 text-sm"
+              className="w-full py-4 rounded-2xl bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white font-[var(--font-header)] font-bold shadow-[0_8px_20px_rgba(255,140,0,0.25)] flex items-center justify-center text-[16px] mt-6"
+              style={{ fontFamily: 'Agrandir, sans-serif' }}
             >
               Create Account
             </motion.button>
           </form>
 
           {/* Login Link */}
-          <div className="mt-5 text-center">
-            <p className="text-xs font-[var(--font-body)] text-[var(--ink-secondary)]">
+          <div className="mt-8 text-center bg-white/50 backdrop-blur-sm py-4 rounded-2xl border border-gray-100">
+            <p className="text-[13px] font-medium text-gray-500">
               Already have an account?{" "}
-              <Link to="/login" className="font-semibold text-[var(--trust-blue)]">
+              <Link to="/login" className="font-bold text-[#ff8c00] hover:text-[#e67e00] ml-1">
                 Sign In
               </Link>
             </p>

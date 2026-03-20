@@ -12,6 +12,8 @@ import { Friends } from "./screens/Friends";
 import { Videos } from "./screens/Videos";
 import { Learning } from "./screens/Learning";
 import { LearningDetail } from "./screens/LearningDetail";
+import { Discover } from "./screens/Discover";
+import { Sowela } from "./screens/Sowela";
 import { Settings } from "./screens/Settings";
 import { ChangePin } from "./screens/ChangePin";
 import { ChangePassword } from "./screens/ChangePassword";
@@ -21,7 +23,7 @@ import { Signup } from "./screens/Signup";
 import { Onboarding } from "./screens/Onboarding";
 
 // Protected Route Wrapper
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+function ProtectedRoute({ children, allowOnboarding = false }: { children: React.ReactNode; allowOnboarding?: boolean }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const hasCompletedOnboarding = localStorage.getItem("hasCompletedOnboarding") === "true";
 
@@ -29,7 +31,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     return <Navigate to="/login" replace />;
   }
 
-  if (!hasCompletedOnboarding) {
+  if (!hasCompletedOnboarding && !allowOnboarding) {
     return <Navigate to="/onboarding" replace />;
   }
 
@@ -67,10 +69,10 @@ const router = createBrowserRouter([
   {
     path: "/onboarding",
     element: (
-      <>
+      <ProtectedRoute allowOnboarding>
         <ScrollToTop />
         <Onboarding />
-      </>
+      </ProtectedRoute>
     ),
   },
   {
@@ -97,6 +99,9 @@ const router = createBrowserRouter([
       { path: "product/:id", element: <ProductDetail /> },
       { path: "learning", element: <Learning /> },
       { path: "learning/:id", element: <LearningDetail /> },
+      { path: "discover", element: <Discover /> },
+      { path: "sowela", element: <Sowela /> },
+      { path: "profile", element: <Profile /> },
       { path: "profile/:username", element: <Profile /> },
       { path: "friends", element: <Friends /> },
       { path: "videos", element: <Videos /> },
