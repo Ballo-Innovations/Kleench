@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { ArrowRight, Camera, Upload, Check, Smartphone } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { ZambiaFlag, BackspaceKey } from "../components/KleenchIcons";
 import { LottieAnimation } from "../components/LottieAnimation";
 
 type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "mobile-money" | "features";
@@ -290,14 +291,14 @@ export function Onboarding() {
                   </motion.p>
                 )}
                 <div className="grid grid-cols-3 gap-3 mt-6 w-full">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "⌫"].map((key, idx) => {
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "backspace"].map((key, idx) => {
                     if (key === "") return <div key={idx} />;
                     return (
                       <motion.button key={idx} whileTap={{ scale: 0.88 }}
                         className="h-16 rounded-2xl glass-strong shadow-md border border-black/[0.04] flex items-center justify-center font-[var(--font-header)] text-[var(--ink-primary)]"
                         style={{ fontSize: "22px", fontWeight: 800 }}
-                        onClick={() => key === "⌫" ? handleDelete() : handleKeyPress(String(key))}>
-                        {key}
+                        onClick={() => key === "backspace" ? handleDelete() : handleKeyPress(String(key))}>
+                        {key === "backspace" ? <BackspaceKey size={22} color="var(--ink-primary)" /> : key}
                       </motion.button>
                     );
                   })}
@@ -490,7 +491,7 @@ export function Onboarding() {
                             style={{ fontSize: "12px", fontWeight: 600 }}>Phone Number</label>
                           <div className="flex gap-2">
                             <div className="flex items-center gap-1.5 px-3 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-black/[0.06]">
-                              <span style={{ fontSize: "13px" }}>🇿🇲</span>
+                              <ZambiaFlag size={20} />
                               <span className="font-[var(--font-body)] text-[var(--ink-secondary)]" style={{ fontSize: "13px", fontWeight: 600 }}>+260</span>
                             </div>
                             <input type="tel" placeholder="9X XXX XXXX" value={mmPhone}

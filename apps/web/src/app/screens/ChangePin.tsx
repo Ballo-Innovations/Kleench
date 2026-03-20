@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { ArrowLeft, Check } from "lucide-react";
 import { motion } from "motion/react";
+import { BackspaceKey } from "../components/KleenchIcons";
 
 export function ChangePin() {
   const navigate = useNavigate();
@@ -159,16 +160,16 @@ export function ChangePin() {
 
             {/* Keypad */}
             <div className="grid grid-cols-3 gap-4 max-w-xs mx-auto mt-12">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "⌫"].map((key, idx) => {
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "backspace"].map((key, idx) => {
                 if (key === "") return <div key={idx} />;
                 return (
                   <motion.button
                     key={idx}
                     whileTap={{ scale: 0.9 }}
                     className="w-20 h-20 rounded-2xl glass-strong shadow-lg border border-black/[0.04] flex items-center justify-center font-[var(--font-header)] text-2xl font-bold text-[var(--ink-primary)]"
-                    onClick={() => (key === "⌫" ? handleDelete() : handleKeyPress(String(key)))}
+                    onClick={() => (key === "backspace" ? handleDelete() : handleKeyPress(String(key)))}
                   >
-                    {key}
+                    {key === "backspace" ? <BackspaceKey size={24} color="var(--ink-primary)" /> : key}
                   </motion.button>
                 );
               })}

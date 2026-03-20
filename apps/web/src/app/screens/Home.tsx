@@ -4,6 +4,7 @@ import { Settings, Bell, Search, Plus, Share2, ChevronRight, ArrowRight, User, E
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import kleenchLogo from "@/assets/kleench_logo.png";
+import { BackspaceKey, CloseIcon } from "../components/KleenchIcons";
 
 const ACTIVE_OFFERS = [
   {
@@ -90,10 +91,12 @@ export function Home() {
                   <Settings size={18} />
                 </button>
               </Link>
-              <button className="relative w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
-                <Bell size={18} />
-                <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#ff8c00]" />
-              </button>
+              <Link to="/notifications">
+                <button className="relative w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+                  <Bell size={18} />
+                  <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#ff8c00]" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -140,18 +143,26 @@ export function Home() {
 
           {/* Action Grid */}
           <div className="grid grid-cols-2 gap-3">
-            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
-              <Plus size={18} strokeWidth={3} /> Post Advert
-            </motion.button>
-            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
-              <Plus size={18} strokeWidth={3} /> Sell Product
-            </motion.button>
-            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
-              <Plus size={18} strokeWidth={3} /> Create Poll
-            </motion.button>
-            <motion.button whileTap={{scale: 0.95}} className="bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
-              <Share2 size={18} strokeWidth={3} /> Refer & Earn
-            </motion.button>
+            <Link to="/ads/post">
+              <motion.button whileTap={{scale: 0.95}} className="w-full bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+                <Plus size={18} strokeWidth={3} /> Post Advert
+              </motion.button>
+            </Link>
+            <Link to="/sell">
+              <motion.button whileTap={{scale: 0.95}} className="w-full bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+                <Plus size={18} strokeWidth={3} /> Sell Product
+              </motion.button>
+            </Link>
+            <Link to="/poll/create">
+              <motion.button whileTap={{scale: 0.95}} className="w-full bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+                <Plus size={18} strokeWidth={3} /> Create Poll
+              </motion.button>
+            </Link>
+            <Link to="/referral">
+              <motion.button whileTap={{scale: 0.95}} className="w-full bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+                <Share2 size={18} strokeWidth={3} /> Refer & Earn
+              </motion.button>
+            </Link>
           </div>
 
           {/* Active Offers */}
@@ -163,7 +174,9 @@ export function Home() {
                 </div>
                 Active Offers
               </h3>
-              <span className="text-[11px] font-bold text-[#ff8c00] uppercase tracking-wider bg-orange-50 px-3 py-1 rounded-full">See all</span>
+              <Link to="/offers">
+                <span className="text-[11px] font-bold text-[#ff8c00] uppercase tracking-wider bg-orange-50 px-3 py-1 rounded-full active:scale-95 transition-all cursor-pointer">See all</span>
+              </Link>
             </div>
             
             <div className="flex flex-col gap-3">
@@ -195,20 +208,22 @@ export function Home() {
             </div>
 
             {/* Invite & Earn Banner */}
-            <div className="mt-4 relative rounded-2xl overflow-hidden bg-[#191c1e] h-[88px] flex items-center justify-between px-5 shadow-lg group cursor-pointer border border-[#191c1e]">
-              <div className="absolute inset-0 opacity-40">
-                <img src="https://images.unsplash.com/photo-1557683316-973673baf926?w=400&q=80" alt="bg" className="w-full h-full object-cover" />
-              </div>
-              <div className="relative z-10 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                  <Share2 size={18} className="text-white" />
+            <Link to="/referral">
+              <div className="mt-4 relative rounded-2xl overflow-hidden bg-[#191c1e] h-[88px] flex items-center justify-between px-5 shadow-lg group cursor-pointer border border-[#191c1e] active:scale-[0.98] transition-all">
+                <div className="absolute inset-0 opacity-40">
+                  <img src="https://images.unsplash.com/photo-1557683316-973673baf926?w=400&q=80" alt="bg" className="w-full h-full object-cover" />
                 </div>
-                <span className="text-white font-bold text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>Invite Friends & Earn</span>
+                <div className="relative z-10 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                    <Share2 size={18} className="text-white" />
+                  </div>
+                  <span className="text-white font-bold text-[15px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>Invite Friends & Earn</span>
+                </div>
+                <button className="relative z-10 bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white text-[13px] font-bold px-4 py-2.5 rounded-xl shadow-lg border border-white/10">
+                  Invite & Earn
+                </button>
               </div>
-              <button className="relative z-10 bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white text-[13px] font-bold px-4 py-2.5 rounded-xl shadow-lg border border-white/10">
-                Invite & Earn
-              </button>
-            </div>
+            </Link>
           </div>
 
           {/* Recent Earnings */}
@@ -253,9 +268,9 @@ export function Home() {
           >
             <button 
               onClick={() => setShowPinModal(false)}
-              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-500"
+              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors"
             >
-              ✕
+              <CloseIcon size={14} color="#6b7280" />
             </button>
             <div className="text-center mb-8">
               <h3 className="text-xl font-bold text-[#191c1e] mb-2" style={{ fontFamily: 'Agrandir, sans-serif' }}>Enter Security PIN</h3>
@@ -271,22 +286,22 @@ export function Home() {
             {pinError && <p className="text-red-500 text-center text-sm font-bold mb-4">{pinError}</p>}
             
             <div className="grid grid-cols-3 gap-3">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "⌫"].map((key, idx) => {
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "backspace"].map((key, idx) => {
                 if (key === "") return <div key={idx} />;
                 return (
                   <motion.button
                     key={idx}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => {
-                      if (key === "⌫") {
+                      if (key === "backspace") {
                         setPinInput(p => p.slice(0, -1));
                       } else {
                         handlePinPress(String(key));
                       }
                     }}
-                    className="h-16 rounded-2xl bg-[#f8f9fb] text-[#191c1e] text-2xl font-bold flex items-center justify-center font-[var(--font-header)]"
+                    className="h-16 rounded-2xl bg-[#f8f9fb] text-[#191c1e] text-2xl font-bold flex items-center justify-center font-[var(--font-header)] active:bg-gray-200 transition-colors"
                   >
-                    {key}
+                    {key === "backspace" ? <BackspaceKey size={22} color="#6b7280" /> : key}
                   </motion.button>
                 );
               })}

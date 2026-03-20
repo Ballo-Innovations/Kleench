@@ -21,6 +21,12 @@ import { ProfileEdit } from "./screens/ProfileEdit";
 import { Login } from "./screens/Login";
 import { Signup } from "./screens/Signup";
 import { Onboarding } from "./screens/Onboarding";
+import { Notifications } from "./screens/Notifications";
+import { PostAdvert } from "./screens/PostAdvert";
+import { SellProduct } from "./screens/SellProduct";
+import { CreatePoll } from "./screens/CreatePoll";
+import { Referral } from "./screens/Referral";
+import { Offers } from "./screens/Offers";
 
 // Protected Route Wrapper
 function ProtectedRoute({ children, allowOnboarding = false }: { children: React.ReactNode; allowOnboarding?: boolean }) {
@@ -108,6 +114,13 @@ const router = createBrowserRouter([
       { path: "settings", element: <Settings /> },
       { path: "settings/change-pin", element: <ChangePin /> },
       { path: "settings/change-password", element: <ChangePassword /> },
+      { path: "offer/:id", element: <Offers /> },
+      { path: "notifications", element: <Notifications /> },
+      { path: "ads/post", element: <PostAdvert /> },
+      { path: "sell", element: <SellProduct /> },
+      { path: "poll/create", element: <CreatePoll /> },
+      { path: "referral", element: <Referral /> },
+      { path: "offers", element: <Offers /> },
     ],
   },
 ]);

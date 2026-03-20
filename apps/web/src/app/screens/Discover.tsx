@@ -1,150 +1,242 @@
 import { useState } from "react";
-import { motion } from "motion/react";
-import { Play, TrendingUp, Users, Target as TargetIcon, Plus } from "lucide-react";
-import { LottieAnimation } from "../components/LottieAnimation";
+import { motion, AnimatePresence } from "motion/react";
+import { Play, TrendingUp, Plus } from "lucide-react";
+import { useNavigate } from "react-router";
+import { LottieIcon } from "../components/LottieIcon";
 
 const LEARNING_REELS = [
-  { id: 1, title: "How to run Kleench Campaigns", views: "12.5k", color: "from-[var(--trust-blue)] to-blue-800", author: "Kleench Team" },
-  { id: 2, title: "Maximize your Social Reach", views: "8.2k", color: "from-rose-500 to-pink-700", author: "Digital Pro" },
-  { id: 3, title: "Selling Solar Effectively", views: "15.3k", color: "from-amber-500 to-orange-700", author: "Energy Ltd" },
-  { id: 4, title: "UI Design for Beginners", views: "9.7k", color: "from-cyan-500 to-teal-700", author: "Creative Labs" },
+  { id: 1, title: "How to run Kleench Campaigns", views: "12.5k", gradient: "linear-gradient(135deg, #0D1B3E, #1e3a5f)", author: "Kleench Team" },
+  { id: 2, title: "Maximize your Social Reach",   views: "8.2k",  gradient: "linear-gradient(135deg, #7C3AED, #5b21b6)", author: "Digital Pro"  },
+  { id: 3, title: "Selling Solar Effectively",    views: "15.3k", gradient: "linear-gradient(135deg, #FF8C00, #c96a00)", author: "Energy Ltd"   },
+  { id: 4, title: "UI Design for Beginners",      views: "9.7k",  gradient: "linear-gradient(135deg, #00695C, #004d3d)", author: "Creative Labs"},
 ];
 
 const COMMUNITY_ADVERTS = [
-  { id: 101, title: "Solar Light Installation", reach: "45k", budget: "K500" },
-  { id: 102, title: "Web Dev Bootcamp 2026", reach: "12k", budget: "K200" },
+  { id: 101, title: "Solar Light Installation",  reach: "45k", budget: "K500", icon: "rocket",   accent: "#FF8C00" },
+  { id: 102, title: "Web Dev Bootcamp 2026",      reach: "12k", budget: "K200", icon: "megaphone", accent: "#7C3AED" },
 ];
 
+/* Graceful transition builder */
+const grace = (delay = 0) => ({
+  delay, duration: 0.62, ease: [0.22, 1, 0.36, 1] as const,
+});
+
+/* Unified cross-hatch bg */
+function CrossHatchBg() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+      <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <pattern id="xhatch-disc" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+            <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#xhatch-disc)"/>
+      </svg>
+    </div>
+  );
+}
+
 export function Discover() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"advertising" | "learning">("advertising");
 
-
   return (
-    <div className="flex flex-col gap-6 pb-24 min-h-screen font-[var(--font-body)] relative z-10 w-full">
-      {/* Header Section */}
-      <div className="relative pt-12 pb-24 px-4 bg-gradient-to-b from-[#ff8c00] to-[#e67e00] rounded-b-[40px] shadow-[0_12px_40px_rgba(255,140,0,0.15)] overflow-hidden">
-        {/* Premium Orange Grid/Texture Overlay */}
-        <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)', backgroundSize: '8px 8px' }} />
-        <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">
+      <CrossHatchBg />
 
-        <div className="relative z-10 flex justify-between items-center mb-6">
-          <h1 className="text-white font-[var(--font-header)] font-bold text-2xl tracking-tighter" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+      {/* ── Orange hero header (matches Sowela) ── */}
+      <div className="relative pt-8 pb-24 px-4 overflow-hidden rounded-b-[40px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+        
+        {/* subtle white grid texture on orange */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="disc-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#disc-grid)"/>
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 opacity-30"
+          style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))" }}/>
+
+        <div className="relative z-10 flex items-center justify-between mb-8">
+          <h1 className="font-black text-white" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.7rem", letterSpacing: "-0.02em" }}>
             Discover
           </h1>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+            style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)" }}>
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "white" }}/>
+            <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "white" }}>Live</span>
+          </div>
         </div>
 
-        {/* Segmented Control */}
-        <div className="relative z-10 bg-white/20 backdrop-blur-md p-1 rounded-2xl flex border border-white/20">
-          <button
-            onClick={() => setActiveTab("advertising")}
-            className={`flex-1 py-2 rounded-xl text-[13px] font-bold transition-all ${
-              activeTab === "advertising" ? "bg-white text-[#ff8c00] shadow-sm" : "text-white/80 hover:text-white"
-            }`}
-          >
-            Advertising Engine
-          </button>
-          <button
-            onClick={() => setActiveTab("learning")}
-            className={`flex-1 py-2 rounded-xl text-[13px] font-bold transition-all ${
-              activeTab === "learning" ? "bg-white text-[#ff8c00] shadow-sm" : "text-white/80 hover:text-white"
-            }`}
-          >
-            Education & Learning
-          </button>
+        {/* Segmented control */}
+        <div className="relative z-10 bg-white/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10">
+          {(["advertising", "learning"] as const).map((tab) => (
+            <button key={tab}
+              onClick={() => setActiveTab(tab)}
+              className="flex-1 py-2.5 rounded-xl text-[12.5px] font-bold transition-all"
+              style={activeTab === tab
+                ? { background: "white", color: "#FF8C00" }
+                : { color: "rgba(255,255,255,0.65)", transition: "all 0.5s ease" }}>
+              {tab === "advertising" ? "Advertising Engine" : "Education & Learning"}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="px-4 -mt-16 space-y-6 relative z-10 w-full">
-        {activeTab === "advertising" && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            {/* Advertising Dashboard Overlapping Card */}
-            <div className="bg-white rounded-[28px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100/50 mb-6 flex flex-col items-center">
-              <div className="w-32 h-32 mb-2">
-                <LottieAnimation 
-                  src="https://lottie.host/67634898-3850-488f-9d33-9114757c2a7a/2vYhE1jE2f.json" 
-                  className="w-full h-full"
-                />
-              </div>
-              <h2 className="text-[#191c1e] text-[20px] mb-4 text-center font-bold" style={{ fontFamily: 'Agrandir, sans-serif' }}>
-                Launch your next campaign
-              </h2>
-              <motion.button whileTap={{scale: 0.95}} className="w-full bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white py-4 px-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,140,0,0.25)] text-[16px]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
-                <Plus size={20} className="text-white" strokeWidth={3} /> Launch Campaign
-              </motion.button>
-              
-              <div className="grid grid-cols-3 gap-2 w-full mt-6 border-t border-gray-100 pt-5">
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-full bg-orange-50 mb-2 flex items-center justify-center">
-                    <TargetIcon size={14} className="text-[#ff8c00]" />
-                  </div>
-                  <p className="text-[14px] font-bold text-[#191c1e]" style={{ fontFamily: 'Agrandir, sans-serif' }}>68%</p>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Target</p>
-                </div>
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-full bg-orange-50 mb-2 flex items-center justify-center">
-                    <TrendingUp size={14} className="text-[#ff8c00]" />
-                  </div>
-                  <p className="text-[14px] font-bold text-[#191c1e]" style={{ fontFamily: 'Agrandir, sans-serif' }}>K850</p>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Spent</p>
-                </div>
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-full bg-[var(--trust-blue)]/10 mb-2 flex items-center justify-center">
-                    <Users size={14} className="text-[var(--trust-blue)]" />
-                  </div>
-                  <p className="text-[14px] font-bold text-[var(--trust-blue)]" style={{ fontFamily: 'Agrandir, sans-serif' }}>12.4k</p>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Reach</p>
-                </div>
-              </div>
-            </div>
+      {/* ── Content (overlaps hero by -mt-14) ── */}
+      <div className="px-4 -mt-14 relative z-10">
+        <AnimatePresence mode="wait">
 
-            {/* High Performing Adverts */}
-            <div>
-              <div className="flex justify-between items-center mb-4 px-2">
-                <h3 className="font-bold text-[#191c1e] text-[18px]" style={{fontFamily: 'Agrandir, sans-serif'}}>Top Community Adverts</h3>
-                <span className="text-[12px] font-bold text-[#ff8c00]">View All</span>
-              </div>
-              <div className="flex flex-col gap-3">
-                {COMMUNITY_ADVERTS.map(ad => (
-                  <div key={ad.id} className="bg-white border border-gray-100 p-4 rounded-3xl flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-                    <div>
-                      <h4 className="font-bold text-[#191c1e] text-[14px] mb-1">{ad.title}</h4>
-                      <p className="text-[12px] text-gray-400 font-medium">Budget: <span className="text-gray-600">{ad.budget}</span></p>
-                    </div>
-                    <div className="bg-orange-50 px-3 py-1.5 rounded-full">
-                      <p className="text-[11px] font-bold text-[#ff8c00] flex items-center gap-1"><TrendingUp size={10} /> {ad.reach}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
+          {/* ── Advertising tab ── */}
+          {activeTab === "advertising" && (
+            <motion.div key="adv"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-6">
 
-        {activeTab === "learning" && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="pt-2">
-            <div className="grid grid-cols-2 gap-3">
-              {LEARNING_REELS.map((reel, i) => (
-                <motion.div key={reel.id} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}>
-                  <div className={`relative rounded-[24px] overflow-hidden bg-gradient-to-br ${reel.color} aspect-[9/15] shadow-md border border-white/10`}>
-                    <div className="absolute inset-0 mix-blend-overlay opacity-30" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)', backgroundSize: '8px 8px' }} />
-                    <div className="absolute inset-0 flex flex-col justify-between p-3.5">
-                      <div className="flex justify-end">
-                        <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-sm">
-                          <Play size={12} fill="white" className="text-white ml-0.5" />
+              {/* Launch card */}
+              <div className="bg-white rounded-3xl p-6 shadow-xl border"
+                style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 16px 48px rgba(13,27,62,0.1)" }}>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden flex-shrink-0"
+                    style={{ background: "#FFF7ED" }}>
+                    <LottieIcon icon="megaphone" size={52} />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: "rgba(13,27,62,0.38)" }}>Campaign Center</p>
+                    <h2 className="font-black text-[18px] leading-tight" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>
+                      Launch your next campaign
+                    </h2>
+                  </div>
+                </div>
+
+                <motion.button whileTap={{ scale: 0.975 }} whileHover={{ y: -2 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  onClick={() => navigate("/ads/post")}
+                  className="w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-2 mb-6"
+                  style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 8px 28px rgba(255,140,0,0.28)" }}>
+                  <Plus size={18} strokeWidth={2.5}/> Create Campaign
+                </motion.button>
+
+                <div className="border-t pt-5 grid grid-cols-3 gap-3" style={{ borderColor: "rgba(13,27,62,0.06)" }}>
+                  {[
+                    { icon: "target",   label: "Target",  value: "68%",  accent: "#FF8C00" },
+                    { icon: "chart",    label: "Spent",   value: "K850", accent: "#0D1B3E" },
+                    { icon: "users",    label: "Reach",   value: "12.4k",accent: "#00695C" },
+                  ].map((stat, i) => (
+                    <motion.div key={stat.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: i % 2 === 1 ? 6 : 0 }}
+                      transition={grace(0.1 + i * 0.07)}
+                      className="flex flex-col items-center text-center">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2 overflow-hidden"
+                        style={{ background: `${stat.accent}12` }}>
+                        <LottieIcon icon={stat.icon} size={32} />
+                      </div>
+                      <p className="font-black text-[15px]" style={{ fontFamily: "Agrandir, sans-serif", color: stat.accent }}>{stat.value}</p>
+                      <p className="text-[9px] font-bold uppercase tracking-wide mt-0.5" style={{ color: "rgba(13,27,62,0.35)" }}>{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Top community adverts */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-black text-[16px]" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>
+                    Top Community Adverts
+                  </h3>
+                  <span className="text-[11px] font-bold" style={{ color: "#FF8C00" }}>View All</span>
+                </div>
+                <div className="space-y-4">
+                  {COMMUNITY_ADVERTS.map((ad, i) => {
+                    const yOff = i % 2 === 1 ? 8 : 0;
+                    return (
+                      <motion.div key={ad.id}
+                        initial={{ opacity: 0, y: yOff + 16 }} animate={{ opacity: 1, y: yOff }}
+                        transition={grace(0.1 + i * 0.1)}
+                        whileHover={{ y: yOff - 3 }}
+                        className="bg-white border rounded-3xl p-5 flex items-center gap-4"
+                        style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 3px 16px rgba(13,27,62,0.05)", transition: "box-shadow 0.5s ease" }}>
+                        <div className="w-13 h-13 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden"
+                          style={{ background: `${ad.accent}12`, width: 52, height: 52 }}>
+                          <LottieIcon icon={ad.icon} size={40} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-bold text-[14px]" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>{ad.title}</p>
+                          <p className="text-[11px] mt-0.5" style={{ color: "rgba(13,27,62,0.42)" }}>Budget: <span style={{ color: "#0D1B3E", fontWeight: 700 }}>{ad.budget}</span></p>
+                        </div>
+                        <div className="px-3 py-1.5 rounded-full flex items-center gap-1.5"
+                          style={{ background: "#FFF7ED" }}>
+                          <TrendingUp size={10} style={{ color: "#FF8C00" }}/>
+                          <p className="text-[11px] font-bold" style={{ color: "#FF8C00" }}>{ad.reach}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* ── Learning tab ── */}
+          {activeTab === "learning" && (
+            <motion.div key="learn"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="pt-2">
+              <div className="grid grid-cols-2 gap-4">
+                {LEARNING_REELS.map((reel, i) => {
+                  const yOffset = i % 2 === 1 ? 16 : 0;
+                  return (
+                    <motion.div key={reel.id}
+                      initial={{ opacity: 0, y: yOffset + 20 }}
+                      animate={{ opacity: 1, y: yOffset }}
+                      transition={grace(i * 0.08)}
+                      whileHover={{ y: yOffset - 4 }}
+                      className="relative rounded-3xl overflow-hidden cursor-pointer"
+                      style={{ aspectRatio: "9/15", background: reel.gradient, boxShadow: "0 8px 28px rgba(13,27,62,0.15)", transition: "box-shadow 0.5s ease" }}>
+                      {/* Subtle inner grid */}
+                      <div className="absolute inset-0 opacity-[0.08]">
+                        <svg width="100%" height="100%">
+                          <defs>
+                            <pattern id={`reel-g-${reel.id}`} width="12" height="12" patternUnits="userSpaceOnUse">
+                              <path d="M 12 0 L 0 0 0 12" fill="none" stroke="white" strokeWidth="0.5"/>
+                            </pattern>
+                          </defs>
+                          <rect width="100%" height="100%" fill={`url(#reel-g-${reel.id})`}/>
+                        </svg>
+                      </div>
+                      <div className="absolute inset-0 flex flex-col justify-between p-4">
+                        <div className="flex justify-end">
+                          <div className="w-9 h-9 rounded-full flex items-center justify-center"
+                            style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                            <Play size={12} fill="white" className="text-white ml-0.5"/>
+                          </div>
+                        </div>
+                        <div>
+                          <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg inline-block mb-2"
+                            style={{ background: "rgba(255,255,255,0.18)", color: "white", backdropFilter: "blur(4px)" }}>
+                            {reel.author}
+                          </span>
+                          <h3 className="text-[13px] font-black text-white leading-tight mb-1" style={{ fontFamily: "Agrandir, sans-serif" }}>
+                            {reel.title}
+                          </h3>
+                          <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.65)" }}>{reel.views} viewers</p>
                         </div>
                       </div>
-                      <div>
-                        <span className="bg-white/20 text-white backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-bold mb-1.5 inline-block border border-white/20 uppercase tracking-wider">{reel.author}</span>
-                        <h3 className="text-[14px] font-[var(--font-header)] font-bold text-white leading-tight mb-1" style={{ fontFamily: 'Agrandir, sans-serif' }}>{reel.title}</h3>
-                        <p className="text-[11px] font-[var(--font-body)] text-white/80 font-medium">{reel.views} viewers</p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
