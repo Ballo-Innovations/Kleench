@@ -31,11 +31,16 @@ const profileData = {
   ],
 };
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Profile() {
+  const loading = usePageLoading(1100);
   const { username: profileUsername } = useParams();
   const [activeTab, setActiveTab] = useState<"reels" | "marketplace" | "verification">("reels");
   const [isFollowing, setIsFollowing] = useState(false);
   const navigate = useNavigate();
+
+  if (loading) return <PageSkeletons.Profile />;
 
   // Load local user data
   const localKycRaw = localStorage.getItem("userKyc");

@@ -33,7 +33,10 @@ function CrossHatchBg() {
   );
 }
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function SellProduct() {
+  const loading = usePageLoading(700);
   const navigate = useNavigate();
   const [step, setStep] = useState<Step>(1);
   const [productName, setProductName] = useState("");
@@ -43,6 +46,8 @@ export function SellProduct() {
   const [description, setDescription] = useState("");
   const [escrow, setEscrow] = useState(true);
   const [commission, setCommission] = useState("5");
+
+  if (loading) return <PageSkeletons.Generic />;
 
   return (
     <div className="w-full max-w-md mx-auto pb-28 relative">

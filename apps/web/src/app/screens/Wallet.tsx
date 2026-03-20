@@ -43,9 +43,14 @@ const escrowItems = [
 
 
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Wallet() {
+  const loading = usePageLoading(900);
   const [showBalance, setShowBalance] = useState(true);
   const navigate = useNavigate();
+
+  if (loading) return <PageSkeletons.Wallet />;
 
   function grace(delay = 0) {
     return {

@@ -40,9 +40,14 @@ function CrossHatchBg() {
   );
 }
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Discover() {
+  const loading = usePageLoading(850);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"advertising" | "learning">("advertising");
+
+  if (loading) return <PageSkeletons.Generic />;
 
   return (
     <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">

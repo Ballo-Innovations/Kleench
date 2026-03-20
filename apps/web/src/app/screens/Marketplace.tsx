@@ -141,13 +141,18 @@ const fadeUp = {
   }),
 };
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Marketplace() {
+  const loading = usePageLoading(1000);
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<{ title: string; price: number; id: number } | null>(null);
   const navigate = useNavigate();
   const viewMode = "grid"; // Forced to grid in new design
+
+  if (loading) return <PageSkeletons.Marketplace />;
 
   const filteredProducts = PRODUCTS.filter((product) => {
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
@@ -314,7 +319,7 @@ export function Marketplace() {
                       {/* Content */}
                       <div className="p-2.5">
                         <h3
-                          className="font-[var(--font-body)] font-bold text-[var(--ink-primary)] line-clamp-2 mb-1 leading-snug"
+                          className="font-bold text-[var(--ink-primary)] line-clamp-2 mb-1 leading-snug"
                           style={{ fontSize: "11px" }}
                         >
                           {product.title}
@@ -333,7 +338,7 @@ export function Marketplace() {
                         {/* Rating */}
                         <div className="flex items-center gap-1 mb-1.5">
                           <Star size={9} fill="var(--action-gold)" className="text-[var(--action-gold)]" strokeWidth={0} />
-                          <span className="text-[10px] font-[var(--font-body)] font-bold text-[var(--ink-primary)]">
+                          <span className="text-[10px] font-bold text-[var(--ink-primary)]">
                             {product.rating}
                           </span>
                           <span className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)]">
@@ -343,7 +348,7 @@ export function Marketplace() {
 
                         {/* Price */}
                         <div className="flex items-baseline gap-1 mb-1.5">
-                          <span className="font-[var(--font-header)] font-bold text-[var(--ink-primary)]" style={{ fontSize: "14px" }}>
+                          <span className="font-bold text-[var(--ink-primary)]" style={{ fontSize: "14px" }}>
                             ${product.price.toFixed(2)}
                           </span>
                           {product.originalPrice && (
@@ -357,7 +362,7 @@ export function Marketplace() {
                         {product.escrowProtected && (
                           <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-[var(--trust-blue)]/5 border border-[var(--trust-blue)]/10">
                             <ShieldCheck size={8} className="text-[var(--trust-blue)]" strokeWidth={2.5} />
-                            <span className="text-[8px] font-[var(--font-body)] font-semibold text-[var(--trust-blue)] uppercase tracking-wider">
+                            <span className="text-[8px] font-semibold text-[var(--trust-blue)] uppercase tracking-wider">
                               Escrow
                             </span>
                           </div>
@@ -413,7 +418,7 @@ export function Marketplace() {
                       {/* Content */}
                       <div className="p-2.5 flex-1 flex flex-col">
                         <h3
-                          className="font-[var(--font-body)] font-bold text-[var(--ink-primary)] line-clamp-2 mb-1 leading-snug"
+                          className="font-bold text-[var(--ink-primary)] line-clamp-2 mb-1 leading-snug"
                           style={{ fontSize: "12px" }}
                         >
                           {product.title}
@@ -432,7 +437,7 @@ export function Marketplace() {
                         {/* Rating */}
                         <div className="flex items-center gap-1 mb-auto">
                           <Star size={10} fill="var(--action-gold)" className="text-[var(--action-gold)]" strokeWidth={0} />
-                          <span className="text-[10px] font-[var(--font-body)] font-bold text-[var(--ink-primary)]">
+                          <span className="text-[10px] font-bold text-[var(--ink-primary)]">
                             {product.rating}
                           </span>
                           <span className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)]">
@@ -443,7 +448,7 @@ export function Marketplace() {
                         {/* Bottom row: Price + Escrow */}
                         <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-black/[0.04]">
                           <div className="flex items-baseline gap-1">
-                            <span className="font-[var(--font-header)] font-bold text-[var(--ink-primary)]" style={{ fontSize: "14px" }}>
+                            <span className="font-bold text-[var(--ink-primary)]" style={{ fontSize: "14px" }}>
                               ${product.price.toFixed(2)}
                             </span>
                             {product.originalPrice && (
@@ -455,7 +460,7 @@ export function Marketplace() {
                           {product.escrowProtected && (
                             <div className="flex items-center gap-1">
                               <ShieldCheck size={9} className="text-[var(--trust-blue)]" strokeWidth={2.5} />
-                              <span className="text-[8px] font-[var(--font-body)] font-semibold text-[var(--trust-blue)] uppercase tracking-wider">
+                              <span className="text-[8px] font-semibold text-[var(--trust-blue)] uppercase tracking-wider">
                                 Escrow
                               </span>
                             </div>
@@ -472,8 +477,7 @@ export function Marketplace() {
       </motion.div>
       </div>
 
-      {/* Floating Action Button - List Product */}
-      <div className="fixed bottom-28 right-5 z-40 max-w-md mx-auto left-0 right-0 flex justify-end pointer-events-none">
+      <div className="fixed bottom-28 z-40 max-w-md mx-auto left-0 right-0 flex justify-end pointer-events-none">
         <div className="px-5 pointer-events-auto">
           <motion.button
             whileTap={{ scale: 0.92 }}

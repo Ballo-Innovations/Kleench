@@ -6,10 +6,15 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ShareReferralModal } from "../components/ShareReferralModal";
 import { PRODUCTS } from "../data/products";
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function ProductDetail() {
+  const loading = usePageLoading(1200);
   const { id } = useParams();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showShareModal, setShowShareModal] = useState(false);
+
+  if (loading) return <PageSkeletons.Product />;
 
   // Find the product by ID
   const productData = PRODUCTS.find((p) => p.id === Number(id));
@@ -98,7 +103,7 @@ export function ProductDetail() {
             </span>
             <span className="bg-white/10 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium">4K Demo</span>
           </div>
-          <h2 className="font-[var(--font-header)] text-4xl md:text-5xl font-extrabold text-white leading-tight max-w-2xl tracking-tight">
+          <h2 className="font-extrabold text-white leading-tight max-w-2xl tracking-tight">
             {product.name}
           </h2>
         </div>
@@ -147,7 +152,7 @@ export function ProductDetail() {
               </div>
             </div>
             <div>
-              <p className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] text-lg leading-tight">
+              <p className="font-bold text-[var(--ink-primary)] text-lg leading-tight">
                 {product.seller}
               </p>
               <div className="flex items-center gap-2 mt-1">
@@ -167,7 +172,7 @@ export function ProductDetail() {
           <div className="text-right">
             <p className="text-[var(--ink-muted)] text-xs font-medium uppercase tracking-widest mb-1">Current Floor</p>
             <div className="flex items-baseline gap-1">
-              <span className="font-[var(--font-header)] text-3xl font-black text-[var(--ink-primary)]">
+              <span className="font-black text-[var(--ink-primary)]">
                 {product.price.toLocaleString()}
               </span>
               <span className="font-bold text-[var(--trust-blue)]">{product.currency}</span>
@@ -184,7 +189,7 @@ export function ProductDetail() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="font-[var(--font-header)] text-2xl font-bold text-[var(--ink-primary)]"
+                className="font-bold text-[var(--ink-primary)]"
               >
                 Master the Digital Economy
               </motion.h2>
@@ -211,7 +216,7 @@ export function ProductDetail() {
                     <div key={i} className="bg-white p-5 rounded-[2rem] border border-black/[0.04] shadow-sm">
                       <Icon size={24} className={`${stat.color} mb-2`} strokeWidth={2} />
                       <p className="text-xs text-[var(--ink-muted)] font-medium uppercase">{stat.label}</p>
-                      <p className="text-xl font-[var(--font-header)] font-bold text-[var(--ink-primary)]">{stat.value}</p>
+                      <p className="text-xl font-bold text-[var(--ink-primary)]">{stat.value}</p>
                     </div>
                   );
                 })}
@@ -226,7 +231,7 @@ export function ProductDetail() {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="bg-[var(--clean-slate)] p-6 rounded-[2rem] space-y-4 shadow-sm"
               >
-                <h3 className="font-[var(--font-header)] font-bold text-[var(--ink-primary)]">Value Props</h3>
+                <h3 className="font-bold text-[var(--ink-primary)]">Value Props</h3>
                 <ul className="space-y-3">
                   {product.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -311,7 +316,7 @@ export function ProductDetail() {
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <motion.button
               whileTap={{ scale: 0.95 }}
-              className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-[var(--action-gold)] to-[#E6B000] hover:from-[#E6B000] hover:to-[var(--action-gold)] text-[var(--ink-primary)] font-[var(--font-header)] font-black text-lg rounded-full transition-all flex items-center justify-center gap-3 shadow-lg glow-gold"
+              className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-[var(--action-gold)] to-[#E6B000] hover:from-[#E6B000] hover:to-[var(--action-gold)] text-[var(--ink-primary)] font-black text-lg rounded-full transition-all flex items-center justify-center gap-3 shadow-lg glow-gold"
             >
               Purchase with Wallet
               <Wallet size={20} strokeWidth={2.5} />

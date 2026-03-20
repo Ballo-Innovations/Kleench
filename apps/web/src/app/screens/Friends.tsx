@@ -100,11 +100,16 @@ function FriendAction({ status, friendId }: { status: FriendStatus; friendId: nu
   );
 }
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Friends() {
+  const loading = usePageLoading(650);
   const [requests, setRequests] = useState(pendingRequests);
   const [search, setSearch] = useState("");
   const [acceptedIds, setAcceptedIds] = useState<Set<number>>(new Set());
   const navigate = useNavigate();
+
+  if (loading) return <PageSkeletons.Generic />;
 
   const dismiss = (id: number) => setRequests((r) => r.filter((x) => x.id !== id));
   const accept = (id: number) => {

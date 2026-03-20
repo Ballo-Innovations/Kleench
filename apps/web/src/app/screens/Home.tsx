@@ -1,11 +1,13 @@
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useState } from "react";
-import { Settings, Bell, Search, Plus, Share2, ChevronRight, ArrowRight, User, Eye, EyeOff } from "lucide-react";
+import { Settings, Bell, Search, Plus, ChevronRight, ArrowRight, User, Eye, EyeOff } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import kleenchLogo from "@/assets/kleench_logo.png";
-import { BackspaceKey, CloseIcon } from "../components/KleenchIcons";
+import { BackspaceKey } from "../components/KleenchIcons";
 import adBanner from "@/assets/ads/Boost Your Daily Earnings.png";
+
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
 const ACTIVE_OFFERS = [
   {
@@ -33,12 +35,13 @@ const RECENT_EARNINGS = [
 ];
 
 export function Home() {
+  const loading = usePageLoading(800);
   const [balanceHidden, setBalanceHidden] = useState(true);
   const [pinInput, setPinInput] = useState("");
   const [showPinModal, setShowPinModal] = useState(false);
   const [pinError, setPinError] = useState("");
   
-  const navigate = useNavigate();
+  if (loading) return <PageSkeletons.Home />;
 
   const handleToggleBalance = () => {
     if (balanceHidden) {
