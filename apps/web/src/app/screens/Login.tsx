@@ -4,12 +4,34 @@ import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
 
+import { trpc, type AppRouter } from "../trpc";
+import type { TRPCClientErrorLike } from "@trpc/client";
+
+import { LoginResponse } from "@repo/shared";
+
 export function Login() {
   const navigate = useNavigate();
+  const login = trpc.auth.login.useMutation({
+    onSuccess: (data: LoginResponse) => {
+      // Auth success actions
+      localStorage.setItem("isAuthenticated", "true");
+      // In a real app, data.user would tell us if onboarding is needed
+      if (!data.user.hasCompletedOnboarding) {
+        navigate("/onboarding");
+      } else {
+        navigate("/login-pin");
+      }
+    },
+    onError: (err: TRPCClientErrorLike<AppRouter>) => {
+      setError(err.message || "Login failed");
+    }
+  });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
@@ -18,14 +40,8 @@ export function Login() {
     }
     setError("");
     
-    // Auth success actions
-    localStorage.setItem("isAuthenticated", "true");
-    
-    if (localStorage.getItem("hasCompletedOnboarding") !== "true") {
-      navigate("/onboarding");
-    } else {
-      navigate("/");
-    }
+    // Execute tRPC mutation
+    login.mutate({ email, password });
   };
 
   return (

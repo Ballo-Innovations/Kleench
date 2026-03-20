@@ -4,8 +4,29 @@ import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
 
+import { trpc, type AppRouter } from "../trpc";
+import type { TRPCClientErrorLike } from "@trpc/client";
+
+import { SignupResponse } from "@repo/shared";
+
 export function Signup() {
   const navigate = useNavigate();
+  const signup = trpc.auth.signup.useMutation({
+    onSuccess: (data: SignupResponse) => {
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userName", fullName);
+      
+      if (!data.user.hasCompletedOnboarding) {
+        navigate("/onboarding");
+      } else {
+        navigate("/");
+      }
+    },
+    onError: (err: TRPCClientErrorLike<AppRouter>) => {
+      setError(err.message || "Signup failed");
+    }
+  });
+
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,11 +51,7 @@ export function Signup() {
     }
     setError("");
     
-    localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("userName", fullName);
-    setTimeout(() => {
-      navigate("/onboarding");
-    }, 500);
+    signup.mutate({ fullName, email, password, confirmPassword });
   };
 
   return (

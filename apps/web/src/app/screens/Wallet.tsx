@@ -2,17 +2,12 @@ import {
   ArrowDownToLine,
   ArrowUpFromLine,
   ArrowLeftRight,
-  Coins,
-  Shield,
   ShoppingBag,
   Tag,
-  CheckCircle2,
   Eye,
   EyeOff,
-  Share2,
-  Trophy,
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
@@ -45,14 +40,6 @@ const escrowItems = [
   },
 ];
 
-const fadeUp = {
-  initial: { opacity: 0, y: 22 },
-  animate: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-  }),
-};
 
 export function Wallet() {
   const [showBalance, setShowBalance] = useState(true);
@@ -148,23 +135,32 @@ export function Wallet() {
           <div className="grid grid-cols-2 gap-4">
             {[
               { icon: ArrowLeftRight, label: "Send (P2P)", path: "/friends", color: "#00695C" },
-              { icon: Coins, label: "Earn Gold", path: "/marketplace", color: "#FF8C00" },
-            ].map((action, i) => (
-              <motion.button
-                key={action.label}
-                whileTap={{ scale: 0.96 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={grace(0.3 + i * 0.1)}
-                onClick={() => navigate(action.path)}
-                className="bg-white p-6 rounded-[28px] shadow-sm border border-black/[0.03] flex flex-col items-center gap-3 transition-shadow hover:shadow-md"
-              >
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ backgroundColor: `${action.color}10` }}>
-                  <action.icon size={22} style={{ color: action.color }} strokeWidth={2.5} />
-                </div>
-                <span className="font-bold text-[#0D1B3E] text-[13px]">{action.label}</span>
-              </motion.button>
-            ))}
+              { lottie: "coin" as const, label: "Earn Gold", path: "/marketplace", color: "#FF8C00" },
+            ].map((action, i) => {
+              const Icon = "icon" in action ? action.icon : null;
+              const lottie = "lottie" in action ? action.lottie : null;
+
+              return (
+                <motion.button
+                  key={action.label}
+                  whileTap={{ scale: 0.96 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={grace(0.3 + i * 0.1)}
+                  onClick={() => navigate(action.path)}
+                  className="bg-white p-6 rounded-[28px] shadow-sm border border-black/[0.03] flex flex-col items-center gap-3 transition-shadow hover:shadow-md"
+                >
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ backgroundColor: `${action.color}10` }}>
+                    {Icon ? (
+                      <Icon size={22} style={{ color: action.color }} strokeWidth={2.5} />
+                    ) : lottie ? (
+                      <LottieIcon icon={lottie} size={32} />
+                    ) : null}
+                  </div>
+                  <span className="font-bold text-[#0D1B3E] text-[13px]">{action.label}</span>
+                </motion.button>
+              );
+            })}
           </div>
         </section>
 
@@ -176,38 +172,41 @@ export function Wallet() {
           </div>
 
           <div className="space-y-3">
-            {escrowItems.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={grace(0.5 + idx * 0.08)}
-                className="bg-white p-5 rounded-[28px] shadow-sm border border-black/[0.03] flex items-center justify-between"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#0D1B3E]/5 flex items-center justify-center">
-                    <item.icon size={20} className="text-[#0D1B3E]" />
+            {escrowItems.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={grace(0.5 + idx * 0.08)}
+                  className="bg-white p-5 rounded-[28px] shadow-sm border border-black/[0.03] flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#0D1B3E]/5 flex items-center justify-center">
+                      <Icon size={20} className="text-[#0D1B3E]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#0D1B3E] text-[14px]">{item.title}</h4>
+                      <p className="text-[11px] font-medium text-[#0D1B3E]/50 mt-0.5">{item.subtitle}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-[#0D1B3E] text-[14px]">{item.title}</h4>
-                    <p className="text-[11px] font-medium text-[#0D1B3E]/50 mt-0.5">{item.subtitle}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className={`font-black text-[15px] ${item.amount > 0 ? "text-[#00695C]" : "text-[#0D1B3E]"}`}>
-                    {item.amount > 0 ? "+" : ""}${Math.abs(item.amount).toFixed(2)}
-                  </p>
-                  <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full mt-1.5 ${
-                    item.status === "escrow" ? "bg-[#FF8C00]/10" : "bg-[#00695C]/10"
-                  }`}>
-                    <Shield size={10} style={{ color: item.status === "escrow" ? "#FF8C00" : "#00695C" }} />
-                    <span className="text-[9px] font-black uppercase tracking-wider" style={{ color: item.status === "escrow" ? "#FF8C00" : "#00695C" }}>
-                      {item.status}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                    <div className="text-right">
+                      <p className={`font-black text-[15px] ${item.amount > 0 ? "text-[#00695C]" : "text-[#0D1B3E]"}`}>
+                        {item.amount > 0 ? "+" : ""}${Math.abs(item.amount).toFixed(2)}
+                      </p>
+                      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full mt-1.5 ${
+                        item.status === "escrow" ? "bg-[#FF8C00]/10" : "bg-[#00695C]/10"
+                      }`}>
+                        <LottieIcon icon="shield" size={14} />
+                        <span className="text-[9px] font-black uppercase tracking-wider" style={{ color: item.status === "escrow" ? "#FF8C00" : "#00695C" }}>
+                          {item.status}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
           </div>
         </section>
       </div>

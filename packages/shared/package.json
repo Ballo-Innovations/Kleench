@@ -8,10 +8,12 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "zod": "^4.3.6"
+  },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
     "@repo/config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
     "eslint": "^8.57.0",
     "typescript": "5.5.4"
   }

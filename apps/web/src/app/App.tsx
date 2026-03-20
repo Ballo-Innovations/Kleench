@@ -20,6 +20,7 @@ import { ChangePassword } from "./screens/ChangePassword";
 import { ProfileEdit } from "./screens/ProfileEdit";
 import { Login } from "./screens/Login";
 import { Signup } from "./screens/Signup";
+import { LoginPin } from "./screens/LoginPin";
 import { Onboarding } from "./screens/Onboarding";
 import { Notifications } from "./screens/Notifications";
 import { PostAdvert } from "./screens/PostAdvert";
@@ -69,6 +70,15 @@ const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <Signup />
+      </>
+    ),
+  },
+  {
+    path: "/login-pin",
+    element: (
+      <>
+        <ScrollToTop />
+        <LoginPin />
       </>
     ),
   },
@@ -125,15 +135,30 @@ const router = createBrowserRouter([
   },
 ]);
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { trpc } from "./trpc";
+import { httpBatchLink } from "@trpc/client";
+
+const queryClient = new QueryClient();
+const trpcClient = trpc.createClient({
+  links: [
+    httpBatchLink({
+      url: import.meta.env.VITE_API_URL || "http://localhost:5001/kleench-mobile/europe-west1/api",
+    }),
+  ],
+});
+
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      </AnimatePresence>
-      {!showSplash && <RouterProvider router={router} />}
-    </>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <AnimatePresence mode="wait">
+          {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
+        </AnimatePresence>
+        {!showSplash && <RouterProvider router={router} />}
+      </QueryClientProvider>
+    </trpc.Provider>
   );
 }
