@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useState } from "react";
-import { Search, Plus, Gift, Target, Share2, ChevronRight, ArrowRight, User, Eye, EyeOff } from "lucide-react";
+import { Settings, Bell, Search, Plus, Share2, ChevronRight, ArrowRight, User, Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import kleenchLogo from "@/assets/kleench_logo.png";
@@ -85,11 +85,13 @@ export function Home() {
               <img src={kleenchLogo} alt="KLEENCH" className="h-10 w-auto object-contain brightness-0 invert" />
             </div>
             <div className="flex items-center gap-3">
-              <button className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm">
-                <Target size={18} />
-              </button>
-              <button className="relative w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm">
-                <Gift size={18} />
+              <Link to="/settings">
+                <button className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+                  <Settings size={18} />
+                </button>
+              </Link>
+              <button className="relative w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+                <Bell size={18} />
                 <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#ff8c00]" />
               </button>
             </div>

@@ -5,8 +5,9 @@ import zamtelLogo from "../../assets/zamtel_logo.png";
 import zedLogo from "../../assets/zed_mobile_logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ShoppingBag, Wallet, Users, GraduationCap, ArrowRight, Camera, Upload, Check, Smartphone } from "lucide-react";
+import { ArrowRight, Camera, Upload, Check, Smartphone } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { LottieAnimation } from "../components/LottieAnimation";
 
 type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "mobile-money" | "features";
 
@@ -38,10 +39,30 @@ export function Onboarding() {
   const [mmError, setMMError] = useState("");
 
   const featureSteps = [
-    { icon: ShoppingBag, title: "Discover Products", description: "Explore curated items from trusted sellers in your community", color: "#0077B6" },
-    { icon: Wallet, title: "Secure Wallet", description: "Manage your finances safely with our built-in wallet system", color: "#FFC300" },
-    { icon: Users, title: "Connect with Friends", description: "Share, recommend, and shop together with your network", color: "#7C3AED" },
-    { icon: GraduationCap, title: "Learn & Grow", description: "Access educational resources to build your business skills", color: "#10B981" },
+    { 
+      lottie: "https://lottie.host/67634898-3850-488f-9d33-9114757c2a7a/2vYhE1jE2f.json", 
+      title: "Discover Products", 
+      description: "Explore curated items from trusted sellers in your community", 
+      color: "#0077B6" 
+    },
+    { 
+      lottie: "https://lottie.host/9e0d16c9-0a6e-4cc8-a0f5-5a507a21350a/m2hE1kF3gR.json", 
+      title: "Secure Wallet", 
+      description: "Manage your finances safely with our built-in wallet system", 
+      color: "#FFC300" 
+    },
+    { 
+      lottie: "https://lottie.host/6a51d455-2591-447a-8531-1e35f585d85d/f7hE1jD2fR.json", 
+      title: "Connect with Friends", 
+      description: "Share, recommend, and shop together with your network", 
+      color: "#7C3AED" 
+    },
+    { 
+      lottie: "https://lottie.host/79a8368d-56a8-444f-bc45-8bc25585f9ca/1Y1vF1mX4Y.json", 
+      title: "Learn & Grow", 
+      description: "Access educational resources to build your business skills", 
+      color: "#10B981" 
+    },
   ];
 
   const handleKeyPress = (digit: string) => {
@@ -154,7 +175,7 @@ export function Onboarding() {
   const getCurrentPin = () => (step === "pin" ? pin : confirmPin);
 
   const currentFeature = featureSteps[currentFeatureStep];
-  const FeatureIcon = currentFeature?.icon;
+
 
   // Step progress
   const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, "mobile-money": 3, features: 4 }[step];
@@ -505,9 +526,12 @@ export function Onboarding() {
                 transition={{ duration: 0.3 }}
                 className="text-center">
                 <div
-                  className="w-24 h-24 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-xl"
-                  style={{ backgroundColor: `${currentFeature.color}15` }}>
-                  <FeatureIcon size={46} style={{ color: currentFeature.color }} strokeWidth={2} />
+                  className="w-48 h-48 mx-auto mb-8 flex items-center justify-center"
+                >
+                  <LottieAnimation 
+                    src={currentFeature.lottie} 
+                    className="w-full h-full"
+                  />
                 </div>
                 <div className="flex gap-2 justify-center mb-8">
                   {featureSteps.map((_, idx) => (

@@ -1,6 +1,7 @@
-import kleenchIcon from '@/assets/kleench_logo.png';
 import { motion } from "motion/react";
 import { useEffect } from "react";
+import { LottieAnimation } from "./LottieAnimation";
+import kleenchLogo from "@/assets/kleench_logo.png";
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -44,9 +45,22 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-8"
+          className="relative mx-auto mb-8 w-44 h-44 flex items-center justify-center"
         >
-          <img src={kleenchIcon} alt="Kleench" className="w-28 h-28 object-contain rounded-3xl mx-auto" />
+          <div className="absolute inset-0">
+            <LottieAnimation 
+              src="https://lottie.host/808f974a-2977-4977-96a2-e6e7371908d1/7N7hY2sFwR.json" 
+              className="w-full h-full"
+            />
+          </div>
+          <motion.img 
+            src={kleenchLogo} 
+            alt="KLEENCH Logo" 
+            className="relative z-10 h-14 w-auto object-contain"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          />
         </motion.div>
 
         <div className="flex items-center justify-center gap-0 mb-3">

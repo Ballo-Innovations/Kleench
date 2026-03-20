@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Play, TrendingUp, Users, Target as TargetIcon, Plus } from "lucide-react";
+import { LottieAnimation } from "../components/LottieAnimation";
 
 const LEARNING_REELS = [
   { id: 1, title: "How to run Kleench Campaigns", views: "12.5k", color: "from-[var(--trust-blue)] to-blue-800", author: "Kleench Team" },
@@ -16,6 +17,7 @@ const COMMUNITY_ADVERTS = [
 
 export function Discover() {
   const [activeTab, setActiveTab] = useState<"advertising" | "learning">("advertising");
+
 
   return (
     <div className="flex flex-col gap-6 pb-24 min-h-screen font-[var(--font-body)] relative z-10 w-full">
@@ -57,6 +59,12 @@ export function Discover() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             {/* Advertising Dashboard Overlapping Card */}
             <div className="bg-white rounded-[28px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100/50 mb-6 flex flex-col items-center">
+              <div className="w-32 h-32 mb-2">
+                <LottieAnimation 
+                  src="https://lottie.host/67634898-3850-488f-9d33-9114757c2a7a/2vYhE1jE2f.json" 
+                  className="w-full h-full"
+                />
+              </div>
               <h2 className="text-[#191c1e] text-[20px] mb-4 text-center font-bold" style={{ fontFamily: 'Agrandir, sans-serif' }}>
                 Launch your next campaign
               </h2>
