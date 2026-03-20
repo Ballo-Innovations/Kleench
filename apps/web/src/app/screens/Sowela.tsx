@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Share2, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { LottieIcon } from "../components/LottieIcon";
+import adBanner from "@/assets/ads/Support Trusted Creators.png";
 import kleenchLogo from "@/assets/kleench_logo.png";
 
 const CAMPAIGNS = [
@@ -89,6 +90,15 @@ export function Sowela() {
       {/* ── Content overlapping header ── */}
       <div className="px-5 space-y-10 relative z-10 -mt-10">
         
+        {/* Banner Ad */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} 
+          animate={{ opacity: 1, scale: 1 }}
+          transition={grace(0.3)}
+          className="rounded-[32px] overflow-hidden shadow-xl border border-white/20">
+          <img src={adBanner} alt="Support Trusted Creators" className="w-full h-auto object-cover" />
+        </motion.div>
+
         {/* Creators Section */}
         <section>
           <div className="flex flex-col gap-5">

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight, Camera, Upload, Tag } from "lucide-react";
 import { useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import adBanner from "@/assets/ads/Transaction Assurance.png";
 
 const CATEGORIES = ["Electronics","Fashion","Food & Groceries","Digital Products","Courses","Services","Agriculture","Other"];
 type Step = 1 | 2 | 3;
@@ -85,6 +86,12 @@ export function SellProduct() {
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 space-y-6">
+
+            {/* Banner Ad */}
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.05)}
+              className="rounded-[32px] overflow-hidden shadow-md border border-gray-100">
+              <img src={adBanner} alt="Transaction Assurance" className="w-full h-auto object-cover" />
+            </motion.div>
 
             {/* Upload */}
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.06)}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Search, Filter, Star, ShieldCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type OfferType = "all" | "solar" | "network" | "survey" | "course";
 
@@ -71,6 +72,12 @@ export function Offers() {
           {OFFERS.length} active earning opportunities
         </p>
       </div>
+
+      {/* Banner Ad */}
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
+        className="relative z-10 mb-8 rounded-[32px] overflow-hidden shadow-lg border border-gray-100">
+        <img src={adBanner} alt="Collective Impact" className="w-full h-auto object-cover" />
+      </motion.div>
 
       {/* Search */}
       <div className="relative z-10 mb-5">

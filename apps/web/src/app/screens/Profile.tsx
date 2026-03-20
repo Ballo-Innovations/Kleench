@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router";
-import { ArrowLeft, ShieldCheck, Star, MessageCircle, UserPlus, Share2, Play, MapPin, Phone, MessageSquare, Mail, AtSign } from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowLeft, ShieldCheck, Star, Share2, Play, MapPin, Phone, Mail, AtSign } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 const profileData = {
   name: "Sarah Martinez",
@@ -48,212 +48,238 @@ export function Profile() {
   const displayUsername = isOwnProfile && localKyc ? `@${localKyc.userName}` : (profileUsername ? `@${profileUsername}` : profileData.username);
   const initials = displayName.split(" ").map((n: string) => n[0]).join("").toUpperCase();
 
+  function grace(delay = 0) {
+    return {
+      duration: 0.62,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    };
+  }
+
   return (
-    <div className="w-full max-w-md mx-auto pb-4">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <Link to="/" className="w-9 h-9 rounded-lg bg-white shadow-sm border border-black/[0.04] flex items-center justify-center">
-          <ArrowLeft size={16} className="text-[var(--ink-primary)]" />
-        </Link>
-        <span className="text-[10px] font-[var(--font-body)] font-bold text-[var(--ink-muted)] uppercase tracking-widest">
-          {displayUsername}
-        </span>
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            alert("Profile link copied!");
-          }}
-          className="w-9 h-9 rounded-lg bg-white shadow-sm border border-black/[0.04] flex items-center justify-center"
-        >
-          <Share2 size={16} className="text-[var(--ink-primary)]" />
-        </button>
+    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">
+      
+      {/* ── Unified cross-hatch bg ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+          <defs>
+            <pattern id="xhatch-profile" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#xhatch-profile)"/>
+        </svg>
       </div>
 
-      {/* Profile Header */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="pb-3">
-        <div className="flex items-start gap-3 mb-3">
-          <div className="relative">
-            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#ff8c00] to-[#e67e00] p-[2px] shadow-md">
-              <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center text-[var(--ink-primary)] text-lg font-[var(--font-header)] font-bold overflow-hidden">
-                {isOwnProfile && localPhoto ? (
-                  <img src={localPhoto} alt={displayName} className="w-full h-full object-cover" />
-                ) : (
-                  initials
-                )}
-              </div>
-            </div>
-            {profileData.verified && (
-              <div className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-md bg-[var(--trust-blue)] flex items-center justify-center border-2 border-white shadow-sm">
-                <ShieldCheck size={10} className="text-white" />
-              </div>
-            )}
-          </div>
-          <div className="flex-1 pt-0.5">
-            <h1 className="text-lg font-[var(--font-header)] font-bold text-[var(--ink-primary)] mb-0.5">{displayName}</h1>
-            <div className="flex items-center gap-1 mb-0.5">
-              <MapPin size={10} className="text-[var(--ink-muted)]" />
-              <p className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)]">{profileData.location}</p>
-            </div>
-            <p className="text-[10px] font-[var(--font-body)] font-bold text-[var(--trust-blue)]">
-              {(profileData.stats.followers / 1000).toFixed(1)}k followers
-            </p>
-          </div>
+      {/* ── Orange hero header ── */}
+      <div className="relative pt-8 pb-32 px-6 overflow-hidden rounded-b-[40px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+        
+        {/* grid texture */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="profile-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#profile-grid)"/>
+          </svg>
         </div>
 
-        <p className="text-xs font-[var(--font-body)] text-[var(--ink-secondary)] leading-relaxed mb-4">{profileData.bio}</p>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-2 mb-4">
-          {[
-            { label: "Completed", value: profileData.stats.completedTransactions, accent: "text-[var(--trust-blue)]", bg: "bg-[var(--trust-blue)]/5", border: "border-[var(--trust-blue)]/10" },
-            { label: "Rating", value: profileData.stats.averageRating, accent: "text-[var(--action-gold-dark)]", bg: "bg-[var(--action-gold)]/10", border: "border-[var(--action-gold)]/15", icon: true },
-            { label: "Referrals", value: profileData.stats.successfulReferrals, accent: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
-          ].map((stat) => (
-            <div key={stat.label} className={`text-center p-2.5 rounded-lg ${stat.bg} border ${stat.border}`}>
-              <div className="flex items-center justify-center gap-1 mb-0.5">
-                {stat.icon && <Star size={10} fill="var(--action-gold)" className="text-[var(--action-gold)]" />}
-                <p className={`text-lg font-[var(--font-header)] font-bold ${stat.accent}`}>{stat.value}</p>
-              </div>
-              <p className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)]">{stat.label}</p>
-            </div>
-          ))}
+        <div className="relative z-10 flex justify-between items-center mb-8">
+          <button onClick={() => navigate(-1)} 
+            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+            <ArrowLeft size={18} />
+          </button>
+          <span className="text-white text-[12px] font-black uppercase tracking-[0.2em] opacity-80" style={{ fontFamily: "Agrandir, sans-serif" }}>
+            {displayUsername}
+          </span>
+          <button onClick={() => { navigator.clipboard.writeText(window.location.href); alert("Profile link copied!"); }}
+            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+            <Share2 size={18} />
+          </button>
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2">
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setIsFollowing(!isFollowing)}
-            className={`flex-1 py-2.5 rounded-lg font-[var(--font-body)] font-bold flex items-center justify-center gap-1.5 shadow-md text-xs ${
-              isFollowing
-                ? "bg-white border-2 border-emerald-500/30 text-emerald-600"
-                : "bg-gradient-to-r from-[var(--trust-blue)] to-[var(--trust-blue-dark)] text-white glow-blue"
-            }`}
-          >
-            <UserPlus size={14} /> {isFollowing ? "Following" : "Follow"}
-          </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => navigate("/friends")}
-            className="flex-1 py-2.5 rounded-lg bg-white border-2 border-[var(--trust-blue)]/20 text-[var(--trust-blue)] font-[var(--font-body)] font-bold flex items-center justify-center gap-1.5 text-xs shadow-sm"
-          >
-            <MessageCircle size={14} /> Message
-          </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.href);
-              alert("Profile link copied!");
-            }}
-            className="py-2.5 px-3 rounded-lg bg-gradient-to-r from-[var(--action-gold)] to-[var(--action-gold-dark)] text-[var(--ink-primary)] shadow-md glow-gold"
-          >
-            <Share2 size={14} />
-          </motion.button>
-        </div>
-      </motion.div>
-
-      {/* Tabs */}
-      <div className="mb-3">
-        <div className="flex rounded-lg bg-[var(--surface-raised)] p-1">
-          {(["reels", "marketplace", "verification"] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-2 rounded-md text-[9px] font-[var(--font-body)] font-bold uppercase tracking-wider transition-all duration-300 ${
-                activeTab === tab
-                  ? "bg-gradient-to-r from-[#ff8c00] to-[#e67e00] text-white shadow-md font-bold"
-                  : "text-[var(--ink-muted)]"
-              }`}
-            >
-              {tab === "reels" ? "Reels" : tab === "marketplace" ? "Shop" : "Verification"}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div>
-        {activeTab === "reels" && (
-          <motion.div key="reels" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-2 gap-2">
-            {profileData.learningReels.map((reel, i) => (
-              <motion.div key={reel.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.04 * i }}>
-                <Link to={`/product/${reel.id}`} className="block">
-                  <div className={`relative rounded-xl overflow-hidden bg-gradient-to-br ${reel.color} aspect-[9/14] shadow-md`}>
-                    <div className="absolute inset-0 noise" />
-                    <div className="absolute inset-0 flex flex-col justify-between p-2.5">
-                      <div className="w-7 h-7 rounded-md bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <Play size={12} fill="white" className="text-white ml-0.5" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-[var(--font-body)] font-bold text-white leading-tight mb-0.5">{reel.title}</p>
-                        <p className="text-[9px] font-[var(--font-body)] text-white/60">{reel.views} views</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-
-        {activeTab === "marketplace" && (
-          <motion.div key="marketplace" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-2 gap-2">
-            {profileData.marketplace.map((product, i) => (
-              <motion.div key={product.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.04 * i }}>
-                <Link to={`/product/${product.id}`} className="block rounded-xl bg-white p-3 shadow-sm border border-black/[0.04]">
-                  <div className="aspect-square rounded-lg bg-[var(--surface-raised)] flex items-center justify-center mb-2">
-                    <span className="text-2xl font-[var(--font-header)] font-bold text-[var(--ink-muted)]/20">
-                      {product.title.charAt(0)}
-                    </span>
-                  </div>
-                  <h3 className="text-[10px] font-[var(--font-body)] font-bold text-[var(--ink-primary)] mb-0.5 line-clamp-2">{product.title}</h3>
-                  <span className="text-sm font-[var(--font-header)] font-bold text-[#ff8c00]">${product.price}</span>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-
-        {activeTab === "verification" && (
-          <motion.div key="verification" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-            <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-              <h3 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">Account Verification</h3>
-              
-              <div className="space-y-4">
-                {[
-                  { label: "User Name", value: displayUsername, icon: AtSign },
-                  { label: "Full Names", value: displayName, icon: ShieldCheck },
-                  { label: "Phone (Calls)", value: isOwnProfile && localKyc ? localKyc.phoneCall : "+1 555-0123", icon: Phone },
-                  { label: "Phone (WhatsApp)", value: isOwnProfile && localKyc ? localKyc.phoneWhatsapp : "+1 555-0123", icon: MessageSquare },
-                  { label: "Email Address", value: isOwnProfile && localKyc ? localKyc.email : "sarah.m@example.com", icon: Mail },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-[#ff8c00]">
-                      <item.icon size={14} />
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">{item.label}</p>
-                      <p className="text-[13px] font-bold text-[#191c1e]">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {localKyc && (
-                <div className="mt-6 p-3 rounded-xl bg-green-50 border border-green-100 flex items-center gap-2">
-                  <ShieldCheck size={16} className="text-green-600" />
-                  <p className="text-[11px] font-bold text-green-700">Verified Kleench Member</p>
+        <div className="relative z-10 flex items-center gap-6">
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
+            className="relative">
+            <div className="w-24 h-24 rounded-[32px] bg-white p-1 shadow-2xl overflow-hidden">
+              {isOwnProfile && localPhoto ? (
+                <img src={localPhoto} alt={displayName} className="w-full h-full object-cover rounded-[28px]" />
+              ) : (
+                <div className="w-full h-full rounded-[28px] bg-orange-50 flex items-center justify-center text-[#FF8C00] text-3xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
+                  {initials}
                 </div>
               )}
             </div>
-
-            <div className="bg-orange-50 p-4 rounded-2xl border border-orange-100">
-              <p className="text-[11px] text-[#ff8c00] font-medium leading-relaxed">
-                Your verification details are secure and used only to build trust within the Kleench ecosystem.
-              </p>
-            </div>
+            {profileData.verified && (
+              <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-2xl bg-[#00695C] border-4 border-white flex items-center justify-center shadow-lg text-white">
+                <ShieldCheck size={16} strokeWidth={3} />
+              </div>
+            )}
           </motion.div>
-        )}
+          
+          <div className="flex-1 space-y-1">
+            <motion.h1 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={grace(0.2)}
+              className="text-white text-2xl font-black leading-tight" style={{ fontFamily: "Agrandir, sans-serif" }}>
+              {displayName}
+            </motion.h1>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={grace(0.3)}
+              className="flex items-center gap-4 text-white/70 text-[13px] font-medium">
+              <span className="flex items-center gap-1"><MapPin size={12} /> {profileData.location}</span>
+              <span className="font-bold text-white"><span className="text-[#0D1B3E] font-black">{(profileData.stats.followers / 1000).toFixed(1)}k</span> followers</span>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-5 -mt-12 relative z-10 space-y-8">
+        
+        {/* Stats Section */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.4)}
+          className="bg-white rounded-[32px] p-6 shadow-2xl border border-black/[0.03]">
+          
+          <p className="text-sm font-medium text-[#0D1B3E]/60 leading-relaxed mb-8 px-2">{profileData.bio}</p>
+
+          <div className="grid grid-cols-3 gap-3 mb-8">
+            {[
+              { label: "Completed", value: profileData.stats.completedTransactions, color: "#00695C" },
+              { label: "Rating", value: profileData.stats.averageRating, color: "#FF8C00", icon: <Star size={10} fill="#FF8C00" /> },
+              { label: "Referrals", value: profileData.stats.successfulReferrals, color: "#0D1B3E" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center p-4 rounded-[24px] bg-gray-50 border border-black/[0.02]">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  {stat.icon}
+                  <p className="text-xl font-black" style={{ fontFamily: "Agrandir, sans-serif", color: stat.color }}>{stat.value}</p>
+                </div>
+                <p className="text-[9px] font-black uppercase tracking-widest text-[#0D1B3E]/30">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-3">
+            <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsFollowing(!isFollowing)}
+              className={`flex-1 py-4 rounded-2xl font-black text-[13px] shadow-lg transition-all border ${
+                isFollowing 
+                  ? "bg-white border-[#00695C]/20 text-[#00695C]" 
+                  : "bg-[#0D1B3E] text-white border-[#0D1B3E]/10"
+              }`} style={{ fontFamily: "Agrandir, sans-serif" }}>
+              {isFollowing ? "Following" : "Connect +"}
+            </motion.button>
+            <motion.button whileTap={{ scale: 0.96 }} onClick={() => navigate("/friends")}
+              className="flex-1 py-4 rounded-2xl bg-[#FF8C00] text-white border-[#FF8C00]/10 font-black text-[13px] shadow-lg shadow-[#FF8C00]/20"
+              style={{ fontFamily: "Agrandir, sans-serif" }}>
+              Message
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Custom Tabs */}
+        <div className="flex bg-[#0D1B3E]/5 p-1.5 rounded-[24px]">
+          {(["reels", "marketplace", "verification"] as const).map((tab) => (
+            <button key={tab} onClick={() => setActiveTab(tab)}
+              className={`flex-1 py-3.5 rounded-[20px] text-[10px] font-black uppercase tracking-widest transition-all ${
+                activeTab === tab 
+                  ? "bg-white text-[#FF8C00] shadow-sm" 
+                  : "text-[#0D1B3E]/40 hover:text-[#0D1B3E]/60"
+              }`} style={{ fontFamily: "Agrandir, sans-serif" }}>
+              {tab === "reels" ? "Stories" : tab === "marketplace" ? "Shop" : "Trust"}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        <AnimatePresence mode="wait">
+          {activeTab === "reels" && (
+            <motion.div key="reels" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={grace()}
+              className="grid grid-cols-2 gap-4">
+              {profileData.learningReels.map((reel, idx) => (
+                <motion.div key={reel.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(idx * 0.05)}>
+                  <Link to={`/product/${reel.id}`} className="block relative aspect-[9/14] rounded-[32px] overflow-hidden group shadow-xl">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${reel.color} transition-transform duration-700 group-hover:scale-110`} />
+                    <div className="absolute inset-0 bg-black/10" />
+                    <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                      <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+                        <Play size={16} fill="white" className="text-white translate-x-0.5" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-white font-black text-sm leading-tight" style={{ fontFamily: "Agrandir, sans-serif" }}>{reel.title}</p>
+                        <p className="text-white/60 text-[10px] font-bold uppercase tracking-wider">{reel.views} views</p>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+
+          {activeTab === "marketplace" && (
+            <motion.div key="marketplace" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={grace()}
+              className="grid grid-cols-2 gap-4">
+              {profileData.marketplace.map((product, i) => (
+                <motion.div key={product.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(i * 0.05)}>
+                  <Link to={`/product/${product.id}`} className="block bg-white p-4 rounded-[32px] border border-black/[0.03] shadow-lg group">
+                    <div className="aspect-square rounded-[24px] bg-gray-50 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-95">
+                      <span className="text-3xl font-black text-[#0D1B3E]/10" style={{ fontFamily: "Agrandir, sans-serif" }}>
+                        {product.title.charAt(0)}
+                      </span>
+                    </div>
+                    <h3 className="text-[13px] font-bold text-[#0D1B3E] mb-2 line-clamp-1">{product.title}</h3>
+                    <p className="text-lg font-black text-[#FF8C00]" style={{ fontFamily: "Agrandir, sans-serif" }}>K{product.price}</p>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+
+          {activeTab === "verification" && (
+            <motion.div key="verification" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={grace()}
+              className="space-y-4">
+              <div className="bg-white p-8 rounded-[32px] border border-black/[0.03] shadow-lg space-y-8">
+                <div className="flex items-center justify-between pb-4 border-b border-gray-50">
+                  <h3 className="text-[10px] font-black text-[#0D1B3E]/20 uppercase tracking-[0.2em]">Verified Credentials</h3>
+                  <ShieldCheck size={18} className="text-[#00695C]" />
+                </div>
+                
+                <div className="space-y-6">
+                  {[
+                    { label: "Community Handle", value: displayUsername, icon: AtSign },
+                    { label: "Legal Identity", value: displayName, icon: ShieldCheck },
+                    { label: "Direct Line", value: isOwnProfile && localKyc ? localKyc.phoneCall : "+1 555-0123", icon: Phone },
+                    { label: "Secure Email", value: isOwnProfile && localKyc ? localKyc.email : "sarah.m@example.com", icon: Mail },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center text-[#FF8C00]">
+                        <item.icon size={16} />
+                      </div>
+                      <div>
+                        <p className="text-[9px] font-black text-[#0D1B3E]/30 uppercase tracking-widest mb-0.5">{item.label}</p>
+                        <p className="text-[14px] font-bold text-[#0D1B3E]">{item.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {localKyc && (
+                  <div className="p-4 rounded-2xl bg-[#00695C]/5 border border-[#00695C]/10 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-[#00695C] flex items-center justify-center text-white">
+                      <ShieldCheck size={14} strokeWidth={3} />
+                    </div>
+                    <p className="text-[11px] font-black uppercase tracking-widest text-[#00695C]">Official Verified Member</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="bg-[#FF8C00]/5 p-5 rounded-[28px] border border-[#FF8C00]/10">
+                <p className="text-[11px] text-[#FF8C00] font-bold leading-relaxed text-center px-4">
+                  Privacy First. These details are only visible to verified community members to ensure safe transactions.
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

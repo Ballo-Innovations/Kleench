@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Copy, CheckCircle, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import adBanner from "@/assets/ads/Boost Your Daily Earnings.png";
 
 
 const REFERRAL_CODE = "KELCH-BX2R9";
@@ -103,6 +104,15 @@ export function Referral() {
           <p className="text-[11px] font-semibold mt-0.5" style={{ color: "#FF8C00" }}>Up to 12% commission tier</p>
         </div>
       </div>
+
+      {/* ── Banner Ad ── */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }} 
+        animate={{ opacity: 1, scale: 1 }}
+        transition={grace(0.1)}
+        className="relative z-10 mb-8 rounded-[32px] overflow-hidden shadow-lg border border-white/20">
+        <img src={adBanner} alt="Boost Your Daily Earnings" className="w-full h-auto object-cover" />
+      </motion.div>
 
       {/* ── Hero earnings card (navy) — attach ref so we detect scroll ── */}
       <motion.div

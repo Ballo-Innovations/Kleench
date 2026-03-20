@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { Play, TrendingUp, Plus } from "lucide-react";
 import { useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import adAds from "@/assets/ads/Turn Ideas Into Stories.png";
+import adLearn from "@/assets/ads/LEARN AND GROW.png";
 
 const LEARNING_REELS = [
   { id: 1, title: "How to run Kleench Campaigns", views: "12.5k", gradient: "linear-gradient(135deg, #0D1B3E, #1e3a5f)", author: "Kleench Team" },
@@ -101,6 +103,12 @@ export function Discover() {
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-6">
 
+              {/* Banner Ad */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
+                className="rounded-[32px] overflow-hidden shadow-lg border border-white/10">
+                <img src={adAds} alt="Turn Ideas Into Stories" className="w-full h-auto object-cover" />
+              </motion.div>
+
               {/* Launch card */}
               <div className="bg-white rounded-3xl p-6 shadow-xl border"
                 style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 16px 48px rgba(13,27,62,0.1)" }}>
@@ -189,7 +197,14 @@ export function Discover() {
             <motion.div key="learn"
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="pt-2">
+              className="pt-2 space-y-6">
+              
+              {/* Banner Ad */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
+                className="rounded-[32px] overflow-hidden shadow-lg border border-white/10">
+                <img src={adLearn} alt="Learn and Grow" className="w-full h-auto object-cover" />
+              </motion.div>
+
               <div className="grid grid-cols-2 gap-4">
                 {LEARNING_REELS.map((reel, i) => {
                   const yOffset = i % 2 === 1 ? 16 : 0;

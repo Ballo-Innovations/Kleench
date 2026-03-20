@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Settings, Check } from "lucide-react";
 import { Link } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type NotifType = "all" | "earnings" | "security" | "social";
 
@@ -100,6 +101,12 @@ export function Notifications() {
           </Link>
         </div>
       </div>
+
+      {/* Banner Ad */}
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1, duration: 0.6 }}
+        className="mb-8 rounded-[32px] overflow-hidden shadow-md border border-gray-100">
+        <img src={adBanner} alt="Verified Efforts" className="w-full h-auto object-cover" />
+      </motion.div>
 
       {/* Tabs */}
       <div className="relative z-10 flex gap-2 mb-5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>

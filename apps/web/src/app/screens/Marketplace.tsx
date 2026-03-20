@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { Search, SlidersHorizontal, Plus, Star, ShieldCheck, TrendingUp, Sparkles, Grid3x3, List } from "lucide-react";
+import { Search, Plus, Star, ShieldCheck, TrendingUp, Sparkles, Grid3x3 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ShareReferralModal } from "../components/ShareReferralModal";
+import adBanner from "@/assets/ads/Your MarketPlace Anytime.png";
 
 /* ─── Categories ─── */
 const CATEGORIES = [
@@ -143,10 +144,10 @@ const fadeUp = {
 export function Marketplace() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<{ title: string; price: number; id: number } | null>(null);
   const navigate = useNavigate();
+  const viewMode = "grid"; // Forced to grid in new design
 
   const filteredProducts = PRODUCTS.filter((product) => {
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
@@ -165,82 +166,87 @@ export function Marketplace() {
   void _handleShareProduct;
 
   return (
-    <div className="w-full max-w-md mx-auto pb-4">
-      {/* Header */}
-      <motion.div
-        custom={0}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-        className="pt-2 pb-4"
-      >
-        <div className="flex items-center justify-between mb-3">
-          <h1 className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-tight" style={{ fontSize: "1.5rem" }}>
-            Marketplace
-          </h1>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-              className="w-9 h-9 rounded-lg bg-white shadow-sm border border-black/[0.04] flex items-center justify-center"
-            >
-              {viewMode === "grid" ? <List size={16} className="text-[var(--ink-secondary)]" /> : <Grid3x3 size={16} className="text-[var(--ink-secondary)]" />}
-            </button>
-            <button
-              onClick={() => {
-                const currentIdx = CATEGORIES.findIndex(c => c.id === activeCategory);
-                const nextIdx = (currentIdx + 1) % CATEGORIES.length;
-                setActiveCategory(CATEGORIES[nextIdx].id);
-              }}
-              className="w-9 h-9 rounded-lg bg-white shadow-sm border border-black/[0.04] flex items-center justify-center"
-            >
-              <SlidersHorizontal size={16} className="text-[var(--ink-secondary)]" />
-            </button>
+    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">
+      
+      {/* ── Unified cross-hatch bg ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+          <defs>
+            <pattern id="xhatch-market" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#xhatch-market)"/>
+        </svg>
+      </div>
+
+      {/* ── Orange hero header ── */}
+      <div className="relative pt-8 pb-20 px-6 overflow-hidden rounded-b-[40px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+        
+        {/* subtle grid on top of orange */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="market-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#market-grid)"/>
+          </svg>
+        </div>
+
+        <div className="relative z-10 space-y-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-white text-3xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>Marketplace</h1>
+            <motion.button 
+              whileTap={{ scale: 0.94 }}
+              onClick={() => navigate("/sell")}
+              className="bg-white/20 backdrop-blur-md text-white font-bold py-2.5 px-5 rounded-xl border border-white/30 text-[13px] flex items-center gap-2">
+              <Plus size={16} /> Sell Item
+            </motion.button>
+          </div>
+          
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50" size={18} />
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="What are you looking for?" 
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/12 backdrop-blur-md border border-white/20 text-white placeholder:text-white/50 outline-none"
+            />
           </div>
         </div>
+      </div>
 
-        {/* Search Bar */}
-        <div className="relative">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ink-muted)]" />
-          <input
-            type="text"
-            placeholder="Search products, sellers..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full h-10 pl-10 pr-4 rounded-xl bg-white border border-black/[0.05] text-[var(--ink-primary)] placeholder:text-[var(--ink-muted)] font-[var(--font-body)] text-sm focus:outline-none focus:border-[var(--trust-blue)]/30 focus:ring-2 focus:ring-[var(--trust-blue)]/10 transition-all shadow-sm"
-          />
-        </div>
-      </motion.div>
+      <div className="px-5 -mt-8 relative z-10 space-y-10">
+        
+        {/* Banner Ad */}
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-[32px] overflow-hidden shadow-2xl border border-white/20">
+          <img src={adBanner} alt="Marketplace Anytime" className="w-full h-auto object-cover" />
+        </motion.div>
 
-      {/* Category Tabs */}
-      <motion.div
-        custom={1}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-        className="mb-4"
-      >
-        <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1" style={{ scrollbarWidth: "none" }}>
-          {CATEGORIES.map((cat) => {
-            const Icon = cat.icon;
-            return (
-              <motion.button
-                key={cat.id}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-[var(--font-body)] whitespace-nowrap transition-all shadow-sm ${
-                  activeCategory === cat.id
-                    ? "bg-[var(--trust-blue)] text-white shadow-sm"
-                    : "bg-white text-[var(--ink-secondary)] border border-black/[0.04]"
-                }`}
-                style={{ fontSize: "12px", fontWeight: 600 }}
-              >
-                {Icon && <Icon size={12} strokeWidth={2.5} />}
-                {cat.label}
-              </motion.button>
-            );
-          })}
+        {/* Categories Scroller */}
+        <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+          {CATEGORIES.map((cat) => (
+            <motion.button
+              key={cat.id}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold whitespace-nowrap border transition-all ${
+                activeCategory === cat.id
+                  ? "bg-[#0D1B3E] text-white border-[#0D1B3E] shadow-lg shadow-[#0D1B3E]/20"
+                  : "bg-white text-[#0D1B3E] border-[#0D1B3E]/10"
+              }`}
+              style={{ fontSize: "12.5px" }}>
+              {cat.label}
+            </motion.button>
+          ))}
         </div>
-      </motion.div>
 
       {/* Results Count */}
       <motion.div
@@ -464,6 +470,7 @@ export function Marketplace() {
           )}
         </AnimatePresence>
       </motion.div>
+      </div>
 
       {/* Floating Action Button - List Product */}
       <div className="fixed bottom-28 right-5 z-40 max-w-md mx-auto left-0 right-0 flex justify-end pointer-events-none">
