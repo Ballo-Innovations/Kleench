@@ -37,7 +37,11 @@ export function Layout() {
 
   const matches = useMatches();
   const isNotFound = matches.some(m => m.id === "notfound");
-  const isFullBleed = location.pathname === "/" || location.pathname === "/socials" || isNotFound;
+  const isFullBleed = 
+    location.pathname === "/" || 
+    location.pathname === "/socials" || 
+    location.pathname === "/wallet" || 
+    isNotFound;
 
   return (
     <div className="min-h-[100dvh] bg-[#fcfcfc] relative w-full md:max-w-md mx-auto overflow-x-hidden shadow-2xl md:border-x border-gray-200">
