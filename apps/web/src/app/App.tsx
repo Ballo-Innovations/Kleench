@@ -13,7 +13,7 @@ import { Videos } from "./screens/Videos";
 import { Learning } from "./screens/Learning";
 import { LearningDetail } from "./screens/LearningDetail";
 import { Discover } from "./screens/Discover";
-import { Sowela } from "./screens/Sowela";
+import { Socials } from "./screens/Socials";
 import { Settings } from "./screens/Settings";
 import { ChangePin } from "./screens/ChangePin";
 import { ChangePassword } from "./screens/ChangePassword";
@@ -27,6 +27,7 @@ import { SellProduct } from "./screens/SellProduct";
 import { CreatePoll } from "./screens/CreatePoll";
 import { Referral } from "./screens/Referral";
 import { Offers } from "./screens/Offers";
+import { NotFound } from "./screens/NotFound";
 
 // Protected Route Wrapper
 function ProtectedRoute({ children, allowOnboarding = false }: { children: React.ReactNode; allowOnboarding?: boolean }) {
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
       { path: "learning", element: <Learning /> },
       { path: "learning/:id", element: <LearningDetail /> },
       { path: "discover", element: <Discover /> },
-      { path: "sowela", element: <Sowela /> },
+      { path: "socials", element: <Socials /> },
       { path: "profile", element: <Profile /> },
       { path: "profile/:username", element: <Profile /> },
       { path: "friends", element: <Friends /> },
@@ -121,6 +122,7 @@ const router = createBrowserRouter([
       { path: "poll/create", element: <CreatePoll /> },
       { path: "referral", element: <Referral /> },
       { path: "offers", element: <Offers /> },
+      { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },
 ]);

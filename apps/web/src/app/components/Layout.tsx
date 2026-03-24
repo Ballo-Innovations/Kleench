@@ -1,5 +1,5 @@
-import { Outlet, useLocation, Link } from "react-router";
-import { Home, Compass, HeartHandshake, Tag, User, Settings } from "lucide-react";
+import { Outlet, useLocation, Link, useMatches } from "react-router";
+import { Home, Settings, Wallet, Megaphone, GraduationCap, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import kleenchLogo from "@/assets/kleench_logo.png";
@@ -23,11 +23,11 @@ export function Layout() {
   }, []);
 
   const navItems = [
-    { path: "/", icon: Home, label: "Home" },
-    { path: "/discover", icon: Compass, label: "Discover" },
-    { path: "/sowela", icon: HeartHandshake, label: "Sowela" },
-    { path: "/marketplace", icon: Tag, label: "Sell" },
-    { path: "/profile", icon: User, label: "Profile" },
+    { path: "/", id: "home", icon: Home, label: "Home" },
+    { path: "/wallet", id: "wallet", icon: Wallet, label: "Wallet" },
+    { path: "/advert", id: "advert", icon: Megaphone, label: "Advert" },
+    { path: "/learn", id: "learn", icon: GraduationCap, label: "Learn" },
+    { path: "/socials", id: "socials", icon: Users, label: "Socials" }
   ];
 
   const isActive = (path: string) => {
@@ -35,8 +35,12 @@ export function Layout() {
     return location.pathname.startsWith(path);
   };
 
+  const matches = useMatches();
+  const isNotFound = matches.some(m => m.id === "notfound");
+  const isFullBleed = location.pathname === "/" || location.pathname === "/socials" || isNotFound;
+
   return (
-    <div className="min-h-screen bg-[#fcfcfc] relative w-full max-w-md mx-auto overflow-hidden">
+    <div className="min-h-[100dvh] bg-[#fcfcfc] relative w-full md:max-w-md mx-auto overflow-x-hidden shadow-2xl md:border-x border-gray-200">
       {/* Premium white background with subtle depth grid */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#ff8c00]/5 rounded-[100%] blur-[80px]" />
@@ -57,11 +61,9 @@ export function Layout() {
         />
       </div>
 
-      {/* Top Navigation - Optional top spacing for Home headers which handle their own top bars now, 
-          but if needed globally we can keep it. The Home screen has its own header so we might not need this everywhere.
-          Assuming we keep it minimal or hidden conditionally if on Home, but for now we render it. */}
-      {location.pathname !== "/" && (
-        <nav className="fixed top-0 left-0 right-0 z-40 max-w-md mx-auto">
+      {/* Top Navigation */}
+      {!isFullBleed && (
+        <nav className="fixed top-0 left-0 right-0 z-40 w-full md:max-w-md mx-auto">
           <div className="mx-3 mt-3 px-4 h-14 flex items-center justify-between rounded-2xl bg-white shadow-sm border border-gray-100">
             {/* Logo */}
             <Link to="/" className="flex items-center">
@@ -85,57 +87,38 @@ export function Layout() {
         </nav>
       )}
 
-      {/* Main Content - Mobile constrained */}
-      <main className={`pb-32 relative z-10 w-full ${location.pathname !== "/" ? "pt-20 px-4" : ""}`}>
+      {/* Main Content */}
+      <main className={`relative z-10 w-full ${!isFullBleed ? "pt-20 px-4 pb-32" : ""}`}>
         <Outlet />
       </main>
 
-      {/* Bottom Navigation - Mobile constrained */}
+      {/* Bottom Navigation */}
       <motion.nav
-        className="fixed bottom-0 left-0 right-0 z-50 pb-4 max-w-md mx-auto"
+        className="fixed bottom-0 left-0 right-0 z-50 w-full md:max-w-md mx-auto bg-white/95 backdrop-blur-3xl border-t border-gray-100 shadow-[0_-15px_40px_rgba(0,0,0,0.04)] rounded-t-[32px] pb-[env(safe-area-inset-bottom)]"
         animate={keyboardOpen ? { y: 120, opacity: 0, pointerEvents: "none" } : { y: 0, opacity: 1, pointerEvents: "auto" }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="px-3">
-          {/* Tab Bar */}
-          <div className="rounded-[24px] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-2 py-3 relative border border-gray-100">
-            <div className="flex items-center justify-between px-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const active = isActive(item.path);
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className="relative flex flex-col items-center gap-1.5 px-3 py-1 flex-1"
-                  >
-                    {active && (
-                      <motion.div 
-                        layoutId="nav-bg"
-                        className="absolute inset-0 bg-orange-50 rounded-xl"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                    <Icon
-                      size={24}
-                      className={`relative z-10 transition-all duration-300 ${
-                        active ? "text-[#ff8c00] fill-[#ff8c00]/10" : "text-gray-400"
-                      }`}
-                      strokeWidth={active ? 2.5 : 2}
-                    />
-                    <span
-                      className={`relative z-10 text-[10px] tracking-wide transition-colors duration-300 ${
-                        active ? "text-[#ff8c00] font-bold" : "text-gray-400 font-medium"
-                      }`}
-                      style={{ fontFamily: active ? 'Agrandir, sans-serif' : 'var(--font-body)' }}
-                    >
-                      {item.label}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
+        <div className="flex justify-around items-center px-2 pt-3 pb-4">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const active = isActive(item.path);
+            return (
+              <Link
+                key={item.id}
+                to={item.path}
+                className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
+                  active ? "text-[#005a8d]" : "text-gray-400 hover:text-[#005a8d]"
+                }`}
+              >
+                <Icon
+                  size={22}
+                  strokeWidth={active ? 2.5 : 2}
+                  className="mb-1"
+                />
+                <span className="text-[10px] font-bold capitalize">{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
       </motion.nav>
     </div>
