@@ -6,7 +6,6 @@ import { motion } from "motion/react";
 
 export function Signup() {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,7 +15,7 @@ export function Signup() {
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !email || !password || !confirmPassword) {
+    if (!email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
       return;
     }
@@ -31,10 +30,9 @@ export function Signup() {
     setError("");
     
     localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("userName", fullName);
     localStorage.setItem("userEmail", email);
     setTimeout(() => {
-      navigate("/");
+      navigate("/onboarding");
     }, 500);
   };
 
@@ -76,19 +74,7 @@ export function Signup() {
           className="w-full max-w-sm"
         >
           <form onSubmit={handleSignup} className="space-y-4">
-            {/* Full Name */}
-            <div>
-              <label className="block text-[13px] font-bold text-[#191c1e] mb-2 uppercase tracking-wide">
-                Full Name
-              </label>
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-5 py-3.5 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
-                placeholder="John Doe"
-              />
-            </div>
+
 
             {/* Email */}
             <div>

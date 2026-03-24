@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { ArrowRight, Camera, Upload, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { BackspaceKey } from "../components/KleenchIcons";
+import { ZambiaFlag, BackspaceKey } from "../components/KleenchIcons";
 import { LottieAnimation } from "../components/LottieAnimation";
 
 type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "features";
@@ -19,8 +19,8 @@ export function Onboarding() {
   const [profilePhoto, setProfilePhoto] = useState<string>("");
   const [currentFeatureStep, setCurrentFeatureStep] = useState(0);
   const [kycName, setKycName] = useState("");
-  const [kycPhoneCall, setKycPhoneCall] = useState("");
-  const [kycPhoneWhatsapp, setKycPhoneWhatsapp] = useState("");
+  const [kycFullName, setKycFullName] = useState("");
+  const [kycPhone, setKycPhone] = useState("");
 
   const featureSteps = [
     { 
@@ -91,16 +91,15 @@ export function Onboarding() {
 
   const handleKycSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!kycName || !kycPhoneCall) {
+    if (!kycName || !kycFullName || !kycPhone) {
       setError("Please fill in all required fields");
       return;
     }
     setError("");
     const kycData = {
       userName: kycName,
-      fullName: localStorage.getItem("userName") || "",
-      phoneCall: kycPhoneCall,
-      phoneWhatsapp: kycPhoneWhatsapp || kycPhoneCall,
+      fullName: kycFullName,
+      phone: kycPhone,
       email: localStorage.getItem("userEmail") || ""
     };
     localStorage.setItem("userKyc", JSON.stringify(kycData));
@@ -269,21 +268,27 @@ export function Onboarding() {
                   <div>
                     <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">User Name *</label>
                     <input type="text" value={kycName} onChange={(e) => setKycName(e.target.value)} required
-                      className="w-full px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="e.g. johndoe99" />
+                      className="w-full px-4 py-3.5 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="e.g. johndoe99" />
                   </div>
                   <div>
-                    <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Phone (Calls) *</label>
-                    <input type="tel" value={kycPhoneCall} onChange={(e) => setKycPhoneCall(e.target.value)} required
-                      className="w-full px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="+260 9X XXX XXXX" />
+                    <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Full Legal Name *</label>
+                    <input type="text" value={kycFullName} onChange={(e) => setKycFullName(e.target.value)} required
+                      className="w-full px-4 py-3.5 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="As it appears on your ID" />
                   </div>
                   <div>
-                    <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Phone (WhatsApp)</label>
-                    <input type="tel" value={kycPhoneWhatsapp} onChange={(e) => setKycPhoneWhatsapp(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="+260 9X XXX XXXX (Optional)" />
+                    <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Phone Number *</label>
+                    <div className="flex gap-2">
+                      <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                        <ZambiaFlag size={20} />
+                        <span className="font-bold text-gray-500 text-[14px]">+260</span>
+                      </div>
+                      <input type="tel" value={kycPhone} onChange={(e) => setKycPhone(e.target.value.replace(/\D/g, "").slice(0, 10))} required
+                        className="flex-1 px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="9X XXX XXXX" />
+                    </div>
                   </div>
                   {error && <p className="text-red-500 font-bold mb-3 text-center" style={{ fontSize: "13px" }}>{error}</p>}
                   <motion.button whileTap={{ scale: 0.97 }} type="submit"
-                    className="w-full py-4 rounded-2xl bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white font-[var(--font-header)] shadow-[0_8px_20px_rgba(255,140,0,0.25)] flex items-center justify-center gap-2 mt-2"
+                    className="w-full py-4 rounded-2xl bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white font-[var(--font-header)] shadow-[0_8px_20px_rgba(255,140,0,0.25)] flex items-center justify-center gap-2 mt-4"
                     style={{ fontSize: "16px", fontWeight: 800, fontFamily: 'Agrandir, sans-serif' }}>
                     Continue <ArrowRight size={18} strokeWidth={2.5} />
                   </motion.button>
