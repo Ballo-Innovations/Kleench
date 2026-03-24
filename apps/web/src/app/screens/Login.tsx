@@ -21,11 +21,9 @@ export function Login() {
     // Auth success actions
     localStorage.setItem("isAuthenticated", "true");
     
-    if (localStorage.getItem("hasCompletedOnboarding") !== "true") {
-      navigate("/onboarding");
-    } else {
+    setTimeout(() => {
       navigate("/");
-    }
+    }, 200);
   };
 
   return (

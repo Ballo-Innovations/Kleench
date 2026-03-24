@@ -1,19 +1,20 @@
 import { motion } from "motion/react";
-import { Share2, ChevronRight } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { LottieIcon } from "../components/LottieIcon";
-import adBanner from "@/assets/ads/Support Trusted Creators.png";
+import { Share2, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";
 import kleenchLogo from "@/assets/kleench_logo.png";
 
+// --- MOCKS FOR PREVIEW ENVIRONMENT ---
+const adBanner = "https://picsum.photos/seed/creators/800/300";
+
 const CAMPAIGNS = [
-  { id: 1, name: "Cherish Chansa", category: "Business & Finance", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80", verified: true },
-  { id: 2, name: "David Mwale", category: "Technology Education", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80", verified: true },
+  { id: 1, name: "Cherish Chansa", category: "Business & Finance", image: "https://picsum.photos/seed/cherish/400/400", verified: true },
+  { id: 2, name: "David Mwale", category: "Technology Education", image: "https://picsum.photos/seed/david/400/400", verified: true },
 ];
 
 const BOOST_PRODUCTS = [
-  { id: 1, title: "Solar Light Promotion", price: "K10.00", oldPrice: "K3.30", earn: "K1.40", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80" },
-  { id: 2, title: "Course: Digital Marketing Basics", price: "K3.30", oldPrice: null, earn: "K0.50", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&q=80" },
+  { id: 1, title: "Solar Light Promotion", price: "ZMW 10.00", oldPrice: "ZMW 3.30", earn: "ZMW 1.40", image: "https://picsum.photos/seed/solar/400/400" },
+  { id: 2, title: "Course: Digital Marketing Basics", price: "ZMW 3.30", oldPrice: null, earn: "ZMW 0.50", image: "https://picsum.photos/seed/marketing/400/400" },
 ];
+// -------------------------------------
 
 /* Graceful transition builder */
 const grace = (delay = 0) => ({
@@ -72,16 +73,31 @@ export function Socials() {
         </div>
       </div>
 
-      {/* ── Content overlapping header ── */}
-      <div className="px-5 space-y-6 relative z-10 -mt-12">
+      {/* ── Content ── */}
+      <div className="px-4 mt-6 space-y-6 relative z-10">
+        
+        {/* Page Title */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-1">
+          <h1 className="text-[#003366] text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Socials</h1>
+          <p className="text-gray-500 text-[13px] font-medium mt-0.5">Support creators and boost your network.</p>
+        </motion.div>
         
         {/* Banner Ad similarly styled as Home's sponsored banner */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }}
           transition={grace(0.1)}
-          className="rounded-[24px] overflow-hidden shadow-md border border-black/[0.04]">
-          <img src={adBanner} alt="Support Trusted Creators" className="w-full h-auto object-cover" />
+          className="rounded-[24px] h-[130px] overflow-hidden shadow-md border border-black/[0.04] relative group cursor-pointer active:scale-[0.98] transition-transform">
+          <img src={adBanner} alt="Support Trusted Creators" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#EF6C00] via-[#EF6C00]/95 to-transparent w-[80%]"></div>
+          
+          <div className="relative z-10 p-5 flex flex-col items-start w-full h-full justify-center">
+            <span className="text-white/90 text-[10px] italic font-semibold mb-1 drop-shadow-sm">Community</span>
+            <h2 className="text-white text-[18px] font-black mb-3 tracking-tight leading-tight drop-shadow-sm max-w-[70%]">Support Trusted Creators</h2>
+            <button className="bg-[#003366] hover:bg-[#002244] text-white font-bold py-1.5 px-4 rounded-lg text-[11px] transition-colors shadow-sm">
+              Discover
+            </button>
+          </div>
         </motion.div>
 
         {/* Creators Section */}
@@ -90,36 +106,35 @@ export function Socials() {
           <div className="flex flex-col gap-3">
             {CAMPAIGNS.map((creator) => (
                 <div key={creator.id} 
-                  className="bg-white border rounded-[24px] p-4 flex flex-col gap-4 shadow-sm" 
-                  style={{ borderColor: "rgba(0,0,0,0.04)" }}>
+                  className="bg-white rounded-[24px] p-4 flex flex-col gap-4 shadow-sm border border-black/[0.04]">
                   
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 shadow-sm">
-                      <ImageWithFallback src={creator.image} alt={creator.name} className="w-full h-full object-cover" />
+                    <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 shadow-sm border border-gray-100">
+                      <img src={creator.image} alt={creator.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-1.5 mb-0.5">
                         <h4 className="font-bold text-[#003366] text-[16px]" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                           {creator.name}
                         </h4>
-                        <LottieIcon icon="shield" size={16} />
+                        <ShieldCheck size={16} className="text-[#EF6C00]" />
                       </div>
-                      <p className="text-[12px] text-gray-400 font-semibold">{creator.category}</p>
+                      <p className="text-[12px] text-gray-500 font-medium">{creator.category}</p>
                     </div>
                   </div>
                   
                   <div className="flex gap-2">
                     <motion.button 
                       whileTap={{scale: 0.96}} 
-                      className="flex-1 bg-[#005a8d] hover:bg-[#003366] transition-colors text-white py-2.5 rounded-xl font-bold text-[13px] leading-none shadow-sm"
+                      className="flex-1 bg-[#003366] hover:bg-[#002244] transition-colors text-white py-3 rounded-xl font-bold text-[12px] leading-none shadow-sm"
                       style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                       Support Creator
                     </motion.button>
                     <motion.button 
                       whileTap={{scale: 0.96}} 
-                      className="flex-1 bg-[#FF8C00] hover:bg-[#e06900] transition-colors text-white py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-sm text-[13px] leading-none"
+                      className="flex-1 bg-[#EF6C00] hover:bg-[#d86200] transition-colors text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-sm text-[12px] leading-none"
                       style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      <Share2 size={16} /> Share
+                      <Share2 size={15} /> Share
                     </motion.button>
                   </div>
                 </div>
@@ -134,29 +149,29 @@ export function Socials() {
           <div className="flex flex-col gap-3">
             {BOOST_PRODUCTS.map((product) => (
                 <div key={product.id} 
-                  className="bg-white border rounded-[24px] p-3 flex items-center gap-4 shadow-sm"
+                  className="bg-white border rounded-[24px] p-3 flex items-center gap-4 shadow-sm cursor-pointer active:scale-[0.98] transition-transform group"
                   style={{ borderColor: "rgba(0,0,0,0.04)" }}>
                   <div className="w-[80px] h-[80px] rounded-[16px] bg-gray-50 overflow-hidden flex-shrink-0 border border-gray-100">
-                    <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
+                    <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="flex-1 py-1">
-                    <h4 className="font-bold text-[#003366] mb-1 text-[14px] leading-tight line-clamp-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                    <h4 className="font-bold text-[#003366] mb-1 text-[13px] leading-snug line-clamp-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                       {product.title}
                     </h4>
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-1.5 min-h-[16px]">
                       {product.oldPrice && <p className="text-[11px] text-gray-400 font-medium line-through">{product.oldPrice}</p>}
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className="font-black text-[#FF8C00] text-[16px]" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                      <p className="font-black text-[#EF6C00] text-[15px]" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                         {product.price}
                       </p>
-                      <span className="text-[10px] bg-[#FFF7ED] text-[#FF8C00] px-2.5 py-1 rounded-full font-bold">
+                      <span className="text-[9px] bg-[#EF6C00]/10 text-[#EF6C00] px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">
                         Earn {product.earn}
                       </span>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 pr-1">
-                    <ChevronRight size={18} className="text-gray-300" />
+                  <div className="flex-shrink-0 pr-2">
+                    <ChevronRight size={18} className="text-gray-300 group-hover:text-[#EF6C00] transition-colors" />
                   </div>
                 </div>
             ))}
@@ -164,7 +179,7 @@ export function Socials() {
           
           <motion.button 
             whileTap={{ scale: 0.98 }}
-            className="w-full mt-6 py-3.5 px-6 rounded-xl font-bold text-[13px] bg-white border border-gray-200 text-gray-500 flex items-center justify-center gap-2 shadow-sm"
+            className="w-full mt-4 py-3.5 px-6 rounded-2xl font-bold text-[13px] bg-white border border-gray-200 text-[#003366] flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-shadow"
             style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
             View Marketplace <ArrowRight size={16} />
           </motion.button>
@@ -175,10 +190,4 @@ export function Socials() {
   );
 }
 
-function ArrowRight({ size }: { size: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14M12 5l7 7-7 7"/>
-    </svg>
-  );
-}
+

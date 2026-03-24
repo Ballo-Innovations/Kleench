@@ -32,8 +32,9 @@ export function Signup() {
     
     localStorage.setItem("isAuthenticated", "true");
     localStorage.setItem("userName", fullName);
+    localStorage.setItem("userEmail", email);
     setTimeout(() => {
-      navigate("/onboarding");
+      navigate("/");
     }, 500);
   };
 

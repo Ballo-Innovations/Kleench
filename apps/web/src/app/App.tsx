@@ -29,17 +29,11 @@ import { Referral } from "./screens/Referral";
 import { Offers } from "./screens/Offers";
 import { NotFound } from "./screens/NotFound";
 
-// Protected Route Wrapper
-function ProtectedRoute({ children, allowOnboarding = false }: { children: React.ReactNode; allowOnboarding?: boolean }) {
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-  const hasCompletedOnboarding = localStorage.getItem("hasCompletedOnboarding") === "true";
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
-  }
-
-  if (!hasCompletedOnboarding && !allowOnboarding) {
-    return <Navigate to="/onboarding" replace />;
   }
 
   return <>{children}</>;
@@ -76,7 +70,7 @@ const router = createBrowserRouter([
   {
     path: "/onboarding",
     element: (
-      <ProtectedRoute allowOnboarding>
+      <ProtectedRoute>
         <ScrollToTop />
         <Onboarding />
       </ProtectedRoute>

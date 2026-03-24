@@ -1,23 +1,14 @@
 import kleenchLogo from "../../assets/kleench_logo.png";
-import mtnLogo from "../../assets/MTN.jpeg";
-import airtelLogo from "../../assets/airtel_logo.webp";
-import zamtelLogo from "../../assets/zamtel_logo.png";
-import zedLogo from "../../assets/zed_mobile_logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ArrowRight, Camera, Upload, Check, Smartphone } from "lucide-react";
+import { ArrowRight, Camera, Upload, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { ZambiaFlag, BackspaceKey } from "../components/KleenchIcons";
+import { BackspaceKey } from "../components/KleenchIcons";
 import { LottieAnimation } from "../components/LottieAnimation";
 
-type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "mobile-money" | "features";
+type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "features";
 
-const MM_PROVIDERS = [
-  { id: "airtel", name: "Airtel Money", shortName: "Airtel", color: "#E40513", bg: "#FFF1F2", logo: airtelLogo },
-  { id: "mtn", name: "MTN Mobile Money", shortName: "MTN", color: "#F5A623", bg: "#FFFBEB", logo: mtnLogo },
-  { id: "zamtel", name: "Zamtel Mobile Money", shortName: "Zamtel", color: "#00843D", bg: "#F0FDF4", logo: zamtelLogo },
-  { id: "zed", name: "Zed Mobile", shortName: "Zed", color: "#0077B6", bg: "#EFF6FF", logo: zedLogo },
-];
+
 
 export function Onboarding() {
   const navigate = useNavigate();
@@ -28,16 +19,8 @@ export function Onboarding() {
   const [profilePhoto, setProfilePhoto] = useState<string>("");
   const [currentFeatureStep, setCurrentFeatureStep] = useState(0);
   const [kycName, setKycName] = useState("");
-  const [kycFullName, setKycFullName] = useState("");
   const [kycPhoneCall, setKycPhoneCall] = useState("");
   const [kycPhoneWhatsapp, setKycPhoneWhatsapp] = useState("");
-  const [kycEmail, setKycEmail] = useState("");
-  // Mobile money state
-  const [mmProvider, setMMProvider] = useState<(typeof MM_PROVIDERS)[0] | null>(null);
-  const [mmName, setMMName] = useState("");
-  const [mmPhone, setMMPhone] = useState("");
-  const [mmStep, setMMStep] = useState<"provider" | "details">("provider");
-  const [mmError, setMMError] = useState("");
 
   const featureSteps = [
     { 
@@ -108,17 +91,17 @@ export function Onboarding() {
 
   const handleKycSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!kycName || !kycFullName || !kycPhoneCall || !kycEmail) {
+    if (!kycName || !kycPhoneCall) {
       setError("Please fill in all required fields");
       return;
     }
     setError("");
     const kycData = {
       userName: kycName,
-      fullName: kycFullName,
+      fullName: localStorage.getItem("userName") || "",
       phoneCall: kycPhoneCall,
       phoneWhatsapp: kycPhoneWhatsapp || kycPhoneCall,
-      email: kycEmail
+      email: localStorage.getItem("userEmail") || ""
     };
     localStorage.setItem("userKyc", JSON.stringify(kycData));
     setStep("photo");
@@ -127,37 +110,11 @@ export function Onboarding() {
   const handleContinueFromPhoto = () => {
     if (profilePhoto) {
       localStorage.setItem("userProfilePhoto", profilePhoto);
-      setStep("mobile-money");
+      setStep("features");
     } else {
       setError("Please upload a profile picture");
     }
   };
-
-  const handleMMProviderNext = () => {
-    if (!mmProvider) { setMMError("Please select a provider"); return; }
-    setMMError("");
-    setMMStep("details");
-  };
-
-  const handleMMSubmit = () => {
-    if (!mmName.trim()) { setMMError("Please enter your name"); return; }
-    if (!mmPhone.trim() || mmPhone.length < 9) { setMMError("Please enter a valid phone number"); return; }
-    setMMError("");
-    const account = {
-      id: Date.now().toString(),
-      provider: mmProvider!.id,
-      providerName: mmProvider!.name,
-      name: mmName.trim(),
-      number: mmPhone.trim(),
-      isPrimary: true,
-      color: mmProvider!.color,
-      bg: mmProvider!.bg,
-    };
-    localStorage.setItem("kleench_mobile_money", JSON.stringify([account]));
-    setStep("features");
-  };
-
-  const skipMobileMoney = () => setStep("features");
 
   const handleFeatureNext = () => {
     if (currentFeatureStep < featureSteps.length - 1) {
@@ -179,7 +136,7 @@ export function Onboarding() {
 
 
   // Step progress
-  const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, "mobile-money": 3, features: 4 }[step];
+  const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, features: 3 }[step];
 
   return (
     <div className="min-h-screen bg-[#fcfcfc] relative flex flex-col overflow-hidden font-[var(--font-body)]">
@@ -231,16 +188,14 @@ export function Onboarding() {
           <img src={kleenchLogo} alt="KLEENCH Logo" className="h-16 w-auto object-contain" />
         </motion.div>
 
-        {/* Title */}
         <AnimatePresence mode="wait">
-          {step !== "mobile-money" && (
-            <motion.div
-              key={step + currentFeatureStep}
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 16 }}
-              className="text-center mb-8"
-            >
+          <motion.div
+            key={step + currentFeatureStep}
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            className="text-center mb-8"
+          >
               <h1
                 className="font-[var(--font-header)] text-[#191c1e] mb-2"
                 style={{ fontSize: "28px", fontWeight: 800, letterSpacing: "-0.03em", fontFamily: 'Agrandir, sans-serif' }}
@@ -258,8 +213,7 @@ export function Onboarding() {
                 {step === "photo" && "Upload a photo to personalize your profile"}
                 {step === "features" && currentFeature.description}
               </p>
-            </motion.div>
-          )}
+          </motion.div>
         </AnimatePresence>
 
         {/* Content */}
@@ -316,16 +270,6 @@ export function Onboarding() {
                     <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">User Name *</label>
                     <input type="text" value={kycName} onChange={(e) => setKycName(e.target.value)} required
                       className="w-full px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="e.g. johndoe99" />
-                  </div>
-                  <div>
-                    <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Full Name *</label>
-                    <input type="text" value={kycFullName} onChange={(e) => setKycFullName(e.target.value)} required
-                      className="w-full px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="John Doe" />
-                  </div>
-                  <div>
-                    <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Email *</label>
-                    <input type="email" value={kycEmail} onChange={(e) => setKycEmail(e.target.value)} required
-                      className="w-full px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="your@email.com" />
                   </div>
                   <div>
                     <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Phone (Calls) *</label>
@@ -397,128 +341,7 @@ export function Onboarding() {
               </motion.div>
             )}
 
-            {/* Mobile Money Setup */}
-            {step === "mobile-money" && (
-              <motion.div key="mobile-money"
-                initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
-                className="flex flex-col w-full">
 
-                <AnimatePresence mode="wait">
-                  {mmStep === "provider" && (
-                    <motion.div key="mm-provider" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                      <div className="mb-5 text-center">
-                        <div className="w-14 h-14 rounded-2xl bg-[#ff8c00]/10 flex items-center justify-center mx-auto mb-3">
-                          <Smartphone size={26} className="text-[#ff8c00]" strokeWidth={2} />
-                        </div>
-                        <h2 className="font-[var(--font-header)] text-[#191c1e] mb-1"
-                          style={{ fontSize: "22px", fontWeight: 800, letterSpacing: "-0.02em", fontFamily: 'Agrandir, sans-serif' }}>
-                          Link Mobile Money
-                        </h2>
-                        <p className="text-gray-500 font-medium" style={{ fontSize: "13px" }}>
-                          Enable deposits & withdrawals by linking your mobile money account
-                        </p>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3 mb-5">
-                        {MM_PROVIDERS.map((prov) => (
-                          <motion.button key={prov.id} whileTap={{ scale: 0.95 }}
-                            onClick={() => setMMProvider(prov)}
-                            className="relative p-4 rounded-2xl border-2 flex flex-col items-center gap-2 transition-all"
-                            style={{
-                              borderColor: mmProvider?.id === prov.id ? prov.color : "rgba(0,0,0,0.07)",
-                              backgroundColor: mmProvider?.id === prov.id ? prov.bg : "white",
-                            }}>
-                            {mmProvider?.id === prov.id && (
-                              <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center"
-                                style={{ backgroundColor: prov.color }}>
-                                <Check size={11} className="text-white" strokeWidth={3} />
-                              </div>
-                            )}
-                            <div className="w-12 h-12 rounded-xl overflow-hidden mb-1 flex items-center justify-center">
-                              <img src={prov.logo} alt={prov.name} className="w-full h-full object-contain" />
-                            </div>
-                            <p className="font-[var(--font-header)] text-[var(--ink-primary)] text-center"
-                              style={{ fontSize: "12px", fontWeight: 800 }}>{prov.shortName}</p>
-                          </motion.button>
-                        ))}
-                      </div>
-
-                      {mmError && <p className="text-red-500 text-center mb-3" style={{ fontSize: "12px" }}>{mmError}</p>}
-
-                      <motion.button whileTap={{ scale: 0.97 }} onClick={handleMMProviderNext}
-                        className="w-full py-4 rounded-2xl text-white font-[var(--font-header)] shadow-[0_8px_16px_rgba(0,0,0,0.1)] mb-3"
-                        style={{ fontSize: "15px", fontWeight: 800, fontFamily: 'Agrandir, sans-serif', backgroundColor: mmProvider?.color || "#ff8c00" }}>
-                        Next →
-                      </motion.button>
-                      <button onClick={skipMobileMoney}
-                        className="w-full py-3 font-medium text-gray-400 text-center"
-                        style={{ fontSize: "13px", fontWeight: 500 }}>
-                        I'll do this later
-                      </button>
-                    </motion.div>
-                  )}
-
-                  {mmStep === "details" && (
-                    <motion.div key="mm-details" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                      <button onClick={() => setMMStep("provider")}
-                        className="flex items-center gap-1.5 font-[var(--font-body)] text-[var(--trust-blue)] mb-4"
-                        style={{ fontSize: "12px", fontWeight: 600 }}>
-                        ← Back
-                      </button>
-                      <div className="flex items-center gap-3 mb-5">
-                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center overflow-hidden"
-                          style={{ backgroundColor: mmProvider?.bg }}>
-                          <img src={mmProvider?.logo} alt={mmProvider?.name} className="w-full h-full object-contain" />
-                        </div>
-                        <div>
-                          <h3 className="font-[var(--font-header)] text-[var(--ink-primary)]"
-                            style={{ fontSize: "17px", fontWeight: 900 }}>{mmProvider?.name}</h3>
-                          <p className="font-[var(--font-body)] text-[var(--ink-muted)]" style={{ fontSize: "11px" }}>Enter account details</p>
-                        </div>
-                      </div>
-
-                      <div className="space-y-4 mb-5">
-                        <div>
-                          <label className="font-[var(--font-body)] text-[var(--ink-secondary)] block mb-1.5"
-                            style={{ fontSize: "12px", fontWeight: 600 }}>Account Holder Name</label>
-                          <input type="text" placeholder="Your full name" value={mmName}
-                            onChange={(e) => setMMName(e.target.value)}
-                            className="w-full px-4 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-black/[0.06] font-[var(--font-body)] text-[var(--ink-primary)] outline-none"
-                            style={{ fontSize: "14px" }} />
-                        </div>
-                        <div>
-                          <label className="font-[var(--font-body)] text-[var(--ink-secondary)] block mb-1.5"
-                            style={{ fontSize: "12px", fontWeight: 600 }}>Phone Number</label>
-                          <div className="flex gap-2">
-                            <div className="flex items-center gap-1.5 px-3 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-black/[0.06]">
-                              <ZambiaFlag size={20} />
-                              <span className="font-[var(--font-body)] text-[var(--ink-secondary)]" style={{ fontSize: "13px", fontWeight: 600 }}>+260</span>
-                            </div>
-                            <input type="tel" placeholder="9X XXX XXXX" value={mmPhone}
-                              onChange={(e) => setMMPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
-                              className="flex-1 px-4 py-3.5 rounded-xl bg-[var(--surface-raised)] border border-black/[0.06] font-[var(--font-body)] text-[var(--ink-primary)] outline-none"
-                              style={{ fontSize: "14px" }} />
-                          </div>
-                        </div>
-                      </div>
-
-                      {mmError && <p className="text-red-500 text-center mb-3" style={{ fontSize: "12px" }}>{mmError}</p>}
-
-                      <motion.button whileTap={{ scale: 0.97 }} onClick={handleMMSubmit}
-                        className="w-full py-4 rounded-2xl text-white font-[var(--font-header)] shadow-[0_8px_16px_rgba(0,0,0,0.1)] mb-3"
-                        style={{ fontSize: "15px", fontWeight: 800, fontFamily: 'Agrandir, sans-serif', backgroundColor: mmProvider?.color || "#ff8c00" }}>
-                        Link & Continue
-                      </motion.button>
-                      <button onClick={skipMobileMoney}
-                        className="w-full py-3 font-medium text-gray-400 text-center"
-                        style={{ fontSize: "13px", fontWeight: 500 }}>
-                        Skip for now
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            )}
 
             {/* Feature Steps */}
             {step === "features" && (
