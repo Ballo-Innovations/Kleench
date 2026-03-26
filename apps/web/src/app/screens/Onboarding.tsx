@@ -21,6 +21,8 @@ export function Onboarding() {
   const [kycName, setKycName] = useState("");
   const [kycFullName, setKycFullName] = useState("");
   const [kycPhone, setKycPhone] = useState("");
+  const [isWhatsappSame, setIsWhatsappSame] = useState(true);
+  const [kycWhatsappPhone, setKycWhatsappPhone] = useState("");
 
   const featureSteps = [
     { 
@@ -100,6 +102,7 @@ export function Onboarding() {
       userName: kycName,
       fullName: kycFullName,
       phone: kycPhone,
+      whatsappPhone: isWhatsappSame ? kycPhone : kycWhatsappPhone,
       email: localStorage.getItem("userEmail") || ""
     };
     localStorage.setItem("userKyc", JSON.stringify(kycData));
@@ -169,7 +172,7 @@ export function Onboarding() {
       {step === "features" && (
         <div className="absolute top-6 right-6 z-20">
           <motion.button whileTap={{ scale: 0.9 }} onClick={handleSkipFeatures}
-            className="px-4 py-2 rounded-full bg-black/[0.05] font-[var(--font-body)] font-semibold text-[var(--ink-secondary)]"
+            className="px-4 py-2 rounded-full bg-black/[0.05] font-semibold text-[var(--ink-secondary)]"
             style={{ fontSize: "13px" }}>
             Skip
           </motion.button>
@@ -286,6 +289,52 @@ export function Onboarding() {
                         className="flex-1 px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="9X XXX XXXX" />
                     </div>
                   </div>
+
+                  {/* WhatsApp Sync Toggle */}
+                  <div className="bg-[#f8f9fa] p-4 rounded-xl border border-gray-100 flex items-center justify-between">
+                     <div className="flex flex-col text-left">
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[#191c1e]">WhatsApp Number</span>
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter mt-0.5">Is it the same as your phone?</span>
+                     </div>
+                     <button 
+                       type="button"
+                       onClick={() => setIsWhatsappSame(!isWhatsappSame)}
+                       className={`w-12 h-6 rounded-full p-1 transition-colors duration-300 ${isWhatsappSame ? 'bg-[#00C853]' : 'bg-gray-200'}`}
+                     >
+                        <motion.div 
+                          animate={{ x: isWhatsappSame ? 24 : 0 }}
+                          className="w-4 h-4 bg-white rounded-full shadow-sm"
+                        />
+                     </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {!isWhatsappSame && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-2">
+                           <div className="flex gap-2">
+                              <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                                <ZambiaFlag size={20} />
+                                <span className="font-bold text-gray-500 text-[14px]">+260</span>
+                              </div>
+                              <input 
+                                type="tel" 
+                                value={kycWhatsappPhone} 
+                                onChange={(e) => setKycWhatsappPhone(e.target.value.replace(/\D/g, "").slice(0, 10))} 
+                                required={!isWhatsappSame}
+                                className="flex-1 px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" 
+                                placeholder="WhatsApp Number" 
+                              />
+                           </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                   {error && <p className="text-red-500 font-bold mb-3 text-center" style={{ fontSize: "13px" }}>{error}</p>}
                   <motion.button whileTap={{ scale: 0.97 }} type="submit"
                     className="w-full py-4 rounded-2xl bg-gradient-to-br from-[#ff8c00] to-[#e67e00] text-white font-[var(--font-header)] shadow-[0_8px_20px_rgba(255,140,0,0.25)] flex items-center justify-center gap-2 mt-4"
