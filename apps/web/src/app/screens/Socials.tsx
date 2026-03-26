@@ -26,21 +26,8 @@ import { PageHeader } from "../components/PageHeader";
 
 export function Socials() {
   return (
-    <div className="w-full relative min-h-[100dvh] bg-gray-50 overflow-x-hidden font-sans pb-32">
+    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
       
-      {/* ── Unified cross-hatch bg ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
-          <defs>
-            <pattern id="xhatch-socials" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#xhatch-socials)"/>
-        </svg>
-      </div>
-
       {/* ── Standardized Orange Header ── */}
       <PageHeader title="Socials" subtitle="Support trusted creators and earn rewards." />
 

@@ -25,15 +25,25 @@ function cn(...inputs: ClassValue[]) {
 interface DigitalWalletProps {
   balance?: string;
   className?: string;
+  isBalanceHidden?: boolean;
+  onToggleVisibility?: () => void;
 }
 
 // --- Main Component ---
 
-export function DigitalWallet({ balance = "ZMW 2,450.00", className }: DigitalWalletProps) {
+export function DigitalWallet({ 
+  balance = "ZMW 2,450.00", 
+  className, 
+  isBalanceHidden: isForcedHidden, 
+  onToggleVisibility 
+}: DigitalWalletProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isBalanceHidden, setIsBalanceHidden] = useState(false);
+  const [isInternalHidden, setIsInternalHidden] = useState(false);
 
-  const displayValue = isBalanceHidden ? "••••••" : balance;
+  const isHidden = isForcedHidden !== undefined ? isForcedHidden : isInternalHidden;
+  const toggleVisibility = onToggleVisibility || (() => setIsInternalHidden(!isInternalHidden));
+
+  const displayValue = isHidden ? "••••••" : balance;
 
   return (
     <div 
@@ -74,10 +84,10 @@ export function DigitalWallet({ balance = "ZMW 2,450.00", className }: DigitalWa
           <div className="flex items-center gap-2">
             <span className="text-white/40 text-[8px] tracking-[0.4em] font-black uppercase">Wallet Balance</span>
             <button 
-              onClick={() => setIsBalanceHidden(!isBalanceHidden)}
+              onClick={toggleVisibility}
               className="text-white/20 hover:text-white transition-colors p-0.5"
             >
-              {isBalanceHidden ? <Eye size={12} /> : <EyeOff size={12} />}
+              {isHidden ? <Eye size={12} /> : <EyeOff size={12} />}
             </button>
           </div>
           
