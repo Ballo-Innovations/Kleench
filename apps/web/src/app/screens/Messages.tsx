@@ -72,17 +72,7 @@ export default function Messages() {
             <PageHeader 
               title="Messages" 
               subtitle="Connect with your circle and market"
-              hideMessageIcon
-              top={
-                <div className="flex items-center justify-between h-10 mb-2">
-                  <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm">
-                    <ChevronLeft size={24} />
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm">
-                    <MoreHorizontal size={20} />
-                  </button>
-                </div>
-              }
+              showBack
             />
 
             <div className="px-5 -mt-8 relative z-10 space-y-6">

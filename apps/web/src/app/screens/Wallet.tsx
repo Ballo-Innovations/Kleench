@@ -100,13 +100,7 @@ export function Wallet() {
 
       <div className="px-5 -mt-10 relative z-10 space-y-12">
         
-        {/* Section 01. CORE ASSETS */}
         <section className="space-y-6">
-          <div className="flex items-center gap-3">
-             <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
-             <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Core Assets</h3>
-             <div className="flex-1 h-[2px] bg-[#003366]/5" />
-          </div>
 
           <motion.div 
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1)}

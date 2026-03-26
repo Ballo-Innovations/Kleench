@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Check } from "lucide-react";
-import { Link } from "react-router";
+import { Check } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 import { LottieIcon } from "../components/LottieIcon";
-import kleenchLogo from "@/assets/kleench_logo.png";
 import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type NotifType = "all" | "earnings" | "security" | "social";
@@ -73,23 +71,10 @@ export function Notifications() {
           style={{ background: "radial-gradient(circle, #FF8C00, transparent)" }}/>
       </div>
 
-      {/* ── Standardized Orange Header ── */}
       <PageHeader
         title="Notifications"
         subtitle={unreadCount > 0 ? `${unreadCount} new updates` : "All caught up"}
-        top={
-          <div className="flex items-center justify-between h-10 gap-2">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
-              <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Updates</span>
-            </Link>
-            <Link to="/">
-              <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-all hover:bg-white/30 active:scale-95">
-                <X size={20} />
-              </div>
-            </Link>
-          </div>
-        }
+        showBack
       >
         <div className="relative z-10 flex justify-end mb-8">
           {unreadCount > 0 && (

@@ -1,8 +1,7 @@
 import { Outlet, useLocation, Link, useMatches } from "react-router";
-import { Home, Settings, Wallet, Megaphone, GraduationCap, Users } from "lucide-react";
+import { Home, Wallet, Megaphone, GraduationCap, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
-import kleenchLogo from "@/assets/kleench_logo.png";
 
 // Layout component with navigation
 export function Layout() {
@@ -26,7 +25,7 @@ export function Layout() {
     { path: "/", id: "home", icon: Home, label: "Home" },
     { path: "/wallet", id: "wallet", icon: Wallet, label: "Wallet" },
     { path: "/advert", id: "advert", icon: Megaphone, label: "Advert" },
-    { path: "/learn", id: "learn", icon: GraduationCap, label: "Learn" },
+    { path: "/learning", id: "learn", icon: GraduationCap, label: "Learn" },
     { path: "/socials", id: "socials", icon: Users, label: "Socials" }
   ];
 
@@ -39,6 +38,7 @@ export function Layout() {
   const isNotFound = matches.some(m => m.id === "notfound");
   const isFullBleed = 
     location.pathname === "/" || 
+    location.pathname === "/advert" || 
     location.pathname === "/socials" || 
     location.pathname === "/wallet" || 
     location.pathname === "/marketplace" || 
@@ -104,31 +104,6 @@ export function Layout() {
         <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#ff8c00]/5 rounded-full blur-[100px]" />
       </div>
 
-      {/* Top Navigation */}
-      {!isFullBleed && (
-        <nav className="fixed top-0 left-0 right-0 z-40 w-full md:max-w-md mx-auto">
-          <div className="mx-3 mt-3 px-4 h-14 flex items-center justify-between rounded-2xl bg-white shadow-sm border border-gray-100">
-            {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <img
-                src={kleenchLogo}
-                alt="Kleench"
-                className="h-10 w-auto object-contain"
-              />
-            </Link>
-
-            {/* Settings Button */}
-            <Link to="/settings">
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                className="w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center relative shadow-sm border border-gray-100"
-              >
-                <Settings size={18} className="text-gray-500" />
-              </motion.button>
-            </Link>
-          </div>
-        </nav>
-      )}
 
       {/* Main Content */}
       <main className={`relative z-10 w-full ${!isFullBleed ? "pt-20 px-4 pb-32" : ""}`}>

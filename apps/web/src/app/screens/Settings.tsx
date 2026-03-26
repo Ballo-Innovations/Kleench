@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
-import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut, X } from "lucide-react";
+import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut } from "lucide-react";
 import { motion } from "motion/react";
-import kleenchLogo from "@/assets/kleench_logo.png";
 
 export function Settings() {
   const navigate = useNavigate();
@@ -69,23 +68,10 @@ export function Settings() {
         </svg>
       </div>
 
-      {/* ── Standardized Orange Header ── */}
       <PageHeader 
         title="Settings" 
         subtitle="Manage your account and preferences"
-        top={
-          <div className="flex items-center justify-between h-10 gap-2">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
-              <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Account</span>
-            </Link>
-            <Link to="/">
-              <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-all hover:bg-white/30 active:scale-95">
-                <X size={20} />
-              </div>
-            </Link>
-          </div>
-        }
+        showBack
       />
 
       {/* Settings Sections */}

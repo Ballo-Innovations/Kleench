@@ -1,16 +1,20 @@
-import { MessageCircle, Settings, Bell, Search } from "lucide-react";
-import { Link } from "react-router";
+import { Settings, Bell, Search, ChevronLeft, MessageCircle } from "lucide-react";
+import { Link, useNavigate } from "react-router";
+import { motion } from "motion/react";
+import kleenchLogo from "@/assets/kleench_logo.png";
 
 interface PageHeaderProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   children?: React.ReactNode;
-  top?: React.ReactNode;
+  showBack?: boolean;
+  useLogo?: boolean;
   height?: string | number;
-  hideMessageIcon?: boolean;
 }
 
-export function PageHeader({ title, subtitle, children, top, height = 180, hideMessageIcon = false }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, children, showBack = false, useLogo = false, height = 180 }: PageHeaderProps) {
+  const navigate = useNavigate();
+
   return (
     <div 
       className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between"
@@ -36,37 +40,50 @@ export function PageHeader({ title, subtitle, children, top, height = 180, hideM
       <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
 
-      {/* ── Header Top Layer ── */}
-      <div className="relative z-[30] mt-2 flex items-center justify-between min-h-[40px]">
-        {top ? (
-          <div className="flex-1">{top}</div>
-        ) : (
-          <div className="flex-1" />
-        )}
-        
-        {/* Consistent Top Actions matching Home.tsx */}
-        <div className="flex items-center gap-3.5 flex-shrink-0 ml-3">
-          <Link to="/discover" className="text-white hover:text-white/80 transition-all active:scale-95">
-             <Search size={20} />
-          </Link>
-          {!hideMessageIcon && (
-            <Link to="/messages" className="text-white hover:text-white/80 transition-all active:scale-95">
-              <MessageCircle size={20} />
-            </Link>
+      {/* ── Header Top Layer (HUD Bar) ── */}
+      <div className="relative z-[40] mt-1 flex items-center justify-between min-h-[46px]">
+        {/* LEFT HUD: Back OR Logo */}
+        <div className="flex items-center min-w-[24px]">
+          {showBack ? (
+            <motion.button 
+              whileTap={{ scale: 0.9 }}
+              onClick={() => navigate(-1)}
+              className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg active:bg-white/30 transition-all shrink-0"
+            >
+              <ChevronLeft size={24} />
+            </motion.button>
+          ) : useLogo ? (
+            <div className="flex items-center h-full">
+              <img src={kleenchLogo} alt="KLEENCH" className="h-[28px] w-auto brightness-0 invert opacity-100" />
+            </div>
+          ) : (
+            <div />
           )}
+        </div>
+        
+        {/* RIGHT HUD: Search, Chat, Settings, Notifications */}
+        <div className="flex items-center gap-3.5 flex-shrink-0">
+          <Link to="/discover" className="text-white hover:text-white/80 transition-all active:scale-95">
+             <Search size={22} />
+          </Link>
+          <Link to="/messages" className="text-white hover:text-white/80 transition-all active:scale-95">
+             <MessageCircle size={22} />
+          </Link>
           <Link to="/settings" className="text-white hover:text-white/80 transition-all active:scale-95">
-            <Settings size={20} />
+            <Settings size={22} />
           </Link>
           <Link to="/notifications" className="relative text-white hover:text-white/80 transition-all active:scale-95">
-            <Bell size={20} />
-            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FF8C00] rounded-full border border-[#e06900]" />
+            <Bell size={22} />
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FF3000] rounded-full border border-white" />
           </Link>
         </div>
       </div>
 
-      <div className="relative z-10 space-y-1 mb-10 mt-4">
-        <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>{title}</h1>
-        {subtitle && <p className="text-white/80 text-[13px] font-medium">{subtitle}</p>}
+      <div className="relative z-10 space-y-1 mb-10 mt-4 px-1">
+        {!useLogo && title && (
+          <h1 className="text-white text-3xl font-black tracking-tight uppercase" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>{title}</h1>
+        )}
+        {subtitle && <p className="text-white/80 text-[12px] font-bold uppercase tracking-widest leading-tight">{subtitle}</p>}
       </div>
 
       {children}

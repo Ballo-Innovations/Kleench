@@ -15,6 +15,7 @@ import { Learning } from "./screens/Learning";
 import { LearningDetail } from "./screens/LearningDetail";
 import { Discover } from "./screens/Discover";
 import { Socials } from "./screens/Socials";
+import { Advert } from "./screens/Advert";
 import { Settings } from "./screens/Settings";
 import { ChangePin } from "./screens/ChangePin";
 import { ChangePassword } from "./screens/ChangePassword";
@@ -98,6 +99,8 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "wallet", element: <Wallet /> },
       { path: "messages", element: <Messages /> },
+      { path: "advert", element: <Advert /> },
+      { path: "videos", element: <Videos /> },
       { path: "marketplace", element: <Marketplace /> },
       { path: "product/:id", element: <ProductDetail /> },
       { path: "learning", element: <Learning /> },
