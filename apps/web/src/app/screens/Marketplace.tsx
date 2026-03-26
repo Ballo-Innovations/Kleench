@@ -187,8 +187,8 @@ export function Marketplace() {
       </div>
 
       {/* ── Orange hero header ── */}
-      <div className="relative pt-8 pb-20 px-6 overflow-hidden rounded-b-[40px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* subtle grid on top of orange */}
         <div className="absolute inset-0 opacity-[0.1]">
@@ -202,7 +202,7 @@ export function Marketplace() {
           </svg>
         </div>
 
-        <div className="relative z-10 space-y-6">
+        <div className="relative z-10 space-y-4 mb-6 mt-2">
           <div className="flex items-center justify-between">
             <h1 className="text-white text-3xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>Marketplace</h1>
             <motion.button 
@@ -220,13 +220,13 @@ export function Marketplace() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="What are you looking for?" 
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/12 backdrop-blur-md border border-white/20 text-white placeholder:text-white/50 outline-none"
+              className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white/12 backdrop-blur-md border border-white/20 text-white placeholder:text-white/50 outline-none text-[14px]"
             />
           </div>
         </div>
       </div>
 
-      <div className="px-5 -mt-8 relative z-10 space-y-10">
+      <div className="px-5 -mt-5 relative z-10 space-y-10">
         
         {/* Banner Ad */}
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}

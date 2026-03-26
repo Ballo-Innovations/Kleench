@@ -41,8 +41,8 @@ export function Socials() {
       </div>
 
       {/* ── Premium Orange Header matching Home ── */}
-      <div className="relative pt-6 pb-20 px-6 overflow-hidden rounded-b-[32px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* Premium grid texture with depth */}
         <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
@@ -59,7 +59,7 @@ export function Socials() {
         <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
 
-        <div className="relative z-10 flex items-center justify-between mb-6 mt-2 h-10 gap-2">
+        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
@@ -67,14 +67,14 @@ export function Socials() {
           </div>
         </div>
 
-        <div className="relative z-10 space-y-1">
+        <div className="relative z-10 space-y-1 mb-8">
           <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Connect & Share!</h1>
           <p className="text-white/80 text-[13px] font-medium">Support trusted creators and earn rewards.</p>
         </div>
       </div>
 
       {/* ── Content ── */}
-      <div className="px-4 mt-6 space-y-6 relative z-10">
+      <div className="px-4 mt-2 space-y-6 relative z-10">
         
         {/* Page Title */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-1">

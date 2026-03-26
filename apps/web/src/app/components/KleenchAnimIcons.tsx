@@ -285,6 +285,44 @@ export function NetworkIcon({ size = 40 }: IconProps) {
   );
 }
 
+/* ── Deposit (Hand + Down arrow) ── */
+export function DepositIcon({ size = 40 }: IconProps) {
+  return (
+    <Svg size={size} viewBox="0 0 40 40">
+      <style>{`.depo-arrow{animation:depoBounce 1.5s ease-in-out infinite}.coin-flow{animation:coinFlow 1.5s ease-in-out infinite}@keyframes depoBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}@keyframes coinFlow{0%{opacity:0;transform:translateY(-5px)}30%{opacity:1}100%{opacity:0;transform:translateY(5px)}}`}</style>
+      <rect x="8" y="22" width="24" height="12" rx="3" fill="#FF8C00" opacity="0.12" stroke="#FF8C00" strokeWidth="1.8"/>
+      <path className="depo-arrow" d="M20 6v10m-3-3l3 3 3-3" stroke="#FF8C00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle className="coin-flow" cx="20" cy="28" r="3" fill="#FF8C00" opacity="0.6"/>
+    </Svg>
+  );
+}
+
+/* ── Send (Paper Plane / Flight) ── */
+export function SendAnimIcon({ size = 40 }: IconProps) {
+  return (
+    <Svg size={size} viewBox="0 0 40 40">
+      <style>{`.send-glide{animation:sendGlide 2.5s ease-in-out infinite}@keyframes sendGlide{0%,100%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(2px,-2px) rotate(-5deg)}75%{transform:translate(-1px,1px) rotate(2deg)}}`}</style>
+      <g className="send-glide" style={{ transformOrigin: "20px 20px" }}>
+        <path d="M34 6L6 20l12 4 4 10 12-28z" fill="#FF8C00" opacity="0.15" stroke="#FF8C00" strokeWidth="1.8" strokeLinejoin="round"/>
+        <path d="M34 6L18 24M34 6l-12 10" stroke="#FF8C00" strokeWidth="1.8" strokeLinecap="round"/>
+      </g>
+    </Svg>
+  );
+}
+
+/* ── Withdraw (ATM / Card Arrow Up) ── */
+export function WithdrawIcon({ size = 40 }: IconProps) {
+  return (
+    <Svg size={size} viewBox="0 0 40 40">
+      <style>{`.width-arrow{animation:widthBounce 1.5s ease-in-out infinite}.money-trail{stroke-dasharray:10;animation:trailDash 1.5s linear infinite}@keyframes widthBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@keyframes trailDash{to{stroke-dashoffset:20}}`}</style>
+      <path d="M8 20h24M8 26h24" stroke="#FF8C00" strokeWidth="1.8" strokeLinecap="round" opacity="0.3"/>
+      <rect x="8" y="14" width="24" height="18" rx="3" fill="#FF8C00" opacity="0.12" stroke="#FF8C00" strokeWidth="1.8"/>
+      <path className="width-arrow" d="M20 22V8m-3 3l3-3 3 3" stroke="#FF8C00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line className="money-trail" x1="14" y1="20" x2="26" y2="20" stroke="#FF8C00" strokeWidth="1" strokeDasharray="3 3"/>
+    </Svg>
+  );
+}
+
 /* ── Course / Book ── */
 export function CourseIcon({ size = 40 }: IconProps) {
   return (
@@ -322,4 +360,7 @@ export const ICON_MAP: Record<string, (props: IconProps) => JSX.Element> = {
   solar:     SolarIconAnim,
   network:   NetworkIcon,
   course:    CourseIcon,
+  deposit:   DepositIcon,
+  send:      SendAnimIcon,
+  withdraw:  WithdrawIcon,
 };

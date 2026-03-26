@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 import { useState } from "react";
 import { 
-  Settings, Bell, Search, ChevronRight, Eye, EyeOff, 
-  Send, Play, GraduationCap, ClipboardList, Users,
-  X, ArrowDown, CreditCard, PlusCircle, Globe
+  Settings, Bell, Search, Eye, EyeOff, 
+  Send, X, ArrowDownToLine, ArrowUpFromLine,
+  Play, GraduationCap, ClipboardList, Users
 } from "lucide-react";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 
@@ -94,29 +94,28 @@ export function Home() {
         </svg>
       </div>
 
-      {/* ── Orange hero header ── */}
-      <div className="relative pt-6 pb-20 px-6 overflow-hidden rounded-b-[32px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+      {/* ── Unified Dashboard Header ── */}
+      <div className="relative pt-4 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[180px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* Premium grid texture with depth */}
-        <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
+        <div className="absolute inset-0 opacity-[0.2]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
           <svg width="100%" height="100%">
             <defs>
               <pattern id="premium-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.6"/>
+                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.4"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#premium-grid)"/>
           </svg>
         </div>
-        {/* Soft glow orbs for architectural lighting effect */}
-        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
+        {/* Soft glow effects */}
+        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/10 rounded-full blur-[60px] pointer-events-none"></div>
 
-        <div className="relative z-10 flex items-center justify-between mb-6 mt-2 h-10 gap-2">
-          {/* Logo - Always visible */}
+        <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-2">
+          {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
+            <img src={kleenchLogo} alt="KLEENCH" className="h-6 w-auto object-contain brightness-0 invert" />
           </Link>
 
           {/* Expandable Search Bar Wrapper */}
@@ -128,7 +127,7 @@ export function Home() {
               className={`flex items-center text-white transition-all ${isSearchOpen ? 'bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl px-3 h-10' : 'cursor-pointer hover:text-white/80 active:scale-95 px-2'}`}
               onClick={() => !isSearchOpen && setIsSearchOpen(true)}
             >
-              <Search size={22} className="flex-shrink-0" />
+              <Search size={20} className="flex-shrink-0" />
               <AnimatePresence>
                 {isSearchOpen && (
                   <motion.div 
@@ -141,13 +140,13 @@ export function Home() {
                       autoFocus 
                       type="text" 
                       placeholder="Search..." 
-                      className="bg-transparent text-white placeholder-white/70 text-sm outline-none flex-1 min-w-0 w-full" 
+                      className="bg-transparent text-white placeholder-white/70 text-[13px] outline-none flex-1 min-w-0" 
                     />
                     <button 
                       onClick={(e) => { e.stopPropagation(); setIsSearchOpen(false); }}
                       className="ml-1 p-1 hover:text-white/80 transition-colors flex-shrink-0"
                     >
-                      <X size={16} />
+                      <X size={14} />
                     </button>
                   </motion.div>
                 )}
@@ -155,127 +154,185 @@ export function Home() {
             </motion.div>
           </div>
 
-          {/* Clean Icons - No Shapes */}
-          <div className="flex items-center gap-4 flex-shrink-0 pr-1">
+          {/* Icons */}
+          <div className="flex items-center gap-3.5 flex-shrink-0 pr-1">
             <Link to="/settings" className="text-white hover:text-white/80 transition-all active:scale-95">
-              <Settings size={22} />
+              <Settings size={20} />
             </Link>
             <Link to="/notifications" className="relative text-white hover:text-white/80 transition-all active:scale-95">
-              <Bell size={22} />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FF8C00] rounded-full border-2 border-[#e06900]" />
+              <Bell size={20} />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FF8C00] rounded-full border border-[#e06900]" />
             </Link>
           </div>
         </div>
 
-        <div className="relative z-10 space-y-1">
-          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Welcome!</h1>
-          <p className="text-white/80 text-[13px] font-medium">Ready to boost your earnings today?</p>
-        </div>
+        {/* Integrated User & Wallet Bar */}
+        <motion.div
+           initial={{ opacity: 0, y: 10 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.1 }}
+           className="relative z-10 flex items-center justify-between gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-[24px] p-2.5 shadow-sm mb-6"
+        >
+           {/* Profile & Name */}
+           <div className="flex items-center gap-2.5">
+             <Link to="/profile" className="w-10 h-10 rounded-full border-2 border-white/30 overflow-hidden bg-white/20 shrink-0 shadow-sm hover:scale-105 transition-transform">
+               {localStorage.getItem("userProfilePhoto") ? (
+                 <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
+               ) : (
+                 <div className="w-full h-full flex items-center justify-center text-white text-[11px] font-black uppercase">
+                   {(() => {
+                     const localKycRaw = localStorage.getItem("userKyc");
+                     if (localKycRaw) {
+                       const kyc = JSON.parse(localKycRaw);
+                       return kyc.fullName?.split(" ").map((n: string) => n[0]).join("") || "K";
+                     }
+                     return "K";
+                   })()}
+                 </div>
+               )}
+             </Link>
+             <div className="min-w-0">
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-wider leading-none mb-1">Total Balance</p>
+                <div className="flex items-center gap-2">
+                   <h2 className="text-white text-[18px] font-black tracking-tight leading-none">
+                      {balanceHidden ? "••••••" : "K2,450.00"}
+                   </h2>
+                   <button onClick={handleToggleBalance} className="text-white/40 hover:text-white transition-colors">
+                      {balanceHidden ? <EyeOff size={14} /> : <Eye size={14} />}
+                   </button>
+                </div>
+             </div>
+           </div>
+
+           {/* Quick Actions */}
+           <div className="flex items-center gap-1.5 pl-3 border-l border-white/10">
+              <button 
+                className="w-9 h-9 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/20 shadow-sm"
+                title="Deposit Money"
+              >
+                <ArrowDownToLine size={18} />
+              </button>
+              <button 
+                className="w-9 h-9 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/20 shadow-sm"
+                title="Send Money"
+              >
+                <Send size={16} className="-rotate-12 translate-x-0.5" />
+              </button>
+              <button 
+                className="w-9 h-9 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/20 shadow-sm"
+                title="Withdraw Money"
+              >
+                <ArrowUpFromLine size={18} />
+              </button>
+           </div>
+        </motion.div>
       </div>
 
-      <div className="px-5 -mt-12 relative z-10 space-y-5">
-        
-        {/* Compact Wallet Card matching the screenshot perfectly */}
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
-          className="bg-[#003366] rounded-[28px] p-5 shadow-2xl border border-black/[0.03] text-white relative overflow-hidden">
-          
-          {/* Grid pattern for depth */}
-          <div className="absolute inset-0 opacity-[0.15]" style={{ WebkitMaskImage: 'linear-gradient(to bottom right, white, transparent 80%)', maskImage: 'linear-gradient(to bottom right, white, transparent 80%)' }}>
-            <svg width="100%" height="100%">
-              <defs>
-                <pattern id="wallet-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.5"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#wallet-grid)"/>
-            </svg>
-          </div>
-
-          {/* Abstract circle for depth */}
-          <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-          
-          <div className="relative z-10">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-[11px] font-bold text-white/90">Wallet Balance</span>
-              <button onClick={handleToggleBalance} className="text-white/40 hover:text-white transition-colors p-1">
-                {balanceHidden ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
-            </div>
-            
-            <div className="text-[32px] font-black mb-5 tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
-              {balanceHidden ? "••••••" : "ZMW 2,450.00"}
-            </div>
-            
-            <div className="flex gap-2 mb-4">
-              <button className="flex-1 bg-white/20 hover:bg-white/30 py-2.5 rounded-xl text-[11px] font-bold flex items-center justify-center transition-all active:scale-95 border border-white/10 shadow-sm">
-                <Send size={14} className="mr-1.5" /> Send <ChevronRight size={14} className="ml-1 opacity-60" />
-              </button>
-              <button className="flex-1 bg-white/20 hover:bg-white/30 py-2.5 rounded-xl text-[11px] font-bold flex items-center justify-center transition-all active:scale-95 border border-white/10 shadow-sm">
-                <ArrowDown size={14} className="mr-1.5" /> Receive
-              </button>
-              <button className="flex-1 bg-white/20 hover:bg-white/30 py-2.5 rounded-xl text-[11px] font-bold flex items-center justify-center transition-all active:scale-95 border border-white/10 shadow-sm">
-                <CreditCard size={14} className="mr-1.5" /> Withdraw
-              </button>
-            </div>
-
-            {/* Clean Icon + Text links, NO shapes */}
-            <div className="flex gap-5 text-[11px] font-bold text-white/90 px-1 mt-1">
-              <div className="flex items-center gap-1.5 cursor-pointer hover:text-white active:scale-95 transition-transform"><PlusCircle size={14} /> Local</div>
-              <div className="flex items-center gap-1.5 cursor-pointer hover:text-white active:scale-95 transition-transform"><Globe size={14} /> International</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Earn Today Grid (Fully 3D-styled to match client mockup) */}
-        <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.3)}>
-          <h3 className="text-sm font-black text-[#003366] mb-3 px-1 tracking-wide" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Earn Today</h3>
-          <div className="grid grid-cols-4 gap-2 sm:gap-3">
+      <div className="px-5 mt-6 relative z-10 space-y-6">
+        {/* ── EARN TODAY: V-GROWTH MINIMALIST STYLE ── */}
+        <motion.section 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={grace(0.3)} 
+          className="relative z-10"
+        >
+          <div className="flex flex-col gap-2 overflow-hidden">
             
             {/* Watch Ads Card */}
-            <Link 
-              to="/ads"
-              className="h-28 sm:h-32 rounded-[20px] shadow-md flex flex-col items-center justify-center relative hover:shadow-lg active:scale-95 transition-all w-full"
-              style={{ background: 'linear-gradient(135deg, #EF5350, #D32F2F)', borderTop: '1px solid rgba(255,255,255,0.4)', borderBottom: '3px solid rgba(0,0,0,0.2)' }}
+            <motion.div 
+              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
+              initial={{ height: 58 }}
+              className="group rounded-2xl overflow-hidden transition-colors duration-200"
             >
-              <div className="w-8 h-6 bg-white rounded shadow-sm flex items-center justify-center mb-2.5">
-                <Play size={14} className="fill-[#D32F2F] text-[#D32F2F] ml-0.5" />
-              </div>
-              <span className="text-[10px] sm:text-[11px] font-bold text-white leading-tight">Watch Ads</span>
-              <span className="text-[9px] font-semibold text-white/90 bg-black/15 px-2 py-0.5 rounded mt-1.5">Earn K2</span>
-            </Link>
+              <Link to="/ads" className="flex items-center h-full justify-between p-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
+                    <Play size={18} className="text-[#FFC300] fill-[#FFC300] group-hover:text-black group-hover:fill-black" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Watch Ads</span>
+                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
+                      Watch & Earn
+                    </h3>
+                  </div>
+                </div>
+                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
+                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Start</div>
+                </div>
+              </Link>
+            </motion.div>
 
-            {/* Learn Card */}
-            <Link 
-              to="/learn"
-              className="h-28 sm:h-32 rounded-[20px] shadow-md flex flex-col items-center justify-center relative hover:shadow-lg active:scale-95 transition-all w-full"
-              style={{ background: 'linear-gradient(135deg, #8BC34A, #388E3C)', borderTop: '1px solid rgba(255,255,255,0.4)', borderBottom: '3px solid rgba(0,0,0,0.2)' }}
+            {/* Masterclass Card */}
+            <motion.div 
+              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
+              initial={{ height: 58 }}
+              className="group rounded-2xl overflow-hidden transition-colors duration-200"
             >
-              <GraduationCap size={30} color="white" strokeWidth={1.5} className="mb-2.5 drop-shadow-md" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-white leading-tight">Learn</span>
-              <span className="text-[9px] font-semibold text-white/90 bg-black/15 px-2 py-0.5 rounded mt-1.5">Earn K3</span>
-            </Link>
+              <Link to="/learning" className="flex items-center h-full justify-between p-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
+                    <GraduationCap size={18} className="text-[#FFC300] group-hover:text-black" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Education</span>
+                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
+                      Masterclass
+                    </h3>
+                  </div>
+                </div>
+                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
+                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Learn</div>
+                </div>
+              </Link>
+            </motion.div>
 
-            {/* Surveys Card */}
-            <Link 
-              to="/surveys"
-              className="h-28 sm:h-32 rounded-[20px] shadow-md flex flex-col items-center justify-center relative hover:shadow-lg active:scale-95 transition-all w-full"
-              style={{ background: 'linear-gradient(135deg, #4DB6AC, #00796B)', borderTop: '1px solid rgba(255,255,255,0.4)', borderBottom: '3px solid rgba(0,0,0,0.2)' }}
+            {/* Survey Card */}
+            <motion.div 
+              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
+              initial={{ height: 58 }}
+              className="group rounded-2xl overflow-hidden transition-colors duration-200"
             >
-              <ClipboardList size={28} color="white" strokeWidth={1.5} className="mb-2.5 drop-shadow-md" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-white leading-tight">Surveys</span>
-              <span className="text-[9px] font-semibold text-white/90 bg-black/15 px-2 py-0.5 rounded mt-1.5">Earn K1-K5</span>
-            </Link>
+              <Link to="/surveys" className="flex items-center h-full justify-between p-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
+                    <ClipboardList size={18} className="text-[#FFC300] group-hover:text-black" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Feedback</span>
+                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
+                      Data Survey
+                    </h3>
+                  </div>
+                </div>
+                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
+                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Vote</div>
+                </div>
+              </Link>
+            </motion.div>
 
-            {/* Socials Card */}
-            <Link 
-              to="/socials"
-              className="h-28 sm:h-32 rounded-[20px] shadow-md flex flex-col items-center justify-center relative hover:shadow-lg active:scale-95 transition-all w-full"
-              style={{ background: 'linear-gradient(135deg, #5C6BC0, #1976D2)', borderTop: '1px solid rgba(255,255,255,0.4)', borderBottom: '3px solid rgba(0,0,0,0.2)' }}
+            {/* Social Card */}
+            <motion.div 
+              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
+              initial={{ height: 58 }}
+              className="group rounded-2xl overflow-hidden transition-colors duration-200"
             >
-              <Users size={28} color="white" strokeWidth={1.5} className="mb-2.5 drop-shadow-md" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-white leading-tight">Socials</span>
-              <span className="text-[9px] font-semibold text-white/90 bg-black/15 px-2 py-0.5 rounded mt-1.5">Invite & Earn</span>
-            </Link>
+              <Link to="/socials" className="flex items-center h-full justify-between p-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
+                    <Users size={18} className="text-[#FFC300] group-hover:text-black" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Community</span>
+                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
+                      Invite Friends
+                    </h3>
+                  </div>
+                </div>
+                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
+                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Grow</div>
+                </div>
+              </Link>
+            </motion.div>
 
           </div>
         </motion.section>

@@ -58,6 +58,7 @@ const escrowItems = [
 
 
 
+import { DigitalWallet } from "../components/DigitalWallet";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
 export function Wallet() {
@@ -119,8 +120,8 @@ export function Wallet() {
       </div>
 
       {/* ── Orange hero header ── */}
-      <div className="relative pt-6 pb-20 px-6 overflow-hidden rounded-b-[32px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* Premium grid texture matching Home */}
         <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
@@ -138,57 +139,70 @@ export function Wallet() {
         <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
 
-        <div className="relative z-10 space-y-1">
+        <div className="relative z-10 space-y-1 mb-12 mt-4">
           <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Wallet</h1>
           <p className="text-white/80 text-[13px] font-medium">Manage your earnings & escrow</p>
         </div>
       </div>
 
-      <div className="px-5 -mt-12 relative z-10 space-y-8">
+      <div className="px-5 -mt-10 relative z-10 space-y-6">
         
-        {/* Balance Card matching Home perfectly */}
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
-          className="bg-[#003366] rounded-[28px] p-6 shadow-2xl border border-black/[0.03] text-white relative overflow-hidden">
+        {/* Interactive Digital Wallet Hero */}
+        <motion.section 
+          initial={{ opacity: 0, y: 40 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={grace(0.1)}
+          className="relative"
+        >
+          <DigitalWallet balance={showBalance ? "ZMW 2,450.00" : "••••••"} />
           
-          {/* Grid pattern for depth */}
-          <div className="absolute inset-0 opacity-[0.15]" style={{ WebkitMaskImage: 'linear-gradient(to bottom right, white, transparent 80%)', maskImage: 'linear-gradient(to bottom right, white, transparent 80%)' }}>
-            <svg width="100%" height="100%">
-              <defs>
-                <pattern id="card-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.5"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#card-grid)"/>
-            </svg>
-          </div>
+          {/* Quick Actions Integrated below wallet with premium style */}
+          <div className="flex gap-4 mt-6 px-4">
+            <motion.button 
+              whileTap={{ scale: 0.94 }}
+              onClick={() => handleAction("withdraw")} 
+              className="flex-1 bg-white border border-black/[0.04] p-4 rounded-[24px] shadow-sm flex flex-col items-center justify-center transition-all hover:shadow-md active:scale-95 gap-2"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#0D1B3E]/5 flex items-center justify-center">
+                <ArrowUpFromLine size={20} className="text-[#0D1B3E]" />
+              </div>
+              <span className="text-[11px] font-black text-[#0D1B3E] uppercase tracking-widest">Withdraw</span>
+            </motion.button>
 
-          <div className="relative z-10">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-[11px] font-bold text-white/90">Wallet Balance</span>
-              <button 
-                onClick={() => setShowBalance(!showBalance)}
-                className="text-white/40 hover:text-white transition-colors p-1">
-                {showBalance ? <Eye size={16} /> : <EyeOff size={16} />}
-              </button>
-            </div>
-            
-            <div className="text-[36px] font-black mb-6 tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
-              {showBalance ? "ZMW 2,450.00" : "••••••"}
-            </div>
-            
-            <div className="flex gap-2">
-              <button onClick={() => handleAction("withdraw")} className="flex-1 bg-white/20 hover:bg-white/30 py-3 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center transition-all active:scale-95 border border-white/10 shadow-sm gap-1">
-                <ArrowUpFromLine size={18} /> Withdraw 
-              </button>
-              <button onClick={() => handleAction("deposit")} className="flex-1 bg-[#FF8C00] hover:bg-[#FF8C00]/90 py-3 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center transition-all active:scale-95 shadow-lg shadow-[#FF8C00]/20 gap-1">
-                <ArrowDownToLine size={18} /> Deposit
-              </button>
-              <button onClick={() => handleAction("send")} className="flex-1 bg-white/20 hover:bg-white/30 py-3 rounded-xl text-[11px] font-bold flex flex-col items-center justify-center transition-all active:scale-95 border border-white/10 shadow-sm gap-1">
-                <ArrowLeftRight size={18} /> Send
-              </button>
-            </div>
+            <motion.button 
+              whileTap={{ scale: 0.94 }}
+              onClick={() => handleAction("deposit")} 
+              className="flex-1 bg-[#FF8C00] p-4 rounded-[24px] shadow-xl shadow-[#FF8C00]/20 flex flex-col items-center justify-center transition-all hover:bg-[#FF8C00]/90 active:scale-95 gap-2"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                <ArrowDownToLine size={20} className="text-white" />
+              </div>
+              <span className="text-[11px] font-black text-white uppercase tracking-widest">Deposit</span>
+            </motion.button>
+
+            <motion.button 
+              whileTap={{ scale: 0.94 }}
+              onClick={() => handleAction("send")} 
+              className="flex-1 bg-white border border-black/[0.04] p-4 rounded-[24px] shadow-sm flex flex-col items-center justify-center transition-all hover:shadow-md active:scale-95 gap-2"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#00695C]/5 flex items-center justify-center">
+                <ArrowLeftRight size={20} className="text-[#00695C]" />
+              </div>
+              <span className="text-[11px] font-black text-[#0D1B3E] uppercase tracking-widest">P2P Send</span>
+            </motion.button>
           </div>
-        </motion.div>
+        </motion.section>
+
+        {/* Visibility Toggle Floating */}
+        <div className="flex justify-center -mt-2">
+          <button 
+            onClick={() => setShowBalance(!showBalance)}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-black/[0.04] shadow-sm text-[10px] font-black uppercase tracking-[0.2em] text-[#0D1B3E]/40 hover:text-[#FF8C00] transition-all"
+          >
+            {showBalance ? <Eye size={14} /> : <EyeOff size={14} />}
+            {showBalance ? "Hide Balance" : "Show Balance"}
+          </button>
+        </div>
 
         {/* Banner Ad */}
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.2)}

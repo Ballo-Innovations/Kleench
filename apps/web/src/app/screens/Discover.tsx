@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Play, TrendingUp, Plus } from "lucide-react";
 import { useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import kleenchLogo from "@/assets/kleench_logo.png";
 import adAds from "@/assets/ads/Turn Ideas Into Stories.png";
 import adLearn from "@/assets/ads/LEARN AND GROW.png";
 
@@ -53,11 +54,11 @@ export function Discover() {
     <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">
       <CrossHatchBg />
 
-      {/* ── Orange hero header (matches Sowela) ── */}
-      <div className="relative pt-8 pb-24 px-4 overflow-hidden rounded-b-[40px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
+      {/* ── Standardized Orange Header ── */}
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-12"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
-        {/* subtle white grid texture on orange */}
+        {/* grid texture */}
         <div className="absolute inset-0 opacity-[0.1]">
           <svg width="100%" height="100%">
             <defs>
@@ -68,22 +69,20 @@ export function Discover() {
             <rect width="100%" height="100%" fill="url(#disc-grid)"/>
           </svg>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 opacity-30"
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.4))" }}/>
 
-        <div className="relative z-10 flex items-center justify-between mb-8">
-          <h1 className="font-black text-white" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.7rem", letterSpacing: "-0.02em" }}>
-            Discover
-          </h1>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
-            style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)" }}>
-            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "white" }}/>
-            <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "white" }}>Live</span>
+        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
+          <div className="flex items-center gap-2">
+            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
+            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Discover</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md">
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-white">Live</span>
           </div>
         </div>
 
         {/* Segmented control */}
-        <div className="relative z-10 bg-white/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10">
+        <div className="relative z-10 bg-white/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10 mb-8">
           {(["advertising", "learning"] as const).map((tab) => (
             <button key={tab}
               onClick={() => setActiveTab(tab)}
@@ -91,7 +90,7 @@ export function Discover() {
               style={activeTab === tab
                 ? { background: "white", color: "#FF8C00" }
                 : { color: "rgba(255,255,255,0.65)", transition: "all 0.5s ease" }}>
-              {tab === "advertising" ? "Advertising Engine" : "Education & Learning"}
+              {tab === "advertising" ? "Advertising" : "Education"}
             </button>
           ))}
         </div>

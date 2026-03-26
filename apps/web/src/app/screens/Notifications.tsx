@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Settings, Check } from "lucide-react";
+import { X, Check } from "lucide-react";
 import { Link } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import kleenchLogo from "@/assets/kleench_logo.png";
 import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type NotifType = "all" | "earnings" | "security" | "social";
@@ -71,34 +72,45 @@ export function Notifications() {
           style={{ background: "radial-gradient(circle, #FF8C00, transparent)" }}/>
       </div>
 
-      {/* Header */}
-      <div className="relative z-10 pt-2 pb-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <LottieIcon icon="bell" size={40} />
-          <div>
-            <h1 className="font-bold text-[#0D1B3E] tracking-tight" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.4rem" }}>
-              Notifications
-            </h1>
-            {unreadCount > 0 && (
-              <p className="text-[11px] font-semibold mt-0.5" style={{ color: "#FF8C00" }}>
-                {unreadCount} new updates
-              </p>
-            )}
-          </div>
+      {/* ── Standardized Orange Header ── */}
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
+        
+        {/* grid texture */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="notif-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#notif-grid)"/>
+          </svg>
         </div>
-        <div className="flex items-center gap-2">
-          {unreadCount > 0 && (
-            <motion.button whileTap={{ scale: 0.94 }} onClick={markAllRead}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold border"
-              style={{ fontSize: "10px", background: "#FFF7ED", color: "#FF8C00", borderColor: "#FDDCB5" }}>
-              <Check size={10} strokeWidth={3} /> Mark all read
-            </motion.button>
-          )}
-          <Link to="/settings">
-            <div className="w-9 h-9 rounded-full bg-white shadow-sm border border-black/[0.04] flex items-center justify-center" style={{ borderColor: "rgba(13,27,62,0.06)" }}>
-              <Settings size={15} style={{ color: "#0D1B3E" }} opacity={0.5}/>
+
+        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
+            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Updates</span>
+          </Link>
+          <Link to="/">
+            <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-all hover:bg-white/30 active:scale-95">
+              <X size={20} />
             </div>
           </Link>
+        </div>
+
+        <div className="relative z-10 flex items-end justify-between mb-8">
+          <div className="space-y-1">
+            <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Notifications</h1>
+            <p className="text-white/80 text-[13px] font-medium">{unreadCount > 0 ? `${unreadCount} new updates` : "All caught up"}</p>
+          </div>
+          {unreadCount > 0 && (
+            <motion.button whileTap={{ scale: 0.94 }} onClick={markAllRead}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold bg-white text-[#FF8C00] shadow-lg shadow-black/10 text-[11px] mb-1">
+              <Check size={14} strokeWidth={3} /> Mark all read
+            </motion.button>
+          )}
         </div>
       </div>
 

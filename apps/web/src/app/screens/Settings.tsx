@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
-import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut } from "lucide-react";
+import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut, X } from "lucide-react";
 import { motion } from "motion/react";
+import kleenchLogo from "@/assets/kleench_logo.png";
 
 export function Settings() {
   const navigate = useNavigate();
@@ -43,34 +44,79 @@ export function Settings() {
     },
   ];
 
+  function grace(delay = 0) {
+    return {
+      duration: 0.62,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    };
+  }
+
   return (
-    <div className="w-full max-w-md mx-auto pb-4">
-      {/* Header */}
-      <div className="mb-4">
-        <h1
-          className="font-[var(--font-header)] text-[var(--ink-primary)] mb-1"
-          style={{ fontSize: "24px", fontWeight: 800, letterSpacing: "-0.02em" }}
-        >
-          Settings
-        </h1>
-        <p className="text-[var(--ink-secondary)] text-xs font-[var(--font-body)]">
-          Manage your account and preferences
-        </p>
+    <div className="w-full relative min-h-screen bg-gray-50 overflow-x-hidden font-sans pb-10">
+      
+      {/* ── Unified cross-hatch bg ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+          <defs>
+            <pattern id="xhatch-settings" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#xhatch-settings)"/>
+        </svg>
+      </div>
+
+      {/* ── Standardized Orange Header ── */}
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
+        
+        {/* grid texture */}
+        <div className="absolute inset-0 opacity-[0.2]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="settings-premium-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#settings-premium-grid)"/>
+          </svg>
+        </div>
+
+        {/* Brand/Back Row */}
+        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
+            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Account</span>
+          </Link>
+          <Link to="/">
+            <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-all hover:bg-white/30 active:scale-95">
+              <X size={20} />
+            </div>
+          </Link>
+        </div>
+
+        {/* Title Area */}
+        <div className="relative z-10 space-y-1 mb-8">
+          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Settings</h1>
+          <p className="text-white/80 text-[13px] font-medium">Manage your account and preferences</p>
+        </div>
       </div>
 
       {/* Settings Sections */}
-      <div className="space-y-4">
+      <div className="px-5 relative z-10 space-y-6">
         {settingsSections.map((section, sectionIdx) => (
           <motion.div
             key={section.title}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: sectionIdx * 0.1 }}
+            transition={grace(sectionIdx * 0.1)}
           >
-            <h2 className="text-[var(--ink-secondary)] text-[10px] font-[var(--font-body)] font-semibold uppercase tracking-wider mb-2 px-1">
+            <h2 className="text-[#0D1B3E]/40 text-[10px] font-bold uppercase tracking-wider mb-2.5 px-1">
               {section.title}
             </h2>
-            <div className="glass-strong rounded-xl overflow-hidden shadow-md border border-black/[0.04]">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-black/[0.03]">
               {section.items.map((item, idx) => {
                 const Icon = item.icon;
                 const isLast = idx === section.items.length - 1;
@@ -80,20 +126,20 @@ export function Settings() {
                     <Link
                       key={item.label}
                       to={item.path}
-                      className={`flex items-center gap-3 px-3 py-3 transition-all duration-200 hover:bg-black/[0.02] active:bg-black/[0.04] ${
-                        !isLast ? "border-b border-black/[0.06]" : ""
+                      className={`flex items-center gap-3 px-4 py-4 transition-all duration-200 hover:bg-black/[0.01] active:bg-black/[0.03] ${
+                        !isLast ? "border-b border-black/[0.03]" : ""
                       }`}
                     >
                       <div
-                        className="w-9 h-9 rounded-lg flex items-center justify-center"
-                        style={{ backgroundColor: `${item.color}15` }}
+                        className="w-10 h-10 rounded-2xl flex items-center justify-center"
+                        style={{ backgroundColor: `${item.color}10` }}
                       >
-                        <Icon size={16} style={{ color: item.color }} strokeWidth={2} />
+                        <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
                       </div>
-                      <span className="flex-1 font-[var(--font-body)] text-[var(--ink-primary)] text-xs font-medium">
+                      <span className="flex-1 text-[#0D1B3E] text-sm font-bold">
                         {item.label}
                       </span>
-                      <ChevronRight size={16} className="text-[var(--ink-muted)]" strokeWidth={2} />
+                      <ChevronRight size={16} className="text-[#0D1B3E]/20" strokeWidth={2.5} />
                     </Link>
                   );
                 }
@@ -102,20 +148,20 @@ export function Settings() {
                   <button
                     key={item.label}
                     onClick={item.action}
-                    className={`flex items-center gap-3 px-3 py-3 transition-all duration-200 hover:bg-black/[0.02] active:bg-black/[0.04] w-full text-left ${
-                      !isLast ? "border-b border-black/[0.06]" : ""
+                    className={`flex items-center gap-3 px-4 py-4 transition-all duration-200 hover:bg-black/[0.01] active:bg-black/[0.03] w-full text-left ${
+                      !isLast ? "border-b border-black/[0.03]" : ""
                     }`}
                   >
                     <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{ backgroundColor: `${item.color}15` }}
+                      className="w-10 h-10 rounded-2xl flex items-center justify-center"
+                      style={{ backgroundColor: `${item.color}10` }}
                     >
-                      <Icon size={16} style={{ color: item.color }} strokeWidth={2} />
+                      <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
                     </div>
-                    <span className="flex-1 font-[var(--font-body)] text-[var(--ink-primary)] text-xs font-medium">
+                    <span className="flex-1 text-[#0D1B3E] text-sm font-bold">
                       {item.label}
                     </span>
-                    <ChevronRight size={16} className="text-[var(--ink-muted)]" strokeWidth={2} />
+                    <ChevronRight size={16} className="text-[#0D1B3E]/20" strokeWidth={2.5} />
                   </button>
                 );
               })}
@@ -125,8 +171,8 @@ export function Settings() {
       </div>
 
       {/* Version Info */}
-      <div className="mt-6 text-center">
-        <p className="text-[var(--ink-muted)] text-[10px] font-[var(--font-body)]">
+      <div className="mt-10 text-center opacity-30">
+        <p className="text-[#0D1B3E] text-[10px] font-bold tracking-widest uppercase">
           Kleench v1.0.0
         </p>
       </div>

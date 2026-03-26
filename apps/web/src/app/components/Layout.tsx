@@ -41,6 +41,14 @@ export function Layout() {
     location.pathname === "/" || 
     location.pathname === "/socials" || 
     location.pathname === "/wallet" || 
+    location.pathname === "/marketplace" || 
+    location.pathname === "/profile" || 
+    location.pathname.startsWith("/learning") || 
+    location.pathname === "/referral" || 
+    location.pathname === "/notifications" || 
+    location.pathname === "/discover" || 
+    location.pathname === "/offers" || 
+    location.pathname.startsWith("/settings") ||
     isNotFound;
 
   return (

@@ -90,18 +90,36 @@ export function Referral() {
         </svg>
       </div>
 
-      {/* Header */}
-      <div className="relative z-10 pt-4 pb-6 flex items-center gap-3">
-        <button onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white shadow-sm border flex items-center justify-center"
-          style={{ borderColor: "rgba(13,27,62,0.06)" }}>
-          <ArrowLeft size={16} style={{ color: "#0D1B3E" }}/>
-        </button>
-        <div>
-          <h1 className="font-black tracking-tight" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.3rem", color: "#0D1B3E" }}>
-            Refer &amp; Earn
+      {/* ── Standardized Orange Header ── */}
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
+        
+        {/* grid texture */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="ref-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#ref-grid)"/>
+          </svg>
+        </div>
+
+        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
+          <button onClick={() => navigate(-1)} 
+            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+            <ArrowLeft size={18} />
+          </button>
+          <h1 className="text-white text-[12px] font-black uppercase tracking-[0.2em] opacity-80" style={{ fontFamily: "Agrandir, sans-serif" }}>
+            Referrals
           </h1>
-          <p className="text-[11px] font-semibold mt-0.5" style={{ color: "#FF8C00" }}>Up to 12% commission tier</p>
+          <div className="w-10" /> {/* Spacer */}
+        </div>
+
+        <div className="relative z-10 space-y-1 mb-8">
+          <h2 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Refer & Earn</h2>
+          <p className="text-white/80 text-[13px] font-medium">Earn up to 12% commission on your network.</p>
         </div>
       </div>
 

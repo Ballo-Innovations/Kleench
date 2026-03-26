@@ -78,7 +78,7 @@ export function Profile() {
       </div>
 
       {/* ── Orange hero header ── */}
-      <div className="relative pt-8 pb-32 px-6 overflow-hidden rounded-b-[40px]"
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 12px 40px rgba(255,140,0,0.15)" }}>
         
         {/* grid texture */}
@@ -93,7 +93,7 @@ export function Profile() {
           </svg>
         </div>
 
-        <div className="relative z-10 flex justify-between items-center mb-8">
+        <div className="relative z-10 flex justify-between items-center mt-2">
           <button onClick={() => navigate(-1)} 
             className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
             <ArrowLeft size={18} />
@@ -107,21 +107,21 @@ export function Profile() {
           </button>
         </div>
 
-        <div className="relative z-10 flex items-center gap-6">
+        <div className="relative z-10 flex items-center gap-6 mb-8">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
             className="relative">
-            <div className="w-24 h-24 rounded-[32px] bg-white p-1 shadow-2xl overflow-hidden">
+            <div className="w-20 h-20 rounded-[28px] bg-white p-1 shadow-2xl overflow-hidden">
               {isOwnProfile && localPhoto ? (
-                <img src={localPhoto} alt={displayName} className="w-full h-full object-cover rounded-[28px]" />
+                <img src={localPhoto} alt={displayName} className="w-full h-full object-cover rounded-[24px]" />
               ) : (
-                <div className="w-full h-full rounded-[28px] bg-orange-50 flex items-center justify-center text-[#FF8C00] text-3xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
+                <div className="w-full h-full rounded-[24px] bg-orange-50 flex items-center justify-center text-[#FF8C00] text-2xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
                   {initials}
                 </div>
               )}
             </div>
             {profileData.verified && (
-              <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-2xl bg-[#00695C] border-4 border-white flex items-center justify-center shadow-lg text-white">
-                <ShieldCheck size={16} strokeWidth={3} />
+              <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-xl bg-[#00695C] border-4 border-white flex items-center justify-center shadow-lg text-white">
+                <ShieldCheck size={14} strokeWidth={3} />
               </div>
             )}
           </motion.div>
@@ -134,7 +134,6 @@ export function Profile() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={grace(0.3)}
               className="flex items-center gap-4 text-white/70 text-[13px] font-medium">
               <span className="flex items-center gap-1"><MapPin size={12} /> {profileData.location}</span>
-              <span className="font-bold text-white"><span className="text-[#0D1B3E] font-black">{(profileData.stats.followers / 1000).toFixed(1)}k</span> followers</span>
             </motion.div>
           </div>
         </div>

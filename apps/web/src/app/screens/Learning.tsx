@@ -3,6 +3,7 @@ import { Play, Clock, Star, BookOpen, Eye, ChevronRight, ArrowRight, Radio } fro
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import kleenchLogo from "@/assets/kleench_logo.png";
 
 /* ─── Images ─── */
 const REEL_1 = "https://images.unsplash.com/photo-1696013910376-c56f76dd8178?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnNlY3VyaXR5JTIwZGlnaXRhbCUyMHNoaWVsZCUyMGxvY2slMjBjb25jZXB0fGVufDF8fHx8MTc3MzkwOTY1NHww&ixlib=rb-4.1.0&q=80&w=400";
@@ -87,85 +88,88 @@ export function Learning() {
 
   return (
     <div className="w-full max-w-md mx-auto pb-4">
-      {/* ── Continue Learning Hero Card ── */}
+      {/* ── Standardized Orange Header ── */}
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
+        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
+        
+        {/* grid texture */}
+        <div className="absolute inset-0 opacity-[0.1]">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="learning-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#learning-grid)"/>
+          </svg>
+        </div>
+        
+        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
+            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Academy</span>
+          </div>
+        </div>
+
+        <div className="relative z-10 space-y-1 mb-8">
+          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Master Your Skills</h1>
+          <p className="text-white/80 text-[13px] font-medium">Continue your journey and earn more.</p>
+        </div>
+      </div>
+
+      {/* ── Continue Learning Hero Card (Moved below standardized header) ── */}
       <motion.section
         custom={0}
         variants={fadeUp}
         initial="initial"
         animate="animate"
-        className="mb-5"
+        className="mb-8 px-4"
       >
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--trust-blue)] to-[#003d5c] p-5 shadow-lg">
+        <div className="relative overflow-hidden rounded-[32px] bg-[#003366] p-6 shadow-xl border border-black/[0.03]">
           {/* Background blobs */}
-          <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
-          <div className="absolute -left-4 bottom-0 w-24 h-24 bg-[var(--action-gold)]/10 rounded-full blur-xl" />
-          <div className="absolute inset-0 noise" />
+          <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-2xl" />
+          <div className="absolute inset-0 noise opacity-20" />
 
-          <div className="relative z-10 flex flex-col gap-3">
-            {/* Top row: badge + icon */}
+          <div className="relative z-10 flex flex-col gap-4">
             <div className="flex items-start justify-between">
-              <span
-                className="px-2.5 py-0.5 bg-[var(--action-gold)] text-[var(--ink-primary)] rounded-full uppercase tracking-wider font-[var(--font-body)]"
-
-              >
+              <span className="px-3 py-1 bg-[#FF8C00] text-white text-[10px] rounded-full uppercase tracking-wider font-black">
                 In Progress
               </span>
-              <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center">
-                <BookOpen size={18} className="text-white" strokeWidth={2} />
+              <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10">
+                <BookOpen size={18} className="text-white" strokeWidth={2.5} />
               </div>
             </div>
 
-            {/* Title */}
-            <div className="space-y-0.5">
-              <p
-                className="font-[var(--font-body)] text-white/70"
-                style={{ fontSize: "11px", fontWeight: 500 }}
-              >
-                Continue Learning
-              </p>
-              <h2
-                className="font-[var(--font-header)] text-white leading-tight"
-                style={{ fontSize: "18px", fontWeight: 800 }}
-              >
+            <div className="space-y-1">
+              <p className="text-white/50 text-[11px] font-bold uppercase tracking-wider">Continue Learning</p>
+              <h2 className="text-white text-2xl font-black leading-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
                 Mastering Crypto Basics
               </h2>
             </div>
 
-            {/* Progress */}
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               <div className="flex items-end justify-between">
-                <span
-                  className="font-[var(--font-body)] text-white"
-                  style={{ fontSize: "10px", fontWeight: 600 }}
-                >
-                  65% Complete
-                </span>
-                <span
-                  className="font-[var(--font-body)] text-white/60"
-                  style={{ fontSize: "10px" }}
-                >
-                  Module 4 of 7
-                </span>
+                <span className="text-white text-[11px] font-bold">65% Complete</span>
+                <span className="text-white/40 text-[10px] font-medium">Module 4 of 7</span>
               </div>
-              <div className="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-[var(--action-gold)] rounded-full"
+                  className="h-full bg-[#FF8C00] rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: "65%" }}
-                  transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                  transition={{ duration: 1.2, delay: 0.4 }}
                 />
               </div>
             </div>
 
-            {/* Resume button */}
             <Link to="/learning/1">
               <motion.button
                 whileTap={{ scale: 0.97 }}
-                className="mt-1 flex items-center justify-center gap-2 w-full py-3 bg-white text-[var(--trust-blue)] rounded-xl shadow-md font-[var(--font-header)]"
-                style={{ fontSize: "12px", fontWeight: 700 }}
+                className="mt-2 flex items-center justify-center gap-2 w-full py-4 bg-white text-[#003366] rounded-2xl shadow-lg font-black text-[13px] transition-all hover:shadow-xl active:scale-95"
               >
                 Resume Course
-                <ArrowRight size={14} strokeWidth={2.5} />
+                <ArrowRight size={16} strokeWidth={3} />
               </motion.button>
             </Link>
           </div>
