@@ -53,24 +53,55 @@ export function Layout() {
 
   return (
     <div className="min-h-[100dvh] bg-[#fcfcfc] relative w-full md:max-w-md mx-auto overflow-x-hidden shadow-2xl md:border-x border-gray-200">
-      {/* Premium white background with subtle depth grid */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#ff8c00]/5 rounded-[100%] blur-[80px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#515d84]/5 rounded-[100%] blur-[80px]" />
-        <div 
-          className="absolute inset-0 opacity-[0.5]"
+      {/* ── GLOBAL DASHED GRID BACKGROUND ── */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-white">
+        <div
+          className="absolute inset-0 z-0 opacity-[0.3]"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px)`,
-            backgroundSize: `32px 32px`
+            backgroundImage: `
+              linear-gradient(to right, #d6d3d1 1px, transparent 1px),
+              linear-gradient(to bottom, #d6d3d1 1px, transparent 1px)
+            `,
+            backgroundSize: "20px 20px",
+            backgroundPosition: "0 0, 0 0",
+            maskImage: `
+              repeating-linear-gradient(
+                to right,
+                black 0px,
+                black 3px,
+                transparent 3px,
+                transparent 8px
+              ),
+              repeating-linear-gradient(
+                to bottom,
+                black 0px,
+                black 3px,
+                transparent 3px,
+                transparent 8px
+              )
+            `,
+            WebkitMaskImage: `
+              repeating-linear-gradient(
+                to right,
+                black 0px,
+                black 3px,
+                transparent 3px,
+                transparent 8px
+              ),
+              repeating-linear-gradient(
+                to bottom,
+                black 0px,
+                black 3px,
+                transparent 3px,
+                transparent 8px
+              )
+            `,
+            maskComposite: "intersect",
+            WebkitMaskComposite: "source-in",
           }}
         />
-        <div 
-          className="absolute inset-0 opacity-[0.2]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)`,
-            backgroundSize: `8px 8px`
-          }}
-        />
+        {/* Subtle Brand Ambiance */}
+        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#ff8c00]/5 rounded-full blur-[100px]" />
       </div>
 
       {/* Top Navigation */}

@@ -339,6 +339,21 @@ export function CourseIcon({ size = 40 }: IconProps) {
   );
 }
 
+/* ── Message / Chat ── */
+export function MessageIcon({ size = 40 }: IconProps) {
+  return (
+    <Svg size={size} viewBox="0 0 40 40">
+      <style>{`.chat-bounce{animation:chatBounce 2s ease-in-out infinite}.dot1{animation:dotFade 1.5s infinite}.dot2{animation:dotFade 1.5s infinite 0.3s}.dot3{animation:dotFade 1.5s infinite 0.6s}@keyframes chatBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}@keyframes dotFade{0%,100%{opacity:0.2}50%{opacity:1}}`}</style>
+      <g className="chat-bounce" style={{ transformOrigin: "20px 20px" }}>
+        <path d="M8 10h24a4 4 0 014 4v12a4 4 0 01-4 4H18l-6 6v-6H8a4 4 0 01-4-4V14a4 4 0 014-4z" fill="#FF8C00" opacity="0.15" stroke="#FF8C00" strokeWidth="1.8" strokeLinejoin="round"/>
+        <circle className="dot1" cx="12" cy="20" r="1.5" fill="#FF8C00"/>
+        <circle className="dot2" cx="20" cy="20" r="1.5" fill="#FF8C00"/>
+        <circle className="dot3" cx="28" cy="20" r="1.5" fill="#FF8C00"/>
+      </g>
+    </Svg>
+  );
+}
+
 /* ── Mapping: use key string to component ── */
 export const ICON_MAP: Record<string, (props: IconProps) => JSX.Element> = {
   bell:      BellIcon,
@@ -363,4 +378,5 @@ export const ICON_MAP: Record<string, (props: IconProps) => JSX.Element> = {
   deposit:   DepositIcon,
   send:      SendAnimIcon,
   withdraw:  WithdrawIcon,
+  message:   MessageIcon,
 };

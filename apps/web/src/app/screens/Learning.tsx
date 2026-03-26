@@ -3,7 +3,6 @@ import { Play, Clock, Star, BookOpen, Eye, ChevronRight, ArrowRight, Radio } fro
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import kleenchLogo from "@/assets/kleench_logo.png";
 
 /* ─── Images ─── */
 const REEL_1 = "https://images.unsplash.com/photo-1696013910376-c56f76dd8178?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnNlY3VyaXR5JTIwZGlnaXRhbCUyMHNoaWVsZCUyMGxvY2slMjBjb25jZXB0fGVufDF8fHx8MTc3MzkwOTY1NHww&ixlib=rb-4.1.0&q=80&w=400";
@@ -83,40 +82,15 @@ const fadeUp = {
   }),
 };
 
+import { PageHeader } from "../components/PageHeader";
+
 export function Learning() {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
     <div className="w-full max-w-md mx-auto pb-4">
       {/* ── Standardized Orange Header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
-        
-        {/* grid texture */}
-        <div className="absolute inset-0 opacity-[0.1]">
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="learning-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#learning-grid)"/>
-          </svg>
-        </div>
-        
-        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
-            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Academy</span>
-          </div>
-        </div>
-
-        <div className="relative z-10 space-y-1 mb-8">
-          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Master Your Skills</h1>
-          <p className="text-white/80 text-[13px] font-medium">Continue your journey and earn more.</p>
-        </div>
-      </div>
+      <PageHeader title="Academy" subtitle="Continue your journey and earn more." />
 
       {/* ── Continue Learning Hero Card (Moved below standardized header) ── */}
       <motion.section

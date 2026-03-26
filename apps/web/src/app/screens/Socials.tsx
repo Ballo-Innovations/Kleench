@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { Share2, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";
-import kleenchLogo from "@/assets/kleench_logo.png";
 
 // --- MOCKS FOR PREVIEW ENVIRONMENT ---
 const adBanner = "https://picsum.photos/seed/creators/800/300";
@@ -23,6 +22,8 @@ const grace = (delay = 0) => ({
   transition: { delay, duration: 0.62, ease: [0.22, 1, 0.36, 1] as const },
 });
 
+import { PageHeader } from "../components/PageHeader";
+
 export function Socials() {
   return (
     <div className="w-full relative min-h-[100dvh] bg-gray-50 overflow-x-hidden font-sans pb-32">
@@ -40,38 +41,8 @@ export function Socials() {
         </svg>
       </div>
 
-      {/* ── Premium Orange Header matching Home ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
-        
-        {/* Premium grid texture with depth */}
-        <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="premium-grid-socials" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.6"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#premium-grid-socials)"/>
-          </svg>
-        </div>
-        {/* Soft glow orbs for architectural lighting effect */}
-        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
-
-        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
-            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Socials</span>
-          </div>
-        </div>
-
-        <div className="relative z-10 space-y-1 mb-8">
-          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Connect & Share!</h1>
-          <p className="text-white/80 text-[13px] font-medium">Support trusted creators and earn rewards.</p>
-        </div>
-      </div>
+      {/* ── Standardized Orange Header ── */}
+      <PageHeader title="Socials" subtitle="Support trusted creators and earn rewards." />
 
       {/* ── Content ── */}
       <div className="px-4 mt-2 space-y-6 relative z-10">

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { 
   Settings, Bell, Search, Eye, EyeOff, 
   Send, X, ArrowDownToLine, ArrowUpFromLine,
-  Play, GraduationCap, ClipboardList, Users
+  Play, GraduationCap, ClipboardList, Users,
+  Heart, MessageCircle, Share2, MoreHorizontal, PlayCircle
 } from "lucide-react";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 
@@ -11,20 +12,6 @@ import kleenchLogo from "@/assets/kleench_logo.png";
 import { BackspaceKey } from "../components/KleenchIcons";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
-const trendingBanners = [
-  { 
-    id: 1, 
-    title: "Cheapest Cement in Lusaka!", 
-    buttonText: "View Deals", 
-    image: "https://picsum.photos/seed/cement3/500/300", 
-  },
-  { 
-    id: 2, 
-    title: "Exclusive Event Tickets", 
-    buttonText: "Buy Now", 
-    image: "https://picsum.photos/seed/event3/500/300", 
-  }
-];
 
 export function Home() {
   const loading = usePageLoading(800);
@@ -79,38 +66,28 @@ export function Home() {
   }
 
   return (
-    <div className="w-full relative min-h-[100dvh] bg-gray-50 overflow-x-hidden font-sans pb-32">
+    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-28">
       
-      {/* ── Unified cross-hatch bg ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
-          <defs>
-            <pattern id="xhatch-home" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#xhatch-home)"/>
-        </svg>
-      </div>
+      {/* Home Content Flowing over Global Dashed Grid */}
 
       {/* ── Unified Dashboard Header ── */}
       <div className="relative pt-4 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[180px]"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
-        {/* Premium grid texture with depth */}
-        <div className="absolute inset-0 opacity-[0.2]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
+        {/* Premium grid texture with depth matching Wallet */}
+        <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
           <svg width="100%" height="100%">
             <defs>
-              <pattern id="premium-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.4"/>
+              <pattern id="home-premium-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.6"/>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#premium-grid)"/>
+            <rect width="100%" height="100%" fill="url(#home-premium-grid)"/>
           </svg>
         </div>
-        {/* Soft glow effects */}
-        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/10 rounded-full blur-[60px] pointer-events-none"></div>
+        {/* Soft glow orbs for architectural lighting matching Wallet */}
+        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
 
         <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-2">
           {/* Logo */}
@@ -156,6 +133,9 @@ export function Home() {
 
           {/* Icons */}
           <div className="flex items-center gap-3.5 flex-shrink-0 pr-1">
+            <Link to="/messages" className="text-white hover:text-white/80 transition-all active:scale-95">
+              <MessageCircle size={20} />
+            </Link>
             <Link to="/settings" className="text-white hover:text-white/80 transition-all active:scale-95">
               <Settings size={20} />
             </Link>
@@ -337,45 +317,134 @@ export function Home() {
           </div>
         </motion.section>
 
-        {/* Sponsored Banner perfectly matching the client mockup */}
-        <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.4)} className="py-2">
-          <div className="relative rounded-[24px] h-[120px] bg-[#EF6C00] overflow-hidden shadow-md flex items-center group cursor-pointer active:scale-[0.98] transition-transform border border-black/[0.04]">
-            <div className="absolute inset-0 w-full h-full">
-              {/* Image from the right fading into the orange gradient */}
-              <img src="https://picsum.photos/seed/cityscape/800/400" alt="Sponsored" className="w-full h-full object-cover opacity-90" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#EF6C00] via-[#EF6C00] to-transparent w-[80%]"></div>
-            </div>
-            
-            <div className="relative z-10 p-5 flex flex-col items-start w-full">
-              <span className="text-white/90 text-[10px] italic font-semibold mb-1 drop-shadow-sm">Sponsored</span>
-              <h2 className="text-white text-xl font-black mb-3 tracking-tight leading-none drop-shadow-sm">Watch & Earn K2</h2>
-              <button className="bg-[#005a8d] hover:bg-[#003366] text-white font-bold py-1.5 px-4 rounded-lg text-[11px] transition-colors shadow-sm">
-                Watch Now
-              </button>
-            </div>
+        {/* ── MEDIA & VIDEO FEED (The 40%+ Viewport Rule) ── */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={grace(0.4)} 
+          className="-mx-5 pt-4 pb-4"
+        >
+          {/* Feed Title */}
+          <div className="mb-6 px-6">
+            <h3 className="text-xl font-black text-[#003366] tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>For You</h3>
           </div>
-        </motion.section>
 
-        {/* Trending Now / Stacked Banner Style matching screenshot */}
-        <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.5)} className="pb-6">
-          <div className="flex justify-between items-center mb-3 px-1">
-            <h3 className="text-sm font-black text-[#003366] tracking-wide" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Trending Now</h3>
-          </div>
-          <div className="flex flex-col gap-3">
-            {trendingBanners.map((banner) => (
-              <div key={banner.id} className="bg-[#EAECEE] rounded-[24px] shadow-sm border border-black/[0.04] overflow-hidden flex h-[110px] active:scale-[0.98] transition-transform cursor-pointer">
-                <div className="w-[40%] h-full relative">
-                  <img src={banner.image} alt={banner.title} className="absolute inset-0 w-full h-full object-cover" />
+          <div className="flex flex-col gap-4 px-2">
+            {[
+              { 
+                id: 1, 
+                user: "Lusaka_Times", 
+                avatar: "https://i.pravatar.cc/150?u=1", 
+                title: "How to save 30% on building materials this season", 
+                reward: "K5.00", 
+                image: "https://picsum.photos/seed/build1/600/800",
+                views: "12.4k"
+              },
+              { 
+                id: 2, 
+                user: "Chef_Mwape", 
+                avatar: "https://i.pravatar.cc/150?u=2", 
+                title: "Traditional recipes that earn you points", 
+                reward: "K2.50", 
+                image: "https://picsum.photos/seed/food2/600/800",
+                views: "8.1k"
+              },
+              { 
+                id: 3, 
+                user: "ZambiaMining", 
+                avatar: "https://i.pravatar.cc/150?u=3", 
+                title: "New copper tech explained in 60 seconds", 
+                reward: "K10.00", 
+                image: "https://picsum.photos/seed/mine3/600/800",
+                views: "24.9k"
+              }
+            ].map((feed) => (
+              <motion.div 
+                key={feed.id} 
+                initial={{ opacity: 0, scale: 0.93, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                whileTap={{ scale: 0.98 }}
+                className="relative rounded-[32px] overflow-hidden h-[460px] shadow-xl group border border-black/5 mb-2"
+              >
+                {/* Background Media */}
+                <img src={feed.image} alt={feed.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent"></div>
+
+                {/* Video Play Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <PlayCircle size={64} className="text-white fill-white/10 backdrop-blur-sm rounded-full" />
                 </div>
-                <div className="w-[60%] p-4 flex flex-col justify-center relative z-10">
-                  <p className="text-[13px] font-bold text-[#003366] leading-snug mb-2">{banner.title}</p>
-                  <button className="bg-[#005a8d] hover:bg-[#003366] text-white text-[11px] font-bold px-4 py-1.5 rounded-lg w-fit transition-colors shadow-sm">
-                    {banner.buttonText}
-                  </button>
+
+                {/* Earnings Badge */}
+                <div className="absolute top-5 right-5 z-20">
+                  <div className="bg-[#FFC300] text-black px-4 py-1.5 rounded-full text-[11px] font-black shadow-xl flex items-center gap-1.5 border border-black/10">
+                    <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
+                    EARN {feed.reward}
+                  </div>
                 </div>
-              </div>
+
+                {/* Media Metadata & Interaction Overlay (Social Style) */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+                  <div className="flex items-end justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <div className="w-10 h-10 rounded-full border-2 border-[#FFC300] overflow-hidden shadow-md">
+                          <img src={feed.avatar} alt={feed.user} className="w-full h-full object-cover" />
+                        </div>
+                        <span className="text-white font-black text-sm tracking-tight shadow-sm">@{feed.user}</span>
+                      </div>
+                      <h4 className="text-white font-black text-[22px] leading-[1.1] tracking-tight mb-4 drop-shadow-lg" style={{ fontFamily: "Inter, sans-serif" }}>
+                        {feed.title}
+                      </h4>
+                      <div className="flex items-center gap-4 text-white/70 text-[11px] font-bold uppercase tracking-widest drop-shadow-sm">
+                         <span>{feed.views} Views</span>
+                         <span className="w-1 h-1 rounded-full bg-white/40"></span>
+                         <span>2h ago</span>
+                      </div>
+                    </div>
+
+                    {/* Interaction Column */}
+                    <div className="flex flex-col gap-5 items-center pb-2">
+                      <button className="flex flex-col items-center gap-1 group/btn">
+                         <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 transition-all group-hover/btn:bg-[#FFC300] group-hover/btn:text-black">
+                           <Heart size={22} className="group-active/btn:scale-125 transition-transform" />
+                         </div>
+                         <span className="text-white text-[10px] font-black">1.2k</span>
+                      </button>
+                      <button className="flex flex-col items-center gap-1 group/btn">
+                         <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 transition-all group-hover/btn:bg-white group-hover/btn:text-black">
+                           <MessageCircle size={22} />
+                         </div>
+                         <span className="text-white text-[10px] font-black">42</span>
+                      </button>
+                      <button className="flex flex-col items-center gap-1 group/btn">
+                         <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 transition-all group-hover/btn:bg-white group-hover/btn:text-black">
+                           <Share2 size={22} />
+                         </div>
+                         <span className="text-white text-[10px] font-black">Share</span>
+                      </button>
+                      <button className="text-white/60 hover:text-white pt-2">
+                         <MoreHorizontal size={24} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
+
+          {/* End of Feed Message (Minimalist Feedback) */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mt-4 pb-2 px-6 border-t border-black/5 flex flex-col items-center justify-center text-center opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <div className="w-12 h-1 bg-black/10 rounded-full mb-4"></div>
+            <h4 className="text-sm font-black text-[#003366] mb-1">You're all caught up!</h4>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">Check back soon for new rewards</p>
+          </motion.div>
         </motion.section>
       </div>
 

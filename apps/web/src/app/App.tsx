@@ -5,6 +5,7 @@ import { SplashScreen } from "./components/SplashScreen";
 import { Layout } from "./components/Layout";
 import { Home } from "./screens/Home";
 import { Wallet } from "./screens/Wallet";
+import Messages from "./screens/Messages";
 import { Marketplace } from "./screens/Marketplace";
 import { ProductDetail } from "./screens/ProductDetail";
 import { Profile } from "./screens/Profile";
@@ -96,6 +97,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "wallet", element: <Wallet /> },
+      { path: "messages", element: <Messages /> },
       { path: "marketplace", element: <Marketplace /> },
       { path: "product/:id", element: <ProductDetail /> },
       { path: "learning", element: <Learning /> },

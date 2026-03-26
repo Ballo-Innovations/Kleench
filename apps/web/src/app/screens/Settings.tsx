@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router";
+import { PageHeader } from "../components/PageHeader";
 import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut, X } from "lucide-react";
 import { motion } from "motion/react";
 import kleenchLogo from "@/assets/kleench_logo.png";
@@ -69,40 +70,23 @@ export function Settings() {
       </div>
 
       {/* ── Standardized Orange Header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
-        
-        {/* grid texture */}
-        <div className="absolute inset-0 opacity-[0.2]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="settings-premium-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#settings-premium-grid)"/>
-          </svg>
-        </div>
-
-        {/* Brand/Back Row */}
-        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
-            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Account</span>
-          </Link>
-          <Link to="/">
-            <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-all hover:bg-white/30 active:scale-95">
-              <X size={20} />
-            </div>
-          </Link>
-        </div>
-
-        {/* Title Area */}
-        <div className="relative z-10 space-y-1 mb-8">
-          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Settings</h1>
-          <p className="text-white/80 text-[13px] font-medium">Manage your account and preferences</p>
-        </div>
-      </div>
+      <PageHeader 
+        title="Settings" 
+        subtitle="Manage your account and preferences"
+        top={
+          <div className="flex items-center justify-between h-10 gap-2">
+            <Link to="/" className="flex items-center gap-2">
+              <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
+              <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Account</span>
+            </Link>
+            <Link to="/">
+              <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-all hover:bg-white/30 active:scale-95">
+                <X size={20} />
+              </div>
+            </Link>
+          </div>
+        }
+      />
 
       {/* Settings Sections */}
       <div className="px-5 relative z-10 space-y-6">

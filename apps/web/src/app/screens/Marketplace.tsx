@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import { PageHeader } from "../components/PageHeader";
 import { Search, Plus, Star, ShieldCheck, TrendingUp, Sparkles, Grid3x3 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -186,25 +187,15 @@ export function Marketplace() {
         </svg>
       </div>
 
-      {/* ── Orange hero header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
-        
-        {/* subtle grid on top of orange */}
-        <div className="absolute inset-0 opacity-[0.1]">
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="market-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#market-grid)"/>
-          </svg>
-        </div>
-
-        <div className="relative z-10 space-y-4 mb-6 mt-2">
+      {/* ── Standardized Orange Header ── */}
+      <PageHeader 
+        title="Marketplace" 
+        subtitle="Discover premium assets & rewards"
+        height={220}
+      >
+        <div className="relative z-10 mb-6 flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-white text-3xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>Marketplace</h1>
+            <div /> 
             <motion.button 
               whileTap={{ scale: 0.94 }}
               onClick={() => navigate("/sell")}
@@ -224,7 +215,7 @@ export function Marketplace() {
             />
           </div>
         </div>
-      </div>
+      </PageHeader>
 
       <div className="px-5 -mt-5 relative z-10 space-y-10">
         

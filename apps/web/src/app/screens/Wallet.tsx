@@ -58,6 +58,7 @@ const escrowItems = [
 
 
 
+import { PageHeader } from "../components/PageHeader";
 import { DigitalWallet } from "../components/DigitalWallet";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
@@ -119,31 +120,8 @@ export function Wallet() {
         </svg>
       </div>
 
-      {/* ── Orange hero header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
-        
-        {/* Premium grid texture matching Home */}
-        <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: 'radial-gradient(circle at top left, white, transparent 80%)', maskImage: 'radial-gradient(circle at top left, white, transparent 80%)' }}>
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="wallet-premium-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.6"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#wallet-premium-grid)"/>
-          </svg>
-        </div>
-        
-        {/* Soft glow orbs matching Home */}
-        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
-
-        <div className="relative z-10 space-y-1 mb-12 mt-4">
-          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Wallet</h1>
-          <p className="text-white/80 text-[13px] font-medium">Manage your earnings & escrow</p>
-        </div>
-      </div>
+      {/* ── Standardized Orange Header ── */}
+      <PageHeader title="Wallet" subtitle="Manage your earnings & escrow" />
 
       <div className="px-5 -mt-10 relative z-10 space-y-6">
         
