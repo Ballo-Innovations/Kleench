@@ -41,11 +41,14 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+import { useLocation } from "react-router";
+
 // Scroll to top component
 function ScrollToTop() {
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [pathname]);
   return null;
 }
 
