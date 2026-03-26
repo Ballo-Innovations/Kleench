@@ -1,11 +1,11 @@
 import { Link, useParams, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, Play, Verified, Star, CheckCircle2, Send, Shield, Wallet, X } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { Play, Verified, Star, CheckCircle2, Send, Shield, Wallet, X, Clock, Trophy } from "lucide-react";
 import { useState } from "react";
+import { PageHeader } from "../components/PageHeader";
 
-const HERO_BG = "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaW5lbWF0aWMlMjBVWCUyMGRlc2lnbiUyMGludGVyZmFjZSUyMGRpZ2l0YWwlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc3MzkyMDAwNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
-const INSTRUCTOR_AVATAR = "https://images.unsplash.com/photo-1758685734511-4f49ce9a382b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBpbnN0cnVjdG9yJTIwdGVhY2hlciUyMGVkdWNhdG9yJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzczOTIwMDA1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+const HERO_BG = "https://images.unsplash.com/photo-1575388902449-6bca946ad549?auto=format&fit=crop&w=1080&q=80";
+const INSTRUCTOR_AVATAR = "https://images.unsplash.com/photo-1758685734511-4f49ce9a382b?auto=format&fit=crop&w=1080&q=80";
 
 export function LearningDetail() {
   const { id } = useParams();
@@ -14,366 +14,212 @@ export function LearningDetail() {
   const [showShareModal, setShowShareModal] = useState(false);
 
   const handleEnroll = () => {
-    // Navigate to wallet with enrollment state
     navigate("/wallet", { state: { enrollCourse: true, courseId: id, coursePrice: 49.99 } });
   };
 
+  const grace = (delay = 0) => ({
+    duration: 0.62,
+    delay,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  });
+
   return (
-    <div className="min-h-screen bg-[var(--surface-base)] pb-32">
-      {/* ── Top Navigation ── */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm flex items-center justify-between px-6 py-3">
-        <div className="flex items-center gap-4">
-          <Link to="/">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-black/5 active:scale-95 duration-150 transition-colors"
-            >
-              <ArrowLeft size={20} className="text-[var(--ink-primary)]" strokeWidth={2.5} />
-            </motion.button>
-          </Link>
-          <span className="font-[var(--font-header)] text-[var(--trust-blue)]" style={{ fontSize: "24px", fontWeight: 900 }}>
-            Kleench
-          </span>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-transparent pb-32 font-sans overflow-x-hidden">
+      
+      {/* ── Standardized Academy Detail Header ── */}
+      <PageHeader 
+        title="Course Detail" 
+        subtitle="Academy Masterclass Session"
+        showBack
+        height={180}
+      />
 
-      <main className="pt-16">
-        {/* ── Cinematic Hero Section ── */}
-        <section className="relative w-full bg-[var(--surface-raised)] overflow-hidden group" style={{ height: "530px" }}>
-          {/* Background Image */}
-          <ImageWithFallback
-            src={HERO_BG}
-            alt="Course preview"
-            className="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000"
-          />
-
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
-
-          {/* Content */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
-            {/* Badges */}
-            <div className="flex items-center gap-3 mb-4">
-              <motion.span
-                animate={{ opacity: [1, 0.7, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="bg-[var(--action-gold)] text-[var(--ink-primary)] px-3 py-1 rounded-full font-[var(--font-header)] uppercase tracking-widest flex items-center gap-1.5"
-                style={{ fontSize: "10px", fontWeight: 800 }}
+      <main className="px-5 -mt-20 relative z-20 space-y-12">
+        
+        {/* ── SECTION 01: CINEMATIC PREVIEW ── */}
+        <motion.section 
+          initial={{ opacity: 0, y: 15 }} 
+          animate={{ opacity: 1, y: 0 }}
+          className="relative aspect-video border-2 border-[#003366] overflow-hidden shadow-[6px_6px_0px_#003366] bg-black group"
+        >
+           <img src={HERO_BG} className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-1000 group-hover:scale-110" />
+           <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/90 via-transparent to-transparent" />
+           
+           {/* Play Trigger */}
+           <div className="absolute inset-0 flex items-center justify-center">
+              <motion.button 
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setShowVideoModal(true)}
+                className="w-16 h-16 bg-white shadow-[4px_4px_0px_#FF8C00] flex items-center justify-center text-[#003366] active:shadow-none transition-all"
               >
-                <span className="w-2 h-2 rounded-full bg-white" />
-                LIVE PROOF
-              </motion.span>
-              <span className="bg-white/10 backdrop-blur-md text-white px-3 py-1 rounded-full font-[var(--font-body)]" style={{ fontSize: "11px", fontWeight: 500 }}>
-                4K Demo
-              </span>
-            </div>
+                 <Play size={24} fill="#003366" />
+              </motion.button>
+           </div>
 
-            {/* Title */}
-            <h1
-              className="font-[var(--font-header)] text-white leading-tight max-w-2xl tracking-tight"
-              style={{ fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 900 }}
-            >
-              Digital Masterclass: UX Architecture & Design Systems
-            </h1>
-          </div>
+           {/* Badge HUD */}
+           <div className="absolute top-4 right-4 bg-[#FFC300] text-[#003366] px-3 py-1.5 border border-[#003366] shadow-[2px_2px_0px_#003366] flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#003366] animate-pulse" />
+              <span className="text-[9px] font-black uppercase tracking-widest">Live Demo</span>
+           </div>
+        </motion.section>
 
-          {/* Play Button */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-20 h-20 bg-[var(--trust-blue)]/90 backdrop-blur-lg rounded-full flex items-center justify-center shadow-2xl hover:bg-[var(--trust-blue)] transition-colors"
-            onClick={() => setShowVideoModal(true)}
-          >
-            <Play size={32} className="text-white ml-1" fill="white" />
-          </motion.button>
-        </section>
+        {/* ── SECTION 02: TRUST LEDGER ── */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} className="space-y-6">
+           <div className="flex items-center gap-3">
+              <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
+              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Trust Ledger</h3>
+              <div className="flex-1 h-[2px] bg-[#003366]/5" />
+           </div>
 
-        <div className="max-w-4xl mx-auto px-6 mt-8">
-          {/* ── Trust Validation Panel ── */}
-          <section className="flex flex-wrap items-center justify-between gap-6 p-6 bg-[var(--surface-raised)] rounded-3xl shadow-sm border border-black/[0.04]">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                  <ImageWithFallback
-                    src={INSTRUCTOR_AVATAR}
-                    alt="Instructor avatar"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-1 -right-1 bg-[var(--trust-blue)] text-white rounded-full p-1 border-2 border-white shadow-sm">
-                  <Verified size={12} fill="white" />
-                </div>
-              </div>
-              <div>
-                <p className="font-[var(--font-header)] text-[var(--ink-primary)]" style={{ fontSize: "18px", fontWeight: 800 }}>
-                  EliteNodes Alpha
-                </p>
-                <div className="flex items-center gap-2 mt-1">
-                  <span
-                    className="bg-[var(--trust-blue)]/10 text-[var(--trust-blue)] px-2 py-0.5 rounded uppercase tracking-tighter border border-[var(--trust-blue)]/20 font-[var(--font-body)]"
-                    style={{ fontSize: "10px", fontWeight: 700 }}
-                  >
-                    Verified KYC
-                  </span>
-                  <div className="flex items-center gap-1 text-[var(--action-gold)]">
-                    <Star size={14} fill="var(--action-gold)" className="text-[var(--action-gold)]" />
-                    <span className="font-[var(--font-body)]" style={{ fontSize: "14px", fontWeight: 700 }}>
-                      4.9
-                    </span>
-                    <span className="text-[var(--ink-muted)] font-[var(--font-body)] ml-1" style={{ fontSize: "12px" }}>
-                      (1.2k students)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="text-right">
-              <p
-                className="text-[var(--ink-muted)] font-[var(--font-body)] uppercase tracking-widest mb-1"
-                style={{ fontSize: "11px", fontWeight: 500 }}
-              >
-                Course Price
-              </p>
-              <div className="flex items-baseline gap-1">
-                <span className="font-[var(--font-header)] text-[var(--ink-primary)]" style={{ fontSize: "32px", fontWeight: 900 }}>
-                  49.99
-                </span>
-                <span className="font-[var(--font-header)] text-[var(--trust-blue)]" style={{ fontSize: "16px", fontWeight: 800 }}>
-                  USD
-                </span>
-              </div>
-            </div>
-          </section>
-
-          {/* ── Information Layer: Course Details ── */}
-          <section className="mt-12 space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Main Content (2/3) */}
-              <div className="md:col-span-2 space-y-6">
-                <h2 className="font-[var(--font-header)] text-[var(--ink-primary)]" style={{ fontSize: "24px", fontWeight: 800 }}>
-                  Master the Digital Economy
-                </h2>
-                <div className="space-y-4 text-[var(--ink-secondary)] leading-relaxed">
-                  <p className="font-[var(--font-body)]" style={{ fontSize: "16px" }}>
-                    This comprehensive masterclass leverages high-impact learning patterns specifically designed for modern UX practitioners. By integrating hands-on exercises directly into each module, you ensure that every concept is backed by practical application and real-world case studies.
-                  </p>
-                  <p className="font-[var(--font-body)]" style={{ fontSize: "15px" }}>
-                    Our curriculum bypasses traditional theory-heavy approaches, offering a seamless learning experience for both aspiring designers and seasoned professionals. Optimized for practical outcomes and portfolio-ready deliverables.
-                  </p>
-                </div>
-
-                {/* Bento Grid Stats */}
-                <div className="grid grid-cols-2 gap-4 pt-4">
-                  <div className="bg-[var(--surface-raised)] p-5 rounded-2xl border border-black/[0.04] shadow-sm">
-                    <div className="w-10 h-10 rounded-full bg-[var(--trust-blue)]/10 flex items-center justify-center mb-3">
-                      <span className="text-[var(--trust-blue)]">⚡</span>
+           <div className="bg-white border-2 border-[#003366] p-6 shadow-[6px_6px_0px_#FF8C00] flex flex-wrap items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                 <div className="relative">
+                    <div className="w-14 h-14 border-2 border-[#003366] overflow-hidden">
+                       <img src={INSTRUCTOR_AVATAR} className="w-full h-full object-cover" />
                     </div>
-                    <p className="text-[var(--ink-muted)] font-[var(--font-body)] uppercase tracking-wide" style={{ fontSize: "11px", fontWeight: 500 }}>
-                      Course Duration
-                    </p>
-                    <p className="font-[var(--font-header)] text-[var(--ink-primary)] mt-1" style={{ fontSize: "20px", fontWeight: 800 }}>
-                      8 Weeks
-                    </p>
-                  </div>
-                  <div className="bg-[var(--surface-raised)] p-5 rounded-2xl border border-black/[0.04] shadow-sm">
-                    <div className="w-10 h-10 rounded-full bg-[var(--action-gold)]/10 flex items-center justify-center mb-3">
-                      <Shield size={18} className="text-[var(--action-gold)]" />
+                    <div className="absolute -bottom-1 -right-1 bg-[#FF8C00] text-white p-1 border border-[#003366] shadow-sm">
+                       <Verified size={10} />
                     </div>
-                    <p className="text-[var(--ink-muted)] font-[var(--font-body)] uppercase tracking-wide" style={{ fontSize: "11px", fontWeight: 500 }}>
-                      Certification
-                    </p>
-                    <p className="font-[var(--font-header)] text-[var(--ink-primary)] mt-1" style={{ fontSize: "20px", fontWeight: 800 }}>
-                      Verified Badge
-                    </p>
-                  </div>
-                </div>
+                 </div>
+                 <div>
+                    <h4 className="text-[#003366] text-lg font-black uppercase tracking-tight leading-none mb-1">EliteNodes Alpha</h4>
+                    <div className="flex items-center gap-2">
+                       <span className="bg-[#003366]/5 text-[#003366] px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest border border-[#003366]/10">Verified KYC</span>
+                       <div className="flex items-center gap-1 text-[#FFC300]">
+                          <Star size={12} fill="#FFC300" />
+                          <span className="text-[11px] font-black text-[#003366]">4.9</span>
+                       </div>
+                    </div>
+                 </div>
               </div>
-
-              {/* Sidebar (1/3) */}
-              <div className="space-y-6">
-                <div className="bg-[var(--surface-raised)] p-6 rounded-2xl space-y-4 border border-black/[0.04] shadow-sm">
-                  <h3 className="font-[var(--font-header)] text-[var(--ink-primary)]" style={{ fontSize: "16px", fontWeight: 800 }}>
-                    What You'll Learn
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[var(--trust-blue)] mt-0.5 flex-shrink-0" />
-                      <span className="font-[var(--font-body)] text-[var(--ink-secondary)]" style={{ fontSize: "14px", fontWeight: 500 }}>
-                        Advanced Component Architecture
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[var(--trust-blue)] mt-0.5 flex-shrink-0" />
-                      <span className="font-[var(--font-body)] text-[var(--ink-secondary)]" style={{ fontSize: "14px", fontWeight: 500 }}>
-                        Scalable Design Systems
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[var(--trust-blue)] mt-0.5 flex-shrink-0" />
-                      <span className="font-[var(--font-body)] text-[var(--ink-secondary)]" style={{ fontSize: "14px", fontWeight: 500 }}>
-                        Portfolio-Ready Projects
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[var(--trust-blue)] mt-0.5 flex-shrink-0" />
-                      <span className="font-[var(--font-body)] text-[var(--ink-secondary)]" style={{ fontSize: "14px", fontWeight: 500 }}>
-                        Live Q&A Sessions
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Share & Earn Button */}
-                <motion.button
-                  whileTap={{ scale: 0.96 }}
-                  className="w-full bg-[var(--action-gold)] hover:bg-[var(--action-gold-dark)] transition-all duration-300 py-4 px-6 rounded-2xl flex items-center justify-between group shadow-sm"
-                  onClick={() => setShowShareModal(true)}
-                >
-                  <div className="text-left">
-                    <p
-                      className="text-[var(--ink-primary)] font-[var(--font-body)] uppercase tracking-widest"
-                      style={{ fontSize: "10px", fontWeight: 700 }}
-                    >
-                      Growth Loop
-                    </p>
-                    <p className="text-[var(--ink-primary)] font-[var(--font-header)]" style={{ fontSize: "16px", fontWeight: 800 }}>
-                      Share & Earn 5%
-                    </p>
-                  </div>
-                  <Send size={18} className="text-[var(--ink-primary)] group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+              <div className="text-right border-l-2 border-[#003366]/5 pl-6">
+                 <p className="text-[#003366]/40 text-[9px] font-black uppercase tracking-widest mb-1">Asset Value</p>
+                 <div className="flex items-baseline gap-1">
+                    <span className="text-[#003366] text-3xl font-black tracking-tighter leading-none">49.99</span>
+                    <span className="text-[#FF8C00] text-xs font-black">USD</span>
+                 </div>
               </div>
-            </div>
-          </section>
+           </div>
+        </motion.section>
 
-          {/* ── Performance History ── */}
-          <section className="mt-16 pt-16 border-t border-black/[0.06]">
-            <h3 className="font-[var(--font-header)] text-[var(--ink-primary)] mb-8" style={{ fontSize: "20px", fontWeight: 800 }}>
-              Student Success Stories
-            </h3>
-            <div className="overflow-x-auto" style={{ scrollbarWidth: "none" }}>
-              <div className="flex gap-6 min-w-max pb-4">
-                {/* Card 1 */}
-                <div className="w-72 bg-white p-6 rounded-2xl border border-black/[0.04] shadow-sm">
-                  <p className="text-[var(--ink-muted)] font-[var(--font-body)] uppercase mb-2" style={{ fontSize: "11px", fontWeight: 700 }}>
-                    Career Growth
-                  </p>
-                  <p className="font-[var(--font-header)] text-[var(--trust-blue)] mb-4" style={{ fontSize: "32px", fontWeight: 900 }}>
-                    +87%
-                  </p>
-                  <div className="h-12 w-full bg-[var(--trust-blue)]/5 rounded-lg flex items-end gap-1 px-2 pb-1">
-                    <div className="w-full bg-[var(--trust-blue)] rounded-t-sm opacity-40" style={{ height: "30%" }} />
-                    <div className="w-full bg-[var(--trust-blue)] rounded-t-sm opacity-50" style={{ height: "45%" }} />
-                    <div className="w-full bg-[var(--trust-blue)] rounded-t-sm opacity-60" style={{ height: "60%" }} />
-                    <div className="w-full bg-[var(--trust-blue)] rounded-t-sm opacity-70" style={{ height: "55%" }} />
-                    <div className="w-full bg-[var(--trust-blue)] rounded-t-sm opacity-100" style={{ height: "85%" }} />
-                  </div>
-                </div>
+        {/* ── SECTION 03: SYLLABUS & STATS ── */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="space-y-8">
+           <div className="flex items-center gap-3">
+              <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
+              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Intelligence Hub</h3>
+           </div>
 
-                {/* Card 2 */}
-                <div className="w-72 bg-white p-6 rounded-2xl border border-black/[0.04] shadow-sm">
-                  <p className="text-[var(--ink-muted)] font-[var(--font-body)] uppercase mb-2" style={{ fontSize: "11px", fontWeight: 700 }}>
-                    Active Students
-                  </p>
-                  <p className="font-[var(--font-header)] text-[var(--ink-primary)] mb-4" style={{ fontSize: "32px", fontWeight: 900 }}>
-                    2,847
-                  </p>
-                  <p className="font-[var(--font-body)] text-[var(--ink-secondary)] leading-tight" style={{ fontSize: "14px" }}>
-                    Total enrolled students actively completing modules and earning certifications this month.
-                  </p>
-                </div>
+           <div className="grid grid-cols-2 gap-4">
+              <div className="bg-[#003366]/5 border-2 border-[#003366] p-5 shadow-[4px_4px_0px_#003366]">
+                 <div className="text-[#FF8C00] mb-3"><Clock size={16} /></div>
+                 <p className="text-[#003366]/40 text-[8px] font-black uppercase tracking-widest mb-1">Duration</p>
+                 <p className="text-[#003366] text-lg font-black uppercase tracking-tight">8 Sessions</p>
               </div>
-            </div>
-          </section>
-        </div>
+              <div className="bg-[#003366]/5 border-2 border-[#003366] p-5 shadow-[4px_4px_0px_#FF8C00]">
+                 <div className="text-[#FF8C00] mb-3"><Trophy size={16} /></div>
+                 <p className="text-[#003366]/40 text-[8px] font-black uppercase tracking-widest mb-1">Status</p>
+                 <p className="text-[#003366] text-lg font-black uppercase tracking-tight">Verified</p>
+              </div>
+           </div>
+
+           <div className="bg-white border-2 border-[#003366] p-6 shadow-[6px_6px_0px_#003366] space-y-4">
+              <h4 className="text-[#003366] text-sm font-black uppercase tracking-widest border-b-2 border-[#003366]/5 pb-3">What You Will Master</h4>
+              <ul className="grid grid-cols-1 gap-4">
+                 {[
+                   "Advanced Component Architecture",
+                   "Scalable Design Systems",
+                   "Portfolio-Ready Projects",
+                   "Live Q&A Masterclasses"
+                 ].map((item, idx) => (
+                   <li key={idx} className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-[#003366]/5 flex items-center justify-center text-[#FF8C00] border border-[#003366]/20">
+                         <CheckCircle2 size={12} />
+                      </div>
+                      <span className="text-[11px] font-black text-[#003366]/60 uppercase tracking-widest leading-none">{item}</span>
+                   </li>
+                 ))}
+              </ul>
+           </div>
+
+           {/* Share & Earn Loop */}
+           <motion.button
+              whileTap={{ scale: 0.97 }}
+              className="w-full bg-[#FF8C00] text-white p-5 border-2 border-[#003366] shadow-[6px_6px_0px_#003366] flex items-center justify-between group active:shadow-none transition-all"
+              onClick={() => setShowShareModal(true)}
+           >
+              <div className="text-left">
+                 <p className="text-white/60 text-[8px] font-black uppercase tracking-widest mb-1">Circle Growth Loop</p>
+                 <p className="text-white text-lg font-black uppercase tracking-tight leading-none">Share & Earn 5%</p>
+              </div>
+              <Send size={20} className="group-hover:translate-x-1 transition-transform" />
+           </motion.button>
+        </motion.section>
+
       </main>
 
-      {/* ── Sticky Checkout Bar ── */}
-      <div className="fixed bottom-0 left-0 w-full z-50 px-6 pb-24 pointer-events-none">
-        <div className="max-w-4xl mx-auto w-full bg-white/90 backdrop-blur-2xl p-4 sm:p-6 rounded-3xl shadow-[0_-8px_32px_rgba(0,0,0,0.12)] border border-black/[0.06] pointer-events-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="hidden sm:block">
-              <div className="flex items-center gap-2">
-                <Shield size={16} className="text-[var(--trust-blue)]" fill="var(--trust-blue)" />
-                <p className="font-[var(--font-body)] text-[var(--ink-muted)] uppercase tracking-wider" style={{ fontSize: "10px", fontWeight: 700 }}>
-                  Protected by Kleench Escrow
-                </p>
+      {/* ── STICKY CHECKOUT HUD ── */}
+      <div className="fixed bottom-0 left-0 w-full z-50 px-5 pb-28 pointer-events-none">
+        <motion.div 
+           initial={{ y: 50, opacity: 0 }}
+           animate={{ y: 0, opacity: 1 }}
+           className="max-w-md mx-auto w-full bg-white border-4 border-[#003366] p-5 shadow-[0_-15px_40px_rgba(0,0,0,0.12)] pointer-events-auto"
+        >
+           <div className="flex items-center justify-between gap-4">
+              <div className="hidden sm:block">
+                 <div className="flex items-center gap-2">
+                    <Shield size={14} className="text-[#FF8C00]" />
+                    <p className="text-[9px] font-black text-[#003366] uppercase tracking-widest">Kleench Escrow</p>
+                 </div>
+                 <p className="text-[8px] text-[#003366]/40 font-black uppercase tracking-tighter mt-1">Funds held securely in treasury</p>
               </div>
-              <p className="font-[var(--font-body)] text-[var(--ink-muted)] mt-0.5" style={{ fontSize: "10px" }}>
-                Funds are held securely until course access is confirmed.
-              </p>
-            </div>
-            <motion.button
-              whileTap={{ scale: 0.96 }}
-              className="w-full sm:w-auto px-8 py-4 bg-[var(--action-gold)] hover:bg-[var(--action-gold-dark)] text-[var(--ink-primary)] font-[var(--font-header)] rounded-2xl transition-all flex items-center justify-center gap-3 shadow-sm"
-              style={{ fontSize: "16px", fontWeight: 800 }}
-              onClick={handleEnroll}
-            >
-              Enroll with Wallet
-              <Wallet size={18} />
-            </motion.button>
-          </div>
-        </div>
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                className="flex-1 bg-[#003366] text-white py-4 px-6 flex items-center justify-center gap-3 shadow-[4px_4px_0px_#FF8C00] group active:shadow-none transition-all"
+                onClick={handleEnroll}
+              >
+                 <span className="text-[12px] font-black uppercase tracking-[0.2em]">Enroll with Wallet</span>
+                 <Wallet size={18} className="text-[#FF8C00] group-hover:rotate-12 transition-transform" />
+              </motion.button>
+           </div>
+        </motion.div>
       </div>
 
-      {/* ── Video Modal ── */}
+      {/* ── Video Modal (Industrial HUD) ── */}
       <AnimatePresence>
         {showVideoModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-50 flex items-center justify-center pointer-events-auto">
-            <div className="relative w-11/12 max-w-4xl h-3/4 bg-white rounded-3xl shadow-2xl pointer-events-auto">
-              <button
-                className="absolute top-4 right-4 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-                onClick={() => setShowVideoModal(false)}
-              >
-                <X size={16} className="text-white" />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-[#003366]/95 backdrop-blur-xl flex items-center justify-center p-5">
+            <div className="relative w-full aspect-video border-4 border-white shadow-2xl">
+              <button className="absolute -top-12 right-0 text-white hover:text-[#FF8C00] transition-colors" onClick={() => setShowVideoModal(false)}>
+                <X size={32} />
               </button>
-              <iframe
-                className="w-full h-full rounded-3xl"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              <iframe className="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Course Preview" frameBorder="0" allowFullScreen />
             </div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
       {/* ── Share Modal ── */}
       <AnimatePresence>
         {showShareModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-50 flex items-center justify-center pointer-events-auto">
-            <div className="relative w-11/12 max-w-4xl h-3/4 bg-white rounded-3xl shadow-2xl pointer-events-auto">
-              <button
-                className="absolute top-4 right-4 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-                onClick={() => setShowShareModal(false)}
-              >
-                <X size={16} className="text-white" />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-[#003366]/95 backdrop-blur-xl flex items-center justify-center p-8">
+            <div className="bg-white border-4 border-[#003366] p-8 w-full max-w-sm shadow-[12px_12px_0px_#FF8C00] relative">
+              <button className="absolute top-4 right-4 text-[#003366]" onClick={() => setShowShareModal(false)}>
+                <X size={24} />
               </button>
-              <div className="p-8">
-                <h2 className="font-[var(--font-header)] text-[var(--ink-primary)]" style={{ fontSize: "24px", fontWeight: 800 }}>
-                  Share & Earn
-                </h2>
-                <p className="font-[var(--font-body)] text-[var(--ink-secondary)] leading-relaxed mt-4">
-                  Share this course with your network and earn 5% of the enrollment fees. Simply copy the link below and share it on your social media platforms.
-                </p>
-                <div className="mt-6">
-                  <input
-                    type="text"
-                    value="https://example.com/course/123"
-                    className="w-full px-4 py-3 bg-[var(--surface-raised)] border border-black/[0.04] rounded-2xl focus:outline-none focus:border-[var(--action-gold)]"
-                    readOnly
-                  />
-                  <button
-                    className="w-full mt-4 px-4 py-3 bg-[var(--action-gold)] hover:bg-[var(--action-gold-dark)] text-[var(--ink-primary)] font-[var(--font-header)] rounded-2xl transition-all flex items-center justify-center gap-3 shadow-sm"
-                    onClick={() => setShowShareModal(false)}
-                  >
-                    Copy Link
-                  </button>
+              <h2 className="text-[#003366] text-2xl font-black uppercase tracking-tight mb-4">Share & Earn</h2>
+              <p className="text-[#003366]/60 text-[11px] font-black uppercase tracking-widest leading-relaxed mb-8">
+                Distribute your unique referral loop and receive 5% asset dividends on every successful enrollment.
+              </p>
+              <div className="space-y-4">
+                <div className="p-4 bg-[#003366]/5 border-2 border-[#003366]/10 text-[11px] font-black text-[#003366] break-all">
+                  https://kleench.app/academy/m123
                 </div>
+                <button className="w-full bg-[#003366] text-white py-4 text-[12px] font-black uppercase tracking-widest shadow-[4px_4px_0px_#FF8C00]" onClick={() => setShowShareModal(false)}>
+                  Copy Referral Hook
+                </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

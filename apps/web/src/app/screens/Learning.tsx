@@ -1,16 +1,16 @@
- import { useState } from "react";
+import { useState } from "react";
 import { Play, Clock, Star, BookOpen, Eye, ChevronRight, ArrowRight, Radio } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { PageHeader } from "../components/PageHeader";
 
-/* ─── Images ─── */
-const REEL_1 = "https://images.unsplash.com/photo-1696013910376-c56f76dd8178?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnNlY3VyaXR5JTIwZGlnaXRhbCUyMHNoaWVsZCUyMGxvY2slMjBjb25jZXB0fGVufDF8fHx8MTc3MzkwOTY1NHww&ixlib=rb-4.1.0&q=80&w=400";
-const REEL_2 = "https://images.unsplash.com/photo-1745509267945-b25cbb4d50ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcnlwdG8lMjBjaGFydCUyMG1vYmlsZSUyMHRyYWRpbmclMjBmaW5hbmNlfGVufDF8fHx8MTc3MzkwOTY1NXww&ixlib=rb-4.1.0&q=80&w=400";
-const REEL_3 = "https://images.unsplash.com/photo-1768141721979-25c398ebefd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYXJ0JTIwTkZUJTIwbmVvbiUyMGFic3RyYWN0fGVufDF8fHx8MTc3MzkwOTY1NXww&ixlib=rb-4.1.0&q=80&w=400";
-const COURSE_1 = "https://images.unsplash.com/photo-1769596722541-40dedee6789d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMG1hcmtldGluZyUyMHN0cmF0ZWd5JTIwYnVzaW5lc3N8ZW58MXx8fHwxNzczOTA5NjU1fDA&ixlib=rb-4.1.0&q=80&w=400";
-const COURSE_2 = "https://images.unsplash.com/photo-1762163516269-3c143e04175c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZXJ2ZXIlMjBuZXR3b3JrJTIwaW5mcmFzdHJ1Y3R1cmUlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc3MzkwOTY1Nnww&ixlib=rb-4.1.0&q=80&w=400";
-const COURSE_3 = "https://images.unsplash.com/photo-1768987439370-bd60d3d0b28b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBwaG9uZSUyMGFwcCUyMHNob3BwaW5nJTIwb25saW5lfGVufDF8fHx8MTc3MzkwOTY1Nnww&ixlib=rb-4.1.0&q=80&w=400";
+/* ─── Images (High Fidelity References) ─── */
+const REEL_1 = "https://images.unsplash.com/photo-1696013910376-c56f76dd8178?auto=format&fit=crop&w=400&q=80";
+const REEL_2 = "https://images.unsplash.com/photo-1745509267945-b25cbb4d50ef?auto=format&fit=crop&w=400&q=80";
+const REEL_3 = "https://images.unsplash.com/photo-1768141721979-25c398ebefd5?auto=format&fit=crop&w=400&q=80";
+const COURSE_1 = "https://images.unsplash.com/photo-1769596722541-40dedee6789d?auto=format&fit=crop&w=400&q=80";
+const COURSE_2 = "https://images.unsplash.com/photo-1762163516269-3c143e04175c?auto=format&fit=crop&w=400&q=80";
+const COURSE_3 = "https://images.unsplash.com/photo-1768987439370-bd60d3d0b28b?auto=format&fit=crop&w=400&q=80";
 
 /* ─── Data ─── */
 const CATEGORIES = ["All Subjects", "Blockchain", "Digital Marketing", "NFTs", "Security", "E-commerce"];
@@ -21,369 +21,216 @@ const REELS = [
   { id: 3, title: "Why Mint on Kleench?",       views: "15.2K", img: REEL_3 },
 ];
 
-interface Course {
-  id: number;
-  tag: string;
-  tagColor: string;
-  tagBg: string;
-  title: string;
-  instructor: string;
-  duration: string;
-  rating: number;
-  cta: string;
-  img: string;
-}
-
-const COURSES: Course[] = [
+const COURSES = [
   {
     id: 1,
     tag: "MARKETING",
-    tagColor: "text-[var(--trust-blue)]",
-    tagBg: "bg-[var(--trust-blue)]/10",
     title: "Social Growth Strategies for Web3 Founders",
     instructor: "Dr. Elias Thorne",
     duration: "12h 45m",
     rating: 4.9,
-    cta: "Join Now",
     img: COURSE_1,
   },
   {
     id: 2,
     tag: "SECURITY",
-    tagColor: "text-sky-700",
-    tagBg: "bg-sky-100",
     title: "The Vault: Advanced Smart Contract Auditing",
     instructor: "Sarah Chen",
     duration: "24h total",
     rating: 5.0,
-    cta: "Enroll",
     img: COURSE_2,
   },
   {
     id: 3,
     tag: "ECOMMERCE",
-    tagColor: "text-[var(--action-gold-dark)]",
-    tagBg: "bg-[var(--action-gold)]/15",
     title: "Scaling Your Boutique Store with Kleench API",
     instructor: "Marcus Vane",
     duration: "8h 20m",
     rating: 4.7,
-    cta: "Join Now",
     img: COURSE_3,
   },
 ];
 
-const fadeUp = {
-  initial: { opacity: 0, y: 18 },
-  animate: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-  }),
-};
-
-import { PageHeader } from "../components/PageHeader";
+const grace = (delay = 0) => ({
+  duration: 0.62,
+  delay,
+  ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+});
 
 export function Learning() {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
-    <div className="w-full max-w-md mx-auto pb-4">
-      {/* ── Standardized Orange Header ── */}
-      <PageHeader title="Academy" subtitle="Continue your journey and earn more." />
+    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
+      {/* ── Standardized Academy Header ── */}
+      <PageHeader 
+        title="Academy" 
+        subtitle="Learn and Earn Assets Today."
+        height={180}
+      />
 
-      {/* ── Continue Learning Hero Card (Moved below standardized header) ── */}
-      <motion.section
-        custom={0}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-        className="mb-8 px-4"
-      >
-        <div className="relative overflow-hidden rounded-[32px] bg-[#003366] p-6 shadow-xl border border-black/[0.03]">
-          {/* Background blobs */}
-          <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-2xl" />
-          <div className="absolute inset-0 noise opacity-20" />
-
-          <div className="relative z-10 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
-              <span className="px-3 py-1 bg-[#FF8C00] text-white text-[10px] rounded-full uppercase tracking-wider font-black">
-                In Progress
-              </span>
-              <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10">
-                <BookOpen size={18} className="text-white" strokeWidth={2.5} />
+      {/* Hero Section: Progress Tracking Ledger */}
+      <div className="px-5 mt-4 relative z-20">
+        <motion.div
+           initial={{ opacity: 0, y: 15 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.1 }}
+           className="bg-white border-2 border-[#003366] p-6 shadow-[6px_6px_0px_#003366] relative overflow-hidden group"
+        >
+           <div className="absolute top-0 left-0 w-1.5 h-full bg-[#FF8C00]" />
+           
+           <div className="flex items-start justify-between mb-6">
+              <div className="flex flex-col gap-1">
+                 <span className="text-[#FF8C00] text-[8px] font-black uppercase tracking-[0.3em]">Module In Progress</span>
+                 <h2 className="text-[#003366] text-xl font-black uppercase tracking-tight leading-none">Mastering Crypto Basics</h2>
               </div>
-            </div>
-
-            <div className="space-y-1">
-              <p className="text-white/50 text-[11px] font-bold uppercase tracking-wider">Continue Learning</p>
-              <h2 className="text-white text-2xl font-black leading-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
-                Mastering Crypto Basics
-              </h2>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-end justify-between">
-                <span className="text-white text-[11px] font-bold">65% Complete</span>
-                <span className="text-white/40 text-[10px] font-medium">Module 4 of 7</span>
+              <div className="w-10 h-10 border-2 border-[#003366] flex items-center justify-center text-[#003366]">
+                 <BookOpen size={20} />
               </div>
-              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-[#FF8C00] rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: "65%" }}
-                  transition={{ duration: 1.2, delay: 0.4 }}
-                />
-              </div>
-            </div>
+           </div>
 
-            <Link to="/learning/1">
-              <motion.button
+           <div className="space-y-3 mb-6">
+              <div className="flex justify-between items-end">
+                 <span className="text-[10px] font-black text-[#003366]/40 uppercase tracking-widest">65% Absolute Progress</span>
+                 <span className="text-[10px] font-black text-[#003366]">CH. 04 / 07</span>
+              </div>
+              <div className="h-2 w-full bg-[#003366]/5 border border-[#003366]/10">
+                 <motion.div 
+                    initial={{ width: 0 }} 
+                    animate={{ width: "65%" }} 
+                    className="h-full bg-[#FF8C00]" 
+                 />
+              </div>
+           </div>
+
+           <Link to="/learning/1">
+              <motion.button 
                 whileTap={{ scale: 0.97 }}
-                className="mt-2 flex items-center justify-center gap-2 w-full py-4 bg-white text-[#003366] rounded-2xl shadow-lg font-black text-[13px] transition-all hover:shadow-xl active:scale-95"
+                className="w-full bg-[#003366] text-white py-4 flex items-center justify-center gap-3 shadow-[4px_4px_0px_#FF8C00] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
               >
-                Resume Course
-                <ArrowRight size={16} strokeWidth={3} />
+                 <span className="text-[11px] font-black uppercase tracking-[0.2em]">Resume Your Journey</span>
+                 <ArrowRight size={16} className="text-[#FF8C00]" />
               </motion.button>
-            </Link>
-          </div>
-        </div>
-      </motion.section>
-      {/* ── Category Picker ── */}
-      <motion.section
-        custom={1}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-        className="mb-5"
-      >
-        <div
-          className="flex gap-2 overflow-x-auto -mx-1 px-1"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {CATEGORIES.map((cat, i) => (
-            <motion.button
-              key={cat}
-              whileTap={{ scale: 0.94 }}
-              onClick={() => setActiveCategory(i)}
-              className={`px-3 py-2 rounded-xl font-[var(--font-body)] whitespace-nowrap transition-colors shadow-sm ${
-                activeCategory === i
-                  ? "bg-[var(--trust-blue)] text-white shadow-sm"
-                  : "bg-[#f3f3f3] text-[var(--ink-secondary)]"
-              }`}
-              style={{ fontSize: "11px", fontWeight: 600, flexShrink: 0 }}
-            >
-              {cat}
-            </motion.button>
-          ))}
-        </div>
-      </motion.section>
+           </Link>
+        </motion.div>
+      </div>
 
-      {/* ── Trending Reels ── */}
-      <motion.section
-        custom={2}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-        className="mb-5"
-      >
-        <div className="flex items-end justify-between mb-3">
-          <h3
-            className="font-[var(--font-header)] text-[var(--ink-primary)] tracking-tight"
-            style={{ fontSize: "16px", fontWeight: 800 }}
-          >
-            Trending Reels
-          </h3>
-          <Link
-            to="/videos"
-            className="font-[var(--font-body)] text-[var(--trust-blue)]"
-            style={{ fontSize: "11px", fontWeight: 700 }}
-          >
-            View all
-          </Link>
-        </div>
-
-        <div
-          className="flex gap-3 overflow-x-auto -mx-1 px-1"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {REELS.map((reel, i) => (
-            <motion.div
-              key={reel.id}
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 + 0.08 * i }}
-              className="relative flex-none rounded-2xl overflow-hidden shadow-sm group cursor-pointer"
-              style={{ width: 140, aspectRatio: "9/16" }}
-            >
-              <ImageWithFallback
-                src={reel.img}
-                alt={reel.title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
-              {/* Play overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                  <Play size={16} fill="white" className="text-white ml-0.5" />
-                </div>
+      <div className="px-5 mt-10 relative z-10 space-y-12">
+        
+        {/* SECTION 01: DISCOVERY REELS */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} className="space-y-6">
+           <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                 <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
+                 <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40 text-nowrap">Discovery Reels</h3>
               </div>
+              <button className="text-[9px] font-black text-[#FF8C00] uppercase tracking-widest border-b border-[#FF8C00]/20 pb-0.5">Explore All</button>
+           </div>
 
-              {/* Bottom meta */}
-              <div className="absolute bottom-3 left-3 right-3">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <Eye size={9} className="text-white/80" strokeWidth={2} />
-                  <span
-                    className="font-[var(--font-body)] text-white/90"
-                    style={{ fontSize: "9px", fontWeight: 700 }}
-                  >
-                    {reel.views}
-                  </span>
+           <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 no-scrollbar scrollbar-hide">
+              {REELS.map((reel) => (
+                <div key={reel.id} className="w-[140px] aspect-[9/16] border-2 border-[#003366] relative overflow-hidden flex-shrink-0 group shadow-[4px_4px_0px_#FF8C00]">
+                   <img src={reel.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/90 via-transparent to-transparent opacity-80" />
+                   
+                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-10 h-10 bg-white shadow-[3px_3px_0px_#FF8C00] flex items-center justify-center text-[#003366]">
+                         <Play size={16} fill="#003366" />
+                      </div>
+                   </div>
+
+                   <div className="absolute bottom-3 left-3 right-3 space-y-1">
+                      <div className="flex items-center gap-1.5 text-white/60">
+                         <Eye size={10} />
+                         <span className="text-[8px] font-black uppercase tracking-widest">{reel.views} Views</span>
+                      </div>
+                      <p className="text-white text-[10px] font-black leading-tight uppercase tracking-tight line-clamp-2">{reel.title}</p>
+                   </div>
                 </div>
-                <p
-                  className="font-[var(--font-body)] text-white leading-snug line-clamp-2"
-                  style={{ fontSize: "10px", fontWeight: 600 }}
+              ))}
+           </div>
+        </motion.section>
+
+        {/* SECTION 02: SKILL HUB */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="space-y-6">
+           <div className="flex items-center gap-3">
+              <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
+              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Skill Hub</h3>
+              <div className="flex-1 h-[2px] bg-[#003366]/5" />
+           </div>
+
+           {/* Category Picker (Integrated) */}
+           <div className="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 no-scrollbar scrollbar-hide">
+              {CATEGORIES.map((cat, i) => (
+                <button 
+                  key={cat} 
+                  onClick={() => setActiveCategory(i)}
+                  className={`px-4 py-2 border-2 transition-all text-nowrap text-[9px] font-black uppercase tracking-widest ${
+                    activeCategory === i 
+                    ? "bg-[#003366] border-[#003366] text-white shadow-[3px_3px_0px_#FF8C00]" 
+                    : "bg-white border-[#003366]/10 text-[#003366]/40 hover:border-[#003366]/20"
+                  }`}
                 >
-                  {reel.title}
-                </p>
+                  {cat}
+                </button>
+              ))}
+           </div>
+
+           <div className="space-y-6">
+              {COURSES.map((course) => (
+                <Link key={course.id} to={`/learning/${course.id}`} className="block group">
+                   <div className="bg-white border-2 border-[#003366] flex overflow-hidden shadow-[6px_6px_0px_#003366] group-hover:shadow-[6px_6px_0px_#FF8C00] transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+                      <div className="w-24 h-full bg-[#003366]/5 border-r-2 border-[#003366] flex-shrink-0 overflow-hidden">
+                         <img src={course.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                      </div>
+                      <div className="p-4 flex flex-col justify-between flex-1">
+                         <div>
+                            <div className="flex items-center justify-between gap-2 mb-2">
+                               <span className="text-[#FF8C00] text-[8px] font-black uppercase tracking-[0.2em]">{course.tag}</span>
+                               <div className="flex items-center gap-1">
+                                  <Star size={10} fill="#FFC300" className="text-[#FFC300]" />
+                                  <span className="text-[10px] font-black text-[#003366]">{course.rating}</span>
+                               </div>
+                            </div>
+                            <h4 className="text-[#003366] text-xs font-black uppercase tracking-tight leading-tight group-hover:text-[#FF8C00] transition-colors">{course.title}</h4>
+                            <p className="text-[9px] font-bold text-[#003366]/30 uppercase tracking-widest mt-1">Ins. {course.instructor}</p>
+                         </div>
+                         <div className="flex items-center justify-between mt-4">
+                            <div className="flex items-center gap-1.5 text-[#003366]/40">
+                               <Clock size={12} />
+                               <span className="text-[9px] font-black uppercase tracking-widest">{course.duration}</span>
+                            </div>
+                            <span className="text-[#FF8C00] text-[10px] font-black uppercase tracking-widest">Enroll →</span>
+                         </div>
+                      </div>
+                   </div>
+                </Link>
+              ))}
+           </div>
+        </motion.section>
+
+        {/* SECTION 03: LIVE CLASSES */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.7)} className="pb-12">
+           <div className="bg-[#003366] p-6 shadow-[8px_8px_0px_#FF8C00] relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-xl" />
+              <div className="flex items-center justify-between mb-4">
+                 <div className="flex items-center gap-3">
+                    <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">03.</span>
+                    <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-white/40 text-nowrap">Live Events</h3>
+                 </div>
+                 <Radio size={18} className="text-[#FFC300] animate-pulse" />
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
+              <h4 className="text-white text-xl font-black uppercase tracking-tight mb-2">Join Mining Masterclass</h4>
+              <p className="text-white/60 text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed mb-6">
+                 Real-time mentorship with industry-leading experts in the copper exploration ecosystem.
+              </p>
+              <button className="w-full bg-white text-[#003366] py-3 text-[11px] font-black uppercase tracking-[0.3em] shadow-[4px_4px_0px_#FF8C00] active:shadow-none transition-all">
+                 Join Live Cast
+              </button>
+           </div>
+        </motion.section>
 
-      {/* ── Skill Hub ── */}
-      <motion.section
-        custom={3}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-      >
-        <div className="flex items-end justify-between mb-3">
-          <h3
-            className="font-[var(--font-header)] text-[var(--ink-primary)] tracking-tight"
-            style={{ fontSize: "16px", fontWeight: 800 }}
-          >
-            Skill Hub
-          </h3>
-          <ChevronRight size={18} className="text-[var(--ink-muted)]" strokeWidth={2} />
-        </div>
-
-        <div className="flex flex-col gap-3">
-          {COURSES.map((course, i) => (
-            <motion.div
-              key={course.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.3 + 0.1 * i }}
-            >
-              <Link to={`/learning/${course.id}`} className="block">
-                <div className="bg-white rounded-xl overflow-hidden flex shadow-sm border border-black/[0.04]">
-                  {/* Thumbnail */}
-                  <div className="w-28 flex-none relative overflow-hidden">
-                    <ImageWithFallback
-                      src={course.img}
-                      alt={course.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-[var(--trust-blue)]/10" />
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-3 flex flex-col justify-between flex-grow min-w-0">
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <span
-                          className={`px-1.5 py-0.5 rounded-full font-[var(--font-body)] ${course.tagBg} ${course.tagColor}`}
-                          style={{ fontSize: "8px", fontWeight: 700 }}
-                        >
-                          {course.tag}
-                        </span>
-                        <div className="flex items-center gap-0.5 shrink-0">
-                          <Star
-                            size={10}
-                            fill="var(--action-gold)"
-                            className="text-[var(--action-gold)]"
-                            strokeWidth={0}
-                          />
-                          <span
-                            className="font-[var(--font-body)] text-[var(--ink-primary)]"
-                            style={{ fontSize: "10px", fontWeight: 700 }}
-                          >
-                            {course.rating}
-                          </span>
-                        </div>
-                      </div>
-
-                      <h4
-                        className="font-[var(--font-body)] text-[var(--ink-primary)] leading-snug line-clamp-2"
-                        style={{ fontSize: "12px", fontWeight: 700 }}
-                      >
-                        {course.title}
-                      </h4>
-                      <p
-                        className="font-[var(--font-body)] text-[var(--ink-muted)] mt-0.5"
-                        style={{ fontSize: "9px" }}
-                      >
-                        Instructor: {course.instructor}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-2">
-                      <div className="flex items-center gap-1 text-[var(--ink-muted)]">
-                        <Clock size={10} strokeWidth={2} />
-                        <span
-                          className="font-[var(--font-body)]"
-                          style={{ fontSize: "9px", fontWeight: 500 }}
-                        >
-                          {course.duration}
-                        </span>
-                      </div>
-                      <span
-                        className="font-[var(--font-body)] text-[var(--trust-blue)]"
-                        style={{ fontSize: "11px", fontWeight: 700 }}
-                      >
-                        {course.cta} →
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* ── Live Classes CTA ── */}
-      <motion.div
-        className="relative mt-5 mb-4 overflow-hidden rounded-2xl p-5 shadow-md"
-        style={{ background: "linear-gradient(135deg, #0077B6 0%, #005F8C 100%)" }}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.2 }}
-      >
-        <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[var(--action-gold)] flex items-center justify-center">
-          <Radio size={18} className="text-white" strokeWidth={2.5} />
-        </div>
-        <div className="relative z-10">
-          <h3 className="text-lg font-[var(--font-header)] font-bold text-white mb-1.5">
-            Live Classes
-          </h3>
-          <p className="text-xs font-[var(--font-body)] text-white/80">
-            Join our live classes to learn from experts in real-time.
-          </p>
-          <Link to="/learning" className="mt-2 block">
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              className="w-full py-2.5 bg-[var(--action-gold)] text-[var(--ink-primary)] rounded-xl shadow-md font-[var(--font-header)]"
-              style={{ fontSize: "12px", fontWeight: 700 }}
-            >
-              Join Live Classes
-              <ArrowRight size={14} strokeWidth={2.5} />
-            </motion.button>
-          </Link>
-        </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
