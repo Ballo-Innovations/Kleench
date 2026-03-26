@@ -20,6 +20,7 @@ export function Home() {
   const [showPinModal, setShowPinModal] = useState(false);
   const [pinError, setPinError] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (loading) return <PageSkeletons.Home />;
 
@@ -71,7 +72,7 @@ export function Home() {
       {/* Home Content Flowing over Global Dashed Grid */}
 
       {/* ── Unified Dashboard Header ── */}
-      <div className="relative pt-4 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[180px]"
+      <div className="relative pt-11 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[200px]"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* Premium grid texture with depth matching Wallet */}
@@ -117,10 +118,19 @@ export function Home() {
                       autoFocus 
                       type="text" 
                       placeholder="Search..." 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
                       className="bg-transparent text-white placeholder-white/70 text-[13px] outline-none flex-1 min-w-0" 
                     />
                     <button 
-                      onClick={(e) => { e.stopPropagation(); setIsSearchOpen(false); }}
+                      onClick={(e) => { 
+                        e.stopPropagation(); 
+                        if (searchQuery) {
+                          setSearchQuery("");
+                        } else {
+                          setIsSearchOpen(false);
+                        }
+                      }}
                       className="ml-1 p-1 hover:text-white/80 transition-colors flex-shrink-0"
                     >
                       <X size={14} />
@@ -226,7 +236,10 @@ export function Home() {
               { id: 2, title: "Masterclass", label: "Education", icon: GraduationCap, to: "/learning", tag: "Learn" },
               { id: 3, title: "Data Survey", label: "Feedback", icon: ClipboardList, to: "/surveys", tag: "Earn" },
               { id: 4, title: "Invite Friends", label: "Community", icon: Users, to: "/socials", tag: "Grow" },
-            ].map((item, idx) => (
+            ].filter(item => 
+              item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+              item.label.toLowerCase().includes(searchQuery.toLowerCase())
+            ).map((item, idx) => (
               <Link key={item.id} to={item.to}>
                 <motion.div 
                   whileTap={{ backgroundColor: "#003366" }}

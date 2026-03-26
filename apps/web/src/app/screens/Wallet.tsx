@@ -54,6 +54,7 @@ type TransTab = "all" | "earnings" | "payments" | "transfers";
 export function Wallet() {
   const [showBalance, setShowBalance] = useState(true);
   const [activeTransTab, setActiveTransTab] = useState<TransTab>("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [showFinancialKyc, setShowFinancialKyc] = useState(false);
   const [mmStep, setMMStep] = useState<"provider" | "details">("provider");
   const [mmProvider, setMMProvider] = useState<typeof MM_PROVIDERS[0] | null>(null);
@@ -96,7 +97,13 @@ export function Wallet() {
     <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[#003366]">
       
       {/* ── Standardized Orange Header ── */}
-      <PageHeader title="Wallet" subtitle="Manage your earnings & escrow" />
+      {/* ── Standardized Orange Header ── */}
+      <PageHeader 
+        title="Wallet" 
+        subtitle="Manage your earnings & escrow" 
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
 
       <div className="px-5 -mt-10 relative z-10 space-y-12">
         
@@ -211,12 +218,21 @@ export function Wallet() {
           {/* Transaction Grid */}
           <div className="border-x-4 border-[#003366] divide-y-2 divide-[#003366]/5 bg-white shadow-[8px_8px_0px_#003366]">
             <AnimatePresence mode="popLayout">
-              {TRANSACTION_DATA[activeTransTab].length === 0 ? (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-20 flex flex-col items-center border-b-2 border-[#003366]">
-                   <p className="font-black text-[9px] uppercase tracking-[0.3em] opacity-20">No Records Found</p>
-                </motion.div>
-              ) : (
-                TRANSACTION_DATA[activeTransTab].map((tx, idx) => {
+              {(() => {
+                const filtered = TRANSACTION_DATA[activeTransTab].filter(tx => 
+                  tx.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                  tx.type.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+                
+                if (filtered.length === 0) {
+                  return (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-20 flex flex-col items-center border-b-2 border-[#003366]">
+                       <p className="font-black text-[9px] uppercase tracking-[0.3em] opacity-20">No Records Found</p>
+                    </motion.div>
+                  );
+                }
+                
+                return filtered.map((tx, idx) => {
                   const isPositive = tx.amount > 0;
                   return (
                     <motion.div
@@ -249,8 +265,8 @@ export function Wallet() {
                       </div>
                     </motion.div>
                   );
-                })
-              )}
+                });
+              })()}
             </AnimatePresence>
           </div>
         </section>

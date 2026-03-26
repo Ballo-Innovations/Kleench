@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, ChevronLeft, MoreHorizontal, Plus, Send } from "lucide-react";
-import { useNavigate } from "react-router";
+import { ChevronLeft, Plus, Send } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 
 type MsgTab = "all" | "social" | "market";
@@ -28,7 +27,6 @@ const CONVERSATIONS: Conversation[] = [
 ];
 
 export default function Messages() {
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<MsgTab>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedConv, setSelectedConv] = useState<Conversation | null>(null);
@@ -73,31 +71,22 @@ export default function Messages() {
               title="Messages" 
               subtitle="Connect with your circle and market"
               showBack
+              searchValue={searchQuery}
+              onSearchChange={setSearchQuery}
             />
 
-            <div className="px-5 -mt-8 relative z-10 space-y-6">
-              {/* ── Theme-Synced Search ── */}
-              <div className="relative glass-strong border border-black/[0.05] rounded-2xl shadow-sm">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input 
-                  type="text" 
-                  placeholder="Search interactions..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-11 pr-4 py-4 bg-transparent outline-none text-[#003366] font-medium placeholder:text-gray-400"
-                />
-              </div>
+            <div className="px-5 -mt-4 relative z-10 space-y-10">
 
-              {/* ── Theme-Synced Tabs ── */}
-              <div className="flex gap-2 p-1 bg-gray-100/50 rounded-xl border border-black/[0.02]">
+              {/* ── Theme-Synced Tabs (Swiss Style) ── */}
+              <div className="flex border-4 border-[#003366] bg-[#003366] shadow-[4px_4px_0px_#FF8C00]">
                 {(["all", "social", "market"] as MsgTab[]).map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`flex-1 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all ${
+                    className={`flex-1 py-3 text-[9px] font-black uppercase tracking-[0.2em] transition-all ${
                       activeTab === tab 
-                        ? "bg-[#FF8C00] text-white shadow-md shadow-[#FF8C00]/20" 
-                        : "text-gray-400 hover:text-gray-600"
+                        ? "bg-[#FF8C00] text-white" 
+                        : "bg-white text-[#003366] hover:bg-gray-50"
                     }`}
                   >
                     {tab === "all" ? "All" : tab === "social" ? "Circle" : "Market"}
@@ -105,35 +94,44 @@ export default function Messages() {
                 ))}
               </div>
 
-              {/* ── Conversation List ── */}
-              <div className="space-y-3 pt-2">
+              {/* ── Conversation List (Industrial Ledger) ── */}
+              <div className="space-y-4 pt-2">
                 {filtered.map((conv, idx) => (
                   <motion.div
                     key={conv.id}
                     initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: idx * 0.04 }}
                     onClick={() => setSelectedConv(conv)}
-                    className="flex gap-3 p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-gray-100 shadow-sm active:scale-[0.98] transition-all cursor-pointer"
+                    className="flex gap-4 p-5 bg-white border-2 border-[#003366] shadow-[6px_6px_0px_#003366] hover:shadow-[6px_6px_0px_#FF8C00] group active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer relative overflow-hidden"
                   >
-                    <div className="relative shink-0">
-                      <img src={conv.avatar} alt="" className="w-12 h-12 rounded-xl object-cover" />
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    
+                    <div className="relative shrink-0">
+                      <div className="w-14 h-14 border-2 border-[#003366] overflow-hidden">
+                        <img src={conv.avatar} alt="" className="w-full h-full object-cover" />
+                      </div>
                       {conv.online && (
-                        <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#00C853] border-2 border-white shadow-sm" />
+                        <div className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#00C853] border-2 border-[#003366] shadow-sm z-10" />
                       )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start">
-                        <h3 className="font-black text-[#003366] text-sm truncate">{conv.name}</h3>
-                        <span className="text-[10px] text-gray-400 font-bold ml-2">{conv.time}</span>
+
+                    <div className="flex-1 min-w-0 flex flex-col justify-center">
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="font-black text-[#003366] text-xs uppercase tracking-tight group-hover:text-[#FF8C00] transition-colors">{conv.name}</h3>
+                        <span className="text-[9px] text-[#003366]/30 font-black uppercase tracking-widest">{conv.time}</span>
                       </div>
-                      <p className={`text-[12px] truncate ${conv.unread > 0 ? "text-[#003366] font-bold" : "text-gray-500 font-medium"}`}>
+                      <p className={`text-[11px] uppercase tracking-tighter truncate ${conv.unread > 0 ? "text-[#003366] font-black" : "text-[#003366]/50 font-bold"}`}>
                         {conv.lastMsg}
                       </p>
                     </div>
+
                     {conv.unread > 0 && (
-                      <div className="w-5 h-5 rounded-full bg-[#FF8C00] text-white text-[9px] font-black flex items-center justify-center shrink-0">
-                        {conv.unread}
+                      <div className="flex items-center">
+                         <div className="w-6 h-6 border-2 border-[#003366] bg-[#FF8C00] text-white text-[9px] font-black flex items-center justify-center shrink-0 shadow-[2px_2px_0px_#003366]">
+                           {conv.unread}
+                         </div>
                       </div>
                     )}
                   </motion.div>

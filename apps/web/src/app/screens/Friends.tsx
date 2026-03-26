@@ -45,8 +45,12 @@ const pendingRequests = [
 
 export function Friends() {
   const loading = usePageLoading(650);
+  const [searchQuery, setSearchQuery] = useState("");
   const [requests, setRequests] = useState(pendingRequests);
   const [acceptedIds, setAcceptedIds] = useState<Set<number>>(new Set());
+  
+  const filteredRequests = requests.filter(r => r.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredFriends = friendsList.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const navigate = useNavigate();
 
   if (loading) return <PageSkeletons.Generic />;
@@ -73,13 +77,15 @@ export function Friends() {
         title="Social Circle" 
         subtitle="Manage your ecosystem connections."
         height={180}
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
       />
 
       <div className="px-5 mt-4 relative z-20 space-y-12">
 
         {/* ── SECTION 01: PENDING REQUESTS ── */}
         <AnimatePresence>
-          {requests.length > 0 && (
+          {filteredRequests.length > 0 && (
             <motion.section 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="space-y-6"
@@ -89,11 +95,11 @@ export function Friends() {
                      <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
                      <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Incoming Link</h3>
                   </div>
-                  <span className="bg-[#FF8C00] text-white text-[8px] font-black px-2 py-0.5 uppercase tracking-widest">{requests.length} REQUEST</span>
+                  <span className="bg-[#FF8C00] text-white text-[8px] font-black px-2 py-0.5 uppercase tracking-widest">{filteredRequests.length} REQUEST</span>
                </div>
 
                <div className="space-y-4">
-                  {requests.map((req) => (
+                  {filteredRequests.map((req) => (
                     <motion.div 
                       key={req.id} 
                       className="bg-white border-2 border-[#003366] p-4 flex items-center justify-between shadow-[6px_6px_0px_#FF8C00] relative overflow-hidden group"
@@ -135,7 +141,7 @@ export function Friends() {
            </div>
 
            <div className="space-y-2 border-2 border-[#003366] bg-[#003366]/5 divide-y-2 divide-[#003366]/10 shadow-[6px_6px_0px_#003366]">
-              {friendsList.map((friend) => (
+              {filteredFriends.map((friend) => (
                 <div key={friend.id} className="bg-white p-4 flex items-center justify-between group hover:bg-[#003366]/[0.02] transition-all">
                    <div className="flex items-center gap-4">
                       <div className="relative">

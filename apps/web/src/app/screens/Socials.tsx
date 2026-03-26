@@ -53,7 +53,13 @@ const INITIAL_POSTS = [
 ];
 
 export function Socials() {
+  const [searchQuery, setSearchQuery] = useState("");
   const [posts, setPosts] = useState(INITIAL_POSTS);
+  
+  const filteredPostsView = posts.filter(p => 
+    p.content.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    p.user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   const [likedPosts, setLikedPosts] = useState<Set<number>>(new Set());
   const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
   const [commentText, setCommentText] = useState("");
@@ -124,7 +130,13 @@ export function Socials() {
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
       
       {/* ── Standardized Header ── */}
-      <PageHeader title="Socials" subtitle="Network & Discover Rewards" showBack />
+      <PageHeader 
+        title="Socials" 
+        subtitle="Network & Discover Rewards" 
+        showBack 
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
 
       <div className="px-5 mt-6 relative z-10 space-y-10">
         
@@ -188,7 +200,7 @@ export function Socials() {
            </div>
 
            <div className="flex flex-col gap-10">
-              {posts.map((post) => (
+              {filteredPostsView.map((post) => (
                 <motion.article 
                   key={post.id} 
                   initial={{ opacity: 0, y: 30 }} 

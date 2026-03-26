@@ -1,6 +1,7 @@
-import { Settings, Bell, Search, ChevronLeft, MessageCircle } from "lucide-react";
+import { Settings, Bell, Search, ChevronLeft, MessageCircle, X } from "lucide-react";
 import { Link, useNavigate } from "react-router";
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import kleenchLogo from "@/assets/kleench_logo.png";
 
 interface PageHeaderProps {
@@ -10,14 +11,26 @@ interface PageHeaderProps {
   showBack?: boolean;
   useLogo?: boolean;
   height?: string | number;
+  searchValue?: string;
+  onSearchChange?: (val: string) => void;
 }
 
-export function PageHeader({ title, subtitle, children, showBack = false, useLogo = false, height = 180 }: PageHeaderProps) {
+export function PageHeader({ 
+  title, 
+  subtitle, 
+  children, 
+  showBack = false, 
+  useLogo = false, 
+  height = 180,
+  searchValue,
+  onSearchChange
+}: PageHeaderProps) {
   const navigate = useNavigate();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <div 
-      className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between"
+      className="relative pt-10 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between"
       style={{ 
         background: "linear-gradient(135deg, #FF8C00, #e06900)", 
         boxShadow: "0 10px 30px rgba(255,140,0,0.12)",
@@ -63,9 +76,49 @@ export function PageHeader({ title, subtitle, children, showBack = false, useLog
         
         {/* RIGHT HUD: Search, Chat, Settings, Notifications */}
         <div className="flex items-center gap-3.5 flex-shrink-0">
-          <Link to="/discover" className="text-white hover:text-white/80 transition-all active:scale-95">
-             <Search size={22} />
-          </Link>
+          <div className="flex items-center">
+            <motion.div 
+              layout
+              initial={false}
+              animate={{ width: isSearchOpen ? "160px" : "auto" }}
+              className={`flex items-center text-white transition-all ${isSearchOpen ? 'bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl px-2 h-9' : 'cursor-pointer hover:text-white/80 active:scale-95 px-1'}`}
+              onClick={() => !isSearchOpen && setIsSearchOpen(true)}
+            >
+              <Search size={22} className="flex-shrink-0" />
+              <AnimatePresence>
+                {isSearchOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0 }} 
+                    animate={{ opacity: 1 }} 
+                    exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                    className="flex items-center flex-1 ml-2 min-w-0"
+                  >
+                    <input 
+                      autoFocus 
+                      type="text" 
+                      placeholder="Search..." 
+                      value={searchValue || ""}
+                      onChange={(e) => onSearchChange?.(e.target.value)}
+                      className="bg-transparent text-white placeholder-white/70 text-[12px] font-bold outline-none flex-1 min-w-0" 
+                    />
+                    <button 
+                      onClick={(e) => { 
+                        e.stopPropagation(); 
+                        if (searchValue) {
+                          onSearchChange?.("");
+                        } else {
+                          setIsSearchOpen(false);
+                        }
+                      }}
+                      className="ml-1 p-0.5 hover:text-white/80 transition-colors flex-shrink-0"
+                    >
+                      <X size={14} />
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
           <Link to="/messages" className="text-white hover:text-white/80 transition-all active:scale-95">
              <MessageCircle size={22} />
           </Link>

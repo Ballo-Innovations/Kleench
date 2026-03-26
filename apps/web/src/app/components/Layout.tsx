@@ -49,6 +49,7 @@ export function Layout() {
     location.pathname === "/notifications" || 
     location.pathname === "/discover" || 
     location.pathname === "/offers" || 
+    location.pathname === "/messages" || 
     location.pathname.startsWith("/settings") ||
     isNotFound;
 

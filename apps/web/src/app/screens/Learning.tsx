@@ -59,6 +59,14 @@ const grace = (delay = 0) => ({
 
 export function Learning() {
   const [activeCategory, setActiveCategory] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredReels = REELS.filter(r => r.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredCourses = COURSES.filter(c => {
+     const matchCategory = activeCategory === 0 || c.tag.toLowerCase() === CATEGORIES[activeCategory].toLowerCase();
+     const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase()) || c.instructor.toLowerCase().includes(searchQuery.toLowerCase());
+     return matchCategory && matchSearch;
+  });
 
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
@@ -67,6 +75,8 @@ export function Learning() {
         title="Academy" 
         subtitle="Learn and Earn Assets Today."
         height={180}
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
       />
 
       {/* Hero Section: Progress Tracking Ledger */}
@@ -128,7 +138,7 @@ export function Learning() {
            </div>
 
            <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 no-scrollbar scrollbar-hide">
-              {REELS.map((reel) => (
+              {filteredReels.map((reel) => (
                 <div key={reel.id} className="w-[140px] aspect-[9/16] border-2 border-[#003366] relative overflow-hidden flex-shrink-0 group shadow-[4px_4px_0px_#FF8C00]">
                    <img src={reel.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                    <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/90 via-transparent to-transparent opacity-80" />
@@ -177,7 +187,7 @@ export function Learning() {
            </div>
 
            <div className="space-y-6">
-              {COURSES.map((course) => (
+              {filteredCourses.map((course) => (
                 <Link key={course.id} to={`/learning/${course.id}`} className="block group">
                    <div className="bg-white border-2 border-[#003366] flex overflow-hidden shadow-[6px_6px_0px_#003366] group-hover:shadow-[6px_6px_0px_#FF8C00] transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
                       <div className="w-24 h-full bg-[#003366]/5 border-r-2 border-[#003366] flex-shrink-0 overflow-hidden">

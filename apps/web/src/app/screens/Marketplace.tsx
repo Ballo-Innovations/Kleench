@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
-import { Search, Plus, ShieldCheck, Grid3x3, Sparkles, TrendingUp, Filter, Tag, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { Search, Plus, Grid3x3, Sparkles, TrendingUp, Filter, Tag, ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import adBanner from "@/assets/ads/Your MarketPlace Anytime.png";
 
@@ -117,7 +117,13 @@ export function Marketplace() {
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
       
       {/* ── Standardized Theme Header ── */}
-      <PageHeader title="Marketplace" subtitle="Verified Global Trades" height={280}>
+      <PageHeader 
+        title="Marketplace" 
+        subtitle="Verified Global Trades" 
+        height={280}
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
+      >
          <div className="relative z-10 mb-8 mt-4 flex flex-col gap-4">
             <div className="relative group">
                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-white transition-colors" size={18} />

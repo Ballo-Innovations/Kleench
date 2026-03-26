@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Search, Filter, Star, ShieldCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
-import kleenchLogo from "@/assets/kleench_logo.png";
+import { PageHeader } from "../components/PageHeader";
 import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type OfferType = "all" | "solar" | "network" | "survey" | "course";
@@ -58,38 +58,20 @@ export function Offers() {
         </svg>
       </div>
 
-      {/* ── Standardized Orange Header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
-        
-        {/* grid texture */}
-        <div className="absolute inset-0 opacity-[0.1]">
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="offers-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#offers-grid)"/>
-          </svg>
+      <PageHeader 
+        title="Opportunities" 
+        subtitle={`${OFFERS.length} active earning opportunities today.`}
+        height={180}
+        searchValue={search}
+        onSearchChange={setSearch}
+      >
+        <div className="absolute top-4 right-20 z-50">
+           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md">
+             <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+             <span className="text-[10px] font-bold uppercase tracking-wider text-white">Live</span>
+           </div>
         </div>
-
-        <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={kleenchLogo} alt="KLEENCH" className="h-8 w-auto object-contain brightness-0 invert" />
-            <span className="text-white font-black text-xl tracking-tight opacity-90" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Offers</span>
-          </Link>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md">
-            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-white">Live</span>
-          </div>
-        </div>
-
-        <div className="relative z-10 space-y-1 mb-8">
-          <h1 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Opportunities</h1>
-          <p className="text-white/80 text-[13px] font-medium">{OFFERS.length} active earning opportunities today.</p>
-        </div>
-      </div>
+      </PageHeader>
 
       {/* Banner Ad */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}

@@ -43,10 +43,14 @@ const filterMap: Record<NotifType, string | null> = {
 export function Notifications() {
   const [activeTab, setActiveTab] = useState<NotifType>("all");
   const [notifications, setNotifications] = useState(NOTIFS);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = notifications.filter((n) => {
     const f = filterMap[activeTab];
-    return f === null || n.type === f;
+    const matchesTab = f === null || n.type === f;
+    const matchesSearch = n.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          n.body.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesTab && matchesSearch;
   });
   const unreadCount = notifications.filter((n) => !n.read).length;
   const markAllRead = () => setNotifications((p) => p.map((n) => ({ ...n, read: true })));
@@ -75,6 +79,8 @@ export function Notifications() {
         title="Notifications"
         subtitle={unreadCount > 0 ? `${unreadCount} new updates` : "All caught up"}
         showBack
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
       >
         <div className="relative z-10 flex justify-end mb-8">
           {unreadCount > 0 && (
