@@ -1,25 +1,26 @@
 import {
-  Search,
-  X,
+    X,
   Check,
   Video,
   MessageCircle,
   MoreHorizontal,
   UserPlus,
+  Zap
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useNavigate } from "react-router";
+import { PageHeader } from "../components/PageHeader";
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
-const SARAH_IMG = "https://images.unsplash.com/photo-1594318223885-20dc4b889f9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHNtaWxpbmclMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzM4OTgwMjF8MA&ixlib=rb-4.1.0&q=80&w=400";
-const MARCUS_IMG = "https://images.unsplash.com/photo-1770894807442-108cc33c0a7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMHBvcnRyYWl0JTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc3Mzg3NTg3OHww&ixlib=rb-4.1.0&q=80&w=400";
-const ELENA_IMG = "https://images.unsplash.com/photo-1675894666694-133d7406b636?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGdsYXNzZXMlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzM5MDkyNzl8MA&ixlib=rb-4.1.0&q=80&w=400";
-const DAVID_IMG = "https://images.unsplash.com/photo-1701094385504-12928745d1c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW4lMjBjbG9zZSUyMHVwJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzczOTA5Mjc5fDA&ixlib=rb-4.1.0&q=80&w=400";
-const JASMINE_IMG = "https://images.unsplash.com/photo-1606752445153-beb5c9d03ae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGN1cmx5JTIwaGFpciUyMHBvcnRyYWl0fGVufDF8fHx8MTc3Mzg0ODk3MXww&ixlib=rb-4.1.0&q=80&w=400";
-const COMM1_IMG = "https://images.unsplash.com/photo-1588443418198-b03405cc586f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXZlcnNlJTIwZ3JvdXAlMjBwZW9wbGUlMjBoZWFkc2hvdHN8ZW58MXx8fHwxNzczOTA5MjgwfDA&ixlib=rb-4.1.0&q=80&w=400";
-const COMM2_IMG = "https://images.unsplash.com/photo-1722270608841-35d7372a2e85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGF2YXRhciUyMHByb2ZpbGUlMjBwaG90b3xlbnwxfHx8fDE3NzM4NzA0NzB8MA&ixlib=rb-4.1.0&q=80&w=400";
-const COMM3_IMG = "https://images.unsplash.com/photo-1769961982389-bb243681421a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGFzaWFuJTIwbWFuJTIwaGVhZHNob3R8ZW58MXx8fHwxNzczOTA5MjgzfDA&ixlib=rb-4.1.0&q=80&w=400";
+const SARAH_IMG = "https://images.unsplash.com/photo-1594318223885-20dc4b889f9e?auto=format&fit=crop&w=400&q=80";
+const MARCUS_IMG = "https://images.unsplash.com/photo-1770894807442-108cc33c0a7a?auto=format&fit=crop&w=400&q=80";
+const ELENA_IMG = "https://images.unsplash.com/photo-1675894666694-133d7406b636?auto=format&fit=crop&w=400&q=80";
+const DAVID_IMG = "https://images.unsplash.com/photo-1701094385504-12928745d1c0?auto=format&fit=crop&w=400&q=80";
+const JASMINE_IMG = "https://images.unsplash.com/photo-1606752445153-beb5c9d03ae8?auto=format&fit=crop&w=400&q=80";
+const COMM1_IMG = "https://images.unsplash.com/photo-1588443418198-b03405cc586f?auto=format&fit=crop&w=400&q=80";
+const COMM2_IMG = "https://images.unsplash.com/photo-1722270608841-35d7372a2e85?auto=format&fit=crop&w=400&q=80";
+const COMM3_IMG = "https://images.unsplash.com/photo-1769961982389-bb243681421a?auto=format&fit=crop&w=400&q=80";
 
 type FriendStatus = "live" | "online" | "away" | "offline";
 
@@ -42,70 +43,9 @@ const pendingRequests = [
   { id: 1, name: "Sarah Jenkins", mutual: "Alex M.", img: SARAH_IMG },
 ];
 
-const fadeUp = {
-  initial: { opacity: 0, y: 18 },
-  animate: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-  }),
-};
-
-function StatusDot({ status }: { status: FriendStatus }) {
-  if (status === "live") {
-    return (
-      <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-[var(--action-gold)] border-2 border-[var(--clean-slate)] animate-pulse" />
-    );
-  }
-  if (status === "online") {
-    return (
-      <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--clean-slate)]" />
-    );
-  }
-  return null;
-}
-
-function FriendAction({ status, friendId }: { status: FriendStatus; friendId: number }) {
-  const navigate = useNavigate();
-  if (status === "live") {
-    return (
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={() => navigate(`/profile/friend-${friendId}`)}
-        className="w-9 h-9 rounded-full bg-[var(--trust-blue)]/10 flex items-center justify-center text-[var(--trust-blue)]"
-      >
-        <Video size={16} strokeWidth={2} />
-      </motion.button>
-    );
-  }
-  if (status === "online") {
-    return (
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={() => navigate(`/profile/friend-${friendId}`)}
-        className="w-9 h-9 rounded-full bg-[var(--trust-blue)]/10 flex items-center justify-center text-[var(--trust-blue)]"
-      >
-        <MessageCircle size={16} strokeWidth={2} />
-      </motion.button>
-    );
-  }
-  return (
-    <motion.button
-      whileTap={{ scale: 0.9 }}
-      onClick={() => navigate(`/profile/friend-${friendId}`)}
-      className="w-9 h-9 rounded-full bg-[var(--surface-raised)] flex items-center justify-center text-[var(--ink-muted)]"
-    >
-      <MoreHorizontal size={16} strokeWidth={2} />
-    </motion.button>
-  );
-}
-
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
-
 export function Friends() {
   const loading = usePageLoading(650);
   const [requests, setRequests] = useState(pendingRequests);
-  const [search, setSearch] = useState("");
   const [acceptedIds, setAcceptedIds] = useState<Set<number>>(new Set());
   const navigate = useNavigate();
 
@@ -119,253 +59,172 @@ export function Friends() {
     }, 800);
   };
 
-  const filtered = friendsList.filter((f) =>
-    f.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const grace = (delay = 0) => ({
+    duration: 0.62,
+    delay,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  });
 
   return (
-    <div className="w-full max-w-md mx-auto pb-4">
-      {/* Page Header */}
-      <motion.div
-        custom={0}
-        variants={fadeUp}
-        initial="initial"
-        animate="animate"
-        className="flex items-center justify-between pt-2 pb-4"
-      >
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-[var(--trust-blue)]/20 shadow-sm">
-            <ImageWithFallback
-              src={localStorage.getItem("userProfilePhoto") || COMM2_IMG}
-              alt="My profile"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <h1
-            className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-tight"
-            style={{ fontSize: "1.25rem" }}
-          >
-            Friends
-          </h1>
-        </div>
-        
-      </motion.div>
+    <div className="w-full relative min-h-[100dvh] bg-transparent font-sans pb-32">
+      
+      {/* ── Standardized Friends Header ── */}
+      <PageHeader 
+        title="Social Circle" 
+        subtitle="Manage your ecosystem connections."
+        height={180}
+      />
 
-      <div className="space-y-5">
-        {/* Search */}
-        <motion.div custom={1} variants={fadeUp} initial="initial" animate="animate">
-          <div className="flex items-center gap-3 bg-white rounded-xl px-3 py-2.5 border border-black/[0.04] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
-            <Search size={16} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
-            <input
-              type="text"
-              placeholder="Find new connections..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="bg-transparent border-none outline-none w-full text-sm font-[var(--font-body)] text-[var(--ink-primary)] placeholder:text-[var(--ink-muted)]"
-            />
-          </div>
-        </motion.div>
+      <div className="px-5 mt-4 relative z-20 space-y-12">
 
-        {/* Pending Requests */}
-        {requests.length > 0 && (
-          <motion.section custom={2} variants={fadeUp} initial="initial" animate="animate">
-            <div className="flex items-end justify-between mb-2.5">
-              <h2
-                className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-tight"
-                style={{ fontSize: "1.1rem" }}
-              >
-                Pending Requests
-              </h2>
-              <span className="text-[10px] font-[var(--font-body)] font-semibold text-[var(--trust-blue)] bg-[var(--trust-blue)]/10 px-2.5 py-0.5 rounded-full">
-                {requests.length} New
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              {requests.map((req) => (
-                <motion.div
-                  key={req.id}
-                  layout
-                  exit={{ opacity: 0, x: 40 }}
-                  className="flex items-center justify-between bg-white rounded-2xl px-4 py-3 shadow-sm border border-black/[0.04]"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="relative">
-                      <div className="w-12 h-12 rounded-full overflow-hidden">
-                        <ImageWithFallback
-                          src={req.img}
-                          alt={req.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      {/* Gold star badge */}
-                      <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-[var(--action-gold)] border-2 border-white flex items-center justify-center">
-                        <span className="text-[7px] font-bold text-[var(--ink-primary)]">★</span>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-xs font-[var(--font-body)] font-bold text-[var(--ink-primary)]">
-                        {req.name}
-                      </p>
-                      <p className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)] mt-0.5">
-                        Mutual friend: {req.mutual}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-1.5">
-                    <motion.button
-                      whileTap={{ scale: 0.88 }}
-                      onClick={() => dismiss(req.id)}
-                      className="w-9 h-9 rounded-full bg-[var(--surface-raised)] flex items-center justify-center text-[var(--ink-muted)] border border-black/[0.04]"
-                    >
-                      <X size={14} strokeWidth={2.5} />
-                    </motion.button>
-                    <motion.button
-                      whileTap={{ scale: 0.88 }}
-                      onClick={() => accept(req.id)}
-                      className={`w-9 h-9 rounded-full flex items-center justify-center text-white shadow-sm ${
-                        acceptedIds.has(req.id) ? "bg-emerald-500" : "bg-[var(--trust-blue)]"
-                      }`}
-                    >
-                      <Check size={14} strokeWidth={2.5} />
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-        )}
-
-        {/* Friends List */}
-        <motion.section custom={3} variants={fadeUp} initial="initial" animate="animate">
-          <h2
-            className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-tight mb-2.5"
-            style={{ fontSize: "1.1rem" }}
-          >
-            Your Friends
-          </h2>
-
-          <div className="space-y-1">
-            {filtered.map((friend, i) => (
-              <motion.div
-                key={friend.id}
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
-                className={`flex items-center justify-between px-3 py-3 rounded-2xl transition-colors cursor-pointer ${
-                  friend.status === "live"
-                    ? "bg-white shadow-sm border border-black/[0.04]"
-                    : "hover:bg-white/70"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="relative shrink-0">
-                    <div
-                      className={`w-12 h-12 rounded-full overflow-hidden ${
-                        friend.status === "away" || friend.status === "offline"
-                          ? "opacity-75"
-                          : ""
-                      }`}
-                    >
-                      <ImageWithFallback
-                        src={friend.img}
-                        alt={friend.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <StatusDot status={friend.status} />
-                  </div>
-                  <div>
-                    <p
-                      className={`text-xs font-[var(--font-body)] font-bold ${
-                        friend.status === "away" || friend.status === "offline"
-                          ? "text-[var(--ink-secondary)]"
-                          : "text-[var(--ink-primary)]"
-                      }`}
-                    >
-                      {friend.name}
-                    </p>
-                    {friend.status === "live" ? (
-                      <div className="flex items-center gap-1 mt-0.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--action-gold-dark)] animate-pulse" />
-                        <span className="text-[9px] font-[var(--font-body)] font-bold text-[var(--action-gold-dark)] uppercase tracking-wider">
-                          Live
-                        </span>
-                      </div>
-                    ) : (
-                      <p className="text-[9px] font-[var(--font-body)] text-[var(--ink-muted)] mt-0.5">
-                        {friend.sub}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <FriendAction status={friend.status} friendId={friend.id} />
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Discovery / Communities Card */}
-        <motion.section custom={4} variants={fadeUp} initial="initial" animate="animate">
-          <div className="relative rounded-2xl overflow-hidden p-6 bg-gradient-to-br from-[var(--trust-blue)] via-[var(--trust-blue-dark)] to-[#003d5c] shadow-lg">
-            <div className="absolute inset-0 noise" />
-            {/* Blobs */}
-            <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-white/10 rounded-full blur-xl" />
-            <div className="absolute -left-4 -top-4 w-24 h-24 bg-[var(--action-gold)]/10 rounded-full blur-xl" />
-
-            {/* Stacked avatars top-right */}
-            <div className="absolute right-5 top-5 flex -space-x-2.5 z-10">
-              {[COMM1_IMG, COMM2_IMG, COMM3_IMG].map((src, i) => (
-                <div
-                  key={i}
-                  className="w-9 h-9 rounded-full overflow-hidden border-2 border-[var(--trust-blue)] shadow-sm"
-                >
-                  <ImageWithFallback src={src} alt={`Community member ${i + 1}`} className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-
-            <div className="relative z-10 space-y-2 mt-1">
-              <h3
-                className="font-[var(--font-header)] font-bold text-white leading-tight max-w-[160px]"
-                style={{ fontSize: "1.1rem" }}
-              >
-                Meet expert shoppers near you.
-              </h3>
-              <p className="text-[11px] font-[var(--font-body)] text-white/70 max-w-[170px]">
-                Join verified circles to get exclusive deals.
-              </p>
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                onClick={() => navigate("/marketplace")}
-                className="mt-1 bg-[var(--action-gold)] text-[var(--ink-primary)] font-[var(--font-body)] font-bold text-[11px] py-2.5 px-5 rounded-lg shadow-md"
-              >
-                Explore Communities
-              </motion.button>
-            </div>
-          </div>
-        </motion.section>
-      </div>
-
-      {/* Floating Add Friend FAB */}
-      <div className="fixed bottom-28 right-5 z-40 max-w-md mx-auto left-0 right-0 flex justify-end pointer-events-none">
-        <div className="px-5 pointer-events-auto">
-          <Link to="/marketplace">
-            <motion.button
-              whileTap={{ scale: 0.92 }}
-              className="w-12 h-12 bg-[var(--trust-blue)] text-white rounded-full shadow-xl flex items-center justify-center glow-blue relative"
+        {/* ── SECTION 01: PENDING REQUESTS ── */}
+        <AnimatePresence>
+          {requests.length > 0 && (
+            <motion.section 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="space-y-6"
             >
-              <UserPlus size={20} strokeWidth={2} />
-              <motion.div
-                className="absolute inset-0 rounded-full bg-[var(--trust-blue)]"
-                animate={{ opacity: [0.35, 0, 0.35] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-                style={{ filter: "blur(8px)" }}
-              />
-            </motion.button>
-          </Link>
-        </div>
+               <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                     <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
+                     <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Incoming Link</h3>
+                  </div>
+                  <span className="bg-[#FF8C00] text-white text-[8px] font-black px-2 py-0.5 uppercase tracking-widest">{requests.length} REQUEST</span>
+               </div>
+
+               <div className="space-y-4">
+                  {requests.map((req) => (
+                    <motion.div 
+                      key={req.id} 
+                      className="bg-white border-2 border-[#003366] p-4 flex items-center justify-between shadow-[6px_6px_0px_#FF8C00] relative overflow-hidden group"
+                    >
+                       <div className="absolute top-0 left-0 w-1 h-full bg-[#003366]" />
+                       <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 border-2 border-[#003366] overflow-hidden">
+                             <img src={req.img} className="w-full h-full object-cover" />
+                          </div>
+                          <div>
+                             <h4 className="text-[#003366] text-sm font-black uppercase tracking-tight leading-none mb-1">{req.name}</h4>
+                             <p className="text-[9px] font-bold text-[#003366]/40 uppercase tracking-widest">Mutual: {req.mutual}</p>
+                          </div>
+                       </div>
+                       <div className="flex gap-2">
+                          <button onClick={() => dismiss(req.id)} className="w-10 h-10 border-2 border-[#003366] flex items-center justify-center text-[#003366] hover:bg-[#003366]/5 active:translate-y-0.5 transition-all">
+                             <X size={18} />
+                          </button>
+                          <button 
+                            onClick={() => accept(req.id)} 
+                            className={`w-10 h-10 border-2 border-[#003366] flex items-center justify-center text-white transition-all shadow-[2px_2px_0px_#003366] active:shadow-none ${acceptedIds.has(req.id) ? "bg-emerald-500" : "bg-[#003366]"}`}
+                          >
+                             <Check size={18} />
+                          </button>
+                       </div>
+                    </motion.div>
+                  ))}
+               </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        {/* ── SECTION 02: ACTIVE CIRCLE ── */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} className="space-y-6">
+           <div className="flex items-center gap-3">
+              <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
+              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Active Circle</h3>
+              <div className="flex-1 h-[2px] bg-[#003366]/5" />
+           </div>
+
+           <div className="space-y-2 border-2 border-[#003366] bg-[#003366]/5 divide-y-2 divide-[#003366]/10 shadow-[6px_6px_0px_#003366]">
+              {friendsList.map((friend) => (
+                <div key={friend.id} className="bg-white p-4 flex items-center justify-between group hover:bg-[#003366]/[0.02] transition-all">
+                   <div className="flex items-center gap-4">
+                      <div className="relative">
+                         <div className={`w-12 h-12 border-2 border-[#003366] overflow-hidden ${friend.status === 'offline' ? 'opacity-40 grayscale' : ''}`}>
+                            <img src={friend.img} className="w-full h-full object-cover" />
+                         </div>
+                         {friend.status === 'live' && (
+                           <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#FFC300] border-2 border-[#003366] rounded-full animate-pulse flex items-center justify-center">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#003366]" />
+                           </div>
+                         )}
+                      </div>
+                      <div>
+                         <h4 className={`text-[#003366] text-sm font-black uppercase tracking-tight leading-none mb-1 ${friend.status === 'offline' ? 'opacity-40' : ''}`}>{friend.name}</h4>
+                         <div className="flex items-center gap-1.5">
+                            {friend.status === 'live' ? (
+                              <span className="text-[#FF8C00] text-[8px] font-black uppercase tracking-widest flex items-center gap-1">
+                                 <Zap size={10} fill="#FF8C00" /> Live Discovery
+                              </span>
+                            ) : (
+                              <p className="text-[9px] font-bold text-[#003366]/30 uppercase tracking-widest">{friend.sub}</p>
+                            )}
+                         </div>
+                      </div>
+                   </div>
+                   <div className="flex gap-3">
+                      {friend.status === 'live' ? (
+                        <button className="w-9 h-9 border-2 border-[#003366] flex items-center justify-center text-[#003366] hover:bg-[#003366]/5 active:scale-95 transition-all">
+                           <Video size={16} />
+                        </button>
+                      ) : (
+                        <button className="w-9 h-9 border-2 border-[#003366] flex items-center justify-center text-[#003366] hover:bg-[#003366]/5 active:scale-95 transition-all">
+                           <MessageCircle size={16} />
+                        </button>
+                      )}
+                      <button className="w-9 h-9 border-2 border-[#003366]/20 flex items-center justify-center text-[#003366]/20">
+                         <MoreHorizontal size={16} />
+                      </button>
+                   </div>
+                </div>
+              ))}
+           </div>
+        </motion.section>
+
+        {/* ── SECTION 03: COMMUNITY HUD ── */}
+        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="pb-12">
+           <div className="bg-[#003366] p-8 shadow-[8px_8px_0px_#FF8C00] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-2xl group-hover:scale-125 transition-transform duration-1000" />
+              
+              <div className="flex items-center justify-between mb-8">
+                 <div className="flex items-center gap-3">
+                    <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">03.</span>
+                    <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-white/40">expert circles</h3>
+                 </div>
+                 <div className="flex -space-x-3">
+                    {[COMM1_IMG, COMM2_IMG, COMM3_IMG].map((img, i) => (
+                      <div key={i} className="w-10 h-10 border-2 border-[#003366] rounded-full overflow-hidden shadow-xl">
+                        <img src={img} className="w-full h-full object-cover" />
+                      </div>
+                    ))}
+                 </div>
+              </div>
+
+              <h4 className="text-white text-2xl font-black uppercase tracking-tighter leading-tight mb-3">Meet Verified<br />Alpha Shoppers</h4>
+              <p className="text-white/50 text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed mb-8 max-w-[240px]">
+                 Join high-fidelity financial communities to discover exclusive marketplace yield.
+              </p>
+
+              <button 
+                onClick={() => navigate("/marketplace")}
+                className="w-full bg-[#FF8C00] text-white py-4 text-[11px] font-black uppercase tracking-[0.3em] shadow-[4px_4px_0px_white] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
+              >
+                 Join Communities
+              </button>
+           </div>
+        </motion.section>
+
       </div>
+
+      {/* ── FLOATING ACTION LEDGER ── */}
+      <div className="fixed bottom-28 right-5 z-40">
+         <motion.button
+           whileTap={{ scale: 0.9 }}
+           className="w-14 h-14 bg-[#003366] border-2 border-white text-white flex items-center justify-center shadow-2xl active:bg-[#FF8C00] transition-colors group"
+         >
+            <UserPlus size={24} className="group-hover:scale-110 transition-transform" />
+         </motion.button>
+      </div>
+
     </div>
   );
 }

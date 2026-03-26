@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Play, Clock, Star, BookOpen, Eye, ChevronRight, ArrowRight, Radio } from "lucide-react";
+import { Play, Clock, Star, BookOpen, Eye, ArrowRight, Radio } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { PageHeader } from "../components/PageHeader";

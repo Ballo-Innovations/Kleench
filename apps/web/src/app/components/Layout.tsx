@@ -40,6 +40,7 @@ export function Layout() {
     location.pathname === "/" || 
     location.pathname === "/advert" || 
     location.pathname === "/socials" || 
+    location.pathname === "/friends" || 
     location.pathname === "/wallet" || 
     location.pathname === "/marketplace" || 
     location.pathname === "/profile" || 
