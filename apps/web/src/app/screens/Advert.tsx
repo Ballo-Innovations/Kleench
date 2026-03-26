@@ -40,7 +40,7 @@ export function Advert() {
         height={180}
       />
 
-      <div className="px-5 -mt-20 relative z-20 space-y-10">
+      <div className="px-5 mt-4 relative z-20 space-y-10">
         
         <section className="space-y-6">
 
