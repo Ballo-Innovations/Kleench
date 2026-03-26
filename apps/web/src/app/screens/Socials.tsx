@@ -1,151 +1,201 @@
 import { motion } from "motion/react";
-import { Share2, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";
-
-// --- MOCKS FOR PREVIEW ENVIRONMENT ---
-const adBanner = "https://picsum.photos/seed/creators/800/300";
-
-const CAMPAIGNS = [
-  { id: 1, name: "Cherish Chansa", category: "Business & Finance", image: "https://picsum.photos/seed/cherish/400/400", verified: true },
-  { id: 2, name: "David Mwale", category: "Technology Education", image: "https://picsum.photos/seed/david/400/400", verified: true },
-];
-
-const BOOST_PRODUCTS = [
-  { id: 1, title: "Solar Light Promotion", price: "ZMW 10.00", oldPrice: "ZMW 3.30", earn: "ZMW 1.40", image: "https://picsum.photos/seed/solar/400/400" },
-  { id: 2, title: "Course: Digital Marketing Basics", price: "ZMW 3.30", oldPrice: null, earn: "ZMW 0.50", image: "https://picsum.photos/seed/marketing/400/400" },
-];
-// -------------------------------------
-
-/* Graceful transition builder */
-const grace = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.62, ease: [0.22, 1, 0.36, 1] as const },
-});
-
+import { 
+  Users, 
+  Plus, 
+  MessageCircle, 
+  MoreVertical, 
+  Heart, 
+  MessageSquare, 
+  Share2, 
+  Coins, 
+  ShieldCheck
+} from "lucide-react";
+import { Link } from "react-router";
 import { PageHeader } from "../components/PageHeader";
+
+// --- MOCKS FOR FEED ---
+const HOT_DEALS = [
+  { id: 1, title: "Vintage Lens Kit", price: "ZMW 1,200", image: "https://picsum.photos/seed/lens/400/400" },
+  { id: 2, title: "Solar Inverter 5kW", price: "ZMW 8,500", image: "https://picsum.photos/seed/solarinv/400/400" },
+  { id: 3, title: "NFT Collectible #44", price: "ZMW 450", image: "https://picsum.photos/seed/nft44/400/400" },
+  { id: 4, title: "Pro Studio Mic", price: "ZMW 2,100", image: "https://picsum.photos/seed/mic/400/400" },
+];
+
+const FEED_POSTS = [
+  {
+    id: 1,
+    user: { name: "Sarah Chanda", avatar: "https://i.pravatar.cc/150?u=sarah", verified: true },
+    time: "2h ago",
+    content: "Just launched the new Kleench Masterclass series! 🎓 Dive deep into the ZMW ecosystem and start earning today. Check out the link in bio for more details.",
+    image: "https://picsum.photos/seed/post1/800/600",
+    stats: { likes: 124, comments: 12, shares: 5 },
+    topComment: { user: "David Mwale", avatar: "https://i.pravatar.cc/150?u=david", text: "This is exactly what the community needed. Pure fire! 🔥" }
+  },
+  {
+    id: 2,
+    user: { name: "Lungu Joseph", avatar: "https://i.pravatar.cc/150?u=joseph", verified: false },
+    time: "5h ago",
+    content: "Zambia's digital economy is growing at an incredible rate. Grateful to be part of this innovative journey with @Kleench. Support local builders! 🏗️",
+    image: "https://picsum.photos/seed/post2/800/600",
+    stats: { likes: 89, comments: 8, shares: 2 },
+    topComment: { user: "Chola K.", avatar: "https://i.pravatar.cc/150?u=chola", text: "Let's build together! 🚀" }
+  }
+];
+
 
 export function Socials() {
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
       
-      {/* ── Standardized Orange Header ── */}
-      <PageHeader title="Socials" subtitle="Support trusted creators and earn rewards." />
+      {/* ── Standardized Header ── */}
+      <PageHeader title="Socials" subtitle="Network & Discover Rewards" />
 
-      {/* ── Content ── */}
-      <div className="px-4 mt-2 space-y-6 relative z-10">
+      <div className="px-5 -mt-10 relative z-10 space-y-10">
         
-        {/* Page Title */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-1">
-          <h1 className="text-[#003366] text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Socials</h1>
-          <p className="text-gray-500 text-[13px] font-medium mt-0.5">Support creators and boost your network.</p>
-        </motion.div>
-        
-        {/* Banner Ad similarly styled as Home's sponsored banner */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }}
-          transition={grace(0.1)}
-          className="rounded-[24px] h-[130px] overflow-hidden shadow-md border border-black/[0.04] relative group cursor-pointer active:scale-[0.98] transition-transform">
-          <img src={adBanner} alt="Support Trusted Creators" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#EF6C00] via-[#EF6C00]/95 to-transparent w-[80%]"></div>
-          
-          <div className="relative z-10 p-5 flex flex-col items-start w-full h-full justify-center">
-            <span className="text-white/90 text-[10px] italic font-semibold mb-1 drop-shadow-sm">Community</span>
-            <h2 className="text-white text-[18px] font-black mb-3 tracking-tight leading-tight drop-shadow-sm max-w-[70%]">Support Trusted Creators</h2>
-            <button className="bg-[#003366] hover:bg-[#002244] text-white font-bold py-1.5 px-4 rounded-lg text-[11px] transition-colors shadow-sm">
-              Discover
+        {/* SECTION 01. NETWORK ACTIONS */}
+        <section className="space-y-4">
+          <div className="flex gap-0 border-4 border-[#003366] bg-[#003366] shadow-[6px_6px_0px_#FF8C00]">
+            <button className="flex-1 bg-white hover:bg-[#003366] hover:text-white transition-all py-4 flex items-center justify-center gap-3 border-r-2 border-[#003366]/10 group">
+              <Users size={18} className="text-[#FF8C00]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Find Friends</span>
+            </button>
+            <button className="flex-1 bg-white hover:bg-[#003366] hover:text-white transition-all py-4 flex items-center justify-center gap-3 group">
+              <Plus size={18} className="text-[#FF8C00]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Create Post</span>
             </button>
           </div>
-        </motion.div>
+        </section>
 
-        {/* Creators Section */}
-        <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.2)}>
-          <h3 className="text-sm font-black text-[#003366] mb-3 px-1 tracking-wide" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Featured Creators</h3>
-          <div className="flex flex-col gap-3">
-            {CAMPAIGNS.map((creator) => (
-                <div key={creator.id} 
-                  className="bg-white rounded-[24px] p-4 flex flex-col gap-4 shadow-sm border border-black/[0.04]">
-                  
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 shadow-sm border border-gray-100">
-                      <img src={creator.image} alt={creator.name} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-1.5 mb-0.5">
-                        <h4 className="font-bold text-[#003366] text-[16px]" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                          {creator.name}
-                        </h4>
-                        <ShieldCheck size={16} className="text-[#EF6C00]" />
+        {/* SECTION 02. DISCOVER HOT DEALS */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between gap-3">
+             <div className="flex items-center gap-3">
+                <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
+                <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Hot Deals</h3>
+             </div>
+             <Link to="/marketplace" className="text-[8px] font-black uppercase tracking-[0.2em] text-[#FF8C00] border-b-2 border-[#FF8C00]/20 pb-0.5">View All</Link>
+          </div>
+
+          <div className="flex overflow-x-auto gap-4 pb-4 -mx-5 px-5 scrollbar-hide no-scrollbar">
+            {HOT_DEALS.map((item) => (
+              <motion.div 
+                key={item.id}
+                whileTap={{ scale: 0.98 }}
+                className="min-w-[160px] bg-white border-2 border-[#003366] relative flex flex-col group shadow-sm"
+              >
+                {/* Product Image */}
+                <div className="aspect-square bg-gray-100 overflow-hidden relative">
+                   <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                   
+                   {/* Universal Message Overlay */}
+                   <button 
+                    className="absolute top-2 right-2 w-9 h-9 bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#FF8C00] flex items-center justify-center text-[#003366] hover:bg-[#FF8C00] hover:text-white transition-all z-10"
+                    title="Instant Message Seller"
+                   >
+                     <MessageCircle size={18} strokeWidth={2.5} />
+                   </button>
+                </div>
+                
+                {/* Meta */}
+                <div className="p-3 bg-white">
+                  <h4 className="text-[11px] font-black uppercase tracking-tight text-[#003366] line-clamp-1">{item.title}</h4>
+                  <p className="text-[12px] font-black text-[#FF8C00] mt-1">{item.price}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 03. BROADCAST FEED */}
+        <section className="space-y-8">
+           <div className="flex items-center gap-3">
+              <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">03.</span>
+              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Global Feed</h3>
+              <div className="flex-1 h-[2px] bg-[#003366]/5" />
+           </div>
+
+           <div className="flex flex-col gap-10">
+              {FEED_POSTS.map((post) => (
+                <motion.article 
+                  key={post.id} 
+                  initial={{ opacity: 0, y: 30 }} 
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  className="bg-white border-x-4 border-[#003366]/5"
+                >
+                  {/* Post Header */}
+                  <div className="flex items-center justify-between px-2 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full border-2 border-[#FF8C00] overflow-hidden p-0.5">
+                        <img src={post.user.avatar} alt={post.user.name} className="w-full h-full rounded-full object-cover" />
                       </div>
-                      <p className="text-[12px] text-gray-500 font-medium">{creator.category}</p>
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1.5">
+                           <span className="font-black text-sm text-[#003366] tracking-tight">{post.user.name}</span>
+                           {post.user.verified && <ShieldCheck size={14} className="text-[#FF8C00]" />}
+                        </div>
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{post.time}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-1">
+                       <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 hover:text-[#FF8C00] transition-colors">
+                          <MessageCircle size={20} />
+                       </button>
+                       <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 hover:text-[#003366] transition-colors">
+                          <MoreVertical size={20} />
+                       </button>
                     </div>
                   </div>
-                  
-                  <div className="flex gap-2">
-                    <motion.button 
-                      whileTap={{scale: 0.96}} 
-                      className="flex-1 bg-[#003366] hover:bg-[#002244] transition-colors text-white py-3 rounded-xl font-bold text-[12px] leading-none shadow-sm"
-                      style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      Support Creator
-                    </motion.button>
-                    <motion.button 
-                      whileTap={{scale: 0.96}} 
-                      className="flex-1 bg-[#EF6C00] hover:bg-[#d86200] transition-colors text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-sm text-[12px] leading-none"
-                      style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      <Share2 size={15} /> Share
-                    </motion.button>
-                  </div>
-                </div>
-            ))}
-          </div>
-        </motion.section>
 
-        {/* Boost Your Business Section */}
-        <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.3)}>
-          <h3 className="text-sm font-black text-[#003366] mb-3 px-1 tracking-wide" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Boost Your Business</h3>
-          
-          <div className="flex flex-col gap-3">
-            {BOOST_PRODUCTS.map((product) => (
-                <div key={product.id} 
-                  className="bg-white border rounded-[24px] p-3 flex items-center gap-4 shadow-sm cursor-pointer active:scale-[0.98] transition-transform group"
-                  style={{ borderColor: "rgba(0,0,0,0.04)" }}>
-                  <div className="w-[80px] h-[80px] rounded-[16px] bg-gray-50 overflow-hidden flex-shrink-0 border border-gray-100">
-                    <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <div className="flex-1 py-1">
-                    <h4 className="font-bold text-[#003366] mb-1 text-[13px] leading-snug line-clamp-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      {product.title}
-                    </h4>
-                    <div className="flex items-center gap-2 mb-1.5 min-h-[16px]">
-                      {product.oldPrice && <p className="text-[11px] text-gray-400 font-medium line-through">{product.oldPrice}</p>}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <p className="font-black text-[#EF6C00] text-[15px]" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                        {product.price}
-                      </p>
-                      <span className="text-[9px] bg-[#EF6C00]/10 text-[#EF6C00] px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">
-                        Earn {product.earn}
-                      </span>
+                  {/* Post Content */}
+                  <div className="space-y-4">
+                    <p className="px-5 text-[14px] font-medium leading-[1.6] text-[#003366]/80 text-justify">
+                      {post.content}
+                    </p>
+                    <div className="bg-gray-100 overflow-hidden border-y-2 border-[#003366]">
+                       <img src={post.image} alt="Content" className="w-full aspect-video object-cover" />
                     </div>
                   </div>
-                  <div className="flex-shrink-0 pr-2">
-                    <ChevronRight size={18} className="text-gray-300 group-hover:text-[#EF6C00] transition-colors" />
+
+                  {/* Post Action Bar */}
+                  <div className="flex items-center justify-between py-5 px-2 border-b-2 border-[#003366]/5">
+                    <div className="flex items-center gap-6">
+                       <button className="flex items-center gap-2 group">
+                          <Heart size={20} className="text-[#003366]/30 group-hover:text-[#FF3000] group-hover:fill-[#FF3000] transition-all" />
+                          <span className="text-[12px] font-black text-[#003366]">{post.stats.likes}</span>
+                       </button>
+                       <button className="flex items-center gap-2 group">
+                          <MessageSquare size={20} className="text-[#003366]/30 group-hover:text-[#003366] transition-colors" />
+                          <span className="text-[12px] font-black text-[#003366]">{post.stats.comments}</span>
+                       </button>
+                       <button className="flex items-center gap-2 group">
+                          <Share2 size={20} className="text-[#003366]/30 group-hover:text-[#003366] transition-colors" />
+                          <span className="text-[10px] font-black text-[#003366] uppercase tracking-widest">Share</span>
+                       </button>
+                    </div>
+                    
+                    <button className="bg-[#FF8C00] text-white px-5 py-2.5 font-black text-[10px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_#003366] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all flex items-center gap-2">
+                       <Coins size={14} /> Tip
+                    </button>
                   </div>
-                </div>
-            ))}
-          </div>
-          
-          <motion.button 
-            whileTap={{ scale: 0.98 }}
-            className="w-full mt-4 py-3.5 px-6 rounded-2xl font-bold text-[13px] bg-white border border-gray-200 text-[#003366] flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-shadow"
-            style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
-            View Marketplace <ArrowRight size={16} />
-          </motion.button>
-        </motion.section>
+
+                  {/* Inline Comment Preview */}
+                  <div className="mt-4 px-2 py-4 bg-[#003366]/[0.02] border-l-4 border-[#FF8C00]">
+                    <div className="flex gap-3">
+                      <img src={post.topComment.avatar} alt={post.topComment.user} className="w-7 h-7 rounded-full object-cover shrink-0" />
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-[11px] font-black text-[#003366]">{post.topComment.user}</span>
+                        <p className="text-[12px] text-[#003366]/60 leading-tight italic line-clamp-1">"{post.topComment.text}"</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+           </div>
+        </section>
 
       </div>
     </div>
   );
 }
-
-

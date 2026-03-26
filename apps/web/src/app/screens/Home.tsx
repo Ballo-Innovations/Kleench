@@ -209,111 +209,47 @@ export function Home() {
       </div>
 
       <div className="px-5 mt-6 relative z-10 space-y-6">
-        {/* ── EARN TODAY: V-GROWTH MINIMALIST STYLE ── */}
+        {/* ── Section 02. EARN TODAY (Swiss International Style) ── */}
         <motion.section 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={grace(0.3)} 
-          className="relative z-10"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} 
+          className="relative z-10 space-y-6"
         >
-          <div className="flex flex-col gap-2 overflow-hidden">
-            
-            {/* Watch Ads Card */}
-            <motion.div 
-              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
-              initial={{ height: 58 }}
-              className="group rounded-2xl overflow-hidden transition-colors duration-200"
-            >
-              <Link to="/ads" className="flex items-center h-full justify-between p-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
-                    <Play size={18} className="text-[#FFC300] fill-[#FFC300] group-hover:text-black group-hover:fill-black" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Watch Ads</span>
-                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
-                      Watch & Earn
-                    </h3>
-                  </div>
-                </div>
-                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
-                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Start</div>
-                </div>
-              </Link>
-            </motion.div>
+          <div className="flex items-center gap-3">
+             <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
+             <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Earn Today</h3>
+             <div className="flex-1 h-[2px] bg-[#003366]/5" />
+          </div>
 
-            {/* Masterclass Card */}
-            <motion.div 
-              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
-              initial={{ height: 58 }}
-              className="group rounded-2xl overflow-hidden transition-colors duration-200"
-            >
-              <Link to="/learning" className="flex items-center h-full justify-between p-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
-                    <GraduationCap size={18} className="text-[#FFC300] group-hover:text-black" />
+          <div className="grid grid-cols-1 gap-0 border-2 border-[#003366] bg-[#003366] divide-y-2 divide-[#003366]/10 shadow-[6px_6px_0px_#FF8C00]">
+            {[
+              { id: 1, title: "Watch & Earn", label: "Watch Ads", icon: Play, to: "/ads", tag: "Hot" },
+              { id: 2, title: "Masterclass", label: "Education", icon: GraduationCap, to: "/learning", tag: "Learn" },
+              { id: 3, title: "Data Survey", label: "Feedback", icon: ClipboardList, to: "/surveys", tag: "Earn" },
+              { id: 4, title: "Invite Friends", label: "Community", icon: Users, to: "/socials", tag: "Grow" },
+            ].map((item, idx) => (
+              <Link key={item.id} to={item.to}>
+                <motion.div 
+                  whileTap={{ backgroundColor: "#003366" }}
+                  className="bg-white p-5 flex items-center justify-between group transition-all hover:bg-[#003366]/[0.02]"
+                >
+                  <div className="flex items-center gap-6">
+                    <span className="text-[10px] font-black text-[#003366]/15 tracking-widest">{(idx + 1).toString().padStart(2, '0')}.</span>
+                    <div className="flex flex-col">
+                      <span className="text-[#FF8C00] font-black text-[7px] uppercase tracking-[0.3em] mb-1.5">{item.label}</span>
+                      <h3 className="text-[#003366] font-black text-[14px] uppercase tracking-tighter leading-none group-hover:text-[#FF8C00] transition-colors">
+                        {item.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div className="flex flex-col justify-center">
-                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Education</span>
-                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
-                      Masterclass
-                    </h3>
+                  <div className="flex items-center gap-4">
+                     <span className="text-[8px] font-black uppercase tracking-widest px-2 py-1 bg-[#003366]/5 text-[#003366]/40 border border-[#003366]/10">{item.tag}</span>
+                     <div className="w-8 h-8 border border-[#003366]/10 flex items-center justify-center text-[#003366]/30 group-hover:text-[#FF8C00] group-hover:border-[#FF8C00] transition-all">
+                        <item.icon size={16} />
+                     </div>
                   </div>
-                </div>
-                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
-                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Learn</div>
-                </div>
+                </motion.div>
               </Link>
-            </motion.div>
-
-            {/* Survey Card */}
-            <motion.div 
-              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
-              initial={{ height: 58 }}
-              className="group rounded-2xl overflow-hidden transition-colors duration-200"
-            >
-              <Link to="/surveys" className="flex items-center h-full justify-between p-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
-                    <ClipboardList size={18} className="text-[#FFC300] group-hover:text-black" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Feedback</span>
-                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
-                      Data Survey
-                    </h3>
-                  </div>
-                </div>
-                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
-                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Vote</div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Social Card */}
-            <motion.div 
-              whileHover={{ height: 82, backgroundColor: "#FFC300" }} 
-              initial={{ height: 58 }}
-              className="group rounded-2xl overflow-hidden transition-colors duration-200"
-            >
-              <Link to="/socials" className="flex items-center h-full justify-between p-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center group-hover:bg-white/50 transition-colors">
-                    <Users size={18} className="text-[#FFC300] group-hover:text-black" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <span className="text-[#0077B6] font-black text-[7px] uppercase tracking-widest leading-none mb-1 group-hover:text-black">Community</span>
-                    <h3 className="text-[#003366] font-black text-lg tracking-tight leading-none group-hover:text-black transition-colors">
-                      Invite Friends
-                    </h3>
-                  </div>
-                </div>
-                <div className="pr-2 opacity-0 group-hover:opacity-100 transition-all scale-0 group-hover:scale-100">
-                   <div className="bg-black text-[#FFC300] px-3 py-1 rounded-full text-[9px] font-black uppercase">Grow</div>
-                </div>
-              </Link>
-            </motion.div>
-
+            ))}
           </div>
         </motion.section>
 
