@@ -17,10 +17,10 @@ import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const REELS = [
-  { id: 1, label: "Watch & Earn", icon: Play, reward: "K5", color: "bg-[#FF8C00]", to: "/advert" },
-  { id: 2, label: "Masterclass", icon: GraduationCap, reward: "K2", color: "bg-[#003366]", to: "/learning" },
-  { id: 3, label: "Survey", icon: ClipboardList, reward: "K3", color: "bg-[#00C853]", to: "/poll/create" },
-  { id: 4, label: "Refer Now", icon: Users, reward: "K10", color: "bg-[#9333ea]", to: "/referral" },
+  { id: 1, label: "Watch Ads", reward: "K5", to: "/advert", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop" },
+  { id: 2, label: "Masterclass", reward: "K2", to: "/learning", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400&auto=format&fit=crop" },
+  { id: 3, label: "Surveys", reward: "EARN", to: "/poll/create", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop" },
+  { id: 4, label: "Invite Friends", reward: "GROW", to: "/referral", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=400&auto=format&fit=crop" },
 ];
 
 const FEED_ITEMS = [
@@ -329,59 +329,92 @@ export function Home() {
         </motion.div>
       </div>
 
-      {/* ── COMPACT UTILITY STRIP: REELS & PRIMARY ACTIONS ── */}
-      <div className="px-5 mt-4 space-y-4 relative z-10">
-        
-        {/* Reels Strip (Small notifications style) */}
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide no-scrollbar">
+      {/* ── REELS CAROUSEL: "EARN TODAY" VERTICAL VIDEO CARDS ── */}
+      <div className="px-5 mt-6 relative z-10">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-[#FF8C00] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
+          <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Earn Today</h3>
+          <div className="flex-1 h-[2px] bg-[#003366]/5" />
+        </div>
+
+        {/* Horizontal Swipeable Container */}
+        <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
           {REELS.map((reel) => (
             <Link key={reel.id} to={reel.to}>
               <motion.div
-                whileTap={{ scale: 0.94 }}
-                className="flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#003366]/10 bg-white shadow-sm whitespace-nowrap flex-shrink-0"
+                whileTap={{ scale: 0.95 }}
+                className="relative flex-shrink-0 w-[110px] h-[170px] bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] group"
               >
-                <div className={`w-5 h-5 rounded-full ${reel.color} flex items-center justify-center flex-shrink-0`}>
-                  <reel.icon size={10} className="text-white" />
+                {/* Thumbnail Image */}
+                <img 
+                  src={reel.image} 
+                  alt={reel.label} 
+                  className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500"
+                />
+
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+                {/* Centered Play Icon */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg">
+                    <Play size={16} className="text-white fill-white ml-0.5" />
+                  </div>
                 </div>
-                <span className="text-[10px] font-black text-[#003366] uppercase tracking-tight">{reel.label}</span>
-                <span className="text-[9px] font-black text-[#FF8C00] bg-[#FF8C00]/10 px-1.5 py-0.5 rounded-full">{reel.reward}</span>
+
+                {/* Earning Badge (Top Right) */}
+                <div className="absolute top-2 right-2 bg-[#FF8C00] border border-white/20 px-1.5 py-0.5 shadow-sm">
+                  <span className="text-[9px] font-black text-white uppercase tracking-tighter">
+                    {reel.reward}
+                  </span>
+                </div>
+
+                {/* Title (Bottom Left) */}
+                <div className="absolute bottom-2.5 left-2.5 right-2.5">
+                  <p className="text-white font-black text-[11px] uppercase tracking-tight leading-none drop-shadow-md">
+                    {reel.label}
+                  </p>
+                </div>
+
+                {/* Highlight Effect */}
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-active:opacity-100 transition-opacity" />
               </motion.div>
             </Link>
           ))}
         </div>
+      </div>
 
-        {/* Primary Action Pair: Load Advert & Refer */}
-        <div className="grid grid-cols-2 gap-3">
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => navigate("/advert")}
-            className="relative overflow-hidden bg-[#003366] border-2 border-[#003366] shadow-[4px_4px_0px_#FF8C00] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
-          >
-            <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
-            <div className="w-9 h-9 bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
-              <Megaphone size={17} className="text-white" />
-            </div>
-            <div className="text-left">
-              <p className="text-white font-black text-[11px] uppercase tracking-tight leading-none">Load Advert</p>
-              <p className="text-white/40 text-[8px] font-bold uppercase tracking-widest mt-1">Instant Rewards</p>
-            </div>
-          </motion.button>
+      {/* ── PRIMARY ACTIONS: LOAD ADVERT & REFER ── */}
+      <div className="px-5 mt-2 relative z-10 grid grid-cols-2 gap-3">
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={() => navigate("/advert")}
+          className="relative overflow-hidden bg-[#003366] border-2 border-[#003366] shadow-[4px_4px_0px_#FF8C00] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+        >
+          <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
+          <div className="w-9 h-9 bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
+            <Megaphone size={17} className="text-white" />
+          </div>
+          <div className="text-left">
+            <p className="text-white font-black text-[11px] uppercase tracking-tight leading-none">Load Advert</p>
+            <p className="text-white/40 text-[8px] font-bold uppercase tracking-widest mt-1">Instant Rewards</p>
+          </div>
+        </motion.button>
 
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => navigate("/referral")}
-            className="relative overflow-hidden bg-[#FF8C00] border-2 border-[#003366] shadow-[4px_4px_0px_#003366] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
-          >
-            <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
-            <div className="w-9 h-9 bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
-              <Gift size={17} className="text-white" />
-            </div>
-            <div className="text-left">
-              <p className="text-[#003366] font-black text-[11px] uppercase tracking-tight leading-none">Refer & Share</p>
-              <p className="text-[#003366]/50 text-[8px] font-bold uppercase tracking-widest mt-1">Earn ZMW 10.00</p>
-            </div>
-          </motion.button>
-        </div>
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={() => navigate("/referral")}
+          className="relative overflow-hidden bg-[#FF8C00] border-2 border-[#003366] shadow-[4px_4px_0px_#003366] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+        >
+          <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
+          <div className="w-9 h-9 bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
+            <Gift size={17} className="text-white" />
+          </div>
+          <div className="text-left">
+            <p className="text-[#003366] font-black text-[11px] uppercase tracking-tight leading-none">Refer & Share</p>
+            <p className="text-[#003366]/50 text-[8px] font-bold uppercase tracking-widest mt-1">Earn ZMW 10.00</p>
+          </div>
+        </motion.button>
       </div>
 
       {/* ── SECTION 01. THE RAT TRAP FEED (Social Media Style Ad Feed) ── */}
@@ -696,7 +729,6 @@ export function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }
