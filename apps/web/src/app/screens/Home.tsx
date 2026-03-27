@@ -153,6 +153,22 @@ export function Home() {
               <Bell size={20} />
               <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FF8C00] rounded-full border border-[#e06900]" />
             </Link>
+            <Link to="/profile" className="w-8 h-8 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 shrink-0 shadow-sm hover:scale-105 transition-transform active:scale-95">
+              {localStorage.getItem("userProfilePhoto") ? (
+                <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-white text-[10px] font-black uppercase">
+                  {(() => {
+                    const raw = localStorage.getItem("userKyc");
+                    if (raw) {
+                      const kyc = JSON.parse(raw);
+                      return kyc.fullName?.split(" ").map((n: string) => n[0]).join("") || "K";
+                    }
+                    return "K";
+                  })()}
+                </div>
+              )}
+            </Link>
           </div>
         </div>
 
@@ -163,24 +179,8 @@ export function Home() {
            transition={{ delay: 0.1 }}
            className="relative z-10 flex items-center justify-between gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-[24px] p-2.5 shadow-sm mb-6"
         >
-           {/* Profile & Name */}
+           {/* Balance */}
            <div className="flex items-center gap-2.5">
-             <Link to="/profile" className="w-10 h-10 rounded-full border-2 border-white/30 overflow-hidden bg-white/20 shrink-0 shadow-sm hover:scale-105 transition-transform">
-               {localStorage.getItem("userProfilePhoto") ? (
-                 <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
-               ) : (
-                 <div className="w-full h-full flex items-center justify-center text-white text-[11px] font-black uppercase">
-                   {(() => {
-                     const localKycRaw = localStorage.getItem("userKyc");
-                     if (localKycRaw) {
-                       const kyc = JSON.parse(localKycRaw);
-                       return kyc.fullName?.split(" ").map((n: string) => n[0]).join("") || "K";
-                     }
-                     return "K";
-                   })()}
-                 </div>
-               )}
-             </Link>
              <div className="min-w-0">
                 <p className="text-white/60 text-[9px] font-bold uppercase tracking-wider leading-none mb-1">Total Balance</p>
                 <div className="flex items-center gap-2">

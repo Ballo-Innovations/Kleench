@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { Play, Verified, Star, CheckCircle2, Send, Shield, Wallet, X, Clock, Trophy } from "lucide-react";
 import { useState } from "react";

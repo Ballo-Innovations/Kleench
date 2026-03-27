@@ -129,6 +129,22 @@ export function PageHeader({
             <Bell size={22} />
             <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FF3000] rounded-full border border-white" />
           </Link>
+          <Link to="/profile" className="w-8 h-8 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 shrink-0 shadow-sm hover:scale-105 transition-transform active:scale-95">
+            {localStorage.getItem("userProfilePhoto") ? (
+              <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-white text-[10px] font-black uppercase">
+                {(() => {
+                  const raw = localStorage.getItem("userKyc");
+                  if (raw) {
+                    const kyc = JSON.parse(raw);
+                    return kyc.fullName?.split(" ").map((n: string) => n[0]).join("") || "K";
+                  }
+                  return "K";
+                })()}
+              </div>
+            )}
+          </Link>
         </div>
       </div>
 
