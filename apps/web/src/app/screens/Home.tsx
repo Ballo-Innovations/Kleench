@@ -17,9 +17,9 @@ import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const REELS = [
-  { id: 1, label: "Watch & Earn", icon: Play, reward: "K5", color: "bg-[#FF8C00]", to: "/ads" },
+  { id: 1, label: "Watch & Earn", icon: Play, reward: "K5", color: "bg-[#FF8C00]", to: "/advert" },
   { id: 2, label: "Masterclass", icon: GraduationCap, reward: "K2", color: "bg-[#003366]", to: "/learning" },
-  { id: 3, label: "Survey", icon: ClipboardList, reward: "K3", color: "bg-[#00C853]", to: "/surveys" },
+  { id: 3, label: "Survey", icon: ClipboardList, reward: "K3", color: "bg-[#00C853]", to: "/poll/create" },
   { id: 4, label: "Refer Now", icon: Users, reward: "K10", color: "bg-[#9333ea]", to: "/referral" },
 ];
 
@@ -354,7 +354,7 @@ export function Home() {
         <div className="grid grid-cols-2 gap-3">
           <motion.button
             whileTap={{ scale: 0.97 }}
-            onClick={() => navigate("/ads")}
+            onClick={() => navigate("/advert")}
             className="relative overflow-hidden bg-[#003366] border-2 border-[#003366] shadow-[4px_4px_0px_#FF8C00] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
           >
             <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
@@ -560,9 +560,9 @@ export function Home() {
 
         <div className="grid grid-cols-1 gap-0 border-2 border-[#003366] bg-[#003366] divide-y-2 divide-[#003366]/10 shadow-[6px_6px_0px_#FF8C00]">
           {[
-            { id: 1, title: "Watch & Earn", label: "Watch Ads", icon: Play, to: "/ads", tag: "Hot" },
+            { id: 1, title: "Watch & Earn", label: "Watch Ads", icon: Play, to: "/advert", tag: "Hot" },
             { id: 2, title: "Masterclass", label: "Education", icon: GraduationCap, to: "/learning", tag: "Learn" },
-            { id: 3, title: "Data Survey", label: "Feedback", icon: ClipboardList, to: "/surveys", tag: "Earn" },
+            { id: 3, title: "Data Survey", label: "Feedback", icon: ClipboardList, to: "/poll/create", tag: "Earn" },
             { id: 4, title: "Invite Friends", label: "Community", icon: Users, to: "/referral", tag: "Grow" },
           ].filter((item) =>
             item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
