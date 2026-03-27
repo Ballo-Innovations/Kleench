@@ -342,42 +342,44 @@ export function Home() {
           {REELS.map((reel) => (
             <Link key={reel.id} to={reel.to}>
               <motion.div
-                whileTap={{ scale: 0.95 }}
-                className="relative flex-shrink-0 w-[110px] h-[170px] bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] group"
+                whileTap={{ scale: 0.96 }}
+                className="relative flex-shrink-0 w-[160px] h-[260px] bg-white border-2 border-[#003366] overflow-hidden shadow-[6px_6px_0px_#003366] group"
               >
                 {/* Thumbnail Image */}
                 <img 
                   src={reel.image} 
                   alt={reel.label} 
-                  className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                 />
 
                 {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
 
                 {/* Centered Play Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg">
-                    <Play size={16} className="text-white fill-white ml-0.5" />
+                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                    <Play size={24} className="text-white fill-white ml-1" />
                   </div>
                 </div>
 
                 {/* Earning Badge (Top Right) */}
-                <div className="absolute top-2 right-2 bg-[#FF8C00] border border-white/20 px-1.5 py-0.5 shadow-sm">
-                  <span className="text-[9px] font-black text-white uppercase tracking-tighter">
+                <div className="absolute top-3 right-3 bg-[#FF8C00] border-2 border-[#003366] px-2 py-1 shadow-md">
+                  <span className="text-[10px] font-black text-white uppercase tracking-tight">
                     {reel.reward}
                   </span>
                 </div>
 
                 {/* Title (Bottom Left) */}
-                <div className="absolute bottom-2.5 left-2.5 right-2.5">
-                  <p className="text-white font-black text-[11px] uppercase tracking-tight leading-none drop-shadow-md">
-                    {reel.label}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-black text-[15px] uppercase tracking-tighter leading-[0.9] drop-shadow-xl">
+                    {reel.label.split(" ").map((word, i) => (
+                      <span key={i} className="block">{word}</span>
+                    ))}
                   </p>
                 </div>
 
                 {/* Highlight Effect */}
-                <div className="absolute inset-0 bg-white/5 opacity-0 group-active:opacity-100 transition-opacity" />
+                <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             </Link>
           ))}
