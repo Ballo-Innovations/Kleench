@@ -61,7 +61,7 @@ export function ProfileEdit() {
           <ArrowLeft size={18} className="text-[var(--ink-primary)]" />
         </Link>
         <h1
-          className="font-[var(--font-header)] text-[var(--ink-primary)] tracking-tight"
+          className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-tight"
           style={{ fontSize: "1.25rem" }}
         >
           Edit Profile
@@ -69,7 +69,7 @@ export function ProfileEdit() {
         <motion.button
           whileTap={{ scale: 0.92 }}
           onClick={handleSave}
-          className="px-5 py-2 rounded-xl bg-[var(--trust-blue)] text-white font-[var(--font-body)] text-sm shadow-md"
+          className="px-5 py-2 rounded-xl bg-[var(--trust-blue)] text-white font-[var(--font-body)] font-bold text-sm shadow-md"
         >
           Save
         </motion.button>
@@ -119,7 +119,7 @@ export function ProfileEdit() {
         >
           {/* Full Name */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Full Name
             </label>
             <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
@@ -136,7 +136,7 @@ export function ProfileEdit() {
 
           {/* Username */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Username
             </label>
             <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
