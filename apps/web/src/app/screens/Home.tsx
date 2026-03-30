@@ -225,7 +225,7 @@ export function Home() {
 
       {/* ── ORANGE DASHBOARD HEADER ── */}
       <div
-        className="relative pt-1.5 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[100px]"
+        className="relative pt-2.5 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[100px]"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}
       >
         {/* Grid texture */}
@@ -243,7 +243,7 @@ export function Home() {
         <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none" />
 
         {/* Top Nav Row */}
-        <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-[-4px]">
+        <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-0">
           <Link to="/" className="flex-shrink-0">
             <img src={kleenchLogo} alt="KLEENCH" className="h-6 w-auto object-contain brightness-0 invert" />
           </Link>
