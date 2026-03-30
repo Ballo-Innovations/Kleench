@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import {
   Settings, Bell, Search, Eye, EyeOff,
-  Send, X, ArrowDownToLine, ArrowUpFromLine,
+  X, ArrowDownToLine, ArrowUpFromLine,
   Play, GraduationCap, ClipboardList, Users,
   Heart, MessageCircle, Share2, PlayCircle,
   Megaphone, ArrowRight, Gift, TrendingUp,
@@ -317,12 +317,11 @@ export function Home() {
           <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
             {[
               { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
-              { icon: Send, label: "Send", to: "/wallet", rotate: true },
               { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
-            ].map(({ icon: Icon, label, to, rotate }) => (
+            ].map(({ icon: Icon, label, to }) => (
               <Link key={label} to={to} title={label}
                 className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
-                <Icon size={14} className={rotate ? "-rotate-12 translate-x-0.5" : ""} />
+                <Icon size={14} />
               </Link>
             ))}
           </div>
@@ -350,7 +349,7 @@ export function Home() {
             <Link key={reel.id} to={reel.to}>
               <motion.div
                 whileTap={{ scale: 0.96 }}
-                className="relative flex-shrink-0 w-[160px] h-[260px] bg-white border-2 border-[#003366] overflow-hidden shadow-[6px_6px_0px_#003366] group"
+                className="relative flex-shrink-0 w-[95px] h-[155px] bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] group"
               >
                 {/* Thumbnail Image */}
                 <img 
@@ -364,21 +363,21 @@ export function Home() {
 
                 {/* Centered Play Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
-                    <Play size={24} className="text-white fill-white ml-1" />
+                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                    <Play size={14} className="text-white fill-white ml-0.5" />
                   </div>
                 </div>
 
                 {/* Earning Badge (Top Right) */}
-                <div className="absolute top-3 right-3 bg-[#FF8C00] border-2 border-[#003366] px-2 py-1 shadow-md">
-                  <span className="text-[10px] font-black text-white uppercase tracking-tight">
+                <div className="absolute top-2 right-2 bg-[#FF8C00] border-2 border-[#003366] px-1.5 py-0.5 shadow-md">
+                  <span className="text-[8px] font-black text-white uppercase tracking-tight">
                     {reel.reward}
                   </span>
                 </div>
 
                 {/* Title (Bottom Left) */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-black text-[15px] uppercase tracking-tighter leading-[0.9] drop-shadow-xl">
+                <div className="absolute bottom-3 left-2.5 right-2.5">
+                  <p className="text-white font-black text-[10px] uppercase tracking-tighter leading-[1.1] drop-shadow-xl">
                     {reel.label.split(" ").map((word, i) => (
                       <span key={i} className="block">{word}</span>
                     ))}
@@ -393,36 +392,41 @@ export function Home() {
         </div>
       </div>
 
-      {/* ── PRIMARY ACTIONS: LOAD ADVERT & REFER ── */}
-      <div className="px-5 mt-2 relative z-10 grid grid-cols-2 gap-3">
+      {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKETPLACE ── */}
+      <div className="px-5 mt-2 relative z-10 grid grid-cols-3 gap-2">
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/advert")}
-          className="relative overflow-hidden bg-[#003366] border-2 border-[#003366] shadow-[4px_4px_0px_#FF8C00] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+          className="relative overflow-hidden bg-[#003366] border-2 border-[#003366] shadow-[3px_3px_0px_#FF8C00] flex flex-col items-center justify-center gap-1.5 px-2 py-3 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
         >
           <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
-          <div className="w-9 h-9 bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
-            <Megaphone size={17} className="text-white" />
+          <div className="w-8 h-8 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
+            <Megaphone size={14} className="text-white" />
           </div>
-          <div className="text-left">
-            <p className="text-white font-black text-[11px] uppercase tracking-tight leading-none">Load Advert</p>
-            <p className="text-white/40 text-[8px] font-bold uppercase tracking-widest mt-1">Instant Rewards</p>
-          </div>
+          <p className="text-white font-black text-[9px] uppercase tracking-tight leading-none text-center">Load<br/>Advert</p>
         </motion.button>
 
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/referral")}
-          className="relative overflow-hidden bg-[#FF8C00] border-2 border-[#003366] shadow-[4px_4px_0px_#003366] flex items-center gap-3 px-4 py-4 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+          className="relative overflow-hidden bg-[#FF8C00] border-2 border-[#003366] shadow-[3px_3px_0px_#003366] flex flex-col items-center justify-center gap-1.5 px-2 py-3 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
         >
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
-          <div className="w-9 h-9 bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
-            <Gift size={17} className="text-white" />
+          <div className="w-8 h-8 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
+            <Gift size={14} className="text-white" />
           </div>
-          <div className="text-left">
-            <p className="text-[#003366] font-black text-[11px] uppercase tracking-tight leading-none">Refer & Share</p>
-            <p className="text-[#003366]/50 text-[8px] font-bold uppercase tracking-widest mt-1">Earn ZMW 10.00</p>
+          <p className="text-[#003366] font-black text-[9px] uppercase tracking-tight leading-none text-center">Refer &<br/>Share</p>
+        </motion.button>
+
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={() => navigate("/marketplace")}
+          className="relative overflow-hidden bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#003366] flex flex-col items-center justify-center gap-1.5 px-2 py-3 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+        >
+          <div className="w-8 h-8 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
+            <Sparkles size={14} className="text-[#003366]" />
           </div>
+          <p className="text-[#003366] font-black text-[9px] uppercase tracking-tight leading-none text-center">Explore<br/>Market</p>
         </motion.button>
       </div>
 

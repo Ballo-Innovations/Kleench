@@ -108,7 +108,7 @@ export function Profile() {
                  className="text-white text-xl font-black uppercase tracking-tighter" style={{ fontFamily: "Outfit, sans-serif" }}>
                  {displayName}
                </motion.h1>
-               <button onClick={() => { navigator.clipboard.writeText(window.location.href); alert("Profile link copied!"); }}
+               <button onClick={() => { navigator.clipboard.writeText(window.location.href); alert("Wall link copied!"); }}
                  className="p-2 rounded-full hover:bg-white/10 active:scale-90 transition-all text-white">
                  <Share2 size={18} />
                </button>
@@ -231,7 +231,7 @@ export function Profile() {
               className="space-y-6">
               <div className="bg-white p-8 border-2 border-[#003366] shadow-[8px_8px_0px_#003366] space-y-8">
                 <div className="flex items-center justify-between pb-4 border-b-2 border-[#003366]/10">
-                  <h3 className="text-[10px] font-black text-[#003366]/40 uppercase tracking-[0.4em]">Verified Ledger</h3>
+                  <h3 className="text-[10px] font-black text-[#003366]/40 uppercase tracking-[0.4em]">Verified Wall Ledger</h3>
                   <ShieldCheck size={20} className="text-[#00C853]" />
                 </div>
                 

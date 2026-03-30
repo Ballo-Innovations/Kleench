@@ -1,12 +1,13 @@
 import { Outlet, useLocation, Link, useMatches } from "react-router";
-import { Home, Wallet, Megaphone, GraduationCap, Users } from "lucide-react";
-import { motion } from "motion/react";
+import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 
 // Layout component with navigation
 export function Layout() {
   const location = useLocation();
   const [keyboardOpen, setKeyboardOpen] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     const viewport = window.visualViewport;
@@ -118,7 +119,7 @@ export function Layout() {
         animate={keyboardOpen ? { y: 120, opacity: 0, pointerEvents: "none" } : { y: 0, opacity: 1, pointerEvents: "auto" }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="flex justify-around items-center px-2 pt-3 pb-4">
+        <div className="flex justify-around items-center px-1 pt-3 pb-4">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
@@ -131,16 +132,90 @@ export function Layout() {
                 }`}
               >
                 <Icon
-                  size={22}
+                  size={20}
                   strokeWidth={active ? 2.5 : 2}
                   className="mb-1"
                 />
-                <span className="text-[10px] font-bold capitalize">{item.label}</span>
+                <span className="text-[9px] font-bold capitalize">{item.label}</span>
               </Link>
             );
           })}
+          
+          {/* More Tab */}
+          <button
+            onClick={() => setShowMore(true)}
+            className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
+              showMore ? "text-[#005a8d]" : "text-gray-400 hover:text-[#005a8d]"
+            }`}
+          >
+            <Menu size={20} strokeWidth={showMore ? 2.5 : 2} className="mb-1" />
+            <span className="text-[9px] font-bold capitalize">More</span>
+          </button>
         </div>
       </motion.nav>
+
+      {/* MORE MENU MODAL */}
+      <AnimatePresence>
+        {showMore && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[60] bg-[#003366]/60 backdrop-blur-sm md:max-w-md mx-auto"
+              onClick={() => setShowMore(false)}
+            />
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed bottom-0 left-0 right-0 z-[70] w-full md:max-w-md mx-auto bg-white rounded-t-[32px] overflow-hidden shadow-2xl pb-[env(safe-area-inset-bottom)]"
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-black text-[#003366] uppercase tracking-tighter">Explore More</h3>
+                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-[#003366] transition-colors">
+                    <X size={18} />
+                  </button>
+                </div>
+                
+                <div className="grid grid-cols-1 gap-3">
+                  <Link to="/marketplace" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
+                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C00] group-hover:border-[#FF8C00] group-hover:text-white transition-colors">
+                      <Store size={20} strokeWidth={2.5} />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-[#003366] uppercase tracking-tight">Marketplace</h4>
+                      <p className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-snug">Shop securely with Escrow</p>
+                    </div>
+                  </Link>
+
+                  <Link to="/crs" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
+                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C00] group-hover:border-[#FF8C00] group-hover:text-white transition-colors">
+                      <ShieldCheck size={20} strokeWidth={2.5} />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-[#003366] uppercase tracking-tight">CRS Score</h4>
+                      <p className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-snug">Check your reliable score</p>
+                    </div>
+                  </Link>
+
+                  <Link to="/crowdfunding" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
+                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C00] group-hover:border-[#FF8C00] group-hover:text-white transition-colors">
+                      <HeartHandshake size={20} strokeWidth={2.5} />
+                    </div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-[#003366] uppercase tracking-tight">Crowdfunding</h4>
+                      <p className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-snug">Support verified projects</p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
