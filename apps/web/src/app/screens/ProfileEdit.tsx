@@ -10,27 +10,18 @@ export function ProfileEdit() {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const localKycRaw = localStorage.getItem("userKyc");
+  const localKyc = localKycRaw ? JSON.parse(localKycRaw) : {};
+
   const [profilePhoto, setProfilePhoto] = useState<string>(
     localStorage.getItem("userProfilePhoto") || DEFAULT_AVATAR
   );
-  const [fullName, setFullName] = useState(
-    localStorage.getItem("userFullName") || ""
-  );
-  const [username, setUsername] = useState(
-    localStorage.getItem("userUsername") || ""
-  );
-  const [email, setEmail] = useState(
-    localStorage.getItem("userEmail") || ""
-  );
-  const [phone, setPhone] = useState(
-    localStorage.getItem("userPhone") || ""
-  );
-  const [location, setLocation] = useState(
-    localStorage.getItem("userLocation") || ""
-  );
-  const [bio, setBio] = useState(
-    localStorage.getItem("userBio") || ""
-  );
+  const [fullName, setFullName] = useState(localKyc.fullName || "");
+  const [username, setUsername] = useState(localKyc.userName || "");
+  const [email, setEmail] = useState(localKyc.email || "");
+  const [phone, setPhone] = useState(localKyc.phone || "");
+  const [location, setLocation] = useState(localKyc.location || "");
+  const [bio, setBio] = useState(localKyc.bio || "");
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -44,13 +35,18 @@ export function ProfileEdit() {
   };
 
   const handleSave = () => {
+    const updatedKyc = {
+      ...localKyc,
+      fullName: fullName,
+      userName: username,
+      email: email,
+      phone: phone,
+      location: location,
+      bio: bio
+    };
+    
+    localStorage.setItem("userKyc", JSON.stringify(updatedKyc));
     localStorage.setItem("userProfilePhoto", profilePhoto);
-    localStorage.setItem("userFullName", fullName);
-    localStorage.setItem("userUsername", username);
-    localStorage.setItem("userEmail", email);
-    localStorage.setItem("userPhone", phone);
-    localStorage.setItem("userLocation", location);
-    localStorage.setItem("userBio", bio);
     navigate("/settings");
   };
 

@@ -33,9 +33,16 @@ import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const hasCompletedOnboarding = localStorage.getItem("hasCompletedOnboarding") === "true";
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
+  }
+
+  const isAtOnboarding = window.location.pathname === "/onboarding";
+
+  if (!hasCompletedOnboarding && !isAtOnboarding) {
+    return <Navigate to="/onboarding" replace />;
   }
 
   return <>{children}</>;

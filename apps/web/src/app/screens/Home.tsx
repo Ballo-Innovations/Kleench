@@ -298,31 +298,31 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative z-10 flex items-center justify-between gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-[20px] p-2 shadow-sm mb-2"
+          className="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1.5 px-4 shadow-[0_4px_24px_rgba(0,0,0,0.06)] mb-1 w-full max-w-[280px] mx-auto"
         >
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <div className="min-w-0">
-              <p className="text-white/60 text-[9px] font-bold uppercase tracking-wider leading-none mb-1">Total Balance</p>
+              <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Total Balance</p>
               <div className="flex items-center gap-2">
-                <h2 className="text-white text-[16px] font-black tracking-tight leading-none">
+                <h2 className="text-white text-[15px] font-black tracking-tight leading-none">
                   {balanceHidden ? "••••••" : "K2,450.00"}
                 </h2>
                 <button onClick={handleToggleBalance} className="text-white/40 hover:text-white transition-colors">
-                  {balanceHidden ? <EyeOff size={14} /> : <Eye size={14} />}
+                  {balanceHidden ? <EyeOff size={12} /> : <Eye size={12} />}
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 pl-3 border-l border-white/10">
+          <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
             {[
               { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
               { icon: Send, label: "Send", to: "/wallet", rotate: true },
               { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
             ].map(({ icon: Icon, label, to, rotate }) => (
               <Link key={label} to={to} title={label}
-                className="w-8 h-8 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/20 shadow-sm">
-                <Icon size={15} className={rotate ? "-rotate-12 translate-x-0.5" : ""} />
+                className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
+                <Icon size={14} className={rotate ? "-rotate-12 translate-x-0.5" : ""} />
               </Link>
             ))}
           </div>
