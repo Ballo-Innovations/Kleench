@@ -29,7 +29,12 @@ const AD_VIDEOS = [
   },
 ];
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Advert() {
+  const loading = usePageLoading(800);
+
+
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
       
@@ -37,10 +42,13 @@ export function Advert() {
       <PageHeader 
         title="Watch Ads"
         subtitle="Earn rewards for your attention." 
-        height={180}
+        height={90}
       />
 
-      <div className="px-5 mt-4 relative z-20 space-y-10">
+      {loading ? (
+        <PageSkeletons.Generic />
+      ) : (
+        <div className="px-5 mt-4 relative z-20 space-y-10">
         
         <section className="space-y-6">
 
@@ -114,6 +122,7 @@ export function Advert() {
            </div>
         </section>
       </div>
+      )}
     </div>
   );
 }

@@ -83,7 +83,7 @@ export function Wallet() {
 
   const loading = usePageLoading(900);
 
-  if (loading) return <PageSkeletons.Wallet />;
+
 
   function grace(delay = 0) {
     return {
@@ -105,7 +105,10 @@ export function Wallet() {
         onSearchChange={setSearchQuery}
       />
 
-      <div className="px-5 -mt-10 relative z-10 space-y-12">
+      {loading ? (
+        <PageSkeletons.Wallet />
+      ) : (
+        <div className="px-5 -mt-4 relative z-10 space-y-12">
         
         <section className="space-y-6">
 
@@ -277,8 +280,8 @@ export function Wallet() {
           <img src={adBanner} alt="Transaction Assurance" className="w-full h-auto object-cover opacity-80" />
         </motion.div>
       </div>
+      )}
 
-      {/* ── Financial KYC Modal ── */}
       <AnimatePresence>
         {showFinancialKyc && (
           <div className="fixed inset-0 z-[100] flex items-end justify-center px-4 pb-10 bg-black/40 backdrop-blur-sm">

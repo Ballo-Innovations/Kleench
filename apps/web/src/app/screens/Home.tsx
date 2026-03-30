@@ -167,7 +167,7 @@ export function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [likedPosts, setLikedPosts] = useState<number[]>([]);
 
-  if (loading) return <PageSkeletons.Home />;
+
 
   function grace(delay = 0) {
     return {
@@ -225,7 +225,7 @@ export function Home() {
 
       {/* ── ORANGE DASHBOARD HEADER ── */}
       <div
-        className="relative pt-11 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[200px]"
+        className="relative pt-4 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[100px]"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}
       >
         {/* Grid texture */}
@@ -243,7 +243,7 @@ export function Home() {
         <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none" />
 
         {/* Top Nav Row */}
-        <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-2">
+        <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-0">
           <Link to="/" className="flex-shrink-0">
             <img src={kleenchLogo} alt="KLEENCH" className="h-6 w-auto object-contain brightness-0 invert" />
           </Link>
@@ -298,13 +298,13 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative z-10 flex items-center justify-between gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-[24px] p-2.5 shadow-sm mb-6"
+          className="relative z-10 flex items-center justify-between gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-[20px] p-2 shadow-sm mb-2"
         >
           <div className="flex items-center gap-2.5">
             <div className="min-w-0">
               <p className="text-white/60 text-[9px] font-bold uppercase tracking-wider leading-none mb-1">Total Balance</p>
               <div className="flex items-center gap-2">
-                <h2 className="text-white text-[18px] font-black tracking-tight leading-none">
+                <h2 className="text-white text-[16px] font-black tracking-tight leading-none">
                   {balanceHidden ? "••••••" : "K2,450.00"}
                 </h2>
                 <button onClick={handleToggleBalance} className="text-white/40 hover:text-white transition-colors">
@@ -321,13 +321,20 @@ export function Home() {
               { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
             ].map(({ icon: Icon, label, to, rotate }) => (
               <Link key={label} to={to} title={label}
-                className="w-9 h-9 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/20 shadow-sm">
-                <Icon size={17} className={rotate ? "-rotate-12 translate-x-0.5" : ""} />
+                className="w-8 h-8 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/20 shadow-sm">
+                <Icon size={15} className={rotate ? "-rotate-12 translate-x-0.5" : ""} />
               </Link>
             ))}
           </div>
         </motion.div>
       </div>
+
+      {loading ? (
+        <div className="mt-6">
+          <PageSkeletons.Home />
+        </div>
+      ) : (
+        <>
 
       {/* ── REELS CAROUSEL: "EARN TODAY" VERTICAL VIDEO CARDS ── */}
       <div className="px-5 mt-6 relative z-10">
@@ -676,6 +683,8 @@ export function Home() {
         <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[#003366]">End of Dashboard</p>
         <p className="text-[8px] text-[#003366]/50 font-bold uppercase tracking-widest mt-1">Refreshed just now</p>
       </motion.div>
+      </>
+      )}
 
       {/* ── PIN Verification Modal ── */}
       <AnimatePresence>

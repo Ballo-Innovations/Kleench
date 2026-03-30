@@ -101,10 +101,15 @@ const PRODUCTS = [
   }
 ];
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Marketplace() {
+  const loading = usePageLoading(850);
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+
+
 
   const filteredProducts = PRODUCTS.filter((product) => {
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
@@ -120,11 +125,11 @@ export function Marketplace() {
       <PageHeader 
         title="Marketplace" 
         subtitle="Verified Global Trades" 
-        height={280}
+        height={140}
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       >
-         <div className="relative z-10 mb-8 mt-4 flex flex-col gap-4">
+         <div className="relative z-10 mb-2 mt-2 flex flex-col gap-3">
             <div className="relative group">
                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-white transition-colors" size={18} />
                <input 
@@ -132,7 +137,7 @@ export function Marketplace() {
                  value={searchQuery}
                  onChange={(e) => setSearchQuery(e.target.value)}
                  placeholder="Search products, services, sellers..." 
-                 className="w-full pl-14 pr-6 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder:text-white/40 outline-none text-[13px] font-bold transition-all focus:bg-white/20"
+                 className="w-full pl-14 pr-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder:text-white/40 outline-none text-[12px] font-bold transition-all focus:bg-white/20"
                />
             </div>
             <div className="flex gap-3">
@@ -147,7 +152,10 @@ export function Marketplace() {
          </div>
       </PageHeader>
 
-      <div className="px-5 mt-8 relative z-10 space-y-12">
+      {loading ? (
+        <PageSkeletons.Marketplace />
+      ) : (
+        <div className="px-5 mt-8 relative z-10 space-y-12">
         
         {/* SECTION 01. COLLECTIONS */}
         <section className="space-y-6">
@@ -238,6 +246,7 @@ export function Marketplace() {
         </section>
 
       </div>
+      )}
     </div>
   );
 }

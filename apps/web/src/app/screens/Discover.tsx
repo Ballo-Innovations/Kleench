@@ -48,14 +48,14 @@ export function Discover() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"advertising" | "learning">("advertising");
 
-  if (loading) return <PageSkeletons.Generic />;
+
 
   return (
     <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">
       <CrossHatchBg />
 
       {/* ── Standardized Orange Header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-12"
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[90px] mb-6"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* grid texture */}
@@ -82,7 +82,7 @@ export function Discover() {
         </div>
 
         {/* Segmented control */}
-        <div className="relative z-10 bg-white/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10 mb-8">
+        <div className="relative z-10 bg-white/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10 mb-2">
           {(["advertising", "learning"] as const).map((tab) => (
             <button key={tab}
               onClick={() => setActiveTab(tab)}
@@ -97,7 +97,10 @@ export function Discover() {
       </div>
 
       {/* ── Content (overlaps hero by -mt-14) ── */}
-      <div className="px-4 -mt-14 relative z-10">
+      {loading ? (
+        <PageSkeletons.Discover />
+      ) : (
+        <div className="px-4 -mt-4 relative z-10">
         <AnimatePresence mode="wait">
 
           {/* ── Advertising tab ── */}
@@ -257,6 +260,7 @@ export function Discover() {
           )}
         </AnimatePresence>
       </div>
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { Search, Filter, Star, ShieldCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
 import { PageHeader } from "../components/PageHeader";
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type OfferType = "all" | "solar" | "network" | "survey" | "course";
@@ -32,6 +33,7 @@ const grace = (delay = 0, extraY = 0) => ({
 });
 
 export function Offers() {
+  const loading = usePageLoading(800);
   const [activeTab, setActiveTab] = useState<OfferType>("all");
   const [search, setSearch] = useState("");
 
@@ -61,7 +63,7 @@ export function Offers() {
       <PageHeader 
         title="Opportunities" 
         subtitle={`${OFFERS.length} active earning opportunities today.`}
-        height={180}
+        height={90}
         searchValue={search}
         onSearchChange={setSearch}
       >
@@ -72,6 +74,13 @@ export function Offers() {
            </div>
         </div>
       </PageHeader>
+
+      {loading ? (
+        <div className="px-5 mt-4">
+          <PageSkeletons.Generic />
+        </div>
+      ) : (
+        <>
 
       {/* Banner Ad */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
@@ -217,6 +226,8 @@ export function Offers() {
           </div>
         </AnimatePresence>
       </div>
+      </>
+      )}
     </div>
   );
 }

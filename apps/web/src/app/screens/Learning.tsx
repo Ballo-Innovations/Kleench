@@ -57,9 +57,14 @@ const grace = (delay = 0) => ({
   ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
 });
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Learning() {
+  const loading = usePageLoading(850);
   const [activeCategory, setActiveCategory] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+
+
 
   const filteredReels = REELS.filter(r => r.title.toLowerCase().includes(searchQuery.toLowerCase()));
   const filteredCourses = COURSES.filter(c => {
@@ -74,11 +79,15 @@ export function Learning() {
       <PageHeader 
         title="Academy" 
         subtitle="Learn and Earn Assets Today."
-        height={180}
+        height={90}
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       />
 
+      {loading ? (
+        <PageSkeletons.Academy />
+      ) : (
+        <>
       {/* Hero Section: Progress Tracking Ledger */}
       <div className="px-5 mt-4 relative z-20">
         <motion.div
@@ -241,6 +250,8 @@ export function Learning() {
         </motion.section>
 
       </div>
+      </>
+      )}
     </div>
   );
 }

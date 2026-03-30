@@ -29,11 +29,16 @@ const grace = (delay = 0) => ({
   ease: [0.22, 1, 0.36, 1] as const,
 });
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function Referral() {
+  const loading = usePageLoading(800);
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [showStickyTop, setShowStickyTop] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+
+
 
   /* Show sticky-top CTA once the hero scrolls out of view */
   useEffect(() => {
@@ -91,7 +96,7 @@ export function Referral() {
       </div>
 
       {/* ── Standardized Orange Header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[180px] mb-8"
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[90px] mb-4"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
         
         {/* grid texture */}
@@ -117,12 +122,18 @@ export function Referral() {
           <div className="w-10" /> {/* Spacer */}
         </div>
 
-        <div className="relative z-10 space-y-1 mb-8">
-          <h2 className="text-white text-3xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Refer & Earn</h2>
+        <div className="relative z-10 space-y-0.5 mb-2">
+          <h2 className="text-white text-xl font-black tracking-tight" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>Refer & Earn</h2>
           <p className="text-white/80 text-[13px] font-medium">Earn up to 12% commission on your network.</p>
         </div>
       </div>
 
+      {loading ? (
+        <div className="px-5 mt-4">
+          <PageSkeletons.Generic />
+        </div>
+      ) : (
+        <>
       {/* ── Banner Ad ── */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }} 
@@ -315,6 +326,8 @@ export function Referral() {
           </motion.div>
         )}
       </AnimatePresence>
+      </>
+      )}
     </div>
   );
 }

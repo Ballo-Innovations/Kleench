@@ -7,11 +7,16 @@ import { PageHeader } from "../components/PageHeader";
 const HERO_BG = "https://images.unsplash.com/photo-1575388902449-6bca946ad549?auto=format&fit=crop&w=1080&q=80";
 const INSTRUCTOR_AVATAR = "https://images.unsplash.com/photo-1758685734511-4f49ce9a382b?auto=format&fit=crop&w=1080&q=80";
 
+import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
 export function LearningDetail() {
+  const loading = usePageLoading(850);
   const { id } = useParams();
   const navigate = useNavigate();
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+
+  if (loading) return <PageSkeletons.AcademyDetail />;
 
   const handleEnroll = () => {
     navigate("/wallet", { state: { enrollCourse: true, courseId: id, coursePrice: 49.99 } });
@@ -31,10 +36,10 @@ export function LearningDetail() {
         title="Course Detail" 
         subtitle="Academy Masterclass Session"
         showBack
-        height={180}
+        height={90}
       />
 
-      <main className="px-5 -mt-20 relative z-20 space-y-12">
+      <main className="px-5 -mt-4 relative z-20 space-y-12">
         
         {/* ── SECTION 01: CINEMATIC PREVIEW ── */}
         <motion.section 

@@ -53,7 +53,7 @@ export function Friends() {
   const filteredFriends = friendsList.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const navigate = useNavigate();
 
-  if (loading) return <PageSkeletons.Generic />;
+
 
   const dismiss = (id: number) => setRequests((r) => r.filter((x) => x.id !== id));
   const accept = (id: number) => {
@@ -76,12 +76,15 @@ export function Friends() {
       <PageHeader 
         title="Social Circle" 
         subtitle="Manage your ecosystem connections."
-        height={180}
+        height={90}
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       />
 
-      <div className="px-5 mt-4 relative z-20 space-y-12">
+      {loading ? (
+        <PageSkeletons.Social />
+      ) : (
+        <div className="px-5 mt-4 relative z-20 space-y-12">
 
         {/* ── SECTION 01: PENDING REQUESTS ── */}
         <AnimatePresence>
@@ -220,6 +223,7 @@ export function Friends() {
         </motion.section>
 
       </div>
+      )}
 
       {/* ── FLOATING ACTION LEDGER ── */}
       <div className="fixed bottom-28 right-5 z-40">

@@ -41,7 +41,7 @@ export function Profile() {
   const [isFollowing, setIsFollowing] = useState(false);
   const navigate = useNavigate();
 
-  if (loading) return <PageSkeletons.Profile />;
+
 
   // Load local user data
   const localKycRaw = localStorage.getItem("userKyc");
@@ -81,23 +81,23 @@ export function Profile() {
       {/* ── Standardized Header ── */}
       <PageHeader 
         useLogo 
-        height={220}
+        height={110}
       >
-        <div className="relative z-10 flex items-center gap-6 mt-2">
+        <div className="relative z-10 flex items-center gap-4 mt-0 pt-0">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
             className="relative">
-            <div className="w-24 h-24 border-4 border-white overflow-hidden shadow-xl shadow-black/20">
+            <div className="w-16 h-16 border-2 border-white overflow-hidden shadow-xl shadow-black/20">
               {isOwnProfile && localPhoto ? (
                 <img src={localPhoto} alt={displayName} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full bg-orange-50 flex items-center justify-center text-[#FF8C00] text-3xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
+                <div className="w-full h-full bg-orange-50 flex items-center justify-center text-[#FF8C00] text-xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
                   {initials}
                 </div>
               )}
             </div>
             {profileData.verified && (
               <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#00C853] border-2 border-white flex items-center justify-center shadow-lg text-white">
-                <ShieldCheck size={16} strokeWidth={3} />
+                <ShieldCheck size={12} strokeWidth={3} />
               </div>
             )}
           </motion.div>
@@ -105,7 +105,7 @@ export function Profile() {
           <div className="flex-1">
             <div className="flex items-center justify-between">
                <motion.h1 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={grace(0.2)}
-                 className="text-white text-3xl font-black uppercase tracking-tighter" style={{ fontFamily: "Outfit, sans-serif" }}>
+                 className="text-white text-xl font-black uppercase tracking-tighter" style={{ fontFamily: "Outfit, sans-serif" }}>
                  {displayName}
                </motion.h1>
                <button onClick={() => { navigator.clipboard.writeText(window.location.href); alert("Profile link copied!"); }}
@@ -121,7 +121,10 @@ export function Profile() {
         </div>
       </PageHeader>
 
-      <div className="px-5 mt-6 relative z-10 space-y-8">
+      {loading ? (
+        <PageSkeletons.Profile />
+      ) : (
+        <div className="px-5 mt-6 relative z-10 space-y-8">
         
         {/* Stats Section (Industrial Ledger) */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.4)}
@@ -270,6 +273,7 @@ export function Profile() {
           )}
         </AnimatePresence>
       </div>
+      )}
     </div>
   );
 }

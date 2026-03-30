@@ -21,7 +21,7 @@ export function PageHeader({
   children, 
   showBack = false, 
   useLogo = false, 
-  height = 180,
+  height = 90,
   searchValue,
   onSearchChange
 }: PageHeaderProps) {
@@ -30,7 +30,7 @@ export function PageHeader({
 
   return (
     <div 
-      className="relative pt-10 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between"
+      className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between"
       style={{ 
         background: "linear-gradient(135deg, #FF8C00, #e06900)", 
         boxShadow: "0 10px 30px rgba(255,140,0,0.12)",
@@ -54,7 +54,7 @@ export function PageHeader({
       <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
 
       {/* ── Header Top Layer (HUD Bar) ── */}
-      <div className="relative z-[40] mt-1 flex items-center justify-between min-h-[46px]">
+      <div className="relative z-[40] mt-0 flex items-center justify-between min-h-[40px]">
         {/* LEFT HUD: Back OR Logo */}
         <div className="flex items-center min-w-[24px]">
           {showBack ? (
@@ -148,11 +148,11 @@ export function PageHeader({
         </div>
       </div>
 
-      <div className="relative z-10 space-y-1 mb-10 mt-4 px-1">
+      <div className="relative z-10 space-y-0.5 mb-2 mt-1 px-1">
         {!useLogo && title && (
-          <h1 className="text-white text-3xl font-black tracking-tight uppercase" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>{title}</h1>
+          <h1 className="text-white text-xl font-black tracking-tight uppercase" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>{title}</h1>
         )}
-        {subtitle && <p className="text-white/80 text-[12px] font-bold uppercase tracking-widest leading-tight">{subtitle}</p>}
+        {subtitle && <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest leading-tight">{subtitle}</p>}
       </div>
 
       {children}
