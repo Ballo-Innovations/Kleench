@@ -159,7 +159,7 @@ export function Home() {
   const loading = usePageLoading(800);
   const navigate = useNavigate();
 
-  const [balanceHidden, setBalanceHidden] = useState(true);
+  const [balanceHidden, setBalanceHidden] = useState(false);
   const [pinInput, setPinInput] = useState("");
   const [showPinModal, setShowPinModal] = useState(false);
   const [pinError, setPinError] = useState("");
@@ -225,7 +225,7 @@ export function Home() {
 
       {/* ── ORANGE DASHBOARD HEADER ── */}
       <div
-        className="relative pt-2.5 pb-0 px-5 overflow-hidden rounded-b-[40px] shadow-lg flex flex-col justify-between h-[100px]"
+        className="relative pt-2 pb-1 px-5 overflow-hidden rounded-b-[30px] shadow-lg flex flex-col justify-between h-auto"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}
       >
         {/* Grid texture */}
@@ -298,14 +298,14 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1.5 px-4 shadow-[0_4px_24px_rgba(0,0,0,0.06)] mb-3 w-full max-w-[310px] mx-auto"
+          className="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1.5 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] mb-1 mt-1 w-full mx-auto"
         >
           <div className="flex items-center gap-2">
             <div className="min-w-0">
               <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Total Balance</p>
               <div className="flex items-center gap-2">
                 <h2 className="text-white text-[15px] font-black tracking-tight leading-none">
-                  {balanceHidden ? "••••••" : "K2,450.00"}
+                  {balanceHidden ? "••••••" : "ZMW 2,450.00"}
                 </h2>
                 <button onClick={handleToggleBalance} className="text-white/40 hover:text-white transition-colors">
                   {balanceHidden ? <EyeOff size={12} /> : <Eye size={12} />}
@@ -336,20 +336,20 @@ export function Home() {
         <>
 
       {/* ── REELS CAROUSEL: "EARN TODAY" VERTICAL VIDEO CARDS ── */}
-      <div className="px-5 mt-6 relative z-10">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="px-5 mt-2 relative z-10">
+        <div className="flex items-center gap-3 mb-2">
           <span className="text-[#FF8C00] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
           <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Earn Today</h3>
           <div className="flex-1 h-[2px] bg-[#003366]/5" />
         </div>
 
         {/* Horizontal Swipeable Container */}
-        <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
+        <div className="flex gap-2 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
           {REELS.map((reel) => (
             <Link key={reel.id} to={reel.to}>
               <motion.div
                 whileTap={{ scale: 0.96 }}
-                className="relative flex-shrink-0 w-[95px] h-[155px] bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] group"
+                className="relative flex-shrink-0 w-[32px] h-[52px] bg-white border border-[#003366] overflow-hidden shadow-[2px_2px_0px_#003366] group rounded-sm"
               >
                 {/* Thumbnail Image */}
                 <img 
@@ -363,21 +363,20 @@ export function Home() {
 
                 {/* Centered Play Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <Play size={14} className="text-white fill-white ml-0.5" />
+                  <div className="w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                    <Play size={8} className="text-white fill-white ml-0.5" />
                   </div>
                 </div>
 
                 {/* Earning Badge (Top Right) */}
-                <div className="absolute top-2 right-2 bg-[#FF8C00] border-2 border-[#003366] px-1.5 py-0.5 shadow-md">
-                  <span className="text-[8px] font-black text-white uppercase tracking-tight">
-                    {reel.reward}
-                  </span>
+                <div className="absolute top-0.5 right-0.5 bg-[#FF8C00] border border-[#003366] px-0.5 py-[1px] shadow-sm">
+                  <span className="text-[5px] font-black text-white uppercase tracking-tight block leading-none">
+                    </span>
                 </div>
 
                 {/* Title (Bottom Left) */}
-                <div className="absolute bottom-3 left-2.5 right-2.5">
-                  <p className="text-white font-black text-[10px] uppercase tracking-tighter leading-[1.1] drop-shadow-xl">
+                <div className="absolute bottom-1 left-1 right-1">
+                  <p className="text-white font-black text-[6px] uppercase tracking-tighter leading-[1] drop-shadow-xl truncate">
                     {reel.label.split(" ").map((word, i) => (
                       <span key={i} className="block">{word}</span>
                     ))}
@@ -393,51 +392,51 @@ export function Home() {
       </div>
 
       {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKETPLACE ── */}
-      <div className="px-5 mt-2 relative z-10 grid grid-cols-3 gap-2">
+      <div className="px-5 mt-1 relative z-10 grid grid-cols-3 gap-1.5">
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/advert")}
-          className="relative overflow-hidden bg-[#003366] border-2 border-[#003366] shadow-[3px_3px_0px_#FF8C00] flex flex-col items-center justify-center gap-1.5 px-2 py-3 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+          className="relative overflow-hidden bg-[#003366] border border-[#003366] shadow-[2px_2px_0px_#FF8C00] flex flex-col items-center justify-center gap-1 px-1 py-1.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
-          <div className="w-8 h-8 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
-            <Megaphone size={14} className="text-white" />
+          <div className="w-5 h-5 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
+            <Megaphone size={10} className="text-white" />
           </div>
-          <p className="text-white font-black text-[9px] uppercase tracking-tight leading-none text-center">Load<br/>Advert</p>
+          <p className="text-white font-black text-[7px] uppercase tracking-tight leading-none text-center">Load<br/>Advert</p>
         </motion.button>
 
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/referral")}
-          className="relative overflow-hidden bg-[#FF8C00] border-2 border-[#003366] shadow-[3px_3px_0px_#003366] flex flex-col items-center justify-center gap-1.5 px-2 py-3 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+          className="relative overflow-hidden bg-[#FF8C00] border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
-          <div className="w-8 h-8 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
-            <Gift size={14} className="text-white" />
+          <div className="w-5 h-5 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
+            <Gift size={10} className="text-white" />
           </div>
-          <p className="text-[#003366] font-black text-[9px] uppercase tracking-tight leading-none text-center">Refer &<br/>Share</p>
+          <p className="text-[#003366] font-black text-[7px] uppercase tracking-tight leading-none text-center">Refer &<br/>Share</p>
         </motion.button>
 
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/marketplace")}
-          className="relative overflow-hidden bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#003366] flex flex-col items-center justify-center gap-1.5 px-2 py-3 group active:shadow-none active:translate-x-1 active:translate-y-1 transition-all"
+          className="relative overflow-hidden bg-white border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
-          <div className="w-8 h-8 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
-            <Sparkles size={14} className="text-[#003366]" />
+          <div className="w-5 h-5 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
+            <Sparkles size={10} className="text-[#003366]" />
           </div>
-          <p className="text-[#003366] font-black text-[9px] uppercase tracking-tight leading-none text-center">Explore<br/>Market</p>
+          <p className="text-[#003366] font-black text-[7px] uppercase tracking-tight leading-none text-center">Explore<br/>Market</p>
         </motion.button>
       </div>
 
       {/* ── SECTION 01. THE RAT TRAP FEED (Social Media Style Ad Feed) ── */}
       <motion.section
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.3)}
-        className="mt-8 px-5 relative z-10"
+        className="mt-3 px-5 relative z-10"
       >
-        <div className="flex items-center gap-3 mb-5">
-          <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
-          <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">For You Feed</h3>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[#FF8C00] font-black text-[10px] tracking-[0.3em]">01.</span>
+          <h3 className="font-black text-[9px] uppercase tracking-[0.4em] text-[#003366]/40">For You Feed</h3>
           <div className="flex-1 h-[2px] bg-[#003366]/5" />
           <div className="flex items-center gap-1 bg-[#FF8C00]/10 px-2 py-0.5 border border-[#FF8C00]/20">
              <TrendingUp size={10} className="text-[#FF8C00]" />
