@@ -303,8 +303,8 @@ export function Home() {
 
           <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
             {[
-              { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
               { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
+              { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
             ].map(({ icon: Icon, label, to }) => (
               <Link key={label} to={to} title={label}
                 className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
@@ -322,55 +322,38 @@ export function Home() {
       ) : (
         <>
       {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKET ── */}
-      <div className="px-5 mt-1 relative z-10 grid grid-cols-3 gap-2">
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          onClick={() => navigate("/advert")}
-          className="relative overflow-hidden bg-[#003366] border border-[#003366] shadow-[2px_2px_0px_#FF8C00] flex flex-col items-center justify-center gap-0.5 px-1 py-0.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
-        >
-          <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
-          <div className="w-4 h-4 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
-            <Megaphone size={8} className="text-white" />
-          </div>
-          <p className="text-white font-black text-[6px] uppercase tracking-tight leading-none text-center">Load<br/>Advert</p>
-        </motion.button>
-
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          onClick={() => navigate("/referral")}
-          className="relative overflow-hidden bg-[#FF8C00] border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-0.5 px-1 py-0.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
-        >
-          <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
-          <div className="w-4 h-4 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
-            <Gift size={8} className="text-white" />
-          </div>
-          <p className="text-[#003366] font-black text-[6px] uppercase tracking-tight leading-none text-center">Refer &<br/>Share</p>
-        </motion.button>
-
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          onClick={() => navigate("/marketplace")}
-          className="relative overflow-hidden bg-white border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-0.5 px-1 py-0.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
-        >
-          <div className="w-4 h-4 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
-            <Sparkles size={8} className="text-[#003366]" />
-          </div>
-          <p className="text-[#003366] font-black text-[6px] uppercase tracking-tight leading-none text-center">Explore<br/>Market</p>
-        </motion.button>
+      <div className="px-5 mt-1 relative z-10 flex items-center justify-center gap-8">
+        {[
+          { icon: Megaphone, label: "Advert", to: "/advert", color: "text-[#FF8C00]", bg: "bg-white" },
+          { icon: Gift, label: "Refer", to: "/referral", color: "text-white", bg: "bg-[#FF8C00]" },
+          { icon: Sparkles, label: "Market", to: "/marketplace", color: "text-[#003366]", bg: "bg-white" },
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => navigate(item.to)}
+            className="flex flex-col items-center gap-1.5 cursor-pointer group"
+          >
+            <div className={`w-10 h-10 rounded-full border border-[#003366]/20 shadow-sm flex items-center justify-center transition-transform group-hover:-translate-y-1 ${item.color} ${item.bg}`}>
+              <item.icon size={18} strokeWidth={2.5} />
+            </div>
+            <span className="text-[#003366] font-black tracking-tight text-[8px] uppercase">{item.label}</span>
+          </motion.div>
+        ))}
       </div>
 
       {/* ── INFINITE CONTENT CYCLE ── */}
-      <div className="mt-3 flex flex-col gap-10 pb-8">
+      <div className="mt-2 flex flex-col gap-4 pb-8">
         {(function renderCycle() {
           const cycleBlocks = [
             // Sequence 1: Reels -> Post 1
-            { type: "reels", data: REELS, title: "Earn Today", id: "reels-1" },
+            { type: "reels", data: REELS, title: "REELS", id: "reels-1" },
             { type: "post", data: FEED_ITEMS[0], id: "post-1" },
             // Sequence 2: Market -> Post 2
             { type: "market", data: MARKETPLACE_PRODUCTS, title: "Market", id: "market-1" },
             { type: "post", data: FEED_ITEMS[1], id: "post-2" },
             // Sequence 3: Reels 2 -> Post 3
-            { type: "reels", data: REELS, title: "Earn Today", id: "reels-2" },
+            { type: "reels", data: REELS, title: "REELS", id: "reels-2" },
             { type: "post", data: FEED_ITEMS[2], id: "post-3" },
             // Sequence 4: Market 2 -> Post 4
             { type: "market", data: MARKETPLACE_PRODUCTS, title: "Market", id: "market-2" },
