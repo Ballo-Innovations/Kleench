@@ -3,8 +3,7 @@ import { useState } from "react";
 import {
   Settings, Bell, Search, Eye, EyeOff,
   X, ArrowDownToLine, ArrowUpFromLine,
-  Play, GraduationCap, ClipboardList, Users,
-  Heart, MessageCircle, ArrowRight,
+  Play, Heart, MessageCircle, ArrowRight,
   Megaphone, Gift, BadgeCheck, Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
@@ -165,15 +164,6 @@ export function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-
-
-  function grace(delay = 0) {
-    return {
-      duration: 0.62,
-      delay,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    };
-  }
 
   const handleToggleBalance = () => {
     if (balanceHidden) {
@@ -522,101 +512,7 @@ export function Home() {
         })()}
       </div>
 
-      {/* ── SECTION 03. EARN CHANNELS ── */}
-      <motion.section
-        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-        transition={grace(0.1)}
-        className="px-5 mt-10 relative z-10"
-      >
-        <div className="flex items-center gap-3 mb-5">
-          <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">03.</span>
-          <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Earn Channels</h3>
-          <div className="flex-1 h-[2px] bg-[#003366]/5" />
-        </div>
 
-        <div className="grid grid-cols-1 gap-0 border-2 border-[#003366] bg-[#003366] divide-y-2 divide-[#003366]/10 shadow-[6px_6px_0px_#FF8C00]">
-          {[
-            { id: 1, title: "Watch & Earn", label: "Watch Ads", icon: Play, to: "/advert", tag: "Hot" },
-            { id: 2, title: "Masterclass", label: "Education", icon: GraduationCap, to: "/learning", tag: "Learn" },
-            { id: 3, title: "Data Survey", label: "Feedback", icon: ClipboardList, to: "/poll/create", tag: "Earn" },
-            { id: 4, title: "Invite Friends", label: "Community", icon: Users, to: "/referral", tag: "Grow" },
-          ].filter((item) =>
-            item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.label.toLowerCase().includes(searchQuery.toLowerCase())
-          ).map((item, idx) => (
-            <Link key={item.id} to={item.to}>
-              <motion.div
-                whileTap={{ backgroundColor: "#003366" }}
-                className="bg-white p-5 flex items-center justify-between group transition-all hover:bg-[#003366]/[0.02]"
-              >
-                <div className="flex items-center gap-6">
-                  <span className="text-[10px] font-black text-[#003366]/15 tracking-widest">{(idx + 1).toString().padStart(2, "0")}.</span>
-                  <div className="flex flex-col">
-                    <span className="text-[#FF8C00] font-black text-[7px] uppercase tracking-[0.3em] mb-1.5">{item.label}</span>
-                    <h3 className="text-[#003366] font-black text-[14px] uppercase tracking-tighter leading-none group-hover:text-[#FF8C00] transition-colors">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-[8px] font-black uppercase tracking-widest px-2 py-1 bg-[#003366]/5 text-[#003366]/40 border border-[#003366]/10">{item.tag}</span>
-                  <div className="w-8 h-8 border border-[#003366]/10 flex items-center justify-center text-[#003366]/30 group-hover:text-[#FF8C00] group-hover:border-[#FF8C00] transition-all">
-                    <item.icon size={16} />
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* ── FINAL CTA: REFER BANNER ── */}
-      <motion.section
-        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.2 }}
-        className="px-5 mt-12 pb-12 relative z-10"
-      >
-        <motion.div
-          whileTap={{ scale: 0.98 }}
-          onClick={() => navigate("/referral")}
-          className="relative overflow-hidden border-2 border-[#003366] bg-[#FF8C00] shadow-[6px_6px_0px_#003366] p-6 cursor-pointer group hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0px_#003366] transition-all"
-        >
-          <div className="absolute inset-0 opacity-[0.12]" style={{ backgroundImage: "radial-gradient(#003366 1px, transparent 0)", backgroundSize: "14px 14px" }} />
-
-          <div className="relative z-10 flex items-center justify-between gap-4">
-            <div>
-              <p className="text-[#003366] font-black text-[7px] uppercase tracking-[0.4em] mb-1.5">Network Growth</p>
-              <h3 className="text-[#003366] font-black text-[22px] uppercase tracking-tighter leading-none mb-2">
-                Refer &<br />Share
-              </h3>
-              <p className="text-[#003366]/60 text-[11px] font-bold leading-snug max-w-[180px]">
-                Earn K10 for every verified friend who joins Kleench.
-              </p>
-              <div className="flex items-center gap-2 mt-4">
-                <div className="flex items-center gap-2 bg-[#003366] text-white px-4 py-2 text-[9px] font-black uppercase tracking-widest group-hover:bg-[#002244] transition-colors">
-                  <Sparkles size={11} className="text-[#FF8C00]" />
-                  Invite Now
-                </div>
-              </div>
-            </div>
-            <div className="flex-shrink-0 flex flex-col items-center gap-1">
-              <div className="w-16 h-16 rounded-full bg-[#003366] border-4 border-white/20 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                <Gift size={30} className="text-[#FF8C00]" />
-              </div>
-              <span className="text-[#003366] font-black text-[11px] uppercase tracking-tight">K10 / Reward</span>
-            </div>
-          </div>
-        </motion.div>
-      </motion.section>
-
-      {/* ── Page Footer Feedback ── */}
-      <motion.div
-        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-        className="mt-4 pb-8 px-5 flex flex-col items-center justify-center text-center opacity-30 hover:opacity-100 transition-opacity"
-      >
-        <div className="w-10 h-[2px] bg-[#003366]/10 mb-3" />
-        <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[#003366]">End of Dashboard</p>
-        <p className="text-[8px] text-[#003366]/50 font-bold uppercase tracking-widest mt-1">Refreshed just now</p>
-      </motion.div>
       </>
       )}
 
