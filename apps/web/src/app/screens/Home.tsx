@@ -298,7 +298,7 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1.5 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] mb-1 mt-1 w-full mx-auto"
+          className="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-1 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] mb-1 mt-1 w-full mx-auto"
         >
           <div className="flex items-center gap-2">
             <div className="min-w-0">
@@ -336,8 +336,8 @@ export function Home() {
         <>
 
       {/* ── REELS CAROUSEL: "EARN TODAY" VERTICAL VIDEO CARDS ── */}
-      <div className="px-5 mt-2 relative z-10">
-        <div className="flex items-center gap-3 mb-2">
+      <div className="px-5 mt-1.5 relative z-10">
+        <div className="flex items-center gap-3 mb-1.5">
           <span className="text-[#FF8C00] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
           <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Earn Today</h3>
           <div className="flex-1 h-[2px] bg-[#003366]/5" />
@@ -349,7 +349,7 @@ export function Home() {
             <Link key={reel.id} to={reel.to}>
               <motion.div
                 whileTap={{ scale: 0.96 }}
-                className="relative flex-shrink-0 w-[32px] h-[52px] bg-white border border-[#003366] overflow-hidden shadow-[2px_2px_0px_#003366] group rounded-sm"
+                className="relative flex-shrink-0 w-16 h-24 bg-white border border-[#003366] overflow-hidden shadow-[2px_2px_0px_#003366] group rounded-sm"
               >
                 {/* Thumbnail Image */}
                 <img 
@@ -359,24 +359,25 @@ export function Home() {
                 />
 
                 {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
 
                 {/* Centered Play Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <Play size={8} className="text-white fill-white ml-0.5" />
+                  <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                    <Play size={10} className="text-white fill-white ml-0.5" />
                   </div>
                 </div>
 
                 {/* Earning Badge (Top Right) */}
-                <div className="absolute top-0.5 right-0.5 bg-[#FF8C00] border border-[#003366] px-0.5 py-[1px] shadow-sm">
-                  <span className="text-[5px] font-black text-white uppercase tracking-tight block leading-none">
-                    </span>
+                <div className="absolute top-1 right-1 bg-[#FF8C00] border border-[#003366] px-1 py-0.5 shadow-sm">
+                  <span className="text-[6px] font-black text-white uppercase tracking-tight block leading-none">
+                    {reel.reward}
+                  </span>
                 </div>
 
                 {/* Title (Bottom Left) */}
-                <div className="absolute bottom-1 left-1 right-1">
-                  <p className="text-white font-black text-[6px] uppercase tracking-tighter leading-[1] drop-shadow-xl truncate">
+                <div className="absolute bottom-1.5 left-1.5 right-1.5">
+                  <p className="text-white font-black text-[8px] uppercase tracking-tighter leading-snug drop-shadow-2xl">
                     {reel.label.split(" ").map((word, i) => (
                       <span key={i} className="block">{word}</span>
                     ))}
@@ -396,7 +397,7 @@ export function Home() {
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/advert")}
-          className="relative overflow-hidden bg-[#003366] border border-[#003366] shadow-[2px_2px_0px_#FF8C00] flex flex-col items-center justify-center gap-1 px-1 py-1.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
+          className="relative overflow-hidden bg-[#003366] border border-[#003366] shadow-[2px_2px_0px_#FF8C00] flex flex-col items-center justify-center gap-1 px-1 py-1 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
           <div className="w-5 h-5 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
@@ -408,7 +409,7 @@ export function Home() {
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/referral")}
-          className="relative overflow-hidden bg-[#FF8C00] border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
+          className="relative overflow-hidden bg-[#FF8C00] border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
           <div className="w-5 h-5 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
@@ -420,7 +421,7 @@ export function Home() {
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/marketplace")}
-          className="relative overflow-hidden bg-white border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
+          className="relative overflow-hidden bg-white border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="w-5 h-5 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
             <Sparkles size={10} className="text-[#003366]" />
@@ -432,9 +433,9 @@ export function Home() {
       {/* ── SECTION 01. THE RAT TRAP FEED (Social Media Style Ad Feed) ── */}
       <motion.section
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.3)}
-        className="mt-3 px-5 relative z-10"
+        className="mt-2 px-5 relative z-10"
       >
-        <div className="flex items-center gap-2 mb-2">
+        <div className="flex items-center gap-2 mb-1.5">
           <span className="text-[#FF8C00] font-black text-[10px] tracking-[0.3em]">01.</span>
           <h3 className="font-black text-[9px] uppercase tracking-[0.4em] text-[#003366]/40">For You Feed</h3>
           <div className="flex-1 h-[2px] bg-[#003366]/5" />
