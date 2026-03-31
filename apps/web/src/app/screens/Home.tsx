@@ -4,9 +4,8 @@ import {
   Settings, Bell, Search, Eye, EyeOff,
   X, ArrowDownToLine, ArrowUpFromLine,
   Play, GraduationCap, ClipboardList, Users,
-  Heart, MessageCircle, Share2, PlayCircle,
-  Megaphone, ArrowRight, Gift, TrendingUp,
-  Star, BadgeCheck, Sparkles,
+  Heart, MessageCircle, ArrowRight,
+  Megaphone, Gift, BadgeCheck, Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 
@@ -165,7 +164,6 @@ export function Home() {
   const [pinError, setPinError] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [likedPosts, setLikedPosts] = useState<number[]>([]);
 
 
 
@@ -206,8 +204,7 @@ export function Home() {
     }
   };
 
-  const toggleLike = (id: number) =>
-    setLikedPosts((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
+
 
   const getUserInitials = () => {
     const raw = localStorage.getItem("userKyc");
@@ -334,263 +331,196 @@ export function Home() {
         </div>
       ) : (
         <>
-
-      {/* ── REELS CAROUSEL: "EARN TODAY" VERTICAL VIDEO CARDS ── */}
-      <div className="px-5 mt-1.5 relative z-10">
-        <div className="flex items-center gap-3 mb-1.5">
-          <span className="text-[#FF8C00] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
-          <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Earn Today</h3>
-          <div className="flex-1 h-[2px] bg-[#003366]/5" />
-        </div>
-
-        {/* Horizontal Swipeable Container */}
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
-          {REELS.map((reel) => (
-            <Link key={reel.id} to={reel.to}>
-              <motion.div
-                whileTap={{ scale: 0.96 }}
-                className="relative flex-shrink-0 w-16 h-24 bg-white border border-[#003366] overflow-hidden shadow-[2px_2px_0px_#003366] group rounded-sm"
-              >
-                {/* Thumbnail Image */}
-                <img 
-                  src={reel.image} 
-                  alt={reel.label} 
-                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-                />
-
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
-
-                {/* Centered Play Icon */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    <Play size={10} className="text-white fill-white ml-0.5" />
-                  </div>
-                </div>
-
-                {/* Earning Badge (Top Right) */}
-                <div className="absolute top-1 right-1 bg-[#FF8C00] border border-[#003366] px-1 py-0.5 shadow-sm">
-                  <span className="text-[6px] font-black text-white uppercase tracking-tight block leading-none">
-                    {reel.reward}
-                  </span>
-                </div>
-
-                {/* Title (Bottom Left) */}
-                <div className="absolute bottom-1.5 left-1.5 right-1.5">
-                  <p className="text-white font-black text-[8px] uppercase tracking-tighter leading-snug drop-shadow-2xl">
-                    {reel.label.split(" ").map((word, i) => (
-                      <span key={i} className="block">{word}</span>
-                    ))}
-                  </p>
-                </div>
-
-                {/* Highlight Effect */}
-                <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </motion.div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKETPLACE ── */}
-      <div className="px-5 mt-1 relative z-10 grid grid-cols-3 gap-1.5">
+      {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKET ── */}
+      <div className="px-5 mt-1 relative z-10 grid grid-cols-3 gap-2">
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/advert")}
-          className="relative overflow-hidden bg-[#003366] border border-[#003366] shadow-[2px_2px_0px_#FF8C00] flex flex-col items-center justify-center gap-1 px-1 py-1 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
+          className="relative overflow-hidden bg-[#003366] border border-[#003366] shadow-[2px_2px_0px_#FF8C00] flex flex-col items-center justify-center gap-0.5 px-1 py-0.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(45deg, #fff 12%, transparent 12%, transparent 50%, #fff 50%, #fff 62%, transparent 62%, transparent 100%)", backgroundSize: "8px 8px" }} />
-          <div className="w-5 h-5 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
-            <Megaphone size={10} className="text-white" />
+          <div className="w-4 h-4 rounded-full bg-[#FF8C00] flex items-center justify-center border border-[#FF8C00]/30 flex-shrink-0">
+            <Megaphone size={8} className="text-white" />
           </div>
-          <p className="text-white font-black text-[7px] uppercase tracking-tight leading-none text-center">Load<br/>Advert</p>
+          <p className="text-white font-black text-[6px] uppercase tracking-tight leading-none text-center">Load<br/>Advert</p>
         </motion.button>
 
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/referral")}
-          className="relative overflow-hidden bg-[#FF8C00] border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
+          className="relative overflow-hidden bg-[#FF8C00] border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-0.5 px-1 py-0.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
           <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 0)", backgroundSize: "12px 12px" }} />
-          <div className="w-5 h-5 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
-            <Gift size={10} className="text-white" />
+          <div className="w-4 h-4 rounded-full bg-[#003366] flex items-center justify-center border border-[#003366]/30 flex-shrink-0">
+            <Gift size={8} className="text-white" />
           </div>
-          <p className="text-[#003366] font-black text-[7px] uppercase tracking-tight leading-none text-center">Refer &<br/>Share</p>
+          <p className="text-[#003366] font-black text-[6px] uppercase tracking-tight leading-none text-center">Refer &<br/>Share</p>
         </motion.button>
 
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate("/marketplace")}
-          className="relative overflow-hidden bg-white border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-1 px-1 py-1 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
+          className="relative overflow-hidden bg-white border border-[#003366] shadow-[2px_2px_0px_#003366] flex flex-col items-center justify-center gap-0.5 px-1 py-0.5 group active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-sm"
         >
-          <div className="w-5 h-5 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
-            <Sparkles size={10} className="text-[#003366]" />
+          <div className="w-4 h-4 rounded-full bg-[#003366]/5 flex items-center justify-center border border-[#003366]/10 flex-shrink-0">
+            <Sparkles size={8} className="text-[#003366]" />
           </div>
-          <p className="text-[#003366] font-black text-[7px] uppercase tracking-tight leading-none text-center">Explore<br/>Market</p>
+          <p className="text-[#003366] font-black text-[6px] uppercase tracking-tight leading-none text-center">Explore<br/>Market</p>
         </motion.button>
       </div>
 
-      {/* ── SECTION 01. THE RAT TRAP FEED (Social Media Style Ad Feed) ── */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.3)}
-        className="mt-2 px-5 relative z-10"
-      >
-        <div className="flex items-center gap-2 mb-1.5">
-          <span className="text-[#FF8C00] font-black text-[10px] tracking-[0.3em]">01.</span>
-          <h3 className="font-black text-[9px] uppercase tracking-[0.4em] text-[#003366]/40">For You Feed</h3>
-          <div className="flex-1 h-[2px] bg-[#003366]/5" />
-          <div className="flex items-center gap-1 bg-[#FF8C00]/10 px-2 py-0.5 border border-[#FF8C00]/20">
-             <TrendingUp size={10} className="text-[#FF8C00]" />
-             <span className="text-[8px] font-black text-[#FF8C00] uppercase tracking-widest">Trending</span>
-          </div>
-        </div>
+      {/* ── INFINITE CONTENT CYCLE ── */}
+      <div className="mt-3 flex flex-col gap-10 pb-8">
+        {(function renderCycle() {
+          const cycleBlocks = [
+            // Sequence 1: Reels -> Post 1
+            { type: "reels", data: REELS, title: "Earn Today", id: "reels-1" },
+            { type: "post", data: FEED_ITEMS[0], id: "post-1" },
+            // Sequence 2: Market -> Post 2
+            { type: "market", data: MARKETPLACE_PRODUCTS, title: "Market", id: "market-1" },
+            { type: "post", data: FEED_ITEMS[1], id: "post-2" },
+            // Sequence 3: Reels 2 -> Post 3
+            { type: "reels", data: REELS, title: "Earn Today", id: "reels-2" },
+            { type: "post", data: FEED_ITEMS[2], id: "post-3" },
+            // Sequence 4: Market 2 -> Post 4
+            { type: "market", data: MARKETPLACE_PRODUCTS, title: "Market", id: "market-2" },
+            { type: "post", data: FEED_ITEMS[3], id: "post-4" },
+          ];
 
-        <div className="flex flex-col gap-5">
-          {FEED_ITEMS.map((item) => (
-            <motion.article
-              key={item.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="border-2 border-[#003366] bg-white shadow-[5px_5px_0px_#003366] overflow-hidden group hover:shadow-[7px_7px_0px_#FF8C00] transition-all"
-            >
-              {/* Feed Image */}
-              <div className="relative w-full aspect-[16/9] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-                {/* Tag badge */}
-                <div className={`absolute top-3 left-3 ${item.tagColor} px-2 py-1 text-white text-[8px] font-black uppercase tracking-widest border border-white/10 shadow-sm`}>
-                  {item.tag}
-                </div>
-
-                {/* Earn badge */}
-                <div className="absolute top-3 right-3 bg-[#FFC300] text-black px-3 py-1 text-[10px] font-black flex items-center gap-1.5 shadow-lg border border-black/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-                  EARN {item.reward}
-                </div>
-
-                {/* Play overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                    <PlayCircle size={32} className="text-white" />
+          return cycleBlocks.map((block) => {
+            if (block.type === "reels") {
+              return (
+                <div key={block.id} className="px-5 relative z-10">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-[#FF8C00] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
+                    <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">{block.title}</h3>
+                    <div className="flex-1 h-[2px] bg-[#003366]/5" />
+                  </div>
+                  <div className="flex gap-3 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
+                    {(block.data as typeof REELS).map((reel) => (
+                      <Link key={reel.id} to={reel.to}>
+                        <motion.div
+                          whileTap={{ scale: 0.96 }}
+                          className="relative flex-shrink-0 w-28 h-40 bg-white border border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group rounded-sm"
+                        >
+                          <img src={reel.image} alt={reel.label} className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                              <Play size={12} className="text-white fill-white ml-0.5" />
+                            </div>
+                          </div>
+                          <div className="absolute top-1.5 right-1.5 bg-[#FF8C00] border border-[#003366] px-1.5 py-0.5 shadow-sm">
+                            <span className="text-[7px] font-black text-white uppercase tracking-tight block leading-none">{reel.reward}</span>
+                          </div>
+                          <div className="absolute bottom-2 left-2 right-2">
+                            <p className="text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">
+                              {reel.label.split(" ").map((word: string, i: number) => (<span key={i} className="block">{word}</span>))}
+                            </p>
+                          </div>
+                        </motion.div>
+                      </Link>
+                    ))}
                   </div>
                 </div>
+              );
+            }
 
-                {/* Author Info */}
-                <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full border-2 border-[#FFC300] overflow-hidden flex-shrink-0 shadow-md">
-                    <img src={item.avatar} alt={item.user} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-white font-black text-[11px] drop-shadow-lg">@{item.user}</span>
-                    {item.verified && <BadgeCheck size={12} className="text-[#FFC300]" />}
-                  </div>
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-4">
-                <h4 className="text-[#003366] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 group-hover:text-[#FF8C00] transition-colors">
-                  {item.title}
-                </h4>
-                <p className="text-[#003366]/50 text-[11px] font-medium leading-relaxed line-clamp-2 mb-3">
-                  {item.body}
-                </p>
-
-                {/* Meta + Actions */}
-                <div className="flex items-center justify-between border-t border-[#003366]/5 pt-3">
-                  <div className="flex items-center gap-3 text-[9px] font-black uppercase tracking-widest text-[#003366]/30">
-                    <span>{item.views} Views</span>
-                    <span className="w-1 h-1 rounded-full bg-[#003366]/20" />
-                    <span>{item.time}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <motion.button
-                      whileTap={{ scale: 1.3 }}
-                      onClick={() => toggleLike(item.id)}
-                      className={`flex items-center gap-1.5 px-2.5 py-1.5 border transition-all ${likedPosts.includes(item.id) ? "border-[#FF3000] bg-[#FF3000]/5 text-[#FF3000]" : "border-[#003366]/10 text-[#003366]/30 hover:border-[#FF3000]/50 hover:text-[#FF3000]"}`}
-                    >
-                      <Heart size={12} fill={likedPosts.includes(item.id) ? "currentColor" : "none"} />
-                      <span className="text-[9px] font-black">{item.likes}</span>
-                    </motion.button>
-
-                    <motion.button
-                      whileTap={{ scale: 0.9 }}
-                      className="flex items-center gap-1.5 px-2.5 py-1.5 border border-[#003366]/10 text-[#003366]/30 hover:border-[#003366]/30 hover:text-[#003366] transition-all"
-                    >
-                      <Share2 size={12} />
-                      <span className="text-[9px] font-black">Share</span>
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* ── SECTION 02. MARKETPLACE DISCOVERY ── */}
-      <motion.section
-        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }}
-        transition={grace(0.1)}
-        className="px-5 mt-10 relative z-10"
-      >
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-3">
-            <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
-            <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Marketplace</h3>
-          </div>
-          <Link to="/marketplace" className="flex items-center gap-1.5 text-[9px] font-black text-[#FF8C00] uppercase tracking-widest hover:underline decoration-2 underline-offset-4">
-            Browse All <ArrowRight size={11} />
-          </Link>
-        </div>
-
-        {/* Horizontal scroll strip for products */}
-        <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-4 scrollbar-hide no-scrollbar">
-          {MARKETPLACE_PRODUCTS.map((product, idx) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.07 }}
-              className="flex-shrink-0 w-44 group"
-            >
-              <Link to={`/product/${product.id}`} className="block">
-                <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] group-hover:shadow-[5px_5px_0px_#FF8C00] transition-all mb-3">
-                  <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  {product.badge && (
-                    <div className={`absolute top-0 right-0 px-2 py-1 text-white text-[8px] font-black uppercase tracking-widest ${product.badge === "Hot" ? "bg-[#FF3000]" : "bg-[#FF8C00]"}`}>
-                      {product.badge}
+            if (block.type === "market") {
+              const data = block.data as typeof MARKETPLACE_PRODUCTS;
+              const row1 = data.slice(0, 3);
+              const row2 = data.slice(3, 6);
+              return (
+                <div key={block.id} className="px-5 relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
+                      <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">{block.title}</h3>
                     </div>
-                  )}
-                  <div className="absolute bottom-2 left-2 bg-[#003366] text-white px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wider shadow-sm">
-                    Escrow Safe
+                    <Link to="/marketplace" className="flex items-center gap-1.5 text-[9px] font-black text-[#FF8C00] uppercase tracking-widest hover:underline decoration-2 underline-offset-4">
+                      Browse All <ArrowRight size={11} />
+                    </Link>
                   </div>
-                </div>
 
-                <div className="space-y-0.5">
-                  <h4 className="text-[10px] font-black uppercase text-[#003366] leading-tight line-clamp-2 group-hover:text-[#FF8C00] transition-colors">{product.title}</h4>
-                  <div className="flex items-center justify-between pt-1">
-                    <span className="text-[14px] font-black text-[#FF8C00]">K{product.price}</span>
-                    <div className="flex items-center gap-0.5">
-                      <Star size={9} className="text-[#FFC300] fill-[#FFC300]" />
-                      <span className="text-[9px] font-bold text-[#003366]/40">{product.rating}</span>
+                  <div className="flex flex-col gap-6">
+                    {/* Row 1: Standard Items */}
+                    <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-1 scrollbar-hide no-scrollbar">
+                      {row1.map((product) => (
+                        <motion.div key={product.id} className="flex-shrink-0 w-36 group">
+                          <Link to={`/product/${product.id}`} className="block">
+                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group-hover:shadow-[4px_4px_0px_#FF8C00] transition-all mb-2">
+                              <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            </div>
+                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 group-hover:text-[#FF8C00] transition-colors">{product.title}</h4>
+                            <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Row 2: Trendy/Price Shifts */}
+                    <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-1 scrollbar-hide no-scrollbar">
+                      {row2.map((product) => (
+                        <motion.div key={product.id} className="flex-shrink-0 w-36 group">
+                          <Link to={`/product/${product.id}`} className="block">
+                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group-hover:shadow-[4px_4px_0px_#FF8C00] transition-all mb-2">
+                              <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                              <div className="absolute top-0 right-0 bg-[#FF3000] text-white px-1.5 py-0.5 text-[7px] font-black uppercase tracking-[0.2em]">TRENDY</div>
+                            </div>
+                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 group-hover:text-[#FF8C00] transition-colors">{product.title}</h4>
+                            <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
+                          </Link>
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
+              );
+            }
+
+            if (block.type === "post") {
+              const item = block.data as typeof FEED_ITEMS[0];
+              return (
+                <motion.article
+                  key={block.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  className="mx-5 border-2 border-[#003366] bg-white shadow-[5px_5px_0px_#003366] overflow-hidden group transition-all"
+                >
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full border-2 border-[#FFC300] overflow-hidden flex-shrink-0 shadow-md">
+                        <img src={item.avatar} alt={item.user} className="w-full h-full object-cover" />
+                      </div>
+                      <span className="text-white font-black text-[11px] drop-shadow-md">@{item.user}</span>
+                      {item.verified && <BadgeCheck size={12} className="text-[#FFC300]" />}
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h4 className="text-[#003366] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 group-hover:text-[#FF8C00] transition-colors">{item.title}</h4>
+                    <p className="text-[#003366]/50 text-[11px] font-medium leading-relaxed line-clamp-2 mb-3">{item.body}</p>
+                    <div className="flex items-center justify-between border-t border-[#003366]/5 pt-3">
+                      <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[#003366]/30">
+                        <span>{item.views} Views</span>
+                        <span className="w-1 h-1 rounded-full bg-[#003366]/20" />
+                        <span>{item.time}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Heart size={12} className="text-[#003366]/20" />
+                        <span className="text-[9px] font-black text-[#003366]/30">{item.likes}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            }
+            return null;
+          });
+        })()}
+      </div>
 
       {/* ── SECTION 03. EARN CHANNELS ── */}
       <motion.section
