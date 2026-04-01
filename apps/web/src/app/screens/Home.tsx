@@ -4,7 +4,7 @@ import {
   Settings, Bell, Search, Eye, EyeOff,
   X, ArrowDownToLine, ArrowUpFromLine,
   Play, Heart, MessageCircle, ArrowRight,
-  Megaphone, Gift, BadgeCheck, Sparkles,
+  Megaphone, Share2, BadgeCheck, Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 
@@ -325,7 +325,7 @@ export function Home() {
       <div className="px-5 mt-1 relative z-10 flex items-center justify-center gap-8">
         {[
           { icon: Megaphone, label: "Advert", to: "/advert", color: "text-[#FF8C00]", bg: "bg-white" },
-          { icon: Gift, label: "Refer", to: "/referral", color: "text-white", bg: "bg-[#FF8C00]" },
+          { icon: Share2, label: "Refer", to: "/referral", color: "text-white", bg: "bg-[#FF8C00]" },
           { icon: Sparkles, label: "Market", to: "/marketplace", color: "text-[#003366]", bg: "bg-white" },
         ].map((item, i) => (
           <motion.div
@@ -461,7 +461,7 @@ export function Home() {
                   viewport={{ once: true, amount: 0.1 }}
                   className="mx-5 border-2 border-[#003366] bg-white shadow-[5px_5px_0px_#003366] overflow-hidden group transition-all"
                 >
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-72 overflow-hidden">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">
