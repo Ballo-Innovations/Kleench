@@ -4,7 +4,7 @@ import {
   Settings, Bell, Search, Eye, EyeOff,
   X, ArrowDownToLine, ArrowUpFromLine,
   Play, Heart, MessageCircle, ArrowRight,
-  Megaphone, Share2, BadgeCheck, Sparkles,
+  Network, Share2, BadgeCheck, Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 
@@ -212,7 +212,7 @@ export function Home() {
 
       {/* ── ORANGE DASHBOARD HEADER ── */}
       <div
-        className="relative pt-2 pb-1 px-5 overflow-hidden rounded-b-[30px] shadow-lg flex flex-col justify-between h-auto"
+        className="relative pt-2 pb-1 px-5 overflow-hidden shadow-lg flex flex-col justify-between h-auto"
         style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}
       >
         {/* Grid texture */}
@@ -230,7 +230,7 @@ export function Home() {
         <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none" />
 
         {/* Top Nav Row */}
-        <div className="relative z-10 flex items-center justify-between h-10 gap-3 mt-0">
+        <div className="relative z-10 flex items-center justify-between h-12 gap-3 mt-0 border-b border-white/20 pb-2 mb-1">
           <Link to="/" className="flex-shrink-0">
             <img src={kleenchLogo} alt="KLEENCH" className="h-6 w-auto object-contain brightness-0 invert" />
           </Link>
@@ -289,7 +289,7 @@ export function Home() {
         >
           <div className="flex items-center gap-2">
             <div className="min-w-0">
-              <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Total Balance</p>
+              <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Balance</p>
               <div className="flex items-center gap-2">
                 <h2 className="text-white text-[15px] font-black tracking-tight leading-none">
                   {balanceHidden ? "••••••" : "ZMW 2,450.00"}
@@ -324,7 +324,7 @@ export function Home() {
       {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKET ── */}
       <div className="px-5 mt-1 relative z-10 flex items-center justify-center gap-8">
         {[
-          { icon: Megaphone, label: "Advert", to: "/advert", color: "text-[#FF8C00]", bg: "bg-white" },
+          { icon: Network, label: "Advert", to: "/advert", color: "text-[#FF8C00]", bg: "bg-white" },
           { icon: Share2, label: "Refer", to: "/referral", color: "text-white", bg: "bg-[#FF8C00]" },
           { icon: Sparkles, label: "Market", to: "/marketplace", color: "text-[#003366]", bg: "bg-white" },
         ].map((item, i) => (
