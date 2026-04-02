@@ -53,11 +53,23 @@ Kleench moves away from neutral SaaS aesthetics to create a high-energy, branded
 pnpm install
 ```
 
-### Development
+### Frontend Development (Primary)
 ```bash
-# Start the development server (Turbo-powered)
-pnpm run dev
+# Start the web app (primary demo/viewing flow)
+pnpm run dev:web
 ```
+
+Open: http://localhost:5173
+
+### Optional: Full Stack Development
+```bash
+# Start the full workspace (web + functions)
+pnpm run dev
+
+# Or run backend functions only in a separate terminal
+pnpm run dev:functions
+```
+
 
 ### Build
 ```bash
