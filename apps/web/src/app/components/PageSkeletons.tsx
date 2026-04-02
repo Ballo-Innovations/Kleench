@@ -65,32 +65,49 @@ export const PageSkeletons = {
   Wallet: () => (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pt-6">
       <div className="px-5 space-y-8">
-        {/* Giant Swiss Balance Card */}
-        <div className="bg-white border-2 border-[#003366] p-8 shadow-[8px_8px_0px_#FF8C00] text-center space-y-4">
-           <Skeleton className="h-4 w-24 mx-auto opacity-30" />
-           <Skeleton className="h-14 w-48 mx-auto" />
-           <div className="flex gap-4 pt-4">
-              <Skeleton className="h-14 flex-1 border-2 border-[#003366]" />
-              <Skeleton className="h-14 flex-1 border-2 border-[#003366]" />
+        {/* Digital Wallet Card Skeleton */}
+        <div className="bg-[#003366] border-2 border-[#003366] p-5 shadow-[5px_5px_0px_#003366] space-y-6">
+           <div className="flex justify-between items-center">
+              <Skeleton className="h-3 w-24 bg-white/20" />
+              <Skeleton className="h-4 w-12 bg-white/10 rounded-full" />
            </div>
+           <Skeleton className="h-8 w-40 bg-white/40" />
+           <Skeleton className="h-4 w-28 bg-white/10 rounded-full" />
         </div>
 
-        {/* Transaction Ledger */}
-        <div className="space-y-4 pt-4">
+        {/* Action Buttons Skeleton */}
+        <div className="flex items-center justify-center gap-6 sm:gap-8 pt-2">
+           {[1, 2, 3, 4].map(i => (
+              <div key={i} className="flex flex-col items-center gap-2">
+                 <Skeleton className="w-11 h-11 rounded-full border-2 border-[#003366]/20 shadow-[2px_2px_0px_#f0f0f0]" />
+                 <Skeleton className="h-2 w-10 opacity-30" />
+              </div>
+           ))}
+        </div>
+
+        {/* Destinations Skeleton */}
+        <div className="space-y-4 pt-2">
           <div className="flex items-center gap-3">
-            <Skeleton className="h-4 w-40 opacity-20" />
-            <div className="flex-1 h-[2px] bg-gray-100" />
+             <Skeleton className="h-4 w-40 opacity-20" />
+             <div className="flex-1 h-[2px] bg-gray-100" />
           </div>
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="flex items-center gap-4 p-4 border-2 border-[#003366]/10">
-               <Skeleton className="h-12 w-12 rounded-xl" />
-               <div className="flex-1 space-y-2">
-                  <Skeleton className="h-4 w-1/3" />
-                  <Skeleton className="h-3 w-1/2 opacity-50" />
-               </div>
-               <Skeleton className="h-6 w-20" />
-            </div>
-          ))}
+          <div className="space-y-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex items-center justify-between p-4 bg-white border-2 border-[#003366]/10 shadow-[3px_3px_0px_#f0f0f0]">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="w-11 h-11 border-2 border-[#003366]/10" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-3 w-24 opacity-40" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                   <Skeleton className="h-4 w-12" />
+                   <Skeleton className="w-5 h-5 rounded-full opacity-20" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
