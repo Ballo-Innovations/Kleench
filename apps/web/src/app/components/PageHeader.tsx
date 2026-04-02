@@ -30,7 +30,7 @@ export function PageHeader({
 
   return (
     <div 
-      className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between"
+      className="relative pt-4 pb-0 px-6 overflow-hidden flex flex-col justify-between"
       style={{ 
         background: "linear-gradient(135deg, #FF8C00, #e06900)", 
         boxShadow: "0 10px 30px rgba(255,140,0,0.12)",
