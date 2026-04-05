@@ -54,9 +54,10 @@ export function PageHeader({
       <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none"></div>
 
       {/* ── Header Top Layer (HUD Bar) ── */}
-      <div className="relative z-[40] mt-0 flex items-center justify-between min-h-[40px]">
-        {/* LEFT HUD: Back OR Logo */}
-        <div className="flex items-center min-w-[24px]">
+      <div className="relative z-[40] mt-0 flex items-center justify-between min-h-[40px] gap-4">
+        
+        {/* LEFT HUD: Back, Logo, and NATIVE PAGE TITLE */}
+        <div className="flex items-center flex-1 min-w-0 z-10 gap-3">
           {showBack ? (
             <motion.button 
               whileTap={{ scale: 0.9 }}
@@ -66,11 +67,16 @@ export function PageHeader({
               <ChevronLeft size={24} />
             </motion.button>
           ) : useLogo ? (
-            <div className="flex items-center h-full">
+            <div className="flex items-center h-full shrink-0">
               <img src={kleenchLogo} alt="KLEENCH" className="h-[28px] w-auto brightness-0 invert opacity-100" />
             </div>
-          ) : (
-            <div />
+          ) : null}
+
+          {!useLogo && (title || subtitle) && (
+            <div className="flex flex-col min-w-0 flex-1">
+              {title && <h1 className="text-white text-[18px] sm:text-[20px] leading-[1.1] font-black tracking-wide uppercase truncate" style={{ fontFamily: "Agrandir, system-ui, -apple-system, sans-serif" }}>{title}</h1>}
+              {subtitle && <span className="text-white/80 text-[9px] font-bold uppercase tracking-[0.2em] mt-0.5 truncate">{subtitle}</span>}
+            </div>
           )}
         </div>
         
@@ -148,11 +154,8 @@ export function PageHeader({
         </div>
       </div>
 
-      <div className="relative z-10 space-y-0.5 mb-2 mt-1 px-1">
-        {!useLogo && title && (
-          <h1 className="text-white text-xl font-black tracking-tight uppercase" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>{title}</h1>
-        )}
-        {subtitle && <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest leading-tight">{subtitle}</p>}
+      <div className="relative z-10 px-1">
+        {/* Title is now positioned absolutely within the HUD Bar */}
       </div>
 
       {children}

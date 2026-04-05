@@ -37,9 +37,9 @@ export function DigitalWallet({
 
   return (
     <div className={cn("relative w-full flex flex-col items-center justify-center", className)}>
-      {/* Streamlined Balance Card — Brutalist Edition */}
+      {/* Streamlined Balance Card — Premium Edition */}
       <motion.div 
-        className="relative w-full px-6 py-5 select-none border-2 border-[#003366] bg-[#003366] shadow-[5px_5px_0px_#003366] overflow-hidden"
+        className="relative w-full px-5 py-4 select-none rounded-2xl bg-[#003366] shadow-lg shadow-[#003366]/20 overflow-hidden"
         initial={false}
       >
         {/* Subtle grid texture */}
@@ -54,39 +54,30 @@ export function DigitalWallet({
           </svg>
         </div>
 
-        {/* Top Row: Label + Toggle */}
-        <div className="relative z-10 flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span className="text-white/30 text-[7px] tracking-[0.4em] font-black uppercase">Wallet Balance</span>
-            <button 
-              onClick={toggleVisibility}
-              className="text-white/20 hover:text-white/50 transition-colors p-0.5"
-            >
-              {isHidden ? <Eye size={10} /> : <EyeOff size={10} />}
-            </button>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/5 border border-white/5">
-            <TrendingUp size={8} className="text-[#00C853]" />
-            <span className="text-[7px] font-bold text-[#00C853]/80 uppercase tracking-wider">+2.4%</span>
-          </div>
-        </div>
-        
-        {/* Balance — significantly reduced */}
-        <motion.div 
-          key={displayValue}
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="relative z-10 text-xl text-white font-black tracking-tight leading-none"
-        >
-          {displayValue}
-        </motion.div>
-
-        {/* Bottom Row: Escrow Badge */}
-        <div className="relative z-10 flex items-center gap-2 mt-3">
-          <div className="px-2 py-0.5 rounded-full bg-white/5 border border-white/5 flex items-center gap-1.5">
-            <ShieldCheck size={8} className="text-[#00C853]" />
-            <span className="text-[6px] font-bold text-white/30 uppercase tracking-widest">Secured Escrow</span>
-          </div>
+        {/* Sleek Horizontal Strip Layout */}
+        <div className="relative z-10 flex flex-row items-center justify-between w-full">
+           <div className="flex flex-col gap-1.5">
+             <div className="flex items-center gap-2">
+               <span className="text-white/50 text-[10px] tracking-[0.2em] font-black uppercase">Balance</span>
+               <button onClick={toggleVisibility} className="text-white/40 hover:text-white transition-colors p-0.5">
+                 {isHidden ? <Eye size={12} /> : <EyeOff size={12} />}
+               </button>
+             </div>
+             <motion.div key={displayValue} initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }} className="text-[28px] text-white font-black tracking-tighter leading-none mt-1">
+               {displayValue}
+             </motion.div>
+           </div>
+           
+           <div className="flex flex-col items-end gap-2.5">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm shadow-sm">
+                <TrendingUp size={10} className="text-[#00C853]" />
+                <span className="text-[9px] font-bold text-white uppercase tracking-wider">+2.4%</span>
+              </div>
+              <div className="flex items-center gap-1 opacity-60">
+                <ShieldCheck size={12} className="text-white" />
+                <span className="text-[8px] font-bold text-white uppercase tracking-widest">Escrow</span>
+              </div>
+           </div>
         </div>
 
         {/* Subtle noise */}

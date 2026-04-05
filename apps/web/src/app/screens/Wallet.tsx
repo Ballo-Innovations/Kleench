@@ -140,7 +140,7 @@ export function Wallet() {
                   onClick={() => (action.id === 'statement' ? setActiveTransTab('all') : handleAction(action.id))} 
                   className="flex flex-col items-center gap-1.5 cursor-pointer group"
                 >
-                  <div className={`w-11 h-11 rounded-full border-2 border-[#003366] shadow-[2px_2px_0px_#003366] flex items-center justify-center transition-all group-hover:-translate-y-1 group-active:translate-y-0 group-active:shadow-none ${action.color} ${action.bg}`}>
+                  <div className={`w-12 h-12 rounded-full shadow-sm shadow-[#003366]/10 flex items-center justify-center transition-all group-hover:-translate-y-1 group-active:translate-y-0 group-active:scale-95 ${action.color} ${action.bg}`}>
                     <action.icon size={18} strokeWidth={2.5} />
                   </div>
                   <span className="text-[#003366] font-black tracking-tight text-[9px] uppercase">{action.label}</span>
@@ -160,18 +160,18 @@ export function Wallet() {
 
           <div className="flex flex-col gap-3">
             {[
-              { id: "escrow", icon: ShieldCheck, title: "Secured Escrow", desc: "Safe marketplace transactions", metric: "K1,200", color: "text-[#003366]", bg: "bg-white", activeBg: "active:bg-blue-50" },
-              { id: "savings", icon: PiggyBank, title: "Vault Savings", desc: "Earn up to 12% APY", metric: "K8,400", color: "text-[#00C853]", bg: "bg-white", activeBg: "active:bg-green-50" },
-              { id: "tax", icon: Calculator, title: "Content Calculator", desc: "Tax & provisions tool", metric: "-2%", color: "text-[#FF8C00]", bg: "bg-white", activeBg: "active:bg-orange-50" }
+              { id: "escrow", icon: ShieldCheck, title: "ESCROW", desc: "Safe marketplace transactions", metric: "K1,200", color: "text-[#003366]", bg: "bg-white", activeBg: "active:bg-blue-50" },
+              { id: "savings", icon: PiggyBank, title: "SAVINGS", desc: "Earn up to 12% APY", metric: "K8,400", color: "text-[#00C853]", bg: "bg-white", activeBg: "active:bg-green-50" },
+              { id: "tax", icon: Calculator, title: "TAX ACCOUNT", desc: "Tax & provisions tool", metric: "-2%", color: "text-[#FF8C00]", bg: "bg-white", activeBg: "active:bg-orange-50" }
             ].map((dest) => (
               <motion.button
                 key={dest.id}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleAction(dest.id)}
-                className={`flex items-center justify-between p-4 bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#003366] group hover:shadow-[4px_4px_0px_#FF8C00] transition-all text-left active:translate-x-[2px] active:translate-y-[2px] active:shadow-none ${dest.activeBg}`}
+                className={`flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-gray-100 group hover:shadow-md transition-all text-left active:scale-[0.98] ${dest.activeBg}`}
               >
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-none flex items-center justify-center border-2 border-[#003366] bg-white group-hover:scale-105 transition-transform`}>
+                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-gray-50 border border-gray-100 group-hover:scale-105 group-hover:bg-white group-hover:shadow-sm transition-all`}>
                     <dest.icon size={18} className={dest.color} strokeWidth={2.5} />
                   </div>
                   <div>
@@ -201,10 +201,10 @@ export function Wallet() {
                 key={util.id}
                 whileTap={{ scale: 0.96 }}
                 onClick={() => handleAction(util.id)}
-                className={`flex items-center p-3 bg-white border-2 border-[#003366] shadow-[2px_2px_0px_#003366] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all`}
+                className={`flex items-center p-3.5 bg-white rounded-2xl shadow-sm border border-gray-100 active:scale-[0.98] transition-all hover:shadow-md`}
               >
-                <div className="w-8 h-8 border-2 border-[#003366] bg-white flex items-center justify-center mr-3">
-                  <util.icon size={14} className="text-[#003366]" strokeWidth={3} />
+                <div className="w-9 h-9 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mr-3">
+                  <util.icon size={16} className="text-[#003366]" strokeWidth={2.5} />
                 </div>
                 <div className="text-left">
                   <h4 className="font-black text-[10px] sm:text-[11px] text-[#003366] uppercase tracking-tight leading-none">{util.label}</h4>
@@ -224,13 +224,13 @@ export function Wallet() {
           </div>
 
           {/* Categorized Tabs */}
-          <div className="flex border-2 border-[#003366] bg-[#003366] p-0.5 shadow-[3px_3px_0px_#003366]">
+          <div className="flex bg-gray-100/70 p-1 rounded-xl mb-4">
             {(["all", "earnings", "payments", "transfers"] as TransTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTransTab(tab)}
-                className={`flex-1 py-2 text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] transition-all border-r-2 border-[#003366] last:border-r-0 ${
-                  activeTransTab === tab ? "bg-[#FF8C00] text-white" : "bg-white text-[#003366] hover:bg-gray-50"
+                className={`flex-1 py-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg ${
+                  activeTransTab === tab ? "bg-white text-[#003366] shadow-sm" : "text-[#003366]/50 hover:text-[#003366] hover:bg-white/50"
                 }`}
               >
                 {tab}
@@ -239,7 +239,7 @@ export function Wallet() {
           </div>
 
           {/* Transaction Grid */}
-          <div className="border-2 border-[#003366] divide-y-2 divide-[#003366] bg-white overflow-hidden shadow-[5px_5px_0px_#003366] mb-8">
+          <div className="bg-white overflow-hidden rounded-2xl shadow-sm border border-gray-100 mb-8 divide-y divide-gray-50">
             <AnimatePresence mode="popLayout">
               {(() => {
                 const filtered = TRANSACTION_DATA[activeTransTab].filter(tx => 
@@ -269,7 +269,7 @@ export function Wallet() {
                         <div className="flex flex-col">
                            <h4 className="font-black text-[#003366] text-[11px] sm:text-xs uppercase tracking-tight group-hover:text-[#FF8C00] transition-colors">{tx.title}</h4>
                            <div className="flex items-center gap-3 mt-1.5">
-                              <span className={`text-[7px] font-black uppercase tracking-[0.2em] px-1.5 py-0.5 border-2 border-[#003366] text-[#003366]`}>{tx.type}</span>
+                              <span className={`text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-gray-100 text-[#003366]/80`}>{tx.type}</span>
                               <span className="text-[9px] font-bold text-[#003366]/50 tracking-tight">{tx.date}</span>
                            </div>
                         </div>
@@ -284,7 +284,7 @@ export function Wallet() {
                              <ExternalLink size={8} className="text-[#FF8C00]" />
                           </div>
                         </div>
-                        <div className={`w-1.5 h-10 border-2 border-[#003366] ${tx.type === 'earning' ? 'bg-[#00C853]' : tx.type === 'payment' ? 'bg-[#FF8C00]' : 'bg-[#003366]'}`} />
+                        <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[#00C853]/80' : tx.type === 'payment' ? 'bg-[#FF8C00]/80' : 'bg-[#003366]/30'}`} />
                       </div>
                     </motion.div>
                   );
@@ -294,9 +294,9 @@ export function Wallet() {
           </div>
         </section>
 
-        {/* Security Banner with brutalist precision */}
+        {/* Security Banner with soft premium wrap */}
         <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.3)}
-          className="border-2 border-[#003366] shadow-[5px_5px_0px_#003366] bg-[#003366] overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
+          className="rounded-2xl shadow-md bg-[#003366] overflow-hidden hover:opacity-95 transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
           <img src={adBanner} alt="Transaction Assurance" className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Secure Gateway</p>
         </motion.div>
