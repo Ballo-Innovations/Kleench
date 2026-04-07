@@ -72,7 +72,7 @@ export function PageHeader({
             </div>
           ) : null}
 
-          {!useLogo && (title || subtitle) && (
+          {(title || subtitle) && (
             <div className="flex flex-col min-w-0 flex-1">
               {title && <h1 className="text-white text-[18px] sm:text-[20px] leading-[1.1] font-black tracking-wide uppercase truncate" style={{ fontFamily: "Agrandir, system-ui, -apple-system, sans-serif" }}>{title}</h1>}
               {subtitle && <span className="text-white/80 text-[9px] font-bold uppercase tracking-[0.2em] mt-0.5 truncate">{subtitle}</span>}
@@ -80,8 +80,11 @@ export function PageHeader({
           )}
         </div>
         
-        {/* RIGHT HUD: Search, Chat, Settings, Notifications */}
+        {/* RIGHT HUD: Settings, Search, Chat, Bell, Profile */}
         <div className="flex items-center gap-3.5 flex-shrink-0">
+          <Link to="/settings" className="text-white hover:text-white/80 transition-all active:scale-95">
+            <Settings size={22} />
+          </Link>
           <div className="flex items-center">
             <motion.div 
               layout
@@ -127,9 +130,6 @@ export function PageHeader({
           </div>
           <Link to="/messages" className="text-white hover:text-white/80 transition-all active:scale-95">
              <MessageCircle size={22} />
-          </Link>
-          <Link to="/settings" className="text-white hover:text-white/80 transition-all active:scale-95">
-            <Settings size={22} />
           </Link>
           <Link to="/notifications" className="relative text-white hover:text-white/80 transition-all active:scale-95">
             <Bell size={22} />

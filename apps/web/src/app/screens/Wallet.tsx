@@ -5,14 +5,14 @@ import {
   Smartphone,
   Check,
   X,
-  FileText,
-  Receipt,
   QrCode,
   ExternalLink,
   ShieldCheck,
   PiggyBank,
   Calculator,
-  ChevronRight
+  Globe,
+  ReceiptText,
+  Search
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
@@ -24,7 +24,6 @@ import zamtelLogo from "@/assets/zamtel_logo.png";
 import zedLogo from "@/assets/zed_mobile_logo.png";
 
 import { PageHeader } from "../components/PageHeader";
-import { DigitalWallet } from "../components/DigitalWallet";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
 const MM_PROVIDERS = [
@@ -56,7 +55,6 @@ const TRANSACTION_DATA = {
 type TransTab = "all" | "earnings" | "payments" | "transfers";
 
 export function Wallet() {
-  const [showBalance, setShowBalance] = useState(true);
   const [activeTransTab, setActiveTransTab] = useState<TransTab>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showFinancialKyc, setShowFinancialKyc] = useState(false);
@@ -100,8 +98,8 @@ export function Wallet() {
       
       {/* ── Standardized Orange Header ── */}
       <PageHeader 
+        useLogo
         title="Wallet" 
-        subtitle="Manage your earnings & escrow" 
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       />
@@ -109,7 +107,7 @@ export function Wallet() {
       {loading ? (
         <PageSkeletons.Wallet />
       ) : (
-        <div className="px-5 mt-2 relative z-10 space-y-8">
+        <div className="px-5 mt-4 relative z-10 space-y-8">
         
         <section className="space-y-6">
 
@@ -117,120 +115,123 @@ export function Wallet() {
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1)}
             className="relative"
           >
-            {/* The Wallet hero maintaining its volume but strictly integrated */}
-            <div className="mb-6">
-               <DigitalWallet 
-                balance="ZMW 2,450.00" 
-                isBalanceHidden={!showBalance}
-                onToggleVisibility={() => setShowBalance(!showBalance)}
-               />
+            {/* Balance & KYC Brutalist Block */}
+            <div className="flex gap-2 w-full mt-2">
+              <div className="flex-[2] bg-[#003366] text-white px-5 py-3.5 shadow-[4px_4px_0_0_#001a33] border border-[#003366] flex flex-col justify-center">
+                <p className="text-[#FF8C00] font-bold text-[9px] tracking-[0.2em] uppercase mb-0.5">Balance</p>
+                <h2 className="text-[24px] sm:text-[26px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
+              </div>
+              <button 
+                 onClick={() => setShowFinancialKyc(!hasFinancialKyc)}
+                 className="flex-1 bg-[#003366] text-white px-5 py-3.5 flex items-center justify-center font-bold tracking-[0.2em] text-[11px] sm:text-xs shadow-[4px_4px_0_0_#001a33] border border-[#003366] active:translate-y-1 active:shadow-none transition-all">
+                KYC
+              </button>
             </div>
-            
-            {/* Action Grid: Neo-Brutalist Action Buttons */}
-            <div className="flex items-center justify-center gap-6 sm:gap-8">
+
+            {/* Action Grid */}
+            <div className="flex items-center justify-center gap-6 sm:gap-8 mt-12 mb-4">
               {[
-                { id: "deposit", icon: ArrowDownToLine, label: "Deposit", color: "text-white", bg: "bg-[#FF8C00]" },
-                { id: "withdraw", icon: ArrowUpFromLine, label: "Withdraw", color: "text-[#003366]", bg: "bg-white" },
-                { id: "send", icon: ArrowLeftRight, label: "Send", color: "text-[#003366]", bg: "bg-white" },
-                { id: "statement", icon: FileText, label: "Statemnt", color: "text-[#003366]", bg: "bg-white" },
+                { id: "deposit", icon: ArrowUpFromLine, label: "DEPOSIT" },
+                { id: "withdraw", icon: ArrowDownToLine, label: "WITHDRAW" },
+                { id: "send", icon: ArrowLeftRight, label: "SEND" },
+                { id: "statement", icon: ReceiptText, label: "STATEMENT" },
               ].map((action) => (
                 <motion.div 
                   key={action.id}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => (action.id === 'statement' ? setActiveTransTab('all') : handleAction(action.id))} 
-                  className="flex flex-col items-center gap-1.5 cursor-pointer group"
+                  className="flex flex-col items-center gap-3 cursor-pointer group"
                 >
-                  <div className={`w-12 h-12 rounded-full shadow-sm shadow-[#003366]/10 flex items-center justify-center transition-all group-hover:-translate-y-1 group-active:translate-y-0 group-active:scale-95 ${action.color} ${action.bg}`}>
-                    <action.icon size={18} strokeWidth={2.5} />
+                  <div className={`w-16 h-16 rounded-full border-[2px] border-[#003366] bg-white flex items-center justify-center transition-all group-active:translate-y-1 shadow-[3px_4px_0_0_#003366] group-active:shadow-none`}>
+                    <action.icon size={26} className="text-[#003366]" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[#003366] font-black tracking-tight text-[9px] uppercase">{action.label}</span>
+                  <span className="text-[#003366] font-black tracking-widest text-[9px] uppercase mt-1">{action.label}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </section>
 
-        {/* Section 02. FINANCIAL DESTINATIONS */}
-        <section className="space-y-4">
-          <div className="flex items-center gap-3 mb-2">
-             <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
-             <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Destinations</h3>
-             <div className="flex-1 h-[2px] bg-[#003366]/5" />
+        {/* Section 02. UTILITY BLOCKS */}
+        <section className="space-y-5 pt-4">
+          <div className="flex items-center gap-3 mb-6">
+             <span className="text-[#F5A623] font-black text-sm tracking-widest">02.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Utility Blocks</h3>
+             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
           </div>
 
-          <div className="flex flex-col gap-3">
-            {[
-              { id: "escrow", icon: ShieldCheck, title: "ESCROW", desc: "Safe marketplace transactions", metric: "K1,200", color: "text-[#003366]", bg: "bg-white", activeBg: "active:bg-blue-50" },
-              { id: "savings", icon: PiggyBank, title: "SAVINGS", desc: "Earn up to 12% APY", metric: "K8,400", color: "text-[#00C853]", bg: "bg-white", activeBg: "active:bg-green-50" },
-              { id: "tax", icon: Calculator, title: "TAX ACCOUNT", desc: "Tax & provisions tool", metric: "-2%", color: "text-[#FF8C00]", bg: "bg-white", activeBg: "active:bg-orange-50" }
-            ].map((dest) => (
-              <motion.button
-                key={dest.id}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleAction(dest.id)}
-                className={`flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-gray-100 group hover:shadow-md transition-all text-left active:scale-[0.98] ${dest.activeBg}`}
-              >
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-gray-50 border border-gray-100 group-hover:scale-105 group-hover:bg-white group-hover:shadow-sm transition-all`}>
-                    <dest.icon size={18} className={dest.color} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h4 className="font-black text-[12px] sm:text-[13px] text-[#003366] uppercase tracking-tight leading-none mb-1 group-hover:text-[#FF8C00] transition-colors">{dest.title}</h4>
-                    <p className="text-[9px] sm:text-[10px] font-bold text-[#003366]/60 tracking-wider uppercase">{dest.desc}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <span className={`font-black text-xs sm:text-sm tracking-tight ${dest.color}`}>{dest.metric}</span>
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
-                    <ChevronRight size={16} className="text-[#003366]" strokeWidth={3} />
-                  </div>
-                </div>
-              </motion.button>
-            ))}
+          <div className="flex flex-col gap-4">
+             {/* Row 1 */}
+             <div className="grid grid-cols-3 gap-3">
+               {[
+                 { id: "paybills", icon: ReceiptText, label: "PAY BILLS", sub: "SETTLEMENTS" },
+                 { id: "qr", icon: QrCode, label: "SCAN PAY", sub: "INSTANT PAD" },
+                 { id: "global", icon: Globe, label: "GLOBAL", sub: "TRANSACTIONS" }
+               ].map(util => (
+                 <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-2 p-3 bg-white border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center border border-[#003366]">
+                       <util.icon size={16} className="text-[#003366]" strokeWidth={2} />
+                    </div>
+                    <div className="flex flex-col items-start leading-none text-left">
+                       <span className="font-black text-[#003366] text-[7px] sm:text-[9px] uppercase tracking-wide">{util.label}</span>
+                       <span className="font-black text-[#F5A623] text-[5px] sm:text-[7px] uppercase tracking-wide mt-0.5">{util.sub}</span>
+                    </div>
+                 </motion.button>
+               ))}
+             </div>
+             {/* Row 2 */}
+             <div className="grid grid-cols-2 gap-4">
+                {[
+                  { id: "escrow", icon: ShieldCheck, title: "ESCROW", metric: "K1,200", iconColor: "text-[#003366]" },
+                  { id: "savings", icon: PiggyBank, title: "SAVINGS", metric: "K8,400", iconColor: "text-[#4CAF50]" }
+                ].map(util => (
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 border-[2px] border-white flex items-center justify-center shrink-0">
+                         <util.icon size={22} className={util.iconColor} strokeWidth={2} />
+                      </div>
+                      <div className="flex flex-col items-center flex-1 leading-tight">
+                         <span className="font-black text-[#003366] text-[9px] sm:text-[11px] uppercase tracking-wide block">{util.title}</span>
+                         <span className="font-black text-white text-[10px] sm:text-[12px] uppercase">{util.metric}</span>
+                      </div>
+                   </motion.button>
+                ))}
+             </div>
+             {/* Row 3 */}
+             <div className="grid grid-cols-2 gap-4">
+                {[
+                  { id: "calculator", icon: Calculator, title: "CONTENT CALCULATOR", metric: "-2%", iconColor: "text-white" },
+                  { id: "tax", icon: Search, title: "TAX ACCOUNT", metric: "K211", iconColor: "text-[#E40513]" }
+                ].map(util => (
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 border-[2px] border-white flex items-center justify-center shrink-0 text-[#E40513]">
+                         <util.icon size={22} className={util.iconColor} strokeWidth={2} />
+                      </div>
+                      <div className="flex flex-col items-center justify-center flex-1 leading-tight overflow-visible">
+                         <span className="font-black text-[#003366] text-[8px] sm:text-[10px] uppercase tracking-wide block text-center whitespace-normal break-words w-full">{util.title}</span>
+                         <span className="font-black text-white text-[10px] sm:text-[12px] uppercase mt-0.5">{util.metric}</span>
+                      </div>
+                   </motion.button>
+                ))}
+             </div>
           </div>
         </section>
 
-        {/* Shortened Utilities Section */}
-        <section className="space-y-0">
-           <div className="grid grid-cols-2 gap-3">
-            {[
-              { id: "paybills", icon: Receipt, label: "Pay Bills", desc: "Settlements" },
-              { id: "qr", icon: QrCode, label: "Scan Pay", desc: "Instant Pad" }
-            ].map((util) => (
-              <motion.button
-                key={util.id}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => handleAction(util.id)}
-                className={`flex items-center p-3.5 bg-white rounded-2xl shadow-sm border border-gray-100 active:scale-[0.98] transition-all hover:shadow-md`}
-              >
-                <div className="w-9 h-9 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mr-3">
-                  <util.icon size={16} className="text-[#003366]" strokeWidth={2.5} />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-black text-[10px] sm:text-[11px] text-[#003366] uppercase tracking-tight leading-none">{util.label}</h4>
-                  <span className="text-[8px] font-bold text-[#FF8C00] uppercase tracking-widest leading-none mt-1">{util.desc}</span>
-                </div>
-              </motion.button>
-            ))}
-           </div>
-        </section>
-
-        {/* Section 03. LEDGER STATEMENT */}
-        <section className="space-y-6 pb-12 mt-4">
-          <div className="flex items-center gap-3">
-             <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">03.</span>
-             <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Statement Ledger</h3>
-             <div className="flex-1 h-[2px] bg-[#003366]/5" />
+        {/* Section 03. STATEMENT LEDGER */}
+        <section className="space-y-4 pb-12 mt-10">
+          <div className="flex items-center gap-3 mb-6">
+             <span className="text-[#F5A623] font-black text-sm tracking-widest">03.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Statement Ledger</h3>
+             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
           </div>
 
           {/* Categorized Tabs */}
-          <div className="flex bg-gray-100/70 p-1 rounded-xl mb-4">
+          <div className="flex justify-between items-center bg-gray-50/50 p-2 rounded-full mb-6 border border-gray-100 shadow-sm overflow-x-auto no-scrollbar gap-2">
             {(["all", "earnings", "payments", "transfers"] as TransTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTransTab(tab)}
-                className={`flex-1 py-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg ${
-                  activeTransTab === tab ? "bg-white text-[#003366] shadow-sm" : "text-[#003366]/50 hover:text-[#003366] hover:bg-white/50"
+                className={`flex-1 min-w-[70px] py-2.5 text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all rounded-full ${
+                  activeTransTab === tab ? "bg-white text-[#003366] shadow-sm border border-gray-100" : "text-[#A0A0A0] hover:text-[#003366]"
                 }`}
               >
                 {tab}
@@ -239,7 +240,8 @@ export function Wallet() {
           </div>
 
           {/* Transaction Grid */}
-          <div className="bg-white overflow-hidden rounded-2xl shadow-sm border border-gray-100 mb-8 divide-y divide-gray-50">
+          <div className="bg-white overflow-hidden rounded-[24px] shadow-sm border border-gray-100 mb-8 divide-y divide-gray-50" style={{ backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)", backgroundSize: "20px 20px" }}>
+            <div className="bg-white/80 w-full h-full"> 
             <AnimatePresence mode="popLayout">
               {(() => {
                 const filtered = TRANSACTION_DATA[activeTransTab].filter(tx => 
@@ -262,35 +264,35 @@ export function Wallet() {
                       key={`${tx.id}-${activeTransTab}`}
                       initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ delay: idx * 0.04 }}
-                      className="p-4 sm:p-5 flex items-center justify-between group hover:bg-[#003366]/5 cursor-pointer transition-colors"
+                      className="p-5 flex items-center justify-between group hover:bg-[#003366]/5 cursor-pointer transition-colors backdrop-blur-sm"
                     >
                       <div className="flex items-center gap-4 sm:gap-6">
-                        <div className="hidden sm:block text-[10px] font-black tracking-widest text-[#003366]/30">{(idx + 1).toString().padStart(2, '0')}.</div>
                         <div className="flex flex-col">
-                           <h4 className="font-black text-[#003366] text-[11px] sm:text-xs uppercase tracking-tight group-hover:text-[#FF8C00] transition-colors">{tx.title}</h4>
+                           <h4 className="font-black text-[#003366] text-[11px] sm:text-xs uppercase tracking-tight transition-colors">{tx.title}</h4>
                            <div className="flex items-center gap-3 mt-1.5">
-                              <span className={`text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-gray-100 text-[#003366]/80`}>{tx.type}</span>
-                              <span className="text-[9px] font-bold text-[#003366]/50 tracking-tight">{tx.date}</span>
+                              <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-gray-100 text-[#003366]`}>{tx.type}</span>
+                              <span className="text-[9px] font-bold text-gray-400 tracking-tight">{tx.date}</span>
                            </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-4 sm:gap-6 shrink-0">
                         <div className="text-right">
-                          <p className={`font-black text-sm tracking-tighter ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
+                          <p className={`font-black text-sm sm:text-[16px] tracking-tight ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
                             {isPositive ? "+" : ""}{tx.amount.toFixed(2)}
                           </p>
-                          <div className="flex justify-end gap-1 items-center mt-1 opacity-10 group-hover:opacity-100 transition-opacity">
-                             <span className="text-[7px] font-black uppercase tracking-widest text-[#FF8C00]">Expand</span>
-                             <ExternalLink size={8} className="text-[#FF8C00]" />
+                          <div className="flex justify-end gap-1 items-center mt-1 opacity-20 group-hover:opacity-100 transition-opacity">
+                             <span className="text-[7px] font-black uppercase tracking-widest text-gray-400">Expand</span>
+                             <ExternalLink size={8} className="text-gray-400" />
                           </div>
                         </div>
-                        <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[#00C853]/80' : tx.type === 'payment' ? 'bg-[#FF8C00]/80' : 'bg-[#003366]/30'}`} />
+                        <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[#00C853]' : tx.type === 'payment' ? 'bg-[#F5A623]' : 'bg-[#999999]'}`} />
                       </div>
                     </motion.div>
                   );
                 });
               })()}
             </AnimatePresence>
+            </div>
           </div>
         </section>
 
