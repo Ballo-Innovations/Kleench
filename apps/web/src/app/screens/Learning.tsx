@@ -1,256 +1,249 @@
-import { useState } from "react";
-import { Play, Clock, Star, BookOpen, Eye, ArrowRight, Radio } from "lucide-react";
+import { 
+  ArrowUp, 
+  ArrowDown, 
+  Eye,
+  CloudUpload, 
+  Send, 
+  Gift,
+  Search,
+  Circle,
+  Clock,
+  User
+} from "lucide-react";
 import { motion } from "motion/react";
-import { Link } from "react-router";
+import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-
-/* ─── Images (High Fidelity References) ─── */
-const REEL_1 = "https://images.unsplash.com/photo-1696013910376-c56f76dd8178?auto=format&fit=crop&w=400&q=80";
-const REEL_2 = "https://images.unsplash.com/photo-1745509267945-b25cbb4d50ef?auto=format&fit=crop&w=400&q=80";
-const REEL_3 = "https://images.unsplash.com/photo-1768141721979-25c398ebefd5?auto=format&fit=crop&w=400&q=80";
-const COURSE_1 = "https://images.unsplash.com/photo-1769596722541-40dedee6789d?auto=format&fit=crop&w=400&q=80";
-const COURSE_2 = "https://images.unsplash.com/photo-1762163516269-3c143e04175c?auto=format&fit=crop&w=400&q=80";
-const COURSE_3 = "https://images.unsplash.com/photo-1768987439370-bd60d3d0b28b?auto=format&fit=crop&w=400&q=80";
-
-/* ─── Data ─── */
-const CATEGORIES = ["All Subjects", "Blockchain", "Digital Marketing", "NFTs", "Security", "E-commerce"];
-
-const REELS = [
-  { id: 1, title: "Wallet Security Tips",       views: "12.4K", img: REEL_1 },
-  { id: 2, title: "Market Psychology 101",      views: "8.1K",  img: REEL_2 },
-  { id: 3, title: "Why Mint on Kleench?",       views: "15.2K", img: REEL_3 },
-];
-
-const COURSES = [
-  {
-    id: 1,
-    tag: "MARKETING",
-    title: "Social Growth Strategies for Web3 Founders",
-    instructor: "Dr. Elias Thorne",
-    duration: "12h 45m",
-    rating: 4.9,
-    img: COURSE_1,
-  },
-  {
-    id: 2,
-    tag: "SECURITY",
-    title: "The Vault: Advanced Smart Contract Auditing",
-    instructor: "Sarah Chen",
-    duration: "24h total",
-    rating: 5.0,
-    img: COURSE_2,
-  },
-  {
-    id: 3,
-    tag: "ECOMMERCE",
-    title: "Scaling Your Boutique Store with Kleench API",
-    instructor: "Marcus Vane",
-    duration: "8h 20m",
-    rating: 4.7,
-    img: COURSE_3,
-  },
-];
-
-const grace = (delay = 0) => ({
-  duration: 0.62,
-  delay,
-  ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-});
-
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
+// Imports from learning
+import learnWoman from "@/assets/learning/learn_woman_1775596426630.png";
+import learnBook from "@/assets/learning/learn_book_1775596454115.png";
+import learnChart from "@/assets/learning/learn_chart_1775596868170.png";
+import learnMountain from "@/assets/learning/learn_mountain_1775596850615.png";
+import learnPresenter from "@/assets/learning/learn_presenter_1775596479989.png";
+
+// Reused assets to match the volume of content needed
+import adPodcast from "@/assets/ads/ad_podcast.png";
+import adShopping from "@/assets/ads/ad_shopping.png";
+
 export function Learning() {
-  const loading = usePageLoading(850);
-  const [activeCategory, setActiveCategory] = useState(0);
+  const loading = usePageLoading(800);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const ROW_1 = [
+    { id: 1, image: learnWoman },
+    { id: 2, image: learnBook }, // Or an orange headphone equivalent
+    { id: 3, image: learnChart }
+  ];
 
+  const ROW_2 = [
+    { id: 1, image: learnMountain },
+    { id: 2, image: learnBook },
+    { id: 3, image: learnWoman }
+  ];
 
-  const filteredReels = REELS.filter(r => r.title.toLowerCase().includes(searchQuery.toLowerCase()));
-  const filteredCourses = COURSES.filter(c => {
-     const matchCategory = activeCategory === 0 || c.tag.toLowerCase() === CATEGORIES[activeCategory].toLowerCase();
-     const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase()) || c.instructor.toLowerCase().includes(searchQuery.toLowerCase());
-     return matchCategory && matchSearch;
-  });
+  const ROW_3 = [
+    { id: 1, image: learnPresenter },
+    { id: 2, image: adPodcast },
+    { id: 3, image: adShopping }
+  ];
+
+  const ROW_4 = [
+    { id: 1, image: learnPresenter },
+    { id: 2, image: learnBook },
+    { id: 3, image: learnChart }
+  ];
+
+  const EXPLORE_MORE_VIDEOS = [
+    { id: 1, title: "Crypto Security Fundamentals", author: "Dr. Elias Thorne", views: "12.4K", duration: "1:45:00", image: learnPresenter },
+    { id: 2, title: "Mastering Market Psychology", author: "Sarah Chen", views: "8.1K", duration: "45:00", image: learnWoman },
+    { id: 3, title: "Building a Tech Startup", author: "Marcus Vane", views: "15.2K", duration: "2:10:00", image: learnMountain },
+    { id: 4, title: "Data Visualization Masterclass", author: "Elena Rostova", views: "24.5K", duration: "1:15:00", image: learnChart }
+  ];
 
   return (
-    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
-      {/* ── Standardized Academy Header ── */}
+    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+      
+      {/* ── Standardized Header ── */}
       <PageHeader 
-        title="Academy" 
-        subtitle="Learn and Earn Assets Today."
-        height={90}
+        useLogo
+        title="LEARN" 
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
-      />
+        height="auto"
+      >
+        <div className="relative z-10 w-full mt-3 pb-4">
+            <div className="h-[1px] w-full bg-white/20 mb-4" />
+            <div className="flex items-center justify-between w-full bg-transparent border-[1.5px] border-white/40 rounded-full px-5 py-2.5">
+                <div className="flex flex-col">
+                   <span className="text-white/80 text-[9px] font-black uppercase tracking-widest pl-1 mb-0.5">Balance</span>
+                   <div className="flex items-center gap-2">
+                       <h2 className="text-white text-[18px] sm:text-[20px] font-bold leading-none tracking-tight">ZMW 2,450.00</h2>
+                       <Eye size={16} className="text-white/80" strokeWidth={2} />
+                   </div>
+                </div>
+                <div className="flex gap-2 shrink-0">
+                  <button className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all">
+                     <ArrowUp size={16} className="text-white" strokeWidth={3} />
+                  </button>
+                  <button className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all">
+                     <ArrowDown size={16} className="text-white" strokeWidth={3} />
+                  </button>
+                </div>
+            </div>
+        </div>
+      </PageHeader>
 
       {loading ? (
         <PageSkeletons.Academy />
       ) : (
-        <>
-      {/* Hero Section: Progress Tracking Ledger */}
-      <div className="px-5 mt-4 relative z-20">
-        <motion.div
-           initial={{ opacity: 0, y: 15 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.1 }}
-           className="bg-white border-2 border-[#003366] p-6 shadow-[6px_6px_0px_#003366] relative overflow-hidden group"
-        >
-           <div className="absolute top-0 left-0 w-1.5 h-full bg-[#FF8C00]" />
-           
-           <div className="flex items-start justify-between mb-6">
-              <div className="flex flex-col gap-1">
-                 <span className="text-[#FF8C00] text-[8px] font-black uppercase tracking-[0.3em]">Module In Progress</span>
-                 <h2 className="text-[#003366] text-xl font-black uppercase tracking-tight leading-none">Mastering Crypto Basics</h2>
-              </div>
-              <div className="w-10 h-10 border-2 border-[#003366] flex items-center justify-center text-[#003366]">
-                 <BookOpen size={20} />
-              </div>
-           </div>
+        <div className="px-4 mt-4 relative z-20 space-y-6">
 
-           <div className="space-y-3 mb-6">
-              <div className="flex justify-between items-end">
-                 <span className="text-[10px] font-black text-[#003366]/40 uppercase tracking-widest">65% Absolute Progress</span>
-                 <span className="text-[10px] font-black text-[#003366]">CH. 04 / 07</span>
-              </div>
-              <div className="h-2 w-full bg-[#003366]/5 border border-[#003366]/10">
-                 <motion.div 
-                    initial={{ width: 0 }} 
-                    animate={{ width: "65%" }} 
-                    className="h-full bg-[#FF8C00]" 
-                 />
-              </div>
-           </div>
+          {/* Search Bar & Live Button */}
+          <div className="flex items-center gap-3">
+             <div className="flex-1 bg-white rounded-xl h-12 flex items-center px-4 shadow-sm border border-gray-100">
+                <Search size={18} className="text-gray-400 mr-2 shrink-0" strokeWidth={2.5} />
+                <input 
+                   type="text" 
+                   value={searchQuery}
+                   onChange={(e) => setSearchQuery(e.target.value)}
+                   placeholder="Search" 
+                   className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[14px]"
+                />
+             </div>
+             <button className="h-12 bg-white rounded-xl px-4 flex items-center gap-2 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+                <span className="text-[#E54D2E] font-black text-[14px] tracking-tight">LIVE</span>
+                <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={10} />
+             </button>
+          </div>
 
-           <Link to="/learning/1">
-              <motion.button 
-                whileTap={{ scale: 0.97 }}
-                className="w-full bg-[#003366] text-white py-4 flex items-center justify-center gap-3 shadow-[4px_4px_0px_#FF8C00] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
-              >
-                 <span className="text-[11px] font-black uppercase tracking-[0.2em]">Resume Your Journey</span>
-                 <ArrowRight size={16} className="text-[#FF8C00]" />
-              </motion.button>
-           </Link>
-        </motion.div>
-      </div>
-
-      <div className="px-5 mt-10 relative z-10 space-y-12">
-        
-        {/* SECTION 01: DISCOVERY REELS */}
-        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} className="space-y-6">
-           <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                 <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">01.</span>
-                 <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40 text-nowrap">Discovery Reels</h3>
-              </div>
-              <button className="text-[9px] font-black text-[#FF8C00] uppercase tracking-widest border-b border-[#FF8C00]/20 pb-0.5">Explore All</button>
-           </div>
-
-           <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 no-scrollbar scrollbar-hide">
-              {filteredReels.map((reel) => (
-                <div key={reel.id} className="w-[140px] aspect-[9/16] border-2 border-[#003366] relative overflow-hidden flex-shrink-0 group shadow-[4px_4px_0px_#FF8C00]">
-                   <img src={reel.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/90 via-transparent to-transparent opacity-80" />
-                   
-                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="w-10 h-10 bg-white shadow-[3px_3px_0px_#FF8C00] flex items-center justify-center text-[#003366]">
-                         <Play size={16} fill="#003366" />
-                      </div>
+          {/* Top Action Buttons (Upload, Share, Gift) - Circular Soft Brutalism */}
+          <section className="px-2">
+             <div className="flex items-start justify-between sm:justify-around gap-2 px-2">
+               {[
+                 { id: 'upload', icon: CloudUpload, label: "Upload" },
+                 { id: 'share', icon: Send, label: "Share" },
+                 { id: 'gift', icon: Gift, label: "Gift" }
+               ].map(btn => (
+                 <motion.button 
+                   key={btn.id}
+                   whileTap={{ scale: 0.92 }}
+                   className="flex flex-col items-center justify-center gap-3 group outline-none"
+                 >
+                   <div className="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] bg-white rounded-full flex flex-col items-center justify-center border-2 border-slate-800 shadow-md group-active:translate-y-1 group-active:shadow-none transition-all">
+                      <btn.icon size={26} className="text-slate-800" strokeWidth={2.2} />
                    </div>
+                   <span className="font-bold text-slate-800 text-[11px] sm:text-[13px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                 </motion.button>
+               ))}
+             </div>
+          </section>
 
-                   <div className="absolute bottom-3 left-3 right-3 space-y-1">
-                      <div className="flex items-center gap-1.5 text-white/60">
-                         <Eye size={10} />
-                         <span className="text-[8px] font-black uppercase tracking-widest">{reel.views} Views</span>
-                      </div>
-                      <p className="text-white text-[10px] font-black leading-tight uppercase tracking-tight line-clamp-2">{reel.title}</p>
-                   </div>
-                </div>
-              ))}
-           </div>
-        </motion.section>
+          {/* Horizontal Scroll Categories */}
+          <section className="space-y-6 pt-2">
+            
+            {/* Learn & Earn Videos */}
+            <div className="w-full">
+              <div className="flex justify-between items-end mb-3 px-1">
+                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Learn & Earn Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+              </div>
+              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
+                 {ROW_1.map(ad => (
+                    <div key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                       <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
+                    </div>
+                 ))}
+              </div>
+            </div>
 
-        {/* SECTION 02: SKILL HUB */}
-        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="space-y-6">
-           <div className="flex items-center gap-3">
-              <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
-              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Skill Hub</h3>
-              <div className="flex-1 h-[2px] bg-[#003366]/5" />
-           </div>
+            {/* Free Videos (1) */}
+            <div className="w-full">
+              <div className="flex justify-between items-end mb-3 px-1">
+                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Free Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+              </div>
+              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
+                 {ROW_2.map(ad => (
+                    <div key={ad.id} className="relative shrink-0 w-[200px] sm:w-[220px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                       <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
+                    </div>
+                 ))}
+              </div>
+            </div>
 
-           {/* Category Picker (Integrated) */}
-           <div className="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 no-scrollbar scrollbar-hide">
-              {CATEGORIES.map((cat, i) => (
-                <button 
-                  key={cat} 
-                  onClick={() => setActiveCategory(i)}
-                  className={`px-4 py-2 border-2 transition-all text-nowrap text-[9px] font-black uppercase tracking-widest ${
-                    activeCategory === i 
-                    ? "bg-[#003366] border-[#003366] text-white shadow-[3px_3px_0px_#FF8C00]" 
-                    : "bg-white border-[#003366]/10 text-[#003366]/40 hover:border-[#003366]/20"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-           </div>
+            {/* Free Videos (2) */}
+            <div className="w-full">
+              <div className="flex justify-between items-end mb-3 px-1">
+                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Free Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+              </div>
+              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
+                 {ROW_3.map(ad => (
+                    <div key={ad.id} className="relative shrink-0 w-[160px] sm:w-[180px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                       <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
+                    </div>
+                 ))}
+              </div>
+            </div>
 
-           <div className="space-y-6">
-              {filteredCourses.map((course) => (
-                <Link key={course.id} to={`/learning/${course.id}`} className="block group">
-                   <div className="bg-white border-2 border-[#003366] flex overflow-hidden shadow-[6px_6px_0px_#003366] group-hover:shadow-[6px_6px_0px_#FF8C00] transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                      <div className="w-24 h-full bg-[#003366]/5 border-r-2 border-[#003366] flex-shrink-0 overflow-hidden">
-                         <img src={course.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
-                      </div>
-                      <div className="p-4 flex flex-col justify-between flex-1">
-                         <div>
-                            <div className="flex items-center justify-between gap-2 mb-2">
-                               <span className="text-[#FF8C00] text-[8px] font-black uppercase tracking-[0.2em]">{course.tag}</span>
-                               <div className="flex items-center gap-1">
-                                  <Star size={10} fill="#FFC300" className="text-[#FFC300]" />
-                                  <span className="text-[10px] font-black text-[#003366]">{course.rating}</span>
-                               </div>
-                            </div>
-                            <h4 className="text-[#003366] text-xs font-black uppercase tracking-tight leading-tight group-hover:text-[#FF8C00] transition-colors">{course.title}</h4>
-                            <p className="text-[9px] font-bold text-[#003366]/30 uppercase tracking-widest mt-1">Ins. {course.instructor}</p>
-                         </div>
-                         <div className="flex items-center justify-between mt-4">
-                            <div className="flex items-center gap-1.5 text-[#003366]/40">
-                               <Clock size={12} />
-                               <span className="text-[9px] font-black uppercase tracking-widest">{course.duration}</span>
-                            </div>
-                            <span className="text-[#FF8C00] text-[10px] font-black uppercase tracking-widest">Enroll →</span>
+            {/* Pay to Stream Videos */}
+            <div className="w-full pb-6">
+              <div className="flex justify-between items-end mb-3 px-1">
+                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Pay to Stream Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+              </div>
+              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
+                 {ROW_4.map(ad => (
+                    <div key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                       <img src={ad.image} alt="Premium Video" className="absolute inset-0 w-full h-full object-cover" />
+                    </div>
+                 ))}
+              </div>
+            </div>
+
+          </section>
+
+          {/* Main Feed Area (Infinite Scroll Structure) */}
+          <section className="space-y-6 pb-12 mt-8">
+             <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Explore More</h3>
+             <div className="flex flex-col gap-6">
+                {EXPLORE_MORE_VIDEOS.map((video) => (
+                   <div key={video.id} className="bg-white border-2 border-slate-800 rounded-xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:translate-y-1 transition-transform">
+                      <div className="relative w-full aspect-video border-b-2 border-slate-800 bg-gray-100">
+                         <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover group-hover:opacity-95 transition-opacity" />
+                         
+                         {/* Duration Pill */}
+                         <div className="absolute bottom-2 right-2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                            <Clock size={10} />
+                            {video.duration}
                          </div>
                       </div>
+                      
+                      <div className="p-4 flex flex-col">
+                         <h4 className="font-black text-slate-900 text-[14px] uppercase tracking-tight leading-tight line-clamp-2">{video.title}</h4>
+                         <div className="flex items-center justify-between mt-3">
+                            <div className="flex items-center gap-1.5 text-slate-600">
+                               <User size={12} strokeWidth={2.5} />
+                               <span className="text-[11px] font-bold tracking-wide">{video.author}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-slate-500">
+                               <Eye size={12} strokeWidth={2.5} />
+                               <span className="text-[11px] font-bold">{video.views}</span>
+                            </div>
+                         </div>
+                      </div>
                    </div>
-                </Link>
-              ))}
-           </div>
-        </motion.section>
+                ))}
+             </div>
+             
+             {/* Infinite Scroll Loader Placeholder */}
+             <div className="pt-8 pb-4 flex items-center justify-center">
+                 <div className="w-6 h-6 border-[3px] border-slate-800 border-t-transparent rounded-full animate-spin" />
+             </div>
+          </section>
 
-        {/* SECTION 03: LIVE CLASSES */}
-        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.7)} className="pb-12">
-           <div className="bg-[#003366] p-6 shadow-[8px_8px_0px_#FF8C00] relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-xl" />
-              <div className="flex items-center justify-between mb-4">
-                 <div className="flex items-center gap-3">
-                    <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">03.</span>
-                    <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-white/40 text-nowrap">Live Events</h3>
-                 </div>
-                 <Radio size={18} className="text-[#FFC300] animate-pulse" />
-              </div>
-              <h4 className="text-white text-xl font-black uppercase tracking-tight mb-2">Join Mining Masterclass</h4>
-              <p className="text-white/60 text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed mb-6">
-                 Real-time mentorship with industry-leading experts in the copper exploration ecosystem.
-              </p>
-              <button className="w-full bg-white text-[#003366] py-3 text-[11px] font-black uppercase tracking-[0.3em] shadow-[4px_4px_0px_#FF8C00] active:shadow-none transition-all">
-                 Join Live Cast
-              </button>
-           </div>
-        </motion.section>
-
-      </div>
-      </>
+        </div>
       )}
     </div>
   );
