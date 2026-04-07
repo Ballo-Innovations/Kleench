@@ -10,8 +10,9 @@ import {
   Clock,
   User
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
@@ -29,6 +30,18 @@ import adShopping from "@/assets/ads/ad_shopping.png";
 export function Learning() {
   const loading = usePageLoading(800);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeMedia, setActiveMedia] = useState<string | null>(null);
+
+  const handleActionClick = (actionName: string) => {
+     toast.success(`${actionName} coming soon`, {
+        description: `This feature is currently in development.`,
+        duration: 2000,
+     });
+  };
+
+  const handleMediaClick = (imageSrc: string) => {
+     setActiveMedia(imageSrc);
+  };
 
   const ROW_1 = [
     { id: 1, image: learnWoman },
@@ -83,10 +96,10 @@ export function Learning() {
                    </div>
                 </div>
                 <div className="flex gap-2 shrink-0">
-                  <button className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all">
+                  <button onClick={() => handleActionClick("Deposit")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
                      <ArrowUp size={16} className="text-white" strokeWidth={3} />
                   </button>
-                  <button className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all">
+                  <button onClick={() => handleActionClick("Withdraw")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
                      <ArrowDown size={16} className="text-white" strokeWidth={3} />
                   </button>
                 </div>
@@ -111,7 +124,7 @@ export function Learning() {
                    className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[14px]"
                 />
              </div>
-             <button className="h-12 bg-white rounded-xl px-4 flex items-center gap-2 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+             <button onClick={() => handleActionClick("Live Stream")} className="h-12 bg-white rounded-xl px-4 flex items-center gap-2 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
                 <span className="text-[#E54D2E] font-black text-[14px] tracking-tight">LIVE</span>
                 <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={10} />
              </button>
@@ -127,6 +140,7 @@ export function Learning() {
                ].map(btn => (
                  <motion.button 
                    key={btn.id}
+                   onClick={() => handleActionClick(btn.label)}
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-3 group outline-none"
                  >
@@ -150,7 +164,7 @@ export function Learning() {
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_1.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -165,7 +179,7 @@ export function Learning() {
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_2.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[200px] sm:w-[220px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[200px] sm:w-[220px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -180,7 +194,7 @@ export function Learning() {
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_3.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[160px] sm:w-[180px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] sm:w-[180px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -195,7 +209,7 @@ export function Learning() {
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_4.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Premium Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -209,7 +223,7 @@ export function Learning() {
              <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Explore More</h3>
              <div className="flex flex-col gap-6">
                 {EXPLORE_MORE_VIDEOS.map((video) => (
-                   <div key={video.id} className="bg-white border-2 border-slate-800 rounded-xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:translate-y-1 transition-transform">
+                   <div onClick={() => handleMediaClick(video.image)} key={video.id} className="bg-white border-2 border-slate-800 rounded-xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:translate-y-1 transition-transform">
                       <div className="relative w-full aspect-video border-b-2 border-slate-800 bg-gray-100">
                          <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover group-hover:opacity-95 transition-opacity" />
                          
@@ -242,6 +256,32 @@ export function Learning() {
                  <div className="w-6 h-6 border-[3px] border-slate-800 border-t-transparent rounded-full animate-spin" />
              </div>
           </section>
+
+          {/* Full Screen Media Modal */}
+          <AnimatePresence>
+            {activeMedia && (
+               <motion.div 
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 exit={{ opacity: 0 }}
+                 onClick={() => setActiveMedia(null)}
+                 className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+               >
+                  <motion.div
+                     initial={{ scale: 0.9, opacity: 0 }}
+                     animate={{ scale: 1, opacity: 1 }}
+                     exit={{ scale: 0.9, opacity: 0 }}
+                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                     className="w-full max-w-lg aspect-auto max-h-[85vh] rounded-2xl overflow-hidden border border-white/20 shadow-2xl relative"
+                  >
+                     <img src={activeMedia} alt="Media View" className="w-full h-full object-contain" />
+                  </motion.div>
+                  <div className="absolute top-6 right-6 text-white text-[12px] font-bold uppercase tracking-widest bg-white/10 px-3 py-1.5 rounded-full border border-white/20 pointer-events-none">
+                     Tap anywhere to close
+                  </div>
+               </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
       )}

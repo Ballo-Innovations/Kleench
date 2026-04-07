@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
+import { Toaster } from "sonner";
 import { AnimatePresence } from "motion/react";
 import { SplashScreen } from "./components/SplashScreen";
 import { Layout } from "./components/Layout";
@@ -144,6 +145,7 @@ export default function App() {
       <AnimatePresence mode="wait">
         {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
       </AnimatePresence>
+      <Toaster position="top-center" richColors theme="light" />
       {!showSplash && <RouterProvider router={router} />}
     </>
   );

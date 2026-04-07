@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { ZambiaFlag } from "../components/KleenchIcons";
 import adBanner from "@/assets/ads/Transaction Assurance.png";
 import mtnLogo from "@/assets/MTN.jpeg";
@@ -62,6 +63,7 @@ export function Wallet() {
   const [mmProvider, setMMProvider] = useState<typeof MM_PROVIDERS[0] | null>(null);
   const [mmPhone, setMMPhone] = useState("");
   const [mmError, setMMError] = useState("");
+  const [expandedTx, setExpandedTx] = useState<string | null>(null);
 
   const hasFinancialKyc = localStorage.getItem("kleench_financial_kyc") === "true";
 
@@ -70,7 +72,10 @@ export function Wallet() {
       setShowFinancialKyc(true);
       return;
     }
-    console.log(`Action: ${type}`);
+    toast.success(`${type.toUpperCase()} feature coming soon`, {
+       description: `This module is currently in development.`,
+       duration: 2000,
+    });
   };
 
   const saveFinancialKyc = () => {
@@ -264,29 +269,57 @@ export function Wallet() {
                       key={`${tx.id}-${activeTransTab}`}
                       initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ delay: idx * 0.04 }}
-                      className="p-5 flex items-center justify-between group hover:bg-[#003366]/5 cursor-pointer transition-colors backdrop-blur-sm"
+                      onClick={() => setExpandedTx(expandedTx === `${tx.id}-${activeTransTab}` ? null : `${tx.id}-${activeTransTab}`)}
+                      className="flex flex-col group hover:bg-[#003366]/5 cursor-pointer transition-colors backdrop-blur-sm"
                     >
-                      <div className="flex items-center gap-4 sm:gap-6">
-                        <div className="flex flex-col">
-                           <h4 className="font-black text-[#003366] text-[11px] sm:text-xs uppercase tracking-tight transition-colors">{tx.title}</h4>
-                           <div className="flex items-center gap-3 mt-1.5">
-                              <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-gray-100 text-[#003366]`}>{tx.type}</span>
-                              <span className="text-[9px] font-bold text-gray-400 tracking-tight">{tx.date}</span>
-                           </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4 sm:gap-6 shrink-0">
-                        <div className="text-right">
-                          <p className={`font-black text-sm sm:text-[16px] tracking-tight ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
-                            {isPositive ? "+" : ""}{tx.amount.toFixed(2)}
-                          </p>
-                          <div className="flex justify-end gap-1 items-center mt-1 opacity-20 group-hover:opacity-100 transition-opacity">
-                             <span className="text-[7px] font-black uppercase tracking-widest text-gray-400">Expand</span>
-                             <ExternalLink size={8} className="text-gray-400" />
+                      <div className="p-5 flex items-center justify-between pointer-events-none">
+                        <div className="flex items-center gap-4 sm:gap-6">
+                          <div className="flex flex-col">
+                             <h4 className="font-black text-[#003366] text-[11px] sm:text-xs uppercase tracking-tight transition-colors">{tx.title}</h4>
+                             <div className="flex items-center gap-3 mt-1.5">
+                                <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-gray-100 text-[#003366]`}>{tx.type}</span>
+                                <span className="text-[9px] font-bold text-gray-400 tracking-tight">{tx.date}</span>
+                             </div>
                           </div>
                         </div>
-                        <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[#00C853]' : tx.type === 'payment' ? 'bg-[#F5A623]' : 'bg-[#999999]'}`} />
+                        <div className="flex items-center gap-4 sm:gap-6 shrink-0 pointer-events-auto">
+                          <div className="text-right">
+                            <p className={`font-black text-sm sm:text-[16px] tracking-tight ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
+                              {isPositive ? "+" : ""}{tx.amount.toFixed(2)}
+                            </p>
+                            <div className="flex justify-end gap-1 items-center mt-1 opacity-20 group-hover:opacity-100 transition-opacity">
+                               <span className="text-[7px] font-black uppercase tracking-widest text-gray-400">Expand</span>
+                               <ExternalLink size={8} className="text-gray-400" />
+                            </div>
+                          </div>
+                          <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[#00C853]' : tx.type === 'payment' ? 'bg-[#F5A623]' : 'bg-[#999999]'}`} />
+                        </div>
                       </div>
+                      
+                      <AnimatePresence>
+                         {expandedTx === `${tx.id}-${activeTransTab}` && (
+                            <motion.div 
+                               initial={{ height: 0, opacity: 0 }} 
+                               animate={{ height: "auto", opacity: 1 }} 
+                               exit={{ height: 0, opacity: 0 }}
+                               className="overflow-hidden px-5 pb-5 border-t border-gray-100"
+                            >
+                               <div className="pt-4 space-y-3">
+                                   <div className="flex justify-between items-center text-[10px]">
+                                       <span className="text-gray-400 uppercase font-black tracking-widest">Transaction Ref</span>
+                                       <span className="text-[#003366] font-bold">#TRX-{tx.id}9X2A</span>
+                                   </div>
+                                   <div className="flex justify-between items-center text-[10px]">
+                                       <span className="text-gray-400 uppercase font-black tracking-widest">Status</span>
+                                       <span className="text-[#00C853] font-bold">{tx.status}</span>
+                                   </div>
+                                   <button onClick={(e) => { e.stopPropagation(); handleAction("Download Receipt"); }} className="mt-2 w-full py-2 border-[1.5px] border-[#003366] text-[#003366] text-[9px] font-black uppercase tracking-widest active:bg-gray-100 transition-colors">
+                                       Download Receipt
+                                   </button>
+                               </div>
+                            </motion.div>
+                         )}
+                      </AnimatePresence>
                     </motion.div>
                   );
                 });

@@ -13,8 +13,9 @@ import {
   Gift,
   Headphones
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 
@@ -30,6 +31,18 @@ import adCode from "@/assets/ads/ad_code.png";
 export function Advert() {
   const loading = usePageLoading(800);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeMedia, setActiveMedia] = useState<string | null>(null);
+
+  const handleActionClick = (actionName: string) => {
+     toast.success(`${actionName} coming soon`, {
+        description: `This feature is currently in development.`,
+        duration: 2000,
+     });
+  };
+
+  const handleMediaClick = (imageSrc: string) => {
+     setActiveMedia(imageSrc);
+  };
 
   const VIDEO_ADS = [
     { id: 1, title: "DRIVE LUXURY", image: adCar },
@@ -78,10 +91,10 @@ export function Advert() {
                    </div>
                 </div>
                 <div className="flex gap-2 shrink-0">
-                  <button className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all shadow-sm">
+                  <button onClick={() => handleActionClick("Deposit")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
                      <ArrowUp size={16} className="text-white" strokeWidth={3} />
                   </button>
-                  <button className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all shadow-sm">
+                  <button onClick={() => handleActionClick("Withdraw")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
                      <ArrowDown size={16} className="text-white" strokeWidth={3} />
                   </button>
                 </div>
@@ -104,6 +117,7 @@ export function Advert() {
                ].map(btn => (
                  <motion.button 
                    key={btn.id}
+                   onClick={() => handleActionClick(btn.label)}
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-3 group outline-none"
                  >
@@ -124,7 +138,7 @@ export function Advert() {
               <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Video Ads</h3>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {VIDEO_ADS.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[160px] h-[160px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] h-[160px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-95" />
                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                        
@@ -149,7 +163,7 @@ export function Advert() {
               <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Picture Ads</h3>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {PICTURE_ADS.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-95" />
                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                        
@@ -167,7 +181,7 @@ export function Advert() {
               <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Audio Ads</h3>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-6 px-1">
                  {AUDIO_ADS.map(ad => (
-                    <div key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-multiply" />
                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/80" />
                        
@@ -214,7 +228,7 @@ export function Advert() {
                    </div>
                    
                    {/* Media Segment with Soft Brutalist Image Block */}
-                   <div className={`w-full aspect-square relative bg-white`}>
+                   <div onClick={() => handleMediaClick(post.media)} className={`w-full aspect-square relative bg-white active:scale-[0.99] transition-transform cursor-pointer`}>
                       <img src={post.media} alt={post.brand} className="absolute inset-0 w-full h-full object-cover" />
                       {post.id % 2 !== 0 && (
                          <div className="absolute inset-0 flex items-center justify-center bg-black/10 pointer-events-none group cursor-pointer">
@@ -245,6 +259,32 @@ export function Advert() {
                  <div className="w-6 h-6 border-[3px] border-slate-800 border-t-transparent rounded-full animate-spin" />
              </div>
           </section>
+
+          {/* Full Screen Media Modal */}
+          <AnimatePresence>
+            {activeMedia && (
+               <motion.div 
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 exit={{ opacity: 0 }}
+                 onClick={() => setActiveMedia(null)}
+                 className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+               >
+                  <motion.div
+                     initial={{ scale: 0.9, opacity: 0 }}
+                     animate={{ scale: 1, opacity: 1 }}
+                     exit={{ scale: 0.9, opacity: 0 }}
+                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                     className="w-full max-w-lg aspect-auto max-h-[85vh] rounded-2xl overflow-hidden border border-white/20 shadow-2xl relative"
+                  >
+                     <img src={activeMedia} alt="Media View" className="w-full h-full object-contain" />
+                  </motion.div>
+                  <div className="absolute top-6 right-6 text-white text-[12px] font-bold uppercase tracking-widest bg-white/10 px-3 py-1.5 rounded-full border border-white/20 pointer-events-none">
+                     Tap anywhere to close
+                  </div>
+               </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
       )}
