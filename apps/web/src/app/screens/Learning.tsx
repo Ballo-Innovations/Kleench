@@ -169,7 +169,22 @@ export function Learning() {
                      </div>
                    </div>
 
-                   {/* 03. Single Full-Width Masterclass Post */}
+                   {/* 03. Creator Showcases Carousel */}
+                   <div className="w-full">
+                     <div className="flex justify-between items-end mb-3 px-1">
+                        <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Creator Showcases</h3>
+                        <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                     </div>
+                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                        {ROW_3.map(ad => (
+                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                              <img src={ad.image} alt="Showcase Video" className="absolute inset-0 w-full h-full object-cover" />
+                           </div>
+                        ))}
+                     </div>
+                   </div>
+
+                   {/* 04. Single Full-Width Masterclass Post */}
                    <div onClick={() => handleCourseClick(video.id)} className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
                       <div className="relative w-full aspect-video bg-slate-100">
                          <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover transition-opacity" />
@@ -196,21 +211,6 @@ export function Learning() {
                             </div>
                          </div>
                       </div>
-                   </div>
-
-                   {/* 04. Creator Showcases Carousel */}
-                   <div className="w-full">
-                     <div className="flex justify-between items-end mb-3 px-1">
-                        <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Creator Showcases</h3>
-                        <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
-                     </div>
-                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
-                        {ROW_3.map(ad => (
-                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
-                              <img src={ad.image} alt="Showcase Video" className="absolute inset-0 w-full h-full object-cover" />
-                           </div>
-                        ))}
-                     </div>
                    </div>
 
                 </div>

@@ -150,7 +150,40 @@ export function Advert() {
                      </div>
                    </div>
 
-                   {/* 03. Main Full-Width Post */}
+                   {/* 03. Audio Ads Carousel */}
+                   <div>
+                     <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Audio Ads</h3>
+                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                        {AUDIO_ADS.map(ad => (
+                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-slate-900 border border-slate-200 active:scale-95 transition-transform">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-slate-900/40 to-slate-900/80" />
+                              
+                              <div className="absolute inset-0 flex items-center justify-center pb-2 z-10">
+                                 <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center">
+                                    <Headphones className="text-white" size={18} strokeWidth={1.5} />
+                                 </div>
+                              </div>
+                              
+                              <div className="absolute inset-0 flex flex-col justify-between p-3 z-10 pointer-events-none">
+                                 <span className="font-bold text-white/90 text-[9px] uppercase tracking-wide text-center leading-tight line-clamp-2 mt-1">{ad.title}</span>
+                                 
+                                 {/* Sleek Audio Player Bar */}
+                                 <div className="flex items-center gap-1.5 mt-auto w-full px-1 mb-1">
+                                    <Volume2 size={10} className="text-white/80 shrink-0" />
+                                    <div className="flex-1 h-[2px] bg-white/20 rounded-full relative">
+                                       <div className="absolute left-0 top-0 bottom-0 w-[40%] bg-[#FF8C00] rounded-full" />
+                                       <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-[6px] h-[6px] bg-white rounded-full translate-x-[-50%] shadow-sm" />
+                                    </div>
+                                    <span className="text-[8px] font-bold text-white/80 shrink-0">{ad.time}</span>
+                                 </div>
+                              </div>
+                           </div>
+                        ))}
+                     </div>
+                   </div>
+
+                   {/* 04. Main Full-Width Post */}
                    <div className="bg-white border border-slate-200 rounded-3xl shadow-sm flex flex-col w-full overflow-hidden relative">
                       {/* Header */}
                       <div className="flex items-center justify-between p-4 bg-white relative z-10">
@@ -187,39 +220,6 @@ export function Advert() {
                             <Share size={20} strokeWidth={1.5} />
                          </button>
                       </div>
-                   </div>
-
-                   {/* 04. Audio Ads Carousel */}
-                   <div>
-                     <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Audio Ads</h3>
-                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
-                        {AUDIO_ADS.map(ad => (
-                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-slate-900 border border-slate-200 active:scale-95 transition-transform">
-                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-slate-900/40 to-slate-900/80" />
-                              
-                              <div className="absolute inset-0 flex items-center justify-center pb-2 z-10">
-                                 <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center">
-                                    <Headphones className="text-white" size={18} strokeWidth={1.5} />
-                                 </div>
-                              </div>
-                              
-                              <div className="absolute inset-0 flex flex-col justify-between p-3 z-10 pointer-events-none">
-                                 <span className="font-bold text-white/90 text-[9px] uppercase tracking-wide text-center leading-tight line-clamp-2 mt-1">{ad.title}</span>
-                                 
-                                 {/* Sleek Audio Player Bar */}
-                                 <div className="flex items-center gap-1.5 mt-auto w-full px-1 mb-1">
-                                    <Volume2 size={10} className="text-white/80 shrink-0" />
-                                    <div className="flex-1 h-[2px] bg-white/20 rounded-full relative">
-                                       <div className="absolute left-0 top-0 bottom-0 w-[40%] bg-[#FF8C00] rounded-full" />
-                                       <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-[6px] h-[6px] bg-white rounded-full translate-x-[-50%] shadow-sm" />
-                                    </div>
-                                    <span className="text-[8px] font-bold text-white/80 shrink-0">{ad.time}</span>
-                                 </div>
-                              </div>
-                           </div>
-                        ))}
-                     </div>
                    </div>
 
                 </div>
