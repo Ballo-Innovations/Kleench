@@ -28,6 +28,9 @@ import learnPresenter from "@/assets/learning/learn_presenter_1775596479989.png"
 // Reused assets to match the volume of content needed
 import adPodcast from "@/assets/ads/ad_podcast.png";
 import adShopping from "@/assets/ads/ad_shopping.png";
+import adCode from "@/assets/ads/ad_code.png";
+import adHeadphones from "@/assets/ads/ad_headphones.png";
+import adSmarthome from "@/assets/ads/ad_smarthome.png";
 
 export function Learning() {
   const loading = usePageLoading(800);
@@ -51,21 +54,33 @@ export function Learning() {
   };
 
   const ROW_1 = [
-    { id: 1, image: learnWoman },
-    { id: 2, image: learnBook }, // Or an orange headphone equivalent
-    { id: 3, image: learnChart }
+    { id: 1, title: "MARKET PSYCHOLOGY", image: learnWoman },
+    { id: 2, title: "SECURITY FUND", image: learnBook },
+    { id: 3, title: "DATA VIZ", image: learnChart },
+    { id: 4, title: "CODING 101", image: adCode },
+    { id: 5, title: "STUDIO SESSIONS", image: adHeadphones },
+    { id: 6, title: "ECOMMERCE", image: adShopping },
+    { id: 7, title: "PRESENT STRATEGY", image: learnPresenter }
   ];
 
   const ROW_2 = [
-    { id: 1, image: learnMountain },
-    { id: 2, image: learnBook },
-    { id: 3, image: learnWoman }
+    { id: 1, title: "TECH STARTUPS", image: learnMountain },
+    { id: 2, title: "BIZ PODCAST", image: adPodcast },
+    { id: 3, title: "MARKET STRATEGY", image: learnWoman },
+    { id: 4, title: "SMART LIVING", image: adSmarthome },
+    { id: 5, title: "DESIGN THINKING", image: learnBook },
+    { id: 6, title: "DATA VIZ", image: learnChart },
+    { id: 7, title: "CODING 101", image: adCode }
   ];
 
   const ROW_3 = [
-    { id: 1, image: learnPresenter },
-    { id: 2, image: adPodcast },
-    { id: 3, image: adShopping }
+    { id: 1, title: "PITCH PERFECT", image: learnPresenter },
+    { id: 2, title: "STARTUP HUB", image: adPodcast },
+    { id: 3, title: "GROWTH SECRETS", image: adShopping },
+    { id: 4, title: "MINDSET & FOCUS", image: learnWoman },
+    { id: 5, title: "DATA VIZ", image: learnChart },
+    { id: 6, title: "STUDIO SESSIONS", image: adHeadphones },
+    { id: 7, title: "TECH STARTUPS", image: learnMountain }
   ];
 
 
@@ -148,11 +163,19 @@ export function Learning() {
                         </div>
                         <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
                         {ROW_1.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[95px] h-[140px] rounded-xl overflow-hidden cursor-pointer bg-slate-900 border border-slate-800/20">
-                              <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                              
+                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={7} />
+                              </div>
+
+                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              </div>
                            </motion.div>
                         ))}
                      </div>
@@ -167,11 +190,19 @@ export function Learning() {
                         </div>
                         <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
                         {ROW_2.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[95px] h-[140px] rounded-xl overflow-hidden cursor-pointer bg-slate-900 border border-slate-800/20">
-                              <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                              
+                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={7} />
+                              </div>
+
+                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              </div>
                            </motion.div>
                         ))}
                      </div>
@@ -186,11 +217,19 @@ export function Learning() {
                         </div>
                         <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
                         {ROW_3.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[95px] h-[140px] rounded-xl overflow-hidden cursor-pointer bg-slate-900 border border-slate-800/20">
-                              <img src={ad.image} alt="Showcase Video" className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                              
+                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={7} />
+                              </div>
+
+                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              </div>
                            </motion.div>
                         ))}
                      </div>
