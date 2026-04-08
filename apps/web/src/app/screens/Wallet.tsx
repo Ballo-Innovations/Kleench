@@ -108,16 +108,16 @@ export function Wallet() {
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
         customBalanceHUD={
-          <div className="flex gap-2 w-full h-full items-stretch shrink-0">
-            <div className="flex-[2] bg-[#003366] text-white px-3 py-1 shadow-[2px_2px_0_0_#001a33] border border-[#003366] flex flex-col justify-center">
-              <p className="text-[#FF8C00] font-bold text-[7px] tracking-[0.2em] uppercase mb-0.5">Balance</p>
-              <h2 className="text-[16px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
+          <div className="flex justify-between items-center w-full h-full bg-[#003366] text-white px-4 border border-white/5 rounded-2xl shadow-sm shrink-0">
+            <div className="flex flex-col justify-center">
+              <p className="text-[#FF8C00] font-bold text-[8px] tracking-[0.2em] uppercase mb-0.5">Balance</p>
+              <h2 className="text-[17px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
             </div>
             <button 
                onClick={() => setShowFinancialKyc(!hasFinancialKyc)}
-               className="flex-1 bg-[#003366] text-white px-2 py-1 flex items-center justify-center font-bold tracking-[0.2em] text-[9px] shadow-[2px_2px_0_0_#001a33] border border-[#003366] active:translate-y-0.5 active:shadow-none transition-all"
+               className="bg-white/10 active:bg-white/20 text-[#FF8C00] px-3 py-1.5 rounded-full flex items-center justify-center font-bold tracking-[0.1em] text-[9px] border border-[#FF8C00]/20 active:scale-95 transition-all"
             >
-              KYC
+              Verify KYC
             </button>
           </div>
         }
@@ -126,18 +126,16 @@ export function Wallet() {
       {loading ? (
         <PageSkeletons.Wallet />
       ) : (
-        <div className="px-5 mt-4 relative z-10 space-y-8">
+        <div className="px-5 mt-3 relative z-10 space-y-6">
         
-        <section className="space-y-6">
+        <section className="space-y-4">
 
           <motion.div 
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1)}
             className="relative"
           >
-              
-
             {/* Action Grid */}
-            <div className="flex items-center justify-center gap-6 mt-6 mb-4">
+            <div className="flex items-center justify-center gap-7 mt-4 mb-2">
               {[
                 { id: "deposit", icon: ArrowUpFromLine, label: "DEPOSIT" },
                 { id: "withdraw", icon: ArrowDownToLine, label: "WITHDRAW" },
@@ -146,14 +144,14 @@ export function Wallet() {
               ].map((action) => (
                 <motion.div 
                   key={action.id}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 0.92 }}
                   onClick={() => (action.id === 'statement' ? setActiveTransTab('all') : handleAction(action.id))} 
-                  className="flex flex-col items-center gap-3 cursor-pointer group"
+                  className="flex flex-col items-center gap-2 cursor-pointer group"
                 >
-                  <div className={`w-16 h-16 rounded-full border-[2px] border-[#003366] bg-white flex items-center justify-center transition-all group-active:translate-y-1 shadow-[3px_4px_0_0_#003366] group-active:shadow-none`}>
-                    <action.icon size={26} className="text-[#003366]" strokeWidth={1.5} />
+                  <div className={`w-12 h-12 rounded-full border border-[#003366]/10 bg-white flex items-center justify-center transition-all group-active:scale-95 shadow-sm`}>
+                    <action.icon size={20} className="text-[#003366]" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[#003366] font-black tracking-widest text-[9px] uppercase mt-1">{action.label}</span>
+                  <span className="text-[#003366] font-bold tracking-widest text-[8px] uppercase mt-0.5">{action.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -161,7 +159,7 @@ export function Wallet() {
         </section>
 
         {/* Section 02. UTILITY BLOCKS */}
-        <section className="space-y-5 pt-4">
+        <section className="space-y-4 pt-2">
           <div className="flex items-center gap-3 mb-6">
              <span className="text-[#F5A623] font-black text-sm tracking-widest">02.</span>
              <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Utility Blocks</h3>
@@ -169,54 +167,51 @@ export function Wallet() {
           </div>
 
           <div className="flex flex-col gap-4">
-             {/* Row 1 */}
              <div className="grid grid-cols-3 gap-3">
                {[
                  { id: "paybills", icon: ReceiptText, label: "PAY BILLS", sub: "SETTLEMENTS" },
                  { id: "qr", icon: QrCode, label: "SCAN PAY", sub: "INSTANT PAD" },
                  { id: "global", icon: Globe, label: "GLOBAL", sub: "TRANSACTIONS" }
                ].map(util => (
-                 <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-2 p-3 bg-white border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
-                    <div className="w-6 h-6 shrink-0 flex items-center justify-center border border-[#003366]">
-                       <util.icon size={16} className="text-[#003366]" strokeWidth={2} />
+                 <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-2 p-3 bg-white rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all">
+                    <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center bg-slate-50 border border-slate-100">
+                       <util.icon size={14} className="text-[#003366]" strokeWidth={1.5} />
                     </div>
                     <div className="flex flex-col items-start leading-none text-left">
                        <span className="font-black text-[#003366] text-[7px] uppercase tracking-wide">{util.label}</span>
-                       <span className="font-black text-[#F5A623] text-[5px] uppercase tracking-wide mt-0.5">{util.sub}</span>
+                       <span className="font-bold text-[#F5A623] text-[6px] uppercase tracking-wide mt-0.5">{util.sub}</span>
                     </div>
                  </motion.button>
                ))}
              </div>
-             {/* Row 2 */}
-             <div className="grid grid-cols-2 gap-4">
+             <div className="grid grid-cols-2 gap-3">
                 {[
                   { id: "escrow", icon: ShieldCheck, title: "ESCROW", metric: "K1,200", iconColor: "text-[#003366]" },
                   { id: "savings", icon: PiggyBank, title: "SAVINGS", metric: "K8,400", iconColor: "text-[#4CAF50]" }
                 ].map(util => (
-                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
-                      <div className="w-10 h-10 border-[2px] border-white flex items-center justify-center shrink-0">
-                         <util.icon size={22} className={util.iconColor} strokeWidth={2} />
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] rounded-2xl shadow-sm active:scale-95 transition-all">
+                      <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 border border-white/50">
+                         <util.icon size={20} className={util.iconColor} strokeWidth={1.5} />
                       </div>
-                      <div className="flex flex-col items-center flex-1 leading-tight">
-                         <span className="font-black text-[#003366] text-[9px] uppercase tracking-wide block">{util.title}</span>
-                         <span className="font-black text-white text-[10px] uppercase">{util.metric}</span>
+                      <div className="flex flex-col items-start flex-1 leading-tight">
+                         <span className="font-bold text-[#003366] text-[9px] uppercase tracking-wide block">{util.title}</span>
+                         <span className="font-black text-white text-[12px] uppercase">{util.metric}</span>
                       </div>
                    </motion.button>
                 ))}
              </div>
-             {/* Row 3 */}
-             <div className="grid grid-cols-2 gap-4">
+             <div className="grid grid-cols-2 gap-3">
                 {[
-                  { id: "calculator", icon: Calculator, title: "CONTENT CALCULATOR", metric: "-2%", iconColor: "text-white" },
+                  { id: "calculator", icon: Calculator, title: "CALCULATOR", metric: "-2%", iconColor: "text-white" },
                   { id: "tax", icon: Search, title: "TAX ACCOUNT", metric: "K211", iconColor: "text-[#E40513]" }
                 ].map(util => (
-                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
-                      <div className="w-10 h-10 border-[2px] border-white flex items-center justify-center shrink-0 text-[#E40513]">
-                         <util.icon size={22} className={util.iconColor} strokeWidth={2} />
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#003366] rounded-2xl shadow-sm active:scale-95 transition-all">
+                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                         <util.icon size={20} className={util.iconColor} strokeWidth={1.5} />
                       </div>
-                      <div className="flex flex-col items-center justify-center flex-1 leading-tight overflow-visible">
-                         <span className="font-black text-[#003366] text-[8px] uppercase tracking-wide block text-center whitespace-normal break-words w-full">{util.title}</span>
-                         <span className="font-black text-white text-[10px] uppercase mt-0.5">{util.metric}</span>
+                      <div className="flex flex-col items-start flex-1 leading-tight overflow-visible">
+                         <span className="font-bold text-white/70 text-[9px] uppercase tracking-wide block text-left whitespace-normal w-full">{util.title}</span>
+                         <span className="font-black text-white text-[12px] uppercase mt-0.5">{util.metric}</span>
                       </div>
                    </motion.button>
                 ))}

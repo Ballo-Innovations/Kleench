@@ -214,12 +214,12 @@ export function Home() {
                     <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">{block.title}</h3>
                     <div className="flex-1 h-[2px] bg-[#003366]/5" />
                   </div>
-                  <div className="flex gap-3 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
+                  <div className="flex gap-3 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none" style={{ scrollbarWidth: "none" }}>
                     {(block.data as typeof REELS).map((reel) => (
                       <Link key={reel.id} to={reel.to}>
                         <motion.div
                           whileTap={{ scale: 0.96 }}
-                          className="relative flex-shrink-0 w-28 h-40 bg-white border border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group rounded-sm"
+                          className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl"
                         >
                           <img src={reel.image} alt={reel.label} className="w-full h-full object-cover grayscale-[0.2] transition-all duration-700" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
@@ -262,11 +262,11 @@ export function Home() {
 
                   <div className="flex flex-col gap-6">
                     {/* Row 1: Standard Items */}
-                    <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-1 scrollbar-hide no-scrollbar">
+                    <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-2 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                       {row1.map((product) => (
                         <motion.div key={product.id} className="flex-shrink-0 w-36 group">
                           <Link to={`/product/${product.id}`} className="block">
-                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] transition-all mb-2">
+                            <div className="relative aspect-square bg-slate-100 border border-slate-200 overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                             </div>
                             <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
@@ -277,13 +277,13 @@ export function Home() {
                     </div>
 
                     {/* Row 2: Trendy/Price Shifts */}
-                    <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-1 scrollbar-hide no-scrollbar">
+                    <div className="flex gap-4 overflow-x-auto -mx-5 px-5 pb-2 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                       {row2.map((product) => (
                         <motion.div key={product.id} className="flex-shrink-0 w-36 group">
                           <Link to={`/product/${product.id}`} className="block">
-                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] transition-all mb-2">
+                            <div className="relative aspect-square bg-slate-100 border border-slate-200 overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
-                              <div className="absolute top-0 right-0 bg-[#FF3000] text-white px-1.5 py-0.5 text-[7px] font-black uppercase tracking-[0.2em]">TRENDY</div>
+                              <div className="absolute top-0 right-0 bg-[#FF3000] text-white px-2 py-1 text-[7px] font-black uppercase tracking-[0.2em] rounded-bl-xl">TRENDY</div>
                             </div>
                             <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
                             <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
@@ -304,9 +304,9 @@ export function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  className="mx-5 border-2 border-[#003366] bg-white shadow-[5px_5px_0px_#003366] overflow-hidden group transition-all"
+                  className="mx-5 border border-slate-200 bg-white shadow-sm overflow-hidden group transition-all rounded-3xl"
                 >
-                  <div className="relative w-full h-72 overflow-hidden">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">

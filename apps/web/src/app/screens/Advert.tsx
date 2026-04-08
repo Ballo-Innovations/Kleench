@@ -80,11 +80,11 @@ export function Advert() {
       {loading ? (
         <PageSkeletons.Generic />
       ) : (
-        <div className="px-4 mt-3 relative z-20 space-y-6">
+        <div className="px-4 mt-1 relative z-20 space-y-4">
 
-          {/* Top Action Buttons (Upload, Share, Register Agent) - Circular Soft Brutalism */}
-          <section className="px-2">
-             <div className="flex items-start justify-between gap-2 px-2">
+          {/* Top Action Buttons */}
+          <section className="px-2 pt-1">
+             <div className="flex items-start justify-between gap-2 px-6">
                {[
                  { id: 'upload', icon: CloudUpload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
@@ -96,142 +96,143 @@ export function Advert() {
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-1.5 group outline-none"
                  >
-                   <div className="w-12 h-12 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
-                      <btn.icon size={20} className="text-slate-800" strokeWidth={2.2} />
+                   <div className="w-12 h-12 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all">
+                      <btn.icon size={20} className="text-slate-800" strokeWidth={1.5} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[10px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[8px] uppercase tracking-widest text-center leading-tight whitespace-normal break-words w-16">{btn.label}</span>
                  </motion.button>
                ))}
              </div>
           </section>
 
-          {/* Horizontal Scroll Categories */}
-          <section className="space-y-10">
+          {/* Main Interleaved Feed Area */}
+          <section className="space-y-6 pb-12 mt-4">
+             {FEED_POSTS.map((post, index) => (
+                <div key={post.id} className="space-y-6">
+                   
+                   {/* Interleaved Carousels */}
+                   {index === 1 && (
+                     <div className="space-y-6">
+                        {/* Video Ads */}
+                        <div>
+                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Video Ads</h3>
+                          <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                             {VIDEO_ADS.map(ad => (
+                                <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[180px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                                   <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
+                                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+                                   
+                                   <div className="absolute inset-0 flex flex-col justify-end p-3 pb-3">
+                                      <span className="font-bold text-white text-[10px] uppercase tracking-wide leading-tight line-clamp-2">{ad.title}</span>
+                                   </div>
             
-            {/* Video Ads */}
-            <div>
-              <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Video Ads</h3>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
-                 {VIDEO_ADS.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] h-[160px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-95" />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                       
-                       {/* Overlay details */}
-                       <div className="absolute inset-0 flex flex-col justify-end p-3 pb-4">
-                          <span className="font-black text-white text-[13px] uppercase drop-shadow-md leading-tight text-left">{ad.title}</span>
-                       </div>
-
-                       {/* Central Play Icon */}
-                       <div className="absolute inset-0 flex items-center justify-center pb-2">
-                          <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-lg transition-transform group-active:scale-95">
-                             <Play fill="white" className="text-white ml-1" size={24} />
+                                   <div className="absolute inset-0 flex items-center justify-center">
+                                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/50 flex items-center justify-center transition-transform group-active:scale-90">
+                                         <Play fill="white" className="text-white ml-0.5" size={18} />
+                                      </div>
+                                   </div>
+                                </div>
+                             ))}
                           </div>
-                       </div>
-                    </div>
-                 ))}
-              </div>
-            </div>
+                        </div>
 
-            {/* Picture Ads */}
-            <div>
-              <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Picture Ads</h3>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
-                 {PICTURE_ADS.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-95" />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                       
-                       {/* Overlay details */}
-                       <div className="absolute inset-0 flex flex-col justify-end p-4">
-                          <span className="font-black text-white text-[14px] uppercase drop-shadow-md leading-tight text-center">{ad.title}</span>
-                       </div>
-                    </div>
-                 ))}
-              </div>
-            </div>
-
-            {/* Audio Ads */}
-            <div>
-              <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Audio Ads</h3>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-6 px-1">
-                 {AUDIO_ADS.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-multiply" />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/80" />
-                       
-                       <div className="absolute inset-0 flex items-center justify-center pb-2 z-10 pointer-events-none">
-                          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-lg pointer-events-auto transition-transform group-active:scale-95">
-                             <Headphones className="text-white" size={24} strokeWidth={2.5} />
+                        {/* Picture Ads */}
+                        <div>
+                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Picture Ads</h3>
+                          <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                             {PICTURE_ADS.map(ad => (
+                                <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                                   <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
+                                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
+                                   
+                                   <div className="absolute inset-0 flex flex-col justify-end p-3 text-center">
+                                      <span className="font-bold text-white text-[10px] uppercase tracking-wide leading-tight line-clamp-2">{ad.title}</span>
+                                   </div>
+                                </div>
+                             ))}
                           </div>
-                       </div>
-                       
-                       <div className="absolute inset-0 flex flex-col justify-between p-3 z-10 pointer-events-none">
-                          <span className="font-black text-white text-[12px] uppercase text-center leading-tight drop-shadow-md mt-1 pointer-events-auto">{ad.title}</span>
-                          
-                          {/* Audio Player Bar */}
-                          <div className="flex items-center gap-1.5 mt-auto w-full px-1 mb-1 pointer-events-auto">
-                             <Volume2 size={12} className="text-white shrink-0 drop-shadow-md" />
-                             <div className="flex-1 h-[3px] bg-white/30 rounded-full relative">
-                                <div className="absolute left-0 top-0 bottom-0 w-[40%] bg-[#FF8C00] rounded-full" />
-                                <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-[7px] h-[7px] bg-white rounded-full translate-x-[-50%] shadow-sm" />
+                        </div>
+                     </div>
+                   )}
+
+                   {index === 2 && (
+                     <div>
+                       <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Audio Ads</h3>
+                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                          {AUDIO_ADS.map(ad => (
+                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-slate-900 border border-slate-200 active:scale-95 transition-transform">
+                                <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-slate-900/40 to-slate-900/80" />
+                                
+                                <div className="absolute inset-0 flex items-center justify-center pb-2 z-10">
+                                   <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center">
+                                      <Headphones className="text-white" size={18} strokeWidth={1.5} />
+                                   </div>
+                                </div>
+                                
+                                <div className="absolute inset-0 flex flex-col justify-between p-3 z-10 pointer-events-none">
+                                   <span className="font-bold text-white/90 text-[9px] uppercase tracking-wide text-center leading-tight line-clamp-2 mt-1">{ad.title}</span>
+                                   
+                                   {/* Sleek Audio Player Bar */}
+                                   <div className="flex items-center gap-1.5 mt-auto w-full px-1 mb-1">
+                                      <Volume2 size={10} className="text-white/80 shrink-0" />
+                                      <div className="flex-1 h-[2px] bg-white/20 rounded-full relative">
+                                         <div className="absolute left-0 top-0 bottom-0 w-[40%] bg-[#FF8C00] rounded-full" />
+                                         <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-[6px] h-[6px] bg-white rounded-full translate-x-[-50%] shadow-sm" />
+                                      </div>
+                                      <span className="text-[8px] font-bold text-white/80 shrink-0">{ad.time}</span>
+                                   </div>
+                                </div>
                              </div>
-                             <span className="text-[9px] font-black text-white shrink-0 drop-shadow-md">{ad.time}</span>
-                          </div>
+                          ))}
                        </div>
-                    </div>
-                 ))}
-              </div>
-            </div>
+                     </div>
+                   )}
 
-          </section>
-
-          {/* Main Feed Area (Infinite Scroll Structure) */}
-          <section className="space-y-8 pb-12 mt-10">
-             <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Advert Feed</h3>
-             {FEED_POSTS.map(post => (
-                <div key={post.id} className="bg-white border-2 border-slate-800 rounded-2xl shadow-lg flex flex-col w-full overflow-hidden relative">
-                   {/* Header */}
-                   <div className="flex items-center justify-between p-4 border-b-2 border-slate-800 bg-white relative z-10">
-                      <div className="flex items-center gap-3">
-                         <div className={`w-10 h-10 border-2 border-slate-800 rounded-full ${post.avatarBg}`} />
-                         <span className="font-black text-slate-800 text-[13px] uppercase tracking-wide">{post.brand}</span>
-                      </div>
-                      <button className="w-8 h-8 flex items-center justify-center rounded-full transition-all text-slate-800">
-                         <MoreHorizontal size={20} className="text-slate-800" />
-                      </button>
-                   </div>
-                   
-                   {/* Media Segment with Soft Brutalist Image Block */}
-                   <div onClick={() => handleMediaClick(post.media)} className={`w-full aspect-square relative bg-white active:scale-[0.99] transition-transform cursor-pointer`}>
-                      <img src={post.media} alt={post.brand} className="absolute inset-0 w-full h-full object-cover" />
-                      {post.id % 2 !== 0 && (
-                         <div className="absolute inset-0 flex items-center justify-center bg-black/10 pointer-events-none group cursor-pointer">
-                            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-lg transition-transform group-active:scale-95">
-                               <Play fill="white" className="text-white ml-1 mt-0.5" size={28} />
-                            </div>
+                   {/* Main Feed Post - Sleek Netflix UI */}
+                   <div className="bg-white border border-slate-200 rounded-3xl shadow-sm flex flex-col w-full overflow-hidden relative">
+                      {/* Header */}
+                      <div className="flex items-center justify-between p-4 bg-white relative z-10">
+                         <div className="flex items-center gap-3">
+                            <div className={`w-8 h-8 rounded-full shadow-sm ${post.avatarBg}`} />
+                            <span className="font-bold text-slate-800 text-[10px] uppercase tracking-widest">{post.brand}</span>
                          </div>
-                      )}
-                   </div>
-                   
-                   {/* Footer Actions */}
-                   <div className="flex items-center gap-4 p-4 border-t-2 border-slate-800 bg-gray-50/50">
-                      <button className="flex items-center gap-2 text-slate-800 active:scale-95 transition-all font-bold">
-                         <Heart size={26} strokeWidth={2} />
-                      </button>
-                      <button className="flex items-center gap-2 text-slate-800 active:scale-95 transition-all font-bold">
-                         <MessageCircle size={26} strokeWidth={2} />
-                      </button>
-                      <button className="flex items-center gap-2 text-slate-800 active:scale-95 transition-all font-bold ml-auto">
-                         <Share size={26} strokeWidth={2} />
-                      </button>
+                         <button className="w-8 h-8 flex items-center justify-center rounded-full transition-all text-slate-400 active:bg-slate-50">
+                            <MoreHorizontal size={18} />
+                         </button>
+                      </div>
+                      
+                      {/* Media Segment */}
+                      <div onClick={() => handleMediaClick(post.media)} className={`w-full aspect-[4/5] relative bg-slate-100 active:scale-[0.99] transition-transform cursor-pointer overflow-hidden`}>
+                         <img src={post.media} alt={post.brand} className="absolute inset-0 w-full h-full object-cover" />
+                         {post.id % 2 !== 0 && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/5 pointer-events-none group cursor-pointer">
+                               <div className="w-14 h-14 rounded-full bg-black/20 backdrop-blur-md border border-white/50 flex items-center justify-center shadow-lg transition-transform group-active:scale-95">
+                                  <Play fill="white" className="text-white ml-1 mt-0.5" size={24} />
+                               </div>
+                            </div>
+                         )}
+                      </div>
+                      
+                      {/* Footer Actions */}
+                      <div className="flex items-center gap-6 px-5 py-4 bg-white">
+                         <button className="flex items-center gap-1.5 text-slate-800 active:scale-95 transition-all">
+                            <Heart size={22} strokeWidth={1.5} />
+                         </button>
+                         <button className="flex items-center gap-1.5 text-slate-800 active:scale-95 transition-all">
+                            <MessageCircle size={22} strokeWidth={1.5} />
+                         </button>
+                         <button className="flex items-center gap-1.5 text-slate-800 active:scale-95 transition-all ml-auto">
+                            <Share size={20} strokeWidth={1.5} />
+                         </button>
+                      </div>
                    </div>
                 </div>
              ))}
              
              {/* Infinite Scroll Loader Placeholder */}
              <div className="py-8 flex items-center justify-center">
-                 <div className="w-6 h-6 border-[3px] border-slate-800 border-t-transparent rounded-full animate-spin" />
+                 <div className="w-5 h-5 border-[2px] border-slate-400 border-t-transparent rounded-full animate-spin" />
              </div>
           </section>
 

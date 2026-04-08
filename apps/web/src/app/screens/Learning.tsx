@@ -126,116 +126,120 @@ export function Learning() {
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-1.5 group outline-none"
                  >
-                   <div className="w-12 h-12 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
-                      <btn.icon size={20} className="text-slate-800" strokeWidth={2.2} />
+                   <div className="w-12 h-12 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all">
+                      <btn.icon size={20} className="text-slate-800" strokeWidth={1.5} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[10px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[8px] uppercase tracking-widest text-center leading-tight whitespace-normal break-words w-16">{btn.label}</span>
                  </motion.button>
                ))}
              </div>
           </section>
 
-          {/* Horizontal Scroll Categories */}
-          <section className="space-y-6 pt-2">
-            
-            {/* Learn & Earn Videos */}
-            <div className="w-full">
-              <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Learn & Earn Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
-              </div>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
-                 {ROW_1.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
-                    </div>
-                 ))}
-              </div>
-            </div>
+          {/* Main Interleaved Learning Feed */}
+          <section className="space-y-6 pb-12 mt-6">
+             {EXPLORE_MORE_VIDEOS.map((video, index) => (
+                <div key={video.id} className="space-y-6">
+                   
+                   {/* Interleaved Carousels */}
+                   {index === 0 && (
+                     <div className="w-full">
+                       <div className="flex justify-between items-end mb-3 px-1">
+                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Learn & Earn Videos</h3>
+                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                       </div>
+                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                          {ROW_1.map(ad => (
+                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                                <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
+                             </div>
+                          ))}
+                       </div>
+                     </div>
+                   )}
 
-            {/* Free Videos (1) */}
-            <div className="w-full">
-              <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Free Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
-              </div>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
-                 {ROW_2.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[200px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
-                    </div>
-                 ))}
-              </div>
-            </div>
+                   {index === 1 && (
+                     <div className="w-full">
+                       <div className="flex justify-between items-end mb-3 px-1">
+                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Free Videos</h3>
+                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                       </div>
+                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                          {ROW_2.map(ad => (
+                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                                <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
+                             </div>
+                          ))}
+                       </div>
+                     </div>
+                   )}
 
-            {/* Free Videos (2) */}
-            <div className="w-full">
-              <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Free Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
-              </div>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
-                 {ROW_3.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
-                    </div>
-                 ))}
-              </div>
-            </div>
+                   {index === 2 && (
+                     <div className="w-full">
+                       <div className="flex justify-between items-end mb-3 px-1">
+                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Creator Showcases</h3>
+                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                       </div>
+                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                          {ROW_3.map(ad => (
+                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                                <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
+                             </div>
+                          ))}
+                       </div>
+                     </div>
+                   )}
 
-            {/* Pay to Stream Videos */}
-            <div className="w-full pb-6">
-              <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Pay to Stream Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
-              </div>
-              <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
-                 {ROW_4.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
-                       <img src={ad.image} alt="Premium Video" className="absolute inset-0 w-full h-full object-cover" />
-                    </div>
-                 ))}
-              </div>
-            </div>
+                   {index === 3 && (
+                     <div className="w-full">
+                       <div className="flex justify-between items-end mb-3 px-1">
+                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Premium Masterclasses</h3>
+                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                       </div>
+                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                          {ROW_4.map(ad => (
+                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                                <img src={ad.image} alt="Premium Video" className="absolute inset-0 w-full h-full object-cover" />
+                             </div>
+                          ))}
+                       </div>
+                     </div>
+                   )}
 
-          </section>
-
-          {/* Main Feed Area (Infinite Scroll Structure) */}
-          <section className="space-y-6 pb-12 mt-8">
-             <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Explore More</h3>
-             <div className="flex flex-col gap-6">
-                {EXPLORE_MORE_VIDEOS.map((video) => (
-                   <div onClick={() => handleCourseClick(video.id)} key={video.id} className="bg-white border-2 border-slate-800 rounded-xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:translate-y-1 transition-transform">
-                      <div className="relative w-full aspect-video border-b-2 border-slate-800 bg-gray-100">
+                   {/* Main Feed Post - Sleek Netflix UI */}
+                   <div onClick={() => handleCourseClick(video.id)} className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
+                      <div className="relative w-full aspect-video bg-slate-100">
                          <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover transition-opacity" />
                          
-                         {/* Duration Pill */}
-                         <div className="absolute bottom-2 right-2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                         {/* Details Overlay */}
+                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" />
+                         
+                         <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white border border-white/20 text-[9px] font-bold px-2 py-1 flex items-center gap-1 shadow-sm rounded-md">
                             <Clock size={10} />
                             {video.duration}
                          </div>
                       </div>
                       
-                      <div className="p-4 flex flex-col">
-                         <h4 className="font-black text-slate-900 text-[14px] uppercase tracking-tight leading-tight line-clamp-2">{video.title}</h4>
-                         <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center gap-1.5 text-slate-600">
-                               <User size={12} strokeWidth={2.5} />
-                               <span className="text-[11px] font-bold tracking-wide">{video.author}</span>
-                            </div>
+                      <div className="p-4 flex flex-col bg-white">
+                         <h4 className="font-bold text-slate-800 text-[12px] uppercase tracking-widest leading-none mb-1">{video.title}</h4>
+                         <div className="flex items-center justify-between mt-2">
                             <div className="flex items-center gap-1.5 text-slate-500">
-                               <Eye size={12} strokeWidth={2.5} />
-                               <span className="text-[11px] font-bold">{video.views}</span>
+                               <User size={12} strokeWidth={2} />
+                               <span className="text-[10px] font-bold tracking-widest uppercase">{video.author}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-slate-400">
+                               <Eye size={12} strokeWidth={2} />
+                               <span className="text-[10px] font-bold tracking-widest">{video.views}</span>
                             </div>
                          </div>
                       </div>
                    </div>
-                ))}
-             </div>
+
+                </div>
+             ))}
              
              {/* Infinite Scroll Loader Placeholder */}
-             <div className="pt-8 pb-4 flex items-center justify-center">
-                 <div className="w-6 h-6 border-[3px] border-slate-800 border-t-transparent rounded-full animate-spin" />
+             <div className="pt-6 pb-2 flex items-center justify-center">
+                 <div className="w-5 h-5 border-[2px] border-slate-400 border-t-transparent rounded-full animate-spin" />
              </div>
           </section>
 
