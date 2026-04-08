@@ -125,7 +125,6 @@ export function Marketplace() {
       <PageHeader 
         title="Marketplace" 
         subtitle="Verified Global Trades" 
-        height={140}
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       >

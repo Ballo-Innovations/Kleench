@@ -36,7 +36,6 @@ export function LearningDetail() {
         title="Course Detail" 
         subtitle="Academy Masterclass Session"
         showBack
-        height={90}
       />
 
       <main className="px-4 mt-4 relative z-20 space-y-8">

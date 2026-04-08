@@ -76,7 +76,6 @@ export function Friends() {
       <PageHeader 
         title="Social Circle" 
         subtitle="Manage your ecosystem connections."
-        height={90}
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       />

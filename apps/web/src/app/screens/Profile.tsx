@@ -81,7 +81,6 @@ export function Profile() {
       {/* ── Standardized Header ── */}
       <PageHeader 
         useLogo 
-        height={110}
       >
         <div className="relative z-10 flex items-center gap-4 mt-0 pt-0">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}

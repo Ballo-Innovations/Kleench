@@ -63,7 +63,6 @@ export function Offers() {
       <PageHeader 
         title="Opportunities" 
         subtitle={`${OFFERS.length} active earning opportunities today.`}
-        height={90}
         searchValue={search}
         onSearchChange={setSearch}
       >
