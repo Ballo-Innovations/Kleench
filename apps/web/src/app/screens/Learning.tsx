@@ -2,7 +2,7 @@ import {
   Play,
   Search,
   Circle,
-  CloudUpload, 
+  Upload, 
   Send, 
   UserPlus,
   X,
@@ -115,7 +115,7 @@ export function Learning() {
           <section className="px-2">
              <div className="flex items-start justify-between gap-2 px-2">
                {[
-                 { id: 'upload', icon: CloudUpload, label: "Upload" },
+                 { id: 'upload', icon: Upload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
                  { id: 'gift', icon: UserPlus, label: "Register Agent" }
                ].map(btn => (
@@ -247,7 +247,7 @@ export function Learning() {
                       <div className="space-y-6">
                         <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
                           <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
-                            <CloudUpload size={32} className="text-slate-900" strokeWidth={1.5} />
+                            <Upload size={32} className="text-slate-900" strokeWidth={1.5} />
                           </div>
                           <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Post Educational Content</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">Share your knowledge</p>
