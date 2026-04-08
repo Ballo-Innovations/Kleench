@@ -128,12 +128,12 @@ export function Layout() {
                 key={item.id}
                 to={item.path}
                 className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-                  active ? "text-[#005a8d]" : "text-gray-400"
+                  active ? "text-[#FF8C00]" : "text-gray-400"
                 }`}
               >
                 <Icon
                   size={20}
-                  strokeWidth={active ? 2.5 : 2}
+                  strokeWidth={active ? 3 : 2}
                   className="mb-1"
                 />
                 <span className="text-[9px] font-bold capitalize">{item.label}</span>
@@ -145,10 +145,10 @@ export function Layout() {
           <button
             onClick={() => setShowMore(true)}
             className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-              showMore ? "text-[#005a8d]" : "text-gray-400"
+              showMore ? "text-[#FF8C00]" : "text-gray-400"
             }`}
           >
-            <Menu size={20} strokeWidth={showMore ? 2.5 : 2} className="mb-1" />
+            <Menu size={20} strokeWidth={showMore ? 3 : 2} className="mb-1" />
             <span className="text-[9px] font-bold capitalize">More</span>
           </button>
         </div>

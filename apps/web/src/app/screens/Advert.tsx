@@ -1,14 +1,18 @@
-import { 
-  CloudUpload, 
-  Send, 
+import {
+  Search,
+  ShoppingCart,
+  TrendingUp,
+  CloudUpload,
+  Send,
+  UserPlus,
+  Headphones,
+  X,
+  MessageCircle,
   Play,
   Volume2,
   Heart,
-  MessageCircle,
   Share,
-  MoreHorizontal,
-  UserPlus,
-  Headphones
+  MoreHorizontal
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
@@ -30,11 +34,10 @@ export function Advert() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMedia, setActiveMedia] = useState<string | null>(null);
 
+  const [activeSheet, setActiveSheet] = useState<null | "Upload" | "Share" | "Register Agent">(null);
+
   const handleActionClick = (actionName: string) => {
-     toast.success(`${actionName} coming soon`, {
-        description: `This feature is currently in development.`,
-        duration: 2000,
-     });
+     setActiveSheet(actionName as "Upload" | "Share" | "Register Agent" | null);
   };
 
   const handleMediaClick = (imageSrc: string) => {
@@ -236,28 +239,117 @@ export function Advert() {
              </div>
           </section>
 
-          {/* Full Screen Media Modal */}
+          {/* High-Fidelity Bottom Sheets */}
+          <AnimatePresence>
+            {activeSheet && (
+              <>
+                <motion.div 
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  onClick={() => setActiveSheet(null)}
+                  className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm max-w-md mx-auto"
+                />
+                <motion.div 
+                  initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                  className="fixed bottom-0 left-0 right-0 z-[110] w-full max-w-md mx-auto bg-white rounded-t-[32px] overflow-hidden shadow-2xl pb-[env(safe-area-inset-bottom)]"
+                >
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-xl font-black text-slate-800 uppercase tracking-tighter">{activeSheet}</h3>
+                      <button onClick={() => setActiveSheet(null)} className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-transform"><X size={16} className="text-slate-500" /></button>
+                    </div>
+
+                    {activeSheet === "Upload" && (
+                      <div className="space-y-4">
+                        <div className="border-2 border-dashed border-slate-300 bg-slate-50 rounded-3xl p-8 flex flex-col items-center justify-center text-center">
+                          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-100 mb-3">
+                            <CloudUpload size={28} className="text-slate-400" strokeWidth={1.5} />
+                          </div>
+                          <h4 className="font-bold text-slate-700 text-sm mb-1">Drag & Drop media</h4>
+                          <p className="text-slate-400 text-[10px] uppercase font-bold tracking-widest">or tap to browse files</p>
+                        </div>
+                        <button className="w-full h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-bold uppercase tracking-widest text-xs active:scale-95 transition-transform shadow-lg shadow-slate-900/20">
+                          Choose from Gallery
+                        </button>
+                      </div>
+                    )}
+
+                    {activeSheet === "Share" && (
+                      <div className="space-y-6">
+                        <div className="grid grid-cols-4 gap-4">
+                          {[
+                            { name: "WhatsApp", bg: "bg-[#25D366]", icon: MessageCircle },
+                            { name: "Twitter", bg: "bg-black", icon: 'X' },
+                            { name: "Facebook", bg: "bg-[#1877F2]", icon: UserPlus },
+                            { name: "Email", bg: "bg-slate-200", icon: Send }
+                          ].map(social => (
+                            <div key={social.name} className="flex flex-col items-center gap-2 group cursor-pointer active:scale-90 transition-transform">
+                              <div className={`w-14 h-14 rounded-full flex items-center justify-center text-white shadow-sm ${social.bg} ${social.name==="Email" ? "text-slate-600":""}`}>
+                                {typeof social.icon === "string" ? <span className="font-black text-xl">{social.icon}</span> : <social.icon size={20} />}
+                              </div>
+                              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{social.name}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Copy Link</p>
+                          <div className="flex h-12 bg-slate-100 rounded-2xl border border-slate-200 p-1">
+                            <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-3 text-xs font-bold text-slate-600 outline-none" />
+                            <button className="px-4 bg-white rounded-xl font-bold text-[10px] uppercase tracking-widest border border-slate-200 shadow-sm active:scale-95 transition-transform">Copy</button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSheet === "Register Agent" && (
+                      <div className="space-y-4">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
+                          <input type="text" placeholder="e.g. John Doe" className="w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-bold outline-none focus:border-slate-400 transition-colors" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Phone Number</label>
+                          <input type="tel" placeholder="+260..." className="w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-bold outline-none focus:border-slate-400 transition-colors" />
+                        </div>
+                        <button onClick={() => { /* toast.success("Agent Registered Successfully!"); */ setActiveSheet(null); }} className="w-full h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center font-bold uppercase tracking-widest text-xs active:scale-95 transition-transform shadow-lg shadow-orange-500/30 mt-2">
+                          Submit Application
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+
+          {/* Premium Media Player Overlay */}
           <AnimatePresence>
             {activeMedia && (
                <motion.div 
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 exit={{ opacity: 0 }}
-                 onClick={() => setActiveMedia(null)}
-                 className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                 className="fixed inset-0 z-[100] bg-black max-w-md mx-auto flex flex-col justify-center"
                >
-                  <motion.div
-                     initial={{ scale: 0.9, opacity: 0 }}
-                     animate={{ scale: 1, opacity: 1 }}
-                     exit={{ scale: 0.9, opacity: 0 }}
-                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                     className="w-full max-w-lg aspect-auto max-h-[85vh] rounded-2xl overflow-hidden border border-white/20 shadow-2xl relative"
-                  >
-                     <img src={activeMedia} alt="Media View" className="w-full h-full object-contain" />
-                  </motion.div>
-                  <div className="absolute top-6 right-6 text-white text-[12px] font-bold uppercase tracking-widest bg-white/10 px-3 py-1.5 rounded-full border border-white/20 pointer-events-none">
-                     Tap anywhere to close
-                  </div>
+                 <div className="absolute top-0 left-0 right-0 p-4 pt-8 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent z-10">
+                   <h3 className="text-white font-bold text-xs uppercase tracking-widest">Media Player</h3>
+                   <button onClick={() => setActiveMedia(null)} className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 active:scale-90 transition-transform"><X size={20} /></button>
+                 </div>
+                 
+                 <div className="relative w-full aspect-[4/5] bg-slate-900 border-y border-white/10 flex items-center justify-center overflow-hidden">
+                   <img src={activeMedia} alt="Media" className="absolute inset-0 w-full h-full object-cover opacity-60" />
+                   
+                   <div className="relative z-10 w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-2xl active:scale-90 transition-transform cursor-pointer">
+                      <Play fill="white" className="text-white ml-1" size={32} />
+                   </div>
+                 </div>
+
+                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col gap-4 pb-[env(safe-area-inset-bottom)]">
+                   <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                      <div className="w-1/3 h-full bg-orange-500 rounded-full" />
+                   </div>
+                   <div className="flex justify-between items-center text-white/50 text-[10px] font-bold tracking-widest">
+                      <span>00:00</span>
+                      <span>-03:45</span>
+                   </div>
+                 </div>
                </motion.div>
             )}
           </AnimatePresence>

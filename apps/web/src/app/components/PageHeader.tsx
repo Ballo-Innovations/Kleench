@@ -1,4 +1,4 @@
-import { Settings, Bell, Search, ChevronLeft, MessageCircle, X, Eye, EyeOff, ArrowUpFromLine, ArrowDownToLine } from "lucide-react";
+import { Settings, Bell, Search, ChevronLeft, MessageCircle, X, Eye, EyeOff, ArrowUpFromLine, ArrowDownToLine, UserPlus, ShieldCheck, User, Settings as SettingsIcon, HelpCircle, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -29,7 +29,11 @@ export function PageHeader({
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [balanceHidden, setBalanceHidden] = useState(false);
 
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+
   return (
+    <>
     <div 
       className="relative pt-2 pb-3 px-5 overflow-hidden shadow-lg flex flex-col justify-between shrink-0"
       style={{ 
@@ -123,17 +127,17 @@ export function PageHeader({
 
         {/* Nav Icons */}
         <div className="flex items-center gap-3.5 flex-shrink-0 pr-1 ml-1">
-          <Link to="/messages" className="text-white/80 transition-transform active:scale-95">
+          <Link to="/messages" className="text-white/80 transition-transform active:scale-95 outline-none">
             <MessageCircle size={20} />
           </Link>
-          <Link to="/settings" className="text-white/80 transition-transform active:scale-95">
+          <button onClick={() => setShowSettings(true)} className="text-white/80 transition-transform active:scale-95 outline-none">
             <Settings size={20} />
-          </Link>
-          <Link to="/notifications" className="relative text-white/80 transition-transform active:scale-95">
+          </button>
+          <button onClick={() => setShowNotifications(true)} className="relative text-white/80 transition-transform active:scale-95 outline-none">
             <Bell size={20} />
             <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FFC300] rounded-full border border-[#e06900]" />
-          </Link>
-          <Link to="/profile" className="w-8 h-8 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 shrink-0 shadow-sm transition-transform active:scale-95">
+          </button>
+          <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 shrink-0 shadow-sm transition-transform active:scale-95 outline-none">
             {localStorage.getItem("userProfilePhoto") ? (
               <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
             ) : (
@@ -148,7 +152,7 @@ export function PageHeader({
                 })()}
               </div>
             )}
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -196,5 +200,103 @@ export function PageHeader({
 
       {children}
     </div>
+
+    {/* MODALS RENDERED PORTAL-STYLE */}
+    <AnimatePresence>
+      {showNotifications && (
+        <>
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setShowNotifications(false)}
+            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm max-w-md mx-auto"
+          />
+          <motion.div 
+            initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }}
+            className="fixed top-16 right-4 left-4 z-[110] bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-w-[380px] mx-auto"
+          >
+            <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+              <h3 className="font-black text-slate-800 uppercase tracking-widest text-xs">Notifications</h3>
+              <button onClick={() => setShowNotifications(false)} className="text-slate-400 active:scale-90 transition-transform"><X size={16} /></button>
+            </div>
+            <div className="divide-y divide-slate-50 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+              {[
+                { id: 1, title: "Transaction Successful", desc: "You received ZMW 500.00 from John Doe.", time: "10m ago", icon: ArrowDownToLine, color: "text-emerald-500", bg: "bg-emerald-50" },
+                { id: 2, title: "New Agent Referral", desc: "Jane joined using your code. You earned K10.", time: "1h ago", icon: UserPlus, color: "text-blue-500", bg: "bg-blue-50" },
+                { id: 3, title: "Kleench Security", desc: "A new login was detected from Lusaka.", time: "Yesterday", icon: ShieldCheck, color: "text-amber-500", bg: "bg-amber-50" }
+              ].map(notif => (
+                <div key={notif.id} className="p-4 flex gap-4 active:bg-slate-50 cursor-pointer transition-colors">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${notif.bg} ${notif.color}`}>
+                    <notif.icon size={16} strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 text-[11px] mb-1 leading-tight">{notif.title}</h4>
+                    <p className="text-slate-500 text-[10px] leading-snug mb-1.5">{notif.desc}</p>
+                    <span className="text-slate-400 text-[8px] uppercase font-bold tracking-widest">{notif.time}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </>
+      )}
+
+      {showSettings && (
+        <>
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setShowSettings(false)}
+            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm max-w-md mx-auto"
+          />
+          <motion.div 
+            initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed top-0 bottom-0 right-0 w-[85%] max-w-[320px] bg-white z-[110] shadow-2xl flex flex-col"
+          >
+            <div className="p-6 bg-slate-50 border-b border-slate-100 flex items-start justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full border-2 border-slate-200 overflow-hidden bg-white shrink-0 shadow-sm">
+                  {localStorage.getItem("userProfilePhoto") ? (
+                    <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-400 text-lg font-black uppercase">K</div>
+                  )}
+                </div>
+                <div>
+                  <h4 className="font-black text-slate-800 text-sm leading-tight mb-1">
+                    {(() => {
+                      const raw = localStorage.getItem("userKyc");
+                      return raw ? JSON.parse(raw).fullName : "Kleench User"
+                    })()}
+                  </h4>
+                  <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Free Account</p>
+                </div>
+              </div>
+              <button onClick={() => setShowSettings(false)} className="text-slate-400 active:scale-90 transition-transform bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm border border-slate-100"><X size={16} /></button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-4 space-y-2">
+              <h5 className="text-[10px] uppercase font-black tracking-[0.2em] text-slate-400 ml-2 mb-4 mt-2">Account Hub</h5>
+              {[
+                { icon: User, label: "My Profile", to: "/profile" },
+                { icon: ShieldCheck, label: "Verification (KYC)", to: "/wallet" },
+                { icon: SettingsIcon, label: "App Preferences", to: "#" },
+                { icon: HelpCircle, label: "Help & Support", to: "#" },
+              ].map((item, i) => (
+                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-4 p-3 rounded-2xl active:bg-slate-50 transition-colors text-left group">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-600 flex items-center justify-center group-active:scale-95 transition-transform"><item.icon size={18} strokeWidth={2} /></div>
+                  <span className="font-bold text-slate-700 text-xs">{item.label}</span>
+                </button>
+              ))}
+              
+              <div className="mt-8 pt-6 border-t border-slate-100 px-2">
+                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-4 text-red-500 font-bold text-xs uppercase tracking-widest active:opacity-50 transition-opacity">
+                  <LogOut size={16} strokeWidth={2.5} /> Sign Out
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
