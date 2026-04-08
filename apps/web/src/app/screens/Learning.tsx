@@ -1,11 +1,7 @@
 import { 
   Play,
-  ArrowRight,
   Search,
   Circle,
-  Video,
-  Newspaper,
-  BookOpen,
   CloudUpload, 
   Send, 
   UserPlus,
@@ -72,11 +68,7 @@ export function Learning() {
     { id: 3, image: adShopping }
   ];
 
-  const ROW_4 = [
-    { id: 1, image: learnPresenter },
-    { id: 2, image: learnBook },
-    { id: 3, image: learnChart }
-  ];
+
 
   const EXPLORE_MORE_VIDEOS = [
     { id: 1, title: "Crypto Security Fundamentals", author: "Dr. Elias Thorne", views: "12.4K", duration: "1:45:00", image: learnPresenter },
@@ -144,75 +136,40 @@ export function Learning() {
 
           {/* Main Interleaved Learning Feed */}
           <section className="space-y-6 pb-12 mt-6">
-             {EXPLORE_MORE_VIDEOS.map((video, index) => (
+             {EXPLORE_MORE_VIDEOS.map((video) => (
                 <div key={video.id} className="space-y-6">
                    
-                   {/* Interleaved Carousels */}
-                   {index === 0 && (
-                     <div className="w-full">
-                       <div className="flex justify-between items-end mb-3 px-1">
-                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Learn & Earn Videos</h3>
-                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
-                       </div>
-                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
-                          {ROW_1.map(ad => (
-                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
-                                <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
-                             </div>
-                          ))}
-                       </div>
+                   {/* 01. Learn & Earn Videos Carousel */}
+                   <div className="w-full">
+                     <div className="flex justify-between items-end mb-3 px-1">
+                        <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Learn & Earn Videos</h3>
+                        <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                   )}
-
-                   {index === 1 && (
-                     <div className="w-full">
-                       <div className="flex justify-between items-end mb-3 px-1">
-                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Free Videos</h3>
-                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
-                       </div>
-                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
-                          {ROW_2.map(ad => (
-                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
-                                <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
-                             </div>
-                          ))}
-                       </div>
+                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                        {ROW_1.map(ad => (
+                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                              <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
+                           </div>
+                        ))}
                      </div>
-                   )}
+                   </div>
 
-                   {index === 2 && (
-                     <div className="w-full">
-                       <div className="flex justify-between items-end mb-3 px-1">
-                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Creator Showcases</h3>
-                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
-                       </div>
-                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
-                          {ROW_3.map(ad => (
-                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
-                                <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
-                             </div>
-                          ))}
-                       </div>
+                   {/* 02. Free Videos Carousel */}
+                   <div className="w-full">
+                     <div className="flex justify-between items-end mb-3 px-1">
+                        <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Free Videos</h3>
+                        <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                   )}
-
-                   {index === 3 && (
-                     <div className="w-full">
-                       <div className="flex justify-between items-end mb-3 px-1">
-                          <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Premium Masterclasses</h3>
-                          <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
-                       </div>
-                       <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
-                          {ROW_4.map(ad => (
-                             <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
-                                <img src={ad.image} alt="Premium Video" className="absolute inset-0 w-full h-full object-cover" />
-                             </div>
-                          ))}
-                       </div>
+                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                        {ROW_2.map(ad => (
+                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                              <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
+                           </div>
+                        ))}
                      </div>
-                   )}
+                   </div>
 
-                   {/* Main Feed Post - Sleek Netflix UI */}
+                   {/* 03. Single Full-Width Masterclass Post */}
                    <div onClick={() => handleCourseClick(video.id)} className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
                       <div className="relative w-full aspect-video bg-slate-100">
                          <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover transition-opacity" />
@@ -239,6 +196,21 @@ export function Learning() {
                             </div>
                          </div>
                       </div>
+                   </div>
+
+                   {/* 04. Creator Showcases Carousel */}
+                   <div className="w-full">
+                     <div className="flex justify-between items-end mb-3 px-1">
+                        <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none">Creator Showcases</h3>
+                        <span className="text-slate-400 font-bold text-[9px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                     </div>
+                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                        {ROW_3.map(ad => (
+                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                              <img src={ad.image} alt="Showcase Video" className="absolute inset-0 w-full h-full object-cover" />
+                           </div>
+                        ))}
+                     </div>
                    </div>
 
                 </div>
