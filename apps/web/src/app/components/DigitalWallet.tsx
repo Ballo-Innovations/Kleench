@@ -59,7 +59,7 @@ export function DigitalWallet({
            <div className="flex flex-col gap-1.5">
              <div className="flex items-center gap-2">
                <span className="text-white/50 text-[10px] tracking-[0.2em] font-black uppercase">Balance</span>
-               <button onClick={toggleVisibility} className="text-white/40 hover:text-white transition-colors p-0.5">
+               <button onClick={toggleVisibility} className="text-white/40 transition-colors p-0.5">
                  {isHidden ? <Eye size={12} /> : <EyeOff size={12} />}
                </button>
              </div>

@@ -76,7 +76,7 @@ export const PageSkeletons = {
         </div>
 
         {/* Action Buttons Skeleton */}
-        <div className="flex items-center justify-center gap-6 sm:gap-8 pt-2">
+        <div className="flex items-center justify-center gap-6 pt-2">
            {[1, 2, 3, 4].map(i => (
               <div key={i} className="flex flex-col items-center gap-2">
                  <Skeleton className="w-11 h-11 rounded-full border-2 border-[#003366]/20 shadow-[2px_2px_0px_#f0f0f0]" />

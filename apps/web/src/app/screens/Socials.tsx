@@ -131,9 +131,8 @@ export function Socials() {
       
       {/* ── Standardized Header ── */}
       <PageHeader 
-        title="Socials" 
-        subtitle="Network & Discover Rewards" 
-        showBack 
+        title="SOCIALS" 
+        useLogo
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
       />
@@ -143,13 +142,13 @@ export function Socials() {
         {/* SECTION 01. NETWORK ACTIONS */}
         <section className="space-y-4">
           <div className="flex gap-0 border-4 border-[#003366] bg-[#003366] shadow-[6px_6px_0px_#FF8C00]">
-            <Link to="/friends" className="flex-1 bg-white hover:bg-[#003366] hover:text-white transition-all py-4 flex items-center justify-center gap-3 border-r-2 border-[#003366]/10 group">
+            <Link to="/friends" className="flex-1 bg-white transition-all py-4 flex items-center justify-center gap-3 border-r-2 border-[#003366]/10 group">
               <Users size={18} className="text-[#FF8C00]" />
               <span className="text-[10px] font-black uppercase tracking-[0.2em]">Find Friends</span>
             </Link>
             <button 
               onClick={() => setShowCreatePost(true)}
-              className="flex-1 bg-white hover:bg-[#003366] hover:text-white transition-all py-4 flex items-center justify-center gap-3 group"
+              className="flex-1 bg-white transition-all py-4 flex items-center justify-center gap-3 group"
             >
               <Plus size={18} className="text-[#FF8C00]" />
               <span className="text-[10px] font-black uppercase tracking-[0.2em]">Create Post</span>
@@ -175,9 +174,9 @@ export function Socials() {
                 className="min-w-[160px] bg-white border-2 border-[#003366] relative flex flex-col group shadow-sm"
               >
                 <div className="aspect-square bg-gray-100 overflow-hidden relative">
-                   <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500" />
                    <Link to="/messages" className="absolute top-2 right-2 z-20">
-                     <button className="w-9 h-9 bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#FF8C00] flex items-center justify-center text-[#003366] hover:bg-[#FF8C00] hover:text-white transition-all">
+                     <button className="w-9 h-9 bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#FF8C00] flex items-center justify-center text-[#003366] transition-all">
                        <MessageCircle size={18} strokeWidth={2.5} />
                      </button>
                    </Link>
@@ -223,11 +222,11 @@ export function Socials() {
                     </div>
                     <div className="flex items-center gap-1">
                        <Link to="/messages">
-                         <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 hover:text-[#FF8C00] transition-colors">
+                         <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 transition-colors">
                             <MessageCircle size={20} />
                          </button>
                        </Link>
-                       <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 hover:text-[#003366] transition-colors">
+                       <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 transition-colors">
                           <MoreVertical size={20} />
                        </button>
                     </div>
@@ -251,7 +250,7 @@ export function Socials() {
                        >
                           <Heart 
                             size={20} 
-                            className={`transition-all ${likedPosts.has(post.id) ? "text-[#FF3000] fill-[#FF3000]" : "text-[#003366]/30 group-hover:text-[#FF3000]"}`} 
+                            className={`transition-all ${likedPosts.has(post.id) ? "text-[#FF3000] fill-[#FF3000]" : "text-[#003366]/30"}`} 
                           />
                           <span className="text-[12px] font-black text-[#003366]">{post.likes}</span>
                        </button>
@@ -259,11 +258,11 @@ export function Socials() {
                         onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)}
                         className="flex items-center gap-2 group"
                        >
-                          <MessageSquare size={20} className="text-[#003366]/30 group-hover:text-[#003366] transition-colors" />
+                          <MessageSquare size={20} className="text-[#003366]/30 transition-colors" />
                           <span className="text-[12px] font-black text-[#003366]">{post.comments.length}</span>
                        </button>
                        <button className="flex items-center gap-2 group">
-                          <Share2 size={20} className="text-[#003366]/30 group-hover:text-[#003366] transition-colors" />
+                          <Share2 size={20} className="text-[#003366]/30 transition-colors" />
                           <span className="text-[10px] font-black text-[#003366] uppercase tracking-widest">Share</span>
                        </button>
                     </div>
@@ -337,7 +336,7 @@ export function Socials() {
         {showCreatePost && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#003366]/90 backdrop-blur-md flex items-end sm:items-center justify-center p-4"
+            className="fixed inset-0 z-[100] bg-[#003366]/90 backdrop-blur-md flex items-end justify-center p-4"
           >
             <motion.div 
               initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }}
@@ -346,7 +345,7 @@ export function Socials() {
               <div className="p-6 space-y-6">
                 <div className="flex items-center justify-between">
                    <h3 className="font-black text-xl uppercase tracking-tighter text-[#003366]">New Broadcast</h3>
-                   <button onClick={() => setShowCreatePost(false)} className="text-[#003366]/40 hover:text-[#FF3000] h-10 w-10 flex items-center justify-center"><X /></button>
+                   <button onClick={() => setShowCreatePost(false)} className="text-[#003366]/40 h-10 w-10 flex items-center justify-center"><X /></button>
                 </div>
                 
                 <textarea 
@@ -358,7 +357,7 @@ export function Socials() {
                 />
 
                 <div className="flex items-center justify-between bg-gray-50 p-4 border-2 border-[#003366]/5">
-                   <button className="flex items-center gap-2 text-[#003366]/40 hover:text-[#003366] transition-colors">
+                   <button className="flex items-center gap-2 text-[#003366]/40 transition-colors">
                       <ImageIcon size={20} />
                       <span className="text-[10px] font-black uppercase tracking-widest">Add Media</span>
                    </button>

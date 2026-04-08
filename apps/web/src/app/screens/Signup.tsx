@@ -106,7 +106,7 @@ export function Signup() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition-colors"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -129,7 +129,7 @@ export function Signup() {
                 <button
                   type="button"
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition-colors"
                 >
                   {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -162,7 +162,7 @@ export function Signup() {
           <div className="mt-8 text-center bg-white/50 backdrop-blur-sm py-4 rounded-2xl border border-gray-100">
             <p className="text-[13px] font-medium text-gray-500">
               Already have an account?{" "}
-              <Link to="/login" className="font-bold text-[#ff8c00] hover:text-[#e67e00] ml-1">
+              <Link to="/login" className="font-bold text-[#ff8c00] ml-1">
                 Sign In
               </Link>
             </p>

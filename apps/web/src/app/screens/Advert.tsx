@@ -1,7 +1,4 @@
 import { 
-  ArrowUp, 
-  ArrowDown, 
-  Eye,
   CloudUpload, 
   Send, 
   Play,
@@ -78,29 +75,7 @@ export function Advert() {
         title="ADVERT" 
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
-        height="auto"
-      >
-        <div className="relative z-10 w-full mt-3 pb-4">
-            <div className="h-[1px] w-full bg-white/20 mb-4" />
-            <div className="flex items-center justify-between w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-full px-5 py-2.5 shadow-inner">
-                <div className="flex flex-col">
-                   <span className="text-white/80 text-[8px] font-black uppercase tracking-widest pl-1 mb-0.5">Balance</span>
-                   <div className="flex items-center gap-2">
-                       <h2 className="text-white text-[18px] sm:text-[20px] font-black leading-none tracking-tight" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
-                       <Eye size={14} className="text-white/60" strokeWidth={2.5} />
-                   </div>
-                </div>
-                <div className="flex gap-2 shrink-0">
-                  <button onClick={() => handleActionClick("Deposit")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
-                     <ArrowUp size={16} className="text-white" strokeWidth={3} />
-                  </button>
-                  <button onClick={() => handleActionClick("Withdraw")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
-                     <ArrowDown size={16} className="text-white" strokeWidth={3} />
-                  </button>
-                </div>
-            </div>
-        </div>
-      </PageHeader>
+      />
 
       {loading ? (
         <PageSkeletons.Generic />
@@ -109,7 +84,7 @@ export function Advert() {
 
           {/* Top Action Buttons (Upload, Share, Register Agent) - Circular Soft Brutalism */}
           <section className="px-2">
-             <div className="flex items-start justify-between sm:justify-around gap-2 px-2">
+             <div className="flex items-start justify-between gap-2 px-2">
                {[
                  { id: 'upload', icon: CloudUpload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
@@ -121,10 +96,10 @@ export function Advert() {
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-1.5 group outline-none"
                  >
-                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
+                   <div className="w-12 h-12 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
                       <btn.icon size={20} className="text-slate-800" strokeWidth={2.2} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[10px] sm:text-xs text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[10px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
                  </motion.button>
                ))}
              </div>
@@ -135,7 +110,7 @@ export function Advert() {
             
             {/* Video Ads */}
             <div>
-              <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Video Ads</h3>
+              <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Video Ads</h3>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {VIDEO_ADS.map(ad => (
                     <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] h-[160px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
@@ -160,7 +135,7 @@ export function Advert() {
 
             {/* Picture Ads */}
             <div>
-              <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Picture Ads</h3>
+              <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Picture Ads</h3>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {PICTURE_ADS.map(ad => (
                     <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
@@ -178,7 +153,7 @@ export function Advert() {
 
             {/* Audio Ads */}
             <div>
-              <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Audio Ads</h3>
+              <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Audio Ads</h3>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-6 px-1">
                  {AUDIO_ADS.map(ad => (
                     <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-md bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
@@ -213,16 +188,16 @@ export function Advert() {
 
           {/* Main Feed Area (Infinite Scroll Structure) */}
           <section className="space-y-8 pb-12 mt-10">
-             <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Advert Feed</h3>
+             <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Advert Feed</h3>
              {FEED_POSTS.map(post => (
                 <div key={post.id} className="bg-white border-2 border-slate-800 rounded-2xl shadow-lg flex flex-col w-full overflow-hidden relative">
                    {/* Header */}
                    <div className="flex items-center justify-between p-4 border-b-2 border-slate-800 bg-white relative z-10">
                       <div className="flex items-center gap-3">
                          <div className={`w-10 h-10 border-2 border-slate-800 rounded-full ${post.avatarBg}`} />
-                         <span className="font-black text-slate-800 text-[13px] sm:text-[14px] uppercase tracking-wide">{post.brand}</span>
+                         <span className="font-black text-slate-800 text-[13px] uppercase tracking-wide">{post.brand}</span>
                       </div>
-                      <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-all text-slate-800">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full transition-all text-slate-800">
                          <MoreHorizontal size={20} className="text-slate-800" />
                       </button>
                    </div>
@@ -241,13 +216,13 @@ export function Advert() {
                    
                    {/* Footer Actions */}
                    <div className="flex items-center gap-4 p-4 border-t-2 border-slate-800 bg-gray-50/50">
-                      <button className="flex items-center gap-2 text-slate-800 hover:text-[#EF476F] hover:scale-110 active:scale-95 transition-all font-bold">
+                      <button className="flex items-center gap-2 text-slate-800 active:scale-95 transition-all font-bold">
                          <Heart size={26} strokeWidth={2} />
                       </button>
-                      <button className="flex items-center gap-2 text-slate-800 hover:text-[#0077B6] hover:scale-110 active:scale-95 transition-all font-bold">
+                      <button className="flex items-center gap-2 text-slate-800 active:scale-95 transition-all font-bold">
                          <MessageCircle size={26} strokeWidth={2} />
                       </button>
-                      <button className="flex items-center gap-2 text-slate-800 hover:text-[#06D6A0] hover:scale-110 active:scale-95 transition-all font-bold ml-auto">
+                      <button className="flex items-center gap-2 text-slate-800 active:scale-95 transition-all font-bold ml-auto">
                          <Share size={26} strokeWidth={2} />
                       </button>
                    </div>

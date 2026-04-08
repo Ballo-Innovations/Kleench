@@ -107,6 +107,20 @@ export function Wallet() {
         title="Wallet" 
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
+        customBalanceHUD={
+          <div className="flex gap-2 w-full h-full items-stretch shrink-0">
+            <div className="flex-[2] bg-[#003366] text-white px-3 py-1 shadow-[2px_2px_0_0_#001a33] border border-[#003366] flex flex-col justify-center">
+              <p className="text-[#FF8C00] font-bold text-[7px] tracking-[0.2em] uppercase mb-0.5">Balance</p>
+              <h2 className="text-[16px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
+            </div>
+            <button 
+               onClick={() => setShowFinancialKyc(!hasFinancialKyc)}
+               className="flex-1 bg-[#003366] text-white px-2 py-1 flex items-center justify-center font-bold tracking-[0.2em] text-[9px] shadow-[2px_2px_0_0_#001a33] border border-[#003366] active:translate-y-0.5 active:shadow-none transition-all"
+            >
+              KYC
+            </button>
+          </div>
+        }
       />
 
       {loading ? (
@@ -120,21 +134,10 @@ export function Wallet() {
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1)}
             className="relative"
           >
-            {/* Balance & KYC Brutalist Block */}
-            <div className="flex gap-2 w-full mt-2">
-              <div className="flex-[2] bg-[#003366] text-white px-5 py-3.5 shadow-[4px_4px_0_0_#001a33] border border-[#003366] flex flex-col justify-center">
-                <p className="text-[#FF8C00] font-bold text-[9px] tracking-[0.2em] uppercase mb-0.5">Balance</p>
-                <h2 className="text-[24px] sm:text-[26px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
-              </div>
-              <button 
-                 onClick={() => setShowFinancialKyc(!hasFinancialKyc)}
-                 className="flex-1 bg-[#003366] text-white px-5 py-3.5 flex items-center justify-center font-bold tracking-[0.2em] text-[11px] sm:text-xs shadow-[4px_4px_0_0_#001a33] border border-[#003366] active:translate-y-1 active:shadow-none transition-all">
-                KYC
-              </button>
-            </div>
+              
 
             {/* Action Grid */}
-            <div className="flex items-center justify-center gap-6 sm:gap-8 mt-12 mb-4">
+            <div className="flex items-center justify-center gap-6 mt-6 mb-4">
               {[
                 { id: "deposit", icon: ArrowUpFromLine, label: "DEPOSIT" },
                 { id: "withdraw", icon: ArrowDownToLine, label: "WITHDRAW" },
@@ -174,12 +177,12 @@ export function Wallet() {
                  { id: "global", icon: Globe, label: "GLOBAL", sub: "TRANSACTIONS" }
                ].map(util => (
                  <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-2 p-3 bg-white border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center border border-[#003366]">
+                    <div className="w-6 h-6 shrink-0 flex items-center justify-center border border-[#003366]">
                        <util.icon size={16} className="text-[#003366]" strokeWidth={2} />
                     </div>
                     <div className="flex flex-col items-start leading-none text-left">
-                       <span className="font-black text-[#003366] text-[7px] sm:text-[9px] uppercase tracking-wide">{util.label}</span>
-                       <span className="font-black text-[#F5A623] text-[5px] sm:text-[7px] uppercase tracking-wide mt-0.5">{util.sub}</span>
+                       <span className="font-black text-[#003366] text-[7px] uppercase tracking-wide">{util.label}</span>
+                       <span className="font-black text-[#F5A623] text-[5px] uppercase tracking-wide mt-0.5">{util.sub}</span>
                     </div>
                  </motion.button>
                ))}
@@ -191,12 +194,12 @@ export function Wallet() {
                   { id: "savings", icon: PiggyBank, title: "SAVINGS", metric: "K8,400", iconColor: "text-[#4CAF50]" }
                 ].map(util => (
                    <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 border-[2px] border-white flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 border-[2px] border-white flex items-center justify-center shrink-0">
                          <util.icon size={22} className={util.iconColor} strokeWidth={2} />
                       </div>
                       <div className="flex flex-col items-center flex-1 leading-tight">
-                         <span className="font-black text-[#003366] text-[9px] sm:text-[11px] uppercase tracking-wide block">{util.title}</span>
-                         <span className="font-black text-white text-[10px] sm:text-[12px] uppercase">{util.metric}</span>
+                         <span className="font-black text-[#003366] text-[9px] uppercase tracking-wide block">{util.title}</span>
+                         <span className="font-black text-white text-[10px] uppercase">{util.metric}</span>
                       </div>
                    </motion.button>
                 ))}
@@ -208,12 +211,12 @@ export function Wallet() {
                   { id: "tax", icon: Search, title: "TAX ACCOUNT", metric: "K211", iconColor: "text-[#E40513]" }
                 ].map(util => (
                    <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] border-[2px] border-[#003366] shadow-[4px_4px_0_0_#003366] active:translate-y-1 active:shadow-none transition-all">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 border-[2px] border-white flex items-center justify-center shrink-0 text-[#E40513]">
+                      <div className="w-10 h-10 border-[2px] border-white flex items-center justify-center shrink-0 text-[#E40513]">
                          <util.icon size={22} className={util.iconColor} strokeWidth={2} />
                       </div>
                       <div className="flex flex-col items-center justify-center flex-1 leading-tight overflow-visible">
-                         <span className="font-black text-[#003366] text-[8px] sm:text-[10px] uppercase tracking-wide block text-center whitespace-normal break-words w-full">{util.title}</span>
-                         <span className="font-black text-white text-[10px] sm:text-[12px] uppercase mt-0.5">{util.metric}</span>
+                         <span className="font-black text-[#003366] text-[8px] uppercase tracking-wide block text-center whitespace-normal break-words w-full">{util.title}</span>
+                         <span className="font-black text-white text-[10px] uppercase mt-0.5">{util.metric}</span>
                       </div>
                    </motion.button>
                 ))}
@@ -235,8 +238,8 @@ export function Wallet() {
               <button
                 key={tab}
                 onClick={() => setActiveTransTab(tab)}
-                className={`flex-1 min-w-[70px] py-2.5 text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all rounded-full ${
-                  activeTransTab === tab ? "bg-white text-[#003366] shadow-sm border border-gray-100" : "text-[#A0A0A0] hover:text-[#003366]"
+                className={`flex-1 min-w-[70px] py-2.5 text-[9px] font-black uppercase tracking-widest transition-all rounded-full ${
+                  activeTransTab === tab ? "bg-white text-[#003366] shadow-sm border border-gray-100" : "text-[#A0A0A0]"
                 }`}
               >
                 {tab}
@@ -270,24 +273,24 @@ export function Wallet() {
                       initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ delay: idx * 0.04 }}
                       onClick={() => setExpandedTx(expandedTx === `${tx.id}-${activeTransTab}` ? null : `${tx.id}-${activeTransTab}`)}
-                      className="flex flex-col group hover:bg-[#003366]/5 cursor-pointer transition-colors backdrop-blur-sm"
+                      className="flex flex-col group/5 cursor-pointer transition-colors backdrop-blur-sm"
                     >
                       <div className="p-5 flex items-center justify-between pointer-events-none">
-                        <div className="flex items-center gap-4 sm:gap-6">
+                        <div className="flex items-center gap-4">
                           <div className="flex flex-col">
-                             <h4 className="font-black text-[#003366] text-[11px] sm:text-xs uppercase tracking-tight transition-colors">{tx.title}</h4>
+                             <h4 className="font-black text-[#003366] text-[11px] uppercase tracking-tight transition-colors">{tx.title}</h4>
                              <div className="flex items-center gap-3 mt-1.5">
                                 <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-gray-100 text-[#003366]`}>{tx.type}</span>
                                 <span className="text-[9px] font-bold text-gray-400 tracking-tight">{tx.date}</span>
                              </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4 sm:gap-6 shrink-0 pointer-events-auto">
+                        <div className="flex items-center gap-4 shrink-0 pointer-events-auto">
                           <div className="text-right">
-                            <p className={`font-black text-sm sm:text-[16px] tracking-tight ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
+                            <p className={`font-black text-sm tracking-tight ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
                               {isPositive ? "+" : ""}{tx.amount.toFixed(2)}
                             </p>
-                            <div className="flex justify-end gap-1 items-center mt-1 opacity-20 group-hover:opacity-100 transition-opacity">
+                            <div className="flex justify-end gap-1 items-center mt-1 opacity-20 transition-opacity">
                                <span className="text-[7px] font-black uppercase tracking-widest text-gray-400">Expand</span>
                                <ExternalLink size={8} className="text-gray-400" />
                             </div>
@@ -331,7 +334,7 @@ export function Wallet() {
 
         {/* Security Banner with soft premium wrap */}
         <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.3)}
-          className="rounded-2xl shadow-md bg-[#003366] overflow-hidden hover:opacity-95 transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
+          className="rounded-2xl shadow-md bg-[#003366] overflow-hidden transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
           <img src={adBanner} alt="Transaction Assurance" className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Secure Gateway</p>
         </motion.div>
@@ -346,7 +349,7 @@ export function Wallet() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="w-full max-w-sm bg-white rounded-[32px] overflow-hidden shadow-2xl p-8 relative"
             >
-              <button onClick={() => setShowFinancialKyc(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 transition-colors">
+              <button onClick={() => setShowFinancialKyc(false)} className="absolute top-6 right-6 p-2 rounded-full transition-colors">
                 <X size={20} className="text-gray-400" />
               </button>
 

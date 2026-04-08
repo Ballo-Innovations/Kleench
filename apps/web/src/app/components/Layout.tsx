@@ -55,7 +55,7 @@ export function Layout() {
     isNotFound;
 
   return (
-    <div className="min-h-[100dvh] bg-[#fcfcfc] relative w-full md:max-w-md mx-auto overflow-x-hidden shadow-2xl md:border-x border-gray-200">
+    <div className="max-w-md mx-auto h-[100dvh] w-full relative bg-white overflow-x-hidden shadow-2xl">
       {/* ── GLOBAL DASHED GRID BACKGROUND ── */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-white">
         <div
@@ -115,7 +115,7 @@ export function Layout() {
 
       {/* Bottom Navigation */}
       <motion.nav
-        className="fixed bottom-0 left-0 right-0 z-50 w-full md:max-w-md mx-auto bg-white/95 backdrop-blur-3xl border-t border-gray-100 shadow-[0_-15px_40px_rgba(0,0,0,0.04)] rounded-t-[32px] pb-[env(safe-area-inset-bottom)]"
+        className="fixed bottom-0 left-0 right-0 z-50 w-full max-w-md mx-auto bg-white/95 backdrop-blur-3xl border-t border-gray-100 shadow-[0_-15px_40px_rgba(0,0,0,0.04)] rounded-t-[32px] pb-[env(safe-area-inset-bottom)]"
         animate={keyboardOpen ? { y: 120, opacity: 0, pointerEvents: "none" } : { y: 0, opacity: 1, pointerEvents: "auto" }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -128,7 +128,7 @@ export function Layout() {
                 key={item.id}
                 to={item.path}
                 className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-                  active ? "text-[#005a8d]" : "text-gray-400 hover:text-[#005a8d]"
+                  active ? "text-[#005a8d]" : "text-gray-400"
                 }`}
               >
                 <Icon
@@ -145,7 +145,7 @@ export function Layout() {
           <button
             onClick={() => setShowMore(true)}
             className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-              showMore ? "text-[#005a8d]" : "text-gray-400 hover:text-[#005a8d]"
+              showMore ? "text-[#005a8d]" : "text-gray-400"
             }`}
           >
             <Menu size={20} strokeWidth={showMore ? 2.5 : 2} className="mb-1" />
@@ -162,7 +162,7 @@ export function Layout() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-[#003366]/60 backdrop-blur-sm md:max-w-md mx-auto"
+              className="fixed inset-0 z-[60] bg-[#003366]/60 backdrop-blur-sm max-w-md mx-auto"
               onClick={() => setShowMore(false)}
             />
             <motion.div
@@ -170,19 +170,19 @@ export function Layout() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[70] w-full md:max-w-md mx-auto bg-white rounded-t-[32px] overflow-hidden shadow-2xl pb-[env(safe-area-inset-bottom)]"
+              className="fixed bottom-0 left-0 right-0 z-[70] w-full max-w-md mx-auto bg-white rounded-t-[32px] overflow-hidden shadow-2xl pb-[env(safe-area-inset-bottom)]"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-black text-[#003366] uppercase tracking-tighter">Explore More</h3>
-                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-[#003366] transition-colors">
+                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 transition-colors">
                     <X size={18} />
                   </button>
                 </div>
                 
                 <div className="grid grid-cols-1 gap-3">
                   <Link to="/marketplace" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C00] group-hover:border-[#FF8C00] group-hover:text-white transition-colors">
+                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 transition-colors">
                       <Store size={20} strokeWidth={2.5} />
                     </div>
                     <div>
@@ -192,7 +192,7 @@ export function Layout() {
                   </Link>
 
                   <Link to="/crs" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C00] group-hover:border-[#FF8C00] group-hover:text-white transition-colors">
+                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 transition-colors">
                       <ShieldCheck size={20} strokeWidth={2.5} />
                     </div>
                     <div>
@@ -202,7 +202,7 @@ export function Layout() {
                   </Link>
 
                   <Link to="/crowdfunding" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C00] group-hover:border-[#FF8C00] group-hover:text-white transition-colors">
+                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 transition-colors">
                       <HeartHandshake size={20} strokeWidth={2.5} />
                     </div>
                     <div>

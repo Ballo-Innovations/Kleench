@@ -118,7 +118,7 @@ export function Friends() {
                           </div>
                        </div>
                        <div className="flex gap-2">
-                          <button onClick={() => dismiss(req.id)} className="w-10 h-10 border-2 border-[#003366] flex items-center justify-center text-[#003366] hover:bg-[#003366]/5 active:translate-y-0.5 transition-all">
+                          <button onClick={() => dismiss(req.id)} className="w-10 h-10 border-2 border-[#003366] flex items-center justify-center text-[#003366]/5 active:translate-y-0.5 transition-all">
                              <X size={18} />
                           </button>
                           <button 
@@ -145,7 +145,7 @@ export function Friends() {
 
            <div className="space-y-2 border-2 border-[#003366] bg-[#003366]/5 divide-y-2 divide-[#003366]/10 shadow-[6px_6px_0px_#003366]">
               {filteredFriends.map((friend) => (
-                <div key={friend.id} className="bg-white p-4 flex items-center justify-between group hover:bg-[#003366]/[0.02] transition-all">
+                <div key={friend.id} className="bg-white p-4 flex items-center justify-between group/[0.02] transition-all">
                    <div className="flex items-center gap-4">
                       <div className="relative">
                          <div className={`w-12 h-12 border-2 border-[#003366] overflow-hidden ${friend.status === 'offline' ? 'opacity-40 grayscale' : ''}`}>
@@ -172,11 +172,11 @@ export function Friends() {
                    </div>
                    <div className="flex gap-3">
                       {friend.status === 'live' ? (
-                        <button className="w-9 h-9 border-2 border-[#003366] flex items-center justify-center text-[#003366] hover:bg-[#003366]/5 active:scale-95 transition-all">
+                        <button className="w-9 h-9 border-2 border-[#003366] flex items-center justify-center text-[#003366]/5 active:scale-95 transition-all">
                            <Video size={16} />
                         </button>
                       ) : (
-                        <button className="w-9 h-9 border-2 border-[#003366] flex items-center justify-center text-[#003366] hover:bg-[#003366]/5 active:scale-95 transition-all">
+                        <button className="w-9 h-9 border-2 border-[#003366] flex items-center justify-center text-[#003366]/5 active:scale-95 transition-all">
                            <MessageCircle size={16} />
                         </button>
                       )}
@@ -192,7 +192,7 @@ export function Friends() {
         {/* ── SECTION 03: COMMUNITY HUD ── */}
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="pb-12">
            <div className="bg-[#003366] p-8 shadow-[8px_8px_0px_#FF8C00] relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-2xl group-hover:scale-125 transition-transform duration-1000" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-2xl transition-transform duration-1000" />
               
               <div className="flex items-center justify-between mb-8">
                  <div className="flex items-center gap-3">

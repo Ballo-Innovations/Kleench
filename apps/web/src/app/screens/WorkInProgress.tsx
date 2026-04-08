@@ -42,19 +42,19 @@ export function WorkInProgress({ featureName = "This Feature" }: WorkInProgressP
           </motion.div>
         </div>
 
-        <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight leading-[0.9]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
+        <h1 className="text-5xl font-black mb-6 tracking-tight leading-[0.9]" style={{ fontFamily: 'Agrandir, sans-serif' }}>
           WE ARE <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff8c00] to-orange-300">BUILDING</span> SOMETHING BIG.
         </h1>
         
-        <p className="text-gray-400 text-lg md:text-xl font-medium mb-12 max-w-md mx-auto leading-relaxed">
+        <p className="text-gray-400 text-lg font-medium mb-12 max-w-md mx-auto leading-relaxed">
           The <span className="text-white font-bold">{featureName}</span> experience is currently being handcrafted with precision for the Kleench community.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col gap-4 justify-center">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate(-1)}
-            className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
+            className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold flex items-center justify-center gap-2/10 transition-all"
           >
             <ArrowLeft size={20} /> Go Back
           </motion.button>
@@ -71,7 +71,7 @@ export function WorkInProgress({ featureName = "This Feature" }: WorkInProgressP
       </motion.div>
 
       {/* Decorative vertical text */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden md:block">
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden">
         <p className="text-[10px] font-black uppercase tracking-[1em] text-white/20 origin-left -rotate-90">
           SYSTEM_UNDER_CONSTRUCTION // BUILD_0.9.1
         </p>

@@ -86,7 +86,7 @@ export default function Messages() {
                     className={`flex-1 py-3 text-[9px] font-black uppercase tracking-[0.2em] transition-all ${
                       activeTab === tab 
                         ? "bg-[#FF8C00] text-white" 
-                        : "bg-white text-[#003366] hover:bg-gray-50"
+                        : "bg-white text-[#003366]"
                     }`}
                   >
                     {tab === "all" ? "All" : tab === "social" ? "Circle" : "Market"}
@@ -104,9 +104,9 @@ export default function Messages() {
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.04 }}
                     onClick={() => setSelectedConv(conv)}
-                    className="flex gap-4 p-5 bg-white border-2 border-[#003366] shadow-[6px_6px_0px_#003366] hover:shadow-[6px_6px_0px_#FF8C00] group active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer relative overflow-hidden"
+                    className="flex gap-4 p-5 bg-white border-2 border-[#003366] shadow-[6px_6px_0px_#003366] group active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer relative overflow-hidden"
                   >
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-[#FF8C00] opacity-0 transition-opacity" />
                     
                     <div className="relative shrink-0">
                       <div className="w-14 h-14 border-2 border-[#003366] overflow-hidden">
@@ -119,7 +119,7 @@ export default function Messages() {
 
                     <div className="flex-1 min-w-0 flex flex-col justify-center">
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-black text-[#003366] text-xs uppercase tracking-tight group-hover:text-[#FF8C00] transition-colors">{conv.name}</h3>
+                        <h3 className="font-black text-[#003366] text-xs uppercase tracking-tight transition-colors">{conv.name}</h3>
                         <span className="text-[9px] text-[#003366]/30 font-black uppercase tracking-widest">{conv.time}</span>
                       </div>
                       <p className={`text-[11px] uppercase tracking-tighter truncate ${conv.unread > 0 ? "text-[#003366] font-black" : "text-[#003366]/50 font-bold"}`}>
@@ -160,7 +160,7 @@ export default function Messages() {
                </div>
 
                <div className="relative z-10 flex items-center gap-4">
-                  <button onClick={() => setSelectedConv(null)} className="p-2 -ml-2 rounded-full hover:bg-white/10 active:scale-90 transition-all">
+                  <button onClick={() => setSelectedConv(null)} className="p-2 -ml-2 rounded-full/10 active:scale-90 transition-all">
                     <ChevronLeft size={24} />
                   </button>
                   <div className="flex items-center gap-3">

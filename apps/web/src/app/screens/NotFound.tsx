@@ -31,7 +31,7 @@ export function NotFound() {
           loop 
           muted 
           playsInline 
-          className="w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] mb-8 object-cover mix-blend-multiply"
+          className="w-[240px] h-[240px] mb-8 object-cover mix-blend-multiply"
         />
 
         <motion.div
@@ -50,7 +50,7 @@ export function NotFound() {
           <Link to="/" className="w-full group">
             <motion.button 
               whileTap={{ scale: 0.97 }}
-              className="bg-[#003366] group-hover:bg-[#002244] transition-colors text-white w-full py-4 rounded-[20px] font-black text-[15px] flex items-center justify-center gap-2 shadow-xl shadow-[#003366]/20 border border-t-white/10"
+              className="bg-[#003366] transition-colors text-white w-full py-4 rounded-[20px] font-black text-[15px] flex items-center justify-center gap-2 shadow-xl shadow-[#003366]/20 border border-t-white/10"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
               <ArrowLeft size={18} strokeWidth={2.5} className="group-hover:-translate-x-1 transition-transform" /> 
               Back to Safety

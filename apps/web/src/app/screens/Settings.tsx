@@ -96,7 +96,7 @@ export function Settings() {
                     <Link
                       key={item.label}
                       to={item.path}
-                      className={`flex items-center gap-3 px-4 py-4 transition-all duration-200 hover:bg-black/[0.01] active:bg-black/[0.03] ${
+                      className={`flex items-center gap-3 px-4 py-4 transition-all duration-200/[0.01] active:bg-black/[0.03] ${
                         !isLast ? "border-b border-black/[0.03]" : ""
                       }`}
                     >
@@ -118,7 +118,7 @@ export function Settings() {
                   <button
                     key={item.label}
                     onClick={item.action}
-                    className={`flex items-center gap-3 px-4 py-4 transition-all duration-200 hover:bg-black/[0.01] active:bg-black/[0.03] w-full text-left ${
+                    className={`flex items-center gap-3 px-4 py-4 transition-all duration-200/[0.01] active:bg-black/[0.03] w-full text-left ${
                       !isLast ? "border-b border-black/[0.03]" : ""
                     }`}
                   >

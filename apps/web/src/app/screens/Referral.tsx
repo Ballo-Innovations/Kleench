@@ -113,7 +113,7 @@ export function Referral() {
 
         <div className="relative z-10 flex items-center justify-between mt-2 h-10 gap-2">
           <button onClick={() => navigate(-1)} 
-            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all hover:bg-white/30 active:scale-95">
+            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 text-white shadow-sm transition-all/30 active:scale-95">
             <ArrowLeft size={18} />
           </button>
           <h1 className="text-white text-[12px] font-black uppercase tracking-[0.2em] opacity-80" style={{ fontFamily: "Agrandir, sans-serif" }}>

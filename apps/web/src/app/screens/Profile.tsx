@@ -109,7 +109,7 @@ export function Profile() {
                  {displayName}
                </motion.h1>
                <button onClick={() => { navigator.clipboard.writeText(window.location.href); alert("Wall link copied!"); }}
-                 className="p-2 rounded-full hover:bg-white/10 active:scale-90 transition-all text-white">
+                 className="p-2 rounded-full/10 active:scale-90 transition-all text-white">
                  <Share2 size={18} />
                </button>
             </div>
@@ -142,7 +142,7 @@ export function Profile() {
               { label: "Average Community Rating", value: profileData.stats.averageRating, color: "#FF8C00", num: "02" },
               { label: "Successful Referrals", value: profileData.stats.successfulReferrals, color: "#003366", num: "03" },
             ].map((stat) => (
-              <div key={stat.label} className="flex items-center justify-between p-4 bg-[#003366]/[0.02] border-2 border-[#003366] group hover:bg-[#FF8C00]/5 transition-colors">
+              <div key={stat.label} className="flex items-center justify-between p-4 bg-[#003366]/[0.02] border-2 border-[#003366] group/5 transition-colors">
                  <div className="flex items-center gap-4">
                     <span className="text-[10px] font-black text-[#003366]/20 tracking-tighter uppercase">{stat.num}.</span>
                     <p className="text-[9px] font-black uppercase tracking-widest text-[#003366]">{stat.label}</p>
@@ -175,7 +175,7 @@ export function Profile() {
               className={`flex-1 py-3.5 text-[9px] font-black uppercase tracking-[0.2em] transition-all ${
                 activeTab === tab 
                   ? "bg-[#FF8C00] text-white shadow-inner" 
-                  : "bg-white text-[#003366] hover:bg-gray-50"
+                  : "bg-white text-[#003366]"
               }`} style={{ fontFamily: "Outfit, sans-serif" }}>
               {tab === "reels" ? "Stories" : tab === "marketplace" ? "Shop" : "Trust"}
             </button>
@@ -189,8 +189,8 @@ export function Profile() {
               className="grid grid-cols-2 gap-4">
               {profileData.learningReels.map((reel, idx) => (
                 <motion.div key={reel.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(idx * 0.05)}>
-                  <Link to={`/product/${reel.id}`} className="block relative aspect-[9/14] border-2 border-[#003366] overflow-hidden group shadow-[4px_4px_0px_#003366] hover:shadow-[4px_4px_0px_#FF8C00] transition-all">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${reel.color} transition-transform duration-700 group-hover:scale-110`} />
+                  <Link to={`/product/${reel.id}`} className="block relative aspect-[9/14] border-2 border-[#003366] overflow-hidden group shadow-[4px_4px_0px_#003366] transition-all">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${reel.color} transition-transform duration-700`} />
                     <div className="absolute inset-0 bg-black/10" />
                     <div className="absolute inset-0 p-5 flex flex-col justify-between">
                       <div className="w-10 h-10 border-2 border-white bg-white/20 backdrop-blur-md flex items-center justify-center">
@@ -213,7 +213,7 @@ export function Profile() {
               {profileData.marketplace.map((product, i) => (
                 <motion.div key={product.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(i * 0.05)}>
                   <Link to={`/product/${product.id}`} className="block bg-white p-4 border-2 border-[#003366] shadow-[6px_6px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group overflow-hidden">
-                    <div className="aspect-square bg-[#003366]/5 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-105 border border-[#003366]/10">
+                    <div className="aspect-square bg-[#003366]/5 flex items-center justify-center mb-4 transition-transform duration-500 border border-[#003366]/10">
                       <span className="text-3xl font-black text-[#003366]/10" style={{ fontFamily: "Outfit, sans-serif" }}>
                         {product.title.charAt(0)}
                       </span>

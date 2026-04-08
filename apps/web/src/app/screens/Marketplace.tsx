@@ -187,7 +187,7 @@ export function Marketplace() {
         {/* Commercial Banner */}
         <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
           className="relative border-4 border-[#003366] shadow-[8px_8px_0px_#FF8C00] overflow-hidden group">
-           <img src={adBanner} alt="Commercial Banner" className="w-full h-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" />
+           <img src={adBanner} alt="Commercial Banner" className="w-full h-auto grayscale-[30%] transition-all duration-700" />
            <div className="absolute top-2 left-2 bg-[#FF8C00] text-white px-2 py-0.5 text-[8px] font-black uppercase tracking-widest">Sponsored</div>
         </motion.div>
 
@@ -212,11 +212,11 @@ export function Marketplace() {
                   className="group relative"
                 >
                   <Link to={`/product/${product.id}`} className="block">
-                     <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] group-hover:shadow-[6px_6px_0px_#FF8C00] transition-all">
+                     <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[4px_4px_0px_#003366] transition-all">
                         <ImageWithFallback
                           src={product.image}
                           alt={product.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-cover transition-transform duration-700"
                         />
                         {product.badge && (
                           <div className={`absolute top-0 right-0 px-2 py-1 text-white font-black text-[8px] uppercase tracking-widest ${
@@ -234,8 +234,8 @@ export function Marketplace() {
                         <h4 className="text-[11px] font-black uppercase text-[#003366] leading-tight line-clamp-1">{product.title}</h4>
                         <div className="flex items-center justify-between">
                            <span className="text-[14px] font-black text-[#FF8C00]">K{product.price}</span>
-                           <div className="w-6 h-6 rounded-full bg-[#003366]/5 flex items-center justify-center group-hover:bg-[#FF8C00]/10 transition-colors">
-                              <ArrowRight size={12} className="text-[#003366]/20 group-hover:text-[#FF8C00]" />
+                           <div className="w-6 h-6 rounded-full bg-[#003366]/5 flex items-center justify-center/10 transition-colors">
+                              <ArrowRight size={12} className="text-[#003366]/20" />
                            </div>
                         </div>
                      </div>

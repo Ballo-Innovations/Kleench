@@ -1,17 +1,16 @@
 import { 
-  ArrowUp, 
-  ArrowDown, 
-  Eye,
   CloudUpload, 
   Send, 
   Search,
   Circle,
   Clock,
   User,
-  UserPlus
+  UserPlus,
+  Eye
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
@@ -29,6 +28,7 @@ import adShopping from "@/assets/ads/ad_shopping.png";
 
 export function Learning() {
   const loading = usePageLoading(800);
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMedia, setActiveMedia] = useState<string | null>(null);
 
@@ -37,6 +37,10 @@ export function Learning() {
         description: `This feature is currently in development.`,
         duration: 2000,
      });
+  };
+
+  const handleCourseClick = (courseId: number | string) => {
+     navigate(`/learning/${courseId}`);
   };
 
   const handleMediaClick = (imageSrc: string) => {
@@ -83,29 +87,7 @@ export function Learning() {
         title="LEARN" 
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
-        height="auto"
-      >
-        <div className="relative z-10 w-full mt-3 pb-4">
-            <div className="h-[1px] w-full bg-white/20 mb-4" />
-            <div className="flex items-center justify-between w-full bg-transparent border-[1.5px] border-white/40 rounded-full px-5 py-2.5">
-                <div className="flex flex-col">
-                   <span className="text-white/80 text-[9px] font-black uppercase tracking-widest pl-1 mb-0.5">Balance</span>
-                   <div className="flex items-center gap-2">
-                       <h2 className="text-white text-[18px] sm:text-[20px] font-bold leading-none tracking-tight">ZMW 2,450.00</h2>
-                       <Eye size={16} className="text-white/80" strokeWidth={2} />
-                   </div>
-                </div>
-                <div className="flex gap-2 shrink-0">
-                  <button onClick={() => handleActionClick("Deposit")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
-                     <ArrowUp size={16} className="text-white" strokeWidth={3} />
-                  </button>
-                  <button onClick={() => handleActionClick("Withdraw")} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border-[1.5px] border-white/60 bg-[#FF8C00]/20 flex items-center justify-center hover:bg-white/20 transition-all active:scale-95">
-                     <ArrowDown size={16} className="text-white" strokeWidth={3} />
-                  </button>
-                </div>
-            </div>
-        </div>
-      </PageHeader>
+      />
 
       {loading ? (
         <PageSkeletons.Academy />
@@ -132,7 +114,7 @@ export function Learning() {
 
           {/* Top Action Buttons (Upload, Share, Register Agent) - Circular Soft Brutalism */}
           <section className="px-2">
-             <div className="flex items-start justify-between sm:justify-around gap-2 px-2">
+             <div className="flex items-start justify-between gap-2 px-2">
                {[
                  { id: 'upload', icon: CloudUpload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
@@ -144,10 +126,10 @@ export function Learning() {
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-1.5 group outline-none"
                  >
-                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
+                   <div className="w-12 h-12 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
                       <btn.icon size={20} className="text-slate-800" strokeWidth={2.2} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[10px] sm:text-xs text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[10px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
                  </motion.button>
                ))}
              </div>
@@ -159,12 +141,12 @@ export function Learning() {
             {/* Learn & Earn Videos */}
             <div className="w-full">
               <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Learn & Earn Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Learn & Earn Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_1.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Learn Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -174,12 +156,12 @@ export function Learning() {
             {/* Free Videos (1) */}
             <div className="w-full">
               <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Free Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Free Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_2.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[200px] sm:w-[220px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[200px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -189,12 +171,12 @@ export function Learning() {
             {/* Free Videos (2) */}
             <div className="w-full">
               <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Free Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Free Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_3.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] sm:w-[180px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[160px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Free Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -204,12 +186,12 @@ export function Learning() {
             {/* Pay to Stream Videos */}
             <div className="w-full pb-6">
               <div className="flex justify-between items-end mb-3 px-1">
-                 <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none">Pay to Stream Videos</h3>
-                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap hover:text-slate-800 transition-colors cursor-pointer">See All ≫</span>
+                 <h3 className="font-black text-slate-900 text-lg tracking-tight leading-none">Pay to Stream Videos</h3>
+                 <span className="text-slate-500 font-bold text-[12px] whitespace-nowrap transition-colors cursor-pointer">See All ≫</span>
               </div>
               <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-4 px-1">
                  {ROW_4.map(ad => (
-                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] sm:w-[200px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
+                    <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[180px] aspect-[16/10] rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-white border-2 border-slate-800 active:scale-[0.98] transition-transform">
                        <img src={ad.image} alt="Premium Video" className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                  ))}
@@ -220,12 +202,12 @@ export function Learning() {
 
           {/* Main Feed Area (Infinite Scroll Structure) */}
           <section className="space-y-6 pb-12 mt-8">
-             <h3 className="font-black text-slate-900 text-lg sm:text-xl tracking-tight mb-4 px-1">Explore More</h3>
+             <h3 className="font-black text-slate-900 text-lg tracking-tight mb-4 px-1">Explore More</h3>
              <div className="flex flex-col gap-6">
                 {EXPLORE_MORE_VIDEOS.map((video) => (
-                   <div onClick={() => handleMediaClick(video.image)} key={video.id} className="bg-white border-2 border-slate-800 rounded-xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:translate-y-1 transition-transform">
+                   <div onClick={() => handleCourseClick(video.id)} key={video.id} className="bg-white border-2 border-slate-800 rounded-xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:translate-y-1 transition-transform">
                       <div className="relative w-full aspect-video border-b-2 border-slate-800 bg-gray-100">
-                         <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover group-hover:opacity-95 transition-opacity" />
+                         <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover transition-opacity" />
                          
                          {/* Duration Pill */}
                          <div className="absolute bottom-2 right-2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">

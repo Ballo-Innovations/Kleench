@@ -1,16 +1,13 @@
 import { Link, useNavigate } from "react-router";
-import { useState } from "react";
 import {
-  Settings, Bell, Search, Eye, EyeOff,
-  X, ArrowDownToLine, ArrowUpFromLine,
-  Play, Heart, MessageCircle, ArrowRight,
+  Play, Heart, ArrowRight,
   Network, Share2, BadgeCheck, Sparkles,
 } from "lucide-react";
-import { motion, AnimatePresence, type PanInfo } from "motion/react";
+import { motion } from "motion/react";
 
-import kleenchLogo from "@/assets/kleench_logo.png";
-import { BackspaceKey } from "../components/KleenchIcons";
+
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { PageHeader } from "../components/PageHeader";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -157,163 +154,11 @@ export function Home() {
   const loading = usePageLoading(800);
   const navigate = useNavigate();
 
-  const [balanceHidden, setBalanceHidden] = useState(false);
-  const [pinInput, setPinInput] = useState("");
-  const [showPinModal, setShowPinModal] = useState(false);
-  const [pinError, setPinError] = useState("");
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-
-
-  const handleToggleBalance = () => {
-    if (balanceHidden) {
-      setShowPinModal(true);
-      setPinInput("");
-      setPinError("");
-    } else {
-      setBalanceHidden(true);
-    }
-  };
-
-  const verifyPin = (pinStr: string) => {
-    const savedPin = localStorage.getItem("userPin") || "1234";
-    if (pinStr === savedPin) {
-      setBalanceHidden(false);
-      setShowPinModal(false);
-    } else {
-      setPinError("Incorrect PIN");
-      setTimeout(() => { setPinInput(""); setPinError(""); }, 1000);
-    }
-  };
-
-  const handlePinPress = (digit: string) => {
-    if (pinInput.length < 4) {
-      const updated = pinInput + digit;
-      setPinInput(updated);
-      if (updated.length === 4) verifyPin(updated);
-    }
-  };
-
-
-
-  const getUserInitials = () => {
-    const raw = localStorage.getItem("userKyc");
-    if (raw) {
-      const kyc = JSON.parse(raw);
-      return kyc.fullName?.split(" ").map((n: string) => n[0]).join("") || "K";
-    }
-    return "K";
-  };
-
-  const profilePhoto = localStorage.getItem("userProfilePhoto");
-
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-28">
 
       {/* ── ORANGE DASHBOARD HEADER ── */}
-      <div
-        className="relative pt-2 pb-1 px-5 overflow-hidden shadow-lg flex flex-col justify-between h-auto"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}
-      >
-        {/* Grid texture */}
-        <div className="absolute inset-0 opacity-[0.25]" style={{ WebkitMaskImage: "radial-gradient(circle at top left, white, transparent 80%)", maskImage: "radial-gradient(circle at top left, white, transparent 80%)" }}>
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="home-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.6" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#home-grid)" />
-          </svg>
-        </div>
-        <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-white/20 rounded-full blur-[60px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none" />
-
-        {/* Top Nav Row */}
-        <div className="relative z-10 flex items-center justify-between h-12 gap-3 mt-0 border-b border-white/20 pb-2 mb-1">
-          <Link to="/" className="flex-shrink-0">
-            <img src={kleenchLogo} alt="KLEENCH" className="h-6 w-auto object-contain brightness-0 invert" />
-          </Link>
-
-          {/* Expandable Search */}
-          <div className="flex-1 flex justify-end overflow-hidden">
-            <motion.div
-              layout initial={false}
-              animate={{ width: isSearchOpen ? "100%" : "auto" }}
-              className={`flex items-center text-white transition-all ${isSearchOpen ? "bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl px-3 h-9" : "cursor-pointer hover:text-white/80 active:scale-95 px-2"}`}
-              onClick={() => !isSearchOpen && setIsSearchOpen(true)}
-            >
-              <Search size={20} className="flex-shrink-0" />
-              <AnimatePresence>
-                {isSearchOpen && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: 0.1 } }} className="flex items-center flex-1 ml-2 min-w-0">
-                    <input autoFocus type="text" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="bg-transparent text-white placeholder-white/70 text-[13px] outline-none flex-1 min-w-0" />
-                    <button onClick={(e) => { e.stopPropagation(); searchQuery ? setSearchQuery("") : setIsSearchOpen(false); }} className="ml-1 p-1 hover:text-white/80 transition-colors flex-shrink-0">
-                      <X size={14} />
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </div>
-
-          {/* Nav Icons */}
-          <div className="flex items-center gap-3.5 flex-shrink-0 pr-1">
-            <Link to="/messages" className="text-white hover:text-white/80 transition-all active:scale-95">
-              <MessageCircle size={20} />
-            </Link>
-            <Link to="/settings" className="text-white hover:text-white/80 transition-all active:scale-95">
-              <Settings size={20} />
-            </Link>
-            <Link to="/notifications" className="relative text-white hover:text-white/80 transition-all active:scale-95">
-              <Bell size={20} />
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FFC300] rounded-full border border-[#e06900]" />
-            </Link>
-            <Link to="/profile" className="w-8 h-8 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 shrink-0 shadow-sm hover:scale-105 transition-transform active:scale-95">
-              {profilePhoto ? (
-                <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-white text-[10px] font-black uppercase">
-                  {getUserInitials()}
-                </div>
-              )}
-            </Link>
-          </div>
-        </div>
-
-        {/* Wallet + Quick Actions Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="relative z-10 flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-1 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] mb-1 mt-1 w-full mx-auto"
-        >
-          <div className="flex items-center gap-2">
-            <div className="min-w-0">
-              <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Balance</p>
-              <div className="flex items-center gap-2">
-                <h2 className="text-white text-[15px] font-black tracking-tight leading-none">
-                  {balanceHidden ? "••••••" : "ZMW 2,450.00"}
-                </h2>
-                <button onClick={handleToggleBalance} className="text-white/40 hover:text-white transition-colors">
-                  {balanceHidden ? <EyeOff size={12} /> : <Eye size={12} />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
-            {[
-              { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
-              { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
-            ].map(({ icon: Icon, label, to }) => (
-              <Link key={label} to={to} title={label}
-                className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
-                <Icon size={14} />
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+      <PageHeader useLogo />
 
       {loading ? (
         <div className="mt-6">
@@ -334,7 +179,7 @@ export function Home() {
             onClick={() => navigate(item.to)}
             className="flex flex-col items-center gap-1.5 cursor-pointer group"
           >
-            <div className={`w-10 h-10 rounded-full border border-[#003366]/20 shadow-sm flex items-center justify-center transition-transform group-hover:-translate-y-1 ${item.color} ${item.bg}`}>
+            <div className={`w-10 h-10 rounded-full border border-[#003366]/20 shadow-sm flex items-center justify-center transition-transform ${item.color} ${item.bg}`}>
               <item.icon size={18} strokeWidth={2.5} />
             </div>
             <span className="text-[#003366] font-black tracking-tight text-[8px] uppercase">{item.label}</span>
@@ -376,10 +221,10 @@ export function Home() {
                           whileTap={{ scale: 0.96 }}
                           className="relative flex-shrink-0 w-28 h-40 bg-white border border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group rounded-sm"
                         >
-                          <img src={reel.image} alt={reel.label} className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" />
+                          <img src={reel.image} alt={reel.label} className="w-full h-full object-cover grayscale-[0.2] transition-all duration-700" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg transition-transform duration-500">
                               <Play size={12} className="text-white fill-white ml-0.5" />
                             </div>
                           </div>
@@ -410,7 +255,7 @@ export function Home() {
                       <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
                       <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">{block.title}</h3>
                     </div>
-                    <Link to="/marketplace" className="flex items-center gap-1.5 text-[9px] font-black text-[#FF8C00] uppercase tracking-widest hover:underline decoration-2 underline-offset-4">
+                    <Link to="/marketplace" className="flex items-center gap-1.5 text-[9px] font-black text-[#FF8C00] uppercase tracking-widest decoration-2 underline-offset-4">
                       Browse All <ArrowRight size={11} />
                     </Link>
                   </div>
@@ -421,10 +266,10 @@ export function Home() {
                       {row1.map((product) => (
                         <motion.div key={product.id} className="flex-shrink-0 w-36 group">
                           <Link to={`/product/${product.id}`} className="block">
-                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group-hover:shadow-[4px_4px_0px_#FF8C00] transition-all mb-2">
-                              <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] transition-all mb-2">
+                              <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                             </div>
-                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 group-hover:text-[#FF8C00] transition-colors">{product.title}</h4>
+                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
                             <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
                           </Link>
                         </motion.div>
@@ -436,11 +281,11 @@ export function Home() {
                       {row2.map((product) => (
                         <motion.div key={product.id} className="flex-shrink-0 w-36 group">
                           <Link to={`/product/${product.id}`} className="block">
-                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] group-hover:shadow-[4px_4px_0px_#FF8C00] transition-all mb-2">
-                              <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <div className="relative aspect-square bg-white border-2 border-[#003366] overflow-hidden shadow-[3px_3px_0px_#003366] transition-all mb-2">
+                              <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                               <div className="absolute top-0 right-0 bg-[#FF3000] text-white px-1.5 py-0.5 text-[7px] font-black uppercase tracking-[0.2em]">TRENDY</div>
                             </div>
-                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 group-hover:text-[#FF8C00] transition-colors">{product.title}</h4>
+                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
                             <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
                           </Link>
                         </motion.div>
@@ -462,7 +307,7 @@ export function Home() {
                   className="mx-5 border-2 border-[#003366] bg-white shadow-[5px_5px_0px_#003366] overflow-hidden group transition-all"
                 >
                   <div className="relative w-full h-72 overflow-hidden">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full border-2 border-[#FFC300] overflow-hidden flex-shrink-0 shadow-md">
@@ -473,7 +318,7 @@ export function Home() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <h4 className="text-[#003366] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 group-hover:text-[#FF8C00] transition-colors">{item.title}</h4>
+                    <h4 className="text-[#003366] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 transition-colors">{item.title}</h4>
                     <p className="text-[#003366]/50 text-[11px] font-medium leading-relaxed line-clamp-2 mb-3">{item.body}</p>
                     <div className="flex items-center justify-between border-t border-[#003366]/5 pt-3">
                       <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[#003366]/30">
@@ -499,60 +344,7 @@ export function Home() {
       </>
       )}
 
-      {/* ── PIN Verification Modal ── */}
-      <AnimatePresence>
-        {showPinModal && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-end bg-[#003366]/60 backdrop-blur-md"
-            onClick={() => setShowPinModal(false)}
-          >
-            <motion.div
-              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
-              transition={{ type: "spring", damping: 26, stiffness: 220 }}
-              drag="y" dragConstraints={{ top: 0 }} dragElastic={0.2}
-              onDragEnd={(_e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
-                if (offset.y > 150 || velocity.y > 500) setShowPinModal(false);
-              }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-md bg-white rounded-t-[48px] p-8 pb-12 shadow-2xl relative"
-            >
-              <div className="absolute top-0 left-0 w-full h-8 flex justify-center pt-3 cursor-grab active:cursor-grabbing">
-                <div className="w-12 h-1.5 bg-gray-200 rounded-full" />
-              </div>
-              <div className="text-center mb-10 mt-4">
-                <h3 className="text-2xl font-black text-[#003366] mb-2">Security PIN</h3>
-                <p className="text-[14px] text-gray-500 font-medium px-10">Verification required to view balance</p>
-              </div>
-              <div className="flex justify-center gap-5 mb-10">
-                {[0, 1, 2, 3].map((i) => (
-                  <motion.div key={i} animate={{ scale: pinInput.length > i ? 1.2 : 1 }}
-                    className={`w-4 h-4 rounded-full border-2 transition-all ${pinInput.length > i ? "bg-[#FF8C00] border-[#FF8C00]" : "border-gray-200"}`} />
-                ))}
-              </div>
-              {pinError && (
-                <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-red-500 text-center text-sm font-bold mb-6">
-                  {pinError}
-                </motion.p>
-              )}
-              <div className="grid grid-cols-3 gap-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "backspace"].map((val, idx) => {
-                  if (val === "") return <div key={idx} />;
-                  return (
-                    <motion.button
-                      key={idx} whileTap={{ scale: 0.92 }}
-                      onClick={() => { if (val === "backspace") setPinInput((p) => p.slice(0, -1)); else handlePinPress(String(val)); }}
-                      className="h-20 rounded-3xl bg-gray-50 text-[#003366] text-2xl font-black flex items-center justify-center transition-colors active:bg-[#FF8C00] active:text-white"
-                    >
-                      {val === "backspace" ? <BackspaceKey size={24} color="currentColor" /> : val}
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </div>
   );
 }

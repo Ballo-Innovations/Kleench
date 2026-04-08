@@ -60,7 +60,7 @@ export function ProductDetail() {
       {/* Top Navigation */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl shadow-sm">
         <div className="flex items-center justify-between px-6 py-3">
-          <Link to="/" className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-[var(--clean-slate)] active:scale-95 transition-all">
+          <Link to="/" className="flex items-center justify-center h-10 w-10 rounded-full(--clean-slate)] active:scale-95 transition-all">
             <ArrowLeft size={20} className="text-[var(--ink-primary)]" />
           </Link>
           
@@ -89,7 +89,7 @@ export function ProductDetail() {
             <ImageWithFallback
               src={product.images[currentImageIndex]}
               alt={product.name}
-              className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000"
+              className="w-full h-full object-cover transform scale-105 transition-transform duration-1000"
             />
           </motion.div>
         </AnimatePresence>
@@ -112,7 +112,7 @@ export function ProductDetail() {
         {product.hasDemo && (
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-20 h-20 bg-[var(--trust-blue)]/90 backdrop-blur-lg rounded-full flex items-center justify-center shadow-2xl hover:bg-[var(--trust-blue)] transition-colors"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-20 h-20 bg-[var(--trust-blue)]/90 backdrop-blur-lg rounded-full flex items-center justify-center shadow-2xl(--trust-blue)] transition-colors"
           >
             <Play size={32} fill="white" className="text-white ml-1" />
           </motion.button>
@@ -182,7 +182,7 @@ export function ProductDetail() {
 
         {/* Information Layer */}
         <section className="mt-12 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8">
             {/* Left Column - Details */}
             <div className="md:col-span-2 space-y-6">
               <motion.h2
@@ -249,7 +249,7 @@ export function ProductDetail() {
                 transition={{ duration: 0.5, delay: 0.6 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setShowShareModal(true)}
-                className="w-full bg-gradient-to-r from-[var(--action-gold)] to-[#E6B000] hover:from-[#E6B000] hover:to-[var(--action-gold)] transition-all duration-300 py-4 px-6 rounded-full flex items-center justify-between group shadow-lg glow-gold"
+                className="w-full bg-gradient-to-r from-[var(--action-gold)] to-[#E6B000](--action-gold)] transition-all duration-300 py-4 px-6 rounded-full flex items-center justify-between group shadow-lg glow-gold"
               >
                 <div className="text-left">
                   <p className="text-[10px] font-bold text-[var(--ink-primary)] uppercase tracking-widest">Growth Loop</p>
@@ -257,7 +257,7 @@ export function ProductDetail() {
                     Share & Earn {product.commission}%
                   </p>
                 </div>
-                <Send size={20} className="text-[var(--ink-primary)] group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
+                <Send size={20} className="text-[var(--ink-primary)] transition-transform" strokeWidth={2.5} />
               </motion.button>
             </div>
           </div>
@@ -302,7 +302,7 @@ export function ProductDetail() {
       {/* Sticky Checkout Bar */}
       <div className="fixed bottom-0 left-0 w-full z-50 px-6 pb-8 pointer-events-none">
         <div className="max-w-4xl mx-auto w-full glass-strong backdrop-blur-2xl p-4 rounded-full shadow-[0_-8px_32px_rgba(0,0,0,0.12)] border border-white/20 flex items-center justify-between pointer-events-auto">
-          <div className="hidden sm:block pl-4">
+          <div className="hidden pl-4">
             <div className="flex items-center gap-2">
               <ShieldCheck size={16} className="text-[var(--trust-blue)]" strokeWidth={2.5} />
               <p className="text-[10px] font-bold text-[var(--ink-muted)] uppercase tracking-wider">
@@ -313,10 +313,10 @@ export function ProductDetail() {
               Funds are held securely until delivery is confirmed.
             </p>
           </div>
-          <div className="flex items-center gap-4 w-full sm:w-auto">
+          <div className="flex items-center gap-4 w-full">
             <motion.button
               whileTap={{ scale: 0.95 }}
-              className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-[var(--action-gold)] to-[#E6B000] hover:from-[#E6B000] hover:to-[var(--action-gold)] text-[var(--ink-primary)] font-black text-lg rounded-full transition-all flex items-center justify-center gap-3 shadow-lg glow-gold"
+              className="flex-1 px-8 py-4 bg-gradient-to-r from-[var(--action-gold)] to-[#E6B000](--action-gold)] text-[var(--ink-primary)] font-black text-lg rounded-full transition-all flex items-center justify-center gap-3 shadow-lg glow-gold"
             >
               Purchase with Wallet
               <Wallet size={20} strokeWidth={2.5} />
