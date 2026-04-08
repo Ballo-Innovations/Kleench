@@ -117,7 +117,7 @@ export function Advert() {
                        <h3 className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
                      </div>
                      {/* Bleed to screen edges */}
-                     <div className="-mx-4 flex overflow-x-auto gap-[6px] pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
                         {VIDEO_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
@@ -149,7 +149,7 @@ export function Advert() {
                        <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                        <h3 className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto gap-[6px] pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
                         {PICTURE_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
@@ -175,7 +175,7 @@ export function Advert() {
                        <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                        <h3 className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto gap-[6px] pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
                         {AUDIO_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
