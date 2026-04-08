@@ -2,7 +2,6 @@ import {
   ArrowDownToLine,
   ArrowUpFromLine,
   ArrowLeftRight,
-  Smartphone,
   Check,
   X,
   QrCode,
@@ -12,11 +11,11 @@ import {
   Calculator,
   Globe,
   ReceiptText,
-  Search
+  Search,
+  Sparkles
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { toast } from "sonner";
 import { ZambiaFlag } from "../components/KleenchIcons";
 import adBanner from "@/assets/ads/Transaction Assurance.png";
 import mtnLogo from "@/assets/MTN.jpeg";
@@ -26,6 +25,13 @@ import zedLogo from "@/assets/zed_mobile_logo.png";
 
 import { PageHeader } from "../components/PageHeader";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+
+/* ── Graceful ease-out builder ── */
+const grace = (delay = 0) => ({
+  delay,
+  duration: 0.6,
+  ease: [0.22, 1, 0.36, 1] as const,
+});
 
 const MM_PROVIDERS = [
   { id: "airtel", name: "Airtel Money", shortName: "Airtel", color: "#E40513", bg: "#FFF1F2", logo: airtelLogo },
@@ -64,6 +70,7 @@ export function Wallet() {
   const [mmPhone, setMMPhone] = useState("");
   const [mmError, setMMError] = useState("");
   const [expandedTx, setExpandedTx] = useState<string | null>(null);
+  const [showComingSoon, setShowComingSoon] = useState<string | null>(null);
 
   const hasFinancialKyc = localStorage.getItem("kleench_financial_kyc") === "true";
 
@@ -72,10 +79,7 @@ export function Wallet() {
       setShowFinancialKyc(true);
       return;
     }
-    toast.success(`${type.toUpperCase()} feature coming soon`, {
-       description: `This module is currently in development.`,
-       duration: 2000,
-    });
+    setShowComingSoon(type);
   };
 
   const saveFinancialKyc = () => {
@@ -89,14 +93,6 @@ export function Wallet() {
   };
 
   const loading = usePageLoading(900);
-
-  function grace(delay = 0) {
-    return {
-      duration: 0.62,
-      delay,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    };
-  }
 
   return (
     <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[#003366]">
@@ -337,79 +333,132 @@ export function Wallet() {
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Secure Gateway</p>
         </motion.div>
       </div>
-      )}
+    )}
 
+      {/* MODALS RENDERED PORTAL-STYLE */}
       <AnimatePresence>
-        {showFinancialKyc && (
-          <div className="fixed inset-0 z-[100] flex items-end justify-center px-4 pb-10 bg-black/40 backdrop-blur-sm">
+        {showComingSoon && (
+          <>
             <motion.div 
-              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="w-full max-w-sm bg-white rounded-[32px] overflow-hidden shadow-2xl p-8 relative"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setShowComingSoon(null)}
+              className="fixed inset-0 z-[1000] bg-black/40 backdrop-blur-sm max-w-md mx-auto"
+            />
+            <motion.div 
+              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
-              <button onClick={() => setShowFinancialKyc(false)} className="absolute top-6 right-6 p-2 rounded-full transition-colors">
-                <X size={20} className="text-gray-400" />
-              </button>
-
-              <div className="mb-6 text-center flex flex-col items-center">
-                <div className="w-14 h-14 rounded-2xl bg-[#FF8C00]/10 flex items-center justify-center mb-4">
-                  <Smartphone size={28} className="text-[#FF8C00]" />
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-8">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Feature Status</h3>
+                  <button onClick={() => setShowComingSoon(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-[2px_2px_0px_#000] active:scale-90 transition-all"><X size={20} /></button>
                 </div>
-                <h2 className="text-2xl font-black text-[#003366] leading-tight" style={{ fontFamily: "Agrandir, sans-serif" }}>Link Payouts</h2>
-                <p className="text-[#003366]/50 text-[13px] font-medium mt-2">Connect your Zambian mobile money to withdraw funds.</p>
+                
+                <div className="flex flex-col items-center gap-6 py-4 text-center">
+                  <div className="w-20 h-20 bg-orange-50 rounded-3xl border-2 border-orange-500 flex items-center justify-center shadow-[6px_6px_0px_#FF8C00]">
+                    <Sparkles className="text-orange-500" size={40} />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-black text-slate-900 uppercase tracking-tight mb-2">{showComingSoon} Module</h4>
+                    <p className="text-sm font-bold text-slate-500 leading-relaxed max-w-[240px] mx-auto">This premium feature is currently being optimized for Zambian market compliance.</p>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                   <button onClick={() => setShowComingSoon(null)} className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                      Notify Me on Launch
+                   </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+
+        {showFinancialKyc && (
+          <div className="fixed inset-0 z-[1000] flex items-end justify-center pointer-events-none">
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setShowFinancialKyc(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm max-w-md mx-auto pointer-events-auto"
+            />
+            <motion.div 
+              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.15)] pointer-events-auto overflow-hidden pb-[env(safe-area-inset-bottom)] p-6 pt-8"
+            >
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <h3 className="text-2xl font-black text-[#003366] leading-none uppercase tracking-tighter mb-2">Enable Wallet</h3>
+                  <p className="text-[#F5A623] text-[10px] font-black uppercase tracking-widest">Connect Mobile Money Gateway</p>
+                </div>
+                <button 
+                  onClick={() => { setShowFinancialKyc(false); setMMStep("provider"); }} 
+                  className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-[2px_2px_0px_#000] active:scale-90 transition-all text-slate-400"
+                >
+                  <X size={20} />
+                </button>
               </div>
 
               {mmStep === "provider" ? (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-3">
-                    {MM_PROVIDERS.map((prov) => (
-                      <button key={prov.id}
-                        onClick={() => setMMProvider(prov)}
-                        className={`relative p-4 rounded-2xl border-2 flex flex-col items-center gap-2 transition-all ${
-                          mmProvider?.id === prov.id ? "border-[#FF8C00] bg-[#FFF7ED]" : "border-gray-50 bg-gray-50"
-                        }`}>
-                        {mmProvider?.id === prov.id && (
-                          <div className="absolute top-2 right-2 w-5 h-5 bg-[#FF8C00] rounded-full flex items-center justify-center">
-                            <Check size={12} className="text-white" strokeWidth={3} />
+                <div className="space-y-8">
+                  <p className="text-[11px] font-bold text-slate-500 leading-relaxed uppercase tracking-tight italic">Select your primary provider to enable withdraw, send, and bill payment services.</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {MM_PROVIDERS.map((provider) => (
+                      <button 
+                        key={provider.id}
+                        onClick={() => setMMProvider(provider)}
+                        className={`relative flex flex-col items-center gap-4 p-5 rounded-3xl border-[3px] transition-all group ${
+                          mmProvider?.id === provider.id 
+                          ? "border-slate-900 bg-white shadow-[6px_6px_0px_#000] translate-x-[-2px] translate-y-[-2px]" 
+                          : "border-slate-100 bg-slate-50 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 active:scale-95 shadow-none"
+                        }`}
+                      >
+                        <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-slate-200">
+                           <img src={provider.logo} alt={provider.name} className="w-full h-full object-cover" />
+                        </div>
+                        <span className="font-black text-slate-900 text-[10px] tracking-widest uppercase">{provider.shortName}</span>
+                        {mmProvider?.id === provider.id && (
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-slate-900 rounded-full flex items-center justify-center border-2 border-white">
+                             <Check size={12} className="text-white" strokeWidth={4} />
                           </div>
                         )}
-                        <img src={prov.logo} alt={prov.name} className="h-10 w-auto object-contain" />
-                        <span className="text-[10px] font-bold text-[#003366]">{prov.shortName}</span>
                       </button>
                     ))}
                   </div>
-                  <motion.button whileTap={{ scale: 0.96 }}
+                  <motion.button whileTap={{ scale: 0.98 }}
                     disabled={!mmProvider}
                     onClick={() => setMMStep("details")}
-                    className={`w-full py-4 rounded-2xl font-bold text-white shadow-lg transition-all ${
-                      mmProvider ? "bg-[#003366]" : "bg-gray-200 cursor-not-allowed text-gray-400 shadow-none"
+                    className={`w-full h-16 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all border-2 border-slate-900 ${
+                      mmProvider ? "bg-slate-900 text-white shadow-[6px_6px_0px_rgba(0,0,0,0.2)] active:shadow-none translate-y-0 active:translate-y-1" : "bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed"
                     }`}>
-                    Next Step
+                    Continue Activation
                   </motion.button>
                 </div>
               ) : (
-                <div className="space-y-6">
-                  <button onClick={() => setMMStep("provider")} className="text-[11px] font-bold text-[#FF8C00] flex items-center gap-1">
-                    ← Change Provider
+                <div className="space-y-10 pt-4">
+                  <button onClick={() => setMMStep("provider")} className="text-[10px] font-black text-orange-500 flex items-center gap-2 uppercase tracking-widest">
+                    <ArrowLeftRight size={14} /> Re-select Provider
                   </button>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div>
-                      <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2 block">Mobile Number</label>
-                      <div className="flex gap-2">
-                        <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-gray-50 border border-gray-100">
+                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">Network ID Number</label>
+                      <div className="flex gap-4">
+                        <div className="flex items-center gap-2 px-5 py-4 rounded-2xl bg-slate-50 border-2 border-slate-900 shadow-[4px_4px_0px_#000]">
                           <ZambiaFlag size={20} />
-                          <span className="font-bold text-gray-400 text-[14px]">+260</span>
+                          <span className="font-black text-slate-900 text-[14px]">260</span>
                         </div>
                         <input type="tel" value={mmPhone} onChange={(e) => { setMMPhone(e.target.value.replace(/\D/g, "").slice(0, 9)); setMMError(""); }} 
-                           autoFocus className="flex-1 px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 font-bold text-[#003366] outline-none focus:ring-2 focus:ring-[#FF8C00]/30" placeholder="9X XXX XXXX" />
+                           autoFocus className="flex-1 px-6 py-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[4px_4px_0px_#000] font-black text-[#003366] outline-none focus:shadow-none transition-all" placeholder="9X XXX XXXX" />
                       </div>
                     </div>
-                    {mmError && <p className="text-red-500 text-[11px] font-bold text-center">{mmError}</p>}
+                    {mmError && <p className="text-red-500 text-[10px] font-black text-center uppercase tracking-widest">{mmError}</p>}
                   </div>
-                  <motion.button whileTap={{ scale: 0.96 }}
+                  <div className="bg-slate-50 p-6 rounded-[24px] border-2 border-slate-900">
+                     <p className="text-[10px] text-slate-500 font-bold leading-relaxed text-center italic">By linking your account, you agree to Kleench Mobile's P2P transaction protocols and regulatory guidelines.</p>
+                  </div>
+                  <motion.button whileTap={{ scale: 0.98 }}
                     onClick={saveFinancialKyc}
-                    className="w-full py-4 rounded-2xl bg-[#FF8C00] font-bold text-white shadow-lg shadow-[#FF8C00]/20">
-                    Verify & Account Link
+                    className="w-full h-20 rounded-2xl bg-orange-500 text-white font-black uppercase tracking-[0.2em] text-sm border-2 border-slate-900 shadow-[8px_8px_0px_rgba(0,0,0,0.1)] active:shadow-none transition-all">
+                    Finalize Connection
                   </motion.button>
                 </div>
               )}

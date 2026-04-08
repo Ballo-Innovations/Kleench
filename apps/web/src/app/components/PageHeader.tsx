@@ -31,6 +31,7 @@ export function PageHeader({
 
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   return (
     <>
@@ -127,9 +128,9 @@ export function PageHeader({
 
         {/* Nav Icons */}
         <div className="flex items-center gap-3.5 flex-shrink-0 pr-1 ml-1">
-          <Link to="/messages" className="text-white/80 transition-transform active:scale-95 outline-none">
+          <button onClick={() => setShowChat(true)} className="text-white/80 transition-transform active:scale-95 outline-none">
             <MessageCircle size={20} />
-          </Link>
+          </button>
           <button onClick={() => setShowSettings(true)} className="text-white/80 transition-transform active:scale-95 outline-none">
             <Settings size={20} />
           </button>
@@ -137,7 +138,7 @@ export function PageHeader({
             <Bell size={20} />
             <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FFC300] rounded-full border border-[#e06900]" />
           </button>
-          <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 shrink-0 shadow-sm transition-transform active:scale-95 outline-none">
+          <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full border-2 border-white/60 overflow-hidden bg-white/20 shrink-0 shadow-sm transition-transform active:scale-95 outline-none">
             {localStorage.getItem("userProfilePhoto") ? (
               <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
             ) : (
@@ -208,30 +209,30 @@ export function PageHeader({
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setShowNotifications(false)}
-            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm max-w-md mx-auto"
+            className="fixed inset-0 z-[1000] bg-black/40 backdrop-blur-md max-w-md mx-auto"
           />
           <motion.div 
-            initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }}
-            className="fixed top-16 right-4 left-4 z-[110] bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-w-[380px] mx-auto"
+            initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -100, opacity: 0 }}
+            className="fixed top-4 right-4 left-4 z-[1010] bg-white rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] border-[3px] border-slate-900 overflow-hidden max-w-[380px] mx-auto"
           >
-            <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+            <div className="p-5 border-b-[3px] border-slate-900 flex items-center justify-between bg-white">
               <h3 className="font-black text-slate-800 uppercase tracking-widest text-xs">Notifications</h3>
-              <button onClick={() => setShowNotifications(false)} className="text-slate-400 active:scale-90 transition-transform"><X size={16} /></button>
+              <button onClick={() => setShowNotifications(false)} className="bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center text-slate-500 active:scale-90 transition-all border-2 border-slate-900 shadow-[2px_2px_0px_#000]"><X size={18} /></button>
             </div>
-            <div className="divide-y divide-slate-50 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+            <div className="divide-y-2 divide-slate-900 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
               {[
                 { id: 1, title: "Transaction Successful", desc: "You received ZMW 500.00 from John Doe.", time: "10m ago", icon: ArrowDownToLine, color: "text-emerald-500", bg: "bg-emerald-50" },
                 { id: 2, title: "New Agent Referral", desc: "Jane joined using your code. You earned K10.", time: "1h ago", icon: UserPlus, color: "text-blue-500", bg: "bg-blue-50" },
                 { id: 3, title: "Kleench Security", desc: "A new login was detected from Lusaka.", time: "Yesterday", icon: ShieldCheck, color: "text-amber-500", bg: "bg-amber-50" }
               ].map(notif => (
-                <div key={notif.id} className="p-4 flex gap-4 active:bg-slate-50 cursor-pointer transition-colors">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${notif.bg} ${notif.color}`}>
-                    <notif.icon size={16} strokeWidth={2.5} />
+                <div key={notif.id} className="p-5 flex gap-5 active:bg-slate-50 cursor-pointer transition-colors group">
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border-2 border-slate-900 shadow-[2px_2px_0px_#000] group-active:shadow-none group-active:translate-x-0.5 group-active:translate-y-0.5 transition-all ${notif.bg} ${notif.color}`}>
+                    <notif.icon size={20} strokeWidth={2.5} />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-slate-800 text-[11px] mb-1 leading-tight">{notif.title}</h4>
-                    <p className="text-slate-500 text-[10px] leading-snug mb-1.5">{notif.desc}</p>
-                    <span className="text-slate-400 text-[8px] uppercase font-bold tracking-widest">{notif.time}</span>
+                  <div className="flex-1">
+                    <h4 className="font-black text-slate-800 text-[11px] mb-1 leading-tight uppercase tracking-tight">{notif.title}</h4>
+                    <p className="text-slate-500 text-[10px] font-bold leading-snug mb-2">{notif.desc}</p>
+                    <span className="text-slate-400 text-[8px] uppercase font-black tracking-widest">{notif.time}</span>
                   </div>
                 </div>
               ))}
@@ -245,54 +246,97 @@ export function PageHeader({
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setShowSettings(false)}
-            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm max-w-md mx-auto"
+            className="fixed inset-0 z-[1000] bg-black/40 backdrop-blur-md max-w-md mx-auto"
           />
           <motion.div 
             initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 bottom-0 right-0 w-[85%] max-w-[320px] bg-white z-[110] shadow-2xl flex flex-col"
+            className="fixed top-0 bottom-0 right-0 w-[85%] max-w-[320px] bg-white z-[1010] shadow-[0_0_80px_rgba(0,0,0,0.4)] flex flex-col border-l-[3px] border-slate-900"
           >
-            <div className="p-6 bg-slate-50 border-b border-slate-100 flex items-start justify-between">
+            <div className="p-6 bg-white border-b-[3px] border-slate-900 flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full border-2 border-slate-200 overflow-hidden bg-white shrink-0 shadow-sm">
+                <div className="w-16 h-16 rounded-[20px] border-[3px] border-slate-900 overflow-hidden bg-white shrink-0 shadow-[4px_4px_0px_#000]">
                   {localStorage.getItem("userProfilePhoto") ? (
                     <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-400 text-lg font-black uppercase">K</div>
+                    <div className="w-full h-full flex items-center justify-center text-slate-900 text-xl font-black uppercase">K</div>
                   )}
                 </div>
                 <div>
-                  <h4 className="font-black text-slate-800 text-sm leading-tight mb-1">
+                  <h4 className="font-black text-slate-900 text-sm leading-tight mb-1 uppercase tracking-tight">
                     {(() => {
                       const raw = localStorage.getItem("userKyc");
                       return raw ? JSON.parse(raw).fullName : "Kleench User"
                     })()}
                   </h4>
-                  <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Free Account</p>
+                  <p className="text-slate-500 text-[9px] font-black uppercase tracking-widest">Premium Member</p>
                 </div>
               </div>
-              <button onClick={() => setShowSettings(false)} className="text-slate-400 active:scale-90 transition-transform bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm border border-slate-100"><X size={16} /></button>
+              <button onClick={() => setShowSettings(false)} className="text-slate-900 active:scale-90 transition-all bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-[2px_2px_0px_#000]"><X size={20} /></button>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-4 space-y-2">
-              <h5 className="text-[10px] uppercase font-black tracking-[0.2em] text-slate-400 ml-2 mb-4 mt-2">Account Hub</h5>
+            <div className="flex-1 overflow-y-auto p-5 space-y-4">
+              <h5 className="text-[10px] uppercase font-black tracking-[0.3em] text-slate-400 ml-2 mb-4">Security Hub</h5>
               {[
-                { icon: User, label: "My Profile", to: "/profile" },
-                { icon: ShieldCheck, label: "Verification (KYC)", to: "/wallet" },
+                { icon: User, label: "Profile Settings", to: "/profile" },
+                { icon: ShieldCheck, label: "Identity & KYC", to: "/wallet" },
                 { icon: SettingsIcon, label: "App Preferences", to: "#" },
-                { icon: HelpCircle, label: "Help & Support", to: "#" },
+                { icon: HelpCircle, label: "Advanced Support", to: "#" },
               ].map((item, i) => (
-                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-4 p-3 rounded-2xl active:bg-slate-50 transition-colors text-left group">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-600 flex items-center justify-center group-active:scale-95 transition-transform"><item.icon size={18} strokeWidth={2} /></div>
-                  <span className="font-bold text-slate-700 text-xs">{item.label}</span>
+                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-4 p-4 rounded-3xl bg-slate-50 border-2 border-slate-900 shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all text-left">
+                  <div className="w-10 h-10 rounded-xl bg-white text-slate-900 flex items-center justify-center border border-slate-200"><item.icon size={20} strokeWidth={2.5} /></div>
+                  <span className="font-black text-slate-900 text-[11px] uppercase tracking-widest">{item.label}</span>
                 </button>
               ))}
               
-              <div className="mt-8 pt-6 border-t border-slate-100 px-2">
-                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-4 text-red-500 font-bold text-xs uppercase tracking-widest active:opacity-50 transition-opacity">
-                  <LogOut size={16} strokeWidth={2.5} /> Sign Out
+              <div className="mt-12 pt-8 border-t-[3px] border-slate-900 px-2">
+                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-4 text-red-600 font-black text-xs uppercase tracking-[0.2em] active:opacity-50 transition-opacity">
+                  <LogOut size={20} strokeWidth={2.5} /> Sign Out Systems
                 </button>
               </div>
             </div>
+          </motion.div>
+        </>
+      )}
+
+      {showChat && (
+        <>
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setShowChat(false)}
+            className="fixed inset-0 z-[1000] bg-black/40 backdrop-blur-md max-w-md mx-auto"
+          />
+          <motion.div 
+            initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+          >
+             <div className="p-6">
+                <div className="flex items-center justify-between mb-8">
+                   <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Secure Messages</h3>
+                   <button onClick={() => setShowChat(false)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border-2 border-slate-900 shadow-[2px_2px_0px_#000]"><X size={20} /></button>
+                </div>
+                
+                <div className="space-y-4 mb-8">
+                   {[
+                      { id: 1, name: "Kleench Support", msg: "Your ticket #284 has been updated.", time: "2m ago" },
+                      { id: 2, name: "Escrow Manager", msg: "Payment for 'Solar Inverter' is released.", time: "1h ago" }
+                   ].map(chat => (
+                      <div key={chat.id} className="p-4 bg-slate-50 border-2 border-slate-900 rounded-2xl shadow-[4px_4px_0px_#000] flex gap-4 active:shadow-none transition-all cursor-pointer">
+                         <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <MessageCircle className="text-white" size={24} />
+                         </div>
+                         <div>
+                            <h4 className="font-black text-slate-900 text-xs uppercase tracking-tight">{chat.name}</h4>
+                            <p className="text-[11px] font-bold text-slate-500 line-clamp-1">{chat.msg}</p>
+                            <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">{chat.time}</span>
+                         </div>
+                      </div>
+                   ))}
+                </div>
+                
+                <button className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                  Start New Conversation
+                </button>
+             </div>
           </motion.div>
         </>
       )}

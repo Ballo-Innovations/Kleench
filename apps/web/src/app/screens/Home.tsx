@@ -1,11 +1,12 @@
-import { Link, useNavigate } from "react-router";
 import {
   Play, Heart, ArrowRight,
   Network, Share2, BadgeCheck, Sparkles,
+  CloudUpload, X, MessageCircle, Send, UserPlus, ArrowDownToLine
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
 
-
+import { Link, useNavigate } from "react-router";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 import { PageHeader } from "../components/PageHeader";
 
@@ -153,6 +154,11 @@ const MARKETPLACE_PRODUCTS = [
 export function Home() {
   const loading = usePageLoading(800);
   const navigate = useNavigate();
+  const [activeSheet, setActiveSheet] = useState<null | "Upload" | "Share" | "Register Agent">(null);
+
+  const handleActionClick = (actionName: string) => {
+     setActiveSheet(actionName as "Upload" | "Share" | "Register Agent" | null);
+  };
 
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-28">
@@ -166,23 +172,23 @@ export function Home() {
         </div>
       ) : (
         <>
-      {/* ── PRIMARY ACTIONS: LOAD ADVERT, REFER & MARKET ── */}
+      {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
       <div className="px-5 mt-1 relative z-10 flex items-center justify-center gap-8">
         {[
-          { icon: Network, label: "Advert", to: "/advert", color: "text-[#FF8C00]", bg: "bg-white" },
-          { icon: Share2, label: "Refer", to: "/referral", color: "text-white", bg: "bg-[#FF8C00]" },
-          { icon: Sparkles, label: "Market", to: "/marketplace", color: "text-[#003366]", bg: "bg-white" },
+          { id: "Upload", icon: Network, label: "Upload", color: "text-[#FF8C00]", bg: "bg-white" },
+          { id: "Share", icon: Share2, label: "Share", color: "text-white", bg: "bg-[#FF8C00]" },
+          { id: "Register Agent", icon: Sparkles, label: "Agent", color: "text-[#003366]", bg: "bg-white" },
         ].map((item, i) => (
           <motion.div
             key={i}
             whileTap={{ scale: 0.9 }}
-            onClick={() => navigate(item.to)}
+            onClick={() => handleActionClick(item.id)}
             className="flex flex-col items-center gap-1.5 cursor-pointer group"
           >
-            <div className={`w-10 h-10 rounded-full border border-[#003366]/20 shadow-sm flex items-center justify-center transition-transform ${item.color} ${item.bg}`}>
-              <item.icon size={18} strokeWidth={2.5} />
+            <div className={`w-14 h-14 rounded-full ${item.bg} border border-[#003366]/10 flex items-center justify-center shadow-lg group-active:scale-95 transition-transform`}>
+              <item.icon className={item.color} size={22} strokeWidth={2.5} />
             </div>
-            <span className="text-[#003366] font-black tracking-tight text-[8px] uppercase">{item.label}</span>
+            <span className="text-[10px] font-black text-[#003366] mt-0.5 uppercase tracking-widest">{item.label}</span>
           </motion.div>
         ))}
       </div>
@@ -344,7 +350,89 @@ export function Home() {
       </>
       )}
 
+      {/* High-Fidelity Bottom Sheets */}
+      <AnimatePresence>
+        {activeSheet && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setActiveSheet(null)}
+              className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm max-w-md mx-auto"
+            />
+            <motion.div 
+              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+            >
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-8">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">{activeSheet}</h3>
+                  <button onClick={() => setActiveSheet(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border border-slate-200">
+                    <X size={20} className="text-slate-600" />
+                  </button>
+                </div>
 
+                {activeSheet === "Upload" && (
+                  <div className="space-y-6">
+                    <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
+                      <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
+                        <CloudUpload size={32} className="text-slate-900" strokeWidth={1.5} />
+                      </div>
+                      <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
+                      <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
+                    </div>
+                    <button className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                      Choose from Gallery
+                    </button>
+                  </div>
+                )}
+
+                {activeSheet === "Share" && (
+                  <div className="space-y-8">
+                    <div className="grid grid-cols-4 gap-6">
+                      {[
+                        { name: "WhatsApp", bg: "bg-[#25D366]", icon: MessageCircle },
+                        { name: "Twitter", bg: "bg-black", icon: 'X' },
+                        { name: "Facebook", bg: "bg-[#1877F2]", icon: UserPlus },
+                        { name: "Email", bg: "bg-slate-100", icon: Send }
+                      ].map(social => (
+                        <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
+                          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
+                            {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
+                          </div>
+                          <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none">{social.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="space-y-3">
+                      <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Universal Link</p>
+                      <div className="flex h-14 bg-slate-50 rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] p-1.5 focus-within:translate-x-0.5 focus-within:translate-y-0.5 focus-within:shadow-none transition-all">
+                        <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
+                        <button className="px-6 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeSheet === "Register Agent" && (
+                  <div className="space-y-5">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Full Name</label>
+                      <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Phone Number</label>
+                      <input type="tel" placeholder="+260..." className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                    </div>
+                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-orange-500 text-white border-2 border-slate-900 rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
+                      Secure Application
+                    </button>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

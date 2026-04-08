@@ -229,72 +229,78 @@ export function Learning() {
                 <motion.div 
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   onClick={() => setActiveSheet(null)}
-                  className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm max-w-md mx-auto"
+                  className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm max-w-md mx-auto"
                 />
                 <motion.div 
                   initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed bottom-0 left-0 right-0 z-[110] w-full max-w-md mx-auto bg-white rounded-t-[32px] overflow-hidden shadow-2xl pb-[env(safe-area-inset-bottom)]"
+                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
                 >
                   <div className="p-6">
-                    <div className="flex justify-between items-center mb-6">
-                      <h3 className="text-xl font-black text-slate-800 uppercase tracking-tighter">{activeSheet}</h3>
-                      <button onClick={() => setActiveSheet(null)} className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-transform"><X size={16} className="text-slate-500" /></button>
+                    <div className="flex justify-between items-center mb-8">
+                      <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">{activeSheet}</h3>
+                      <button onClick={() => setActiveSheet(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border border-slate-200 shadow-sm">
+                        <X size={20} className="text-slate-600" />
+                      </button>
                     </div>
 
                     {activeSheet === "Upload" && (
-                      <div className="space-y-4">
-                        <div className="border-2 border-dashed border-slate-300 bg-slate-50 rounded-3xl p-8 flex flex-col items-center justify-center text-center">
-                          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-100 mb-3">
-                            <CloudUpload size={28} className="text-slate-400" strokeWidth={1.5} />
+                      <div className="space-y-6">
+                        <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
+                          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
+                            <CloudUpload size={32} className="text-slate-900" strokeWidth={1.5} />
                           </div>
-                          <h4 className="font-bold text-slate-700 text-sm mb-1">Drag & Drop media</h4>
-                          <p className="text-slate-400 text-[10px] uppercase font-bold tracking-widest">or tap to browse files</p>
+                          <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Post Educational Content</h4>
+                          <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">Share your knowledge</p>
                         </div>
-                        <button className="w-full h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-bold uppercase tracking-widest text-xs active:scale-95 transition-transform shadow-lg shadow-slate-900/20">
-                          Choose from Gallery
+                        <button className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                          Upload Material
                         </button>
                       </div>
                     )}
 
                     {activeSheet === "Share" && (
-                      <div className="space-y-6">
-                        <div className="grid grid-cols-4 gap-4">
+                      <div className="space-y-8">
+                        <div className="grid grid-cols-4 gap-6">
                           {[
                             { name: "WhatsApp", bg: "bg-[#25D366]", icon: MessageCircle },
                             { name: "Twitter", bg: "bg-black", icon: 'X' },
                             { name: "Facebook", bg: "bg-[#1877F2]", icon: UserPlus },
-                            { name: "Email", bg: "bg-slate-200", icon: Send }
+                            { name: "Email", bg: "bg-slate-100", icon: Send }
                           ].map(social => (
-                            <div key={social.name} className="flex flex-col items-center gap-2 group cursor-pointer active:scale-90 transition-transform">
-                              <div className={`w-14 h-14 rounded-full flex items-center justify-center text-white shadow-sm ${social.bg} ${social.name==="Email" ? "text-slate-600":""}`}>
-                                {typeof social.icon === "string" ? <span className="font-black text-xl">{social.icon}</span> : <social.icon size={20} />}
+                            <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
+                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
+                                {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                               </div>
-                              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{social.name}</span>
+                              <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none">{social.name}</span>
                             </div>
                           ))}
                         </div>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Copy Link</p>
-                          <div className="flex h-12 bg-slate-100 rounded-2xl border border-slate-200 p-1">
-                            <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-3 text-xs font-bold text-slate-600 outline-none" />
-                            <button className="px-4 bg-white rounded-xl font-bold text-[10px] uppercase tracking-widest border border-slate-200 shadow-sm active:scale-95 transition-transform">Copy</button>
+                        <div className="space-y-3">
+                          <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Universal Link</p>
+                          <div className="flex h-14 bg-slate-50 rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] p-1.5 focus-within:translate-x-0.5 focus-within:translate-y-0.5 focus-within:shadow-none transition-all">
+                            <input type="text" readOnly value="https://kleench.com/l/82d2x" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
+                            <button className="px-6 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                           </div>
                         </div>
                       </div>
                     )}
 
                     {activeSheet === "Register Agent" && (
-                      <div className="space-y-4">
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
-                          <input type="text" placeholder="e.g. John Doe" className="w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-bold outline-none focus:border-slate-400 transition-colors" />
+                      <div className="space-y-5">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Learning Track</label>
+                          <select className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all">
+                             <option>Financial Literacy</option>
+                             <option>Crypto Compliance</option>
+                             <option>Business Management</option>
+                          </select>
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Phone Number</label>
-                          <input type="tel" placeholder="+260..." className="w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-bold outline-none focus:border-slate-400 transition-colors" />
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Phone Number</label>
+                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
                         </div>
-                        <button onClick={() => { toast.success("Agent Registered Successfully!"); setActiveSheet(null); }} className="w-full h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center font-bold uppercase tracking-widest text-xs active:scale-95 transition-transform shadow-lg shadow-orange-500/30 mt-2">
-                          Submit Application
+                        <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-blue-600 text-white border-2 border-slate-900 rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
+                          Secure Track Access
                         </button>
                       </div>
                     )}

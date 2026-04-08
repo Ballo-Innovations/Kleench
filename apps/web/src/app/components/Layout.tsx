@@ -1,11 +1,12 @@
-import { Outlet, useLocation, Link, useMatches } from "react-router";
-import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ShieldCheck } from "lucide-react";
+import { Outlet, useLocation, Link, useMatches, useNavigate } from "react-router";
+import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ShieldCheck, User, Tag } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 
 // Layout component with navigation
 export function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
@@ -109,7 +110,7 @@ export function Layout() {
 
 
       {/* Main Content */}
-      <main className={`relative z-10 w-full ${!isFullBleed ? "pt-20 px-4 pb-32" : ""}`}>
+      <main className={`relative w-full ${!isFullBleed ? "pt-20 px-4 pb-32" : ""}`}>
         <Outlet />
       </main>
 
@@ -170,46 +171,50 @@ export function Layout() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[70] w-full max-w-md mx-auto bg-white rounded-t-[32px] overflow-hidden shadow-2xl pb-[env(safe-area-inset-bottom)]"
+              className="fixed bottom-0 left-0 right-0 z-[1000] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
               <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xl font-black text-[#003366] uppercase tracking-tighter">Explore More</h3>
-                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 transition-colors">
-                    <X size={18} />
+                <div className="flex items-center justify-between mb-8">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Explore More</h3>
+                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 transition-all active:scale-90">
+                    <X size={20} />
                   </button>
                 </div>
-                
-                <div className="grid grid-cols-1 gap-3">
-                  <Link to="/marketplace" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 transition-colors">
-                      <Store size={20} strokeWidth={2.5} />
-                    </div>
-                    <div>
-                      <h4 className="text-[14px] font-black text-[#003366] uppercase tracking-tight">Marketplace</h4>
-                      <p className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-snug">Shop securely with Escrow</p>
-                    </div>
-                  </Link>
 
-                  <Link to="/crs" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 transition-colors">
-                      <ShieldCheck size={20} strokeWidth={2.5} />
+                <div className="grid grid-cols-3 gap-y-8 gap-x-4 mb-8">
+                  {[
+                    { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
+                    { id: 'crs', icon: ShieldCheck, label: 'CRS Score', path: '/crs' },
+                    { id: 'funding', icon: HeartHandshake, label: 'Funding', path: '/crowdfunding' },
+                    { id: 'profile', icon: User, label: 'Profile', path: '/profile' },
+                    { id: 'friends', icon: Users, label: 'Friends', path: '/friends' },
+                    { id: 'offers', icon: Tag, label: 'Offers', path: '/offers' },
+                  ].map((item) => (
+                    <div 
+                      key={item.id} 
+                      onClick={() => { navigate(item.path); setShowMore(false); }}
+                      className="flex flex-col items-center gap-3 group cursor-pointer active:scale-95 transition-all"
+                    >
+                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] group-hover:shadow-none transition-all">
+                        <item.icon size={28} className="text-slate-900" strokeWidth={1.5} />
+                      </div>
+                      <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest text-center leading-tight">
+                        {item.label}
+                      </span>
                     </div>
-                    <div>
-                      <h4 className="text-[14px] font-black text-[#003366] uppercase tracking-tight">CRS Score</h4>
-                      <p className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-snug">Check your reliable score</p>
-                    </div>
-                  </Link>
+                  ))}
+                </div>
 
-                  <Link to="/crowdfunding" onClick={() => setShowMore(false)} className="flex items-center gap-4 p-4 border-2 border-[#003366] bg-[#003366]/[0.02] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                    <div className="w-10 h-10 border-2 border-[#003366] bg-white flex items-center justify-center flex-shrink-0 transition-colors">
-                      <HeartHandshake size={20} strokeWidth={2.5} />
-                    </div>
-                    <div>
-                      <h4 className="text-[14px] font-black text-[#003366] uppercase tracking-tight">Crowdfunding</h4>
-                      <p className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-snug">Support verified projects</p>
-                    </div>
-                  </Link>
+                <div className="bg-slate-50 p-4 rounded-3xl border-2 border-slate-900 shadow-[6px_6px_0px_#0f172a] mb-4">
+                   <div className="flex items-center justify-between">
+                      <div>
+                         <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1">Verify Account</p>
+                         <p className="text-xs font-bold text-slate-500">Enable premium features</p>
+                      </div>
+                      <button className="px-4 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">
+                        Verify
+                      </button>
+                   </div>
                 </div>
               </div>
             </motion.div>
