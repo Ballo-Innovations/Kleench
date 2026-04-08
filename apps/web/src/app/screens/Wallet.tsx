@@ -108,17 +108,20 @@ export function Wallet() {
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
         customBalanceHUD={
-          <div className="flex justify-between items-center w-full h-full bg-[#003366] text-white px-4 border border-white/5 rounded-2xl shadow-sm shrink-0">
-            <div className="flex flex-col justify-center">
-              <p className="text-[#FF8C00] font-bold text-[8px] tracking-[0.2em] uppercase mb-0.5">Balance</p>
-              <h2 className="text-[17px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
+          <div className="flex items-center justify-between w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] shrink-0">
+            <div className="flex flex-col justify-center min-w-0">
+              <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Balance</p>
+              <h2 className="text-white text-[15px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
             </div>
-            <button 
-               onClick={() => setShowFinancialKyc(!hasFinancialKyc)}
-               className="bg-white/10 active:bg-white/20 text-[#FF8C00] px-3 py-1.5 rounded-full flex items-center justify-center font-bold tracking-[0.1em] text-[9px] border border-[#FF8C00]/20 active:scale-95 transition-all"
-            >
-              Verify KYC
-            </button>
+            
+            <div className="flex items-center pl-2.5">
+              <button 
+                 onClick={() => setShowFinancialKyc(!hasFinancialKyc)}
+                 className="flex items-center gap-1 bg-white/10 active:bg-white/20 border border-white/20 text-white px-2 py-1.5 rounded-full font-black uppercase tracking-[0.1em] text-[8px] transition-colors shadow-sm"
+              >
+                Verify KYC
+              </button>
+            </div>
           </div>
         }
       />
