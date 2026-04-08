@@ -10,7 +10,7 @@ import {
   MessageCircle,
   Share,
   MoreHorizontal,
-  Gift,
+  UserPlus,
   Headphones
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -105,7 +105,7 @@ export function Advert() {
       {loading ? (
         <PageSkeletons.Generic />
       ) : (
-        <div className="px-4 mt-6 relative z-20 space-y-10">
+        <div className="px-4 mt-3 relative z-20 space-y-6">
 
           {/* Top Action Buttons (Upload, Share, Register Agent) - Circular Soft Brutalism */}
           <section className="px-2">
@@ -113,18 +113,18 @@ export function Advert() {
                {[
                  { id: 'upload', icon: CloudUpload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
-                 { id: 'gift', icon: Gift, label: "Gift" }
+                 { id: 'gift', icon: UserPlus, label: "Register Agent" }
                ].map(btn => (
                  <motion.button 
                    key={btn.id}
                    onClick={() => handleActionClick(btn.label)}
                    whileTap={{ scale: 0.92 }}
-                   className="flex flex-col items-center justify-center gap-3 group outline-none"
+                   className="flex flex-col items-center justify-center gap-1.5 group outline-none"
                  >
-                   <div className="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] bg-white rounded-full flex flex-col items-center justify-center border-2 border-slate-800 shadow-md group-active:translate-y-1 group-active:shadow-none transition-all">
-                      <btn.icon size={26} className="text-slate-800" strokeWidth={2.2} />
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
+                      <btn.icon size={20} className="text-slate-800" strokeWidth={2.2} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[11px] sm:text-[13px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[10px] sm:text-xs text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
                  </motion.button>
                ))}
              </div>

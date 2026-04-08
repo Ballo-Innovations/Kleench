@@ -4,11 +4,11 @@ import {
   Eye,
   CloudUpload, 
   Send, 
-  Gift,
   Search,
   Circle,
   Clock,
-  User
+  User,
+  UserPlus
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
@@ -110,44 +110,44 @@ export function Learning() {
       {loading ? (
         <PageSkeletons.Academy />
       ) : (
-        <div className="px-4 mt-4 relative z-20 space-y-6">
+        <div className="px-4 mt-2 relative z-20 space-y-4">
 
           {/* Search Bar & Live Button */}
           <div className="flex items-center gap-3">
-             <div className="flex-1 bg-white rounded-xl h-12 flex items-center px-4 shadow-sm border border-gray-100">
-                <Search size={18} className="text-gray-400 mr-2 shrink-0" strokeWidth={2.5} />
+             <div className="flex-1 bg-white rounded-xl h-10 flex items-center px-4 shadow-sm border border-gray-100">
+                <Search size={16} className="text-gray-400 mr-2 shrink-0" strokeWidth={2.5} />
                 <input 
                    type="text" 
                    value={searchQuery}
                    onChange={(e) => setSearchQuery(e.target.value)}
                    placeholder="Search" 
-                   className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[14px]"
+                   className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[13px]"
                 />
              </div>
-             <button onClick={() => handleActionClick("Live Stream")} className="h-12 bg-white rounded-xl px-4 flex items-center gap-2 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
-                <span className="text-[#E54D2E] font-black text-[14px] tracking-tight">LIVE</span>
-                <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={10} />
+             <button onClick={() => handleActionClick("Live Stream")} className="h-10 bg-white rounded-xl px-4 flex items-center gap-2 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+                <span className="text-[#E54D2E] font-black text-[13px] tracking-tight pt-[1.5px]">LIVE</span>
+                <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={8} />
              </button>
           </div>
 
-          {/* Top Action Buttons (Upload, Share, Gift) - Circular Soft Brutalism */}
+          {/* Top Action Buttons (Upload, Share, Register Agent) - Circular Soft Brutalism */}
           <section className="px-2">
              <div className="flex items-start justify-between sm:justify-around gap-2 px-2">
                {[
                  { id: 'upload', icon: CloudUpload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
-                 { id: 'gift', icon: Gift, label: "Gift" }
+                 { id: 'gift', icon: UserPlus, label: "Register Agent" }
                ].map(btn => (
                  <motion.button 
                    key={btn.id}
                    onClick={() => handleActionClick(btn.label)}
                    whileTap={{ scale: 0.92 }}
-                   className="flex flex-col items-center justify-center gap-3 group outline-none"
+                   className="flex flex-col items-center justify-center gap-1.5 group outline-none"
                  >
-                   <div className="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] bg-white rounded-full flex flex-col items-center justify-center border-2 border-slate-800 shadow-md group-active:translate-y-1 group-active:shadow-none transition-all">
-                      <btn.icon size={26} className="text-slate-800" strokeWidth={2.2} />
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex flex-col items-center justify-center border-[1.5px] border-slate-800 shadow-sm group-active:translate-y-1 group-active:shadow-none transition-all">
+                      <btn.icon size={20} className="text-slate-800" strokeWidth={2.2} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[11px] sm:text-[13px] text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[10px] sm:text-xs text-center leading-tight whitespace-normal break-words w-20">{btn.label}</span>
                  </motion.button>
                ))}
              </div>
