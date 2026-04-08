@@ -106,9 +106,9 @@ export function Advert() {
           </section>
 
           {/* Main Interleaved Feed Area */}
-          <section className="space-y-6 pb-12 mt-4">
+          <section className="space-y-4 pb-12 mt-4">
              {FEED_POSTS.map((post) => (
-                <div key={post.id} className="space-y-5">
+                <div key={post.id} className="space-y-4">
                    
                    {/* 01. Video Ads Carousel — Netflix-style portrait row */}
                    <div>
@@ -123,7 +123,7 @@ export function Advert() {
                              whileTap={{ scale: 0.96 }}
                              onClick={() => handleMediaClick(ad.image)}
                              key={ad.id}
-                             className="relative shrink-0 w-[120px] h-[190px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
+                             className="relative shrink-0 w-[140px] h-[200px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
                            >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
                               {/* Deep gradient for text legibility */}
@@ -155,7 +155,7 @@ export function Advert() {
                              whileTap={{ scale: 0.96 }}
                              onClick={() => handleMediaClick(ad.image)}
                              key={ad.id}
-                             className="relative shrink-0 w-[155px] h-[108px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
+                             className="relative shrink-0 w-[140px] h-[200px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
                            >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
@@ -181,7 +181,7 @@ export function Advert() {
                              whileTap={{ scale: 0.96 }}
                              onClick={() => handleMediaClick(ad.image)}
                              key={ad.id}
-                             className="relative shrink-0 w-[120px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-950"
+                             className="relative shrink-0 w-[140px] h-[200px] rounded-xl overflow-hidden cursor-pointer bg-slate-950"
                            >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black via-slate-900/60 to-slate-900/30" />
