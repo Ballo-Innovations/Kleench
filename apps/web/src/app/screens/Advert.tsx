@@ -26,6 +26,13 @@ import adPodcast from "@/assets/ads/ad_podcast.png";
 import adHealth from "@/assets/ads/ad_health.png";
 import adCode from "@/assets/ads/ad_code.png";
 
+// New high-quality generated assets
+import adEvCar from "@/assets/ads/ad_ev_car.png";
+import adResort from "@/assets/ads/ad_resort.png";
+import adHeadphones from "@/assets/ads/ad_headphones.png";
+import adSmarthome from "@/assets/ads/ad_smarthome.png";
+import adSneakers from "@/assets/ads/ad_sneakers.png";
+
 export function Advert() {
   const loading = usePageLoading(800);
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,21 +49,33 @@ export function Advert() {
   };
 
   const VIDEO_ADS = [
-    { id: 1, title: "DRIVE LUXURY", image: adCar },
-    { id: 2, title: "DELICIOUS BURGER", image: adBurger },
-    { id: 3, title: "SALE 50% OFF", image: adShopping }
+    { id: 1, title: "FUTURE TECH", image: adEvCar },
+    { id: 2, title: "LUXURY ESCAPE", image: adResort },
+    { id: 3, title: "DRIVE LUXURY", image: adCar },
+    { id: 4, title: "SMART LIVING", image: adSmarthome },
+    { id: 5, title: "DELICIOUS BURGER", image: adBurger },
+    { id: 6, title: "SALE 50% OFF", image: adShopping },
+    { id: 7, title: "PREMIUM SOUND", image: adHeadphones }
   ];
 
   const PICTURE_ADS = [
-    { id: 1, title: "SUMMER VACATION", image: adBeach },
-    { id: 2, title: "NEW ARRIVALS", image: adShopping },
-    { id: 3, title: "GET FIT NOW!", image: adBurger }
+    { id: 1, title: "URBAN STYLE", image: adSneakers },
+    { id: 2, title: "SUMMER VACATION", image: adBeach },
+    { id: 3, title: "NEW ARRIVALS", image: adShopping },
+    { id: 4, title: "GET FIT NOW!", image: adHealth },
+    { id: 5, title: "AUTO SALES", image: adCar },
+    { id: 6, title: "DELICIOUS BURGER", image: adBurger },
+    { id: 7, title: "RESORT VIEW", image: adResort }
   ];
 
   const AUDIO_ADS = [
-    { id: 1, title: "BUSINESS PODCAST", image: adPodcast, time: "2:15" },
-    { id: 2, title: "HEALTH TIPS", image: adHealth, time: "1:30" },
-    { id: 3, title: "LEARN TO CODE", image: adCode, time: "5:00" }
+    { id: 1, title: "DEEP FOCUS", image: adPodcast, time: "2:15" },
+    { id: 2, title: "TECH TALKS", image: adCode, time: "5:00" },
+    { id: 3, title: "STUDIO SESSIONS", image: adHeadphones, time: "4:20" },
+    { id: 4, title: "HEALTH TIPS", image: adHealth, time: "1:30" },
+    { id: 5, title: "FUTURE GADGETS", image: adEvCar, time: "3:45" },
+    { id: 6, title: "SMART HOME", image: adSmarthome, time: "0:50" },
+    { id: 7, title: "CITY VIBES", image: adSneakers, time: "2:10" }
   ];
 
   const FEED_POSTS = [
@@ -110,98 +129,98 @@ export function Advert() {
              {FEED_POSTS.map((post) => (
                 <div key={post.id} className="space-y-2">
                    
-                   {/* 01. Video Ads Carousel — Netflix-style portrait row */}
+                   {/* 01. Video Ads Carousel — Multi-card Grid */}
                    <div>
                      <div className="flex items-center gap-2 mb-1 px-1">
                        <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                        <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
                      </div>
                      {/* Bleed to screen edges */}
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
                         {VIDEO_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
                              onClick={() => handleMediaClick(ad.image)}
                              key={ad.id}
-                             className="relative shrink-0 w-[95px] h-[140px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
+                             className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
                            >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
                               {/* Deep gradient for text legibility */}
                               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                               
                               {/* Glassmorphism play badge */}
-                              <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={9} />
+                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={7} />
                               </div>
 
                               {/* Title strip */}
-                              <div className="absolute bottom-0 left-0 right-0 p-2">
-                                 <span className="font-black text-white text-[8px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
                               </div>
                            </motion.div>
                         ))}
                      </div>
                    </div>
 
-                   {/* 02. Picture Ads Carousel — landscape tiles */}
+                   {/* 02. Picture Ads Carousel — Multi-card Grid */}
                    <div>
                      <div className="flex items-center gap-2 mb-1 px-1">
                        <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                        <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
                         {PICTURE_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
                              onClick={() => handleMediaClick(ad.image)}
                              key={ad.id}
-                             className="relative shrink-0 w-[95px] h-[140px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
+                             className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
                            >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
                               
                               {/* Bottom title */}
-                              <div className="absolute bottom-0 left-0 right-0 p-2">
-                                 <span className="font-black text-white text-[8px] uppercase tracking-widest leading-tight line-clamp-1 drop-shadow-sm">{ad.title}</span>
+                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-1 drop-shadow-sm">{ad.title}</span>
                               </div>
                            </motion.div>
                         ))}
                      </div>
                    </div>
 
-                   {/* 03. Audio Ads Carousel — dark mood tiles */}
+                   {/* 03. Audio Ads Carousel — Multi-card Grid */}
                    <div>
                      <div className="flex items-center gap-2 mb-1 px-1">
                        <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                        <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "6px" }}>
+                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
                         {AUDIO_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
                              onClick={() => handleMediaClick(ad.image)}
                              key={ad.id}
-                             className="relative shrink-0 w-[95px] h-[140px] rounded-xl overflow-hidden cursor-pointer bg-slate-950"
+                             className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-950"
                            >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black via-slate-900/60 to-slate-900/30" />
                               
                               {/* Glassmorphism headphone badge — centred */}
                               <div className="absolute inset-0 flex items-center justify-center">
-                                 <div className="w-7 h-7 rounded-full bg-white/15 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                    <Headphones className="text-white" size={12} strokeWidth={1.5} />
+                                 <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                    <Headphones className="text-white" size={10} strokeWidth={1.5} />
                                  </div>
                               </div>
 
                               {/* Title + waveform strip */}
-                              <div className="absolute bottom-0 left-0 right-0 p-2 flex flex-col gap-1">
-                                 <span className="font-black text-white/95 text-[8px] uppercase tracking-widest leading-tight line-clamp-1">{ad.title}</span>
+                              <div className="absolute bottom-0 left-0 right-0 p-1.5 flex flex-col gap-1">
+                                 <span className="font-black text-white/95 text-[7px] uppercase tracking-widest leading-tight line-clamp-1">{ad.title}</span>
                                  <div className="flex items-center gap-1">
-                                    <Volume2 size={7} className="text-orange-400 shrink-0" />
+                                    <Volume2 size={6} className="text-orange-400 shrink-0" />
                                     <div className="flex-1 h-[2px] bg-white/20 rounded-full relative overflow-hidden">
                                        <div className="absolute left-0 top-0 bottom-0 w-[38%] bg-orange-500 rounded-full" />
                                     </div>
-                                    <div className="absolute right-1 bottom-1.5 text-[6px] font-black text-white/60">{ad.time}</div>
+                                    <div className="absolute right-1 bottom-1.5 text-[5px] font-black text-white/60">{ad.time}</div>
                                  </div>
                               </div>
                            </motion.div>
