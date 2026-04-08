@@ -108,116 +108,152 @@ export function Advert() {
           {/* Main Interleaved Feed Area */}
           <section className="space-y-6 pb-12 mt-4">
              {FEED_POSTS.map((post) => (
-                <div key={post.id} className="space-y-6">
+                <div key={post.id} className="space-y-5">
                    
-                   {/* 01. Video Ads Carousel */}
+                   {/* 01. Video Ads Carousel — Netflix-style portrait row */}
                    <div>
-                     <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Video Ads</h3>
-                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                     <div className="flex items-center gap-2 mb-2.5 px-1">
+                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                       <h3 className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
+                     </div>
+                     {/* Bleed to screen edges */}
+                     <div className="-mx-4 flex overflow-x-auto gap-[6px] pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none" }}>
                         {VIDEO_ADS.map(ad => (
-                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[180px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                           <motion.div
+                             whileTap={{ scale: 0.96 }}
+                             onClick={() => handleMediaClick(ad.image)}
+                             key={ad.id}
+                             className="relative shrink-0 w-[120px] h-[190px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
+                           >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+                              {/* Deep gradient for text legibility */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                               
-                              <div className="absolute inset-0 flex flex-col justify-end p-3 pb-3">
-                                 <span className="font-bold text-white text-[10px] uppercase tracking-wide leading-tight line-clamp-2">{ad.title}</span>
+                              {/* Glassmorphism play badge */}
+                              <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={11} />
                               </div>
-       
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                 <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/50 flex items-center justify-center transition-transform group-active:scale-90">
-                                    <Play fill="white" className="text-white ml-0.5" size={18} />
-                                 </div>
+
+                              {/* Title strip */}
+                              <div className="absolute bottom-0 left-0 right-0 p-2.5">
+                                 <span className="font-black text-white text-[9px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
                               </div>
-                           </div>
+                           </motion.div>
                         ))}
                      </div>
                    </div>
 
-                   {/* 02. Picture Ads Carousel */}
+                   {/* 02. Picture Ads Carousel — landscape tiles */}
                    <div>
-                     <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Picture Ads</h3>
-                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                     <div className="flex items-center gap-2 mb-2.5 px-1">
+                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                       <h3 className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
+                     </div>
+                     <div className="-mx-4 flex overflow-x-auto gap-[6px] pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none" }}>
                         {PICTURE_ADS.map(ad => (
-                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-white border border-slate-200 active:scale-95 transition-transform">
+                           <motion.div
+                             whileTap={{ scale: 0.96 }}
+                             onClick={() => handleMediaClick(ad.image)}
+                             key={ad.id}
+                             className="relative shrink-0 w-[155px] h-[108px] rounded-xl overflow-hidden cursor-pointer bg-slate-900"
+                           >
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
                               
-                              <div className="absolute inset-0 flex flex-col justify-end p-3 text-center">
-                                 <span className="font-bold text-white text-[10px] uppercase tracking-wide leading-tight line-clamp-2">{ad.title}</span>
+                              {/* Bottom title */}
+                              <div className="absolute bottom-0 left-0 right-0 p-2">
+                                 <span className="font-black text-white text-[9px] uppercase tracking-widest leading-tight line-clamp-1 drop-shadow-sm">{ad.title}</span>
                               </div>
-                           </div>
+                           </motion.div>
                         ))}
                      </div>
                    </div>
 
-                   {/* 03. Audio Ads Carousel */}
+                   {/* 03. Audio Ads Carousel — dark mood tiles */}
                    <div>
-                     <h3 className="font-black text-slate-800 text-[11px] uppercase tracking-widest mb-3 px-1">Audio Ads</h3>
-                     <div className="flex overflow-x-auto gap-3 pb-2 px-1" style={{ scrollbarWidth: "none" }}>
+                     <div className="flex items-center gap-2 mb-2.5 px-1">
+                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                       <h3 className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
+                     </div>
+                     <div className="-mx-4 flex overflow-x-auto gap-[6px] pb-2 pl-4 pr-4" style={{ scrollbarWidth: "none" }}>
                         {AUDIO_ADS.map(ad => (
-                           <div onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[140px] h-[140px] rounded-2xl overflow-hidden group cursor-pointer shadow-sm bg-slate-900 border border-slate-200 active:scale-95 transition-transform">
-                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-slate-900/40 to-slate-900/80" />
+                           <motion.div
+                             whileTap={{ scale: 0.96 }}
+                             onClick={() => handleMediaClick(ad.image)}
+                             key={ad.id}
+                             className="relative shrink-0 w-[120px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-950"
+                           >
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black via-slate-900/60 to-slate-900/30" />
                               
-                              <div className="absolute inset-0 flex items-center justify-center pb-2 z-10">
-                                 <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center">
-                                    <Headphones className="text-white" size={18} strokeWidth={1.5} />
+                              {/* Glassmorphism headphone badge — centred */}
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                 <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                    <Headphones className="text-white" size={15} strokeWidth={1.5} />
                                  </div>
                               </div>
-                              
-                              <div className="absolute inset-0 flex flex-col justify-between p-3 z-10 pointer-events-none">
-                                 <span className="font-bold text-white/90 text-[9px] uppercase tracking-wide text-center leading-tight line-clamp-2 mt-1">{ad.title}</span>
-                                 
-                                 {/* Sleek Audio Player Bar */}
-                                 <div className="flex items-center gap-1.5 mt-auto w-full px-1 mb-1">
-                                    <Volume2 size={10} className="text-white/80 shrink-0" />
-                                    <div className="flex-1 h-[2px] bg-white/20 rounded-full relative">
-                                       <div className="absolute left-0 top-0 bottom-0 w-[40%] bg-[#FF8C00] rounded-full" />
-                                       <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-[6px] h-[6px] bg-white rounded-full translate-x-[-50%] shadow-sm" />
+
+                              {/* Title + waveform strip */}
+                              <div className="absolute bottom-0 left-0 right-0 p-2 flex flex-col gap-1.5">
+                                 <span className="font-black text-white/95 text-[8px] uppercase tracking-widest leading-tight line-clamp-1">{ad.title}</span>
+                                 <div className="flex items-center gap-1.5">
+                                    <Volume2 size={8} className="text-orange-400 shrink-0" />
+                                    <div className="flex-1 h-[2px] bg-white/20 rounded-full relative overflow-hidden">
+                                       <div className="absolute left-0 top-0 bottom-0 w-[38%] bg-orange-500 rounded-full" />
                                     </div>
-                                    <span className="text-[8px] font-bold text-white/80 shrink-0">{ad.time}</span>
+                                    <div className="absolute right-2 bottom-2 text-[7px] font-black text-white/60">{ad.time}</div>
                                  </div>
                               </div>
-                           </div>
+                           </motion.div>
                         ))}
                      </div>
                    </div>
 
-                   {/* 04. Main Full-Width Post */}
-                   <div className="bg-white border border-slate-200 rounded-3xl shadow-sm flex flex-col w-full overflow-hidden relative">
-                      {/* Header */}
-                      <div className="flex items-center justify-between p-4 bg-white relative z-10">
-                         <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-full shadow-sm ${post.avatarBg}`} />
-                            <span className="font-bold text-slate-800 text-[10px] uppercase tracking-widest">{post.brand}</span>
+                   {/* 04. Full-Width Ad Post — premium card */}
+                   <div className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.07)] border border-slate-100 relative">
+                      {/* Coloured left-accent bar */}
+                      <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${post.avatarBg}`} />
+
+                      {/* Brand header */}
+                      <div className="flex items-center justify-between px-4 py-3 pl-5">
+                         <div className="flex items-center gap-2.5">
+                            <div className={`w-7 h-7 rounded-full ${post.avatarBg} shadow-sm ring-2 ring-white ring-offset-1`} />
+                            <div className="flex flex-col">
+                               <span className="font-black text-slate-900 text-[10px] uppercase tracking-widest leading-none">{post.brand}</span>
+                               <span className="text-[8px] font-semibold text-slate-400 tracking-wide mt-0.5">Sponsored</span>
+                            </div>
                          </div>
-                         <button className="w-8 h-8 flex items-center justify-center rounded-full transition-all text-slate-400 active:bg-slate-50">
-                            <MoreHorizontal size={18} />
+                         <button className="w-7 h-7 flex items-center justify-center rounded-full text-slate-400 active:bg-slate-50 transition-all">
+                            <MoreHorizontal size={16} />
                          </button>
                       </div>
                       
-                      {/* Media Segment */}
-                      <div onClick={() => handleMediaClick(post.media)} className={`w-full aspect-[4/5] relative bg-slate-100 active:scale-[0.99] transition-transform cursor-pointer overflow-hidden`}>
+                      {/* Media */}
+                      <div
+                        onClick={() => handleMediaClick(post.media)}
+                        className="w-full aspect-[4/5] relative bg-slate-100 cursor-pointer overflow-hidden active:scale-[0.99] transition-transform"
+                      >
                          <img src={post.media} alt={post.brand} className="absolute inset-0 w-full h-full object-cover" />
+                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                          {post.id % 2 !== 0 && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/5 pointer-events-none group cursor-pointer">
-                               <div className="w-14 h-14 rounded-full bg-black/20 backdrop-blur-md border border-white/50 flex items-center justify-center shadow-lg transition-transform group-active:scale-95">
-                                  <Play fill="white" className="text-white ml-1 mt-0.5" size={24} />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                               <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 ring-1 ring-white/20 flex items-center justify-center shadow-2xl">
+                                  <Play fill="white" className="text-white ml-1" size={22} />
                                </div>
                             </div>
                          )}
                       </div>
                       
-                      {/* Footer Actions */}
-                      <div className="flex items-center gap-6 px-5 py-4 bg-white">
-                         <button className="flex items-center gap-1.5 text-slate-800 active:scale-95 transition-all">
-                            <Heart size={22} strokeWidth={1.5} />
+                      {/* Action row */}
+                      <div className="flex items-center gap-5 px-5 py-3 border-t border-slate-50 pl-6">
+                         <button className="flex items-center gap-1.5 text-slate-700 active:scale-90 transition-all">
+                            <Heart size={20} strokeWidth={1.5} />
                          </button>
-                         <button className="flex items-center gap-1.5 text-slate-800 active:scale-95 transition-all">
-                            <MessageCircle size={22} strokeWidth={1.5} />
+                         <button className="flex items-center gap-1.5 text-slate-700 active:scale-90 transition-all">
+                            <MessageCircle size={20} strokeWidth={1.5} />
                          </button>
-                         <button className="flex items-center gap-1.5 text-slate-800 active:scale-95 transition-all ml-auto">
-                            <Share size={20} strokeWidth={1.5} />
+                         <button className="flex items-center gap-1.5 text-slate-700 active:scale-90 transition-all ml-auto">
+                            <Share size={18} strokeWidth={1.5} />
                          </button>
                       </div>
                    </div>
@@ -225,9 +261,9 @@ export function Advert() {
                 </div>
              ))}
              
-             {/* Infinite Scroll Loader Placeholder */}
+             {/* Infinite Scroll Loader */}
              <div className="py-8 flex items-center justify-center">
-                 <div className="w-5 h-5 border-[2px] border-slate-400 border-t-transparent rounded-full animate-spin" />
+                 <div className="w-5 h-5 border-[2px] border-slate-300 border-t-orange-500 rounded-full animate-spin" />
              </div>
           </section>
 
