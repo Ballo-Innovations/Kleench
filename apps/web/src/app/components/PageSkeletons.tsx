@@ -158,47 +158,51 @@ export const PageSkeletons = {
   ),
 
   Academy: () => (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-28 pt-6">
-      <div className="px-5 space-y-10">
-        {/* Progress Ledger */}
-        <div className="bg-white border-2 border-[#003366]/10 p-6 shadow-[6px_6px_0px_#f0f0f0] space-y-6">
-           <div className="flex justify-between items-start">
-              <div className="space-y-2">
-                 <Skeleton className="h-3 w-24 opacity-30" />
-                 <Skeleton className="h-6 w-56" />
+    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pt-1 overflow-x-hidden">
+      <div className="px-4 relative z-20 space-y-2">
+        {/* Search Bar & Live Button */}
+        <div className="flex items-center gap-2">
+           <Skeleton className="flex-1 h-9 rounded-xl bg-slate-200 shadow-sm" />
+           <Skeleton className="w-14 h-9 rounded-xl bg-slate-200 shadow-sm shrink-0" />
+        </div>
+
+        {/* Action Bar Skeleton */}
+        <section className="px-2 pt-0">
+          <div className="flex items-center justify-center gap-6 px-4">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="flex flex-col items-center justify-center gap-1 group">
+                <Skeleton className="w-10 h-10 rounded-full bg-slate-200 shadow-sm" />
+                <Skeleton className="h-1.5 w-10 bg-slate-200 rounded mt-0.5" />
               </div>
-              <Skeleton className="h-10 w-10 border-2 border-[#003366]/10" />
-           </div>
-           <div className="space-y-2">
-              <div className="flex justify-between"><Skeleton className="h-3 w-32" /><Skeleton className="h-3 w-16" /></div>
-              <Skeleton className="h-2 w-full bg-gray-100" />
-           </div>
-           <Skeleton className="h-14 w-full shadow-[4px_4px_0px_#f0f0f0] border-2 border-[#003366]/10" />
-        </div>
+            ))}
+          </div>
+        </section>
 
-        {/* Horizontal Reels */}
-        <div className="space-y-4">
-           <div className="flex items-center gap-3"><Skeleton className="h-4 w-32 opacity-20" /><div className="flex-1 h-[2px] bg-gray-100" /></div>
-           <div className="flex gap-4 overflow-hidden -mx-5 px-5">
-              {[1, 2, 3].map(i => (
-                <Skeleton key={i} className="flex-shrink-0 w-[140px] aspect-[9/16] border-2 border-[#003366]/10 shadow-[4px_4px_0px_#f0f0f0]" />
-              ))}
-           </div>
-        </div>
-
-        {/* Course Cards (Skill Hub) */}
-        <div className="space-y-6">
-           <div className="flex items-center gap-3"><Skeleton className="h-4 w-24 opacity-20" /><div className="flex-1 h-[2px] bg-gray-100" /></div>
-           {[1, 2].map(i => (
-             <div key={i} className="flex h-32 border-2 border-[#003366]/10 shadow-[6px_6px_0px_#f0f0f0]">
-                <Skeleton className="w-24 h-full" />
-                <div className="p-4 flex-1 space-y-4">
-                   <div className="space-y-2"><Skeleton className="h-4 w-3/4" /><Skeleton className="h-3 w-1/2 opacity-50" /></div>
-                   <div className="flex justify-between items-center"><Skeleton className="h-4 w-20" /><Skeleton className="h-4 w-24 opacity-40" /></div>
-                </div>
-             </div>
-           ))}
-        </div>
+        {/* Carousel Sections Skeleton */}
+        <section className="space-y-6 pb-12 mt-1">
+          {[1, 2, 3].map((postIndex) => (
+            <div key={postIndex} className="space-y-6">
+               <div>
+                  <div className="flex items-center justify-between mb-1 px-1">
+                     <div className="flex items-center gap-2">
+                       <Skeleton className="w-[3px] h-3.5 rounded-full bg-slate-200 shrink-0" />
+                       <Skeleton className="h-2 w-24 bg-slate-200 rounded" />
+                     </div>
+                     <Skeleton className="h-2 w-8 bg-slate-200 rounded" />
+                  </div>
+                  <div className="-mx-5 flex gap-3 overflow-hidden pb-2 pl-5 pr-5">
+                     {[1, 2, 3, 4].map(cardIndex => (
+                        <Skeleton key={cardIndex} className="relative flex-shrink-0 w-28 h-40 bg-gray-200 border border-gray-100 rounded-xl overflow-hidden shadow-sm">
+                           <div className="absolute bottom-2 left-2">
+                              <Skeleton className="h-2 w-16 bg-slate-300 rounded" />
+                           </div>
+                        </Skeleton>
+                     ))}
+                  </div>
+               </div>
+            </div>
+          ))}
+        </section>
       </div>
     </div>
   ),
@@ -344,20 +348,42 @@ export const PageSkeletons = {
   ),
 
   Generic: () => (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pt-6">
-      <div className="px-6 space-y-8">
-        <Skeleton className="h-56 w-full border-2 border-[#003366]/10 shadow-[6px_6px_0px_#f0f0f0]" />
-        <div className="space-y-4">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="flex gap-4 p-4 border-2 border-[#003366]/5">
-               <Skeleton className="h-12 w-12 rounded-xl" />
-               <div className="flex-1 space-y-2">
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-3 w-1/2 opacity-50" />
+    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pt-1 overflow-x-hidden">
+      <div className="px-4 relative z-20 space-y-2">
+        {/* Action Bar Skeleton */}
+        <section className="px-2 pt-0">
+          <div className="flex items-center justify-center gap-6 px-4">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="flex flex-col items-center justify-center gap-1 group">
+                <Skeleton className="w-10 h-10 rounded-full bg-slate-200 shadow-sm" />
+                <Skeleton className="h-1.5 w-10 bg-slate-200 rounded mt-0.5" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Carousel Sections Skeleton */}
+        <section className="space-y-6 pb-12 mt-1">
+          {[1, 2, 3].map((postIndex) => (
+            <div key={postIndex} className="space-y-6">
+               <div>
+                  <div className="flex items-center gap-2 mb-1 px-1">
+                     <Skeleton className="w-[3px] h-3.5 rounded-full bg-slate-200 shrink-0" />
+                     <Skeleton className="h-2 w-20 bg-slate-200 rounded" />
+                  </div>
+                  <div className="-mx-5 flex gap-3 overflow-hidden pb-2 pl-5 pr-5">
+                     {[1, 2, 3, 4].map(cardIndex => (
+                        <Skeleton key={cardIndex} className="relative flex-shrink-0 w-28 h-40 bg-gray-200 border border-gray-100 rounded-xl overflow-hidden shadow-sm">
+                           <div className="absolute bottom-2 left-2">
+                              <Skeleton className="h-2 w-16 bg-slate-300 rounded" />
+                           </div>
+                        </Skeleton>
+                     ))}
+                  </div>
                </div>
             </div>
           ))}
-        </div>
+        </section>
       </div>
     </div>
   ),
