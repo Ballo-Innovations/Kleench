@@ -128,7 +128,7 @@ export function Learning() {
 
           {/* Top Action Buttons */}
           <section className="px-2 pt-0">
-             <div className="flex items-start justify-between gap-1 px-5">
+             <div className="flex items-center justify-center gap-6 px-4">
                {[
                  { id: 'upload', icon: Upload, label: "Upload" },
                  { id: 'share', icon: Send, label: "Share" },
@@ -150,9 +150,9 @@ export function Learning() {
           </section>
 
           {/* Main Interleaved Learning Feed */}
-          <section className="space-y-2 pb-12 mt-1">
+          <section className="space-y-6 pb-12 mt-1">
              {EXPLORE_MORE_VIDEOS.map((video) => (
-                <div key={video.id} className="space-y-2">
+                <div key={video.id} className="space-y-6">
                    
                    {/* 01. Learn & Earn Videos Carousel */}
                    <div>
@@ -163,18 +163,18 @@ export function Learning() {
                         </div>
                         <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
+                     <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_1.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900">
-                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
-                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={7} />
+                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={10} />
                               </div>
 
-                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
-                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              <div className="absolute bottom-2 left-2 right-2">
+                                 <p className="block text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
                               </div>
                            </motion.div>
                         ))}
@@ -190,18 +190,18 @@ export function Learning() {
                         </div>
                         <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
+                     <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_2.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900">
-                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
-                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={7} />
+                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={10} />
                               </div>
 
-                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
-                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              <div className="absolute bottom-2 left-2 right-2">
+                                 <p className="block text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
                               </div>
                            </motion.div>
                         ))}
@@ -217,18 +217,18 @@ export function Learning() {
                         </div>
                         <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
                      </div>
-                     <div className="-mx-4 flex overflow-x-auto pb-1.5 pl-4 pr-4" style={{ scrollbarWidth: "none", gap: "8px" }}>
+                     <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_3.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative shrink-0 w-[82px] h-[120px] rounded-xl overflow-hidden cursor-pointer bg-slate-900">
-                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                              <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
-                              <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={7} />
+                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                                 <Play fill="white" className="text-white ml-0.5" size={10} />
                               </div>
 
-                              <div className="absolute bottom-0 left-0 right-0 p-1.5">
-                                 <span className="font-black text-white text-[7px] uppercase tracking-widest leading-tight line-clamp-2 drop-shadow-sm">{ad.title}</span>
+                              <div className="absolute bottom-2 left-2 right-2">
+                                 <p className="block text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
                               </div>
                            </motion.div>
                         ))}

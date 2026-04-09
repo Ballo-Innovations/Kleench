@@ -1,12 +1,12 @@
 import {
   Play, Heart, ArrowRight,
   Network, Share2, BadgeCheck, Sparkles,
-  CloudUpload, X, MessageCircle, Send, UserPlus, ArrowDownToLine
+  CloudUpload, X, MessageCircle, Send, UserPlus
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
 import { PageHeader } from "../components/PageHeader";
 
@@ -153,7 +153,7 @@ const MARKETPLACE_PRODUCTS = [
 
 export function Home() {
   const loading = usePageLoading(800);
-  const navigate = useNavigate();
+
   const [activeSheet, setActiveSheet] = useState<null | "Upload" | "Share" | "Register Agent">(null);
 
   const handleActionClick = (actionName: string) => {
