@@ -1,28 +1,30 @@
 import { motion, AnimatePresence } from "motion/react";
 import { 
-  Users, 
-  Plus, 
-  MessageCircle, 
   MoreVertical, 
-  Heart, 
-  MessageSquare, 
-  Share2, 
-  Coins, 
   ShieldCheck,
   X,
   Image as ImageIcon,
-  Send
+  Send,
+  Radio,
+  PlusCircle,
+  UserPlus,
+  Play,
+  Plus,
+  ThumbsUp,
+  MessageSquare,
+  Share
 } from "lucide-react";
 import { Link } from "react-router";
 import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 
 // --- MOCKS FOR FEED ---
-const HOT_DEALS = [
-  { id: 1, title: "Vintage Lens Kit", price: "ZMW 1,200", image: "https://picsum.photos/seed/lens/400/400" },
-  { id: 2, title: "Solar Inverter 5kW", price: "ZMW 8,500", image: "https://picsum.photos/seed/solarinv/400/400" },
-  { id: 3, title: "NFT Collectible #44", price: "ZMW 450", image: "https://picsum.photos/seed/nft44/400/400" },
-  { id: 4, title: "Pro Studio Mic", price: "ZMW 2,100", image: "https://picsum.photos/seed/mic/400/400" },
+const MOCK_REELS = [
+  { id: 'create', isCreate: true },
+  { id: 1, image: "https://picsum.photos/seed/reelA/300/500", user: "https://i.pravatar.cc/150?u=r1" },
+  { id: 2, image: "https://picsum.photos/seed/reelB/300/500", user: "https://i.pravatar.cc/150?u=r2" },
+  { id: 3, image: "https://picsum.photos/seed/reelC/300/500", user: "https://i.pravatar.cc/150?u=r3" },
+  { id: 4, image: "https://picsum.photos/seed/reelD/300/500", user: "https://i.pravatar.cc/150?u=r4" },
 ];
 
 const INITIAL_POSTS = [
@@ -135,59 +137,65 @@ export function Socials() {
         useLogo
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
+        isSocials
+        customBalanceHUD={<div className="hidden" />}
       />
 
-      <div className="px-5 mt-6 relative z-10 space-y-10">
-        
-        {/* SECTION 01. NETWORK ACTIONS */}
-        <section className="space-y-4">
-          <div className="flex gap-0 border-4 border-[#003366] bg-[#003366] shadow-[6px_6px_0px_#FF8C00]">
-            <Link to="/friends" className="flex-1 bg-white transition-all py-4 flex items-center justify-center gap-3 border-r-2 border-[#003366]/10 group">
-              <Users size={18} className="text-[#FF8C00]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Find Friends</span>
-            </Link>
-            <button 
-              onClick={() => setShowCreatePost(true)}
-              className="flex-1 bg-white transition-all py-4 flex items-center justify-center gap-3 group"
-            >
-              <Plus size={18} className="text-[#FF8C00]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Create Post</span>
-            </button>
-          </div>
-        </section>
+      {/* ACTION BAR MOVED OUT OF HEADER (EXACTLY BELOW) */}
+      <div className="flex w-full bg-white border-y-[3px] border-[#E85D3F] items-stretch h-[46px] z-20 relative shadow-sm">
+         <button className="flex-1 flex items-center justify-center gap-2 border-r-[2px] border-[#E85D3F]/40 text-[#E85D3F] active:bg-[#E85D3F]/5 transition-colors">
+            <Radio size={18} strokeWidth={2.5} className="animate-pulse" />
+            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Live</span>
+         </button>
+         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r-[2px] border-[#E85D3F]/40 text-[#003366] active:bg-[#003366]/5 transition-colors">
+            <PlusCircle size={18} strokeWidth={2.5} className="text-[#E85D3F]" />
+            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Post</span>
+         </button>
+         <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[#003366] active:bg-[#003366]/5 transition-colors">
+            <UserPlus size={18} strokeWidth={2.5} className="text-[#E85D3F]" />
+            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Friend</span>
+         </Link>
+      </div>
 
-        {/* SECTION 02. DISCOVER HOT DEALS */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between gap-3">
-             <div className="flex items-center gap-3">
-                <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
-                <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">Hot Deals</h3>
-             </div>
-             <Link to="/marketplace" className="text-[8px] font-black uppercase tracking-[0.2em] text-[#FF8C00] border-b-2 border-[#FF8C00]/20 pb-0.5">View All</Link>
-          </div>
+      <div className="px-5 mt-6 relative z-10 space-y-6 pb-20">
 
-          <div className="flex overflow-x-auto gap-4 pb-4 -mx-5 px-5 scrollbar-hide no-scrollbar">
-            {HOT_DEALS.map((item) => (
-              <motion.div 
-                key={item.id}
-                whileTap={{ scale: 0.98 }}
-                className="min-w-[160px] bg-white border-2 border-[#003366] relative flex flex-col group shadow-sm"
-              >
-                <div className="aspect-square bg-gray-100 overflow-hidden relative">
-                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500" />
-                   <Link to="/messages" className="absolute top-2 right-2 z-20">
-                     <button className="w-9 h-9 bg-white border-2 border-[#003366] shadow-[3px_3px_0px_#FF8C00] flex items-center justify-center text-[#003366] transition-all">
-                       <MessageCircle size={18} strokeWidth={2.5} />
-                     </button>
-                   </Link>
-                </div>
-                <div className="p-3 bg-white">
-                  <h4 className="text-[11px] font-black uppercase tracking-tight text-[#003366] line-clamp-1">{item.title}</h4>
-                  <p className="text-[12px] font-black text-[#FF8C00] mt-1">{item.price}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        {/* SECTION 02. REELS */}
+        <section className="space-y-3">
+           <h3 className="font-black text-[18px] text-[#003366] tracking-tight ml-1">Reels</h3>
+           
+           <div className="flex gap-2.5 overflow-x-auto pb-6 pt-1 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
+              {MOCK_REELS.map((reel) => {
+                 if (reel.isCreate) {
+                    return (
+                       <button key={reel.id} onClick={() => setShowCreatePost(true)} className="min-w-[95px] h-[155px] flex-shrink-0 flex flex-col items-center justify-between bg-white border-2 border-[#003366] rounded-xl active:scale-95 transition-transform overflow-hidden relative">
+                          <div className="flex-1 flex items-center justify-center w-full">
+                             <div className="w-12 h-12 rounded-full bg-[#003366] flex items-center justify-center text-white">
+                                <Plus size={32} strokeWidth={2.5} />
+                             </div>
+                          </div>
+                          <div className="w-full bg-white border-t-2 border-[#003366]/20 py-2.5 flex items-center justify-center">
+                             <span className="text-[9px] font-black text-[#003366] leading-tight uppercase tracking-widest text-center">Create<br/>Content</span>
+                          </div>
+                       </button>
+                    )
+                 }
+                 return (
+                    <div key={reel.id} className="min-w-[95px] h-[155px] flex-shrink-0 relative active:scale-95 transition-transform cursor-pointer">
+                       <div className="w-full h-full rounded-xl overflow-hidden bg-slate-900 border border-[#003366]/10 relative">
+                           <img src={reel.image} alt="" className="w-full h-full object-cover opacity-90" />
+                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                                 <Play size={16} className="text-white fill-white ml-0.5" />
+                              </div>
+                           </div>
+                       </div>
+                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-10">
+                          <img src={reel.user} alt="" className="w-7 h-7 rounded-full border-[2px] border-white object-cover" />
+                       </div>
+                    </div>
+                 )
+              })}
+           </div>
         </section>
 
         {/* SECTION 03. BROADCAST FEED */}
@@ -207,68 +215,53 @@ export function Socials() {
                   viewport={{ once: true, amount: 0.1 }}
                   className="bg-white border-x-4 border-[#003366]/5"
                 >
-                  <div className="flex items-center justify-between px-2 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full border-2 border-[#FF8C00] overflow-hidden p-0.5">
-                        <img src={post.user.avatar} alt={post.user.name} className="w-full h-full rounded-full object-cover" />
-                      </div>
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-1.5">
-                           <span className="font-black text-sm text-[#003366] tracking-tight">{post.user.name}</span>
-                           {post.user.verified && <ShieldCheck size={14} className="text-[#FF8C00]" />}
-                        </div>
-                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{post.time}</span>
+                  <div className="flex items-center justify-between px-4 pt-4 mb-3">
+                    <div className="flex items-center gap-2">
+                      <img src={post.user.avatar} alt={post.user.name} className="w-10 h-10 rounded-full object-cover shadow-sm" />
+                      <div className="flex items-center gap-1">
+                         <span className="font-black text-[13px] text-[#003366]">{post.user.name}</span>
+                         {post.user.verified && <ShieldCheck size={12} className="text-[#FF8C00]" />}
+                         <span className="text-[#003366]/30 text-xs mx-0.5">•</span>
+                         <span className="text-[11px] font-bold text-[#003366]/40">{post.time}</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                       <Link to="/messages">
-                         <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 transition-colors">
-                            <MessageCircle size={20} />
-                         </button>
-                       </Link>
-                       <button className="w-10 h-10 flex items-center justify-center text-[#003366]/40 transition-colors">
-                          <MoreVertical size={20} />
-                       </button>
-                    </div>
+                    <button className="w-8 h-8 flex items-center justify-center text-[#003366]/40 transition-colors">
+                       <MoreVertical size={20} />
+                    </button>
                   </div>
 
                   <div className="space-y-4">
-                    <p className="px-5 text-[14px] font-medium leading-[1.6] text-[#003366]/80 text-justify">
+                    <p className="px-4 text-[13px] font-medium leading-[1.6] text-[#003366]/80 text-justify">
                       {post.content}
                     </p>
-                    <div className="bg-gray-100 overflow-hidden border-y-2 border-[#003366]">
-                       <img src={post.image} alt="Content" className="w-full aspect-video object-cover" />
+                    <div className="bg-gray-100 overflow-hidden border-y border-[#003366]/10">
+                       <img src={post.image} alt="Content" className="w-full aspect-[4/5] object-cover" />
                     </div>
                   </div>
 
                   {/* Action Bar */}
-                  <div className="flex items-center justify-between py-5 px-2 border-b-2 border-[#003366]/5">
-                    <div className="flex items-center gap-6">
-                       <button 
-                        onClick={() => toggleLike(post.id)}
-                        className="flex items-center gap-2 group"
-                       >
-                          <Heart 
-                            size={20} 
-                            className={`transition-all ${likedPosts.has(post.id) ? "text-[#FF3000] fill-[#FF3000]" : "text-[#003366]/30"}`} 
-                          />
-                          <span className="text-[12px] font-black text-[#003366]">{post.likes}</span>
-                       </button>
-                       <button 
-                        onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)}
-                        className="flex items-center gap-2 group"
-                       >
-                          <MessageSquare size={20} className="text-[#003366]/30 transition-colors" />
-                          <span className="text-[12px] font-black text-[#003366]">{post.comments.length}</span>
-                       </button>
-                       <button className="flex items-center gap-2 group">
-                          <Share2 size={20} className="text-[#003366]/30 transition-colors" />
-                          <span className="text-[10px] font-black text-[#003366] uppercase tracking-widest">Share</span>
-                       </button>
-                    </div>
-                    <button className="bg-[#FF8C00] text-white px-5 py-2.5 font-black text-[10px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_#003366] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all flex items-center gap-2">
-                       <Coins size={14} /> Tip
-                    </button>
+                  <div className="flex flex-col border-b border-[#003366]/5 bg-white">
+                     <div className="flex items-center justify-between px-4 py-3">
+                        <div className="flex items-center gap-6">
+                           <button onClick={() => toggleLike(post.id)} className={`transition-colors ${likedPosts.has(post.id) ? "text-[#003366]" : "text-[#003366]/80"} active:scale-95`}>
+                              <ThumbsUp size={24} strokeWidth={2.5} className={likedPosts.has(post.id) ? "fill-[#003366]" : ""} />
+                           </button>
+                           <button onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)} className="text-[#003366]/80 active:scale-95 transition-transform">
+                              <MessageSquare size={24} strokeWidth={2.5} />
+                           </button>
+                           <button className="text-[#003366]/80 active:scale-95 transition-transform">
+                              <Share size={24} strokeWidth={2.5} />
+                           </button>
+                        </div>
+                        <button className="bg-[#E85D3F] text-white px-5 py-1.5 rounded-[20px] font-black text-[10px] uppercase tracking-widest shadow-sm active:scale-95 transition-all">
+                           Tip
+                        </button>
+                     </div>
+                     <div className="px-4 py-2 bg-[#003366]/[0.02] border-t border-[#003366]/[0.05] flex items-center gap-4 text-[#003366]/60 text-[10px] font-black uppercase tracking-widest">
+                        <span>Like | {post.likes}</span>
+                        <span>Comments | {post.comments.length}</span>
+                        <span>Share | {post.shares}</span>
+                     </div>
                   </div>
 
                   {/* Comments Section */}

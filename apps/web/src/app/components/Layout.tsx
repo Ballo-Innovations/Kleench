@@ -1,5 +1,5 @@
 import { Outlet, useLocation, Link, useMatches, useNavigate } from "react-router";
-import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ShieldCheck, User, Tag } from "lucide-react";
+import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ClipboardList, HandCoins } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 
@@ -181,24 +181,22 @@ export function Layout() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-3 gap-y-8 gap-x-4 mb-8">
+                <div className="grid grid-cols-2 gap-y-12 gap-x-6 mb-10 px-8">
                   {[
                     { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
-                    { id: 'crs', icon: ShieldCheck, label: 'CRS Score', path: '/crs' },
-                    { id: 'funding', icon: HeartHandshake, label: 'Funding', path: '/crowdfunding' },
-                    { id: 'profile', icon: User, label: 'Profile', path: '/profile' },
-                    { id: 'friends', icon: Users, label: 'Friends', path: '/friends' },
-                    { id: 'offers', icon: Tag, label: 'Offers', path: '/offers' },
+                    { id: 'surveys', icon: ClipboardList, label: 'Surveys & Polls', path: '/poll/create' },
+                    { id: 'donate', icon: HeartHandshake, label: 'Donate', path: '/crowdfunding' },
+                    { id: 'crowdfund', icon: HandCoins, label: 'Crowdfund', path: '/crowdfunding' }
                   ].map((item) => (
                     <div 
                       key={item.id} 
                       onClick={() => { navigate(item.path); setShowMore(false); }}
-                      className="flex flex-col items-center gap-3 group cursor-pointer active:scale-95 transition-all"
+                      className="flex flex-col items-center gap-4 group cursor-pointer active:scale-95 transition-all"
                     >
-                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] group-hover:shadow-none transition-all">
-                        <item.icon size={28} className="text-slate-900" strokeWidth={1.5} />
+                      <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center border-[3px] border-slate-900 shadow-[6px_6px_0px_#0f172a] group-hover:shadow-[2px_2px_0px_#0f172a] group-hover:translate-x-1 group-hover:translate-y-1 transition-all">
+                        <item.icon size={36} className="text-slate-900" strokeWidth={2} />
                       </div>
-                      <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest text-center leading-tight">
+                      <span className="text-[12px] font-black text-slate-900 uppercase tracking-widest text-center leading-tight">
                         {item.label}
                       </span>
                     </div>

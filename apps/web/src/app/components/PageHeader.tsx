@@ -13,6 +13,7 @@ interface PageHeaderProps {
   useLogo?: boolean;
   searchValue?: string;
   onSearchChange?: (val: string) => void;
+  isSocials?: boolean;
 }
 
 export function PageHeader({ 
@@ -23,7 +24,8 @@ export function PageHeader({
   showBack = false, 
   useLogo = false, 
   searchValue,
-  onSearchChange
+  onSearchChange,
+  isSocials = false
 }: PageHeaderProps) {
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -185,15 +187,24 @@ export function PageHeader({
             </div>
 
             <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
-              {[
-                { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
-                { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
-              ].map(({ icon: Icon, label, to }) => (
-                <Link key={label} to={to} title={label}
-                  className="w-7 h-7 rounded-full bg-white/20/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
-                  <Icon size={14} />
-                </Link>
-              ))}
+              {!isSocials ? (
+                <>
+                  {[
+                    { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
+                    { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
+                  ].map(({ icon: Icon, label, to }) => (
+                    <Link key={label} to={to} title={label}
+                      className="w-7 h-7 rounded-full bg-white/20/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
+                      <Icon size={14} />
+                    </Link>
+                  ))}
+                </>
+              ) : (
+                <button className="flex items-center gap-1.5 bg-red-600/20 border border-red-500/50 rounded-full px-3 py-1 animate-pulse">
+                   <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+                   <span className="text-white text-[10px] font-black uppercase tracking-widest">Live</span>
+                </button>
+              )}
             </div>
           </motion.div>
         )}
