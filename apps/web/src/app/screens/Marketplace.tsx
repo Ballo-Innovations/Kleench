@@ -9,6 +9,9 @@ import shoesImg from "@/assets/products/shoes.png";
 import handbagImg from "@/assets/products/hand_bag.png";
 import laptopImg from "@/assets/products/laptop.png";
 
+import pacraLogo from "@/assets/pacra logo.png";
+import zppaLogo from "@/assets/zppa logo.jpeg";
+
 const MARKET_PRODUCTS = [
   {
     id: 1,
@@ -39,8 +42,8 @@ const MARKET_PRODUCTS = [
 const SERVICES = [
   { id: "tickets", label: "BUY TICKETS", title: "TICKET", icon: Ticket, image: "https://images.unsplash.com/photo-1540839045366-eb10c95a04cc?w=400&q=80" },
   { id: "design", label: "DO GRAPHIC DESIGNING", title: "GRAPHIC DESIGN", icon: Palette, image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80" },
-  { id: "pacra", label: "REGISTER COMPANY", title: "PACRA", icon: Building2, image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80" },
-  { id: "zppa", label: "HIRE", title: "ZPPA", icon: UserCircle, image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&q=80" }
+  { id: "pacra", label: "REGISTER COMPANY", title: "PACRA", icon: Building2, image: pacraLogo, isLogo: true },
+  { id: "zppa", label: "HIRE", title: "ZPPA", icon: UserCircle, image: zppaLogo, isLogo: true }
 ];
 
 const MARKET_INTEL = [
@@ -148,12 +151,14 @@ export function Marketplace() {
               {SERVICES.map((service) => (
                 <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
                   <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
-                    <div className="h-[100px] relative border-b-[3px] border-[#003366]">
-                       <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale-[0.2]" />
-                       <div className="absolute inset-0 bg-black/40" />
-                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
-                         <span className="text-[11px] font-black text-white px-2 py-1 bg-[#003366]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
-                       </div>
+                    <div className="h-[100px] relative border-b-[3px] border-[#003366] bg-white">
+                       <img src={service.image} alt={service.title} className={`w-full h-full ${service.isLogo ? "object-contain p-2" : "object-cover grayscale-[0.2]"}`} />
+                       {!service.isLogo && <div className="absolute inset-0 bg-black/40" />}
+                       {!service.isLogo && (
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
+                            <span className="text-[11px] font-black text-white px-2 py-1 bg-[#003366]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
+                          </div>
+                       )}
                     </div>
                     <div className="py-2.5 px-2 bg-white flex items-center justify-center min-h-[40px]">
                        <span className="text-[9px] font-black text-[#003366] uppercase text-center leading-none tracking-[0.2em]">{service.label}</span>
@@ -223,7 +228,7 @@ export function Marketplace() {
                   {BUSINESSES.map((business, i) => (
                      <div key={i} className="flex items-center justify-between bg-white border-[3px] border-[#003366] py-3 px-4 rounded-2xl hover:bg-slate-50 transition-colors shadow-[4px_4px_0_#FFC300] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
                         <div className="flex items-center gap-4 min-w-0">
-                           <div className="w-10 h-10 rounded-[10px] bg-[#003366] text-white font-black text-[12px] flex items-center justify-center shrink-0 border-2 border-[#003366]">
+                           <div className="w-10 h-10 rounded-[10px] bg-[#003366] text-white font-black text-[12px] flex items-center justify-center shrink-0 border-2 border-[#003366] overflow-hidden">
                               {business.logo}
                            </div>
                            <div className="flex flex-col min-w-0">
