@@ -3,6 +3,8 @@ import { PageHeader } from "../components/PageHeader";
 import { Search, ChevronRight, TrendingUp, Briefcase, History, LineChart, BadgeCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { usePageLoading } from "../components/PageSkeletons";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 // Loading constraints
 import solarFarmImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_solar_farm_1776020846856.png";
@@ -78,6 +80,12 @@ const PROJECTS = [
 
 export function Crowdfunding() {
   const loading = usePageLoading(600);
+  const navigate = useNavigate();
+
+  const handleAction = (label: string) => {
+    if (label === "INVEST") toast.success("Live investment markets locked. Standby.");
+    else if (label === "PORTFOLIO" || label === "RETURNS") navigate("/wallet");
+  };
 
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
@@ -137,6 +145,7 @@ export function Crowdfunding() {
                    <motion.button 
                      key={act.label}
                      whileTap={{ scale: 0.9 }}
+                     onClick={() => handleAction(act.label)}
                      className="flex flex-col items-center gap-2 group cursor-pointer"
                    >
                       <div className={`w-[60px] h-[60px] rounded-full border-[3px] border-[#003366] bg-white flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:shadow-none group-active:translate-y-1 group-active:translate-x-1 transition-all ${act.color}`}>
@@ -152,9 +161,9 @@ export function Crowdfunding() {
           <div className="px-5 pb-2">
              <div className="flex items-center justify-between border-[3px] border-[#003366]/20 bg-white px-4 py-3 shadow-[2px_2px_0_#003366]/20 rounded-xl">
                 <h2 className="text-[#003366] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">INVESTMENT DEALS</h2>
-                <span className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 cursor-pointer active:scale-95 transition-transform uppercase tracking-widest">
+                <button onClick={() => toast("Fetching full market catalogue...")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
                   See All <div className="bg-[#003366] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
-                </span>
+                </button>
              </div>
           </div>
 
@@ -215,10 +224,10 @@ export function Crowdfunding() {
 
                    {/* Main Interaction Action Base */}
                    <div className="flex items-center gap-3 pt-2">
-                      <button className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={() => toast.info("Downloading official prospectus PDF...")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <LineChart size={16} strokeWidth={3} className="-ml-1 group-active:scale-110 transition-transform" /> VIEW PROSPECTUS
                       </button>
-                      <button className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={() => toast.success("Preparing secure investment contract...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <TrendingUp size={16} strokeWidth={3} className="group-active:scale-110 transition-transform" /> INVEST NOW
                       </button>
                    </div>

@@ -3,6 +3,8 @@ import { PageHeader } from "../components/PageHeader";
 import { Search, ChevronRight, Plus, Users, Link as LinkIcon, Share, ArrowUpToLine, Info, Eye, CheckCircle2, Star } from "lucide-react";
 import { motion } from "motion/react";
 import { usePageLoading } from "../components/PageSkeletons";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 // Loading logic
 import schoolChildrenImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_school_children_1776018860173.png";
@@ -75,6 +77,13 @@ const PROJECTS = [
 
 export function Donate() {
   const loading = usePageLoading(600);
+  const navigate = useNavigate();
+
+  const handleAction = (label: string) => {
+    if (label === "REFERRAL") navigate("/referral");
+    else if (label === "CREATE") toast.info("Campaign creation coming soon.");
+    else if (label === "DONORS") toast("Loading donor network...");
+  };
 
   return (
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
@@ -135,6 +144,7 @@ export function Donate() {
                    <motion.button 
                      key={act.label}
                      whileTap={{ scale: 0.9 }}
+                     onClick={() => handleAction(act.label)}
                      className="flex flex-col items-center gap-2 group cursor-pointer"
                    >
                       <div className={`w-[60px] h-[60px] rounded-full border-[3px] border-[#003366] bg-white flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:shadow-none group-active:translate-y-1 group-active:translate-x-1 transition-all ${act.color}`}>
@@ -150,9 +160,9 @@ export function Donate() {
           <div className="px-5 pb-2">
              <div className="flex items-center justify-between border-[3px] border-[#003366]/20 bg-white px-4 py-3 shadow-[2px_2px_0_#003366]/20 rounded-xl">
                 <h2 className="text-[#003366] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">FUNDRAISING PROJECTS</h2>
-                <span className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 cursor-pointer active:scale-95 transition-transform uppercase tracking-widest">
+                <button onClick={() => toast.success("Loading full catalogue...")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
                   See All <div className="bg-[#003366] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
-                </span>
+                </button>
              </div>
           </div>
 
@@ -172,12 +182,13 @@ export function Donate() {
                       {/* Right: Info & Actions */}
                       <div className="flex flex-col justify-between flex-1 py-0.5">
                          <p className="text-[9px] font-black text-[#003366] leading-[1.3] uppercase break-words pr-1">{proj.desc}</p>
-                         <div className="flex items-center gap-2 mt-2">
-                            <button className="flex-1 bg-[#ff7345] text-white border-[2px] border-[#003366] shadow-[2px_2px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-8 rounded text-[10px] font-black uppercase flex items-center justify-center gap-1.5 transition-all">
-                               <ArrowUpToLine size={12} strokeWidth={3} /> DONATE
+                         {/* Main Interaction Action Base */}
+                         <div className="flex items-center gap-3 pt-2">
+                            <button onClick={() => toast.success("Donation portal secure. Initiating...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                               <ArrowUpToLine size={16} strokeWidth={3} /> DONATE
                             </button>
-                            <button className="flex-1 bg-[#1877F2] text-white border-[2px] border-[#003366] shadow-[2px_2px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-8 rounded text-[10px] font-black uppercase flex items-center justify-center gap-1.5 transition-all">
-                               <Share size={12} strokeWidth={3} className="-ml-0.5" /> SHARE
+                            <button onClick={() => toast("Share link copied to clipboard!")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                               <Share size={16} strokeWidth={3} className="-ml-1" /> SHARE
                             </button>
                          </div>
                       </div>

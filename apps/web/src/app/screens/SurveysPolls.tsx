@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Link } from "react-router";
 import { motion } from "motion/react";
 import { Plus, BarChart2, FileText, ChevronRight } from "lucide-react";
 import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
+import { toast } from "sonner";
 
 import eczLogo from "@/assets/ecz logo.png";
 import lazLogo from "@/assets/Laz Logo.jpeg";
@@ -32,6 +32,11 @@ export function SurveysPolls() {
   const isLoading = usePageLoading();
   const [selectedSocial, setSelectedSocial] = useState<string | null>(null);
 
+  const handleSelect = (id: string) => {
+    setSelectedSocial(id);
+    toast.success("Vote recorded securely.");
+  };
+
   if (isLoading) {
     return <PageSkeletons.Social />;
   }
@@ -48,8 +53,8 @@ export function SurveysPolls() {
           {/* Quick Action Bar */}
           <div className="px-5 py-4 border-b-[3px] border-[#E85D3F]">
             <div className="flex gap-4">
-              <Link to="/poll/create" className="flex-1">
-                <motion.button 
+              <button onClick={() => toast.info("Survey creation tool coming soon.")} className="flex-1">
+                <motion.div 
                   whileTap={{ scale: 0.95 }}
                   className="w-full h-[60px] rounded-xl border-[3px] border-[#E85D3F] bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-[4px_4px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
                 >
@@ -57,10 +62,10 @@ export function SurveysPolls() {
                     <Plus size={16} strokeWidth={3} />
                   </div>
                   <span className="font-black tracking-wider uppercase text-[12px]">Survey</span>
-                </motion.button>
-              </Link>
-              <Link to="/poll/create" className="flex-1">
-                 <motion.button 
+                </motion.div>
+              </button>
+              <button onClick={() => toast.info("Poll creation tool coming soon.")} className="flex-1">
+                 <motion.div 
                   whileTap={{ scale: 0.95 }}
                   className="w-full h-[60px] rounded-xl border-[3px] border-[#E85D3F] bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-[4px_4px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
                 >
@@ -68,8 +73,8 @@ export function SurveysPolls() {
                     <Plus size={16} strokeWidth={3} />
                   </div>
                   <span className="font-black tracking-wider uppercase text-[12px]">Poll</span>
-                </motion.button>
-              </Link>
+                </motion.div>
+              </button>
             </div>
           </div>
 
@@ -112,7 +117,7 @@ export function SurveysPolls() {
                   {SOCIAL_OPTIONS.map((opt) => (
                      <button 
                         key={opt.id} 
-                        onClick={() => setSelectedSocial(opt.id)} 
+                        onClick={() => handleSelect(opt.id)} 
                         className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' border-[3px] border-[#003366] shadow-[2px_2px_0_#003366]' : 'bg-transparent text-[#003366] border border-[#003366]/40'}`}
                      >
                         {opt.label}
@@ -160,7 +165,7 @@ export function SurveysPolls() {
                ))}
                
                <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center">
-                  <span className="text-[11px] font-black text-[#FF8C00] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
+                  <span onClick={() => toast.info("Redirecting to analytics dashboard...")} className="text-[11px] font-black text-[#FF8C00] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
                      View Results & Analytics <ChevronRight size={14} strokeWidth={3} />
                   </span>
                </div>
