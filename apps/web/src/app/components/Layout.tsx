@@ -2,6 +2,7 @@ import { Outlet, useLocation, Link, useMatches, useNavigate } from "react-router
 import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ClipboardList, HandCoins } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 
 // Layout component with navigation
 export function Layout() {
