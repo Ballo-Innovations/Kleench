@@ -186,7 +186,7 @@ export function Layout() {
 
                 <div className="grid grid-cols-2 gap-y-12 gap-x-6 mb-10 px-8">
                   {[
-                    { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
+                    { id: 'discover', icon: Store, label: 'Market', path: '/discover' },
                     { id: 'surveys', icon: ClipboardList, label: 'Surveys & Polls', path: '/surveys-polls' },
                     { id: 'donate', icon: HeartHandshake, label: 'Donate', path: '/donate' },
                     { id: 'crowdfund', icon: HandCoins, label: 'Crowdfund', path: '/crowdfunding' }
@@ -212,7 +212,7 @@ export function Layout() {
                          <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1">Verify Account</p>
                          <p className="text-xs font-bold text-slate-500">Enable premium features</p>
                       </div>
-                      <button className="px-4 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">
+                      <button onClick={() => toast.success("Verification framework initializing...")} className="px-4 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">
                         Verify
                       </button>
                    </div>
