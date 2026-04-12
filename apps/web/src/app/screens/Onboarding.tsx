@@ -1,12 +1,23 @@
 import kleenchLogo from "../../assets/kleench_logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ArrowRight, Camera, Upload, Check } from "lucide-react";
+import { ArrowRight, Camera, Upload, Check, ShieldCheck, CarFront, Briefcase, Landmark, CreditCard, Sprout, Factory } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ZambiaFlag, BackspaceKey } from "../components/KleenchIcons";
 import { LottieAnimation } from "../components/LottieAnimation";
 
-type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "features";
+type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "services" | "features";
+
+const ESSENTIAL_SERVICES = [
+  { id: "insurance", name: "Insurance", icon: ShieldCheck },
+  { id: "road_tax", name: "Road Tax", icon: CarFront },
+  { id: "pacra", name: "Pacra", icon: Briefcase },
+  { id: "zra", name: "ZRA", icon: Landmark },
+  { id: "bank", name: "Open Bank Account", icon: CreditCard },
+  { id: "microfin", name: "Microfin", icon: Sprout },
+  { id: "zda", name: "ZDA", icon: Factory },
+  { id: "other", name: "Other", icon: ArrowRight },
+];
 
 
 
@@ -23,6 +34,7 @@ export function Onboarding() {
   const [kycPhone, setKycPhone] = useState("");
   const [isWhatsappSame, setIsWhatsappSame] = useState(true);
   const [kycWhatsappPhone, setKycWhatsappPhone] = useState("");
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
   const featureSteps = [
     { 
@@ -112,10 +124,19 @@ export function Onboarding() {
   const handleContinueFromPhoto = () => {
     if (profilePhoto) {
       localStorage.setItem("userProfilePhoto", profilePhoto);
-      setStep("features");
+      setStep("services");
     } else {
       setError("Please upload a profile picture");
     }
+  };
+
+  const handleContinueFromServices = () => {
+    localStorage.setItem("userServices", JSON.stringify(selectedServices));
+    setStep("features");
+  };
+
+  const toggleService = (id: string) => {
+    setSelectedServices(prev => prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]);
   };
 
   const handleFeatureNext = () => {
@@ -138,7 +159,7 @@ export function Onboarding() {
 
 
   // Step progress
-  const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, features: 3 }[step];
+  const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, services: 3, features: 4 }[step];
 
   return (
     <div className="min-h-screen bg-[#fcfcfc] relative flex flex-col overflow-hidden font-[var(--font-body)]">
@@ -162,7 +183,7 @@ export function Onboarding() {
           <motion.div
             className="h-full bg-[#ff8c00] origin-left"
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: (stepIndex + 1) / 4 }}
+            animate={{ scaleX: (stepIndex + 1) / 5 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           />
         </div>
@@ -206,6 +227,7 @@ export function Onboarding() {
                 {step === "confirm-pin" && "Confirm Your PIN"}
                 {step === "kyc" && "Complete Your Profile"}
                 {step === "photo" && "Add Profile Picture"}
+                {step === "services" && "Essential Services"}
                 {step === "features" && currentFeature.title}
               </h1>
               <p className="text-gray-500 font-medium" style={{ fontSize: "14px" }}>
@@ -213,6 +235,7 @@ export function Onboarding() {
                 {step === "confirm-pin" && "Re-enter your PIN to confirm"}
                 {step === "kyc" && "Provide some details to verify your identity"}
                 {step === "photo" && "Upload a photo to personalize your profile"}
+                {step === "services" && "Get onboard with essential services quickly and easily."}
                 {step === "features" && currentFeature.description}
               </p>
           </motion.div>
@@ -396,6 +419,40 @@ export function Onboarding() {
             )}
 
 
+
+            {/* Essential Services */}
+            {step === "services" && (
+                <motion.div key="services-setup"
+                   initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+                   className="w-full flex flex-col items-center">
+                   
+                   <div className="grid grid-cols-2 gap-4 w-full mb-8">
+                      {ESSENTIAL_SERVICES.map(sv => {
+                         const isSelected = selectedServices.includes(sv.id);
+                         return (
+                           <motion.button 
+                             key={sv.id}
+                             whileTap={{ scale: 0.95 }}
+                             onClick={() => toggleService(sv.id)}
+                             className={`h-[90px] rounded-[18px] border-[3px] flex flex-col items-center justify-center gap-2 transition-all 
+                                        ${isSelected ? 'bg-[#ff8c00] border-[#003366] shadow-none translate-x-1.5 translate-y-1.5' : 'bg-white border-[#003366] shadow-[4px_4px_0_#003366]'}`}
+                           >
+                              <sv.icon size={28} className={isSelected ? "text-[#003366]" : "text-[#003366]"} strokeWidth={3} />
+                              <span className={`text-[11px] font-black tracking-widest ${isSelected ? "text-[#003366]" : "text-[#ff8c00]"}`}>
+                                 {sv.name}
+                              </span>
+                           </motion.button>
+                         );
+                      })}
+                   </div>
+                   
+                   <motion.button whileTap={{ scale: 0.97 }} onClick={handleContinueFromServices}
+                     className="w-full py-4 rounded-2xl bg-[#003366] text-white font-[var(--font-header)] border-[3px] border-[#003366] shadow-[4px_4px_0_rgba(0,51,102,0.3)] flex items-center justify-center gap-2"
+                     style={{ fontSize: "16px", fontWeight: 800 }}>
+                     Continue <ArrowRight size={18} strokeWidth={3} />
+                   </motion.button>
+                </motion.div>
+            )}
 
             {/* Feature Steps */}
             {step === "features" && (
