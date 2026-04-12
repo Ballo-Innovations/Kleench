@@ -45,6 +45,7 @@ export function Layout() {
     location.pathname === "/friends" || 
     location.pathname === "/wallet" || 
     location.pathname === "/marketplace" || 
+    location.pathname.startsWith("/surveys") ||
     location.pathname === "/profile" || 
     location.pathname.startsWith("/learning") || 
     location.pathname === "/referral" || 
@@ -146,10 +147,10 @@ export function Layout() {
           <button
             onClick={() => setShowMore(true)}
             className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-              showMore ? "text-[#FF8C00]" : "text-gray-400"
+              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding"].includes(location.pathname) ? "text-[#FF8C00]" : "text-gray-400"
             }`}
           >
-            <Menu size={20} strokeWidth={showMore ? 3 : 2} className="mb-1" />
+            <Menu size={20} strokeWidth={showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding"].includes(location.pathname) ? 3 : 2} className="mb-1" />
             <span className="text-[9px] font-bold capitalize">More</span>
           </button>
         </div>
@@ -184,7 +185,7 @@ export function Layout() {
                 <div className="grid grid-cols-2 gap-y-12 gap-x-6 mb-10 px-8">
                   {[
                     { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
-                    { id: 'surveys', icon: ClipboardList, label: 'Surveys & Polls', path: '/poll/create' },
+                    { id: 'surveys', icon: ClipboardList, label: 'Surveys & Polls', path: '/surveys-polls' },
                     { id: 'donate', icon: HeartHandshake, label: 'Donate', path: '/crowdfunding' },
                     { id: 'crowdfund', icon: HandCoins, label: 'Crowdfund', path: '/crowdfunding' }
                   ].map((item) => (

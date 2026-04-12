@@ -28,6 +28,7 @@ import { Notifications } from "./screens/Notifications";
 import { PostAdvert } from "./screens/PostAdvert";
 import { SellProduct } from "./screens/SellProduct";
 import { CreatePoll } from "./screens/CreatePoll";
+import { SurveysPolls } from "./screens/SurveysPolls";
 import { Referral } from "./screens/Referral";
 import { Offers } from "./screens/Offers";
 import { NotFound } from "./screens/NotFound";
@@ -130,6 +131,7 @@ const router = createBrowserRouter([
       { path: "ads/post", element: <PostAdvert /> },
       { path: "sell", element: <SellProduct /> },
       { path: "poll/create", element: <CreatePoll /> },
+      { path: "surveys-polls", element: <SurveysPolls /> },
       { path: "referral", element: <Referral /> },
       { path: "offers", element: <Offers /> },
       { id: "notfound", path: "*", element: <NotFound /> },
