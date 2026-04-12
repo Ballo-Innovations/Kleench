@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Link } from "react-router";
 import { Search, ChevronRight, Plus, Users, Link as LinkIcon, Share, ArrowUpToLine, Info, Eye, CheckCircle2, Star } from "lucide-react";
 import { motion } from "motion/react";
-import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
+import { usePageLoading } from "../components/PageSkeletons";
 
-// @ts-ignore - Let vite resolve these dynamically from artifacts folder
+// Loading logic
 import schoolChildrenImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_school_children_1776018860173.png";
 import accidentImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_accident_event_1776018882260.png";
 import waterImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_clean_water_1776018904961.png";
@@ -84,37 +83,6 @@ export function Donate() {
       <PageHeader 
         title="DONATE" 
         useLogo
-        hideAsk
-        customBalanceHUD={
-           <motion.div
-             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-             transition={{ delay: 0.1 }}
-             className="flex items-center justify-between bg-white border-[3px] border-[#003366] rounded-2xl py-2 px-3 shadow-[6px_6px_0_#003366] w-full mx-auto"
-           >
-             <div className="flex items-center gap-2">
-               <div className="min-w-0">
-                 <p className="text-[#003366] text-[8.5px] font-black uppercase tracking-widest leading-none mb-1">Balance</p>
-                 <div className="flex items-center gap-2">
-                   <h2 className="text-[#003366] text-[16px] font-black tracking-tight leading-none">
-                     ZMW 2,450.00
-                   </h2>
-                   <button className="text-[#003366]/40 transition-colors">
-                     <Eye size={14} strokeWidth={3} />
-                   </button>
-                 </div>
-               </div>
-             </div>
-
-             <div className="flex items-center gap-1.5 pl-2.5 border-l-[2.5px] border-[#003366]/20">
-                <Link to="/wallet" className="w-[30px] h-[30px] rounded-[10px] bg-[#E0F2FE] border-[2px] border-[#003366] flex items-center justify-center text-[#003366] active:translate-y-0.5 active:translate-x-0.5 transition-all shadow-[2px_2px_0_#003366] active:shadow-none">
-                  <ArrowUpToLine size={14} strokeWidth={3} />
-                </Link>
-                <Link to="/wallet" className="w-[30px] h-[30px] rounded-[10px] bg-[#E0F2FE] border-[2px] border-[#003366] flex items-center justify-center text-[#003366] active:translate-y-0.5 active:translate-x-0.5 transition-all shadow-[2px_2px_0_#003366] active:shadow-none">
-                  <ArrowUpToLine size={14} strokeWidth={3} className="rotate-180" />
-                </Link>
-             </div>
-           </motion.div>
-        }
       />
 
       {loading ? (
@@ -144,7 +112,7 @@ export function Donate() {
           </div>
 
           {/* Pill Filters */}
-          <div className="flex gap-2.5 overflow-x-auto no-scrollbar pt-1 -mx-5 px-10 border-b-2 border-transparent" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+          <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pt-1 -mx-5 px-10 border-b-2 border-transparent" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
              {FILTERS.map((cat, i) => (
                 <button 
                   key={cat.label} 
@@ -217,16 +185,14 @@ export function Donate() {
 
                    {/* Progress Visualizer */}
                    <div className="flex justify-between items-end mb-1 px-1">
-                      <span className="text-[10px] font-black text-[#E85D3F] uppercase tracking-wider">RAISED K{proj.raised}</span>
-                      <span className="text-[10px] font-black text-[#003366]/60 uppercase tracking-wider">TARGET K{proj.target}</span>
+                      <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider">RAISED K{proj.raised}</span>
+                      <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider">TARGET K{proj.target}</span>
                    </div>
-                   <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full mb-4 overflow-hidden flex shadow-sm">
-                      <div className="h-full bg-[#E85D3F] flex items-center justify-center" style={{ width: `${proj.percent}%` }}>
-                         {proj.percent >= 15 && <span className="text-[10px] font-black text-white">{proj.percent}%</span>}
+                   <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full mb-4 overflow-hidden flex shadow-[2px_2px_0_#003366]">
+                      <div className={`h-full bg-[#E85D3F] flex items-center ${proj.percent <= 15 ? 'justify-start pl-[5px]' : 'justify-center'} border-r-[2px] border-[#003366]`} style={{ width: `${proj.percent}%` }}>
+                         <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: proj.percent <= 15 ? '8.5px' : '10px' }}>{proj.percent}%</span>
                       </div>
-                      <div className="h-full bg-gray-200 flex items-center justify-center" style={{ width: `${100 - proj.percent}%` }}>
-                         {(100 - proj.percent) >= 15 && <span className="text-[10px] font-black text-[#003366]/40">{100 - proj.percent}%</span>}
-                      </div>
+                      <div className="h-full bg-gray-200 flex items-center justify-center" style={{ width: `${100 - proj.percent}%` }} />
                    </div>
 
                    {/* Footer Metadata */}

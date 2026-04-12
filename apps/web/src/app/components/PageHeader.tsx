@@ -11,7 +11,6 @@ interface PageHeaderProps {
   customBalanceHUD?: React.ReactNode; // For Wallet overrides
   showBack?: boolean;
   useLogo?: boolean;
-  hideAsk?: boolean;
   searchValue?: string;
   onSearchChange?: (val: string) => void;
   isSocials?: boolean;
@@ -24,7 +23,6 @@ export function PageHeader({
   customBalanceHUD,
   showBack = false, 
   useLogo = false, 
-  hideAsk = false,
   searchValue,
   onSearchChange,
   isSocials = false
