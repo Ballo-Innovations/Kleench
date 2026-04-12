@@ -6,10 +6,10 @@ import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 
-// Loading constraints
-import solarFarmImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_solar_farm_1776020846856.png";
-import poultryImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_poultry_automation_1776020866807.png";
-import realEstateImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_real_estate_1776020884723.png";
+// Relative Asset Mapping for Vercel Pipeline
+import solarFarmImg from "@/assets/crowdfund_solar_farm.png";
+import poultryImg from "@/assets/crowdfund_poultry.png";
+import realEstateImg from "@/assets/crowdfund_real_estate.png";
 
 type FallbackImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
 

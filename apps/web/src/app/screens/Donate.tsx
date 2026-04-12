@@ -6,10 +6,10 @@ import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 
-// Loading logic
-import schoolChildrenImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_school_children_1776018860173.png";
-import accidentImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_accident_event_1776018882260.png";
-import waterImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/donate_clean_water_1776018904961.png";
+// Relative Asset Mapping for Vercel Pipeline
+import schoolChildrenImg from "@/assets/donate_school_children.png";
+import accidentImg from "@/assets/donate_accident.png";
+import waterImg from "@/assets/donate_clean_water.png";
 
 type FallbackImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
