@@ -31,6 +31,7 @@ import { CreatePoll } from "./screens/CreatePoll";
 import { SurveysPolls } from "./screens/SurveysPolls";
 import { Referral } from "./screens/Referral";
 import { Offers } from "./screens/Offers";
+import { Donate } from "./screens/Donate";
 import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -132,6 +133,7 @@ const router = createBrowserRouter([
       { path: "sell", element: <SellProduct /> },
       { path: "poll/create", element: <CreatePoll /> },
       { path: "surveys-polls", element: <SurveysPolls /> },
+      { path: "donate", element: <Donate /> },
       { path: "referral", element: <Referral /> },
       { path: "offers", element: <Offers /> },
       { id: "notfound", path: "*", element: <NotFound /> },
