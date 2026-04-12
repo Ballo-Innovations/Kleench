@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Link } from "react-router";
-import { Search, ChevronRight, TrendingUp, Briefcase, History, LineChart, ShieldCheck, BadgeCheck } from "lucide-react";
+import { Search, ChevronRight, TrendingUp, Briefcase, History, LineChart, BadgeCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { usePageLoading } from "../components/PageSkeletons";
 
-// @ts-expect-error - Let vite resolve these dynamically from artifacts folder
+// Loading constraints
 import solarFarmImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_solar_farm_1776020846856.png";
 import poultryImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_poultry_automation_1776020866807.png";
 import realEstateImg from "file:///C:/Users/Situ%20Aj/.gemini/antigravity/brain/46896b33-01f9-423e-b937-ba4bce2cc18c/crowdfund_real_estate_1776020884723.png";
