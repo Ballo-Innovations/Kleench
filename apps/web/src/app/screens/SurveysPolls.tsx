@@ -23,9 +23,9 @@ const SOCIAL_OPTIONS = [
 ];
 
 const ACTIVE_POLLS = [
-  { id: 1, title: "ECZ :", option1: "UNZA", option2: "Other", val1: 72, val2: 28, c1: "bg-[#E85D3F]", c2: "bg-[#00C853]", logo: eczLogo },
-  { id: 2, title: "LAZ :", option1: "Charles", option2: "Mwansa", val1: 45, val2: 55, c1: "bg-[#1877F2]", c2: "bg-black", logo: lazLogo },
-  { id: 3, title: "FAZ :", option1: "Thomas", option2: "Peter", val1: 10, val2: 90, c1: "bg-gray-300", c2: "bg-[#E85D3F]", logo: fazLogo }
+  { id: 1, title: "ECZ :", option1: "UNZA", option2: "Other", val1: 72, val2: 28, c1: "bg-[#FFA500]", c2: "bg-[#228B22]", logo: eczLogo },
+  { id: 2, title: "LAZ :", option1: "Charles", option2: "Mwansa", val1: 45, val2: 55, c1: "bg-[#000080]", c2: "bg-[#000000]", logo: lazLogo },
+  { id: 3, title: "FAZ :", option1: "Thomas", option2: "Peter", val1: 10, val2: 90, c1: "bg-[#808080]", c2: "bg-[#FF0000]", logo: fazLogo }
 ];
 
 export function SurveysPolls() {
@@ -113,7 +113,7 @@ export function SurveysPolls() {
                      <button 
                         key={opt.id} 
                         onClick={() => setSelectedSocial(opt.id)} 
-                        className={`flex items-center justify-center px-5 py-2.5 rounded-full border-[3px] border-[#003366] font-black text-[12px] uppercase shadow-[2px_2px_0_#003366] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text : 'bg-white text-[#003366]'}`}
+                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' border-[3px] border-[#003366] shadow-[2px_2px_0_#003366]' : 'bg-transparent text-[#003366] border border-[#003366]/40'}`}
                      >
                         {opt.label}
                      </button>
@@ -146,11 +146,11 @@ export function SurveysPolls() {
                         </div>
                         <div className="flex flex-col w-[120px] shrink-0 justify-center">
                            <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full flex overflow-hidden shadow-sm">
-                              <div className={`h-full flex items-center justify-start pl-2 ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
-                                 <span className="text-[10px] font-black text-white whitespace-nowrap">{poll.val1}%</span>
+                              <div className={`h-full flex items-center justify-center ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
+                                 <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md">{poll.val1}%</span>
                               </div>
-                              <div className={`h-full flex items-center justify-end pr-2 ${poll.c2}`} style={{ width: `${poll.val2}%` }}>
-                                 <span className="text-[10px] font-black text-white whitespace-nowrap">{poll.val2}%</span>
+                              <div className={`h-full flex items-center justify-center ${poll.c2}`} style={{ width: `${poll.val2}%` }}>
+                                 <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md">{poll.val2}%</span>
                               </div>
                            </div>
                         </div>
@@ -174,13 +174,13 @@ export function SurveysPolls() {
                <h4 className="text-[#FF8C00] font-black text-[14px] text-center uppercase tracking-wide">Polls Analytics</h4>
             </div>
 
-            {/* Neo-brutalist interaction bar */}
-            <div className="flex w-full bg-[#E0F2FE] border-[3px] border-[#003366] rounded-2xl items-stretch h-[54px] z-20 relative shadow-[4px_4px_0_rgba(0,51,102,1)] overflow-hidden">
-               <button className="flex-1 flex items-center justify-center gap-2 border-r-[3px] border-[#003366] text-[#003366] active:bg-[#003366]/10 transition-colors">
+            {/* Neo-brutalist interaction blocks */}
+            <div className="grid grid-cols-2 gap-4">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border-[3px] border-[#003366] rounded-2xl text-[#003366] shadow-[4px_4px_0_rgba(0,51,102,1)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
                   <BarChart2 size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
                </button>
-               <button className="flex-1 flex items-center justify-center gap-2 text-[#003366] active:bg-[#003366]/10 transition-colors">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border-[3px] border-[#003366] rounded-2xl text-[#003366] shadow-[4px_4px_0_rgba(0,51,102,1)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
                   <FileText size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
                </button>
