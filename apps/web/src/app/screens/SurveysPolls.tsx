@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { Plus, BarChart2, PieChart, FileText, Facebook, Instagram, Download, PlaySquare, ChevronRight } from "lucide-react";
+import { Plus, BarChart2, FileText, ChevronRight } from "lucide-react";
 import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 import eczLogo from "@/assets/ecz logo.png";
@@ -137,20 +137,20 @@ export function SurveysPolls() {
                                   <img src={poll.logo} alt={poll.title} className="w-full h-full object-contain mix-blend-multiply" />
                                 </div>
                               )}
-                              <span className="text-[11px] font-black text-[#003366] uppercase">{poll.title}</span>
-                              <div className="flex flex-col text-[10px] font-bold text-[#003366]/80 leading-none gap-0.5 ml-1">
-                                 <span>{poll.option1}</span>
-                                 <span>{poll.option2}</span>
+                              <span className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-none">{poll.title}</span>
+                              <div className="flex flex-col text-[12px] font-black text-[#003366] leading-tight gap-0.5 max-w-[85px] truncate">
+                                 <span className="truncate">{poll.option1}</span>
+                                 <span className="truncate">{poll.option2}</span>
                               </div>
                            </div>
                         </div>
                         <div className="flex flex-col w-[120px] shrink-0 justify-center">
                            <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full flex overflow-hidden shadow-sm">
                               <div className={`h-full flex items-center justify-start pl-2 ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
-                                 {poll.val1 >= 20 && <span className="text-[10px] font-black text-white">{poll.val1}%</span>}
+                                 <span className="text-[10px] font-black text-white whitespace-nowrap">{poll.val1}%</span>
                               </div>
                               <div className={`h-full flex items-center justify-end pr-2 ${poll.c2}`} style={{ width: `${poll.val2}%` }}>
-                                 {poll.val2 >= 20 && <span className="text-[10px] font-black text-white">{poll.val2}%</span>}
+                                 <span className="text-[10px] font-black text-white whitespace-nowrap">{poll.val2}%</span>
                               </div>
                            </div>
                         </div>
