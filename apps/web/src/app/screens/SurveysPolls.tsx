@@ -75,8 +75,8 @@ export function SurveysPolls() {
 
           {/* Active Survey Section */}
           <section className="px-5 py-5 border-b-[3px] border-gray-200">
-            <h3 className="text-[#FF8C00] font-black tracking-wide text-[16px] mb-4 uppercase">Active Survey</h3>
-            <div className="bg-white rounded-xl border-2 border-gray-100 shadow-sm p-4 mb-4">
+            <h3 className="text-[#003366] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
+            <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0_#FF8C00] p-4 mb-6">
                {ACTIVE_SURVEYS.map((survey, i) => (
                   <div key={survey.id} className="mb-4 last:mb-0 relative py-1">
                      <div className="flex items-center justify-between mb-2">
@@ -103,9 +103,9 @@ export function SurveysPolls() {
             </div>
 
             {/* Interactive Element */}
-            <div className="bg-white rounded-xl border-2 border-gray-100 shadow-sm p-1">
-               <div className="inline-block bg-[#E85D3F] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase shadow-sm -ml-2 mb-3 z-10 relative">
-                  Faverite Social Media Plateform?
+            <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0_#FF8C00] p-2">
+               <div className="inline-block bg-[#E85D3F] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase border-[3px] border-[#003366] shadow-[2px_2px_0_#003366] -ml-2 mb-4 z-10 relative">
+                  Favorite Social Media Platform?
                </div>
                
                <div className="space-y-3 p-3 pt-0">
@@ -132,10 +132,10 @@ export function SurveysPolls() {
           </section>
 
           {/* Active Poll Section */}
-          <section className="px-5 py-5 pb-8 border-b-[3px] border-gray-200 bg-gray-50/50">
-            <h3 className="text-[#FF8C00] font-black tracking-wide text-[16px] mb-4 uppercase">Active Poll</h3>
+          <section className="px-5 py-8 border-b-[3px] border-[#003366] bg-gray-50/50">
+            <h3 className="text-[#003366] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Poll</h3>
             
-            <div className="bg-white rounded-xl border-2 border-gray-100 shadow-sm p-4">
+            <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0_#00C853] p-4">
                {ACTIVE_POLLS.map((poll, i) => (
                   <div key={poll.id} className="mb-4 last:mb-0 relative">
                      <div className="flex items-center justify-between mb-2">
@@ -189,29 +189,29 @@ export function SurveysPolls() {
 
             {/* Simulated Data Blocks / Utility Row */}
             <div className="grid grid-cols-4 gap-2 text-center text-[#003366]">
-               <div className="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-all">
-                  <div className="w-14 h-14 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-[#E85D3F]">
+               <div className="flex flex-col items-center gap-2 cursor-pointer group">
+                  <div className="w-14 h-14 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[4px_4px_0_#003366] group-active:translate-x-1 group-active:translate-y-1 group-active:shadow-none transition-all flex items-center justify-center text-[#E85D3F]">
                      <PieChart size={24} strokeWidth={2.5} />
                   </div>
-                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight">Survey<br/>Results</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight mt-1">Survey<br/>Results</span>
                </div>
-               <div className="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-all">
-                  <div className="w-14 h-14 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-[#1877F2]">
+               <div className="flex flex-col items-center gap-2 cursor-pointer group">
+                  <div className="w-14 h-14 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[4px_4px_0_#003366] group-active:translate-x-1 group-active:translate-y-1 group-active:shadow-none transition-all flex items-center justify-center text-[#1877F2]">
                      <BarChart2 size={24} strokeWidth={2.5} />
                   </div>
-                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight">View<br/>Results</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight mt-1">View<br/>Results</span>
                </div>
-               <div className="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-all">
-                  <div className="w-14 h-14 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-[#00C853]">
+               <div className="flex flex-col items-center gap-2 cursor-pointer group">
+                  <div className="w-14 h-14 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[4px_4px_0_#003366] group-active:translate-x-1 group-active:translate-y-1 group-active:shadow-none transition-all flex items-center justify-center text-[#00C853]">
                      <FileText size={24} strokeWidth={2.5} />
                   </div>
-                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight">Analyze<br/>Feedback</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight mt-1">Analyze<br/>Feedback</span>
                </div>
-               <div className="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-all">
-                  <div className="w-14 h-14 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-[#FFC300]">
+               <div className="flex flex-col items-center gap-2 cursor-pointer group">
+                  <div className="w-14 h-14 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[4px_4px_0_#003366] group-active:translate-x-1 group-active:translate-y-1 group-active:shadow-none transition-all flex items-center justify-center text-[#FFC300]">
                      <Download size={24} strokeWidth={2.5} />
                   </div>
-                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight">Export<br/>Data</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest leading-tight mt-1">Export<br/>Data</span>
                </div>
             </div>
             
