@@ -85,6 +85,36 @@ export function Donate() {
         title="DONATE" 
         useLogo
         hideAsk
+        customBalanceHUD={
+           <motion.div
+             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: 0.1 }}
+             className="flex items-center justify-between bg-white border-[3px] border-[#003366] rounded-2xl py-2 px-3 shadow-[6px_6px_0_#003366] w-full mx-auto"
+           >
+             <div className="flex items-center gap-2">
+               <div className="min-w-0">
+                 <p className="text-[#003366] text-[8.5px] font-black uppercase tracking-widest leading-none mb-1">Balance</p>
+                 <div className="flex items-center gap-2">
+                   <h2 className="text-[#003366] text-[16px] font-black tracking-tight leading-none">
+                     ZMW 2,450.00
+                   </h2>
+                   <button className="text-[#003366]/40 transition-colors">
+                     <Eye size={14} strokeWidth={3} />
+                   </button>
+                 </div>
+               </div>
+             </div>
+
+             <div className="flex items-center gap-1.5 pl-2.5 border-l-[2.5px] border-[#003366]/20">
+                <Link to="/wallet" className="w-[30px] h-[30px] rounded-[10px] bg-[#E0F2FE] border-[2px] border-[#003366] flex items-center justify-center text-[#003366] active:translate-y-0.5 active:translate-x-0.5 transition-all shadow-[2px_2px_0_#003366] active:shadow-none">
+                  <ArrowUpToLine size={14} strokeWidth={3} />
+                </Link>
+                <Link to="/wallet" className="w-[30px] h-[30px] rounded-[10px] bg-[#E0F2FE] border-[2px] border-[#003366] flex items-center justify-center text-[#003366] active:translate-y-0.5 active:translate-x-0.5 transition-all shadow-[2px_2px_0_#003366] active:shadow-none">
+                  <ArrowUpToLine size={14} strokeWidth={3} className="rotate-180" />
+                </Link>
+             </div>
+           </motion.div>
+        }
       />
 
       {loading ? (
@@ -186,17 +216,16 @@ export function Donate() {
                    </div>
 
                    {/* Progress Visualizer */}
-                   <div className="w-full h-[6px] bg-gray-200 rounded-full mb-3 overflow-hidden flex">
-                      <div className="h-full bg-[#00C853]" style={{ width: `${proj.percent}%` }} />
+                   <div className="flex justify-between items-end mb-1 px-1">
+                      <span className="text-[10px] font-black text-[#E85D3F] uppercase tracking-wider">RAISED K{proj.raised}</span>
+                      <span className="text-[10px] font-black text-[#003366]/60 uppercase tracking-wider">TARGET K{proj.target}</span>
                    </div>
-
-                   {/* Green Metric Pills */}
-                   <div className="flex items-center justify-between mb-3">
-                      <div className="bg-[#eaf8ed] border-[1.5px] border-[#00C853]/50 px-2 py-0.5 rounded-full flex items-center shadow-sm">
-                         <span className="text-[8px] font-black text-[#00C853] uppercase tracking-wider">RAISED K{proj.raised}</span>
+                   <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full mb-4 overflow-hidden flex shadow-sm">
+                      <div className="h-full bg-[#E85D3F] flex items-center justify-center" style={{ width: `${proj.percent}%` }}>
+                         {proj.percent >= 15 && <span className="text-[10px] font-black text-white">{proj.percent}%</span>}
                       </div>
-                      <div className="bg-[#eaf8ed] border-[1.5px] border-[#00C853]/50 px-2 py-0.5 rounded-full flex items-center shadow-sm">
-                         <span className="text-[8px] font-black text-[#00C853] uppercase tracking-wider">TARGET K{proj.target}</span>
+                      <div className="h-full bg-gray-200 flex items-center justify-center" style={{ width: `${100 - proj.percent}%` }}>
+                         {(100 - proj.percent) >= 15 && <span className="text-[10px] font-black text-[#003366]/40">{100 - proj.percent}%</span>}
                       </div>
                    </div>
 
