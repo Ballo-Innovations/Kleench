@@ -146,11 +146,11 @@ export function SurveysPolls() {
                         </div>
                         <div className="flex flex-col w-[120px] shrink-0 justify-center">
                            <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full flex overflow-hidden shadow-sm">
-                              <div className={`h-full flex items-center justify-center ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
-                                 <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md">{poll.val1}%</span>
+                              <div className={`h-full flex items-center ${poll.val1 <= 15 ? 'justify-start pl-[3px]' : 'justify-center'} ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
+                                 <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: poll.val1 <= 15 ? '8.5px' : '10px' }}>{poll.val1}%</span>
                               </div>
-                              <div className={`h-full flex items-center justify-center ${poll.c2}`} style={{ width: `${poll.val2}%` }}>
-                                 <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md">{poll.val2}%</span>
+                              <div className={`h-full flex items-center ${poll.val2 <= 15 ? 'justify-end pr-[3px]' : 'justify-center'} ${poll.c2}`} style={{ width: `${poll.val2}%` }}>
+                                 <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: poll.val2 <= 15 ? '8.5px' : '10px' }}>{poll.val2}%</span>
                               </div>
                            </div>
                         </div>
