@@ -2,13 +2,18 @@ import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { Plus, BarChart2, PieChart, FileText, Facebook, Instagram, Download, PlaySquare } from "lucide-react";
+import { Plus, BarChart2, PieChart, FileText, Facebook, Instagram, Download, PlaySquare, ChevronRight } from "lucide-react";
 import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
+import eczLogo from "@/assets/ecz logo.png";
+import lazLogo from "@/assets/Laz Logo.jpeg";
+import fazLogo from "@/assets/faz logo.png";
+import ictazLogo from "@/assets/ictaz logo.jpeg";
+
 const ACTIVE_SURVEYS = [
-  { id: 1, title: "Customer Satisfaction Survey : Pick & Pay", percent: 37, color: "bg-green-500" },
-  { id: 2, title: "ICT Usage : ZICTA", percent: 64, color: "bg-[#00C853]" },
-  { id: 3, title: "Heath Breast Cancer :", percent: 19, color: "bg-[#00C853]" }
+  { id: 1, title: "Customer Satisfaction Survey : Pick & Pay", percent: 37, color: "bg-green-500", logo: null },
+  { id: 2, title: "ICT Usage : ICTAZ", percent: 64, color: "bg-[#00C853]", logo: ictazLogo },
+  { id: 3, title: "Heath Breast Cancer :", percent: 19, color: "bg-[#00C853]", logo: null }
 ];
 
 const SOCIAL_OPTIONS = [
@@ -18,9 +23,9 @@ const SOCIAL_OPTIONS = [
 ];
 
 const ACTIVE_POLLS = [
-  { id: 1, title: "ECZ :", option1: "UPND", option2: "PF", val1: 72, val2: 28, c1: "bg-[#E85D3F]", c2: "bg-[#00C853]" },
-  { id: 2, title: "LAZ :", option1: "Charles", option2: "Mwansa", val1: 45, val2: 55, c1: "bg-[#1877F2]", c2: "bg-black" },
-  { id: 3, title: "FAZ:", option1: "Thomas", option2: "Peter", val1: 10, val2: 90, c1: "bg-gray-300", c2: "bg-[#E85D3F]" }
+  { id: 1, title: "ECZ :", option1: "UNZA", option2: "Other", val1: 72, val2: 28, c1: "bg-[#E85D3F]", c2: "bg-[#00C853]", logo: eczLogo },
+  { id: 2, title: "LAZ :", option1: "Charles", option2: "Mwansa", val1: 45, val2: 55, c1: "bg-[#1877F2]", c2: "bg-black", logo: lazLogo },
+  { id: 3, title: "FAZ :", option1: "Thomas", option2: "Peter", val1: 10, val2: 90, c1: "bg-gray-300", c2: "bg-[#E85D3F]", logo: fazLogo }
 ];
 
 export function SurveysPolls() {
@@ -76,8 +81,12 @@ export function SurveysPolls() {
                   <div key={survey.id} className="mb-4 last:mb-0 relative py-1">
                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2 max-w-[70%]">
-                           <div className="w-6 h-6 text-[#003366]/40 shrink-0 flex items-center justify-center">
-                              <FileText size={16} />
+                           <div className="w-6 h-6 text-[#003366]/40 shrink-0 flex items-center justify-center overflow-hidden">
+                              {survey.logo ? (
+                                <img src={survey.logo} alt="" className="w-full h-full object-contain mix-blend-multiply" />
+                              ) : (
+                                <FileText size={16} />
+                              )}
                            </div>
                            <p className="text-[11px] font-black text-[#003366] leading-tight break-words">{survey.title}</p>
                         </div>
@@ -101,15 +110,15 @@ export function SurveysPolls() {
                
                <div className="space-y-3 p-3 pt-0">
                   {SOCIAL_OPTIONS.map((opt) => (
-                     <div key={opt.id} onClick={() => setSelectedSocial(opt.id)} className="flex items-center gap-4 cursor-pointer group">
-                        <div className="flex items-center gap-3 w-[120px] shrink-0">
-                           <div className={`w-8 h-8 rounded-full border-2 ${selectedSocial === opt.id ? 'border-[#003366]' : 'border-gray-200'} bg-white flex items-center justify-center transition-colors shadow-sm`}>
-                              <opt.icon size={16} className={`${opt.color}`} />
+                     <div key={opt.id} onClick={() => setSelectedSocial(opt.id)} className={`flex items-center gap-4 cursor-pointer group rounded-full border-2 p-1.5 transition-colors ${selectedSocial === opt.id ? 'border-[#003366] bg-[#003366]/5' : 'border-gray-200 hover:border-gray-300 bg-white'}`}>
+                        <div className="flex items-center gap-3 w-[120px] shrink-0 pl-1">
+                           <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${selectedSocial === opt.id ? 'border-[#003366]' : 'border-gray-300'}`}>
+                              {selectedSocial === opt.id && <div className="w-2 h-2 rounded-full bg-[#003366]" />}
                            </div>
                            <span className="text-[11px] font-bold text-[#003366]">{opt.label}</span>
                         </div>
                         <div className="flex-1 flex items-center">
-                           <div className={`h-6 ${opt.barColor} transition-all duration-1000 ease-in-out`} style={{ width: selectedSocial ? `${opt.score}%` : '0%', opacity: selectedSocial ? 1 : 0 }} />
+                           <div className={`h-4 rounded-full ${opt.barColor} transition-all duration-1000 ease-in-out`} style={{ width: selectedSocial ? `${opt.score}%` : '0%', opacity: selectedSocial ? 1 : 0 }} />
                         </div>
                      </div>
                   ))}
@@ -132,8 +141,13 @@ export function SurveysPolls() {
                      <div className="flex items-center justify-between mb-2">
                         <div className="flex flex-col gap-1 w-[140px] shrink-0">
                            <div className="flex items-center gap-2">
+                              {poll.logo && (
+                                <div className="w-5 h-5 shrink-0 overflow-hidden flex items-center justify-center">
+                                  <img src={poll.logo} alt={poll.title} className="w-full h-full object-contain mix-blend-multiply" />
+                                </div>
+                              )}
                               <span className="text-[11px] font-black text-[#003366] uppercase">{poll.title}</span>
-                              <div className="flex flex-col text-[10px] font-bold text-[#003366]/80 leading-none gap-0.5">
+                              <div className="flex flex-col text-[10px] font-bold text-[#003366]/80 leading-none gap-0.5 ml-1">
                                  <span>{poll.option1}</span>
                                  <span>{poll.option2}</span>
                               </div>
@@ -157,17 +171,17 @@ export function SurveysPolls() {
                      {i !== ACTIVE_POLLS.length - 1 && <div className="border-b border-gray-100 w-full mt-3" />}
                   </div>
                ))}
+               
+               <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center">
+                  <span className="text-[11px] font-black text-[#FF8C00] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
+                     View Results & Analytics <ChevronRight size={14} strokeWidth={3} />
+                  </span>
+               </div>
             </div>
           </section>
 
           {/* Survey & Poll Analytics header */}
           <section className="px-5 py-6">
-            <div className="flex items-center justify-center gap-2 mb-6 relative">
-               <div className="h-[2px] bg-gray-200 flex-1" />
-               <h3 className="text-[#FF8C00] font-black tracking-wide text-[16px] px-2 uppercase text-center bg-white z-10 shrink-0">View Results & Analytics</h3>
-               <div className="h-[2px] bg-gray-200 flex-1" />
-            </div>
-
             <div className="grid grid-cols-2 gap-4 mb-6">
                <h4 className="text-[#FF8C00] font-black text-[14px] text-center uppercase tracking-wide">Survey Analytics</h4>
                <h4 className="text-[#FF8C00] font-black text-[14px] text-center uppercase tracking-wide">Polls Analytics</h4>
