@@ -187,7 +187,7 @@ export function Layout() {
 
                 <div className="grid grid-cols-2 gap-y-12 gap-x-6 mb-10 px-8">
                   {[
-                    { id: 'discover', icon: Store, label: 'Market', path: '/discover' },
+                    { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
                     { id: 'surveys', icon: ClipboardList, label: 'Surveys & Polls', path: '/surveys-polls' },
                     { id: 'donate', icon: HeartHandshake, label: 'Donate', path: '/donate' },
                     { id: 'crowdfund', icon: HandCoins, label: 'Crowdfund', path: '/crowdfunding' }

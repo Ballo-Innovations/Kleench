@@ -4,6 +4,8 @@ import { Search, Tag, FileText, UserPlus, Briefcase, ChevronRight, Ticket, Palet
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 import smartphoneImg from "@/assets/products/smartphone.png";
 import shoesImg from "@/assets/products/shoes.png";
 import handbagImg from "@/assets/products/hand_bag.png";
@@ -62,6 +64,13 @@ const BUSINESSES = [
 
 export function Marketplace() {
   const loading = usePageLoading(850);
+  const navigate = useNavigate();
+
+  const handleAction = (label: string) => {
+    if (label === "SELL") navigate("/sell");
+    else if (label === "REFER") navigate("/referral");
+    else toast.info(`${label} interface coming soon.`);
+  };
 
   return (
     <div className="w-full relative min-h-[100dvh] bg-white overflow-x-hidden font-sans pb-32">
@@ -85,6 +94,7 @@ export function Marketplace() {
                 <motion.button 
                   key={i} 
                   whileTap={{ scale: 0.9 }}
+                  onClick={() => handleAction(action.label)}
                   className="flex flex-col items-center gap-2 group cursor-pointer"
                   style={{ touchAction: "manipulation" }}
                 >
@@ -106,7 +116,7 @@ export function Marketplace() {
                  placeholder="Search Product..." 
                  className="w-full bg-white border-[3px] border-[#003366] pl-12 pr-4 py-3 rounded-2xl shadow-[4px_4px_0_#003366] focus:shadow-none focus:translate-x-1 focus:translate-y-1 text-[13px] font-black text-[#003366] outline-none placeholder:text-[#003366]/40 transition-all" 
                />
-               <button className="absolute right-4 text-[#FF8C00] font-black text-[11px] flex items-center gap-1 active:opacity-70 uppercase tracking-widest">
+               <button onClick={() => toast("Fetching category indexes...")} className="absolute right-4 text-[#FF8C00] font-black text-[11px] flex items-center gap-1 active:opacity-70 uppercase tracking-widest">
                  Categories <ChevronRight size={14} strokeWidth={3} className="text-[#003366]" />
                </button>
             </div>
@@ -116,7 +126,7 @@ export function Marketplace() {
           <section>
             <div className="px-5 flex items-center justify-between mb-3 border-b-2 border-[#003366]/10 pb-2">
                <h3 className="text-[#003366] font-black text-sm tracking-wide">Featured Products</h3>
-               <button className="text-[#FF8C00] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
+               <button onClick={() => toast.success("Loading complete product catalog...")} className="text-[#FF8C00] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
                  See All <ChevronRight size={12} strokeWidth={3} />
                </button>
             </div>
@@ -149,7 +159,7 @@ export function Marketplace() {
             
             <div className="flex overflow-x-auto snap-x snap-mandatory px-5 pb-5 -mx-5 gap-4 scrollbar-hide no-scrollbar" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
               {SERVICES.map((service) => (
-                <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
+                <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
                   <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
                     <div className="h-[100px] relative border-b-[3px] border-[#003366] bg-white">
                        <img src={service.image} alt={service.title} className={`w-full h-full ${service.isLogo ? "object-contain p-2" : "object-cover grayscale-[0.2]"}`} />
@@ -238,7 +248,7 @@ export function Marketplace() {
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
                            <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden sm:inline-block">{business.category}</span>
-                           <div className="w-8 h-8 bg-white border-2 border-[#003366] rounded-full flex items-center justify-center text-[#003366] shrink-0 shadow-[2px_2px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
+                           <div onClick={() => toast("Loading Business Intelligence...")} className="w-8 h-8 bg-white border-2 border-[#003366] rounded-full flex items-center justify-center text-[#003366] shrink-0 shadow-[2px_2px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
                               <ArrowDown size={14} strokeWidth={3} />
                            </div>
                         </div>
