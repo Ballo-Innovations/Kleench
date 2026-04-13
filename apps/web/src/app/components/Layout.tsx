@@ -185,22 +185,22 @@ export function Layout() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-y-12 gap-x-6 mb-10 px-8">
+                <div className="grid grid-cols-4 gap-x-2 gap-y-8 mb-10 px-2">
                   {[
                     { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
-                    { id: 'surveys', icon: ClipboardList, label: 'Surveys & Polls', path: '/surveys-polls' },
+                    { id: 'surveys', icon: ClipboardList, label: 'Surveys', path: '/surveys-polls' },
                     { id: 'donate', icon: HeartHandshake, label: 'Donate', path: '/donate' },
-                    { id: 'crowdfund', icon: HandCoins, label: 'Crowdfund', path: '/crowdfunding' }
+                    { id: 'crowdfund', icon: HandCoins, label: 'Invest', path: '/crowdfunding' }
                   ].map((item) => (
                     <div 
                       key={item.id} 
                       onClick={() => { navigate(item.path); setShowMore(false); }}
-                      className="flex flex-col items-center gap-4 group cursor-pointer active:scale-95 transition-all"
+                      className="flex flex-col items-center gap-2.5 group cursor-pointer active:scale-95 transition-all"
                     >
-                      <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center border-[3px] border-slate-900 shadow-[6px_6px_0px_#0f172a] transition-all">
-                        <item.icon size={36} className="text-slate-900" strokeWidth={2} />
+                      <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] transition-all">
+                        <item.icon size={22} className="text-slate-900" strokeWidth={2.5} />
                       </div>
-                      <span className="text-[12px] font-black text-slate-900 uppercase tracking-widest text-center leading-tight">
+                      <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest text-center leading-tight px-1">
                         {item.label}
                       </span>
                     </div>
