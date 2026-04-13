@@ -1,7 +1,7 @@
 import {
   Play, Heart, ArrowRight,
-  Network, Share2, BadgeCheck, Sparkles,
-  CloudUpload, X, MessageCircle, Send, UserPlus
+  BadgeCheck,
+  CloudUpload, X, MessageCircle, Send, UserPlus, Upload
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
@@ -173,22 +173,24 @@ export function Home() {
       ) : (
         <>
       {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
-      <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-8">
+      <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-10">
         {[
-          { id: "Upload", icon: Network, label: "Upload", color: "text-[#FF8C00]", bg: "bg-white" },
-          { id: "Share", icon: Share2, label: "Share", color: "text-white", bg: "bg-[#FF8C00]" },
-          { id: "Register Agent", icon: Sparkles, label: "Agent", color: "text-[#003366]", bg: "bg-white" },
+          { id: "Upload", icon: Upload, label: "UPLOAD", color: "text-[#003366]" },
+          { id: "Share", icon: Send, label: "SHARE", color: "text-[#003366]" },
+          { id: "Register Agent", icon: UserPlus, label: "REGISTER\nAGENT", color: "text-[#003366]" },
         ].map((item, i) => (
           <motion.div
             key={i}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.92 }}
             onClick={() => handleActionClick(item.id)}
-            className="flex flex-col items-center gap-2.5 cursor-pointer group"
+            className="flex flex-col items-center gap-2 cursor-pointer group"
           >
-            <div className={`w-16 h-16 rounded-[22px] ${item.bg} border-[2.5px] border-[#003366] flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:translate-x-0.5 group-active:translate-y-0.5 group-active:shadow-none transition-all`}>
-              <item.icon className={item.color} size={26} strokeWidth={3} />
+            <div className="w-14 h-14 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-[0_8px_16px_rgba(0,51,102,0.06)] group-active:scale-95 transition-all">
+              <item.icon className={item.color} size={22} strokeWidth={1.5} />
             </div>
-            <span className="text-[10px] font-black text-[#003366] mt-0.5 uppercase tracking-widest">{item.label}</span>
+            <span className="text-[9px] font-black text-[#003366] mt-0.5 uppercase tracking-widest text-center leading-tight whitespace-pre-line">
+              {item.label}
+            </span>
           </motion.div>
         ))}
       </div>
