@@ -11,7 +11,7 @@ import smartphoneImg from "@/assets/products/smartphone.png";
 import shoesImg from "@/assets/products/shoes.png";
 import handbagImg from "@/assets/products/hand_bag.png";
 import laptopImg from "@/assets/products/laptop.png";
-import toyotaLogo from "@/assets/toyota zambia.png";
+import toyotaImg from "@/assets/toyota zambia.png";
 import jetLogo from "@/assets/jet image.webp";
 import pnpLogo from "@/assets/pick and pay logo.png";
 import scentStoreImg from "@/assets/shops/scent_store.png";
@@ -58,7 +58,7 @@ const MARKET_INTEL = [
 ];
 
 const BUSINESSES = [
-  { id: 1, name: "TOYOTA ZAMBIA", category: "Automotive", logo: "TZ", image: toyotaLogo },
+  { id: 1, name: "TOYOTA ZAMBIA", category: "Automotive", logo: "TZ", image: toyotaImg },
   { id: 2, name: "JET MOBILE ADS", category: "Digital Media", logo: "JM", image: jetLogo },
   { id: 3, name: "PICK N PAY ZAMBIA", category: "Retail Store", logo: "PP", image: pnpLogo }
 ];
