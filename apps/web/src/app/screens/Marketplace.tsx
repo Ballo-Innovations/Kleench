@@ -1,6 +1,7 @@
 import { Link } from "react-router";
+import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Search, Tag, FileText, UserPlus, Briefcase, ChevronRight, Ticket, Palette, Building2, UserCircle, ArrowDown } from "lucide-react";
+import { Search, Tag, FileText, UserPlus, ShieldCheck, ChevronRight, Ticket, Palette, Building2, UserCircle, ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
@@ -65,6 +66,7 @@ const BUSINESSES = [
 export function Marketplace() {
   const loading = usePageLoading(850);
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("PRODUCTS");
 
   const handleAction = (label: string) => {
     if (label === "SELL") navigate("/sell");
@@ -89,7 +91,7 @@ export function Marketplace() {
                 { icon: Tag, label: "SELL", color: "text-[#E85D3F]" },
                 { icon: FileText, label: "LIST", color: "text-[#003366]" },
                 { icon: UserPlus, label: "REFER", color: "text-[#00C853]" },
-                { icon: Briefcase, label: "AGENT", color: "text-[#FFC300]" }
+                { icon: ShieldCheck, label: "VERIFIED", color: "text-[#FFC300]" }
               ].map((action, i) => (
                 <motion.button 
                   key={i} 
@@ -108,8 +110,8 @@ export function Marketplace() {
           </div>
 
           {/* Search Bar */}
-          <div className="px-5 flex items-center gap-2">
-            <div className="flex-1 relative flex items-center">
+          <div className="px-5 flex items-center gap-2 w-full">
+            <div className="flex-1 relative flex items-center w-full">
                <Search className="absolute left-4 text-[#003366]/60" size={20} strokeWidth={2.5} />
                <input 
                  type="text" 
@@ -122,70 +124,88 @@ export function Marketplace() {
             </div>
           </div>
 
-          {/* Featured Products */}
-          <section>
-            <div className="px-5 flex items-center justify-between mb-3 border-b-2 border-[#003366]/10 pb-2">
-               <h3 className="text-[#003366] font-black text-sm tracking-wide">Featured Products</h3>
-               <button onClick={() => toast.success("Loading complete product catalog...")} className="text-[#FF8C00] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
-                 See All <ChevronRight size={12} strokeWidth={3} />
-               </button>
-            </div>
-            
-            <div className="flex overflow-x-auto snap-x snap-mandatory px-5 pb-4 -mx-5 gap-3 scrollbar-hide no-scrollbar" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-              {MARKET_PRODUCTS.map((product) => (
-                <Link to={`/product/${product.id}`} key={product.id} className="block shrink-0 snap-start w-[110px]">
-                  <div className="bg-white border-2 border-[#003366]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
-                    <div className="aspect-square bg-white relative border-b-2 border-[#003366]">
-                       <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-2 bg-white flex flex-col gap-0.5 justify-between flex-1">
-                       <h4 className="text-[9px] font-black text-[#003366] leading-tight line-clamp-1">{product.title}</h4>
-                       <div className="flex items-center gap-1 mt-1">
-                          <span className="text-[12px] font-black text-black">K{product.price}</span>
-                          <span className="text-[6px] font-black text-[#FF8C00] uppercase pt-0.5 whitespace-nowrap">VIEW / BUY</span>
-                       </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
+          {/* Component Standardization (Tabs) */}
+          <div className="px-5 mt-2 mb-2">
+             <div className="flex bg-white border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] p-0.5">
+                {["PRODUCTS", "SERVICES"].map((tab) => {
+                   const isActive = activeTab === tab;
+                   return (
+                     <button
+                       key={tab}
+                       onClick={() => setActiveTab(tab)}
+                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
+                     >
+                       <span className="text-[10px] font-black tracking-widest uppercase">{tab}</span>
+                     </button>
+                   );
+                })}
+             </div>
+          </div>
 
-          {/* Services Layout */}
-          <section>
-            <div className="px-5 mb-4 border-b-[3px] border-[#003366] pb-2">
-               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">Services</h3>
-            </div>
-            
-            <div className="flex overflow-x-auto snap-x snap-mandatory px-5 pb-5 -mx-5 gap-4 scrollbar-hide no-scrollbar" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-              {SERVICES.map((service) => (
-                <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
-                  <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
-                    <div className="h-[100px] relative border-b-[3px] border-[#003366] bg-white">
-                       <img src={service.image} alt={service.title} className={`w-full h-full ${service.isLogo ? "object-contain p-2" : "object-cover grayscale-[0.2]"}`} />
-                       {!service.isLogo && <div className="absolute inset-0 bg-black/40" />}
-                       {!service.isLogo && (
-                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
-                            <span className="text-[11px] font-black text-white px-2 py-1 bg-[#003366]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
+          {activeTab === "PRODUCTS" ? (
+             <section className="px-5">
+               <div className="flex items-center justify-between mb-3 border-b-2 border-[#003366]/10 pb-2">
+                  <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">PRODUCTS</h3>
+                  <button onClick={() => toast.success("Loading complete catalog...")} className="text-[#FF8C00] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
+                    See All <ChevronRight size={12} strokeWidth={3} />
+                  </button>
+               </div>
+               
+               <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar pr-5">
+                 {MARKET_PRODUCTS.map((product) => (
+                   <Link to={`/product/${product.id}`} key={product.id} className="block shrink-0 snap-start w-[110px]">
+                     <div className="bg-white border-2 border-[#003366]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
+                       <div className="aspect-square bg-white relative border-b-2 border-[#003366]">
+                          <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
+                       </div>
+                       <div className="p-2 bg-white flex flex-col gap-0.5 justify-between flex-1">
+                          <h4 className="text-[9px] font-black text-[#003366] leading-tight line-clamp-1 uppercase">{product.title}</h4>
+                          <div className="flex items-center gap-1 mt-1">
+                             <span className="text-[12px] font-black text-black">K{product.price}</span>
+                             <span className="text-[6px] font-black text-[#FF8C00] uppercase pt-0.5 whitespace-nowrap">VIEW / BUY</span>
                           </div>
-                       )}
-                    </div>
-                    <div className="py-2.5 px-2 bg-white flex items-center justify-center min-h-[40px]">
-                       <span className="text-[9px] font-black text-[#003366] uppercase text-center leading-none tracking-[0.2em]">{service.label}</span>
-                    </div>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-          </section>
+                       </div>
+                     </div>
+                   </Link>
+                 ))}
+               </div>
+             </section>
+          ) : (
+             <section className="px-5">
+               <div className="flex items-center justify-between mb-3 border-b-[3px] border-[#003366] pb-2">
+                  <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">SERVICES</h3>
+               </div>
+               
+               <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar pr-5">
+                 {SERVICES.map((service) => (
+                   <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
+                     <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
+                       <div className="h-[100px] relative border-b-[3px] border-[#003366] bg-white">
+                          <img src={service.image} alt={service.title} className={`w-full h-full ${service.isLogo ? "object-contain p-2" : "object-cover grayscale-[0.2]"}`} />
+                          {!service.isLogo && <div className="absolute inset-0 bg-black/40" />}
+                          {!service.isLogo && (
+                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
+                               <span className="text-[11px] font-black text-white px-2 py-1 bg-[#003366]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
+                             </div>
+                          )}
+                       </div>
+                       <div className="py-2.5 px-2 bg-white flex items-center justify-center min-h-[40px]">
+                          <span className="text-[9px] font-black text-[#003366] uppercase text-center leading-none tracking-[0.2em]">{service.label}</span>
+                       </div>
+                     </div>
+                   </motion.button>
+                 ))}
+               </div>
+             </section>
+          )}
 
           {/* Market Intelligence Ticker */}
-          <section>
-            <div className="px-5 mb-4 border-b-[3px] border-[#003366] pb-2">
+          <section className="px-5">
+            <div className="mb-4 border-b-[3px] border-[#003366] pb-2">
                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">Market Intelligence</h3>
             </div>
             
-            <div className="flex overflow-x-auto snap-x snap-mandatory px-5 pb-5 -mx-5 gap-4 scrollbar-hide no-scrollbar" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+            <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar pr-5">
                {MARKET_INTEL.map((intel) => (
                   <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-slate-900 rounded-2xl p-3 border-[3px] border-[#003366] shadow-[6px_6px_0_#E85D3F] flex flex-col relative overflow-hidden h-[150px]">
                      {/* Y-axis labels */}
@@ -257,7 +277,7 @@ export function Marketplace() {
                </div>
             </div>
 
-            <div className="mt-6 border-b-[3px] border-[#003366] pb-2">
+            <div className="mt-6 border-b-[3px] border-[#003366] pb-4">
                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">Window Shopping</h3>
                <div className="space-y-4">
                   <div className="flex items-center justify-between border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#757575] bg-white active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
@@ -276,6 +296,32 @@ export function Marketplace() {
                   </div>
                </div>
             </div>
+          </section>
+
+          {/* New Section: BIG DEALS */}
+          <section className="px-5 mt-2">
+             <div className="mb-4 border-b-[3px] border-[#003366] pb-2">
+                <h3 className="text-[#E85D3F] font-black text-sm tracking-widest uppercase">BIG DEALS</h3>
+             </div>
+             <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-4 scrollbar-hide no-scrollbar pr-5">
+               {MARKET_PRODUCTS.map((product) => (
+                 <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[140px]">
+                   <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden shadow-[6px_6px_0_#003366] flex flex-col h-full active:scale-95 transition-transform">
+                     <div className="aspect-square relative border-b-[3px] border-[#003366] bg-gray-50 flex items-center justify-center p-2">
+                         <div className="absolute top-2 left-2 bg-[#E85D3F] text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 shadow-sm border-[2px] border-[#003366]">HOT</div>
+                        <ImageWithFallback src={product.image} alt={product.title} className="w-[90%] h-[90%] object-contain drop-shadow-md" />
+                     </div>
+                     <div className="p-3 bg-white flex flex-col gap-1 justify-between flex-1">
+                        <h4 className="text-[11px] font-black text-[#003366] leading-tight line-clamp-1 break-words uppercase">{product.title}</h4>
+                        <div className="flex flex-col gap-0.5 mt-1">
+                           <span className="text-[9px] font-black text-[#E85D3F] line-through">K{Number(product.price.replace(/,/g,'')) + 1000}</span>
+                           <span className="text-[14px] font-black text-[#00C853] leading-none">K{product.price}</span>
+                        </div>
+                     </div>
+                   </div>
+                 </Link>
+               ))}
+             </div>
           </section>
 
         </div>
