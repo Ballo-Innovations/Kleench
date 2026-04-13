@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Search, Tag, FileText, UserPlus, ShieldCheck, ChevronRight, Ticket, Palette, Building2, UserCircle, ArrowDown } from "lucide-react";
+import { Search, Tag, FileText, UserPlus, ShieldCheck, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
@@ -11,9 +11,11 @@ import smartphoneImg from "@/assets/products/smartphone.png";
 import shoesImg from "@/assets/products/shoes.png";
 import handbagImg from "@/assets/products/hand_bag.png";
 import laptopImg from "@/assets/products/laptop.png";
+import toyotaLogo from "@/assets/toyota zambia.png";
+import jetLogo from "@/assets/jet image.webp";
+import pnpLogo from "@/assets/pick and pay logo.png";
 
-import pacraLogo from "@/assets/pacra logo.png";
-import zppaLogo from "@/assets/zppa logo.jpeg";
+
 
 const MARKET_PRODUCTS = [
   {
@@ -42,12 +44,7 @@ const MARKET_PRODUCTS = [
   }
 ];
 
-const SERVICES = [
-  { id: "tickets", label: "BUY TICKETS", title: "TICKET", icon: Ticket, image: "https://images.unsplash.com/photo-1540839045366-eb10c95a04cc?w=400&q=80" },
-  { id: "design", label: "DO GRAPHIC DESIGNING", title: "GRAPHIC DESIGN", icon: Palette, image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80" },
-  { id: "pacra", label: "REGISTER COMPANY", title: "PACRA", icon: Building2, image: pacraLogo, isLogo: true },
-  { id: "zppa", label: "HIRE", title: "ZPPA", icon: UserCircle, image: zppaLogo, isLogo: true }
-];
+
 
 const MARKET_INTEL = [
   { id: "maize", title: "MAIZE", price: "K280", graph: "M 0 40 L 10 30 L 20 45 L 30 15 L 40 25" },
@@ -57,10 +54,9 @@ const MARKET_INTEL = [
 ];
 
 const BUSINESSES = [
-  { id: 1, name: "ROCKBED CONSTRUCTION LIMITED", category: "construction", logo: "RC" },
-  { id: 2, name: "TOYOTA ZAMBIA", category: "automotive", logo: "TZ" },
-  { id: 3, name: "JET MOBILE ADS", category: "digital media", logo: "JM" },
-  { id: 4, name: "PICK N PAY ZAMBIA", category: "retail store", logo: "PP" }
+  { id: 1, name: "TOYOTA ZAMBIA", category: "Automotive", logo: "TZ", image: toyotaLogo },
+  { id: 2, name: "JET MOBILE ADS", category: "Digital Media", logo: "JM", image: jetLogo },
+  { id: 3, name: "PICK N PAY ZAMBIA", category: "Retail Store", logo: "PP", image: pnpLogo }
 ];
 
 export function Marketplace() {
@@ -82,7 +78,7 @@ export function Marketplace() {
       {loading ? (
         <PageSkeletons.Marketplace />
       ) : (
-        <div className="relative z-10 w-full mt-6 space-y-7 pb-10 px-5">
+        <div className="relative z-10 w-full mt-4 space-y-4 pb-10 px-5">
           
           {/* Primary Action Bar */}
           <div>
@@ -124,20 +120,20 @@ export function Marketplace() {
             </div>
           </div>
 
-          {/* Fused Segmented Pill Tabs */}
-          <div className="mt-2 mb-2 w-full">
-             <div className="flex bg-white border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] overflow-hidden">
-                {["PRODUCTS", "SERVICES"].map((tab, i) => {
+          {/* Fused Segmented Pill Tabs — zero gap toggle */}
+          <div className="w-full">
+             <div className="flex border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] overflow-hidden">
+                {(["PRODUCTS", "SERVICES"] as const).map((tab, i) => {
                    const isActive = activeTab === tab;
                    return (
                      <button
                        key={tab}
                        onClick={() => setActiveTab(tab)}
-                       className={`flex-1 flex items-center justify-center h-[40px] transition-all duration-200 relative ${
+                       className={`flex-1 flex items-center justify-center h-[38px] transition-all duration-200 ${
                          isActive
                            ? 'bg-[#003366] text-white'
-                           : 'bg-white text-[#003366]/60 hover:text-[#003366]'
-                       } ${i === 0 ? 'border-r border-[#003366]/20' : ''}`}
+                           : 'bg-white text-[#003366]/55 hover:text-[#003366] hover:bg-[#003366]/5'
+                       } ${i === 0 ? 'border-r-[1.5px] border-[#003366]' : ''}`}
                      >
                        <span className="text-[10px] font-black tracking-[0.2em] uppercase">{tab}</span>
                      </button>
@@ -179,19 +175,21 @@ export function Marketplace() {
                <div className="flex items-center justify-between mb-3 border-b-[3px] border-[#003366] pb-2">
                   <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">SERVICES</h3>
                </div>
-               
-               <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full">
-                 {SERVICES.map((service) => (
+               <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
+                 {[
+                   { id: "tickets", label: "BUY TICKETS", title: "TICKET", image: "https://images.unsplash.com/photo-1540839045366-eb10c95a04cc?w=400&q=80", isLogo: false },
+                   { id: "design", label: "GRAPHIC DESIGN", title: "GRAPHIC DESIGN", image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80", isLogo: false },
+                   { id: "pacra", label: "REGISTER COMPANY", title: "PACRA", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80", isLogo: false },
+                   { id: "zppa", label: "HIRE TALENT", title: "ZPPA", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&q=80", isLogo: false },
+                 ].map((service) => (
                    <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
                      <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
                        <div className="h-[100px] relative border-b-[3px] border-[#003366] bg-white">
-                          <img src={service.image} alt={service.title} className={`w-full h-full ${service.isLogo ? "object-contain p-2" : "object-cover grayscale-[0.2]"}`} />
-                          {!service.isLogo && <div className="absolute inset-0 bg-black/40" />}
-                          {!service.isLogo && (
-                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
-                               <span className="text-[11px] font-black text-white px-2 py-1 bg-[#003366]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
-                             </div>
-                          )}
+                          <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale-[0.2]" />
+                          <div className="absolute inset-0 bg-black/40" />
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
+                            <span className="text-[11px] font-black text-white px-2 py-1 bg-[#003366]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
+                          </div>
                        </div>
                        <div className="py-2.5 px-2 bg-white flex items-center justify-center min-h-[40px]">
                           <span className="text-[9px] font-black text-[#003366] uppercase text-center leading-none tracking-[0.2em]">{service.label}</span>
@@ -254,73 +252,97 @@ export function Marketplace() {
             </div>
           </section>
 
-          {/* Business Listing Vertical Feed */}
+          {/* Business Listings — Unified Horizontal Directory Block */}
           <section>
-            <div className="mb-4 border-b-[3px] border-[#003366] pb-2">
-               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">BUSINESS LISTING</h3>
-               <div className="space-y-4">
-                  {BUSINESSES.map((business, i) => (
-                     <div key={i} className="flex items-center justify-between bg-white border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#FFC300] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer w-full">
-                        <div className="flex items-center gap-4 min-w-0">
-                           <div className="w-10 h-10 rounded-[10px] bg-[#003366] text-white font-black text-[12px] flex items-center justify-center shrink-0 border-2 border-[#003366] overflow-hidden">
-                              {business.logo}
-                           </div>
-                           <div className="flex flex-col min-w-0">
-                              <span className="text-[12px] font-black text-[#003366] truncate leading-tight tracking-wider uppercase">{business.name}</span>
-                              <button className="text-[9px] font-black tracking-widest text-[#FF8C00] text-left mt-1 uppercase leading-none">Window Shopping</button>
-                           </div>
-                        </div>
-                        <div className="flex items-center gap-3 shrink-0">
-                           <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden">{business.category}</span>
-                           <div onClick={() => toast("Loading Business Intelligence...")} className="w-8 h-8 bg-white border-2 border-[#003366] rounded-full flex items-center justify-center text-[#003366] shrink-0 shadow-[2px_2px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
-                              <ArrowDown size={14} strokeWidth={3} />
-                           </div>
-                        </div>
-                     </div>
-                  ))}
+            <div className="bg-[#003366] px-4 py-2 border-t-[3px] border-x-[3px] border-[#003366] rounded-t-2xl">
+               <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">BUSINESS LISTINGS</h3>
+            </div>
+            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border-[3px] border-[#003366] rounded-b-2xl shadow-[6px_6px_0_#FFC300] bg-[#003366]">
+               {BUSINESSES.map((business, i) => (
+                 <div key={i} onClick={() => toast(`Visiting ${business.name} profile...`)} className="shrink-0 snap-start w-[150px] bg-white cursor-pointer group flex flex-col h-[185px] border-r-[1px] border-[#003366]/10 last:border-r-0">
+                   <div className="flex-1 bg-[#F8F9FA] flex items-center justify-center border-b-[2px] border-[#003366]/10 p-4 relative group-hover:bg-[#003366]/5 transition-colors">
+                      <div className="w-16 h-16 rounded-full bg-white border-2 border-[#003366] flex items-center justify-center overflow-hidden shadow-[4px_4px_0_#FFC300] group-hover:scale-110 transition-transform duration-300">
+                         {('image' in business && business.image) ? (
+                            <img src={business.image as string} alt={business.name} className="w-[85%] h-[85%] object-contain" />
+                         ) : (
+                            <span className="text-[#003366] font-black text-xl">{business.logo}</span>
+                         )}
+                      </div>
+                      <div className="absolute top-2 right-2 flex gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#00C853] animate-pulse" />
+                      </div>
+                   </div>
+                   <div className="p-3 flex flex-col gap-1 h-[75px] justify-between">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-[9px] font-black text-[#003366] uppercase leading-tight line-clamp-2 tracking-wide">{business.name}</span>
+                        <span className="text-[7px] font-black text-[#FF8C00] uppercase tracking-widest">{business.category}</span>
+                      </div>
+                      <button className="w-full py-1.5 bg-[#003366] text-white text-[8px] font-black uppercase tracking-widest rounded-sm active:scale-95 transition-all">VIEW PROFILE</button>
+                   </div>
+                 </div>
+               ))}
+               {/* Terminal VIEW ALL block */}
+               <div onClick={() => toast("Viewing all registered businesses...")} className="shrink-0 snap-start w-[120px] bg-[#003366] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
+                  <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center">
+                    <ChevronRight size={24} className="text-white ml-0.5" strokeWidth={3} />
+                  </div>
+                  <span className="text-[9px] font-black text-white uppercase tracking-[0.2em] text-center leading-tight">VIEW ALL<br/>BUSINESSES →</span>
                </div>
             </div>
+          </section>
 
-            <div className="mt-6 border-b-[3px] border-[#003366] pb-4">
-               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">WINDOW SHOPPING</h3>
-               <div className="space-y-4">
-                  <div className="flex items-center justify-between border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#757575] bg-white active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer w-full">
-                     <div className="flex items-center gap-4 min-w-0">
-                        <div className="w-10 h-10 rounded-[10px] overflow-hidden flex items-center justify-center shrink-0 border-2 border-[#003366]">
-                           <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?w=100&q=80" alt="Logo" className="w-full h-full object-cover" />
-                        </div>
-                        <span className="text-[12px] font-black tracking-wider text-[#003366] truncate uppercase">THE SCENT STORE ZAMBIA</span>
-                     </div>
-                     <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden">retail store</span>
-                        <div className="w-8 h-8 bg-white border-2 border-[#003366] rounded-full flex items-center justify-center text-[#003366] shrink-0 shadow-[2px_2px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
-                           <UserCircle size={16} strokeWidth={2.5} />
-                        </div>
-                     </div>
+          {/* Window Shopping — Unified Shop Directory Block */}
+          <section>
+            <div className="bg-[#003366] px-4 py-2 border-t-[3px] border-x-[3px] border-[#003366] rounded-t-2xl">
+               <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">WINDOW SHOPPING</h3>
+            </div>
+            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border-[3px] border-[#003366] rounded-b-2xl shadow-[6px_6px_0_#757575] bg-[#003366]">
+               {[
+                 { name: "THE SCENT STORE ZAMBIA",  category: "Beauty & Fragrance",   logo: "TSS",  bg: "#7B2D8B" },
+                 { name: "LUSAKA TECH HUB",          category: "Electronics & Tech",    logo: "LTH",  bg: "#1A1A2E" },
+                 { name: "STYLE AVENUE ZM",          category: "Clothing & Fashion",    logo: "SA",   bg: "#C0392B" },
+                 { name: "GREENLEAF ORGANICS",       category: "Food & Health",         logo: "GLO",  bg: "#1E6B3C" },
+                 { name: "CASA FURNITURE ZM",        category: "Home & Living",         logo: "CF",   bg: "#8B5E3C" },
+               ].map((shop, i) => (
+                 <div key={i} onClick={() => toast(`Opening ${shop.name}...`)} className="shrink-0 snap-start w-[140px] bg-white cursor-pointer group flex flex-col h-[185px]">
+                   <div className="flex-1 flex items-center justify-center border-b-[2px] border-[#003366]/10" style={{ backgroundColor: shop.bg }}>
+                      <span className="text-white font-black text-[32px] tracking-tight drop-shadow-lg">{shop.logo}</span>
+                   </div>
+                   <div className="p-3 flex flex-col gap-1 h-[65px] justify-center">
+                      <span className="text-[10px] font-black text-[#003366] uppercase leading-tight line-clamp-2 tracking-wide">{shop.name}</span>
+                      <span className="text-[8px] font-black text-[#FF8C00] uppercase tracking-widest">{shop.category}</span>
+                   </div>
+                 </div>
+               ))}
+               {/* Terminal VIEW ALL block */}
+               <div onClick={() => toast("Viewing all shops...")} className="shrink-0 snap-start w-[110px] bg-[#003366] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
+                  <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center">
+                    <ChevronRight size={24} className="text-white ml-0.5" strokeWidth={3} />
                   </div>
+                  <span className="text-[9px] font-black text-white uppercase tracking-[0.2em] text-center leading-tight">VIEW ALL<br/>SHOPS →</span>
                </div>
             </div>
           </section>
 
           {/* New Section: BIG DEALS */}
-          <section className="mt-2">
-             <div className="mb-4 border-b-[3px] border-[#003366] pb-2 flex items-center justify-between">
-                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">BIG DEALS <span className="text-[#E85D3F]">🔥</span></h3>
-                <span className="text-[9px] font-black text-[#E85D3F] uppercase tracking-widest">Limited Time</span>
+          <section>
+             <div className="mb-3 border-b-2 border-[#003366]/10 pb-2 flex items-center justify-between">
+                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">BIG DEALS</h3>
+                <span className="text-[9px] font-black text-[#E85D3F] uppercase tracking-widest">🔥 Limited Time</span>
              </div>
-             <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
+             <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_PRODUCTS.map((product) => (
-                 <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[140px]">
-                   <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden shadow-[6px_6px_0_#003366] flex flex-col h-full active:scale-95 transition-transform">
-                     <div className="aspect-square relative border-b-[3px] border-[#003366] bg-gray-50 flex items-center justify-center p-2">
-                         <div className="absolute top-2 left-2 bg-[#E85D3F] text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 shadow-sm border-[2px] border-[#003366]">HOT</div>
-                        <ImageWithFallback src={product.image} alt={product.title} className="w-[90%] h-[90%] object-contain drop-shadow-md" />
+                 <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[110px]">
+                   <div className="bg-white border-2 border-[#003366]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
+                     <div className="aspect-square bg-white relative border-b-2 border-[#003366]">
+                        <div className="absolute top-1.5 left-1.5 bg-[#E85D3F] text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 border border-[#003366]">HOT</div>
+                        <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
                      </div>
-                     <div className="p-3 bg-white flex flex-col gap-1 justify-between flex-1">
-                        <h4 className="text-[11px] font-black text-[#003366] leading-tight line-clamp-1 break-words uppercase">{product.title}</h4>
-                        <div className="flex flex-col gap-0.5 mt-1">
-                           <span className="text-[9px] font-black text-[#E85D3F] line-through">K{Number(product.price.replace(/,/g,'')) + 1000}</span>
-                           <span className="text-[14px] font-black text-[#00C853] leading-none">K{product.price}</span>
+                     <div className="p-2 bg-white flex flex-col gap-0.5 justify-between flex-1">
+                        <h4 className="text-[9px] font-black text-[#003366] leading-tight line-clamp-1 uppercase">{product.title}</h4>
+                        <div className="flex items-center gap-1 mt-1">
+                           <span className="text-[8px] font-black text-[#E85D3F] line-through">K{Number(product.price.replace(/,/g,'')) + 1000}</span>
+                           <span className="text-[12px] font-black text-black">K{product.price}</span>
                         </div>
                      </div>
                    </div>
