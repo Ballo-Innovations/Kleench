@@ -236,7 +236,7 @@ export function Marketplace() {
                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">Business Listing</h3>
                <div className="space-y-4">
                   {BUSINESSES.map((business, i) => (
-                     <div key={i} className="flex items-center justify-between bg-white border-[3px] border-[#003366] py-3 px-4 rounded-2xl hover:bg-slate-50 transition-colors shadow-[4px_4px_0_#FFC300] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
+                     <div key={i} className="flex items-center justify-between bg-white border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#FFC300] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
                         <div className="flex items-center gap-4 min-w-0">
                            <div className="w-10 h-10 rounded-[10px] bg-[#003366] text-white font-black text-[12px] flex items-center justify-center shrink-0 border-2 border-[#003366] overflow-hidden">
                               {business.logo}
@@ -247,7 +247,7 @@ export function Marketplace() {
                            </div>
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
-                           <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden sm:inline-block">{business.category}</span>
+                           <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden">{business.category}</span>
                            <div onClick={() => toast("Loading Business Intelligence...")} className="w-8 h-8 bg-white border-2 border-[#003366] rounded-full flex items-center justify-center text-[#003366] shrink-0 shadow-[2px_2px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
                               <ArrowDown size={14} strokeWidth={3} />
                            </div>
@@ -260,7 +260,7 @@ export function Marketplace() {
             <div className="mt-6 border-b-[3px] border-[#003366] pb-2">
                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">Window Shopping</h3>
                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-[3px] border-[#003366] py-3 px-4 rounded-2xl hover:bg-slate-50 transition-colors shadow-[4px_4px_0_#757575] bg-white active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
+                  <div className="flex items-center justify-between border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#757575] bg-white active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
                      <div className="flex items-center gap-4 min-w-0">
                         <div className="w-10 h-10 rounded-[10px] overflow-hidden flex items-center justify-center shrink-0 border-2 border-[#003366]">
                            <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?w=100&q=80" alt="Logo" className="w-full h-full object-cover" />
@@ -268,7 +268,7 @@ export function Marketplace() {
                         <span className="text-[12px] font-black tracking-wider text-[#003366] truncate uppercase">THE SCENT STORE ZAMBIA</span>
                      </div>
                      <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden sm:inline-block">retail store</span>
+                        <span className="text-[9px] font-black text-[#003366]/40 uppercase tracking-widest hidden">retail store</span>
                         <div className="w-8 h-8 bg-white border-2 border-[#003366] rounded-full flex items-center justify-center text-[#003366] shrink-0 shadow-[2px_2px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
                            <UserCircle size={16} strokeWidth={2.5} />
                         </div>

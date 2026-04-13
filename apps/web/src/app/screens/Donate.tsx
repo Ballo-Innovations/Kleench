@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { Search, ChevronRight, Plus, Users, Link as LinkIcon, Share, ArrowUpToLine, Info, Eye, CheckCircle2, Star } from "lucide-react";
-import { motion } from "motion/react";
 import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
@@ -78,8 +77,10 @@ const PROJECTS = [
 export function Donate() {
   const loading = usePageLoading(600);
   const navigate = useNavigate();
+  const [activeAction, setActiveAction] = useState("CREATE");
 
   const handleAction = (label: string) => {
+    setActiveAction(label);
     if (label === "REFERRAL") navigate("/referral");
     else if (label === "CREATE") toast.info("Campaign creation coming soon.");
     else if (label === "DONORS") toast("Loading donor network...");
@@ -121,38 +122,40 @@ export function Donate() {
           </div>
 
           {/* Pill Filters */}
-          <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pt-1 -mx-5 px-10 border-b-2 border-transparent" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-             {FILTERS.map((cat, i) => (
-                <button 
-                  key={cat.label} 
-                  className={`h-8 rounded-full border-[2px] border-[#003366]/20 bg-white flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-transform ${i === 0 ? 'border-[#003366] shadow-[2px_2px_0_#003366]' : ''}`}
-                >
-                   <span className="text-[11px] font-black text-[#003366] uppercase whitespace-nowrap">{cat.label}</span>
-                   {cat.count && (
-                     <div className="ml-2 w-[18px] h-[18px] rounded-full bg-gray-200 flex items-center justify-center text-[9px] font-black text-[#003366]">
-                        {cat.count}
-                     </div>
-                   )}
-                </button>
-             ))}
+          <div className="relative pt-1 border-b-2 border-transparent mb-2 [mask-image:linear-gradient(to_right,black_90%,transparent_100%)] w-full">
+             <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-2 px-5 pointer-events-auto">
+                {FILTERS.map((cat, i) => (
+                   <button 
+                     key={cat.label} 
+                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[#003366] text-white shadow-[2px_2px_0_#003366]' : 'bg-[#e2e8f0]/60 text-[#003366] hover:bg-gray-200'}`}
+                   >
+                      <span className={`text-[11px] font-black uppercase whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[#003366]'}`}>{cat.label}</span>
+                      {cat.count && (
+                        <div className={`ml-2 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-black ${i === 0 ? 'bg-white/20 text-white' : 'bg-white text-[#003366]'}`}>
+                           {cat.count}
+                        </div>
+                      )}
+                   </button>
+                ))}
+             </div>
           </div>
 
-          {/* Primary Action Row - Circular High Contrast */}
+          {/* Primary Action Row - Segmented Pill Bar */}
           <div className="px-5">
-             <div className="flex justify-between items-center px-4 pt-2">
-                {ACTIONS.map((act) => (
-                   <motion.button 
-                     key={act.label}
-                     whileTap={{ scale: 0.9 }}
-                     onClick={() => handleAction(act.label)}
-                     className="flex flex-col items-center gap-2 group cursor-pointer"
-                   >
-                      <div className={`w-[60px] h-[60px] rounded-full border-[3px] border-[#003366] bg-white flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:shadow-none group-active:translate-y-1 group-active:translate-x-1 transition-all ${act.color}`}>
-                         <act.icon size={26} strokeWidth={2.5} />
-                      </div>
-                      <span className="text-[10px] font-black tracking-widest text-[#003366] uppercase">{act.label}</span>
-                   </motion.button>
-                ))}
+             <div className="flex bg-white border-[3px] border-[#003366] rounded-full shadow-[4px_4px_0_#003366] p-1 mt-2 mb-2">
+                {ACTIONS.map((act) => {
+                   const isActive = activeAction === act.label;
+                   return (
+                     <button
+                       key={act.label}
+                       onClick={() => handleAction(act.label)}
+                       className={`flex-1 flex items-center justify-center gap-2 h-[46px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
+                     >
+                       <act.icon size={18} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
+                       <span className="text-[11px] font-black tracking-widest uppercase">{act.label}</span>
+                     </button>
+                   );
+                })}
              </div>
           </div>
 
@@ -214,11 +217,11 @@ export function Donate() {
                       </div>
                       
                       <div className="flex items-center gap-1.5 text-[#003366]/60">
-                         <div className="flex flex-col items-center group cursor-pointer hover:text-[#003366]">
+                         <div className="flex flex-col items-center group cursor-pointer">
                             <Info size={14} strokeWidth={2.5} />
                             <span className="text-[5px] font-black uppercase mt-0.5">INFORMATION</span>
                          </div>
-                         <div className="flex flex-col items-center group cursor-pointer hover:text-[#00C853]">
+                         <div className="flex flex-col items-center group cursor-pointer">
                             <CheckCircle2 size={14} strokeWidth={2.5} className="text-[#00C853]" />
                             <span className="text-[5px] font-black uppercase mt-0.5">VERIFICATION</span>
                          </div>
@@ -231,7 +234,7 @@ export function Donate() {
                             </div>
                             <span className="text-[5px] font-black uppercase text-transparent selection:text-transparent">STARS</span>
                          </div>
-                         <div className="flex flex-col items-center group cursor-pointer hover:text-[#003366]">
+                         <div className="flex flex-col items-center group cursor-pointer">
                             <Eye size={14} strokeWidth={2.5} />
                             <span className="text-[5px] font-black uppercase mt-0.5">KYC</span>
                          </div>

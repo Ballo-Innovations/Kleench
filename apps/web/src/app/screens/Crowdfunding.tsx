@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { Search, ChevronRight, TrendingUp, Briefcase, History, LineChart, BadgeCheck } from "lucide-react";
-import { motion } from "motion/react";
 import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
@@ -81,8 +80,10 @@ const PROJECTS = [
 export function Crowdfunding() {
   const loading = usePageLoading(600);
   const navigate = useNavigate();
+  const [activeAction, setActiveAction] = useState("INVEST");
 
   const handleAction = (label: string) => {
+    setActiveAction(label);
     if (label === "INVEST") toast.success("Live investment markets locked. Standby.");
     else if (label === "PORTFOLIO" || label === "RETURNS") navigate("/wallet");
   };
@@ -122,38 +123,40 @@ export function Crowdfunding() {
           </div>
 
           {/* Pill Filters */}
-          <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pt-1 -mx-5 px-10 border-b-2 border-transparent" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-             {FILTERS.map((cat, i) => (
-                <button 
-                  key={cat.label} 
-                  className={`h-8 rounded-full border-[2px] border-[#003366]/20 bg-white flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-transform ${i === 0 ? 'border-[#003366] shadow-[2px_2px_0_#003366]' : ''}`}
-                >
-                   <span className="text-[11px] font-black text-[#003366] uppercase whitespace-nowrap">{cat.label}</span>
-                   {cat.count && (
-                     <div className="ml-2 w-[18px] h-[18px] rounded-full bg-gray-200 flex items-center justify-center text-[9px] font-black text-[#003366]">
-                        {cat.count}
-                     </div>
-                   )}
-                </button>
-             ))}
+          <div className="relative pt-1 border-b-2 border-transparent mb-2 [mask-image:linear-gradient(to_right,black_90%,transparent_100%)] w-full">
+             <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-2 px-5 pointer-events-auto">
+                {FILTERS.map((cat, i) => (
+                   <button 
+                     key={cat.label} 
+                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[#003366] text-white shadow-[2px_2px_0_#003366]' : 'bg-[#e2e8f0]/60 text-[#003366] hover:bg-gray-200'}`}
+                   >
+                      <span className={`text-[11px] font-black uppercase whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[#003366]'}`}>{cat.label}</span>
+                      {cat.count && (
+                        <div className={`ml-2 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-black ${i === 0 ? 'bg-white/20 text-white' : 'bg-white text-[#003366]'}`}>
+                           {cat.count}
+                        </div>
+                      )}
+                   </button>
+                ))}
+             </div>
           </div>
 
-          {/* Primary Action Row - Circular High Contrast */}
+          {/* Primary Action Row - Segmented Pill Bar */}
           <div className="px-5">
-             <div className="flex justify-between items-center px-4 pt-2">
-                {ACTIONS.map((act) => (
-                   <motion.button 
-                     key={act.label}
-                     whileTap={{ scale: 0.9 }}
-                     onClick={() => handleAction(act.label)}
-                     className="flex flex-col items-center gap-2 group cursor-pointer"
-                   >
-                      <div className={`w-[60px] h-[60px] rounded-full border-[3px] border-[#003366] bg-white flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:shadow-none group-active:translate-y-1 group-active:translate-x-1 transition-all ${act.color}`}>
-                         <act.icon size={26} strokeWidth={2.5} />
-                      </div>
-                      <span className="text-[10px] font-black tracking-widest text-[#003366] uppercase">{act.label}</span>
-                   </motion.button>
-                ))}
+             <div className="flex bg-white border-[3px] border-[#003366] rounded-full shadow-[4px_4px_0_#003366] p-1 mt-2 mb-2">
+                {ACTIONS.map((act) => {
+                   const isActive = activeAction === act.label;
+                   return (
+                     <button
+                       key={act.label}
+                       onClick={() => handleAction(act.label)}
+                       className={`flex-1 flex items-center justify-center gap-2 h-[46px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
+                     >
+                       <act.icon size={18} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
+                       <span className="text-[11px] font-black tracking-widest uppercase">{act.label}</span>
+                     </button>
+                   );
+                })}
              </div>
           </div>
 
@@ -172,14 +175,14 @@ export function Crowdfunding() {
              {PROJECTS.map((proj) => (
                 <div key={proj.id} className="w-full bg-[#f4ebe1]/40 border-[3px] border-[#003366] rounded-[24px] p-3 shadow-[6px_6px_0_#003366] relative z-0 overflow-hidden">
                    
-                   {/* Header Tag - Verified Business Badge */}
-                   <div className="absolute top-5 right-5 z-20 flex items-center gap-1 bg-[#00C853] border-[2px] border-[#003366] text-white px-2 py-1 rounded-full shadow-[6px_6px_0_#003366]">
-                      <BadgeCheck size={12} strokeWidth={3} />
-                      <span className="text-[8.5px] font-black uppercase tracking-widest">VERIFIED BUSINESS</span>
+                   {/* Card Header Section */}
+                   <div className="flex flex-col items-start gap-2 mb-3 mt-1">
+                       <div className="flex items-center gap-1 bg-[#00C853] border-[2px] border-[#003366] text-white px-2 py-1 rounded-full shadow-[2.5px_2.5px_0_#003366] shrink-0">
+                          <BadgeCheck size={12} strokeWidth={3} />
+                          <span className="text-[8.5px] font-black uppercase tracking-widest">VERIFIED BUSINESS</span>
+                       </div>
+                       <h3 className="text-[#E85D3F] font-black text-[15px] uppercase tracking-widest pl-1 drop-shadow-sm leading-[1.2]">{proj.title}</h3>
                    </div>
-
-                   {/* Title */}
-                   <h3 className="text-[#E85D3F] font-black text-[13px] uppercase tracking-widest mb-2 pl-1 drop-shadow-sm pr-32 leading-[1.1] pt-1">{proj.title}</h3>
                    
                    {/* Full Width Image Container */}
                    <div className="w-full h-[190px] relative rounded-[14px] border-[3px] border-[#003366] overflow-hidden mb-3 bg-white shadow-inner">
@@ -197,15 +200,15 @@ export function Crowdfunding() {
                    {/* Key Metrics Grid */}
                    <div className="grid grid-cols-3 gap-2 mb-4">
                       <div className="bg-white border-[2.5px] border-[#003366] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_#003366]">
-                         <span className="text-[8px] font-black text-[#003366] uppercase tracking-widest mb-0.5">MIN. INVEST</span>
+                         <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider mb-0.5 leading-tight">MINIMUM INVESTMENT</span>
                          <span className="text-[10px] font-black text-[#003366] tracking-tighter">K{proj.minInvestment}</span>
                       </div>
                       <div className="bg-white border-[2.5px] border-[#003366] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_#003366]">
-                         <span className="text-[8px] font-black text-[#003366] uppercase tracking-widest mb-0.5">EST. ROI</span>
+                         <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider mb-0.5 leading-tight">EST. ROI</span>
                          <span className="text-[10px] font-black text-[#00C853] tracking-tighter">{proj.roi}</span>
                       </div>
                       <div className="bg-white border-[2.5px] border-[#003366] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_#003366]">
-                         <span className="text-[8px] font-black text-[#003366] uppercase tracking-widest mb-0.5">TARGET</span>
+                         <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider mb-0.5 leading-tight">TARGET GOAL</span>
                          <span className="text-[10px] font-black text-[#003366] tracking-tighter">K{proj.target}</span>
                       </div>
                    </div>
@@ -224,10 +227,10 @@ export function Crowdfunding() {
 
                    {/* Main Interaction Action Base */}
                    <div className="flex items-center gap-3 pt-2">
-                      <button onClick={() => toast.info("Downloading official prospectus PDF...")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={() => toast.info("Downloading official prospectus PDF...")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <LineChart size={16} strokeWidth={3} className="-ml-1 group-active:scale-110 transition-transform" /> VIEW PROSPECTUS
                       </button>
-                      <button onClick={() => toast.success("Preparing secure investment contract...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={() => toast.success("Preparing secure investment contract...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <TrendingUp size={16} strokeWidth={3} className="group-active:scale-110 transition-transform" /> INVEST NOW
                       </button>
                    </div>

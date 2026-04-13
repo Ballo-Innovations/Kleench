@@ -161,7 +161,7 @@ export function Learning() {
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Learn & Earn Videos</h3>
                         </div>
-                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_1.map(ad => (
@@ -188,7 +188,7 @@ export function Learning() {
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Free Videos</h3>
                         </div>
-                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_2.map(ad => (
@@ -215,7 +215,7 @@ export function Learning() {
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Creator Showcases</h3>
                         </div>
-                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer hover:text-slate-600 transition-colors">See All</span>
+                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_3.map(ad => (

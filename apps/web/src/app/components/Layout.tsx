@@ -197,7 +197,7 @@ export function Layout() {
                       onClick={() => { navigate(item.path); setShowMore(false); }}
                       className="flex flex-col items-center gap-4 group cursor-pointer active:scale-95 transition-all"
                     >
-                      <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center border-[3px] border-slate-900 shadow-[6px_6px_0px_#0f172a] group-hover:shadow-[2px_2px_0px_#0f172a] group-hover:translate-x-1 group-hover:translate-y-1 transition-all">
+                      <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center border-[3px] border-slate-900 shadow-[6px_6px_0px_#0f172a] transition-all">
                         <item.icon size={36} className="text-slate-900" strokeWidth={2} />
                       </div>
                       <span className="text-[12px] font-black text-slate-900 uppercase tracking-widest text-center leading-tight">

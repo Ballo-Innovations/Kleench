@@ -409,7 +409,7 @@ export function Wallet() {
                         className={`relative flex flex-col items-center gap-4 p-5 rounded-3xl border-[3px] transition-all group ${
                           mmProvider?.id === provider.id 
                           ? "border-slate-900 bg-white shadow-[6px_6px_0px_#000] translate-x-[-2px] translate-y-[-2px]" 
-                          : "border-slate-100 bg-slate-50 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 active:scale-95 shadow-none"
+                          : "border-slate-100 bg-slate-50 opacity-60 grayscale active:scale-95 shadow-none"
                         }`}
                       >
                         <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-slate-200">
