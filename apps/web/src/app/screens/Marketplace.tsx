@@ -14,6 +14,10 @@ import laptopImg from "@/assets/products/laptop.png";
 import toyotaLogo from "@/assets/toyota zambia.png";
 import jetLogo from "@/assets/jet image.webp";
 import pnpLogo from "@/assets/pick and pay logo.png";
+import scentStoreImg from "@/assets/shops/scent_store.png";
+import techHubImg from "@/assets/shops/tech_hub.png";
+import styleAvenueImg from "@/assets/shops/style_avenue.png";
+import greenleafImg from "@/assets/shops/greenleaf.png";
 
 
 
@@ -298,15 +302,14 @@ export function Marketplace() {
             </div>
             <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border-[3px] border-[#003366] rounded-b-2xl shadow-[6px_6px_0_#757575] bg-[#003366]">
                {[
-                 { name: "THE SCENT STORE ZAMBIA",  category: "Beauty & Fragrance",   logo: "TSS",  bg: "#7B2D8B" },
-                 { name: "LUSAKA TECH HUB",          category: "Electronics & Tech",    logo: "LTH",  bg: "#1A1A2E" },
-                 { name: "STYLE AVENUE ZM",          category: "Clothing & Fashion",    logo: "SA",   bg: "#C0392B" },
-                 { name: "GREENLEAF ORGANICS",       category: "Food & Health",         logo: "GLO",  bg: "#1E6B3C" },
-                 { name: "CASA FURNITURE ZM",        category: "Home & Living",         logo: "CF",   bg: "#8B5E3C" },
+                 { name: "THE SCENT STORE ZAMBIA",  category: "Beauty & Fragrance",   image: scentStoreImg },
+                 { name: "LUSAKA TECH HUB",          category: "Electronics & Tech",    image: techHubImg },
+                 { name: "STYLE AVENUE ZM",          category: "Clothing & Fashion",    image: styleAvenueImg },
+                 { name: "GREENLEAF ORGANICS",       category: "Food & Health",         image: greenleafImg },
                ].map((shop, i) => (
                  <div key={i} onClick={() => toast(`Opening ${shop.name}...`)} className="shrink-0 snap-start w-[140px] bg-white cursor-pointer group flex flex-col h-[185px]">
-                   <div className="flex-1 flex items-center justify-center border-b-[2px] border-[#003366]/10" style={{ backgroundColor: shop.bg }}>
-                      <span className="text-white font-black text-[32px] tracking-tight drop-shadow-lg">{shop.logo}</span>
+                   <div className="flex-1 flex items-center justify-center border-b-[2px] border-[#003366]/10 overflow-hidden bg-gray-50">
+                      <img src={shop.image} alt={shop.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                    </div>
                    <div className="p-3 flex flex-col gap-1 h-[65px] justify-center">
                       <span className="text-[10px] font-black text-[#003366] uppercase leading-tight line-clamp-2 tracking-wide">{shop.name}</span>
