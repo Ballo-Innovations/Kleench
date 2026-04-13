@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Search, Tag, FileText, UserPlus, ShieldCheck, ChevronRight } from "lucide-react";
+import { Search, Tag, FileText, UserPlus, BadgeCheck, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
@@ -91,7 +91,7 @@ export function Marketplace() {
                 { icon: Tag, label: "SELL", color: "text-[#E85D3F]" },
                 { icon: FileText, label: "LIST", color: "text-[#003366]" },
                 { icon: UserPlus, label: "REFER", color: "text-[#00C853]" },
-                { icon: ShieldCheck, label: "VERIFIED", color: "text-[#FFC300]", stroke: 2 }
+                { icon: BadgeCheck, label: "AGENT", color: "text-[#FFC300]" }
               ].map((action, i) => (
                 <motion.button 
                   key={i} 
