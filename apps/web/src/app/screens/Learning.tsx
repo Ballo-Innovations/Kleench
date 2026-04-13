@@ -106,7 +106,7 @@ export function Learning() {
       {loading ? (
         <PageSkeletons.Academy />
       ) : (
-        <div className="px-4 mt-0.5 relative z-20 space-y-2">
+        <div className="px-4 mt-0 relative z-20 space-y-1.5">
 
           {/* Search Bar & Live Button */}
           <div className="flex items-center gap-2">
@@ -150,13 +150,13 @@ export function Learning() {
           </section>
 
           {/* Main Interleaved Learning Feed */}
-          <section className="space-y-6 pb-12 mt-1">
+          <section className="space-y-3 pb-8 mt-1">
              {EXPLORE_MORE_VIDEOS.map((video) => (
-                <div key={video.id} className="space-y-6">
+                <div key={video.id} className="space-y-3">
                    
                    {/* 01. Learn & Earn Videos Carousel */}
                    <div>
-                     <div className="flex justify-between items-center mb-1 px-1">
+                     <div className="flex justify-between items-center mb-0.5 px-1">
                         <div className="flex items-center gap-2">
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Learn & Earn Videos</h3>
@@ -183,7 +183,7 @@ export function Learning() {
 
                    {/* 02. Free Videos Carousel */}
                    <div>
-                     <div className="flex justify-between items-center mb-1 px-1">
+                     <div className="flex justify-between items-center mb-0.5 px-1">
                         <div className="flex items-center gap-2">
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Free Videos</h3>
@@ -210,7 +210,7 @@ export function Learning() {
 
                    {/* 03. Creator Showcases Carousel */}
                    <div>
-                     <div className="flex justify-between items-center mb-1 px-1">
+                     <div className="flex justify-between items-center mb-0.5 px-1">
                         <div className="flex items-center gap-2">
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Creator Showcases</h3>

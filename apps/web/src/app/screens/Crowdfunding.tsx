@@ -93,7 +93,7 @@ export function Crowdfunding() {
       
       {/* ── Standardized Header ── */}
       <PageHeader 
-        title="CROWDFUND" 
+        title="INVEST" 
         useLogo
       />
 
@@ -112,7 +112,7 @@ export function Crowdfunding() {
                 <Search size={22} className="text-[#003366]/40 shrink-0 ml-1" strokeWidth={2.5} />
                 <input 
                   type="text" 
-                  placeholder="Search Opportunities..." 
+                  placeholder="Search Investment Opportunities..." 
                   className="flex-1 bg-transparent border-none outline-none font-bold text-[#003366] placeholder:text-[#003366]/40 text-[14px] px-3 w-full" 
                 />
                 <div className="h-[28px] w-[2px] bg-gray-200 mx-1 shrink-0" />
@@ -123,8 +123,8 @@ export function Crowdfunding() {
           </div>
 
           {/* Pill Filters */}
-          <div className="relative pt-1 border-b-2 border-transparent mb-2 [mask-image:linear-gradient(to_right,black_90%,transparent_100%)] w-full">
-             <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-2 px-5 pointer-events-auto">
+          <div className="relative pt-1 border-b-2 border-transparent mb-1 w-full">
+             <div className="flex gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-1 px-5 pointer-events-auto">
                 {FILTERS.map((cat, i) => (
                    <button 
                      key={cat.label} 
@@ -143,17 +143,17 @@ export function Crowdfunding() {
 
           {/* Primary Action Row - Segmented Pill Bar */}
           <div className="px-5">
-             <div className="flex bg-white border-[3px] border-[#003366] rounded-full shadow-[4px_4px_0_#003366] p-1 mt-2 mb-2">
+             <div className="flex bg-white border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] p-0.5 mt-1 mb-1">
                 {ACTIONS.map((act) => {
                    const isActive = activeAction === act.label;
                    return (
                      <button
                        key={act.label}
                        onClick={() => handleAction(act.label)}
-                       className={`flex-1 flex items-center justify-center gap-2 h-[46px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
+                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
                      >
-                       <act.icon size={18} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
-                       <span className="text-[11px] font-black tracking-widest uppercase">{act.label}</span>
+                       <act.icon size={16} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
+                       <span className="text-[10px] font-black tracking-widest uppercase">{act.label}</span>
                      </button>
                    );
                 })}
