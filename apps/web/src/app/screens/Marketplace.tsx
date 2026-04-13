@@ -82,16 +82,16 @@ export function Marketplace() {
       {loading ? (
         <PageSkeletons.Marketplace />
       ) : (
-        <div className="relative z-10 w-full mt-6 space-y-7 pb-10">
+        <div className="relative z-10 w-full mt-6 space-y-7 pb-10 px-5">
           
           {/* Primary Action Bar */}
-          <div className="px-5">
-            <div className="flex justify-between items-center px-1">
+          <div>
+            <div className="flex justify-between items-center">
               {[
                 { icon: Tag, label: "SELL", color: "text-[#E85D3F]" },
                 { icon: FileText, label: "LIST", color: "text-[#003366]" },
                 { icon: UserPlus, label: "REFER", color: "text-[#00C853]" },
-                { icon: ShieldCheck, label: "VERIFIED", color: "text-[#FFC300]" }
+                { icon: ShieldCheck, label: "VERIFIED", color: "text-[#FFC300]", stroke: 2 }
               ].map((action, i) => (
                 <motion.button 
                   key={i} 
@@ -101,7 +101,7 @@ export function Marketplace() {
                   style={{ touchAction: "manipulation" }}
                 >
                   <div className={`w-[60px] h-[60px] rounded-2xl border-[3px] border-[#003366] bg-white flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:shadow-none transition-all group-active:translate-y-1 group-active:translate-x-1 ${action.color}`}>
-                    <action.icon size={26} strokeWidth={2.5} />
+                    <action.icon size={26} strokeWidth={('stroke' in action ? action.stroke : 2.5) as number} />
                   </div>
                   <span className="text-[10px] font-black tracking-widest text-[#003366] uppercase">{action.label}</span>
                 </motion.button>
@@ -110,8 +110,8 @@ export function Marketplace() {
           </div>
 
           {/* Search Bar */}
-          <div className="px-5 flex items-center gap-2 w-full">
-            <div className="flex-1 relative flex items-center w-full">
+          <div className="w-full">
+            <div className="relative flex items-center w-full">
                <Search className="absolute left-4 text-[#003366]/60" size={20} strokeWidth={2.5} />
                <input 
                  type="text" 
@@ -124,18 +124,22 @@ export function Marketplace() {
             </div>
           </div>
 
-          {/* Component Standardization (Tabs) */}
-          <div className="px-5 mt-2 mb-2">
-             <div className="flex bg-white border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] p-0.5">
-                {["PRODUCTS", "SERVICES"].map((tab) => {
+          {/* Fused Segmented Pill Tabs */}
+          <div className="mt-2 mb-2 w-full">
+             <div className="flex bg-white border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] overflow-hidden">
+                {["PRODUCTS", "SERVICES"].map((tab, i) => {
                    const isActive = activeTab === tab;
                    return (
                      <button
                        key={tab}
                        onClick={() => setActiveTab(tab)}
-                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
+                       className={`flex-1 flex items-center justify-center h-[40px] transition-all duration-200 relative ${
+                         isActive
+                           ? 'bg-[#003366] text-white'
+                           : 'bg-white text-[#003366]/60 hover:text-[#003366]'
+                       } ${i === 0 ? 'border-r border-[#003366]/20' : ''}`}
                      >
-                       <span className="text-[10px] font-black tracking-widest uppercase">{tab}</span>
+                       <span className="text-[10px] font-black tracking-[0.2em] uppercase">{tab}</span>
                      </button>
                    );
                 })}
@@ -143,7 +147,7 @@ export function Marketplace() {
           </div>
 
           {activeTab === "PRODUCTS" ? (
-             <section className="px-5">
+             <section>
                <div className="flex items-center justify-between mb-3 border-b-2 border-[#003366]/10 pb-2">
                   <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">PRODUCTS</h3>
                   <button onClick={() => toast.success("Loading complete catalog...")} className="text-[#FF8C00] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
@@ -151,7 +155,7 @@ export function Marketplace() {
                   </button>
                </div>
                
-               <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar pr-5">
+               <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar w-full">
                  {MARKET_PRODUCTS.map((product) => (
                    <Link to={`/product/${product.id}`} key={product.id} className="block shrink-0 snap-start w-[110px]">
                      <div className="bg-white border-2 border-[#003366]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
@@ -171,12 +175,12 @@ export function Marketplace() {
                </div>
              </section>
           ) : (
-             <section className="px-5">
+             <section>
                <div className="flex items-center justify-between mb-3 border-b-[3px] border-[#003366] pb-2">
                   <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">SERVICES</h3>
                </div>
                
-               <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar pr-5">
+               <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full">
                  {SERVICES.map((service) => (
                    <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
                      <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
@@ -200,12 +204,12 @@ export function Marketplace() {
           )}
 
           {/* Market Intelligence Ticker */}
-          <section className="px-5">
+          <section>
             <div className="mb-4 border-b-[3px] border-[#003366] pb-2">
-               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">Market Intelligence</h3>
+               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">MARKET INTELLIGENCE</h3>
             </div>
             
-            <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar pr-5">
+            <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_INTEL.map((intel) => (
                   <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-slate-900 rounded-2xl p-3 border-[3px] border-[#003366] shadow-[6px_6px_0_#E85D3F] flex flex-col relative overflow-hidden h-[150px]">
                      {/* Y-axis labels */}
@@ -251,12 +255,12 @@ export function Marketplace() {
           </section>
 
           {/* Business Listing Vertical Feed */}
-          <section className="px-5">
+          <section>
             <div className="mb-4 border-b-[3px] border-[#003366] pb-2">
-               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">Business Listing</h3>
+               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">BUSINESS LISTING</h3>
                <div className="space-y-4">
                   {BUSINESSES.map((business, i) => (
-                     <div key={i} className="flex items-center justify-between bg-white border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#FFC300] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
+                     <div key={i} className="flex items-center justify-between bg-white border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#FFC300] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer w-full">
                         <div className="flex items-center gap-4 min-w-0">
                            <div className="w-10 h-10 rounded-[10px] bg-[#003366] text-white font-black text-[12px] flex items-center justify-center shrink-0 border-2 border-[#003366] overflow-hidden">
                               {business.logo}
@@ -278,9 +282,9 @@ export function Marketplace() {
             </div>
 
             <div className="mt-6 border-b-[3px] border-[#003366] pb-4">
-               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">Window Shopping</h3>
+               <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase mb-4">WINDOW SHOPPING</h3>
                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#757575] bg-white active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer">
+                  <div className="flex items-center justify-between border-[3px] border-[#003366] py-3 px-4 rounded-2xl transition-colors shadow-[4px_4px_0_#757575] bg-white active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer w-full">
                      <div className="flex items-center gap-4 min-w-0">
                         <div className="w-10 h-10 rounded-[10px] overflow-hidden flex items-center justify-center shrink-0 border-2 border-[#003366]">
                            <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?w=100&q=80" alt="Logo" className="w-full h-full object-cover" />
@@ -299,11 +303,12 @@ export function Marketplace() {
           </section>
 
           {/* New Section: BIG DEALS */}
-          <section className="px-5 mt-2">
-             <div className="mb-4 border-b-[3px] border-[#003366] pb-2">
-                <h3 className="text-[#E85D3F] font-black text-sm tracking-widest uppercase">BIG DEALS</h3>
+          <section className="mt-2">
+             <div className="mb-4 border-b-[3px] border-[#003366] pb-2 flex items-center justify-between">
+                <h3 className="text-[#003366] font-black text-sm tracking-widest uppercase">BIG DEALS <span className="text-[#E85D3F]">🔥</span></h3>
+                <span className="text-[9px] font-black text-[#E85D3F] uppercase tracking-widest">Limited Time</span>
              </div>
-             <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-4 scrollbar-hide no-scrollbar pr-5">
+             <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_PRODUCTS.map((product) => (
                  <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[140px]">
                    <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden shadow-[6px_6px_0_#003366] flex flex-col h-full active:scale-95 transition-transform">
