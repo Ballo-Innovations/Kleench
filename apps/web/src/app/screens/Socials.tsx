@@ -167,7 +167,7 @@ export function Socials() {
               {MOCK_REELS.map((reel) => {
                  if (reel.isCreate) {
                     return (
-                       <button key={reel.id} onClick={() => setShowCreatePost(true)} className="min-w-[95px] h-[155px] flex-shrink-0 flex flex-col items-center justify-between bg-white border-2 border-[#003366] rounded-xl active:scale-95 transition-transform overflow-hidden relative">
+                       <button key={reel.id} onClick={() => setShowCreatePost(true)} className="min-w-[95px] w-[28vw] max-w-[120px] h-[155px] flex-shrink-0 flex flex-col items-center justify-between bg-white border-2 border-[#003366] rounded-xl active:scale-95 transition-transform overflow-hidden relative">
                           <div className="flex-1 flex items-center justify-center w-full">
                              <div className="w-12 h-12 rounded-full bg-[#003366] flex items-center justify-center text-white">
                                 <Plus size={32} strokeWidth={2.5} />
@@ -180,7 +180,7 @@ export function Socials() {
                     )
                  }
                  return (
-                    <div key={reel.id} className="min-w-[95px] h-[155px] flex-shrink-0 relative active:scale-95 transition-transform cursor-pointer">
+                    <div key={reel.id} className="min-w-[95px] w-[28vw] max-w-[120px] h-[155px] flex-shrink-0 relative active:scale-95 transition-transform cursor-pointer">
                        <div className="w-full h-full rounded-xl overflow-hidden bg-slate-900 border border-[#003366]/10 relative">
                            <img src={reel.image} alt="" className="w-full h-full object-cover opacity-90" />
                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
