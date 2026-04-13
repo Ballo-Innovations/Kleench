@@ -173,7 +173,7 @@ export function Home() {
       ) : (
         <>
       {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
-      <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-10">
+      <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-6">
         {[
           { id: "Upload", icon: Upload, label: "UPLOAD", color: "text-[#003366]" },
           { id: "Share", icon: Send, label: "SHARE", color: "text-[#003366]" },
@@ -183,12 +183,12 @@ export function Home() {
             key={i}
             whileTap={{ scale: 0.92 }}
             onClick={() => handleActionClick(item.id)}
-            className="flex flex-col items-center gap-2 cursor-pointer group"
+            className="flex flex-col items-center justify-center gap-1 group outline-none cursor-pointer"
           >
-            <div className="w-14 h-14 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-[0_8px_16px_rgba(0,51,102,0.06)] group-active:scale-95 transition-all">
-              <item.icon className={item.color} size={22} strokeWidth={1.5} />
+            <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-100 shadow-[0_4px_12px_rgba(0,51,102,0.05)] group-active:scale-95 transition-all">
+              <item.icon className={item.color} size={18} strokeWidth={1.5} />
             </div>
-            <span className="text-[9px] font-black text-[#003366] mt-0.5 uppercase tracking-widest text-center leading-tight whitespace-pre-line">
+            <span className="font-bold text-[#003366] text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-pre-line w-14">
               {item.label}
             </span>
           </motion.div>
