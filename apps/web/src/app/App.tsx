@@ -24,6 +24,7 @@ import { ProfileEdit } from "./screens/ProfileEdit";
 import { Login } from "./screens/Login";
 import { Signup } from "./screens/Signup";
 import { Onboarding } from "./screens/Onboarding";
+import { OnboardingPage } from "./screens/OnboardingPage";
 import { Notifications } from "./screens/Notifications";
 import { PostAdvert } from "./screens/PostAdvert";
 import { SellProduct } from "./screens/SellProduct";
@@ -137,6 +138,7 @@ const router = createBrowserRouter([
       { path: "donate", element: <Donate /> },
       { path: "crowdfunding", element: <Crowdfunding /> },
       { path: "referral", element: <Referral /> },
+      { path: "onboarding-page", element: <OnboardingPage /> },
       { path: "offers", element: <Offers /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],

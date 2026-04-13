@@ -173,7 +173,7 @@ export function Home() {
       ) : (
         <>
       {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
-      <div className="px-5 mt-1 relative z-10 flex items-center justify-center gap-8">
+      <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-8">
         {[
           { id: "Upload", icon: Network, label: "Upload", color: "text-[#FF8C00]", bg: "bg-white" },
           { id: "Share", icon: Share2, label: "Share", color: "text-white", bg: "bg-[#FF8C00]" },
@@ -181,12 +181,12 @@ export function Home() {
         ].map((item, i) => (
           <motion.div
             key={i}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => handleActionClick(item.id)}
-            className="flex flex-col items-center gap-1.5 cursor-pointer group"
+            className="flex flex-col items-center gap-2.5 cursor-pointer group"
           >
-            <div className={`w-14 h-14 rounded-full ${item.bg} border border-[#003366]/10 flex items-center justify-center shadow-lg group-active:scale-95 transition-transform`}>
-              <item.icon className={item.color} size={22} strokeWidth={2.5} />
+            <div className={`w-16 h-16 rounded-[22px] ${item.bg} border-[2.5px] border-[#003366] flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:translate-x-0.5 group-active:translate-y-0.5 group-active:shadow-none transition-all`}>
+              <item.icon className={item.color} size={26} strokeWidth={3} />
             </div>
             <span className="text-[10px] font-black text-[#003366] mt-0.5 uppercase tracking-widest">{item.label}</span>
           </motion.div>

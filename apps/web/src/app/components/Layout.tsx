@@ -1,5 +1,5 @@
 import { Outlet, useLocation, Link, useMatches, useNavigate } from "react-router";
-import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ClipboardList, HandCoins } from "lucide-react";
+import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHandshake, ClipboardList, HandCoins, Briefcase } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
@@ -57,10 +57,11 @@ export function Layout() {
     location.pathname === "/offers" || 
     location.pathname === "/messages" || 
     location.pathname.startsWith("/settings") ||
+    location.pathname === "/onboarding-page" ||
     isNotFound;
 
   return (
-    <div className="max-w-md mx-auto h-[100dvh] w-full relative bg-white overflow-x-hidden shadow-2xl">
+    <div className="max-w-md mx-auto h-[100dvh] w-full relative bg-white overflow-y-auto overflow-x-hidden shadow-2xl scrollbar-hide">
       {/* ── GLOBAL DASHED GRID BACKGROUND ── */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-white">
         <div
@@ -190,7 +191,8 @@ export function Layout() {
                     { id: 'marketplace', icon: Store, label: 'Market', path: '/marketplace' },
                     { id: 'surveys', icon: ClipboardList, label: 'Surveys', path: '/surveys-polls' },
                     { id: 'donate', icon: HeartHandshake, label: 'Donate', path: '/donate' },
-                    { id: 'crowdfund', icon: HandCoins, label: 'Invest', path: '/crowdfunding' }
+                    { id: 'crowdfund', icon: HandCoins, label: 'Invest', path: '/crowdfunding' },
+                    { id: 'onboarding', icon: Briefcase, label: 'Onboard', path: '/onboarding-page' }
                   ].map((item) => (
                     <div 
                       key={item.id} 
