@@ -137,8 +137,6 @@ export function Socials() {
         useLogo
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
-        isSocials
-        customBalanceHUD={<div className="hidden" />}
       />
 
       {/* ACTION BAR MOVED OUT OF HEADER (EXACTLY BELOW) */}
