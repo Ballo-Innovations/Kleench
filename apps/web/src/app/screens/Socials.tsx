@@ -153,7 +153,7 @@ export function Socials() {
          </button>
          <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[#003366] active:bg-[#003366]/5 transition-colors">
             <UserPlus size={18} strokeWidth={2.5} className="text-[#E85D3F]" />
-            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Friend</span>
+            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Friends</span>
          </Link>
       </div>
 
