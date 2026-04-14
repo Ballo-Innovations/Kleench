@@ -1,7 +1,8 @@
 import {
-  Play, Heart, ArrowRight,
+  Play, ArrowRight,
   BadgeCheck,
-  CloudUpload, X, MessageCircle, Send, UserPlus, Upload
+  CloudUpload, X, MessageCircle, Send, UserPlus, Upload,
+  ThumbsUp, MessageSquare, Share
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
@@ -30,9 +31,11 @@ const FEED_ITEMS = [
     body: "Every Airtel top-up this week earns you 2x Kleench rewards. Tap to activate your bonus now.",
     reward: "K8.00",
     image: "https://picsum.photos/seed/airtel_ad/600/380",
-    views: "34.2k",
+    views: "34.2K",
     time: "Sponsored",
-    likes: "2.4k",
+    likes: 2400,
+    comments: 42,
+    shares: 18,
     tag: "ADVERT",
     tagColor: "bg-[#FF8C00]",
   },
@@ -46,9 +49,11 @@ const FEED_ITEMS = [
     body: "Purchase any featured product and earn Kleench wallet credits automatically.",
     reward: "K5.00",
     image: "https://picsum.photos/seed/zambrews/600/380",
-    views: "18.6k",
+    views: "18.6K",
     time: "Sponsored",
-    likes: "1.1k",
+    likes: 1100,
+    comments: 24,
+    shares: 12,
     tag: "ADVERT",
     tagColor: "bg-[#FF8C00]",
   },
@@ -62,9 +67,11 @@ const FEED_ITEMS = [
     body: "With prices rising, savvy buyers are flocking to Kleench Marketplace for verified deals.",
     reward: "K5.00",
     image: "https://picsum.photos/seed/build1/600/380",
-    views: "12.4k",
+    views: "12.4K",
     time: "2h ago",
-    likes: "892",
+    likes: 892,
+    comments: 18,
+    shares: 9,
     tag: "HOT",
     tagColor: "bg-[#003366]",
   },
@@ -78,9 +85,11 @@ const FEED_ITEMS = [
     body: "Watch the full 60-second video and collect your reward — no strings attached.",
     reward: "K2.50",
     image: "https://picsum.photos/seed/food2/600/380",
-    views: "8.1k",
+    views: "8.1K",
     time: "4h ago",
-    likes: "403",
+    likes: 403,
+    comments: 12,
+    shares: 8,
     tag: "EARN",
     tagColor: "bg-[#00C853]",
   },
@@ -155,6 +164,16 @@ export function Home() {
   const loading = usePageLoading(800);
 
   const [activeSheet, setActiveSheet] = useState<null | "Upload" | "Share" | "Register Agent">(null);
+  const [likedPosts, setLikedPosts] = useState<Set<number>>(new Set());
+
+  const toggleLike = (postId: number) => {
+    setLikedPosts(prev => {
+      const next = new Set(prev);
+      if (next.has(postId)) next.delete(postId);
+      else next.add(postId);
+      return next;
+    });
+  };
 
   const handleActionClick = (actionName: string) => {
      setActiveSheet(actionName as "Upload" | "Share" | "Register Agent" | null);
@@ -328,15 +347,34 @@ export function Home() {
                   <div className="p-4">
                     <h4 className="text-[#003366] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 transition-colors">{item.title}</h4>
                     <p className="text-[#003366]/50 text-[11px] font-medium leading-relaxed line-clamp-2 mb-3">{item.body}</p>
-                    <div className="flex items-center justify-between border-t border-[#003366]/5 pt-3">
-                      <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[#003366]/30">
-                        <span>{item.views} Views</span>
-                        <span className="w-1 h-1 rounded-full bg-[#003366]/20" />
-                        <span>{item.time}</span>
+                    
+                    {/* Interaction Bar - Parity with Socials */}
+                    <div className="flex flex-col border-t border-[#003366]/5 bg-white -mx-4">
+                      <div className="flex items-center justify-between px-4 py-3">
+                        <div className="flex items-center gap-6">
+                           <button 
+                             onClick={() => toggleLike(item.id)} 
+                             className={`transition-colors ${likedPosts.has(item.id) ? "text-[#FF8C00]" : "text-[#003366]/80"} active:scale-95`}
+                           >
+                              <ThumbsUp size={22} strokeWidth={2.5} className={likedPosts.has(item.id) ? "fill-[#FF8C00]" : ""} />
+                           </button>
+                           <button className="text-[#003366]/80 active:scale-95 transition-transform">
+                              <MessageSquare size={22} strokeWidth={2.5} />
+                           </button>
+                           <button className="text-[#003366]/80 active:scale-95 transition-transform">
+                              <Share size={22} strokeWidth={2.5} />
+                           </button>
+                        </div>
+                        <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[#003366]/30">
+                          <span>{item.views} Views</span>
+                          <span className="w-1 h-1 rounded-full bg-[#003366]/20" />
+                          <span>{item.time}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Heart size={12} className="text-[#003366]/20" />
-                        <span className="text-[9px] font-black text-[#003366]/30">{item.likes}</span>
+                      <div className="px-4 py-2 bg-[#003366]/[0.02] border-t border-[#003366]/[0.05] flex items-center gap-4 text-[#003366]/60 text-[9px] font-black uppercase tracking-widest">
+                         <span>Like | {likedPosts.has(item.id) ? (item.likes as number) + 1 : item.likes}</span>
+                         <span>Comments | {item.comments || 0}</span>
+                         <span>Share | {item.shares || 0}</span>
                       </div>
                     </div>
                   </div>

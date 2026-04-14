@@ -1,5 +1,5 @@
 import { PageHeader } from "../components/PageHeader";
-import { Search, ChevronRight, ShieldCheck, CreditCard, Sprout, ArrowRight, Landmark } from "lucide-react";
+import { Search, ChevronRight, ShieldCheck, CreditCard, Sprout, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
 

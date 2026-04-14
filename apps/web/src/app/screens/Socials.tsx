@@ -241,8 +241,8 @@ export function Socials() {
                   <div className="flex flex-col border-b border-[#003366]/5 bg-white">
                      <div className="flex items-center justify-between px-4 py-3">
                         <div className="flex items-center gap-6">
-                           <button onClick={() => toggleLike(post.id)} className={`transition-colors ${likedPosts.has(post.id) ? "text-[#003366]" : "text-[#003366]/80"} active:scale-95`}>
-                              <ThumbsUp size={24} strokeWidth={2.5} className={likedPosts.has(post.id) ? "fill-[#003366]" : ""} />
+                           <button onClick={() => toggleLike(post.id)} className={`transition-colors ${likedPosts.has(post.id) ? "text-[#FF8C00]" : "text-[#003366]/80"} active:scale-95`}>
+                              <ThumbsUp size={24} strokeWidth={2.5} className={likedPosts.has(post.id) ? "fill-[#FF8C00]" : ""} />
                            </button>
                            <button onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)} className="text-[#003366]/80 active:scale-95 transition-transform">
                               <MessageSquare size={24} strokeWidth={2.5} />

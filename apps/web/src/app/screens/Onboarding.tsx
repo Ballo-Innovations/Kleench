@@ -1,16 +1,12 @@
-import kleenchLogo from "../../assets/kleench_logo.png";
+import kleenchLogo from "@/assets/kleench_logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ArrowRight, Camera, Upload, Check, ShieldCheck, CarFront, Briefcase, Landmark, CreditCard, Sprout, Factory } from "lucide-react";
+import { ArrowRight, Camera, Upload, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ZambiaFlag, BackspaceKey } from "../components/KleenchIcons";
 import { LottieAnimation } from "../components/LottieAnimation";
 
 type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "features";
-
-
-
-
 
 export function Onboarding() {
   const navigate = useNavigate();
@@ -25,7 +21,6 @@ export function Onboarding() {
   const [kycPhone, setKycPhone] = useState("");
   const [isWhatsappSame, setIsWhatsappSame] = useState(true);
   const [kycWhatsappPhone, setKycWhatsappPhone] = useState("");
-
 
   const featureSteps = [
     { 
@@ -120,8 +115,6 @@ export function Onboarding() {
       setError("Please upload a profile picture");
     }
   };
-
-
 
   const handleFeatureNext = () => {
     if (currentFeatureStep < featureSteps.length - 1) {

@@ -27,13 +27,13 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(0,119,182,0.08) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(251,54,22,0.08) 0%, transparent 70%)' }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
           transition={{ duration: 3, repeat: Infinity }}
         />
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(255,195,0,0.06) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(255,136,16,0.06) 0%, transparent 70%)' }}
           animate={{ scale: [1.2, 1, 1.2] }}
           transition={{ duration: 4, repeat: Infinity }}
         />
@@ -93,7 +93,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           className="mt-12 mx-auto w-32 h-0.5 bg-[var(--surface-raised)] rounded-full overflow-hidden"
         >
           <motion.div
-            className="h-full bg-gradient-to-r from-[var(--trust-blue)] to-[var(--action-gold)] rounded-full"
+            className="h-full bg-gradient-to-r from-[#FB3616] to-[#FF8810] rounded-full"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ delay: 1.3, duration: 0.8, ease: "easeInOut" }}
