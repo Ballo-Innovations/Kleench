@@ -263,45 +263,45 @@ export function PageHeader({
             initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed top-0 bottom-0 right-0 w-[85%] max-w-[320px] bg-white z-[1010] shadow-[0_0_80px_rgba(0,0,0,0.4)] flex flex-col border-l-[3px] border-slate-900"
           >
-            <div className="p-6 bg-white border-b-[3px] border-slate-900 flex items-start justify-between">
+            <div className="p-5 bg-white border-b-[3px] border-slate-900 flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-[20px] border-[3px] border-slate-900 overflow-hidden bg-white shrink-0 shadow-[4px_4px_0px_#000]">
+                <div className="w-12 h-12 rounded-[16px] border-[2.5px] border-slate-900 overflow-hidden bg-white shrink-0 shadow-[3px_3px_0px_#000]">
                   {localStorage.getItem("userProfilePhoto") ? (
                     <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-900 text-xl font-black uppercase">K</div>
+                    <div className="w-full h-full flex items-center justify-center text-slate-900 text-lg font-black uppercase">K</div>
                   )}
                 </div>
                 <div>
-                  <h4 className="font-black text-slate-900 text-sm leading-tight mb-1 uppercase tracking-tight">
+                  <h4 className="font-black text-slate-900 text-[11px] leading-tight mb-0.5 uppercase tracking-tight">
                     {(() => {
                       const raw = localStorage.getItem("userKyc");
                       return raw ? JSON.parse(raw).fullName : "Kleench User"
                     })()}
                   </h4>
-                  <p className="text-slate-500 text-[9px] font-black uppercase tracking-widest">Premium Member</p>
+                  <p className="text-slate-500 text-[8px] font-black uppercase tracking-widest">Premium Member</p>
                 </div>
               </div>
               <button onClick={() => setShowSettings(false)} className="text-slate-900 active:scale-90 transition-all bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-[2px_2px_0px_#000]"><X size={20} /></button>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-5 space-y-4">
-              <h5 className="text-[10px] uppercase font-black tracking-[0.3em] text-slate-400 ml-2 mb-4">Security Hub</h5>
+            <div className="flex-1 overflow-y-auto p-5 space-y-3.5">
+              <h5 className="text-[9px] uppercase font-black tracking-[0.3em] text-slate-400 ml-2 mb-3">Security Hub</h5>
               {[
                 { icon: User, label: "Profile Settings", to: "/profile" },
                 { icon: ShieldCheck, label: "Identity & KYC", to: "/wallet" },
                 { icon: SettingsIcon, label: "App Preferences", to: "#" },
                 { icon: HelpCircle, label: "Advanced Support", to: "#" },
               ].map((item, i) => (
-                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-4 p-4 rounded-3xl bg-slate-50 border-2 border-slate-900 shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all text-left">
-                  <div className="w-10 h-10 rounded-xl bg-white text-slate-900 flex items-center justify-center border border-slate-200"><item.icon size={20} strokeWidth={2.5} /></div>
-                  <span className="font-black text-slate-900 text-[11px] uppercase tracking-widest">{item.label}</span>
+                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-3.5 p-2.5 rounded-2xl bg-slate-50 border-2 border-slate-900 shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all text-left">
+                  <div className="w-9 h-9 rounded-xl bg-white text-slate-900 flex items-center justify-center border border-slate-200"><item.icon size={16} strokeWidth={2.5} /></div>
+                  <span className="font-black text-slate-900 text-[10px] uppercase tracking-widest">{item.label}</span>
                 </button>
               ))}
               
-              <div className="mt-12 pt-8 border-t-[3px] border-slate-900 px-2">
-                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-4 text-red-600 font-black text-xs uppercase tracking-[0.2em] active:opacity-50 transition-opacity">
-                  <LogOut size={20} strokeWidth={2.5} /> Sign Out Systems
+              <div className="mt-10 pt-6 border-t-[3px] border-slate-900 px-2">
+                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-3 text-red-600 font-black text-[10px] uppercase tracking-[0.2em] active:opacity-50 transition-opacity">
+                  <LogOut size={18} strokeWidth={2.5} /> Sign Out Systems
                 </button>
               </div>
             </div>
