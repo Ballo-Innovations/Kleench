@@ -13,27 +13,10 @@ export function KycVerification() {
       <PageHeader 
         useLogo 
         showBack
-        title="KYC"
-        subtitle={
-          currentStage === 3 ? "Advertising Preferences" : 
-          currentStage === 2 ? "Occupation & Professional" :
-          currentStage === 1 ? "Bank & Mobile Details" :
-          "Zero Paperwork Verification"
-        }
-        customBalanceHUD={
-          <div className="flex gap-2 px-2 w-full mt-1 h-full items-center">
-            {["Bio", "Bank", "Job", "Int"].map((stage, idx) => (
-              <div key={stage} className="flex-1 flex flex-col items-center">
-                <div className={`h-[3px] w-full rounded-full transition-all duration-700 ${idx <= currentStage ? "bg-white shadow-[0_0_10px_white]" : "bg-white/20"}`} />
-                <span className={`text-[8px] font-black mt-1.5 uppercase tracking-tighter transition-colors ${idx === currentStage ? "text-white" : "text-white/40"}`}>
-                  {stage}
-                </span>
-              </div>
-            ))}
-          </div>
-        }
+        showQr={false}
       />
       
+      {/* ── Body ── */}
       <div className="flex-1 overflow-hidden">
         <KycFlow 
           onClose={() => navigate(-1)}
@@ -45,6 +28,7 @@ export function KycVerification() {
           }}
           externalStage={currentStage}
           onStageChange={setCurrentStage}
+          isUpdate={localStorage.getItem("kleench_financial_kyc") === "true"}
         />
       </div>
     </div>

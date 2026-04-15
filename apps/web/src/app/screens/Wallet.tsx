@@ -106,10 +106,13 @@ export function Wallet() {
             
             <div className="flex items-center">
               {hasFinancialKyc ? (
-                <div className="flex items-center gap-1.5 bg-[#00C853]/15 border border-[#00C853]/30 text-[#00C853] px-3 py-1.5 rounded-full">
+                <button 
+                   onClick={() => navigate("/kyc-verification")}
+                   className="flex items-center gap-1.5 bg-[#00C853]/15 hover:bg-[#00C853]/25 border border-[#00C853]/30 text-[#00C853] px-3 py-1.5 rounded-full active:scale-95 transition-all cursor-pointer"
+                >
                   <Check size={10} strokeWidth={4} />
-                  <span className="font-black uppercase tracking-widest text-[8px]">Verified</span>
-                </div>
+                  <span className="font-black uppercase tracking-widest text-[8px]">Update</span>
+                </button>
               ) : (
                 <button 
                    onClick={() => navigate("/kyc-verification")}

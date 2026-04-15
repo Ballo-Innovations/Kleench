@@ -1,4 +1,4 @@
-import { Settings, Bell, Search, ChevronLeft, MessageCircle, X, Eye, EyeOff, ArrowUpFromLine, ArrowDownToLine, UserPlus, ShieldCheck, User, Settings as SettingsIcon, HelpCircle, LogOut } from "lucide-react";
+import { Settings, Bell, Search, ChevronLeft, MessageCircle, X, Eye, EyeOff, ArrowUpFromLine, ArrowDownToLine, UserPlus, ShieldCheck, User, Settings as SettingsIcon, HelpCircle, LogOut, QrCode } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -14,6 +14,7 @@ interface PageHeaderProps {
   searchValue?: string;
   onSearchChange?: (val: string) => void;
   isSocials?: boolean;
+  showQr?: boolean;
 }
 
 export function PageHeader({ 
@@ -25,7 +26,8 @@ export function PageHeader({
   useLogo = false, 
   searchValue,
   onSearchChange,
-  isSocials = false
+  isSocials = false,
+  showQr = true
 }: PageHeaderProps) {
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -129,12 +131,17 @@ export function PageHeader({
         </div>
 
         {/* Nav Icons */}
-        <div className="flex items-center gap-3.5 flex-shrink-0 pr-1 ml-1">
-          <button onClick={() => setShowChat(true)} className="text-white/80 transition-transform active:scale-95 outline-none">
-            <MessageCircle size={20} />
-          </button>
+        <div className="flex items-center gap-3.5 flex-shrink-0 pr-4 ml-1">
           <button onClick={() => setShowSettings(true)} className="text-white/80 transition-transform active:scale-95 outline-none">
             <Settings size={20} />
+          </button>
+          {showQr && (
+            <button className="text-white/80 transition-transform active:scale-95 outline-none">
+              <QrCode size={20} />
+            </button>
+          )}
+          <button onClick={() => setShowChat(true)} className="text-white/80 transition-transform active:scale-95 outline-none">
+            <MessageCircle size={20} />
           </button>
           <button onClick={() => setShowNotifications(true)} className="relative text-white/80 transition-transform active:scale-95 outline-none">
             <Bell size={20} />
@@ -142,9 +149,9 @@ export function PageHeader({
           </button>
           <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full border-2 border-white/60 overflow-hidden bg-white/20 shrink-0 shadow-sm transition-transform active:scale-95 outline-none">
             {localStorage.getItem("userProfilePhoto") ? (
-              <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
+              <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover rounded-full" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-white text-[10px] font-black uppercase">
+              <div className="w-full h-full flex items-center justify-center text-white text-[10px] font-black uppercase rounded-full">
                 {(() => {
                   const raw = localStorage.getItem("userKyc");
                   if (raw) {

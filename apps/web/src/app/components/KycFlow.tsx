@@ -55,48 +55,55 @@ interface KycFlowProps {
   onComplete: (data: KycData) => void;
   externalStage: number;
   onStageChange: (stage: number) => void;
+  isUpdate?: boolean;
 }
 
 type KycStage = "Bio" | "Financial" | "Employment" | "Interests";
 
 const STAGES: KycStage[] = ["Bio", "Financial", "Employment", "Interests"];
 
-export function KycFlow({ onComplete, externalStage: currentStage, onStageChange: setCurrentStage }: KycFlowProps) {
-  const [formData, setFormData] = useState<KycData>({
-    // Bio
-    fullName: "",
-    gender: "",
-    nationality: "Zambian",
-    nrcPassport: "",
-    docs: { nrc: false, tpin: false, residence: false, selfie: false },
-    town: "",
-    residentialAddress: "",
-    // Financial
-    bankName: "",
-    accNum: "",
-    accConfirmNum: "",
-    accName: "",
-    branchCode: "",
-    sortCode: "",
-    momoPhone: "",
-    momoConfirmPhone: "",
-    cardNumber: "",
-    cardExpiry: "",
-    cardCvv: "",
-    cardPin: "",
-    // Employment
-    employmentStatus: "",
-    workPlace: "",
-    workAddress: "",
-    kinName: "",
-    kinRelation: "",
-    kinPhone: "+260",
-    consentIdentity: false,
-    consentData: false,
-    // Interests
-    marketSectors: "",
-    products: "",
-    hobbies: ""
+export function KycFlow({ onComplete, externalStage: currentStage, onStageChange: setCurrentStage, isUpdate = false }: KycFlowProps) {
+  const [formData, setFormData] = useState<KycData>(() => {
+    const saved = localStorage.getItem("userKyc");
+    if (saved) {
+      try {
+        return { ...JSON.parse(saved) };
+      } catch (e) {
+        console.error("Failed to parse saved KYC data", e);
+      }
+    }
+    return {
+      fullName: "",
+      gender: "",
+      nationality: "Zambian",
+      nrcPassport: "",
+      docs: { nrc: false, tpin: false, residence: false, selfie: false },
+      town: "",
+      residentialAddress: "",
+      bankName: "",
+      accNum: "",
+      accConfirmNum: "",
+      accName: "",
+      branchCode: "",
+      sortCode: "",
+      momoPhone: "",
+      momoConfirmPhone: "",
+      cardNumber: "",
+      cardExpiry: "",
+      cardCvv: "",
+      cardPin: "",
+      employmentStatus: "",
+      workPlace: "",
+      workAddress: "",
+      kinName: "",
+      kinRelation: "",
+      kinPhone: "+260",
+      consentIdentity: false,
+      consentData: false,
+      marketSectors: "",
+      products: "",
+      hobbies: ""
+    };
   });
 
   const nextStage = () => {
@@ -104,6 +111,12 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
       setCurrentStage(currentStage + 1);
     } else {
       onComplete(formData);
+    }
+  };
+
+  const prevStage = () => {
+    if (currentStage > 0) {
+      setCurrentStage(currentStage - 1);
     }
   };
 
@@ -119,17 +132,39 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
   };
 
   return (
-    <div className="flex flex-col h-full bg-white font-sans text-[#003366]">
+    <div className="flex flex-col h-full bg-transparent font-sans text-[#003366]">
+      {/* ── Progress Rhythm ── */}
+      <div className="px-5 pt-8 mb-6">
+        <h1 className="text-[#003366] text-3xl font-black text-center tracking-tighter mb-1 select-none">KYC</h1>
+        <p className="text-gray-400 text-[10px] font-bold text-center uppercase tracking-widest leading-none mb-8">
+          {currentStage === 3 ? "Tell us your interests to receive relevant adverts." : 
+           currentStage === 2 ? "Provide additional information to complete your profile" :
+           currentStage === 1 ? "Complete verification to unlock full wallet access." :
+           "Complete verification to unlock full wallet access."}
+        </p>
+
+        <div className="flex gap-2 w-full h-8 items-end px-2">
+          {["Bio", "Bank & Mobile Detail", "Occupation", "Interests"].map((stage, idx) => (
+            <div key={stage} className="flex-1 flex flex-col items-center">
+              <span className={`text-[7px] font-black uppercase tracking-tighter mb-2 transition-colors duration-500 whitespace-nowrap ${idx === currentStage ? "text-[#00C853]" : "text-gray-400"}`}>
+                {stage}
+              </span>
+              <div className={`h-[5px] w-full rounded-full transition-all duration-700 ${idx <= currentStage ? "bg-[#00C853]" : "bg-gray-200"}`} />
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Stage Container */}
-      <div className="flex-1 overflow-y-auto px-6 pt-6 pb-32 custom-scrollbar relative z-10">
+      <div className="flex-1 px-4 relative z-10 overflow-y-auto">
         <AnimatePresence mode="wait">
           {currentStage === 0 && (
             <motion.div 
-              key="bio" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-              className="space-y-6"
+              key="bio" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="space-y-6 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2 px-6 mb-4">
-                <span className="font-black text-[#003366] text-sm tracking-tight">Personal Details</span>
+              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[#003366] text-[11px] uppercase tracking-widest">Personal Details</span>
               </div>
 
               <div className="space-y-4">
@@ -193,11 +228,11 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
 
           {currentStage === 1 && (
             <motion.div 
-              key="financial" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-              className="space-y-4"
+              key="financial" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="space-y-4 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2 px-6 mb-4">
-                <span className="font-black text-[#003366] text-sm tracking-tight">Add Bank Details</span>
+              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[#003366] text-[11px] uppercase tracking-widest">Add Bank Details</span>
               </div>
               
               <div className="space-y-4">
@@ -237,11 +272,11 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
 
           {currentStage === 2 && (
             <motion.div 
-              key="employment" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-              className="space-y-4"
+              key="employment" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="space-y-4 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2 px-6 mb-4">
-                <span className="font-black text-[#003366] text-sm tracking-tight">Employment</span>
+              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[#003366] text-[11px] uppercase tracking-widest">Employment</span>
               </div>
               
               <div className="space-y-3">
@@ -285,8 +320,8 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 <InputGroup label="" placeholder="NRC or Passport No." value={formData.nrcPassport} onChange={v => updateForm("nrcPassport", v)} icon={DuotoneIdCard} />
               </div>
 
-              <div className="bg-gray-200 rounded-full py-2 px-6 mt-6 mb-4">
-                <span className="font-black text-[#003366] text-sm tracking-tight">Agreement</span>
+              <div className="mb-4 mt-6">
+                <p className="font-bold text-gray-400 text-xs uppercase tracking-widest ml-1">Agreement</p>
               </div>
 
               <div className="space-y-3 px-2">
@@ -308,11 +343,11 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
 
           {currentStage === 3 && (
             <motion.div 
-              key="interests" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-              className="space-y-4"
+              key="interests" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="space-y-4 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2 px-6 mb-4">
-                <span className="font-black text-[#003366] text-sm tracking-tight">Advertising Preferences</span>
+              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[#003366] text-[11px] uppercase tracking-widest">Advertising Preferences</span>
               </div>
               
               <div className="px-2 mb-4">
@@ -336,8 +371,8 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 </div>
               </div>
 
-              <div className="bg-gray-200 rounded-full py-2 px-6 mt-8 mb-4">
-                <span className="font-black text-[#003366] text-sm tracking-tight">Hobbies</span>
+              <div className="mb-4 mt-8">
+                <p className="font-bold text-gray-400 text-xs uppercase tracking-widest ml-1">Hobbies</p>
               </div>
 
               <div className="space-y-2">
@@ -350,13 +385,22 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
       </div>
 
       {/* Screenshot Footer */}
-      <div className="p-6 bg-white border-t border-gray-100">
+      <div className="p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 flex gap-4 pb-24">
+        {currentStage > 0 && (
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
+            onClick={prevStage}
+            className="flex-1 h-11 bg-white text-[#F24E1E] rounded-full flex items-center justify-center font-bold text-sm transition-all border-2 border-[#F24E1E] shadow-[0_3px_0px_#BF3B17] active:shadow-none active:translate-y-[2px]"
+          >
+            Previous
+          </motion.button>
+        )}
         <motion.button 
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.95 }}
           onClick={nextStage}
-          className="w-full h-14 bg-[#F24E1E] text-white rounded-xl flex items-center justify-center font-bold text-xl transition-all shadow-[0_4px_0px_#BF3B17] active:shadow-none active:translate-y-[2px]"
+          className={`${currentStage > 0 ? 'flex-[2]' : 'w-full'} h-11 bg-[#F24E1E] text-white rounded-full flex items-center justify-center font-black uppercase tracking-widest text-[11px] transition-all shadow-[0_3px_0px_#BF3B17] active:shadow-none active:translate-y-[2px]`}
         >
-          {currentStage === 3 ? "Continue" : currentStage === 2 ? "Submit" : "Next"}
+          {currentStage === 3 ? (isUpdate ? "Update Verification" : "Continue") : currentStage === 2 ? (isUpdate ? "Update Info" : "Submit") : "Next"}
         </motion.button>
       </div>
     </div>
