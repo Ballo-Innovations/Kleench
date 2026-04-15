@@ -27,7 +27,7 @@ export function PageHeader({
   searchValue,
   onSearchChange,
   isSocials = false,
-  showQr = true
+  showQr = false
 }: PageHeaderProps) {
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);

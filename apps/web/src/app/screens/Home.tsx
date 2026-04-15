@@ -191,7 +191,7 @@ export function Home() {
     <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-28">
 
       {/* ── ORANGE DASHBOARD HEADER ── */}
-      <PageHeader useLogo showQr={false} />
+      <PageHeader useLogo />
 
       {loading ? (
         <div className="mt-6">

@@ -13,7 +13,6 @@ export function KycVerification() {
       <PageHeader 
         useLogo 
         showBack
-        showQr={false}
       />
       
       {/* ── Body ── */}
