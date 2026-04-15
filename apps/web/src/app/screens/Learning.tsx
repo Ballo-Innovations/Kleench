@@ -1,16 +1,18 @@
 import { 
-  Play,
-  Search,
   Circle,
-  Upload, 
-  Send, 
-  UserPlus,
   X,
   MessageCircle,
-  Clock,
-  User,
-  Eye
 } from "lucide-react";
+import { 
+  DuotoneSearch as Search, 
+  DuotoneUpload as Upload, 
+  DuotoneSend as Send, 
+  DuotoneUserPlus as UserPlus, 
+  DuotoneClock as Clock, 
+  DuotoneUser as User, 
+  DuotoneEye as Eye,
+  DuotonePlay as Play
+} from "../components/DuotoneIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -111,7 +113,7 @@ export function Learning() {
           {/* Search Bar & Live Button */}
           <div className="flex items-center gap-2">
              <div className="flex-1 bg-white rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
-                <Search size={14} className="text-gray-400 mr-2 shrink-0" strokeWidth={2.5} />
+                <Search size={14} primary="#94a3b8" className="mr-2 shrink-0" />
                 <input 
                    type="text" 
                    value={searchQuery}
@@ -129,11 +131,11 @@ export function Learning() {
           {/* Top Action Buttons */}
           <section className="px-2 pt-0">
              <div className="flex items-center justify-center gap-6 px-4">
-               {[
-                 { id: 'upload', icon: Upload, label: "Upload" },
-                 { id: 'share', icon: Send, label: "Share" },
-                 { id: 'gift', icon: UserPlus, label: "Register Agent" }
-               ].map(btn => (
+                {[
+                  { id: 'upload', icon: Upload, label: "Upload" },
+                  { id: 'share', icon: Send, label: "Share" },
+                  { id: 'gift', icon: UserPlus, label: "Register Agent" }
+                ].map(btn => (
                  <motion.button 
                    key={btn.id}
                    onClick={() => handleActionClick(btn.label)}
@@ -141,7 +143,7 @@ export function Learning() {
                    className="flex flex-col items-center justify-center gap-1 group outline-none"
                  >
                    <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all">
-                      <btn.icon size={18} className="text-slate-800" strokeWidth={1.5} />
+                      <btn.icon size={18} />
                    </div>
                    <span className="font-bold text-slate-800 text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-normal break-words w-14">{btn.label}</span>
                  </motion.button>
@@ -170,7 +172,7 @@ export function Learning() {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
                               <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={10} />
+                                 <Play primary="#fff" size={12} />
                               </div>
 
                               <div className="absolute bottom-2 left-2 right-2">
@@ -197,7 +199,7 @@ export function Learning() {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
                               <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={10} />
+                                 <Play primary="#fff" size={12} />
                               </div>
 
                               <div className="absolute bottom-2 left-2 right-2">
@@ -224,7 +226,7 @@ export function Learning() {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
                               <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={10} />
+                                 <Play primary="#fff" size={12} />
                               </div>
 
                               <div className="absolute bottom-2 left-2 right-2">
@@ -244,13 +246,13 @@ export function Learning() {
                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                          
                          <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white border border-white/20 text-[9px] font-bold px-2 py-1 flex items-center gap-1 shadow-sm rounded-md">
-                            <Clock size={10} />
+                            <Clock size={10} primary="#fff" />
                             {video.duration}
                          </div>
                          
                          <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 ring-1 ring-white/20 flex items-center justify-center shadow-2xl">
-                               <Play fill="white" className="text-white ml-1" size={22} />
+                               <Play primary="#fff" size={22} />
                             </div>
                          </div>
                       </div>
@@ -259,11 +261,11 @@ export function Learning() {
                          <h4 className="font-bold text-slate-800 text-[10px] uppercase tracking-widest leading-none mb-1">{video.title}</h4>
                          <div className="flex items-center justify-between mt-2">
                             <div className="flex items-center gap-1.5 text-slate-500">
-                               <User size={12} strokeWidth={2} />
+                               <User size={12} primary="#94a3b8" />
                                <span className="text-[9px] font-bold tracking-widest uppercase">{video.author}</span>
                             </div>
                             <div className="flex items-center gap-1.5 text-slate-400">
-                               <Eye size={12} strokeWidth={2} />
+                               <Eye size={12} primary="#94a3b8" />
                                <span className="text-[9px] font-bold tracking-widest">{video.views}</span>
                             </div>
                          </div>
@@ -304,7 +306,7 @@ export function Learning() {
                       <div className="space-y-6">
                         <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
                           <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
-                            <Upload size={32} className="text-slate-900" strokeWidth={1.5} />
+                            <Upload size={32} />
                           </div>
                           <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Post Educational Content</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">Share your knowledge</p>
@@ -323,8 +325,8 @@ export function Learning() {
                             { name: "Twitter", bg: "bg-black", icon: 'X' },
                             { name: "Facebook", bg: "bg-[#1877F2]", icon: UserPlus },
                             { name: "Email", bg: "bg-slate-100", icon: Send }
-                          ].map(social => (
-                            <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
+                          ].map((social, idx) => (
+                            <div key={idx} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
                               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
                                 {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                               </div>
@@ -383,7 +385,7 @@ export function Learning() {
                    <img src={activeMedia} alt="Media" className="absolute inset-0 w-full h-full object-cover opacity-60" />
                    
                    <div className="relative z-10 w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-2xl active:scale-90 transition-transform cursor-pointer">
-                      <Play fill="white" className="text-white ml-1" size={32} />
+                      <Play primary="#fff" size={32} />
                    </div>
                  </div>
 

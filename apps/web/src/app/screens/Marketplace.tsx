@@ -1,7 +1,14 @@
 import { Link } from "react-router";
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Search, Tag, FileText, UserPlus, BadgeCheck, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { 
+  DuotoneTag as Tag, 
+  DuotoneFileText as FileText, 
+  DuotoneUserPlus as UserPlus, 
+  DuotoneBadgeCheck as BadgeCheck, 
+  DuotoneSearch as Search 
+} from "../components/DuotoneIcon";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
@@ -112,7 +119,7 @@ export function Marketplace() {
           {/* Search Bar */}
           <div className="w-full">
             <div className="relative flex items-center w-full">
-               <Search className="absolute left-4 text-[#003366]/60" size={20} strokeWidth={2.5} />
+               <Search className="absolute left-4 text-[#003366]/40" size={20} />
                <input 
                  type="text" 
                  placeholder="Search Product..." 

@@ -1,16 +1,18 @@
-import {
-  Upload,
-  Send,
-  UserPlus,
-  Headphones,
+import { 
   X,
-  MessageCircle,
-  Play,
-  Volume2,
-  Heart,
-  Share,
-  MoreHorizontal
 } from "lucide-react";
+import { 
+  DuotoneUpload as Upload, 
+  DuotoneSend as Send, 
+  DuotoneUserPlus as UserPlus, 
+  DuotoneHeadphones as Headphones, 
+  DuotoneHeart as Heart, 
+  DuotoneMessageSquare as MessageCircle, 
+  DuotoneShare as Share,
+  DuotonePlay as Play,
+  DuotoneVolume as Volume2,
+  DuotoneMore as MoreHorizontal
+} from "../components/DuotoneIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 // Removed unused toast import
@@ -116,7 +118,7 @@ export function Advert() {
                     className="flex flex-col items-center justify-center gap-1 group outline-none"
                   >
                     <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all">
-                       <btn.icon size={18} className="text-slate-800" strokeWidth={1.5} />
+                       <btn.icon size={18} />
                     </div>
                     <span className="font-bold text-slate-800 text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-normal break-words w-14">{btn.label}</span>
                   </motion.button>
@@ -150,7 +152,7 @@ export function Advert() {
                               
                               {/* Glassmorphism play badge */}
                               <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
-                                 <Play fill="white" className="text-white ml-0.5" size={10} />
+                                 <Play primary="#fff" size={12} />
                               </div>
 
                               {/* Title strip */}
@@ -208,7 +210,7 @@ export function Advert() {
                               {/* Glassmorphism headphone badge — centred */}
                               <div className="absolute inset-0 flex items-center justify-center">
                                  <div className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg transition-transform">
-                                    <Headphones className="text-white" size={14} strokeWidth={1.5} />
+                                    <Headphones primary="#fff" size={14} />
                                  </div>
                               </div>
 
@@ -216,7 +218,7 @@ export function Advert() {
                               <div className="absolute bottom-2 left-2 right-2 flex flex-col gap-1.5">
                                  <p className="block text-white/95 font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
                                  <div className="flex items-center gap-1">
-                                    <Volume2 size={6} className="text-orange-400 shrink-0" />
+                                    <Volume2 size={10} primary="#fb923c" />
                                     <div className="flex-1 h-[2px] bg-white/20 rounded-full relative overflow-hidden">
                                        <div className="absolute left-0 top-0 bottom-0 w-[38%] bg-orange-500 rounded-full" />
                                     </div>
@@ -257,7 +259,7 @@ export function Advert() {
                          {post.id % 2 !== 0 && (
                             <div className="absolute inset-0 flex items-center justify-center">
                                <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 ring-1 ring-white/20 flex items-center justify-center shadow-2xl">
-                                  <Play fill="white" className="text-white ml-1" size={22} />
+                                  <Play primary="#fff" size={22} />
                                </div>
                             </div>
                          )}
@@ -266,13 +268,13 @@ export function Advert() {
                       {/* Action row */}
                       <div className="flex items-center gap-5 px-5 py-3 border-t border-slate-50 pl-6">
                          <button className="flex items-center gap-1.5 text-slate-700 active:scale-90 transition-all">
-                            <Heart size={20} strokeWidth={1.5} />
+                            <Heart size={20} />
                          </button>
                          <button className="flex items-center gap-1.5 text-slate-700 active:scale-90 transition-all">
-                            <MessageCircle size={20} strokeWidth={1.5} />
+                            <MessageCircle size={20} />
                          </button>
                          <button className="flex items-center gap-1.5 text-slate-700 active:scale-90 transition-all ml-auto">
-                            <Share size={18} strokeWidth={1.5} />
+                            <Share size={18} />
                          </button>
                       </div>
                    </div>
@@ -311,7 +313,7 @@ export function Advert() {
                       <div className="space-y-6">
                         <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
                           <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
-                            <Upload size={32} className="text-slate-900" strokeWidth={1.5} />
+                            <Upload size={32} />
                           </div>
                           <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
@@ -386,7 +388,7 @@ export function Advert() {
                    <img src={activeMedia} alt="Media" className="absolute inset-0 w-full h-full object-cover opacity-60" />
                    
                    <div className="relative z-10 w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-2xl active:scale-90 transition-transform cursor-pointer">
-                      <Play fill="white" className="text-white ml-1" size={32} />
+                      <Play primary="#fff" size={32} />
                    </div>
                  </div>
 

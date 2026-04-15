@@ -1,9 +1,17 @@
 import {
   Play, ArrowRight,
   BadgeCheck,
-  CloudUpload, X, MessageCircle, Send, UserPlus, Upload,
-  ThumbsUp, MessageSquare, Share
+  X, MessageCircle
 } from "lucide-react";
+import { 
+  DuotoneUpload, 
+  DuotoneSend, 
+  DuotoneUserPlus, 
+  DuotoneLike, 
+  DuotoneMessage, 
+  DuotoneShare,
+  DuotoneUsers
+} from "../components/DuotoneIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 
@@ -194,9 +202,9 @@ export function Home() {
       {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
       <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-6">
         {[
-          { id: "Upload", icon: Upload, label: "UPLOAD", color: "text-[#003366]" },
-          { id: "Share", icon: Send, label: "SHARE", color: "text-[#003366]" },
-          { id: "Register Agent", icon: UserPlus, label: "REGISTER\nAGENT", color: "text-[#003366]" },
+          { id: "Upload", icon: DuotoneUpload, label: "UPLOAD", color: "text-[#003366]" },
+          { id: "Share", icon: DuotoneSend, label: "SHARE", color: "text-[#003366]" },
+          { id: "Register Agent", icon: DuotoneUserPlus, label: "REGISTER\nAGENT", color: "text-[#003366]" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -205,7 +213,7 @@ export function Home() {
             className="flex flex-col items-center justify-center gap-1 group outline-none cursor-pointer"
           >
             <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-100 shadow-[0_4px_12px_rgba(0,51,102,0.05)] group-active:scale-95 transition-all">
-              <item.icon className={item.color} size={18} strokeWidth={1.5} />
+              <item.icon size={22} />
             </div>
             <span className="font-bold text-[#003366] text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-pre-line w-14">
               {item.label}
@@ -356,13 +364,13 @@ export function Home() {
                              onClick={() => toggleLike(item.id)} 
                              className={`transition-colors ${likedPosts.has(item.id) ? "text-[#FF8C00]" : "text-[#003366]/80"} active:scale-95`}
                            >
-                              <ThumbsUp size={22} strokeWidth={2.5} className={likedPosts.has(item.id) ? "fill-[#FF8C00]" : ""} />
+                              <DuotoneLike size={22} primary={likedPosts.has(item.id) ? "#FF8C00" : undefined} />
                            </button>
                            <button className="text-[#003366]/80 active:scale-95 transition-transform">
-                              <MessageSquare size={22} strokeWidth={2.5} />
+                              <DuotoneMessage size={22} />
                            </button>
                            <button className="text-[#003366]/80 active:scale-95 transition-transform">
-                              <Share size={22} strokeWidth={2.5} />
+                              <DuotoneShare size={22} />
                            </button>
                         </div>
                         <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[#003366]/30">
@@ -415,7 +423,7 @@ export function Home() {
                   <div className="space-y-6">
                     <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
                       <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
-                        <CloudUpload size={32} className="text-slate-900" strokeWidth={1.5} />
+                        <DuotoneUpload size={32} />
                       </div>
                       <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
                       <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
@@ -432,8 +440,8 @@ export function Home() {
                       {[
                         { name: "WhatsApp", bg: "bg-[#25D366]", icon: MessageCircle },
                         { name: "Twitter", bg: "bg-black", icon: 'X' },
-                        { name: "Facebook", bg: "bg-[#1877F2]", icon: UserPlus },
-                        { name: "Email", bg: "bg-slate-100", icon: Send }
+                        { name: "Facebook", bg: "bg-[#1877F2]", icon: DuotoneUsers },
+                        { name: "Email", bg: "bg-slate-100", icon: DuotoneSend }
                       ].map(social => (
                         <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
                           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>

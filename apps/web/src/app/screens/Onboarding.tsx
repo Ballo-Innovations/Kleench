@@ -24,7 +24,7 @@ export function Onboarding() {
 
   const featureSteps = [
     { 
-      lottie: "https://lottie.host/67634898-3850-488f-9d33-9114757c2a7a/2vYhE1jE2f.json", 
+      lottie: "https://lottie.host/9e0d16c9-0a6e-4cc8-a0f5-5a507a21350a/m2hE1kF3gR.json", 
       title: "Discover Products", 
       description: "Explore curated items from trusted sellers in your community", 
       color: "#0077B6" 

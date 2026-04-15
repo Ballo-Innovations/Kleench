@@ -34,6 +34,7 @@ import { Referral } from "./screens/Referral";
 import { Offers } from "./screens/Offers";
 import { Donate } from "./screens/Donate";
 import { Crowdfunding } from "./screens/Crowdfunding";
+import { KycVerification } from "./screens/KycVerification";
 import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -140,6 +141,7 @@ const router = createBrowserRouter([
       { path: "referral", element: <Referral /> },
       { path: "onboarding-page", element: <OnboardingPage /> },
       { path: "offers", element: <Offers /> },
+      { path: "kyc-verification", element: <KycVerification /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

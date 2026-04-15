@@ -1,5 +1,11 @@
 import { PageHeader } from "../components/PageHeader";
-import { Search, ChevronRight, ShieldCheck, CreditCard, Sprout, ArrowRight } from "lucide-react";
+import { Search, ChevronRight } from "lucide-react";
+import { 
+  DuotoneInsurance, 
+  DuotoneIdCard, 
+  DuotoneSprout, 
+  DuotoneArrowRight 
+} from "../components/DuotoneIcon";
 import { motion } from "motion/react";
 import { toast } from "sonner";
 
@@ -10,14 +16,14 @@ import zdaLogo from "@/assets/ZDA logo.png";
 import zraLogo from "@/assets/ZRA logo.png";
 
 const ESSENTIAL_SERVICES = [
-  { id: "insurance", name: "Insurance", icon: ShieldCheck, type: 'icon' },
+  { id: "insurance", name: "Insurance", icon: DuotoneInsurance, type: 'icon' },
   { id: "road_tax", name: "Road Tax", icon: rtsaLogo, type: 'logo' },
   { id: "pacra", name: "Pacra", icon: pacraLogo, type: 'logo' },
   { id: "zra", name: "ZRA", icon: zraLogo, type: 'logo' },
-  { id: "bank", name: "Open Bank Account", icon: CreditCard, type: 'icon' },
-  { id: "microfin", name: "Microfin", icon: Sprout, type: 'icon' },
+  { id: "bank", name: "Open Bank Account", icon: DuotoneIdCard, type: 'icon' },
+  { id: "microfin", name: "Microfin", icon: DuotoneSprout, type: 'icon' },
   { id: "zda", name: "ZDA", icon: zdaLogo, type: 'logo' },
-  { id: "other", name: "Other", icon: ArrowRight, type: 'icon' },
+  { id: "other", name: "Other", icon: DuotoneArrowRight, type: 'icon' },
 ];
 
 export function OnboardingPage() {
@@ -68,7 +74,7 @@ export function OnboardingPage() {
                     className="w-full h-full object-contain"
                   />
                 ) : (
-                  <service.icon size={36} className="text-[#FF8C00]" strokeWidth={2.5} />
+                  <service.icon size={36} />
                 )}
               </div>
               <span className="text-[11px] font-black text-[#003366] uppercase tracking-wider text-center leading-tight">
