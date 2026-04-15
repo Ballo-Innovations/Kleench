@@ -35,6 +35,7 @@ import { Offers } from "./screens/Offers";
 import { Donate } from "./screens/Donate";
 import { Crowdfunding } from "./screens/Crowdfunding";
 import { KycVerification } from "./screens/KycVerification";
+import { Deposit } from "./screens/Deposit";
 import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -142,6 +143,7 @@ const router = createBrowserRouter([
       { path: "onboarding-page", element: <OnboardingPage /> },
       { path: "offers", element: <Offers /> },
       { path: "kyc-verification", element: <KycVerification /> },
+      { path: "deposit", element: <Deposit /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

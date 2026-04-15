@@ -78,7 +78,7 @@ export function Wallet() {
       return;
     }
     if (type === "deposit") {
-      setShowDepositSheet(true);
+      navigate("/deposit");
       return;
     }
     setShowComingSoon(type);
