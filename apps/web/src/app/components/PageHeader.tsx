@@ -174,46 +174,64 @@ export function PageHeader({
           </div>
         ) : (
           // Default Dashboard Balance HUD
-          <motion.div
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] w-full mx-auto"
-          >
-            <div className="flex items-center gap-2">
-              <div className="min-w-0">
-                <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Balance</p>
-                <div className="flex items-center gap-2">
+          <Link to="/balance" className="block w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="flex items-center justify-between bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] w-full mx-auto cursor-pointer active:scale-[0.98] transition-all"
+            >
+              <div className="flex items-center gap-2">
+                <div className="min-w-0 flex-1">
+                  <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Balance</p>
                   <h2 className="text-white text-[15px] font-black tracking-tight leading-none">
                     {balanceHidden ? "••••••" : "ZMW 2,450.00"}
                   </h2>
-                  <button onClick={() => setBalanceHidden(!balanceHidden)} className="text-white/40 transition-colors">
-                    {balanceHidden ? <EyeOff size={12} /> : <Eye size={12} />}
-                  </button>
                 </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
-              {!isSocials ? (
-                <>
-                  {[
-                    { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
-                    { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
-                  ].map(({ icon: Icon, label, to }) => (
-                    <Link key={label} to={to} title={label}
-                      className="w-7 h-7 rounded-full bg-white/20/30 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm">
-                      <Icon size={14} />
-                    </Link>
-                  ))}
-                </>
-              ) : (
-                <button className="flex items-center gap-1.5 bg-red-600/20 border border-red-500/50 rounded-full px-3 py-1 animate-pulse">
-                   <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-                   <span className="text-white text-[10px] font-black uppercase tracking-widest">Live</span>
+                <button 
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                    setBalanceHidden(!balanceHidden); 
+                  }} 
+                  className="text-white/40 transition-colors ml-1 active:scale-90"
+                >
+                  {balanceHidden ? <EyeOff size={12} /> : <Eye size={12} />}
                 </button>
-              )}
-            </div>
-          </motion.div>
+              </div>
+
+              <div className="flex items-center gap-1.5 pl-2.5 border-l border-white/15">
+                {!isSocials ? (
+                  <>
+                    {[
+                      { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
+                      { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
+                    ].map(({ icon: Icon, label, to }) => (
+                      <button 
+                        key={label}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          navigate(to);
+                        }}
+                        title={label}
+                        className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white transition-all active:scale-95 border border-white/10 shadow-sm"
+                      >
+                        <Icon size={14} />
+                      </button>
+                    ))}
+                  </>
+                ) : (
+                  <button 
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                    className="flex items-center gap-1.5 bg-red-600/20 border border-red-500/50 rounded-full px-3 py-1 animate-pulse"
+                  >
+                     <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+                     <span className="text-white text-[10px] font-black uppercase tracking-widest">Live</span>
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </Link>
         )}
       </div>
 

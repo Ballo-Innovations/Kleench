@@ -46,9 +46,9 @@ export function Deposit() {
         <div className="bg-white rounded-3xl p-8 mb-10 border-2 border-gray-100 shadow-[0_15px_35px_rgba(0,51,102,0.08)] flex items-center justify-between">
           <button 
             onClick={() => setAmount(Math.max(0, amount - 50))}
-            className="w-12 h-12 rounded-2xl flex items-center justify-center text-[#003366] active:scale-90 transition-all"
+            className="w-12 h-12 rounded-full border border-gray-100 bg-slate-50 flex items-center justify-center text-[#003366] active:scale-90 transition-all shadow-sm"
           >
-            <Minus size={28} strokeWidth={3} />
+            <Minus size={22} strokeWidth={3} />
           </button>
           
           <div className="flex items-center gap-1">
@@ -57,9 +57,9 @@ export function Deposit() {
 
           <button 
             onClick={() => setAmount(amount + 50)}
-            className="w-12 h-12 rounded-2xl flex items-center justify-center text-[#003366] active:scale-90 transition-all"
+            className="w-12 h-12 rounded-full border border-gray-100 bg-slate-50 flex items-center justify-center text-[#003366] active:scale-90 transition-all shadow-sm"
           >
-            <Plus size={28} strokeWidth={3} />
+            <Plus size={22} strokeWidth={3} />
           </button>
         </div>
 
@@ -98,15 +98,15 @@ export function Deposit() {
         </div>
       </div>
 
-      {/* Floating Action Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-5 bg-white/80 backdrop-blur-md z-[100] max-w-md mx-auto">
-        <motion.button 
-          whileTap={{ scale: 0.96 }}
-          className="w-full h-14 bg-[#003366] text-white rounded-xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-sm shadow-[0_8px_0_#002244] active:shadow-none active:translate-y-[4px] transition-all"
-        >
-          Deposit
-        </motion.button>
+        {/* Action Button - Kinetic Pill */}
+        <div className="flex justify-center pt-8">
+          <motion.button 
+            whileTap={{ scale: 0.96, x: 2, y: 2, boxShadow: "0px 0px 0px #001F33" }}
+            className="w-1/2 h-11 bg-[#003366] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-[6px_6px_0px_#001F33] border-2 border-[#001F33] transition-all"
+          >
+            Deposit Now
+          </motion.button>
+        </div>
       </div>
-    </div>
-  );
+    );
 }
