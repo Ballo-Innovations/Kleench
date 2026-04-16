@@ -49,7 +49,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         >
           <div className="absolute inset-0">
             <LottieAnimation 
-              src="https://lottie.host/67634898-3850-488f-9d33-9114757c2a7a/2vYhE1jE2f.json" 
+              src="https://lottie.host/9e0d16c9-0a6e-4cc8-a0f5-5a507a21350a/m2hE1kF3gR.json" 
               className="w-full h-full"
             />
           </div>

@@ -58,6 +58,8 @@ export function Layout() {
     location.pathname === "/messages" || 
     location.pathname.startsWith("/settings") ||
     location.pathname === "/onboarding-page" ||
+    location.pathname === "/kyc-verification" ||
+    location.pathname === "/deposit" ||
     isNotFound;
 
   return (

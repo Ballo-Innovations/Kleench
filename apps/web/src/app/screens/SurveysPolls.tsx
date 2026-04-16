@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { motion } from "motion/react";
-import { Plus, BarChart2, FileText, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { 
+  DuotonePlus as Plus, 
+  DuotoneBarChart as BarChart2, 
+  DuotoneFileText as FileText 
+} from "../components/DuotoneIcon";
 import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 import { toast } from "sonner";
 

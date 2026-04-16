@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Search, ChevronRight, TrendingUp, Briefcase, History, LineChart, BadgeCheck } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { 
+  DuotoneSearch as Search, 
+  DuotoneTrendingUp as TrendingUp, 
+  DuotoneBriefcase as Briefcase, 
+  DuotoneHistory as History, 
+  DuotoneLineChart as LineChart, 
+  DuotoneBadgeCheck as BadgeCheck 
+} from "../components/DuotoneIcon";
 import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";

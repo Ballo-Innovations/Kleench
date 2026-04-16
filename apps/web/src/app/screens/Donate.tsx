@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
-import { Search, ChevronRight, Plus, Users, Link as LinkIcon, Share, ArrowUpToLine, Info, Eye, CheckCircle2, Star } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { 
+  DuotoneSearch, 
+  DuotonePlus, 
+  DuotoneUsers, 
+  DuotoneSend, 
+  DuotoneUpload as DuotoneArrowUpToLine, 
+  DuotoneShare, 
+  DuotoneInfo, 
+  DuotoneCheck as DuotoneCheckCircle2, 
+  DuotoneEye, 
+  DuotoneStar 
+} from "../components/DuotoneIcon";
 import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
@@ -33,9 +45,9 @@ const FILTERS = [
 ];
 
 const ACTIONS = [
-  { label: "CREATE", icon: Plus, color: "text-[#E85D3F]" },
-  { label: "DONORS", icon: Users, color: "text-[#003366]" },
-  { label: "REFERRAL", icon: LinkIcon, color: "text-[#00C853]" }
+  { label: "CREATE", icon: DuotonePlus, color: "text-[#E85D3F]" },
+  { label: "DONORS", icon: DuotoneUsers, color: "text-[#003366]" },
+  { label: "REFERRAL", icon: DuotoneSend, color: "text-[#00C853]" }
 ];
 
 const PROJECTS = [
@@ -108,7 +120,7 @@ export function Donate() {
           {/* Search Bar */}
           <div className="px-5">
              <div className="flex items-center bg-white border-[3px] border-[#003366] rounded-2xl h-[52px] px-3 shadow-[4px_4px_0_#003366]">
-                <Search size={22} className="text-[#003366]/40 shrink-0 ml-1" strokeWidth={2.5} />
+                 <DuotoneSearch size={22} primary="#003366" className="shrink-0 ml-1" />
                 <input 
                   type="text" 
                   placeholder="Search Product..." 
@@ -187,12 +199,12 @@ export function Donate() {
                          <p className="text-[9px] font-black text-[#003366] leading-[1.3] uppercase break-words pr-1">{proj.desc}</p>
                          {/* Main Interaction Action Base */}
                          <div className="flex items-center gap-3 pt-2">
-                            <button onClick={() => toast.success("Donation portal secure. Initiating...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
-                               <ArrowUpToLine size={16} strokeWidth={3} /> DONATE
-                            </button>
-                            <button onClick={() => toast("Share link copied to clipboard!")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
-                               <Share size={16} strokeWidth={3} className="-ml-1" /> SHARE
-                            </button>
+                             <button onClick={() => toast.success("Donation portal secure. Initiating...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                                <DuotoneArrowUpToLine size={16} primary="#fff" /> DONATE
+                             </button>
+                             <button onClick={() => toast("Share link copied to clipboard!")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                                <DuotoneShare size={16} primary="#fff" className="-ml-1" /> SHARE
+                             </button>
                          </div>
                       </div>
                    </div>
@@ -218,24 +230,24 @@ export function Donate() {
                       
                       <div className="flex items-center gap-1.5 text-[#003366]/60">
                          <div className="flex flex-col items-center group cursor-pointer">
-                            <Info size={14} strokeWidth={2.5} />
+                            <DuotoneInfo size={14} />
                             <span className="text-[5px] font-black uppercase mt-0.5">INFORMATION</span>
                          </div>
                          <div className="flex flex-col items-center group cursor-pointer">
-                            <CheckCircle2 size={14} strokeWidth={2.5} className="text-[#00C853]" />
+                            <DuotoneCheckCircle2 size={14} primary="#00C853" />
                             <span className="text-[5px] font-black uppercase mt-0.5">VERIFICATION</span>
                          </div>
                          <div className="flex flex-col items-center group cursor-pointer">
                             <div className="flex gap-0.5 text-[#FFC300] mb-[2px]">
-                               <Star size={7} strokeWidth={3} fill="#FFC300" />
-                               <Star size={7} strokeWidth={3} fill="#FFC300" />
-                               <Star size={7} strokeWidth={3} fill="#FFC300" />
-                               <Star size={7} strokeWidth={3} className="text-gray-300" fill="transparent" />
+                               <DuotoneStar size={7} primary="#FFC300" secondaryOpacity={1} />
+                               <DuotoneStar size={7} primary="#FFC300" secondaryOpacity={1} />
+                               <DuotoneStar size={7} primary="#FFC300" secondaryOpacity={1} />
+                               <DuotoneStar size={7} primary="#d1d5db" />
                             </div>
                             <span className="text-[5px] font-black uppercase text-transparent selection:text-transparent">STARS</span>
                          </div>
                          <div className="flex flex-col items-center group cursor-pointer">
-                            <Eye size={14} strokeWidth={2.5} />
+                            <DuotoneEye size={14} />
                             <span className="text-[5px] font-black uppercase mt-0.5">KYC</span>
                          </div>
                       </div>
