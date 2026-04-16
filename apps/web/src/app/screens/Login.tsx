@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
+import { toast } from "sonner";
 
 export function Login() {
   const navigate = useNavigate();
@@ -107,12 +108,13 @@ export function Login() {
 
             {/* Forgot Password */}
             <div className="text-right">
-              <Link
-                to="#"
+              <button
+                type="button"
+                onClick={() => toast.info("Password recovery coming soon")}
                 className="text-[13px] font-bold text-[#ff8c00]"
               >
                 Forgot Password?
-              </Link>
+              </button>
             </div>
 
             {/* Login Button */}

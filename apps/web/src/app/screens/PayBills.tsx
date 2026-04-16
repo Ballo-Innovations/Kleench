@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Search, Bell, ChevronRight } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 // Logo imports
 import zescoLogo from "@/assets/zesco logo.png";
@@ -48,6 +49,11 @@ export function PayBills() {
               <motion.button 
                 key={biller.id}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  if (biller.name) {
+                    toast.info(`Payment for ${biller.name} is coming soon!`);
+                  }
+                }}
                 className="aspect-square rounded-2xl bg-[#5D56D8]/10 shadow-[2px_2px_0px_rgba(93,86,216,0.2)] border border-[#5D56D8]/10 flex flex-col items-center justify-center p-2 gap-2"
               >
                 {biller.logo ? (
@@ -77,6 +83,7 @@ export function PayBills() {
           
           <motion.div 
             whileTap={{ scale: 0.98 }}
+            onClick={() => toast.info("Redirecting to ZRA PayPortal...")}
             className="bg-white rounded-3xl p-5 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] flex items-center gap-4 cursor-pointer"
           >
             <div className="relative">

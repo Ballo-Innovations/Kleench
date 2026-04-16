@@ -34,6 +34,12 @@ export function Escrow() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorShake, setErrorShake] = useState(false);
+  const [transactionTitle, setTransactionTitle] = useState("");
+  const [amount, setAmount] = useState("");
+  const [recipient, setRecipient] = useState("");
+  const [dispatchWindow, setDispatchWindow] = useState("03 BUSINESS DAYS");
+  const [showRecipientDropdown, setShowRecipientDropdown] = useState(false);
+  const [showDispatchDropdown, setShowDispatchDropdown] = useState(false);
 
   // Retrieve PIN from onboarding
   const savedPin = localStorage.getItem("userPin") || "0000"; // Fallback if not set
@@ -41,7 +47,7 @@ export function Escrow() {
   // Retrieve user profile info
   const localKycRaw = localStorage.getItem("userKyc");
   const localKyc = localKycRaw ? JSON.parse(localKycRaw) : null;
-  const profileName = localKyc?.fullName || "Kleench User";
+  const profileName = localKyc?.fullName || "No Profile Data";
 
   const handleKeyPress = (digit: string) => {
     if (pin.length < 4) {
@@ -113,8 +119,10 @@ export function Escrow() {
                   <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] overflow-hidden">
                     <input 
                       type="text" 
-                      defaultValue="Laptop Purchesa"
-                      className="w-full p-4 bg-transparent outline-none text-sm font-black uppercase tracking-tight text-[#003366]"
+                      value={transactionTitle}
+                      onChange={(e) => setTransactionTitle(e.target.value)}
+                      placeholder="e.g. Laptop Purchase"
+                      className="w-full p-4 bg-transparent outline-none text-sm font-black uppercase tracking-tight text-[#003366] placeholder:text-[#003366]/40"
                     />
                   </div>
                 </div>
@@ -122,14 +130,32 @@ export function Escrow() {
                 {/* Seller */}
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">VERIFIED SELLER</label>
-                  <motion.div 
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex justify-between items-center cursor-pointer"
-                  >
-                    <span className="text-sm font-black text-[#6E7C91] uppercase tracking-tight">Select Recipient...</span>
-                    <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
-                  </motion.div>
+                  <div className="relative">
+                    <motion.div 
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      onClick={() => setShowRecipientDropdown(!showRecipientDropdown)}
+                      className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex justify-between items-center cursor-pointer"
+                    >
+                      <span className={`text-sm font-black uppercase tracking-tight ${recipient ? "text-[#003366]" : "text-[#6E7C91]"}`}>
+                        {recipient || "Select Recipient..."}
+                      </span>
+                      <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
+                    </motion.div>
+                    {showRecipientDropdown && (
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] overflow-hidden z-20">
+                        {["Computicket Ltd", "TechMart", "John Doe Merchants", "SneakerHead Hub"].map((merchant, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => { setRecipient(merchant); setShowRecipientDropdown(false); }}
+                            className="p-4 border-b last:border-0 border-[#003366]/10 hover:bg-[#003366]/5 cursor-pointer text-sm font-black text-[#003366] uppercase tracking-tight"
+                          >
+                            {merchant}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Amount */}
@@ -139,8 +165,10 @@ export function Escrow() {
                     <span className="text-[10px] font-black text-[#6E7C91]">ZMW</span>
                     <input 
                       type="text" 
-                      defaultValue="2,000.00"
-                      className="bg-transparent border-none outline-none text-xl font-black text-[#003366] text-right w-full"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ''))}
+                      placeholder="0.00"
+                      className="bg-transparent border-none outline-none text-xl font-black text-[#003366] text-right w-full placeholder:text-[#003366]/30"
                     />
                   </div>
                 </div>
@@ -148,9 +176,27 @@ export function Escrow() {
                 {/* Delivery Time */}
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">DISPATCH WINDOW</label>
-                  <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex justify-between items-center cursor-pointer">
-                    <span className="text-sm font-black text-[#003366] uppercase tracking-tight">03 BUSINESS DAYS</span>
-                    <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
+                  <div className="relative">
+                    <div 
+                      onClick={() => setShowDispatchDropdown(!showDispatchDropdown)}
+                      className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex justify-between items-center cursor-pointer"
+                    >
+                      <span className="text-sm font-black text-[#003366] uppercase tracking-tight">{dispatchWindow}</span>
+                      <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
+                    </div>
+                    {showDispatchDropdown && (
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] overflow-hidden z-20">
+                        {["01 BUSINESS DAY", "03 BUSINESS DAYS", "07 BUSINESS DAYS", "14 BUSINESS DAYS"].map((window, idx) => (
+                          <div 
+                            key={idx}
+                            onClick={() => { setDispatchWindow(window); setShowDispatchDropdown(false); }}
+                            className="p-4 border-b last:border-0 border-[#003366]/10 hover:bg-[#003366]/5 cursor-pointer text-sm font-black text-[#003366] uppercase tracking-tight"
+                          >
+                            {window}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

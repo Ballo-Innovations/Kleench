@@ -2,8 +2,11 @@ import { motion } from "motion/react";
 import { QrCode, Scan, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 export function ScanPay() {
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(250);
   const [mode, setMode] = useState<"scanner" | "viewer">("scanner");
 
@@ -92,6 +95,14 @@ export function ScanPay() {
         <div className="w-full pt-4">
           <motion.button 
             whileTap={{ scale: 0.96 }}
+            onClick={() => {
+              if (amount <= 0) {
+                 toast.error("Please enter a valid amount to pay");
+                 return;
+              }
+              toast.success(`Successfully paid ZMW ${amount} via QR!`);
+              setTimeout(() => navigate("/wallet"), 1500);
+            }}
             className="w-full h-14 bg-[#0D1B2A] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(13,27,42,0.2)]"
           >
             Pay

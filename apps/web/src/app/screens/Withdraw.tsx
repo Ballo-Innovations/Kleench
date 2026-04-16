@@ -2,8 +2,11 @@ import { motion } from "motion/react";
 import { Minus, Plus, CreditCard } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 export function Withdraw() {
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(150);
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
 
@@ -38,6 +41,7 @@ export function Withdraw() {
 
           <motion.button 
             whileTap={{ scale: 0.98 }}
+            onClick={() => toast.info("Beneficiary management coming soon")}
             className="w-full py-4 bg-[#E8F0FE] rounded-full border-2 border-[#D2E3FC] shadow-sm flex items-center justify-center gap-2"
           >
             <Plus size={16} className="text-[#3C4043]" />
@@ -85,10 +89,17 @@ export function Withdraw() {
             ))}
         </div>
 
-        {/* Bottom Action Button */}
         <div className="pt-4">
             <motion.button 
                 whileTap={{ scale: 0.96 }}
+                onClick={() => {
+                  if (!selectedProvider) {
+                    toast.error("Please select a provider first");
+                    return;
+                  }
+                  toast.success(`Processing withdrawal of ZMW ${amount} to ${selectedProvider}`);
+                  setTimeout(() => navigate(-1), 1500);
+                }}
                 style={{ backgroundColor: "#003366" }}
                 className="w-full h-14 rounded-2xl flex items-center justify-center text-white font-regular uppercase tracking-[0.3em] text-xs shadow-[0_10px_30px_rgba(0,51,102,0.3)] transition-all"
             >
