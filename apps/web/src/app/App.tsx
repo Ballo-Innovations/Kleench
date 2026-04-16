@@ -45,6 +45,7 @@ import { ScanPay } from "./screens/ScanPay";
 import { GlobalTransaction } from "./screens/GlobalTransaction";
 import { Escrow } from "./screens/Escrow";
 import { Savings } from "./screens/Savings";
+import { TaxAccount } from "./screens/TaxAccount";
 import { ContentCalculator } from "./screens/ContentCalculator";
 import { NotFound } from "./screens/NotFound";
 
@@ -164,6 +165,7 @@ const router = createBrowserRouter([
       { path: "escrow", element: <Escrow /> },
       { path: "savings", element: <Savings /> },
       { path: "content-calculator", element: <ContentCalculator /> },
+      { path: "tax-account", element: <TaxAccount /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

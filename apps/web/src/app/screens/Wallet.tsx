@@ -117,6 +117,10 @@ export function Wallet() {
       navigate("/content-calculator");
       return;
     }
+    if (type === "tax") {
+      navigate("/tax-account");
+      return;
+    }
     setShowComingSoon(type);
   };
 
