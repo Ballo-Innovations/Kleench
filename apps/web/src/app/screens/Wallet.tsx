@@ -113,6 +113,10 @@ export function Wallet() {
       navigate("/savings");
       return;
     }
+    if (type === "calculator") {
+      navigate("/content-calculator");
+      return;
+    }
     setShowComingSoon(type);
   };
 
