@@ -109,6 +109,14 @@ export function Wallet() {
       navigate("/escrow");
       return;
     }
+    if (type === "savings") {
+      navigate("/savings");
+      return;
+    }
+    if (type === "calculator") {
+      navigate("/content-calculator");
+      return;
+    }
     setShowComingSoon(type);
   };
 
