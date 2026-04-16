@@ -18,6 +18,12 @@ const DETAILED_DATA = [
 ];
 
 export function Statements() {
+  // Retrieve user profile info
+  const localKycRaw = localStorage.getItem("userKyc");
+  const localKyc = localKycRaw ? JSON.parse(localKycRaw) : null;
+  const userEmail = localStorage.getItem("userEmail") || "";
+  const profileName = localKyc?.fullName || (userEmail ? userEmail.split("@")[0] : "Kleench User");
+
   return (
     <div className="min-h-screen bg-transparent text-[#003366] font-sans pb-32">
       <PageHeader showBack title="Statement" />
@@ -32,7 +38,7 @@ export function Statements() {
                     <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
                 </div>
             </div>
-            <p className="text-[11px] font-bold text-[#6E7C91] tracking-wide ml-1">Kabista Mbuli</p>
+            <p className="text-[11px] font-bold text-[#6E7C91] tracking-wide ml-1">{profileName}</p>
         </div>
 
         {/* Summary Card */}

@@ -6,6 +6,12 @@ import { PageHeader } from "../components/PageHeader";
 export function TaxAccount() {
   const navigate = useNavigate();
 
+  // Retrieve user profile info
+  const localKycRaw = localStorage.getItem("userKyc");
+  const localKyc = localKycRaw ? JSON.parse(localKycRaw) : null;
+  const userEmail = localStorage.getItem("userEmail") || "";
+  const profileName = localKyc?.fullName || (userEmail ? userEmail.split("@")[0] : "Kleench User");
+
   return (
     <div className="w-full min-h-screen bg-transparent font-sans text-[#093463] pb-12 selection:bg-[#EE4D2D] selection:text-white">
       <PageHeader 
@@ -30,7 +36,7 @@ export function TaxAccount() {
             </h2>
             <div className="flex items-center gap-2 mt-4">
                <div className="h-1.5 w-1.5 rounded-full bg-[#00D97E] animate-pulse" />
-               <p className="text-white/40 text-[9px] font-black uppercase tracking-widest leading-none">Kabista Mbuli</p>
+               <p className="text-white/40 text-[9px] font-black uppercase tracking-widest leading-none">{profileName}</p>
             </div>
           </motion.div>
         </section>

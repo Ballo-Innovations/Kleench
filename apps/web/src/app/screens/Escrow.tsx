@@ -38,6 +38,11 @@ export function Escrow() {
   // Retrieve PIN from onboarding
   const savedPin = localStorage.getItem("userPin") || "0000"; // Fallback if not set
 
+  // Retrieve user profile info
+  const localKycRaw = localStorage.getItem("userKyc");
+  const localKyc = localKycRaw ? JSON.parse(localKycRaw) : null;
+  const profileName = localKyc?.fullName || "Kleench User";
+
   const handleKeyPress = (digit: string) => {
     if (pin.length < 4) {
       setPin(prev => prev + digit);
@@ -186,7 +191,7 @@ export function Escrow() {
                 <div className="space-y-2">
                   <p className="text-[10px] font-black text-[#5D56D8] uppercase tracking-[0.4em]">Counterparty</p>
                   <div className="flex flex-col items-center">
-                    <h3 className="text-3xl font-black text-[#003366] uppercase tracking-tighter">Kabista Mbuli</h3>
+                    <h3 className="text-3xl font-black text-[#003366] uppercase tracking-tighter">{profileName}</h3>
                     <div className="flex items-center gap-1.5 mt-1 text-[#6E7C91]">
                         <DuotoneBadgeCheck size={14} primary="#00D97E" />
                         <span className="text-[9px] font-black uppercase">Verified Merchant</span>
