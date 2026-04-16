@@ -109,6 +109,10 @@ export function Wallet() {
       navigate("/escrow");
       return;
     }
+    if (type === "savings") {
+      navigate("/savings");
+      return;
+    }
     setShowComingSoon(type);
   };
 
