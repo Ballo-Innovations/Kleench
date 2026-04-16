@@ -69,6 +69,7 @@ export function Layout() {
     location.pathname === "/deposit" || 
     location.pathname === "/savings" || 
     location.pathname === "/content-calculator" ||
+    location.pathname === "/kyc-verification" ||
     isNotFound;
 
   return (
