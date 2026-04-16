@@ -105,6 +105,10 @@ export function Wallet() {
       navigate("/global-transaction");
       return;
     }
+    if (type === "escrow") {
+      navigate("/escrow");
+      return;
+    }
     setShowComingSoon(type);
   };
 
