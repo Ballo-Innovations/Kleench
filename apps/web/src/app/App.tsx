@@ -37,6 +37,13 @@ import { Crowdfunding } from "./screens/Crowdfunding";
 import { KycVerification } from "./screens/KycVerification";
 import { Deposit } from "./screens/Deposit";
 import { BalanceOverview } from "./screens/BalanceOverview";
+import { Withdraw } from "./screens/Withdraw";
+import { Send } from "./screens/Send";
+import { Statements } from "./screens/Statements";
+import { PayBills } from "./screens/PayBills";
+import { ScanPay } from "./screens/ScanPay";
+import { GlobalTransaction } from "./screens/GlobalTransaction";
+import { Escrow } from "./screens/Escrow";
 import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -146,6 +153,13 @@ const router = createBrowserRouter([
       { path: "kyc-verification", element: <KycVerification /> },
       { path: "deposit", element: <Deposit /> },
       { path: "balance", element: <BalanceOverview /> },
+      { path: "withdraw", element: <Withdraw /> },
+      { path: "send", element: <Send /> },
+      { path: "statements", element: <Statements /> },
+      { path: "pay-bills", element: <PayBills /> },
+      { path: "scan-pay", element: <ScanPay /> },
+      { path: "global-transaction", element: <GlobalTransaction /> },
+      { path: "escrow", element: <Escrow /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

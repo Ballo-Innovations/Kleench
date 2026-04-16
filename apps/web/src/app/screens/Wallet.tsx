@@ -81,6 +81,34 @@ export function Wallet() {
       navigate("/deposit");
       return;
     }
+    if (type === "withdraw") {
+      navigate("/withdraw");
+      return;
+    }
+    if (type === "send") {
+      navigate("/send");
+      return;
+    }
+    if (type === "statement") {
+      navigate("/statements");
+      return;
+    }
+    if (type === "paybills") {
+      navigate("/pay-bills");
+      return;
+    }
+    if (type === "qr") {
+      navigate("/scan-pay");
+      return;
+    }
+    if (type === "global") {
+      navigate("/global-transaction");
+      return;
+    }
+    if (type === "escrow") {
+      navigate("/escrow");
+      return;
+    }
     setShowComingSoon(type);
   };
 
@@ -148,7 +176,7 @@ export function Wallet() {
                 <motion.div 
                   key={action.id}
                   whileTap={{ scale: 0.92 }}
-                  onClick={() => (action.id === 'statement' ? setActiveTransTab('all') : handleAction(action.id))} 
+                  onClick={() => handleAction(action.id)} 
                   className="flex flex-col items-center gap-2 cursor-pointer group"
                 >
                   <div className={`w-12 h-12 rounded-full border border-[#003366]/10 bg-white flex items-center justify-center transition-all group-active:scale-95 shadow-sm`}>

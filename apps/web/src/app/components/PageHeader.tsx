@@ -15,6 +15,7 @@ interface PageHeaderProps {
   onSearchChange?: (val: string) => void;
   isSocials?: boolean;
   showQr?: boolean;
+  onBack?: () => void;
 }
 
 export function PageHeader({ 
@@ -27,7 +28,8 @@ export function PageHeader({
   searchValue,
   onSearchChange,
   isSocials = false,
-  showQr = false
+  showQr = false,
+  onBack
 }: PageHeaderProps) {
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -71,7 +73,7 @@ export function PageHeader({
           {showBack && (
              <motion.button 
                whileTap={{ scale: 0.9 }}
-               onClick={() => navigate(-1)}
+               onClick={() => onBack ? onBack() : navigate(-1)}
                className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-sm transition-transform shrink-0"
              >
                <ChevronLeft size={20} />
