@@ -40,6 +40,8 @@ import { BalanceOverview } from "./screens/BalanceOverview";
 import { Withdraw } from "./screens/Withdraw";
 import { Send } from "./screens/Send";
 import { Statements } from "./screens/Statements";
+import { PayBills } from "./screens/PayBills";
+import { ScanPay } from "./screens/ScanPay";
 import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -152,6 +154,8 @@ const router = createBrowserRouter([
       { path: "withdraw", element: <Withdraw /> },
       { path: "send", element: <Send /> },
       { path: "statements", element: <Statements /> },
+      { path: "pay-bills", element: <PayBills /> },
+      { path: "scan-pay", element: <ScanPay /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

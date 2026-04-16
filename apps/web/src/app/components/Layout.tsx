@@ -62,6 +62,8 @@ export function Layout() {
     location.pathname === "/withdraw" || 
     location.pathname === "/send" || 
     location.pathname === "/statements" || 
+    location.pathname === "/pay-bills" || 
+    location.pathname === "/scan-pay" || 
     location.pathname === "/deposit" || 
     isNotFound;
 

@@ -93,6 +93,14 @@ export function Wallet() {
       navigate("/statements");
       return;
     }
+    if (type === "paybills") {
+      navigate("/pay-bills");
+      return;
+    }
+    if (type === "qr") {
+      navigate("/scan-pay");
+      return;
+    }
     setShowComingSoon(type);
   };
 
