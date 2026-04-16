@@ -42,6 +42,7 @@ import { Send } from "./screens/Send";
 import { Statements } from "./screens/Statements";
 import { PayBills } from "./screens/PayBills";
 import { ScanPay } from "./screens/ScanPay";
+import { GlobalTransaction } from "./screens/GlobalTransaction";
 import { NotFound } from "./screens/NotFound";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -156,6 +157,7 @@ const router = createBrowserRouter([
       { path: "statements", element: <Statements /> },
       { path: "pay-bills", element: <PayBills /> },
       { path: "scan-pay", element: <ScanPay /> },
+      { path: "global-transaction", element: <GlobalTransaction /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

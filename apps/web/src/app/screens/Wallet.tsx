@@ -101,6 +101,10 @@ export function Wallet() {
       navigate("/scan-pay");
       return;
     }
+    if (type === "global") {
+      navigate("/global-transaction");
+      return;
+    }
     setShowComingSoon(type);
   };
 
