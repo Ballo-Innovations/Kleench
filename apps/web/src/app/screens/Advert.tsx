@@ -17,7 +17,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 // Removed unused toast import
 import { PageHeader } from "../components/PageHeader";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 // Our custom generated placeholder images
 import adCar from "@/assets/ads/ad_car.png";

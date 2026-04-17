@@ -7,7 +7,8 @@ import { PageHeader } from "../components/PageHeader";
 const HERO_BG = "https://images.unsplash.com/photo-1575388902449-6bca946ad549?auto=format&fit=crop&w=1080&q=80";
 const INSTRUCTOR_AVATAR = "https://images.unsplash.com/photo-1758685734511-4f49ce9a382b?auto=format&fit=crop&w=1080&q=80";
 
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading } from "../components/PageSkeletons";
+import { Skeleton } from "boneyard-js/react";
 
 export function LearningDetail() {
   const loading = usePageLoading(850);
@@ -16,7 +17,7 @@ export function LearningDetail() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
 
-  if (loading) return <PageSkeletons.AcademyDetail />;
+  
 
   const handleEnroll = () => {
     navigate("/wallet", { state: { enrollCourse: true, courseId: id, coursePrice: 49.99 } });
@@ -29,6 +30,7 @@ export function LearningDetail() {
   });
 
   return (
+    <Skeleton loading={loading} name="learningdetail">
     <div className="min-h-screen bg-transparent pb-32 font-sans overflow-x-hidden text-slate-800">
       
       {/* ── Standardized Academy Detail Header ── */}
@@ -221,5 +223,6 @@ export function LearningDetail() {
         )}
       </AnimatePresence>
     </div>
+      </Skeleton>
   );
 }

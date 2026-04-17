@@ -16,7 +16,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 
 import { Link } from "react-router";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading } from "../components/PageSkeletons";
+import { Skeleton } from "boneyard-js/react";
 import { PageHeader } from "../components/PageHeader";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
@@ -193,12 +194,7 @@ export function Home() {
       {/* ── ORANGE DASHBOARD HEADER ── */}
       <PageHeader useLogo />
 
-      {loading ? (
-        <div className="mt-6">
-          <PageSkeletons.Home />
-        </div>
-      ) : (
-        <>
+      <Skeleton loading={loading} name="home">
       {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
       <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-6">
         {[
@@ -395,8 +391,7 @@ export function Home() {
       </div>
 
 
-      </>
-      )}
+      </Skeleton>
 
       {/* High-Fidelity Bottom Sheets */}
       <AnimatePresence>

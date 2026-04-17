@@ -6,7 +6,8 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { ShareReferralModal } from "../components/ShareReferralModal";
 import { PRODUCTS } from "../data/products";
 
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading } from "../components/PageSkeletons";
+import { Skeleton } from "boneyard-js/react";
 
 export function ProductDetail() {
   const loading = usePageLoading(1200);
@@ -14,7 +15,7 @@ export function ProductDetail() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showShareModal, setShowShareModal] = useState(false);
 
-  if (loading) return <PageSkeletons.Product />;
+  
 
   // Find the product by ID
   const productData = PRODUCTS.find((p) => p.id === Number(id));
@@ -56,6 +57,7 @@ export function ProductDetail() {
   };
 
   return (
+    <Skeleton loading={loading} name="productdetail">
     <div className="min-h-screen pb-32">
       {/* Top Navigation */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl shadow-sm">
@@ -334,5 +336,6 @@ export function ProductDetail() {
         productId={product.id}
       />
     </div>
+      </Skeleton>
   );
 }

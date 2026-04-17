@@ -33,7 +33,8 @@ function CrossHatchBg() {
   );
 }
 
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading } from "../components/PageSkeletons";
+import { Skeleton } from "boneyard-js/react";
 
 export function SellProduct() {
   const loading = usePageLoading(700);
@@ -47,9 +48,10 @@ export function SellProduct() {
   const [escrow, setEscrow] = useState(true);
   const [commission, setCommission] = useState("5");
 
-  if (loading) return <PageSkeletons.Generic />;
+  
 
   return (
+    <Skeleton loading={loading} name="sellproduct">
     <div className="w-full max-w-md mx-auto pb-28 relative">
       <CrossHatchBg />
 
@@ -298,5 +300,6 @@ export function SellProduct() {
         )}
       </AnimatePresence>
     </div>
+      </Skeleton>
   );
 }

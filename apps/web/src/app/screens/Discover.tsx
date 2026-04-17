@@ -41,7 +41,7 @@ function CrossHatchBg() {
   );
 }
 
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 export function Discover() {
   const loading = usePageLoading(850);

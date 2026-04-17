@@ -29,7 +29,7 @@ const grace = (delay = 0) => ({
   ease: [0.22, 1, 0.36, 1] as const,
 });
 
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 export function Referral() {
   const loading = usePageLoading(800);
@@ -327,7 +327,7 @@ export function Referral() {
         )}
       </AnimatePresence>
       </>
-      )}
+        )}
     </div>
   );
 }
