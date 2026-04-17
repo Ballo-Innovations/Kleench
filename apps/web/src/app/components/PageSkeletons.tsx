@@ -8,7 +8,9 @@ export function usePageLoading(delay = 1000) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), delay);
+    // Cut down arbitrary high loading delays globally to optimize loading sequence performance
+    const optimizedDelay = Math.min(delay, 250);
+    const timer = setTimeout(() => setLoading(false), optimizedDelay);
     return () => clearTimeout(timer);
   }, [delay]);
 
@@ -65,53 +67,75 @@ export const PageSkeletons = {
   ),
 
   Wallet: () => (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pt-6">
-      <div className="px-5 space-y-8">
-        {/* Digital Wallet Card Skeleton */}
-        <div className="bg-[#0D1B3E]/5 border-[3px] border-[#0D1B3E] rounded-[32px] p-6 shadow-[8px_8px_0px_#0D1B3E] space-y-6 relative overflow-hidden">
-           {/* Abstract mesh/dots for brutalist card feeling */}
-           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#0D1B3E 2px, transparent 2px)', backgroundSize: '12px 12px' }}></div>
-           <div className="relative">
-             <div className="flex justify-between items-center mb-6">
-                <Skeleton className="h-3 w-24 bg-[#0D1B3E]/20" />
-                <Skeleton className="h-4 w-12 bg-[#0D1B3E]/10 rounded-full" />
-             </div>
-             <Skeleton className="h-10 w-[70%] bg-[#0D1B3E]/30 mb-2" />
-             <Skeleton className="h-4 w-32 bg-[#0D1B3E]/10 rounded-full" />
-           </div>
-        </div>
-
-        {/* Action Buttons Skeleton */}
-        <div className="grid grid-cols-4 gap-4 pt-2">
+    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pt-3 px-4">
+      <div className="space-y-6">
+        {/* Action Grid Skeleton */}
+        <div className="flex justify-center gap-7 mt-4 mb-2">
            {[1, 2, 3, 4].map(i => (
               <div key={i} className="flex flex-col items-center gap-2">
-                 <Skeleton className="w-14 h-14 rounded-2xl border-[2px] border-[#0D1B3E] shadow-[4px_4px_0px_#0D1B3E] bg-white flex items-center justify-center">
-                    <div className="w-6 h-6 rounded-full bg-[#0D1B3E]/10 animate-pulse" />
+                 <Skeleton className="w-12 h-12 rounded-full border border-[#003366]/10 shadow-[2px_2px_0px_#f0f0f0] bg-white flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full bg-[#003366]/5 animate-pulse" />
                  </Skeleton>
-                 <Skeleton className="h-2 w-12 opacity-40 rounded-full mt-1" />
+                 <Skeleton className="h-2 w-12 opacity-40 rounded-full mt-0.5" />
               </div>
            ))}
         </div>
 
-        {/* Transactions Skeleton */}
-        <div className="space-y-5 pt-4">
-          <div className="flex items-center gap-4">
-             <Skeleton className="h-4 w-40 opacity-30 bg-[#0D1B3E]/30" />
-             <div className="flex-1 h-[3px] bg-[#0D1B3E]/10" />
+        {/* UTILITY BLOCKS Skeleton */}
+        <div className="space-y-4 pt-2">
+          <div className="flex items-center gap-3 mb-6">
+             <Skeleton className="h-4 w-6 rounded-md bg-[#F5A623]" />
+             <Skeleton className="h-4 w-28 rounded-md" />
+             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
           </div>
-          <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex items-center justify-between p-4 bg-white border-[2px] border-[#0D1B3E] rounded-3xl shadow-[4px_4px_0px_#0D1B3E]">
+
+          <div className="flex flex-col gap-4">
+             {/* 3 columns */}
+             <div className="grid grid-cols-3 gap-3">
+                {[1, 2, 3].map(i => (
+                  <Skeleton key={i} className="h-14 rounded-2xl border border-slate-200 shadow-sm bg-white" />
+                ))}
+             </div>
+             {/* 2 columns */}
+             <div className="grid grid-cols-2 gap-3">
+                {[1, 2].map(i => (
+                  <Skeleton key={i} className="h-16 rounded-2xl shadow-sm bg-[#FFC55A]" />
+                ))}
+             </div>
+             {/* 2 columns */}
+             <div className="grid grid-cols-2 gap-3">
+                {[1, 2].map(i => (
+                  <Skeleton key={i} className="h-16 rounded-2xl shadow-sm bg-white border border-slate-200" />
+                ))}
+             </div>
+          </div>
+        </div>
+
+        {/* FINANCIAL LOGS Skeleton */}
+        <div className="space-y-4 pt-4">
+          <div className="flex items-center gap-3 mb-6">
+             <Skeleton className="h-4 w-6 rounded-md bg-[#F5A623]" />
+             <Skeleton className="h-4 w-32 rounded-md" />
+             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
+          </div>
+          <div className="flex space-x-2">
+            {[1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-8 w-16 rounded-full border border-[#003366]/10 shadow-[2px_2px_0px_#f0f0f0]" />
+            ))}
+          </div>
+          <div className="space-y-3">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm">
                 <div className="flex items-center gap-4">
-                  <Skeleton className="w-12 h-12 rounded-xl border-2 border-[#0D1B3E] bg-[#FF8C00]/5" />
+                  <Skeleton className="w-10 h-10 rounded-full border border-[#003366]/10 bg-slate-50" />
                   <div className="space-y-2">
-                    <Skeleton className="h-4 w-28 rounded-md bg-[#0D1B3E]/20" />
-                    <Skeleton className="h-3 w-20 opacity-50 rounded-md" />
+                    <Skeleton className="h-4 w-28 rounded-md" />
+                    <Skeleton className="h-3 w-16 opacity-50 rounded-md" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1.5">
-                   <Skeleton className="h-4 w-16 bg-[#0D1B3E]/30 rounded-md" />
-                   <Skeleton className="h-3 w-8 rounded-full opacity-30" />
+                   <Skeleton className="h-4 w-12 rounded-md" />
+                   <Skeleton className="h-3 w-20 rounded-full opacity-30" />
                 </div>
               </div>
             ))}
