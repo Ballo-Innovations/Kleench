@@ -73,10 +73,11 @@ export function Wallet() {
   const hasFinancialKyc = localStorage.getItem("kleench_financial_kyc") === "true";
 
   const handleAction = (type: string) => {
-    if (!hasFinancialKyc && (type === "withdraw" || type === "send" || type === "paybills" || type === "qr")) {
-      navigate("/kyc-verification");
-      return;
-    }
+    // KYC check temporarily bypassed to allow direct routing
+    // if (!hasFinancialKyc && (type === "withdraw" || type === "send" || type === "paybills" || type === "qr")) {
+    //   navigate("/kyc-verification");
+    //   return;
+    // }
     if (type === "deposit") {
       navigate("/deposit");
       return;
