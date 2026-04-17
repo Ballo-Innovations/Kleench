@@ -18,7 +18,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 // Imports from learning
 import learnWoman from "@/assets/learning/learn_woman_1775596426630.png";

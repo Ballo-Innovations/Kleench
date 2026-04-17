@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowDownToLine, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 export function GlobalTransaction() {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ export function GlobalTransaction() {
   const charge = 2.0;
   const total = amount + charge;
   const [activeTab, setActiveTab] = useState<"send" | "received">("send");
+  const [recipientInput, setRecipientInput] = useState("");
+  const [verifiedName, setVerifiedName] = useState("---");
 
   return (
     <div className="min-h-screen bg-transparent text-[#003366] font-sans pb-32">
@@ -39,6 +42,8 @@ export function GlobalTransaction() {
               </div>
               <input 
                 type="text" 
+                value={recipientInput}
+                onChange={(e) => setRecipientInput(e.target.value)}
                 placeholder="Send to |" 
                 className="bg-transparent border-none outline-none text-[13px] font-black placeholder-[#6E7C91] w-full"
               />
@@ -49,10 +54,23 @@ export function GlobalTransaction() {
           {/* Verification Section */}
           <div className="flex items-center justify-between px-2">
             <div className="space-y-0.5">
-              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[#003366]">---</span></p>
-              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[#003366]">---</span></p>
+              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[#003366]">{verifiedName}</span></p>
+              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[#003366]">{recipientInput || "---"}</span></p>
             </div>
-            <button className="bg-[#003366] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all">
+            <button 
+              onClick={() => {
+                if (!recipientInput) {
+                   toast.error("Enter a global recipient ID first.");
+                   return;
+                }
+                toast.loading("Locating Global User...", { id: "verify-toast" });
+                setTimeout(() => {
+                  setVerifiedName("Global Recipient");
+                  toast.success("Recipient Verified!", { id: "verify-toast" });
+                }, 1000);
+              }}
+              className="bg-[#003366] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
+            >
               Verify
             </button>
           </div>
@@ -131,10 +149,19 @@ export function GlobalTransaction() {
         <div className="pt-4">
             <motion.button 
                 whileTap={{ scale: 0.96 }}
-                onClick={() => navigate(-1)}
+                onClick={() => {
+                  if (activeTab === "send" && verifiedName === "---") {
+                    toast.error("Please verify recipient before initiating global transaction");
+                    return;
+                  }
+                  if (activeTab === "send") {
+                    toast.success(`Global transfer of ZMW ${amount} to ${verifiedName} initiated!`);
+                  }
+                  setTimeout(() => navigate(-1), 1500);
+                }}
                 className="w-full h-14 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)]"
             >
-                Back
+                {activeTab === "send" ? "Execute Global Transfer" : "Back"}
             </motion.button>
         </div>
       </div>

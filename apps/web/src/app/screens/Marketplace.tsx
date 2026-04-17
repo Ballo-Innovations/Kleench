@@ -11,7 +11,7 @@ import {
 } from "../components/DuotoneIcon";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import smartphoneImg from "@/assets/products/smartphone.png";
@@ -365,4 +365,4 @@ export function Marketplace() {
       )}
     </div>
   );
-}
+}

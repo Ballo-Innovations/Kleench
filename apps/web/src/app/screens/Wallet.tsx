@@ -28,7 +28,7 @@ import zamtelLogo from "@/assets/zamtel_logo.png";
 
 
 import { PageHeader } from "../components/PageHeader";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 /* ── Graceful ease-out builder ── */
 const grace = (delay = 0) => ({
@@ -465,7 +465,7 @@ export function Wallet() {
                </div>
             </motion.div>
           </>
-        )}
+            )}
       </AnimatePresence>
 
       {/* MODALS RENDERED PORTAL-STYLE */}

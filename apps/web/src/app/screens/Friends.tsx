@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 const SARAH_IMG = "https://images.unsplash.com/photo-1594318223885-20dc4b889f9e?auto=format&fit=crop&w=400&q=80";
 const MARCUS_IMG = "https://images.unsplash.com/photo-1770894807442-108cc33c0a7a?auto=format&fit=crop&w=400&q=80";

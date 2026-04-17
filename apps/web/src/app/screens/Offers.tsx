@@ -4,7 +4,7 @@ import { Search, Filter, Star, ShieldCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
 import { PageHeader } from "../components/PageHeader";
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 import adBanner from "@/assets/ads/Collective Impact Verified Efforts.png";
 
 type OfferType = "all" | "solar" | "network" | "survey" | "course";
@@ -226,7 +226,7 @@ export function Offers() {
         </AnimatePresence>
       </div>
       </>
-      )}
+        )}
     </div>
   );
 }

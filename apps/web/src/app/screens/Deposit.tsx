@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Minus, Plus } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 import mtnLogo from "@/assets/MTN.jpeg";
 import airtelLogo from "@/assets/airtel_logo.webp";
 import zamtelLogo from "@/assets/zamtel_logo.png";
 
 export function Deposit() {
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(150);
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
 
@@ -102,6 +105,15 @@ export function Deposit() {
         <div className="flex justify-center pt-8">
           <motion.button 
             whileTap={{ scale: 0.96, x: 2, y: 2, boxShadow: "0px 0px 0px #001F33" }}
+            onClick={() => {
+              if (!selectedProvider) {
+                toast.error("Please select a mobile money provider first");
+                return;
+              }
+              const providerName = providers.find(p => p.id === selectedProvider)?.name;
+              toast.success(`Processing deposit of ZMW ${amount} via ${providerName}`);
+              setTimeout(() => navigate(-1), 1500);
+            }}
             className="w-1/2 h-11 bg-[#003366] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-[6px_6px_0px_#001F33] border-2 border-[#001F33] transition-all"
           >
             Deposit Now

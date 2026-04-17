@@ -32,7 +32,7 @@ const profileData = {
   ],
 };
 
-import { PageSkeletons, usePageLoading } from "../components/PageSkeletons";
+import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
 export function Profile() {
   const loading = usePageLoading(1100);
