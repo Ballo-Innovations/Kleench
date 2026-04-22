@@ -48,6 +48,14 @@ import { Savings } from "./screens/Savings";
 import { TaxAccount } from "./screens/TaxAccount";
 import { ContentCalculator } from "./screens/ContentCalculator";
 import { NotFound } from "./screens/NotFound";
+import { AdvertUpload } from "./screens/AdvertUpload";
+import { AgentRegistration } from "./screens/AgentRegistration";
+import { GoLive } from "./screens/GoLive";
+import { AdvertQuestionnaire } from "./screens/AdvertQuestionnaire";
+import { PayToStream } from "./screens/PayToStream";
+import { LearnUpload } from "./screens/LearnUpload";
+import { AdvertViewAds } from "./screens/AdvertViewAds";
+import { LearnViewer } from "./screens/LearnViewer";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -166,6 +174,15 @@ const router = createBrowserRouter([
       { path: "savings", element: <Savings /> },
       { path: "content-calculator", element: <ContentCalculator /> },
       { path: "tax-account", element: <TaxAccount /> },
+      { path: "advert/upload", element: <AdvertUpload /> },
+      { path: "advert/agent-registration", element: <AgentRegistration /> },
+      { path: "advert/questionnaire", element: <AdvertQuestionnaire /> },
+      { path: "learning/upload", element: <LearnUpload /> },
+      { path: "learning/go-live", element: <GoLive /> },
+      { path: "learning/pay-to-stream", element: <PayToStream /> },
+      { path: "learning/questionnaire", element: <AdvertQuestionnaire /> },
+      { path: "advert/view-ads", element: <AdvertViewAds /> },
+      { path: "learning/viewer", element: <LearnViewer /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },

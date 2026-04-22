@@ -2,6 +2,8 @@ import {
   Circle,
   X,
   MessageCircle,
+  MoreVertical,
+  Bookmark
 } from "lucide-react";
 import { 
   DuotoneSearch as Search, 
@@ -16,7 +18,6 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
 import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
@@ -40,11 +41,13 @@ export function Learning() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMedia, setActiveMedia] = useState<string | null>(null);
 
-  const [activeSheet, setActiveSheet] = useState<null | "Upload" | "Share" | "Register Agent" | "Live Stream">(null);
+  const [activeSheet, setActiveSheet] = useState<null | "Upload" | "Share" | "Register Agent" | "Live Stream" | "Options">(null);
 
   const handleActionClick = (actionName: string) => {
-     if (actionName === "Live Stream") return toast.success("Live Stream starting...");
-     setActiveSheet(actionName as "Upload" | "Share" | "Register Agent" | "Live Stream" | null);
+    if (actionName === "Live Stream") return navigate("/learning/go-live");
+    if (actionName === "Upload") return navigate("/learning/upload");
+    if (actionName === "Register Agent") return navigate("/advert/agent-registration");
+    setActiveSheet(actionName as "Upload" | "Share" | "Register Agent" | "Live Stream" | null);
   };
 
   const handleCourseClick = (courseId: number | string) => {
@@ -130,24 +133,26 @@ export function Learning() {
 
           {/* Top Action Buttons */}
           <section className="px-2 pt-0">
-             <div className="flex items-center justify-center gap-6 px-4">
-                {[
-                  { id: 'upload', icon: Upload, label: "Upload" },
-                  { id: 'share', icon: Send, label: "Share" },
-                  { id: 'gift', icon: UserPlus, label: "Register Agent" }
-                ].map(btn => (
-                 <motion.button 
-                   key={btn.id}
-                   onClick={() => handleActionClick(btn.label)}
+             <div className="flex items-center justify-between gap-4 px-4">
+                <motion.button 
+                  onClick={() => handleActionClick("Upload")}
+                  whileTap={{ scale: 0.96 }}
+                  className="flex-1 h-12 bg-orange-500 rounded-full flex items-center justify-center gap-2 shadow-md shadow-orange-500/20 active:scale-95 transition-all text-white"
+                >
+                   <Upload size={18} primary="#fff" />
+                   <span className="font-black text-[11px] uppercase tracking-widest pl-1">Upload Content</span>
+                </motion.button>
+                
+                <motion.button
+                   onClick={() => handleActionClick("Register Agent")}
                    whileTap={{ scale: 0.92 }}
-                   className="flex flex-col items-center justify-center gap-1 group outline-none"
+                   className="flex flex-col items-center justify-center gap-1 group outline-none shrink-0"
                  >
-                   <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all">
-                      <btn.icon size={18} />
+                   <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all mx-2">
+                      <UserPlus size={18} />
                    </div>
-                   <span className="font-bold text-slate-800 text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-normal break-words w-14">{btn.label}</span>
+                   <span className="font-bold text-slate-800 text-[6px] uppercase tracking-[0.15em] text-center leading-tight whitespace-normal break-words w-16">Register Agent</span>
                  </motion.button>
-               ))}
              </div>
           </section>
 
@@ -163,7 +168,7 @@ export function Learning() {
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Learn & Earn Videos</h3>
                         </div>
-                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
+                        <span onClick={() => navigate("/learning/viewer?mode=learn-earn")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_1.map(ad => (
@@ -175,8 +180,14 @@ export function Learning() {
                                  <Play primary="#fff" size={12} />
                               </div>
 
-                              <div className="absolute bottom-2 left-2 right-2">
-                                 <p className="block text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
+                              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
+                                 <p className="flex-1 text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl pr-1">{ad.title}</p>
+                                 <button 
+                                   onClick={(e) => { e.stopPropagation(); setActiveSheet("Options"); }}
+                                   className="w-6 h-6 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white shrink-0 active:scale-90 transition-transform"
+                                 >
+                                    <MoreVertical size={14} color="#fff" />
+                                 </button>
                               </div>
                            </motion.div>
                         ))}
@@ -190,7 +201,7 @@ export function Learning() {
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Free Videos</h3>
                         </div>
-                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
+                        <span onClick={() => navigate("/learning/viewer?mode=free")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_2.map(ad => (
@@ -202,8 +213,14 @@ export function Learning() {
                                  <Play primary="#fff" size={12} />
                               </div>
 
-                              <div className="absolute bottom-2 left-2 right-2">
-                                 <p className="block text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
+                              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
+                                 <p className="flex-1 text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl pr-1">{ad.title}</p>
+                                 <button 
+                                   onClick={(e) => { e.stopPropagation(); setActiveSheet("Options"); }}
+                                   className="w-6 h-6 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white shrink-0 active:scale-90 transition-transform"
+                                 >
+                                    <MoreVertical size={14} color="#fff" />
+                                 </button>
                               </div>
                            </motion.div>
                         ))}
@@ -217,7 +234,7 @@ export function Learning() {
                            <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Creator Showcases</h3>
                         </div>
-                        <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
+                        <span onClick={() => navigate("/learning/viewer?mode=pay-to-stream")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_3.map(ad => (
@@ -229,8 +246,14 @@ export function Learning() {
                                  <Play primary="#fff" size={12} />
                               </div>
 
-                              <div className="absolute bottom-2 left-2 right-2">
-                                 <p className="block text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl">{ad.title}</p>
+                              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
+                                 <p className="flex-1 text-white font-black text-[10px] uppercase tracking-tighter leading-snug drop-shadow-2xl pr-1">{ad.title}</p>
+                                 <button 
+                                   onClick={(e) => { e.stopPropagation(); setActiveSheet("Options"); }}
+                                   className="w-6 h-6 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white shrink-0 active:scale-90 transition-transform"
+                                 >
+                                    <MoreVertical size={14} color="#fff" />
+                                 </button>
                               </div>
                            </motion.div>
                         ))}
@@ -264,9 +287,17 @@ export function Learning() {
                                <User size={12} primary="#94a3b8" />
                                <span className="text-[9px] font-bold tracking-widest uppercase">{video.author}</span>
                             </div>
-                            <div className="flex items-center gap-1.5 text-slate-400">
-                               <Eye size={12} primary="#94a3b8" />
-                               <span className="text-[9px] font-bold tracking-widest">{video.views}</span>
+                            <div className="flex items-center gap-3">
+                               <div className="flex items-center gap-1.5 text-slate-400">
+                                  <Eye size={12} primary="#94a3b8" />
+                                  <span className="text-[9px] font-bold tracking-widest">{video.views}</span>
+                               </div>
+                               <button 
+                                  onClick={(e) => { e.stopPropagation(); setActiveSheet("Options"); }}
+                                  className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-700 active:scale-90 transition-all shadow-sm border border-slate-100"
+                               >
+                                  <MoreVertical size={16} />
+                               </button>
                             </div>
                          </div>
                       </div>
@@ -361,6 +392,29 @@ export function Learning() {
                         <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-blue-600/25 mt-4">
                           Secure Track Access
                         </button>
+                      </div>
+                    )}
+
+                    {activeSheet === "Options" && (
+                      <div className="space-y-3">
+                         <button 
+                           onClick={() => setActiveSheet("Share")}
+                           className="w-full h-14 bg-slate-50 flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-slate-900 border border-slate-200 shadow-sm"
+                         >
+                            <div className="w-8 h-8 rounded-full bg-[#003366]/10 flex items-center justify-center">
+                               <MessageCircle color="#003366" size={16} />
+                            </div>
+                            <span className="font-black text-[11px] uppercase tracking-widest">Share to peers</span>
+                         </button>
+                         <button 
+                           onClick={() => setActiveSheet(null)}
+                           className="w-full h-14 bg-slate-50 flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-slate-900 border border-slate-200 shadow-sm"
+                         >
+                            <div className="w-8 h-8 rounded-full bg-[#003366]/10 flex items-center justify-center">
+                               <Bookmark size={16} className="text-[#003366]" />
+                            </div>
+                            <span className="font-black text-[11px] uppercase tracking-widest">Bookmark Video</span>
+                         </button>
                       </div>
                     )}
                   </div>

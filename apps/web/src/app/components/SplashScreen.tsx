@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { useEffect } from "react";
-import { LottieAnimation } from "./LottieAnimation";
 import kleenchLogo from "@/assets/kleench_logo.png";
 
 interface SplashScreenProps {
@@ -23,43 +22,24 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
       {/* Grid */}
       <div className="absolute inset-0 grid-pattern opacity-60" />
 
-      {/* Ambient glow */}
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(251,54,22,0.08) 0%, transparent 70%)' }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(255,136,16,0.06) 0%, transparent 70%)' }}
-          animate={{ scale: [1.2, 1, 1.2] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
-      </div>
+      {/* Subtle static ambient glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,140,0,0.05) 0%, transparent 70%)' }} />
 
       {/* Content */}
       <div className="relative z-10 text-center">
         <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto mb-8 w-44 h-44 flex items-center justify-center"
+          initial={{ scale: 0.6, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mx-auto mb-8 flex items-center justify-center"
         >
-          <div className="absolute inset-0">
-            <LottieAnimation 
-              src="https://lottie.host/9e0d16c9-0a6e-4cc8-a0f5-5a507a21350a/m2hE1kF3gR.json" 
-              className="w-full h-full"
-            />
-          </div>
           <motion.img 
             src={kleenchLogo} 
             alt="KLEENCH Logo" 
-            className="relative z-10 h-14 w-auto object-contain"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            className="h-20 w-auto object-contain"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
           />
         </motion.div>
 
