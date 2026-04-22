@@ -107,7 +107,7 @@ export function Marketplace() {
                   className="flex flex-col items-center gap-2 group cursor-pointer"
                   style={{ touchAction: "manipulation" }}
                 >
-                  <div className={`w-[60px] h-[60px] rounded-2xl border-[3px] border-[#003366] bg-white flex items-center justify-center shadow-[4px_4px_0_#003366] group-active:shadow-none transition-all group-active:translate-y-1 group-active:translate-x-1 ${action.color}`}>
+                  <div className={`w-[60px] h-[60px] rounded-2xl border border-[#003366]/20 bg-white flex items-center justify-center shadow-lg shadow-[#003366]/15 active:scale-95 transition-all ${action.color}`}>
                     <action.icon size={26} strokeWidth={('stroke' in action ? action.stroke : 2.5) as number} />
                   </div>
                   <span className="text-[10px] font-black tracking-widest text-[#003366] uppercase">{action.label}</span>
@@ -123,7 +123,7 @@ export function Marketplace() {
                <input 
                  type="text" 
                  placeholder="Search Product..." 
-                 className="w-full bg-white border-[3px] border-[#003366] pl-12 pr-4 py-3 rounded-2xl shadow-[4px_4px_0_#003366] focus:shadow-none focus:translate-x-1 focus:translate-y-1 text-[13px] font-black text-[#003366] outline-none placeholder:text-[#003366]/40 transition-all" 
+                 className="w-full bg-white border border-[#003366]/20 pl-12 pr-4 py-3 rounded-2xl shadow-md shadow-[#003366]/10 focus:border-[#003366]/40 text-[13px] font-black text-[#003366] outline-none placeholder:text-[#003366]/40 transition-all" 
                />
                <button onClick={() => toast("Fetching category indexes...")} className="absolute right-4 text-[#FF8C00] font-black text-[11px] flex items-center gap-1 active:opacity-70 uppercase tracking-widest">
                  Categories <ChevronRight size={14} strokeWidth={3} className="text-[#003366]" />
@@ -133,7 +133,7 @@ export function Marketplace() {
 
           {/* Fused Segmented Pill Tabs — zero gap toggle */}
           <div className="w-full">
-             <div className="flex border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] overflow-hidden">
+             <div className="flex border border-[#003366]/20 rounded-full shadow-md shadow-[#003366]/10 overflow-hidden">
                 {(["PRODUCTS", "SERVICES"] as const).map((tab, i) => {
                    const isActive = activeTab === tab;
                    return (
@@ -193,8 +193,8 @@ export function Marketplace() {
                    { id: "pacra", label: "REGISTER COMPANY", title: "PACRA", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80", isLogo: false },
                    { id: "zppa", label: "HIRE TALENT", title: "ZPPA", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&q=80", isLogo: false },
                  ].map((service) => (
-                   <motion.button whileTap={{ y: 4, x: 4, boxShadow: "0 0 0 #000" }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
-                     <div className="bg-white border-[3px] border-[#003366] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-[6px_6px_0_#00C853] transition-colors">
+                   <motion.button whileTap={{ scale: 0.97 }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
+                     <div className="bg-white border border-[#003366]/20 rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-lg shadow-[#003366]/15 transition-colors">
                        <div className="h-[100px] relative border-b-[3px] border-[#003366] bg-white">
                           <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale-[0.2]" />
                           <div className="absolute inset-0 bg-black/40" />
@@ -220,7 +220,7 @@ export function Marketplace() {
             
             <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_INTEL.map((intel) => (
-                  <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-slate-900 rounded-2xl p-3 border-[3px] border-[#003366] shadow-[6px_6px_0_#E85D3F] flex flex-col relative overflow-hidden h-[150px]">
+                  <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-[#003366] rounded-2xl p-3 border border-[#003366]/40 shadow-lg shadow-[#003366]/25 flex flex-col relative overflow-hidden h-[150px]">
                      {/* Y-axis labels */}
                      <div className="absolute inset-0 opacity-20 pointer-events-none flex flex-col justify-between p-3">
                         <span className="text-[6px] font-black text-white">100</span>
@@ -268,11 +268,11 @@ export function Marketplace() {
             <div className="bg-[#003366] px-4 py-2 border-t-[3px] border-x-[3px] border-[#003366] rounded-t-2xl">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">BUSINESS LISTINGS</h3>
             </div>
-            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border-[3px] border-[#003366] rounded-b-2xl shadow-[6px_6px_0_#FFC300] bg-[#003366]">
+            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[#003366]/30 rounded-b-2xl shadow-lg shadow-[#003366]/20 bg-[#003366]">
                {BUSINESSES.map((business, i) => (
                  <div key={i} onClick={() => toast(`Visiting ${business.name} profile...`)} className="shrink-0 snap-start w-[150px] bg-white cursor-pointer group flex flex-col h-[185px] border-r-[1px] border-[#003366]/10 last:border-r-0">
                    <div className="flex-1 bg-[#F8F9FA] flex items-center justify-center border-b-[2px] border-[#003366]/10 p-4 relative group-hover:bg-[#003366]/5 transition-colors">
-                      <div className="w-16 h-16 rounded-full bg-white border-2 border-[#003366] flex items-center justify-center overflow-hidden shadow-[4px_4px_0_#FFC300] group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-16 h-16 rounded-full bg-white border border-[#003366]/20 flex items-center justify-center overflow-hidden shadow-lg shadow-[#003366]/20 group-hover:scale-110 transition-transform duration-300">
                          {('image' in business && business.image) ? (
                             <img src={business.image as string} alt={business.name} className="w-[85%] h-[85%] object-contain" />
                          ) : (
@@ -307,7 +307,7 @@ export function Marketplace() {
             <div className="bg-[#003366] px-4 py-2 border-t-[3px] border-x-[3px] border-[#003366] rounded-t-2xl">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">WINDOW SHOPPING</h3>
             </div>
-            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border-[3px] border-[#003366] rounded-b-2xl shadow-[6px_6px_0_#757575] bg-[#003366]">
+            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[#003366]/30 rounded-b-2xl shadow-lg shadow-[#003366]/20 bg-[#003366]">
                {[
                  { name: "THE SCENT STORE ZAMBIA",  category: "Beauty & Fragrance",   image: scentStoreImg },
                  { name: "LUSAKA TECH HUB",          category: "Electronics & Tech",    image: techHubImg },
@@ -345,7 +345,7 @@ export function Marketplace() {
                  <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[110px]">
                    <div className="bg-white border-2 border-[#003366]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
                      <div className="aspect-square bg-white relative border-b-2 border-[#003366]">
-                        <div className="absolute top-1.5 left-1.5 bg-[#E85D3F] text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 border border-[#003366]">HOT</div>
+                        <div className="absolute top-1.5 left-1.5 bg-[#E85D3F] text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 shadow-sm">HOT</div>
                         <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
                      </div>
                      <div className="p-2 bg-white flex flex-col gap-0.5 justify-between flex-1">

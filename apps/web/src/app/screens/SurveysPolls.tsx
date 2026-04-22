@@ -61,18 +61,18 @@ export function SurveysPolls() {
               <button onClick={() => toast.info("Survey creation tool coming soon.")} className="flex-1">
                 <motion.div 
                   whileTap={{ scale: 0.95 }}
-                  className="w-full h-[60px] rounded-xl border-[3px] border-[#E85D3F] bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-[4px_4px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+                  className="w-full h-[60px] rounded-xl bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-lg shadow-[#E85D3F]/25 active:scale-95 transition-all"
                 >
-                  <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full border-2 border-white/60 flex items-center justify-center">
                     <Plus size={16} strokeWidth={3} />
                   </div>
                   <span className="font-black tracking-wider uppercase text-[12px]">Survey</span>
                 </motion.div>
               </button>
               <button onClick={() => toast.info("Poll creation tool coming soon.")} className="flex-1">
-                 <motion.div 
+                 <motion.div
                   whileTap={{ scale: 0.95 }}
-                  className="w-full h-[60px] rounded-xl border-[3px] border-[#E85D3F] bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-[4px_4px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+                  className="w-full h-[60px] rounded-xl bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-lg shadow-[#E85D3F]/25 active:scale-95 transition-all"
                 >
                   <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
                     <Plus size={16} strokeWidth={3} />
@@ -86,7 +86,7 @@ export function SurveysPolls() {
           {/* Active Survey Section */}
           <section className="px-5 py-5 border-b-[3px] border-gray-200">
             <h3 className="text-[#003366] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
-            <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0_#FF8C00] p-4 mb-6">
+            <div className="bg-white rounded-2xl border border-[#003366]/15 shadow-lg shadow-[#003366]/12 p-4 mb-6">
                {ACTIVE_SURVEYS.map((survey, i) => (
                   <div key={survey.id} className="mb-4 last:mb-0 relative py-1">
                      <div className="flex items-center justify-between mb-2">
@@ -113,7 +113,7 @@ export function SurveysPolls() {
             </div>
 
             {/* Interactive Element */}
-            <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0_#FF8C00] p-2">
+            <div className="bg-white rounded-2xl border border-[#003366]/15 shadow-lg shadow-[#003366]/12 p-2">
                <div className="inline-block bg-[#E85D3F] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase border-[3px] border-[#003366] shadow-[2px_2px_0_#003366] -ml-2 mb-4 z-10 relative">
                   Favorite Social Media Platform?
                </div>
@@ -123,7 +123,7 @@ export function SurveysPolls() {
                      <button 
                         key={opt.id} 
                         onClick={() => handleSelect(opt.id)} 
-                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' border-[3px] border-[#003366] shadow-[2px_2px_0_#003366]' : 'bg-transparent text-[#003366] border border-[#003366]/40'}`}
+                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' shadow-md shadow-[#003366]/20' : 'bg-transparent text-[#003366] border border-[#003366]/30'}`}
                      >
                         {opt.label}
                      </button>
@@ -136,7 +136,7 @@ export function SurveysPolls() {
           <section className="px-5 py-8 border-b-[3px] border-[#003366] bg-gray-50/50">
             <h3 className="text-[#003366] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Poll</h3>
             
-            <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0_#00C853] p-4">
+            <div className="bg-white rounded-2xl border border-[#003366]/15 shadow-lg shadow-[#003366]/12 p-4">
                {ACTIVE_POLLS.map((poll, i) => (
                   <div key={poll.id} className="mb-4 last:mb-0 relative">
                      <div className="flex items-center justify-between mb-2">
@@ -186,11 +186,11 @@ export function SurveysPolls() {
 
             {/* Neo-brutalist interaction blocks */}
             <div className="grid grid-cols-2 gap-4">
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border-[3px] border-[#003366] rounded-2xl text-[#003366] shadow-[4px_4px_0_rgba(0,51,102,1)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[#003366]/20 rounded-2xl text-[#003366] shadow-md shadow-[#003366]/15 active:scale-95 transition-all cursor-pointer">
                   <BarChart2 size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
                </button>
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border-[3px] border-[#003366] rounded-2xl text-[#003366] shadow-[4px_4px_0_rgba(0,51,102,1)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[#003366]/20 rounded-2xl text-[#003366] shadow-md shadow-[#003366]/15 active:scale-95 transition-all cursor-pointer">
                   <FileText size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
                </button>

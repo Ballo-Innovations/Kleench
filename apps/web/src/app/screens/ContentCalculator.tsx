@@ -88,7 +88,7 @@ const KineticPillToggle = <T extends string>({
   value: T, 
   onChange: (v: T) => void 
 }) => (
-  <div className="flex bg-white border-[2.5px] border-[#093463] rounded-[18px] p-1 gap-1 shadow-[0_4px_10px_rgba(9,52,99,0.1)]">
+  <div className="flex bg-white border border-[#093463]/20 rounded-[18px] p-1 gap-1 shadow-[0_4px_10px_rgba(9,52,99,0.1)]">
     {options.map((opt) => (
       <button
         key={opt}
@@ -147,7 +147,7 @@ const KineticDropdownPill = ({ label, value, onChange, placeholder, onClick }: {
 }) => (
   <div 
     onClick={onClick}
-    className="group w-full relative h-14 bg-white border-[2.5px] border-[#093463] rounded-[20px] px-5 flex items-center shadow-[4px_4px_0px_#093463] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all overflow-hidden"
+    className="group w-full relative h-14 bg-white border border-[#093463]/20 rounded-[20px] px-5 flex items-center shadow-md shadow-[#093463]/12 active:scale-[0.99] transition-all overflow-hidden"
   >
     <div className="flex-1 flex flex-col justify-center">
       <span className="text-[8px] font-black text-[#6E7C91] uppercase tracking-widest leading-none mb-0.5">{label}</span>
@@ -171,7 +171,7 @@ const MainActionButton = ({ children, onClick, color = "#093463" }: { children: 
     whileTap={{ scale: 0.96 }}
     onClick={onClick}
     style={{ backgroundColor: color }}
-    className="w-full h-[68px] rounded-[24px] text-white font-black uppercase tracking-[0.3em] text-[15px] shadow-[0_12px_24px_rgba(9,52,99,0.2)] border-b-[6px] border-[#000000]/20 active:border-b-0 active:translate-y-1 transition-all"
+    className="w-full h-[68px] rounded-[24px] text-white font-black uppercase tracking-[0.3em] text-[15px] shadow-[0_12px_24px_rgba(9,52,99,0.2)] active:scale-95 transition-all"
   >
     {children}
   </motion.button>
@@ -273,7 +273,7 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
       </div>
 
       {/* Balance Card - The Navy Box */}
-      <div className="bg-[#093463] rounded-[32px] p-8 text-center shadow-[0_20px_40px_rgba(9,52,99,0.25)] border-b-[8px] border-[#00C8FF]/30 relative overflow-hidden group">
+      <div className="bg-[#093463] rounded-[32px] p-8 text-center shadow-2xl shadow-[#093463]/25 relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
         <h2 className="text-3xl font-header font-black text-white tracking-tight relative z-10">ZMW 2,450.00</h2>
       </div>
@@ -288,7 +288,7 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
         {/* Format */}
         <div className="space-y-3">
           <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Format</label>
-          <div className="flex gap-3 bg-white border-[2.5px] border-[#093463] rounded-[22px] p-1.5 shadow-[0_4px_12px_rgba(9,52,99,0.05)]">
+          <div className="flex gap-3 bg-white border border-[#093463]/20 rounded-[22px] p-1.5 shadow-[0_4px_12px_rgba(9,52,99,0.05)]">
             {(["Video", "Picture", "Audio"] as FormatType[]).map((f) => {
               const isActive = state.format === f;
               return (
@@ -325,7 +325,7 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
         {/* Duration */}
         <div className="space-y-3">
           <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Duration (Days)</label>
-          <div className="flex items-center bg-white border-[2.5px] border-[#093463] rounded-[22px] overflow-hidden shadow-[0_4px_12px_rgba(9,52,99,0.08)]">
+          <div className="flex items-center bg-white border border-[#093463]/20 rounded-[22px] overflow-hidden shadow-[0_4px_12px_rgba(9,52,99,0.08)]">
             <button 
               onClick={() => handlers.setDuration(Math.max(1, state.duration - 1))}
               className="w-16 h-14 bg-[#DEE5EF]/30 text-[#093463] flex items-center justify-center active:bg-[#DEE5EF] transition-colors"
@@ -418,8 +418,8 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
         />
 
         <div className="flex gap-4">
-          <button className="flex-1 h-14 bg-white border-[2.5px] border-[#093463]/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Education</button>
-          <button className="flex-1 h-14 bg-white border-[2.5px] border-[#093463]/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Occupation</button>
+          <button className="flex-1 h-14 bg-white border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Education</button>
+          <button className="flex-1 h-14 bg-white border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Occupation</button>
         </div>
 
         <div className="space-y-6">

@@ -32,7 +32,7 @@ export function Deposit() {
         </div>
 
         {/* Balance Card */}
-        <div className="bg-[#003366] rounded-xl p-5 mb-8 border-b-4 border-slate-900 shadow-xl relative overflow-hidden group">
+        <div className="bg-[#003366] rounded-xl p-5 mb-8 shadow-xl shadow-[#003366]/30 relative overflow-hidden group">
           <div className="flex flex-col">
             <span className="text-white/40 text-[9px] font-black uppercase tracking-[0.2em] mb-1">balance</span>
             <div className="flex items-baseline gap-2">
@@ -81,8 +81,8 @@ export function Deposit() {
               <div key={p.id} className="flex flex-col items-center gap-3">
                 <button 
                   onClick={() => setSelectedProvider(p.id)}
-                  className={`w-20 h-20 rounded-full overflow-hidden border-[3px] transition-all relative ${
-                    selectedProvider === p.id ? "border-[#003366] scale-105 shadow-lg" : "border-transparent"
+                  className={`w-20 h-20 rounded-full overflow-hidden border-2 transition-all relative ${
+                    selectedProvider === p.id ? "border-[#003366] scale-105 shadow-lg shadow-[#003366]/20" : "border-transparent"
                   }`}
                 >
                   <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
@@ -114,7 +114,7 @@ export function Deposit() {
               toast.success(`Processing deposit of ZMW ${amount} via ${providerName}`);
               setTimeout(() => navigate(-1), 1500);
             }}
-            className="w-1/2 h-11 bg-[#003366] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-[6px_6px_0px_#001F33] border-2 border-[#001F33] transition-all"
+            className="w-1/2 h-11 bg-[#003366] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-[#003366]/25 transition-all"
           >
             Deposit Now
           </motion.button>

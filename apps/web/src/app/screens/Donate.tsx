@@ -119,7 +119,7 @@ export function Donate() {
           
           {/* Search Bar */}
           <div className="px-5">
-             <div className="flex items-center bg-white border-[3px] border-[#003366] rounded-2xl h-[52px] px-3 shadow-[4px_4px_0_#003366]">
+             <div className="flex items-center bg-white border border-[#003366]/20 rounded-2xl h-[52px] px-3 shadow-md shadow-[#003366]/10">
                  <DuotoneSearch size={22} primary="#003366" className="shrink-0 ml-1" />
                 <input 
                   type="text" 
@@ -154,7 +154,7 @@ export function Donate() {
 
           {/* Primary Action Row - Segmented Pill Bar */}
           <div className="px-5">
-             <div className="flex bg-white border-[3px] border-[#003366] rounded-full shadow-[4px_4px_0_#003366] p-1 mt-2 mb-2">
+             <div className="flex bg-white border border-[#003366]/20 rounded-full shadow-md shadow-[#003366]/10 p-1 mt-2 mb-2">
                 {ACTIONS.map((act) => {
                    const isActive = activeAction === act.label;
                    return (
@@ -173,7 +173,7 @@ export function Donate() {
 
           {/* Fundraising Projects Header */}
           <div className="px-5 pb-2">
-             <div className="flex items-center justify-between border-[3px] border-[#003366]/20 bg-white px-4 py-3 shadow-[2px_2px_0_#003366]/20 rounded-xl">
+             <div className="flex items-center justify-between border border-[#003366]/10 bg-white px-4 py-3 shadow-md shadow-[#003366]/8 rounded-xl">
                 <h2 className="text-[#003366] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">FUNDRAISING PROJECTS</h2>
                 <button onClick={() => toast.success("Loading full catalogue...")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
                   See All <div className="bg-[#003366] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
@@ -184,7 +184,7 @@ export function Donate() {
           {/* Secondary Event Feeds & Cards */}
           <div className="px-5 flex flex-col gap-5 pb-8">
              {PROJECTS.map((proj) => (
-                <div key={proj.id} className="w-full bg-[#f4ebe1]/30 border-[3px] border-[#003366] rounded-2xl p-3 shadow-[6px_6px_0_#003366]">
+                <div key={proj.id} className="w-full bg-[#f4ebe1]/30 border border-[#003366]/15 rounded-2xl p-3 shadow-lg shadow-[#003366]/12">
                    {/* Title */}
                    <h3 className="text-[#E85D3F] font-black text-[12px] uppercase tracking-widest mb-2 drop-shadow-sm">{proj.title}</h3>
                    
@@ -199,10 +199,10 @@ export function Donate() {
                          <p className="text-[9px] font-black text-[#003366] leading-[1.3] uppercase break-words pr-1">{proj.desc}</p>
                          {/* Main Interaction Action Base */}
                          <div className="flex items-center gap-3 pt-2">
-                             <button onClick={() => toast.success("Donation portal secure. Initiating...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                             <button onClick={() => toast.success("Donation portal secure. Initiating...")} className="flex-1 bg-[#ff7345] text-white shadow-lg shadow-[#ff7345]/25 active:scale-95 h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
                                 <DuotoneArrowUpToLine size={16} primary="#fff" /> DONATE
                              </button>
-                             <button onClick={() => toast("Share link copied to clipboard!")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                             <button onClick={() => toast("Share link copied to clipboard!")} className="flex-1 bg-[#1877F2] text-white shadow-lg shadow-blue-500/25 active:scale-95 h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
                                 <DuotoneShare size={16} primary="#fff" className="-ml-1" /> SHARE
                              </button>
                          </div>
@@ -214,7 +214,7 @@ export function Donate() {
                       <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider">RAISED K{proj.raised}</span>
                       <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider">TARGET K{proj.target}</span>
                    </div>
-                   <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full mb-4 overflow-hidden flex shadow-[2px_2px_0_#003366]">
+                   <div className="w-full h-[22px] border border-[#003366]/20 rounded-full mb-4 overflow-hidden flex shadow-sm">
                       <div className={`h-full bg-[#E85D3F] flex items-center ${proj.percent <= 15 ? 'justify-start pl-[5px]' : 'justify-center'} border-r-[2px] border-[#003366]`} style={{ width: `${proj.percent}%` }}>
                          <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: proj.percent <= 15 ? '8.5px' : '10px' }}>{proj.percent}%</span>
                       </div>
