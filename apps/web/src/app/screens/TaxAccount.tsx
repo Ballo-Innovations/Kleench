@@ -26,7 +26,7 @@ export function TaxAccount() {
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#093463] rounded-[32px] p-8 border-[3px] border-[#011427] shadow-[6px_6px_0px_#011427] transition-all"
+            className="bg-[#093463] rounded-[32px] p-8 border border-[#011427]/40 shadow-lg shadow-[#003366]/25 transition-all"
           >
             <p className="text-[#FF8C00] text-[10px] font-black uppercase tracking-[0.4em] mb-2 text-left">
               AVAILABLE TAX BALANCE
@@ -47,7 +47,7 @@ export function TaxAccount() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-[32px] border-[3px] border-[#011427] p-6 shadow-[6px_6px_0px_rgba(1,20,39,0.05)]"
+            className="bg-white rounded-[32px] border border-[#003366]/15 p-6 shadow-lg shadow-[#003366]/8"
           >
             <div className="inline-flex bg-[#093463]/5 border-[2px] border-[#093463]/10 px-4 py-2 rounded-2xl mb-6">
               <span className="text-[#093463] text-[9px] font-black uppercase tracking-widest">05 Apr 2026 - 14 Apr 2026</span>
@@ -87,7 +87,7 @@ export function TaxAccount() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-[32px] border-[3px] border-[#011427] overflow-hidden shadow-[8px_8px_0px_rgba(1,20,39,0.02)]"
+            className="bg-white rounded-[32px] border border-[#003366]/15 overflow-hidden shadow-md shadow-[#003366]/8"
            >
             <div className="divide-y-[2px] divide-[#011427]/5">
               {[
@@ -128,7 +128,7 @@ export function TaxAccount() {
             whileTap={{ scale: 0.95, x: 2, y: 2 }}
             onClick={() => navigate(-1)}
             style={{ backgroundColor: "#093463" }}
-            className="w-full h-14 rounded-full text-white font-black uppercase tracking-[0.2em] text-xs shadow-[4px_4px_0px_#011427] border-2 border-[#011427] active:shadow-none transition-all"
+            className="w-full h-14 rounded-full text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all"
           >
             Back
           </motion.button>

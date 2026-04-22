@@ -116,7 +116,7 @@ export function Escrow() {
                 {/* Title */}
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">TRANSACTION TITLE</label>
-                  <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] overflow-hidden">
+                  <div className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 overflow-hidden">
                     <input 
                       type="text" 
                       value={transactionTitle}
@@ -135,7 +135,7 @@ export function Escrow() {
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                       onClick={() => setShowRecipientDropdown(!showRecipientDropdown)}
-                      className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex justify-between items-center cursor-pointer"
+                      className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 p-4 flex justify-between items-center cursor-pointer"
                     >
                       <span className={`text-sm font-black uppercase tracking-tight ${recipient ? "text-[#003366]" : "text-[#6E7C91]"}`}>
                         {recipient || "Select Recipient..."}
@@ -143,7 +143,7 @@ export function Escrow() {
                       <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
                     </motion.div>
                     {showRecipientDropdown && (
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] overflow-hidden z-20">
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 overflow-hidden z-20">
                         {["Computicket Ltd", "TechMart", "John Doe Merchants", "SneakerHead Hub"].map((merchant, idx) => (
                           <div 
                             key={idx}
@@ -161,7 +161,7 @@ export function Escrow() {
                 {/* Amount */}
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">STAKED AMOUNT</label>
-                  <div className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex items-center justify-between">
+                  <div className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 p-4 flex items-center justify-between">
                     <span className="text-[10px] font-black text-[#6E7C91]">ZMW</span>
                     <input 
                       type="text" 
@@ -179,13 +179,13 @@ export function Escrow() {
                   <div className="relative">
                     <div 
                       onClick={() => setShowDispatchDropdown(!showDispatchDropdown)}
-                      className="bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] p-4 flex justify-between items-center cursor-pointer"
+                      className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 p-4 flex justify-between items-center cursor-pointer"
                     >
                       <span className="text-sm font-black text-[#003366] uppercase tracking-tight">{dispatchWindow}</span>
                       <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
                     </div>
                     {showDispatchDropdown && (
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] overflow-hidden z-20">
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 overflow-hidden z-20">
                         {["01 BUSINESS DAY", "03 BUSINESS DAYS", "07 BUSINESS DAYS", "14 BUSINESS DAYS"].map((window, idx) => (
                           <div 
                             key={idx}
@@ -206,7 +206,7 @@ export function Escrow() {
                 <motion.button 
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full h-15 bg-white border-[3px] border-[#003366] shadow-[6px_6px_0px_#003366] rounded-2xl p-4 flex items-center justify-between group"
+                  className="w-full h-15 bg-white border border-[#003366]/20 shadow-md shadow-[#003366]/15 rounded-2xl p-4 flex items-center justify-between group"
                 >
                   <span className="text-[11px] font-black uppercase tracking-[0.2em]">Terms of Engagement</span>
                   <DuotoneInfo size={18} primary="#5D56D8" />
@@ -233,7 +233,7 @@ export function Escrow() {
             
             <div className="px-5 pt-6 space-y-10 relative z-10 pb-10">
               {/* Receiver Ledger Card */}
-              <div className="bg-white rounded-[32px] p-8 border-[3px] border-[#003366] shadow-[8px_8px_0px_#003366] text-center space-y-6">
+              <div className="bg-white rounded-[32px] p-8 border border-[#003366]/20 shadow-lg shadow-[#003366]/15 text-center space-y-6">
                 <div className="space-y-2">
                   <p className="text-[10px] font-black text-[#5D56D8] uppercase tracking-[0.4em]">Counterparty</p>
                   <div className="flex flex-col items-center">
@@ -271,7 +271,7 @@ export function Escrow() {
                       key={method.id}
                       whileHover={{ y: -4, x: -4, boxShadow: "8px 8px 0px #003366" }}
                       whileTap={{ scale: 0.98 }}
-                      className="bg-white border-[2.5px] border-[#003366] shadow-[4px_4px_0px_#003366] rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group transition-all"
+                      className="bg-white border border-[#003366]/20 shadow-md shadow-[#003366]/12 rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group transition-all"
                     >
                       <method.Icon size={28} color={method.color} strokeWidth={2.5} />
                       <span className="text-[10px] font-black uppercase tracking-tight text-center leading-tight">{method.name}</span>
@@ -285,7 +285,7 @@ export function Escrow() {
                 <motion.button 
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setStep(3)}
-                  className="w-full h-18 bg-[#003366] text-white rounded-2xl flex items-center justify-center group relative overflow-hidden shadow-[10px_10px_0px_rgba(0,51,102,0.15)]"
+                  className="w-full h-18 bg-[#003366] text-white rounded-2xl flex items-center justify-center group relative overflow-hidden shadow-lg shadow-[#003366]/20"
                 >
                   <div className="relative z-10 flex items-center gap-4">
                      <span className="font-black uppercase tracking-[0.4em] text-xs">Authorize Dispatch</span>
@@ -306,7 +306,7 @@ export function Escrow() {
             
             <div className="px-5 pt-8 space-y-12 pb-10">
               {/* Status Banner */}
-               <div className="bg-[#00D97E]/10 border-[3px] border-[#00D97E] rounded-[32px] p-6 flex items-center gap-5">
+               <div className="bg-[#00D97E]/10 border border-[#00D97E] rounded-[32px] p-6 flex items-center gap-5">
                  <div className="w-16 h-16 rounded-full bg-[#00D97E] flex items-center justify-center text-white shrink-0 shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
                     <DuotoneBadgeCheck size={32} primary="#FFFFFF" />
                  </div>
@@ -331,7 +331,7 @@ export function Escrow() {
                       {[0, 1, 2, 3].map((i) => (
                         <motion.div 
                           key={i}
-                          className={`w-14 h-14 bg-white border-[3px] rounded-2xl shadow-[6px_6px_0px_#003366] flex items-center justify-center transition-colors ${
+                          className={`w-14 h-14 bg-white border rounded-2xl shadow-[6px_6px_0px_#003366] flex items-center justify-center transition-colors ${
                             pin.length > i ? "border-[#5D56D8]" : "border-[#003366]"
                           }`}
                         >
@@ -348,7 +348,7 @@ export function Escrow() {
 
                     <div className="flex flex-col items-center gap-6">
                       <div className="flex items-center gap-3">
-                         <div className="p-2 bg-slate-50 border-2 border-[#003366] rounded-xl">
+                         <div className="p-2 bg-slate-50 border border-[#003366]/20 rounded-xl">
                              <DuotoneShieldCheck size={14} primary="#003366" />
                          </div>
                          <span className="text-[9px] font-black uppercase tracking-widest text-[#003366]">SECURED BY KLEENCH VAULT</span>
@@ -364,7 +364,7 @@ export function Escrow() {
                               whileHover={{ y: -2 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => k === "backspace" ? handleBackspace() : handleKeyPress(String(k))}
-                              className="h-14 bg-white border-[3px] border-[#003366] rounded-2xl shadow-[4px_4px_0px_#003366] flex items-center justify-center text-lg font-black"
+                              className="h-14 bg-white border border-[#003366]/20 rounded-2xl shadow-md shadow-[#003366]/12 flex items-center justify-center text-lg font-black"
                             >
                               {k === "backspace" ? <BackspaceKey size={20} color="#003366" /> : k}
                             </motion.button>
@@ -381,7 +381,7 @@ export function Escrow() {
                   disabled={pin.length < 4 || isVerifying || isSuccess}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleVerify}
-                  className={`w-full h-18 text-white rounded-[24px] border-[3px] border-[#003366] shadow-[8px_8px_0px_#003366] flex items-center justify-center font-black uppercase tracking-[0.5em] text-xs transition-all duration-300 ${
+                  className={`w-full h-18 text-white rounded-[24px] border border-[#003366]/20 shadow-lg shadow-[#003366]/15 flex items-center justify-center font-black uppercase tracking-[0.5em] text-xs transition-all duration-300 ${
                     isSuccess ? "bg-[#00D97E] shadow-[8px_8px_0px_#008F53]" : (pin.length < 4 ? "bg-[#6E7C91]" : "bg-[#5D56D8]")
                   }`}
                 >

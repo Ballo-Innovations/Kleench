@@ -23,8 +23,8 @@ export function Withdraw() {
 
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
-          <div className="absolute inset-0 bg-[#001224] rounded-2xl translate-x-1 translate-y-1" />
-          <div className="relative bg-[#003366] rounded-2xl p-6 border-2 border-[#001224]">
+          <div className="absolute inset-0 bg-[#003366]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+          <div className="relative bg-[#003366] rounded-2xl p-6 shadow-lg shadow-[#003366]/25">
             <p className="text-[10px] font-black text-[#FF8C00] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>
@@ -78,9 +78,9 @@ export function Withdraw() {
                     key={p}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedProvider(p)}
-                    className={`h-16 rounded-2xl border-[3px] flex items-center justify-center transition-all bg-white ${
-                        selectedProvider === p 
-                        ? "border-[#003366] shadow-[4px_4px_0px_#003366] -translate-x-1 -translate-y-1" 
+                    className={`h-16 rounded-2xl border flex items-center justify-center transition-all bg-white ${
+                        selectedProvider === p
+                        ? "border-[#003366]/40 shadow-lg shadow-[#003366]/20 scale-[1.02]"
                         : "border-[#E8F0FE] shadow-sm text-[#5F6368]"
                     }`}
                 >

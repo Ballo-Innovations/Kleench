@@ -24,8 +24,8 @@ export function Send() {
 
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
-          <div className="absolute inset-0 bg-[#06111C] rounded-2xl translate-x-1 translate-y-1" />
-          <div className="relative bg-[#003366] rounded-2xl p-6 border-2 border-[#06111C]">
+          <div className="absolute inset-0 bg-[#003366]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+          <div className="relative bg-[#003366] rounded-2xl p-6 shadow-lg shadow-[#003366]/25">
             <p className="text-[10px] font-black text-[#FF8C00] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>

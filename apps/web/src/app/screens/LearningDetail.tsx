@@ -46,7 +46,7 @@ export function LearningDetail() {
         <motion.section 
           initial={{ opacity: 0, y: 15 }} 
           animate={{ opacity: 1, y: 0 }}
-          className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-black group border-2 border-slate-800"
+          className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-black group border border-[#003366]/20"
         >
            <img src={HERO_BG} className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-1000" />
            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -63,7 +63,7 @@ export function LearningDetail() {
            </div>
 
            {/* Badge HUD */}
-           <div className="absolute top-4 right-4 bg-white text-slate-800 px-3 py-1.5 rounded-full border-2 border-slate-800 shadow-sm flex items-center gap-2">
+           <div className="absolute top-4 right-4 bg-white text-slate-800 px-3 py-1.5 rounded-full border border-[#003366]/20 shadow-sm flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#E54D2E] animate-pulse" />
               <span className="text-[10px] font-black uppercase tracking-wide">Live Demo</span>
            </div>
@@ -72,10 +72,10 @@ export function LearningDetail() {
         {/* ── SECTION 02: TRUST LEDGER ── */}
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} className="space-y-4">
            
-           <div className="bg-white border-2 border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between gap-5">
+           <div className="bg-white border border-[#003366]/20 rounded-2xl p-5 shadow-lg flex flex-col justify-between gap-5">
               <div className="flex items-center gap-4">
                  <div className="relative">
-                    <div className="w-14 h-14 border-2 border-slate-800 rounded-full overflow-hidden">
+                    <div className="w-14 h-14 border border-[#003366]/20 rounded-full overflow-hidden">
                        <img src={INSTRUCTOR_AVATAR} className="w-full h-full object-cover" />
                     </div>
                     <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white p-0.5 rounded-full border-2 border-white">
@@ -108,19 +108,19 @@ export function LearningDetail() {
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="space-y-6">
            
            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white border-2 border-slate-800 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
+              <div className="bg-white border border-[#003366]/20 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
                  <Clock size={20} strokeWidth={2.5} className="text-slate-800 mb-2" />
                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Duration</p>
                  <p className="text-slate-900 text-[14px] font-black uppercase tracking-tight">8 Sessions</p>
               </div>
-              <div className="bg-white border-2 border-slate-800 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
+              <div className="bg-white border border-[#003366]/20 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
                  <Trophy size={20} strokeWidth={2.5} className="text-slate-800 mb-2" />
                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Status</p>
                  <p className="text-slate-900 text-[14px] font-black uppercase tracking-tight">Verified</p>
               </div>
            </div>
 
-           <div className="bg-white border-2 border-slate-800 rounded-2xl p-5 shadow-lg space-y-4">
+           <div className="bg-white border border-[#003366]/20 rounded-2xl p-5 shadow-lg space-y-4">
               <h4 className="text-slate-900 text-[13px] font-black uppercase tracking-wide border-b-2 border-slate-100 pb-3">What You Will Master</h4>
               <ul className="grid grid-cols-1 gap-3.5">
                  {[
@@ -142,7 +142,7 @@ export function LearningDetail() {
            {/* Share & Earn Loop */}
            <motion.button
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-[#E54D2E] text-white p-5 rounded-2xl border-2 border-slate-800 shadow-md flex items-center justify-between group active:shadow-none transition-all"
+              className="w-full bg-[#E54D2E] text-white p-5 rounded-2xl shadow-lg shadow-[#E54D2E]/25 flex items-center justify-between group active:scale-[0.99] transition-all"
               onClick={() => setShowShareModal(true)}
            >
               <div className="text-left">
@@ -162,7 +162,7 @@ export function LearningDetail() {
         <motion.div 
            initial={{ y: 50, opacity: 0 }}
            animate={{ y: 0, opacity: 1 }}
-           className="max-w-md mx-auto w-full bg-slate-900 rounded-2xl border-2 border-slate-800 p-4 shadow-2xl pointer-events-auto"
+           className="max-w-md mx-auto w-full bg-slate-900 rounded-2xl border border-[#003366]/20 p-4 shadow-2xl pointer-events-auto"
         >
            <div className="flex items-center justify-between gap-4">
               <div className="hidden">

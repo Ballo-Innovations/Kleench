@@ -127,15 +127,18 @@ export function Advert() {
           </section>
 
           {/* Main Interleaved Feed Area */}
-          <section className="space-y-6 pb-12 mt-1">
+          <section className="space-y-3 pb-12 mt-1">
              {FEED_POSTS.map((post) => (
-                <div key={post.id} className="space-y-6">
+                <div key={post.id} className="space-y-3">
                    
                    {/* 01. Video Ads Carousel — Multi-card Grid */}
                    <div>
-                     <div className="flex items-center gap-2 mb-1 px-1">
-                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
-                       <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
+                     <div className="flex items-center justify-between mb-1 px-1">
+                       <div className="flex items-center gap-2">
+                         <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                         <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
+                       </div>
+                       <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">See All</span>
                      </div>
                      {/* Bleed to screen edges */}
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
@@ -166,9 +169,12 @@ export function Advert() {
 
                    {/* 02. Picture Ads Carousel — Multi-card Grid */}
                    <div>
-                     <div className="flex items-center gap-2 mb-1 px-1">
-                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
-                       <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
+                     <div className="flex items-center justify-between mb-1 px-1">
+                       <div className="flex items-center gap-2">
+                         <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                         <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
+                       </div>
+                       <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {PICTURE_ADS.map(ad => (
@@ -192,9 +198,12 @@ export function Advert() {
 
                    {/* 03. Audio Ads Carousel — Multi-card Grid */}
                    <div>
-                     <div className="flex items-center gap-2 mb-1 px-1">
-                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
-                       <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
+                     <div className="flex items-center justify-between mb-1 px-1">
+                       <div className="flex items-center gap-2">
+                         <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                         <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
+                       </div>
+                       <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {AUDIO_ADS.map(ad => (
@@ -299,7 +308,7 @@ export function Advert() {
                 />
                 <motion.div 
                   initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t border-[#003366]/15 shadow-[0_-20px_60px_rgba(0,51,102,0.12)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
                 >
                   <div className="p-6">
                     <div className="flex justify-between items-center mb-8">
@@ -311,14 +320,14 @@ export function Advert() {
 
                     {activeSheet === "Upload" && (
                       <div className="space-y-6">
-                        <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
-                          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
+                        <div className="border-2 border-dashed border-[#003366]/25 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-md shadow-[#003366]/8">
+                          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg shadow-[#003366]/15 border border-[#003366]/15 mb-4">
                             <Upload size={32} />
                           </div>
                           <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
                         </div>
-                        <button className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                        <button className="w-full h-16 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-[#003366]/25">
                           Choose from Gallery
                         </button>
                       </div>
@@ -334,7 +343,7 @@ export function Advert() {
                             { name: "Email", bg: "bg-slate-100", icon: Send }
                           ].map(social => (
                             <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
-                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
+                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-md shadow-slate-900/15 ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
                                 {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                               </div>
                               <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none">{social.name}</span>
@@ -343,9 +352,9 @@ export function Advert() {
                         </div>
                         <div className="space-y-3">
                           <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Universal Link</p>
-                          <div className="flex h-14 bg-slate-50 rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] p-1.5 focus-within:translate-x-0.5 focus-within:translate-y-0.5 focus-within:shadow-none transition-all">
+                          <div className="flex h-14 bg-slate-50 rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/10 p-1.5 focus-within:border-[#003366]/40 transition-all">
                             <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
-                            <button className="px-6 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
+                            <button className="px-6 bg-[#003366] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                           </div>
                         </div>
                       </div>
@@ -355,13 +364,13 @@ export function Advert() {
                       <div className="space-y-5">
                         <div className="space-y-2">
                           <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Full Name</label>
-                          <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                          <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-white border border-[#003366]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[#003366]/10 focus:border-[#003366]/40 transition-all" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Phone Number</label>
-                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-white border border-[#003366]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[#003366]/10 focus:border-[#003366]/40 transition-all" />
                         </div>
-                        <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-orange-500 text-white border-2 border-slate-900 rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
+                        <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-orange-500 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-orange-500/25 mt-4">
                           Secure Application
                         </button>
                       </div>

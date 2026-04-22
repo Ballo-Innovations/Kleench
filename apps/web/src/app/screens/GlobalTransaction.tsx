@@ -32,7 +32,7 @@ export function GlobalTransaction() {
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white rounded-3xl p-6 border-2 border-[#003366] shadow-[4px_4px_0px_#003366] space-y-6"
+          className="bg-white rounded-3xl p-6 border border-[#003366]/20 shadow-lg shadow-[#003366]/10 space-y-6"
         >
           {/* Destination Input */}
           <div className="space-y-3">
@@ -123,7 +123,7 @@ export function GlobalTransaction() {
         </motion.div>
 
         {/* Transaction Action Toggle */}
-        <div className="bg-white rounded-3xl p-4 border-2 border-[#003366] shadow-[4px_4px_0px_#003366] flex gap-4">
+        <div className="bg-white rounded-3xl p-4 border border-[#003366]/20 shadow-lg shadow-[#003366]/10 flex gap-4">
           <button 
             onClick={() => setActiveTab("send")}
             className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl transition-all ${
