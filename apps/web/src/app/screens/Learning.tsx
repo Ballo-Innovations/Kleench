@@ -152,9 +152,9 @@ export function Learning() {
           </section>
 
           {/* Main Interleaved Learning Feed */}
-          <section className="space-y-3 pb-8 mt-1">
+          <section className="space-y-2 pb-8 mt-1">
              {EXPLORE_MORE_VIDEOS.map((video) => (
-                <div key={video.id} className="space-y-3">
+                <div key={video.id} className="space-y-2">
                    
                    {/* 01. Learn & Earn Videos Carousel */}
                    <div>

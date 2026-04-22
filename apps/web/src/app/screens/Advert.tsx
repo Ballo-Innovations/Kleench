@@ -127,15 +127,18 @@ export function Advert() {
           </section>
 
           {/* Main Interleaved Feed Area */}
-          <section className="space-y-6 pb-12 mt-1">
+          <section className="space-y-3 pb-12 mt-1">
              {FEED_POSTS.map((post) => (
-                <div key={post.id} className="space-y-6">
+                <div key={post.id} className="space-y-3">
                    
                    {/* 01. Video Ads Carousel — Multi-card Grid */}
                    <div>
-                     <div className="flex items-center gap-2 mb-1 px-1">
-                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
-                       <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
+                     <div className="flex items-center justify-between mb-1 px-1">
+                       <div className="flex items-center gap-2">
+                         <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                         <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Video Ads</h3>
+                       </div>
+                       <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">See All</span>
                      </div>
                      {/* Bleed to screen edges */}
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
@@ -166,9 +169,12 @@ export function Advert() {
 
                    {/* 02. Picture Ads Carousel — Multi-card Grid */}
                    <div>
-                     <div className="flex items-center gap-2 mb-1 px-1">
-                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
-                       <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
+                     <div className="flex items-center justify-between mb-1 px-1">
+                       <div className="flex items-center gap-2">
+                         <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                         <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Picture Ads</h3>
+                       </div>
+                       <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {PICTURE_ADS.map(ad => (
@@ -192,9 +198,12 @@ export function Advert() {
 
                    {/* 03. Audio Ads Carousel — Multi-card Grid */}
                    <div>
-                     <div className="flex items-center gap-2 mb-1 px-1">
-                       <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
-                       <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
+                     <div className="flex items-center justify-between mb-1 px-1">
+                       <div className="flex items-center gap-2">
+                         <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                         <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Audio Ads</h3>
+                       </div>
+                       <span className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {AUDIO_ADS.map(ad => (
