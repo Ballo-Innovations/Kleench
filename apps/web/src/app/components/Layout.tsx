@@ -41,7 +41,7 @@ export function Layout() {
   const isNotFound = matches.some(m => m.id === "notfound");
   const isFullBleed = 
     location.pathname === "/" || 
-    location.pathname === "/advert" || 
+    location.pathname.startsWith("/advert") || 
     location.pathname === "/socials" || 
     location.pathname === "/friends" || 
     location.pathname === "/wallet" || 

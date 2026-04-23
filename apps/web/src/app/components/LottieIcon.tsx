@@ -13,7 +13,6 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 // Single verified working Lottie URL (bell notification)
 const VERIFIED_LOTTIE: Record<string, string> = {
-  success: "https://lottie.host/4c002e29-8f7e-4e3e-9c9a-5c4e4e77f1fb/AQmr2Vl39k.lottie",
 };
 
 interface LottieIconProps {
