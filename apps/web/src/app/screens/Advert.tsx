@@ -50,8 +50,8 @@ export function Advert() {
     setActiveSheet(actionName as "Upload" | "Share" | "Register Agent" | null);
   };
 
-  const handleMediaClick = (imageSrc: string) => {
-     setActiveMedia(imageSrc);
+  const handleMediaClick = (_imageSrc: string, tab: "video" | "picture" | "audio" = "video") => {
+     navigate(`/advert/view-ads?tab=${tab}`);
   };
 
   const VIDEO_ADS = [
@@ -152,7 +152,7 @@ export function Advert() {
                         {VIDEO_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
-                             onClick={() => handleMediaClick(ad.image)}
+                             onClick={() => handleMediaClick(ad.image, "video")}
                              key={ad.id}
                              className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
                            >
@@ -193,7 +193,7 @@ export function Advert() {
                         {PICTURE_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
-                             onClick={() => handleMediaClick(ad.image)}
+                             onClick={() => handleMediaClick(ad.image, "picture")}
                              key={ad.id}
                              className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
                            >
@@ -228,7 +228,7 @@ export function Advert() {
                         {AUDIO_ADS.map(ad => (
                            <motion.div
                              whileTap={{ scale: 0.96 }}
-                             onClick={() => handleMediaClick(ad.image)}
+                             onClick={() => handleMediaClick(ad.image, "audio")}
                              key={ad.id}
                              className="relative flex-shrink-0 w-28 h-40 bg-slate-950 border border-slate-700 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
                            >

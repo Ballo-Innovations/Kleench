@@ -54,8 +54,8 @@ export function Learning() {
      navigate(`/learning/${courseId}`);
   };
 
-  const handleMediaClick = (imageSrc: string) => {
-     setActiveMedia(imageSrc);
+  const handleMediaClick = (_imageSrc: string, mode: "learn-earn" | "free" | "pay-to-stream" = "learn-earn") => {
+     navigate(`/learning/viewer?mode=${mode}`);
   };
 
   const ROW_1 = [
@@ -129,6 +129,10 @@ export function Learning() {
                 <span className="text-[#E54D2E] font-black text-[11px] tracking-tight pt-[1px]">LIVE</span>
                 <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={6} />
              </button>
+             <button onClick={() => navigate("/learning/categories")} className="h-9 bg-white rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+                <Search size={14} primary="#64748b" />
+                <span className="text-slate-700 font-black text-[11px] tracking-tight pt-[1px]">Explore</span>
+             </button>
           </div>
 
           {/* Top Action Buttons */}
@@ -172,7 +176,7 @@ export function Learning() {
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_1.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "learn-earn")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
@@ -205,7 +209,7 @@ export function Learning() {
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_2.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "free")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
@@ -238,7 +242,7 @@ export function Learning() {
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_3.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image)} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "pay-to-stream")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { X, Heart, Share2, Download, Flag, Eye, Clock, MapPin } from "lucide-react";
+import { X, Heart, Share2, Download, Flag, Eye, Clock, MapPin, ChevronDown } from "lucide-react";
 import {
   DuotonePlay as Play,
   DuotoneHeadphones as Headphones,
   DuotoneVolume as Volume2,
   DuotoneHeart,
   DuotoneImageIcon,
+  DuotoneSend as Send,
+  DuotoneEye as EyeIcon,
 } from "../components/DuotoneIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { PageHeader } from "../components/PageHeader";
@@ -25,6 +27,7 @@ import adSmarthome from "@/assets/ads/ad_smarthome.png";
 import adSneakers from "@/assets/ads/ad_sneakers.png";
 
 type AdTab = "video" | "picture" | "audio";
+type DetailState = "viewer" | "questionnaire";
 
 interface AdItem {
   id: number;
@@ -68,6 +71,23 @@ const AUDIO_ADS: AdItem[] = [
   { id: 7, title: "CITY VIBES", image: adSneakers, brand: "UrbanRadio", views: "3.7K", duration: "2:10", location: "Lusaka" },
   { id: 8, title: "MARKET NEWS", image: adShopping, brand: "BizFM", views: "7.2K", duration: "6:00", location: "National" },
 ];
+
+// More Ads & Trending — reused images for scroll rows in the detail viewer
+const MORE_ADS = [
+  { id: 1, image: adCar, label: "AD #1" },
+  { id: 2, image: adBurger, label: "AD #2" },
+  { id: 3, image: adResort, label: "AD #3" },
+];
+
+const TRENDING_ADS = [
+  { id: 1, image: adEvCar },
+  { id: 2, image: adSneakers },
+  { id: 3, image: adHeadphones },
+  { id: 4, image: adSmarthome },
+];
+
+// Category filter chips
+const CATEGORIES = ["Tutorial", "Product", "Service", "Motivation", "Categories"];
 
 function AdCard({ ad, type, onSelect }: { ad: AdItem; type: AdTab; onSelect: (ad: AdItem) => void }) {
   return (
@@ -135,6 +155,8 @@ export function AdvertViewAds() {
   const [activeTab, setActiveTab] = useState<AdTab>(initialTab);
   const [selectedAd, setSelectedAd] = useState<AdItem | null>(null);
   const [liked, setLiked] = useState(false);
+  const [detailState, setDetailState] = useState<DetailState>("viewer");
+  const [activeCategory, setActiveCategory] = useState("Tutorial");
 
   const tabs: { key: AdTab; label: string; icon: React.ComponentType<{ size: number; primary?: string }> }[] = [
     { key: "video", label: "Video Ads", icon: Play },
@@ -143,6 +165,12 @@ export function AdvertViewAds() {
   ];
 
   const activeAds = activeTab === "video" ? VIDEO_ADS : activeTab === "picture" ? PICTURE_ADS : AUDIO_ADS;
+
+  const handleCloseDetail = () => {
+    setSelectedAd(null);
+    setLiked(false);
+    setDetailState("viewer");
+  };
 
   return (
     <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-slate-800">
@@ -201,96 +229,265 @@ export function AdvertViewAds() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black max-w-md mx-auto flex flex-col"
+            className="fixed inset-0 z-[200] bg-black max-w-md mx-auto flex flex-col overflow-y-auto"
           >
-            {/* Top bar */}
-            <div className="absolute top-0 left-0 right-0 p-4 pt-8 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent z-10">
+            {/* ── Balance Bar ── */}
+            <div className="bg-[#e43f24] px-4 py-3 flex items-center justify-between text-white flex-shrink-0 pt-8">
               <div>
-                <h3 className="text-white font-black text-xs uppercase tracking-widest">{selectedAd.title}</h3>
-                <p className="text-white/60 text-[10px] font-bold">{selectedAd.brand}</p>
+                <p className="text-[9px] font-bold uppercase tracking-widest opacity-80 mb-0.5">BALANCE</p>
+                <div className="flex items-center gap-2">
+                  <span className="font-black text-lg">ZMW 2,450.00</span>
+                  <EyeIcon size={14} primary="#ffffff" />
+                </div>
               </div>
               <button
-                onClick={() => { setSelectedAd(null); setLiked(false); }}
+                onClick={handleCloseDetail}
                 className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 active:scale-90 transition-transform"
               >
                 <X size={20} />
               </button>
             </div>
 
-            {/* Media Area */}
-            <div className="flex-1 relative flex items-center justify-center overflow-hidden">
-              <img src={selectedAd.image} alt={selectedAd.title} className="absolute inset-0 w-full h-full object-cover opacity-70" />
+            {/* ── Category Bar ── */}
+            <div className="flex items-center gap-2 px-4 py-3 pb-4 bg-gradient-to-b from-[#e43f24] to-black overflow-x-auto no-scrollbar text-white flex-shrink-0">
+              {CATEGORIES.map((cat, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`flex items-center gap-1 border border-white/30 rounded-full px-3 py-1 text-[10px] whitespace-nowrap transition-all ${
+                    activeCategory === cat ? "bg-black/40" : ""
+                  }`}
+                >
+                  {cat}
+                  {cat === "Categories" && <ChevronDown size={12} />}
+                </button>
+              ))}
+            </div>
 
-              {activeTab === "video" && (
-                <div className="relative z-10 w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white flex items-center justify-center shadow-2xl cursor-pointer active:scale-90 transition-transform">
-                  <Play primary="#fff" size={32} />
-                </div>
-              )}
+            {/* ── Main Video / Photo / Audio Player ── */}
+            <div className="relative flex-shrink-0">
+              <div className={`w-full ${activeTab === "audio" ? "aspect-square" : "aspect-[4/3]"} bg-slate-900 relative overflow-hidden`}>
+                <img
+                  src={selectedAd.image}
+                  alt={selectedAd.title}
+                  className={`absolute inset-0 w-full h-full object-cover ${
+                    detailState === "questionnaire" ? "opacity-30 blur-md" : activeTab === "audio" ? "opacity-50 mix-blend-luminosity" : "opacity-90"
+                  } transition-all`}
+                />
+                {detailState !== "questionnaire" && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                )}
 
-              {activeTab === "audio" && (
-                <div className="relative z-10 flex flex-col items-center gap-4">
-                  <div className="w-24 h-24 rounded-full bg-white/15 backdrop-blur-md border-2 border-white/40 flex items-center justify-center shadow-2xl">
-                    <Headphones primary="#fff" size={40} />
-                  </div>
-                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
-                    <Volume2 primary="#fb923c" size={14} />
-                    <div className="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
-                      <div className="w-[35%] h-full bg-orange-500 rounded-full" />
+                {/* ── Questionnaire Overlay ── */}
+                {detailState === "questionnaire" && (
+                  <div className="absolute inset-0 flex flex-col justify-center px-6 z-20">
+                    <div className="space-y-5 mt-4">
+                      <div>
+                        <p className="text-white text-[13px] font-medium mb-3">
+                          Do you think the price of our product is fair?
+                        </p>
+                        <div className="flex gap-6">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <span className="text-slate-300 text-[12px]">(a)</span>
+                            <div className="bg-green-600 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 text-white">
+                              Yes
+                            </div>
+                            <div className="w-4 h-4 rounded-full border border-green-500 bg-green-500 flex items-center justify-center">
+                              <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                            </div>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <span className="text-slate-300 text-[12px]">(b)</span>
+                            <div className="bg-red-600 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 text-white">
+                              No
+                            </div>
+                            <div className="w-4 h-4 rounded-full border border-slate-400 flex items-center justify-center" />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-white text-[13px] font-medium mb-3">
+                          Which alternative brand do you think is better?
+                        </p>
+                        <div className="space-y-2">
+                          {["Boom", "Sunlight", "Unilever"].map((brand, i) => (
+                            <label key={brand} className="flex items-center justify-between cursor-pointer max-w-[140px]">
+                              <div className="flex gap-2">
+                                <span className="text-slate-300 text-[12px]">({String.fromCharCode(97 + i)})</span>
+                                <span className="text-white text-[13px]">{brand}</span>
+                              </div>
+                              <div
+                                className={`w-4 h-4 rounded-full border ${
+                                  i === 1 ? "border-green-500 bg-green-500" : "border-slate-400"
+                                } flex items-center justify-center`}
+                              >
+                                {i === 1 && <div className="w-1.5 h-1.5 bg-white rounded-full" />}
+                              </div>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <span className="text-white/60 text-[10px] font-black">{selectedAd.duration}</span>
+
+                    {/* Complete button */}
+                    <button
+                      onClick={() => setDetailState("viewer")}
+                      className="w-full bg-[#003366] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
+                    >
+                      Complete
+                    </button>
                   </div>
-                </div>
-              )}
+                )}
+
+                {/* ── Default Player Content ── */}
+                {detailState === "viewer" && (
+                  <>
+                    {/* Title overlay on the player */}
+                    <div className="absolute bottom-16 left-4 z-10">
+                      <h3 className="text-white font-medium text-sm drop-shadow-md">{selectedAd.title}</h3>
+                    </div>
+
+                    {activeTab === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border-2 border-white flex items-center justify-center shadow-2xl cursor-pointer active:scale-90 transition-transform">
+                          <Play primary="#fff" size={28} />
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "audio" && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                        <div className="w-24 h-24 rounded-full bg-white/15 backdrop-blur-md border-2 border-white/40 flex items-center justify-center shadow-2xl">
+                          <Headphones primary="#fff" size={40} />
+                        </div>
+                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
+                          <Volume2 primary="#fb923c" size={14} />
+                          <div className="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
+                            <div className="w-[35%] h-full bg-orange-500 rounded-full" />
+                          </div>
+                          <span className="text-white/60 text-[10px] font-black">{selectedAd.duration}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Action Bar inside player */}
+                    <div className="absolute bottom-4 left-4 right-4 z-10 border-b border-white/20 pb-3">
+                      <div className="flex justify-between items-center px-2">
+                        <button
+                          onClick={() => setDetailState("questionnaire")}
+                          className="flex flex-col items-center gap-1 cursor-pointer"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M8 12h8M8 8h8M8 16h4" />
+                          </svg>
+                          <span className="text-[7px] text-white/70 uppercase font-bold">Questionnaire</span>
+                        </button>
+                        <button className="flex flex-col items-center gap-1 cursor-pointer">
+                          <Heart size={20} className="text-white/90" />
+                          <span className="text-[7px] text-white/70 uppercase font-bold">Reaction</span>
+                        </button>
+                        <button className="flex flex-col items-center gap-1 cursor-pointer">
+                          <Share2 size={20} className="text-white/90" />
+                          <span className="text-[7px] text-white/70 uppercase font-bold">Share</span>
+                        </button>
+                        <button className="flex flex-col items-center gap-1 cursor-pointer">
+                          <Send size={20} className="text-white/90" />
+                          <span className="text-[7px] text-white/70 uppercase font-bold">Inquiry</span>
+                        </button>
+                        <button className="flex flex-col items-center gap-1 cursor-pointer">
+                          <Download size={20} className="text-white/90" />
+                          <span className="text-[7px] text-white/70 uppercase font-bold">Save</span>
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
 
-            {/* Bottom Details & Actions */}
-            <div className="relative z-10 bg-gradient-to-t from-black via-black/95 to-transparent p-6 pb-[calc(env(safe-area-inset-bottom)+16px)] space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
-                  <span className="text-white font-black text-sm">{selectedAd.brand[0]}</span>
+            {/* ── Bottom Details — Brand Info ── */}
+            {detailState === "viewer" && (
+              <div className="bg-gradient-to-b from-black to-[#1a1111] px-4 pt-4 space-y-5 pb-20 flex-1">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
+                    <span className="text-white font-black text-sm">{selectedAd.brand[0]}</span>
+                  </div>
+                  <div>
+                    <p className="text-white font-black text-sm">{selectedAd.brand}</p>
+                    <div className="flex items-center gap-2 text-white/50 text-[10px] font-bold">
+                      <Eye size={10} className="text-white/50" />
+                      {selectedAd.views} views
+                      <MapPin size={10} className="text-white/50" />
+                      {selectedAd.location}
+                    </div>
+                  </div>
                 </div>
+
+                {activeTab === "video" && (
+                  <>
+                    <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                      <div className="w-1/3 h-full bg-orange-500 rounded-full" />
+                    </div>
+                    <div className="flex justify-between text-white/40 text-[10px] font-bold tracking-widest -mt-3">
+                      <span>00:00</span>
+                      <span>-{selectedAd.duration}</span>
+                    </div>
+                  </>
+                )}
+
+                {/* Action buttons row */}
+                <div className="flex items-center justify-around pt-2 border-t border-white/10">
+                  <button onClick={() => setLiked(!liked)} className="flex flex-col items-center gap-1 active:scale-90 transition-all">
+                    <Heart size={20} className={liked ? "text-red-500 fill-red-500" : "text-white"} />
+                    <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Like</span>
+                  </button>
+                  <button className="flex flex-col items-center gap-1 active:scale-90 transition-all">
+                    <Share2 size={20} className="text-white" />
+                    <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Share</span>
+                  </button>
+                  <button className="flex flex-col items-center gap-1 active:scale-90 transition-all">
+                    <Download size={20} className="text-white" />
+                    <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Save</span>
+                  </button>
+                  <button className="flex flex-col items-center gap-1 active:scale-90 transition-all">
+                    <Flag size={20} className="text-white" />
+                    <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Report</span>
+                  </button>
+                </div>
+
+                {/* ── More Ads ── */}
                 <div>
-                  <p className="text-white font-black text-sm">{selectedAd.brand}</p>
-                  <div className="flex items-center gap-2 text-white/50 text-[10px] font-bold">
-                    <Eye size={10} className="text-white/50" />
-                    {selectedAd.views} views
-                    <MapPin size={10} className="text-white/50" />
-                    {selectedAd.location}
+                  <h3 className="text-sm font-bold mb-3 text-slate-300">More Ads</h3>
+                  <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
+                    {MORE_ADS.map((vid) => (
+                      <div key={vid.id} className="w-24 h-24 rounded-2xl bg-slate-800 overflow-hidden flex-shrink-0 relative group cursor-pointer active:scale-95 transition-transform">
+                        <img src={vid.image} alt="" className="w-full h-full object-cover opacity-70 group-hover:opacity-50 transition-all" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Play size={24} primary="#fff" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── Trending Ads ── */}
+                <div>
+                  <h3 className="text-sm font-bold mb-3 text-slate-300">Trending Ads</h3>
+                  <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
+                    {TRENDING_ADS.map((vid) => (
+                      <div key={vid.id} className="w-20 h-28 rounded-xl bg-slate-800 overflow-hidden flex-shrink-0 relative cursor-pointer active:scale-95 transition-transform">
+                        <img src={vid.image} alt="" className="w-full h-full object-cover opacity-80" />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                          <Play size={20} primary="#fff" />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-
-              {activeTab === "video" && (
-                <>
-                  <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
-                    <div className="w-1/3 h-full bg-orange-500 rounded-full" />
-                  </div>
-                  <div className="flex justify-between text-white/40 text-[10px] font-bold tracking-widest">
-                    <span>00:00</span>
-                    <span>-{selectedAd.duration}</span>
-                  </div>
-                </>
-              )}
-
-              <div className="flex items-center justify-around pt-2 border-t border-white/10">
-                <button onClick={() => setLiked(!liked)} className="flex flex-col items-center gap-1 active:scale-90 transition-all">
-                  <Heart size={20} className={liked ? "text-red-500 fill-red-500" : "text-white"} />
-                  <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Like</span>
-                </button>
-                <button className="flex flex-col items-center gap-1 active:scale-90 transition-all">
-                  <Share2 size={20} className="text-white" />
-                  <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Share</span>
-                </button>
-                <button className="flex flex-col items-center gap-1 active:scale-90 transition-all">
-                  <Download size={20} className="text-white" />
-                  <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Save</span>
-                </button>
-                <button className="flex flex-col items-center gap-1 active:scale-90 transition-all">
-                  <Flag size={20} className="text-white" />
-                  <span className="text-[8px] font-black text-white/60 uppercase tracking-widest">Report</span>
-                </button>
-              </div>
-            </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
