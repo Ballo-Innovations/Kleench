@@ -19,8 +19,9 @@ export function Login() {
     }
     setError("");
     
-    // Auth success actions
+    // Auth success actions — returning user, skip onboarding
     localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("hasCompletedOnboarding", "true");
     
     setTimeout(() => {
       navigate("/");

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
+import { toast } from "sonner";
 import {
   DuotonePlay as Play,
   DuotoneUser as UserIcon,
@@ -7,8 +8,6 @@ import {
 } from "../components/DuotoneIcon";
 import { PageHeader } from "../components/PageHeader";
 import {
-  ArrowUp,
-  ArrowDown,
   ChevronDown,
   Download,
   Bookmark,
@@ -72,6 +71,7 @@ export function LearnViewer() {
 
   const [viewMode] = useState<ViewMode>(initialMode);
   const [appState, setAppState] = useState<AppState>("player");
+  const [liked, setLiked] = useState(false);
 
   // Navigation handlers
   const handleBack = () => {
@@ -81,26 +81,6 @@ export function LearnViewer() {
       navigate(-1);
     }
   };
-
-  const BalanceBar = () => (
-    <div className="bg-[#e43f24] px-4 py-3 border-t border-white/20 flex items-center justify-between text-white">
-      <div>
-        <p className="text-[9px] font-bold uppercase tracking-widest opacity-80 mb-0.5">BALANCE</p>
-        <div className="flex items-center gap-2">
-          <span className="font-black text-lg">ZMW 2,450.00</span>
-          <EyeIcon size={14} primary="#ffffff" className="opacity-80" />
-        </div>
-      </div>
-      <div className="flex gap-2">
-        <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center">
-          <ArrowUp size={16} />
-        </div>
-        <div className="w-8 h-8 rounded-full border border-white flex items-center justify-center">
-          <ArrowDown size={16} />
-        </div>
-      </div>
-    </div>
-  );
 
   // CATEGORY BAR
   const CategoryBar = () => (
@@ -261,12 +241,11 @@ export function LearnViewer() {
 
   // DEFAULT PLAYER SCROLL VIEW
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full relative min-h-screen bg-[#1a1111] overflow-x-hidden font-sans text-slate-800">
       <PageHeader title="Learn Video" showBack onBack={handleBack} />
-      {appState !== "questionnaire" && appState !== "pay-confirm" && <BalanceBar />}
 
       {/* Main Content Area */}
-      <div className={`relative ${appState === "questionnaire" || appState === "pay-confirm" ? "bg-black min-h-screen" : "bg-gradient-to-b from-black to-[#1a1111]"}`}>
+      <div className={`relative pb-32 ${appState === "questionnaire" || appState === "pay-confirm" ? "bg-black min-h-screen" : "bg-gradient-to-b from-black to-[#1a1111] min-h-screen"}`}>
         
         {/* Categories if not full screen overlays */}
         {appState !== "questionnaire" && appState !== "pay-confirm" && <CategoryBar />}
@@ -383,15 +362,15 @@ export function LearnViewer() {
                                   <ClipboardList size={20} className="text-white/90" />
                                   <span className="text-[7px] text-white/70 uppercase">Questionnaire</span>
                              </div>
-                             <div className="flex flex-col items-center gap-1 cursor-pointer">
-                                  <ThumbsUp size={20} className="text-white/90" />
-                                  <span className="text-[7px] text-white/70 uppercase">Reaction</span>
+                             <div className="flex flex-col items-center gap-1 cursor-pointer" onClick={() => setLiked(!liked)}>
+                                  <ThumbsUp size={20} className={liked ? "text-orange-500 fill-orange-500" : "text-white/90"} />
+                                  <span className={`text-[7px] uppercase ${liked ? "text-orange-500 font-bold" : "text-white/70"}`}>Reaction</span>
                              </div>
-                             <div className="flex flex-col items-center gap-1 cursor-pointer">
+                             <div className="flex flex-col items-center gap-1 cursor-pointer" onClick={() => toast.success("Link copied to clipboard!")}>
                                   <Share2 size={20} className="text-white/90" />
                                   <span className="text-[7px] text-white/70 uppercase">Share</span>
                              </div>
-                             <div className="flex flex-col items-center gap-1 cursor-pointer">
+                             <div className="flex flex-col items-center gap-1 cursor-pointer" onClick={() => toast.info("Opening inquiry support...")}>
                                   <Info size={20} className="text-white/90" />
                                   <span className="text-[7px] text-white/70 uppercase">Inquiry</span>
                              </div>
@@ -457,12 +436,16 @@ export function LearnViewer() {
             <div className="px-4 pt-6 space-y-6 pb-20">
                 {/* More Videos Section */}
                 <div>
-                     <h3 className={`text-sm font-bold mb-3 ${viewMode === "pay-to-stream" ? "text-green-600" : "text-slate-800"}`}>
+                     <h3 className={`text-sm font-bold mb-3 ${viewMode === "pay-to-stream" ? "text-green-500" : "text-white/90"}`}>
                          {viewMode === "pay-to-stream" ? "More Premium Videos" : "More Videos"}
                      </h3>
                      <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
                          {MORE_VIDEOS.map((vid, i) => (
-                             <div key={i} className="w-24 h-24 rounded-2xl bg-slate-800 overflow-hidden flex-shrink-0 relative group">
+                             <div 
+                               key={i} 
+                               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                               className="w-24 h-24 rounded-2xl bg-slate-800 overflow-hidden flex-shrink-0 relative group cursor-pointer active:scale-95 transition-transform"
+                             >
                                  <img src={vid.image} alt="" className="w-full h-full object-cover opacity-70 group-hover:opacity-50 transition-all" />
                                  <div className="absolute inset-0 flex items-center justify-center">
                                      <Play size={24} primary="#fff" className="opacity-90" />
@@ -479,12 +462,16 @@ export function LearnViewer() {
 
                 {/* Trending / Subscription Section */}
                 <div>
-                     <h3 className="text-sm font-bold mb-3 text-slate-800">
+                     <h3 className="text-sm font-bold mb-3 text-white/90">
                          {viewMode === "pay-to-stream" ? "Subscription Videos" : "Trending Videos"}
                      </h3>
                      <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
                          {TRENDING_VIDEOS.map((vid, i) => (
-                             <div key={i} className="w-20 h-28 rounded-xl bg-slate-800 overflow-hidden flex-shrink-0 relative">
+                             <div 
+                               key={i} 
+                               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                               className="w-20 h-28 rounded-xl bg-slate-800 overflow-hidden flex-shrink-0 relative cursor-pointer active:scale-95 transition-transform"
+                             >
                                  <img src={vid.image} alt="" className="w-full h-full object-cover opacity-80" />
                                  <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                                      <Play size={20} primary="#fff" className="opacity-90 drop-shadow-md" />

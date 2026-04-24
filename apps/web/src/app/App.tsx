@@ -56,6 +56,7 @@ import { PayToStream } from "./screens/PayToStream";
 import { LearnUpload } from "./screens/LearnUpload";
 import { AdvertViewAds } from "./screens/AdvertViewAds";
 import { LearnViewer } from "./screens/LearnViewer";
+import { LearnCategories } from "./screens/LearnCategories";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -183,6 +184,7 @@ const router = createBrowserRouter([
       { path: "learning/questionnaire", element: <AdvertQuestionnaire /> },
       { path: "advert/view-ads", element: <AdvertViewAds /> },
       { path: "learning/viewer", element: <LearnViewer /> },
+      { path: "learning/categories", element: <LearnCategories /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },
