@@ -163,8 +163,8 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
               key="bio" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
               className="space-y-6 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
-                <span className="font-black text-[var(--app-text)] text-[11px] uppercase tracking-widest">Personal Details</span>
+              <div className="bg-[var(--app-shape-accent)] rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[var(--app-on-accent)] text-[11px] uppercase tracking-widest">Personal Details</span>
               </div>
 
               <div className="space-y-4">
@@ -231,8 +231,8 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
               key="financial" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
               className="space-y-4 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
-                <span className="font-black text-[var(--app-text)] text-[11px] uppercase tracking-widest">Add Bank Details</span>
+              <div className="bg-[var(--app-shape-accent)] rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[var(--app-on-accent)] text-[11px] uppercase tracking-widest">Add Bank Details</span>
               </div>
               
               <div className="space-y-4">
@@ -275,8 +275,8 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
               key="employment" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
               className="space-y-4 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
-                <span className="font-black text-[var(--app-text)] text-[11px] uppercase tracking-widest">Employment</span>
+              <div className="bg-[var(--app-shape-accent)] rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[var(--app-on-accent)] text-[11px] uppercase tracking-widest">Employment</span>
               </div>
               
               <div className="space-y-3">
@@ -346,8 +346,8 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
               key="interests" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
               className="space-y-4 pb-12"
             >
-              <div className="bg-gray-200 rounded-full py-2.5 px-6 mb-6">
-                <span className="font-black text-[var(--app-text)] text-[11px] uppercase tracking-widest">Advertising Preferences</span>
+              <div className="bg-[var(--app-shape-accent)] rounded-full py-2.5 px-6 mb-6">
+                <span className="font-black text-[var(--app-on-accent)] text-[11px] uppercase tracking-widest">Advertising Preferences</span>
               </div>
               
               <div className="px-2 mb-4">

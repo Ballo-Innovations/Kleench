@@ -152,7 +152,7 @@ export function AgentRegistration() {
               {/* KYC */}
               <div className="bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl p-3">
                 <p className="text-[11px] font-bold text-slate-500 mb-2">Complete verification to unlock full wallet access.</p>
-                <button onClick={() => navigate("/kyc-verification")} className="px-5 py-2 bg-[var(--app-text)] text-white rounded-lg font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">
+                <button onClick={() => navigate("/kyc-verification")} className="px-5 py-2 bg-[var(--app-shape-accent)] text-white rounded-lg font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">
                   KYC
                 </button>
               </div>
@@ -166,7 +166,7 @@ export function AgentRegistration() {
                       {agentCode || "- - - - - - - -"}
                     </span>
                   </div>
-                  <button onClick={generateCode} className="px-4 h-11 bg-[var(--app-text)] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all whitespace-nowrap">
+                  <button onClick={generateCode} className="px-4 h-11 bg-[var(--app-shape-accent)] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all whitespace-nowrap">
                     Generate
                   </button>
                 </div>
@@ -182,7 +182,7 @@ export function AgentRegistration() {
               </div>
             </div>
 
-            <button onClick={handleConfirm} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
+            <button onClick={handleConfirm} className="w-full h-14 bg-[var(--app-shape-accent)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
               Confirm
             </button>
           </motion.div>

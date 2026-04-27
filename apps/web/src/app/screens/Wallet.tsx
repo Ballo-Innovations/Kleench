@@ -249,7 +249,7 @@ export function Wallet() {
                   { id: "calculator", icon: DuotoneCalculator, title: "CALCULATOR", metric: "-2%", primary: "#ffffff" },
                   { id: "tax", icon: DuotoneTaxAccount, title: "TAX ACCOUNT", metric: "K211", primary: "#ffffff" }
                 ].map(util => (
-                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[var(--app-text)] rounded-2xl shadow-sm active:scale-95 transition-all">
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[var(--app-shape-accent)] rounded-2xl shadow-sm active:scale-95 transition-all">
                       <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/10 flex items-center justify-center shrink-0 border border-white/20">
                          <util.icon size={20} primary={util.primary} strokeWidth={1.5} />
                       </div>
@@ -373,7 +373,7 @@ export function Wallet() {
 
         {/* Security Banner with soft premium wrap */}
         <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.3)}
-          className="rounded-2xl shadow-md bg-[var(--app-text)] overflow-hidden transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
+          className="rounded-2xl shadow-md bg-[var(--app-shape-accent)] overflow-hidden transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
           <img src={adBanner} alt="Transaction Assurance" className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Secure Gateway</p>
         </motion.div>
@@ -406,7 +406,7 @@ export function Wallet() {
 
                   <div className="space-y-6">
                      {/* Balance Card */}
-                     <div className="bg-[var(--app-text)] rounded-2xl p-6 shadow-xl relative overflow-hidden group">
+                     <div className="bg-[var(--app-shape-accent)] rounded-2xl p-6 shadow-xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--app-bg)]/5 rounded-full -mr-10 -mt-10 blur-2xl group-hover:bg-[var(--app-bg)]/10 transition-all" />
                         <div className="relative z-10 flex flex-col">
                            <span className="text-orange-400 font-black text-[10px] uppercase tracking-[0.2em] mb-1">BALANCE</span>
@@ -458,7 +458,7 @@ export function Wallet() {
                        onClick={() => {
                          setShowDepositSheet(false);
                        }}
-                       className="w-full h-16 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-sm shadow-[0_6px_0px_#002144] active:shadow-none active:translate-y-[4px] mt-6 transition-all"
+                       className="w-full h-16 bg-[var(--app-shape-accent)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-sm shadow-[0_6px_0px_#002144] active:shadow-none active:translate-y-[4px] mt-6 transition-all"
                      >
                        Deposit
                      </motion.button>

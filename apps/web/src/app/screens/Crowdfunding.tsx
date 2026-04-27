@@ -136,7 +136,7 @@ export function Crowdfunding() {
                 {FILTERS.map((cat, i) => (
                    <button 
                      key={cat.label} 
-                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[var(--app-text)] text-white shadow-[2px_2px_0_var(--app-text)]' : 'bg-[#e2e8f0]/60 text-[var(--app-text)] hover:bg-gray-200'}`}
+                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[var(--app-shape-accent)] text-white shadow-[2px_2px_0_var(--app-text)]' : 'bg-[#e2e8f0]/60 text-[var(--app-text)] hover:bg-gray-200'}`}
                    >
                       <span className={`text-[11px] font-black uppercase whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[var(--app-text)]'}`}>{cat.label}</span>
                       {cat.count && (
@@ -158,7 +158,7 @@ export function Crowdfunding() {
                      <button
                        key={act.label}
                        onClick={() => handleAction(act.label)}
-                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[var(--app-text)] text-white shadow-inner' : 'bg-transparent text-[var(--app-text)] hover:bg-gray-100'}`}
+                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[var(--app-shape-accent)] text-white shadow-inner' : 'bg-transparent text-[var(--app-text)] hover:bg-gray-100'}`}
                      >
                        <act.icon size={16} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
                        <span className="text-[10px] font-black tracking-widest uppercase">{act.label}</span>
@@ -173,7 +173,7 @@ export function Crowdfunding() {
              <div className="flex items-center justify-between border-[3px] border-[var(--app-text)]/20 bg-[var(--app-bg)] px-4 py-3 shadow-[2px_2px_0_var(--app-text)]/20 rounded-xl">
                 <h2 className="text-[var(--app-text)] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">INVESTMENT DEALS</h2>
                 <button onClick={() => toast("Fetching full market catalogue...")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
-                  See All <div className="bg-[var(--app-text)] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
+                  See All <div className="bg-[var(--app-shape-accent)] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
                 </button>
              </div>
           </div>

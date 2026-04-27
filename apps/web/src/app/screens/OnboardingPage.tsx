@@ -41,7 +41,7 @@ export function OnboardingPage() {
               placeholder="Search Product..." 
               className="flex-1 bg-transparent outline-none text-sm font-black text-[var(--app-text)] placeholder:text-[var(--app-text)]/30"
             />
-            <div className="h-6 w-[2px] bg-[var(--app-text)]/20 mx-3" />
+            <div className="h-6 w-[2px] bg-[var(--app-shape-accent)]/20 mx-3" />
             <button 
               onClick={() => toast.info("Opening categories...")}
               className="flex items-center gap-1 text-[11px] font-black text-[var(--app-text)] uppercase tracking-widest"

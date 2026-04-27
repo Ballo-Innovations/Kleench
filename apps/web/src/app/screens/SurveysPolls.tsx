@@ -186,11 +186,11 @@ export function SurveysPolls() {
 
             {/* Neo-brutalist interaction blocks */}
             <div className="grid grid-cols-2 gap-4">
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-text)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--app-shape-accent)] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-on-accent)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
                   <BarChart2 size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
                </button>
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-text)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--app-shape-accent)] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-on-accent)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
                   <FileText size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
                </button>

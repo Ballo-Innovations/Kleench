@@ -28,11 +28,11 @@ export function Deposit() {
         {/* Title Rhythm */}
         <div className="text-center mb-8">
           <h1 className="text-2xl font-black uppercase tracking-tighter mb-1">Deposit</h1>
-          <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">Select Amount to transfer into your wallet</p>
+          <p className="text-[var(--app-text)]/40 text-[10px] font-bold uppercase tracking-widest">Select Amount to transfer into your wallet</p>
         </div>
 
         {/* Balance Card */}
-        <div className="bg-[var(--app-text)] rounded-xl p-5 mb-8 shadow-xl shadow-[var(--app-text)]/30 relative overflow-hidden group">
+        <div className="bg-[var(--app-shape-accent)] rounded-xl p-5 mb-8 shadow-xl shadow-[var(--app-text)]/30 relative overflow-hidden group">
           <div className="flex flex-col">
             <span className="text-white/40 text-[9px] font-black uppercase tracking-[0.2em] mb-1">balance</span>
             <div className="flex items-baseline gap-2">
@@ -72,7 +72,7 @@ export function Deposit() {
           
           {/* Main Selector */}
           <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-gray-100 p-5 shadow-[0_10px_25px_rgba(0,51,102,0.05)] mb-8 flex items-center justify-center">
-            <span className="text-2xl font-medium text-gray-500 font-sans tracking-tight">Mobile Money</span>
+            <span className="text-2xl font-medium text-[var(--app-text)]/40 font-sans tracking-tight">Mobile Money</span>
           </div>
 
           {/* Providers Grid */}
@@ -87,12 +87,12 @@ export function Deposit() {
                 >
                   <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
                   {selectedProvider === p.id && (
-                    <div className="absolute inset-0 bg-[var(--app-text)]/10 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[var(--app-shape-accent)]/10 flex items-center justify-center">
                       {/* Selection indicator could go here */}
                     </div>
                   )}
                 </button>
-                <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedProvider === p.id ? "text-[var(--app-text)]" : "text-gray-400"}`}>
+                <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedProvider === p.id ? "text-[var(--app-text)]" : "text-[var(--app-text)]/40"}`}>
                   {p.name}
                 </span>
               </div>
@@ -104,7 +104,7 @@ export function Deposit() {
         {/* Action Button - Kinetic Pill */}
         <div className="flex justify-center pt-8">
           <motion.button 
-            whileTap={{ scale: 0.96, x: 2, y: 2, boxShadow: "0px 0px 0px #001F33" }}
+            whileTap={{ scale: 0.96, x: 2, y: 2, boxShadow: "0px 0px 0px var(--app-text)" }}
             onClick={() => {
               if (!selectedProvider) {
                 toast.error("Please select a mobile money provider first");
@@ -114,7 +114,7 @@ export function Deposit() {
               toast.success(`Processing deposit of ZMW ${amount} via ${providerName}`);
               setTimeout(() => navigate(-1), 1500);
             }}
-            className="w-1/2 h-11 bg-[var(--app-text)] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-[var(--app-text)]/25 transition-all"
+            className="w-1/2 h-11 bg-[var(--app-shape-accent)] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-[var(--app-text)]/25 transition-all"
           >
             Deposit Now
           </motion.button>

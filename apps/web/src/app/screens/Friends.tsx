@@ -139,7 +139,7 @@ export function Friends() {
                       key={req.id} 
                       className="bg-[var(--app-bg)] border border-[var(--app-text)] p-4 flex items-center justify-between shadow-[6px_6px_0px_var(--app-orange)] relative overflow-hidden group"
                     >
-                       <div className="absolute top-0 left-0 w-1 h-full bg-[var(--app-text)]" />
+                       <div className="absolute top-0 left-0 w-1 h-full bg-[var(--app-shape-accent)]" />
                        <div className="flex items-center gap-4">
                           <div className="w-12 h-12 border border-[var(--app-text)] overflow-hidden">
                              <img src={req.img} className="w-full h-full object-cover" />
@@ -155,7 +155,7 @@ export function Friends() {
                           </button>
                           <button 
                             onClick={() => accept(req.id)} 
-                            className={`w-10 h-10 border border-[var(--app-text)] flex items-center justify-center text-white transition-all shadow-[2px_2px_0px_var(--app-text)] active:shadow-none ${acceptedIds.has(req.id) ? "bg-emerald-500" : "bg-[var(--app-text)]"}`}
+                            className={`w-10 h-10 border border-[var(--app-text)] flex items-center justify-center text-white transition-all shadow-[2px_2px_0px_var(--app-text)] active:shadow-none ${acceptedIds.has(req.id) ? "bg-emerald-500" : "bg-[var(--app-shape-accent)]"}`}
                           >
                              <Check size={18} />
                           </button>
@@ -172,10 +172,10 @@ export function Friends() {
            <div className="flex items-center gap-3">
               <span className="text-[var(--app-orange)] font-black text-xs tracking-[0.3em]">02.</span>
               <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--app-text)]/40">Active Circle</h3>
-              <div className="flex-1 h-[2px] bg-[var(--app-text)]/5" />
+              <div className="flex-1 h-[2px] bg-[var(--app-shape-accent)]/5" />
            </div>
 
-           <div className="space-y-2 border border-[var(--app-text)] bg-[var(--app-text)]/5 divide-y-2 divide-[var(--app-text)]/10 shadow-[6px_6px_0px_var(--app-text)]">
+           <div className="space-y-2 border border-[var(--app-text)] bg-[var(--app-shape-accent)]/5 divide-y-2 divide-[var(--app-text)]/10 shadow-[6px_6px_0px_var(--app-text)]">
               {filteredFriends.map((friend) => (
                 <div key={friend.id} className="bg-[var(--app-bg)] p-4 flex items-center justify-between group/[0.02] transition-all">
                    <div className="flex items-center gap-4">
@@ -185,7 +185,7 @@ export function Friends() {
                          </div>
                          {friend.status === 'live' && (
                            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#FFC300] border border-[var(--app-text)] rounded-full animate-pulse flex items-center justify-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-text)]" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-shape-accent)]" />
                            </div>
                          )}
                       </div>
@@ -223,7 +223,7 @@ export function Friends() {
 
         {/* ── SECTION 03: COMMUNITY HUD ── */}
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="pb-12">
-           <div className="bg-[var(--app-text)] p-8 shadow-[8px_8px_0px_var(--app-orange)] relative overflow-hidden group">
+           <div className="bg-[var(--app-shape-accent)] p-8 shadow-[8px_8px_0px_var(--app-orange)] relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-48 h-48 bg-[var(--app-bg)]/5 rounded-full -mr-24 -mt-24 blur-2xl transition-transform duration-1000" />
               
               <div className="flex items-center justify-between mb-8">
@@ -263,7 +263,7 @@ export function Friends() {
              </div>
              <h3 className="text-xl font-black text-[var(--app-text)] uppercase tracking-tighter">No Active Groups</h3>
              <p className="text-[12px] font-bold text-[var(--app-text)]/40 uppercase tracking-widest max-w-[200px]">You haven't joined any discussion groups yet.</p>
-             <button className="bg-[var(--app-text)] text-white px-8 py-3 rounded-xl font-black text-[12px] uppercase tracking-widest shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none mt-4 transition-all">Explore Groups</button>
+             <button className="bg-[var(--app-shape-accent)] text-white px-8 py-3 rounded-xl font-black text-[12px] uppercase tracking-widest shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none mt-4 transition-all">Explore Groups</button>
            </motion.div>
         )}
 
@@ -287,7 +287,7 @@ export function Friends() {
       <div className="fixed bottom-28 right-5 z-40">
          <motion.button
            whileTap={{ scale: 0.9 }}
-           className="w-14 h-14 bg-[var(--app-text)] border border-white text-white flex items-center justify-center shadow-2xl active:bg-[var(--app-orange)] transition-colors group"
+           className="w-14 h-14 bg-[var(--app-shape-accent)] border border-white text-white flex items-center justify-center shadow-2xl active:bg-[var(--app-orange)] transition-colors group"
          >
             <UserPlus size={24} className="group-hover:scale-110 transition-transform" />
          </motion.button>

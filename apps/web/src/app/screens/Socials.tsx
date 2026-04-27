@@ -168,11 +168,11 @@ export function Socials() {
             <Radio size={18} className="animate-pulse" />
             <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Live</span>
          </Link>
-         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r border-[#E85D3F]/40 text-[var(--app-text)] active:bg-[var(--app-text)]/5 transition-colors">
+         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r border-[#E85D3F]/40 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
             <PlusCircle size={18} primary="#E85D3F" />
             <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Post</span>
          </button>
-         <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[var(--app-text)] active:bg-[var(--app-text)]/5 transition-colors">
+         <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
             <UserPlus size={18} primary="#E85D3F" />
             <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Friends</span>
          </Link>
@@ -190,7 +190,7 @@ export function Socials() {
                     return (
                        <button key={reel.id} onClick={() => setShowCreatePost(true)} className="min-w-[95px] w-[28vw] max-w-[120px] h-[155px] flex-shrink-0 flex flex-col items-center justify-between bg-[var(--app-bg)] border border-[var(--app-text)] rounded-xl active:scale-95 transition-transform overflow-hidden relative">
                           <div className="flex-1 flex items-center justify-center w-full">
-                             <div className="w-12 h-12 rounded-full bg-[var(--app-text)] flex items-center justify-center text-white">
+                             <div className="w-12 h-12 rounded-full bg-[var(--app-shape-accent)] flex items-center justify-center text-white">
                                 <Plus size={32} primary="#fff" />
                              </div>
                           </div>
@@ -224,7 +224,7 @@ export function Socials() {
            <div className="flex items-center gap-3">
               <span className="text-[var(--app-orange)] font-black text-xs tracking-[0.3em]">03.</span>
               <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--app-text)]/40">Global Feed</h3>
-              <div className="flex-1 h-[2px] bg-[var(--app-text)]/5" />
+              <div className="flex-1 h-[2px] bg-[var(--app-shape-accent)]/5" />
            </div>
 
            <div className="flex flex-col gap-10">
@@ -282,7 +282,7 @@ export function Socials() {
                            Tip
                         </button>
                      </div>
-                     <div className="px-4 py-2 bg-[var(--app-text)]/[0.02] border-t border-[var(--app-text)]/[0.05] flex items-center gap-4 text-[var(--app-text)]/60 text-[10px] font-black uppercase tracking-widest">
+                     <div className="px-4 py-2 bg-[var(--app-shape-accent)]/[0.02] border-t border-[var(--app-text)]/[0.05] flex items-center gap-4 text-[var(--app-text)]/60 text-[10px] font-black uppercase tracking-widest">
                         <span>Like | {post.likes}</span>
                         <span>Comments | {post.comments.length}</span>
                         <span>Share | {post.shares}</span>
@@ -310,7 +310,7 @@ export function Socials() {
                               />
                               <button 
                                 onClick={() => handleAddComment(post.id)}
-                                className="bg-[var(--app-text)] text-white px-4 flex items-center justify-center shadow-[3px_3px_0px_var(--app-orange)] active:translate-x-0.5 active:translate-y-0.5"
+                                className="bg-[var(--app-shape-accent)] text-white px-4 flex items-center justify-center shadow-[3px_3px_0px_var(--app-orange)] active:translate-x-0.5 active:translate-y-0.5"
                               >
                                 <Send size={16} primary="#fff" />
                               </button>
@@ -333,7 +333,7 @@ export function Socials() {
 
                   {/* Inline Comment Preview (if not expanded) */}
                   {activeCommentId !== post.id && post.comments.length > 0 && (
-                    <div className="mt-4 px-2 py-4 bg-[var(--app-text)]/[0.02] border-l-4 border-[var(--app-orange)]">
+                    <div className="mt-4 px-2 py-4 bg-[var(--app-shape-accent)]/[0.02] border-l-4 border-[var(--app-orange)]">
                       <div className="flex gap-3">
                         <img src={post.comments[0].avatar} alt="" className="w-7 h-7 rounded-full object-cover shrink-0" />
                         <div className="flex flex-col gap-0.5">
@@ -379,7 +379,7 @@ export function Socials() {
                       type="range" min="1" max="100" step="1"
                       value={tipAmount}
                       onChange={(e) => setTipAmount(Number(e.target.value))}
-                      className="w-full accent-[var(--app-orange)] h-3 bg-[var(--app-text)]/10 rounded-lg appearance-none cursor-pointer"
+                      className="w-full accent-[var(--app-orange)] h-3 bg-[var(--app-shape-accent)]/10 rounded-lg appearance-none cursor-pointer"
                     />
                     <div className="flex justify-between text-[9px] font-black text-[var(--app-text)]/40 mt-2 uppercase tracking-widest">
                       <span>K1</span>
@@ -419,7 +419,7 @@ export function Socials() {
 
               <button 
                 onClick={handleTipConfirm}
-                className="w-full bg-[var(--app-text)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+                className="w-full bg-[var(--app-shape-accent)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
               >
                 Confirm Tip
               </button>
@@ -433,7 +433,7 @@ export function Socials() {
         {showTipPassword && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-[var(--app-text)]/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-[200] bg-[var(--app-shape-accent)]/90 backdrop-blur-md flex items-center justify-center p-4"
           >
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
@@ -481,7 +481,7 @@ export function Socials() {
             initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}
             className="fixed inset-0 z-[150] bg-[var(--app-bg)] flex flex-col"
           >
-            <div className="h-16 flex items-center justify-between px-4 border-b border-[var(--app-text)] bg-[var(--app-text)] text-white shadow-md z-10">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-[var(--app-text)] bg-[var(--app-shape-accent)] text-white shadow-md z-10">
                <button onClick={() => setShowCreatePost(false)} className="w-10 h-10 flex items-center justify-center active:scale-90"><X size={24} /></button>
                <h3 className="font-black text-sm uppercase tracking-[0.2em] mt-1">Create Post</h3>
                <div className="w-10" />

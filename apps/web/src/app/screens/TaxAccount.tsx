@@ -13,7 +13,7 @@ export function TaxAccount() {
   const profileName = localKyc?.fullName || (userEmail ? userEmail.split("@")[0] : "Kleench User");
 
   return (
-    <div className="w-full min-h-screen bg-transparent font-sans text-[#093463] pb-12 selection:bg-[#EE4D2D] selection:text-white">
+    <div className="w-full min-h-screen bg-transparent font-sans text-[var(--app-text)] pb-12 selection:bg-[#EE4D2D] selection:text-white">
       <PageHeader 
         showBack
         onBack={() => navigate(-1)}
@@ -26,7 +26,7 @@ export function TaxAccount() {
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#093463] rounded-[32px] p-8 border border-[#011427]/40 shadow-lg shadow-[var(--app-text)]/25 transition-all"
+            className="bg-[var(--app-sub-accent)] rounded-[32px] p-8 border border-[#011427]/40 shadow-lg shadow-[var(--app-text)]/25 transition-all"
           >
             <p className="text-[var(--app-orange)] text-[10px] font-black uppercase tracking-[0.4em] mb-2 text-left">
               AVAILABLE TAX BALANCE
@@ -49,14 +49,14 @@ export function TaxAccount() {
             transition={{ delay: 0.1 }}
             className="bg-[var(--app-bg)] rounded-[32px] border border-[var(--app-text)]/15 p-6 shadow-lg shadow-[var(--app-text)]/8"
           >
-            <div className="inline-flex bg-[#093463]/5 border-[2px] border-[#093463]/10 px-4 py-2 rounded-2xl mb-6">
-              <span className="text-[#093463] text-[9px] font-black uppercase tracking-widest">05 Apr 2026 - 14 Apr 2026</span>
+            <div className="inline-flex bg-[var(--app-sub-accent)]/5 border-[2px] border-[var(--app-sub-accent)]/10 px-4 py-2 rounded-2xl mb-6">
+              <span className="text-[var(--app-sub-accent)] text-[9px] font-black uppercase tracking-widest">05 Apr 2026 - 14 Apr 2026</span>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                 <h3 className="text-[#093463] font-black text-[11px] uppercase tracking-[0.2em] whitespace-nowrap">Summary Ledger</h3>
-                 <div className="flex-1 h-[2px] bg-[#093463]/10" />
+                 <h3 className="text-[var(--app-sub-accent)] font-black text-[11px] uppercase tracking-[0.2em] whitespace-nowrap">Summary Ledger</h3>
+                 <div className="flex-1 h-[2px] bg-[var(--app-sub-accent)]/10" />
               </div>
               
               <div className="space-y-4 pt-2">
@@ -67,8 +67,8 @@ export function TaxAccount() {
                    { label: "Closing Balance", value: "109,732" }
                  ].map((row, i) => (
                     <div key={i} className="flex justify-between items-center group/row">
-                       <span className="text-[#6E7C91] text-[10px] font-black uppercase tracking-widest group-hover/row:text-[#093463] transition-colors">{row.label}</span>
-                       <span className="text-[#093463] text-[14px] font-black tracking-tighter">{row.value}</span>
+                       <span className="text-[var(--app-text)]/40 text-[10px] font-black uppercase tracking-widest group-hover/row:text-[var(--app-sub-accent)] transition-colors">{row.label}</span>
+                       <span className="text-[var(--app-text)] text-[14px] font-black tracking-tighter">{row.value}</span>
                     </div>
                  ))}
               </div>
@@ -79,8 +79,8 @@ export function TaxAccount() {
         {/* Detailed Statement Card */}
         <section className="space-y-4">
            <div className="flex items-center gap-3 px-1">
-              <h3 className="text-[#093463] font-black text-[11px] uppercase tracking-[0.2em] whitespace-nowrap">Detailed Statement</h3>
-              <div className="flex-1 h-[2px] bg-[#093463]/10" />
+              <h3 className="text-[var(--app-sub-accent)] font-black text-[11px] uppercase tracking-[0.2em] whitespace-nowrap">Detailed Statement</h3>
+              <div className="flex-1 h-[2px] bg-[var(--app-sub-accent)]/10" />
            </div>
 
            <motion.div 
@@ -98,23 +98,23 @@ export function TaxAccount() {
                 { date: "15:49 PM", time: "06/04/26", desc: "Loan Repayment to FNB", id: "LR260406.Y05933", tax: "0.69", bal: "101,432", pos: false },
                 { date: "19:16 PM", time: "06/04/26", desc: "Money Sent to Michael", id: "PP260406.O04568", tax: "500.00", bal: "601,432", pos: true }
               ].map((tx, i) => (
-                <div key={i} className="p-5 flex items-center justify-between group cursor-pointer hover:bg-[#093463]/[0.02] transition-colors relative">
+                <div key={i} className="p-5 flex items-center justify-between group cursor-pointer hover:bg-[var(--app-sub-accent)]/[0.02] transition-colors relative">
                   {/* Kinetic Edge Indicator */}
                   <div className={`absolute right-0 top-0 bottom-0 w-1.5 ${tx.pos ? 'bg-[#00D97E]' : 'bg-[var(--app-orange)]'}`} />
 
                   <div className="flex-1 pr-4">
-                    <h4 className="text-[11px] font-black text-[#093463] uppercase tracking-tight mb-1 transition-transform group-hover:translate-x-1">{tx.desc}</h4>
+                    <h4 className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-tight mb-1 transition-transform group-hover:translate-x-1">{tx.desc}</h4>
                     <div className="flex items-center gap-3">
-                       <span className="text-[8px] font-black text-[#093463]/40 uppercase tracking-widest">{tx.id}</span>
-                       <span className="text-[8px] font-bold text-[#6E7C91] uppercase">{tx.date}</span>
+                       <span className="text-[8px] font-black text-[var(--app-text)]/40 uppercase tracking-widest">{tx.id}</span>
+                       <span className="text-[8px] font-bold text-[var(--app-text)]/40 uppercase">{tx.date}</span>
                     </div>
                   </div>
 
                   <div className="text-right pr-2">
-                    <p className={`text-[15px] font-black tracking-tighter ${tx.pos ? 'text-[#00D97E]' : 'text-[#093463]'}`}>
+                    <p className={`text-[15px] font-black tracking-tighter ${tx.pos ? 'text-[#00D97E]' : 'text-[var(--app-text)]'}`}>
                        {tx.tax}
                     </p>
-                    <p className="text-[8px] font-black text-[#6E7C91] uppercase tracking-widest opacity-40">Bal: {tx.bal}</p>
+                    <p className="text-[8px] font-black text-[var(--app-text)]/40 uppercase tracking-widest">Bal: {tx.bal}</p>
                   </div>
                 </div>
               ))}
@@ -127,8 +127,7 @@ export function TaxAccount() {
           <motion.button
             whileTap={{ scale: 0.95, x: 2, y: 2 }}
             onClick={() => navigate(-1)}
-            style={{ backgroundColor: "#093463" }}
-            className="w-full h-14 rounded-full text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all"
+            className="w-full h-14 rounded-full bg-[var(--app-sub-accent)] text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all"
           >
             Back
           </motion.button>

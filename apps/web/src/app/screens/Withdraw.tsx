@@ -23,8 +23,8 @@ export function Withdraw() {
 
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
-          <div className="absolute inset-0 bg-[var(--app-text)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
-          <div className="relative bg-[var(--app-text)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
+          <div className="absolute inset-0 bg-[var(--app-shape-accent)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+          <div className="relative bg-[var(--app-shape-accent)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
             <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>
@@ -42,29 +42,29 @@ export function Withdraw() {
           <motion.button 
             whileTap={{ scale: 0.98 }}
             onClick={() => toast.info("Beneficiary management coming soon")}
-            className="w-full py-4 bg-[#E8F0FE] rounded-full border-2 border-[#D2E3FC] shadow-sm flex items-center justify-center gap-2"
+            className="w-full py-4 bg-[var(--app-bg-muted)] rounded-full border-2 border-[var(--app-sub-accent)]/20 shadow-sm flex items-center justify-center gap-2"
           >
-            <Plus size={16} className="text-[#3C4043]" />
-            <span className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider">+ Add Beneficiary or Service</span>
+            <Plus size={16} className="text-[var(--app-text)]" />
+            <span className="text-[11px] font-black text-[var(--app-text)]/60 uppercase tracking-wider">+ Add Beneficiary or Service</span>
           </motion.button>
         </div>
 
         {/* Amount Stepper */}
-        <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-[#E8F0FE] shadow-[0_8px_30px_rgba(232,240,254,0.3)] overflow-hidden flex divide-x-2 divide-[#E8F0FE]">
+        <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-[var(--app-sub-accent)]/20 shadow-[0_8px_30px_rgba(0,0,0,0.04)] overflow-hidden flex divide-x-2 divide-[var(--app-sub-accent)]/20">
           <div className="flex-1 flex items-center justify-center py-6">
-             <span className="text-[10px] font-black text-[#4285F4] uppercase tracking-widest">Amount</span>
+             <span className="text-[10px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest">Amount</span>
           </div>
           <div className="flex-[2] flex items-center justify-between px-6 py-6">
             <button 
                 onClick={() => setAmount(Math.max(0, amount - 50))}
-                className="w-10 h-10 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all font-black border-2 border-slate-100"
+                className="w-10 h-10 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all font-black border-2 border-[var(--app-sub-accent)]/20"
             >
                 <Minus size={18} strokeWidth={3} />
             </button>
             <span className="text-xl font-black text-[var(--app-text)] tracking-tighter">K{amount.toFixed(2)}</span>
             <button 
                 onClick={() => setAmount(amount + 50)}
-                className="w-10 h-10 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all font-black border-2 border-slate-100"
+                className="w-10 h-10 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all font-black border-2 border-[var(--app-sub-accent)]/20"
             >
                 <Plus size={18} strokeWidth={3} />
             </button>
@@ -81,7 +81,7 @@ export function Withdraw() {
                     className={`h-16 rounded-2xl border flex items-center justify-center transition-all bg-[var(--app-bg)] ${
                         selectedProvider === p
                         ? "border-[var(--app-text)]/40 shadow-lg shadow-[var(--app-text)]/20 scale-[1.02]"
-                        : "border-[#E8F0FE] shadow-sm text-[#5F6368]"
+                        : "border-[var(--app-sub-accent)]/20 shadow-sm text-[var(--app-text)]/40"
                     }`}
                 >
                     <span className="text-[11px] font-black tracking-[0.2em]">{p}</span>

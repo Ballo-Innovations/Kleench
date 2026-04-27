@@ -316,7 +316,7 @@ export function LearnViewer() {
                         <p className="text-white text-sm mb-6 drop-shadow-md">Get access for K50/monthly</p>
                         
                         <div className="space-y-3 w-full max-w-[200px]">
-                            <button className="w-full bg-[var(--app-text)] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
+                            <button className="w-full bg-[var(--app-shape-accent)] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
                                 Subscribe
                             </button>
                             <button className="w-full bg-[#ff0000] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
@@ -422,7 +422,7 @@ export function LearnViewer() {
              <div className="absolute bottom-4 left-4 right-4 z-20">
                  <button 
                     onClick={() => setAppState("player")} 
-                    className="w-full bg-[var(--app-text)] text-white py-4 rounded-xl font-medium text-lg tracking-wide hover:opacity-90 active:scale-95 transition-all shadow-lg"
+                    className="w-full bg-[var(--app-shape-accent)] text-white py-4 rounded-xl font-medium text-lg tracking-wide hover:opacity-90 active:scale-95 transition-all shadow-lg"
                  >
                      Complete
                  </button>

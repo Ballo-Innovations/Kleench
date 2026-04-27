@@ -333,7 +333,7 @@ export function AdvertViewAds() {
                     {/* Complete button */}
                     <button
                       onClick={() => setDetailState("viewer")}
-                      className="w-full bg-[var(--app-text)] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
+                      className="w-full bg-[var(--app-shape-accent)] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
                     >
                       Complete
                     </button>

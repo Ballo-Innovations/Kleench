@@ -95,7 +95,7 @@ export function LearnUpload() {
           <div className="flex items-center gap-2">
             {[1, 2, 3].map((s) => (
               <div key={s} className="flex items-center gap-2">
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${step === s ? "bg-[var(--app-text)] text-white" : step > s ? "bg-orange-500 text-white" : "bg-slate-200 text-slate-400"}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${step === s ? "bg-[var(--app-shape-accent)] text-white" : step > s ? "bg-orange-500 text-white" : "bg-slate-200 text-slate-400"}`}>
                   {step > s ? <Check size={10} /> : s}
                 </div>
                 {s < 3 && <div className={`h-0.5 w-8 rounded-full ${step > s ? "bg-orange-500" : "bg-slate-200"}`} />}
@@ -177,7 +177,7 @@ export function LearnUpload() {
                 </div>
               </SectionCard>
 
-              <button onClick={handleNext} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
+              <button onClick={handleNext} className="w-full h-14 bg-[var(--app-shape-accent)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Next →
               </button>
             </motion.div>
@@ -230,7 +230,7 @@ export function LearnUpload() {
                   </div>
                 </div>
               </SectionCard>
-              <button onClick={handleNext} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
+              <button onClick={handleNext} className="w-full h-14 bg-[var(--app-shape-accent)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Next →
               </button>
             </motion.div>
@@ -258,7 +258,7 @@ export function LearnUpload() {
                   <div className="space-y-2">
                     {(["Free", "Pay Per View K15", "Subscribers Only"] as const).map((opt) => (
                       <button key={opt} onClick={() => setPricing(opt)} className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${pricing === opt ? "border-[var(--app-text)] bg-[var(--app-bg-muted)]" : "border-slate-200"}`}>
-                        <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${pricing === opt ? "border-[var(--app-text)] bg-[var(--app-text)]" : "border-slate-300"}`}>
+                        <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${pricing === opt ? "border-[var(--app-text)] bg-[var(--app-shape-accent)]" : "border-slate-300"}`}>
                           {pricing === opt && <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-bg)] m-auto mt-[2px]" />}
                         </div>
                         <span className="text-[11px] font-black text-slate-700">{opt}</span>
@@ -267,7 +267,7 @@ export function LearnUpload() {
                   </div>
                 </div>
               </SectionCard>
-              <button onClick={handlePost} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
+              <button onClick={handlePost} className="w-full h-14 bg-[var(--app-shape-accent)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Post Video
               </button>
             </motion.div>
@@ -303,11 +303,11 @@ export function LearnUpload() {
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <button className="flex-1 h-11 bg-[var(--app-text)] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">Calculate</button>
+                  <button className="flex-1 h-11 bg-[var(--app-shape-accent)] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">Calculate</button>
                   <button className="flex-1 h-11 bg-slate-100 text-slate-600 rounded-xl font-black text-[11px] uppercase tracking-wider border border-slate-200 active:scale-95 transition-all">Auto Calculate</button>
                 </div>
               </SectionCard>
-              <button onClick={handlePost} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
+              <button onClick={handlePost} className="w-full h-14 bg-[var(--app-shape-accent)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Next →
               </button>
             </motion.div>
