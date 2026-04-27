@@ -38,12 +38,17 @@ export function Settings() {
     navigate("/login");
   };
 
-  const settingsSections = [
+  type SettingsItem = 
+    | { isToggle: true; icon: React.ElementType; label: string; mode: "light" | "dark"; color: string; path?: never; action?: never }
+    | { isToggle?: false; icon: React.ElementType; label: string; path: string; color: string; mode?: never; action?: never }
+    | { isToggle?: false; icon: React.ElementType; label: string; path: null | string; color: string; action: () => void; mode?: never };
+
+  const settingsSections: { title: string; items: SettingsItem[] }[] = [
     {
       title: "App Preferences",
       items: [
-        { isToggle: true, icon: Sun, label: "Light Mode", mode: "light" as const, color: "#F59E0B" },
-        { isToggle: true, icon: Moon, label: "Dark Mode", mode: "dark" as const, color: "#374151" },
+        { isToggle: true, icon: Sun, label: "Light Mode", mode: "light", color: "#F59E0B" },
+        { isToggle: true, icon: Moon, label: "Dark Mode", mode: "dark", color: "#374151" },
       ],
     },
     {
@@ -124,7 +129,7 @@ export function Settings() {
                 const Icon = item.icon;
                 const isLast = idx === section.items.length - 1;
 
-                if (item.isToggle) {
+                if ('isToggle' in item && item.isToggle) {
                   const isActive = item.mode === "dark" ? isDark : !isDark;
                   return (
                     <div
@@ -156,7 +161,7 @@ export function Settings() {
                   );
                 }
 
-                if (item.path) {
+                if ('path' in item && item.path) {
                   return (
                     <Link
                       key={item.label}
@@ -179,26 +184,30 @@ export function Settings() {
                   );
                 }
 
-                return (
-                  <button
-                    key={item.label}
-                    onClick={item.action}
-                    className={`flex items-center gap-3 px-4 py-4 transition-all duration-200/[0.01] active:bg-black/[0.03] w-full text-left ${
-                      !isLast ? "border-b border-black/[0.03]" : ""
-                    }`}
-                  >
-                    <div
-                      className="w-10 h-10 rounded-2xl flex items-center justify-center"
-                      style={{ backgroundColor: `${item.color}10` }}
+                if ('action' in item && item.action) {
+                  return (
+                    <button
+                      key={item.label}
+                      onClick={item.action}
+                      className={`flex items-center gap-3 px-4 py-4 transition-all duration-200/[0.01] active:bg-black/[0.03] w-full text-left ${
+                        !isLast ? "border-b border-black/[0.03]" : ""
+                      }`}
                     >
-                      <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
-                    </div>
-                    <span className="flex-1 text-[var(--app-text-alt)] text-sm font-bold">
-                      {item.label}
-                    </span>
-                    <ChevronRight size={16} className="text-[var(--app-text-alt)]/20" strokeWidth={2.5} />
-                  </button>
-                );
+                      <div
+                        className="w-10 h-10 rounded-2xl flex items-center justify-center"
+                        style={{ backgroundColor: `${item.color}10` }}
+                      >
+                        <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
+                      </div>
+                      <span className="flex-1 text-[var(--app-text-alt)] text-sm font-bold">
+                        {item.label}
+                      </span>
+                      <ChevronRight size={16} className="text-[var(--app-text-alt)]/20" strokeWidth={2.5} />
+                    </button>
+                  );
+                }
+                
+                return null;
               })}
             </div>
           </motion.div>

@@ -406,7 +406,7 @@ export function Socials() {
                     <label className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]/60 mb-1.5 block">Frequency</label>
                     <select 
                       value={repeatTip}
-                      onChange={(e) => setRepeatTip(e.target.value as any)}
+                      onChange={(e) => setRepeatTip(e.target.value as "once" | "weekly" | "monthly")}
                       className="w-full py-3.5 px-4 rounded-xl border border-[var(--app-text)]/20 font-black text-[13px] outline-none focus:border-[var(--app-orange)] focus:shadow-[2px_2px_0px_var(--app-orange)] transition-all bg-[var(--app-bg-muted)] appearance-none uppercase tracking-wider"
                     >
                       <option value="once">One-time</option>

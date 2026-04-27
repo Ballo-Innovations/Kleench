@@ -94,7 +94,7 @@ export function Friends() {
              {[{ id: 'friends', label: 'Friends', icon: Users, desc: 'Manage your social circle' },
                { id: 'groups', label: 'Groups', icon: UserPlus, desc: 'Your active communities' },
                { id: 'businesses', label: 'Businesses', icon: Zap, desc: 'Connected merchants' }].map(cat => (
-                <button key={cat.id} onClick={() => setTab(cat.id as any)} className="w-full flex items-center justify-between p-5 bg-[var(--app-bg)] border border-[var(--app-text)] rounded-2xl shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                <button key={cat.id} onClick={() => setTab(cat.id as "menu" | "friends" | "groups" | "businesses")} className="w-full flex items-center justify-between p-5 bg-[var(--app-bg)] border border-[var(--app-text)] rounded-2xl shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-[var(--app-orange)]/10 border border-[var(--app-orange)] rounded-xl flex items-center justify-center">
                          <cat.icon size={24} className="text-[var(--app-orange)]" />
