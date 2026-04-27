@@ -1,10 +1,36 @@
 import { Link, useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
-import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut } from "lucide-react";
+import { ChevronRight, User, Shield, Bell, Lock, Key, Moon, Globe, HelpCircle, LogOut, Sun } from "lucide-react";
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 
 export function Settings() {
   const navigate = useNavigate();
+
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains("dark"));
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setIsDark(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setIsDark(false);
+    }
+  }, []);
+
+  const toggleTheme = (mode: "light" | "dark") => {
+    if (mode === "dark") {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDark(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDark(false);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
@@ -13,6 +39,13 @@ export function Settings() {
   };
 
   const settingsSections = [
+    {
+      title: "App Preferences",
+      items: [
+        { isToggle: true, icon: Sun, label: "Light Mode", mode: "light" as const, color: "#F59E0B" },
+        { isToggle: true, icon: Moon, label: "Dark Mode", mode: "dark" as const, color: "#374151" },
+      ],
+    },
     {
       title: "Profile Settings",
       items: [
@@ -53,15 +86,15 @@ export function Settings() {
   }
 
   return (
-    <div className="w-full relative min-h-screen bg-gray-50 overflow-x-hidden font-sans pb-10">
+    <div className="w-full relative min-h-screen bg-[var(--app-bg-muted)] overflow-x-hidden font-sans pb-10">
       
       {/* ── Unified cross-hatch bg ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
         <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
           <defs>
             <pattern id="xhatch-settings" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#xhatch-settings)"/>
@@ -83,13 +116,45 @@ export function Settings() {
             animate={{ opacity: 1, y: 0 }}
             transition={grace(sectionIdx * 0.1)}
           >
-            <h2 className="text-[#0D1B3E]/40 text-[10px] font-bold uppercase tracking-wider mb-2.5 px-1">
+            <h2 className="text-[var(--app-text-alt)]/40 text-[10px] font-bold uppercase tracking-wider mb-2.5 px-1">
               {section.title}
             </h2>
-            <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-black/[0.03]">
+            <div className="bg-[var(--app-bg)] rounded-3xl overflow-hidden shadow-sm border border-black/[0.03]">
               {section.items.map((item, idx) => {
                 const Icon = item.icon;
                 const isLast = idx === section.items.length - 1;
+
+                if (item.isToggle) {
+                  const isActive = item.mode === "dark" ? isDark : !isDark;
+                  return (
+                    <div
+                      key={item.label}
+                      className={`flex items-center gap-3 px-4 py-4 transition-all duration-200/[0.01] ${
+                        !isLast ? "border-b border-black/[0.03]" : ""
+                      }`}
+                    >
+                      <div
+                        className="w-10 h-10 rounded-2xl flex items-center justify-center"
+                        style={{ backgroundColor: `${item.color}10` }}
+                      >
+                        <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
+                      </div>
+                      <span className="flex-1 text-[var(--app-text-alt)] text-sm font-bold">
+                        {item.label}
+                      </span>
+                      <button 
+                        onClick={() => toggleTheme(item.mode)}
+                        className={`w-12 h-6 rounded-full p-1 transition-colors flex items-center shadow-inner ${isActive ? "bg-[var(--app-orange)]" : "bg-gray-200"}`}
+                      >
+                        <motion.div 
+                          initial={false}
+                          animate={{ x: isActive ? 24 : 0 }}
+                          className="w-4 h-4 rounded-full bg-[var(--app-bg)] shadow-sm"
+                        />
+                      </button>
+                    </div>
+                  );
+                }
 
                 if (item.path) {
                   return (
@@ -106,10 +171,10 @@ export function Settings() {
                       >
                         <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
                       </div>
-                      <span className="flex-1 text-[#0D1B3E] text-sm font-bold">
+                      <span className="flex-1 text-[var(--app-text-alt)] text-sm font-bold">
                         {item.label}
                       </span>
-                      <ChevronRight size={16} className="text-[#0D1B3E]/20" strokeWidth={2.5} />
+                      <ChevronRight size={16} className="text-[var(--app-text-alt)]/20" strokeWidth={2.5} />
                     </Link>
                   );
                 }
@@ -128,10 +193,10 @@ export function Settings() {
                     >
                       <Icon size={18} style={{ color: item.color }} strokeWidth={2.5} />
                     </div>
-                    <span className="flex-1 text-[#0D1B3E] text-sm font-bold">
+                    <span className="flex-1 text-[var(--app-text-alt)] text-sm font-bold">
                       {item.label}
                     </span>
-                    <ChevronRight size={16} className="text-[#0D1B3E]/20" strokeWidth={2.5} />
+                    <ChevronRight size={16} className="text-[var(--app-text-alt)]/20" strokeWidth={2.5} />
                   </button>
                 );
               })}
@@ -142,7 +207,7 @@ export function Settings() {
 
       {/* Version Info */}
       <div className="mt-10 text-center opacity-30">
-        <p className="text-[#0D1B3E] text-[10px] font-bold tracking-widest uppercase">
+        <p className="text-[var(--app-text-alt)] text-[10px] font-bold tracking-widest uppercase">
           Kleench v1.0.0
         </p>
       </div>

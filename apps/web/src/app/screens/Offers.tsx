@@ -22,7 +22,7 @@ const OFFERS = [
   { id: 2, category: "network" as OfferType, company: "Cetane Networks",  title: "Network Feedback Survey",    desc: "Rate your internet experience in your area. Takes under 2 minutes.",        earn: "K1.00",  earnType: "per response",price: "K8.00",   rating: 4.5, reviews:  88, deadline: "5 days left",  badge: "Easy",    badgeColor: "#0077B6", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=80", verified: true },
   { id: 3, category: "survey"  as OfferType, company: "AgriBoost Zambia", title: "Farmers' Opinion Survey",    desc: "Share your views on agricultural tools used in your community.",            earn: "K2.50",  earnType: "flat rate",   price: "K15.00",  rating: 4.6, reviews:  53, deadline: "7 days left",  badge: "New",     badgeColor: "#00695C", image: "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=500&q=80", verified: true },
   { id: 4, category: "course"  as OfferType, company: "SkillBridge",      title: "Refer & Earn on Courses",    desc: "Earn 8% commission on every student you refer to our digital courses.",     earn: "8%",     earnType: "commission",  price: "K149.00", rating: 4.9, reviews: 203, deadline: "Ongoing",      badge: "Best",    badgeColor: "#7C3AED", image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&q=80", verified: true },
-  { id: 5, category: "solar"   as OfferType, company: "AfriSolar",        title: "Solar Panel Bulk Deal",      desc: "Help businesses discover our 200W panels. Earn K25 per verified lead.",   earn: "K25.00", earnType: "per lead",    price: "K350.00", rating: 4.7, reviews:  67, deadline: "10 days left", badge: "Premium", badgeColor: "#FF8C00", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=80", verified: true },
+  { id: 5, category: "solar"   as OfferType, company: "AfriSolar",        title: "Solar Panel Bulk Deal",      desc: "Help businesses discover our 200W panels. Earn K25 per verified lead.",   earn: "K25.00", earnType: "per lead",    price: "K350.00", rating: 4.7, reviews:  67, deadline: "10 days left", badge: "Premium", badgeColor: "var(--app-orange)", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=80", verified: true },
 ];
 
 /* Graceful ease-out transition */
@@ -52,8 +52,8 @@ export function Offers() {
         <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
           <defs>
             <pattern id="xhatch-offers" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#xhatch-offers)"/>
@@ -67,8 +67,8 @@ export function Offers() {
         onSearchChange={setSearch}
       >
         <div className="absolute top-4 right-20 z-50">
-           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md">
-             <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--app-bg)]/20 border border-white/30 backdrop-blur-md">
+             <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-bg)] animate-pulse" />
              <span className="text-[10px] font-bold uppercase tracking-wider text-white">Live</span>
            </div>
         </div>
@@ -93,7 +93,7 @@ export function Offers() {
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
           placeholder="Search opportunities..."
           className="w-full h-11 pl-11 pr-4 rounded-2xl text-sm font-medium outline-none"
-          style={{ background: "white", border: "1px solid rgba(13,27,62,0.07)", color: "#0D1B3E", boxShadow: "0 2px 10px rgba(13,27,62,0.04)" }}/>
+          style={{ background: "white", border: "1px solid rgba(13,27,62,0.07)", color: "var(--app-text-alt)", boxShadow: "0 2px 10px rgba(13,27,62,0.04)" }}/>
       </div>
 
       {/* Category tabs */}
@@ -106,8 +106,8 @@ export function Offers() {
             onClick={() => setActiveTab(cat.id)}
             className="flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-bold whitespace-nowrap border flex-shrink-0"
             style={activeTab === cat.id
-              ? { background: "#FF8C00", color: "white", borderColor: "#FF8C00", boxShadow: "0 4px 16px rgba(255,140,0,0.28)", transition: "all 0.5s ease" }
-              : { background: "white", color: "#0D1B3E", borderColor: "rgba(13,27,62,0.08)", transition: "all 0.5s ease" }}>
+              ? { background: "var(--app-orange)", color: "white", borderColor: "var(--app-orange)", boxShadow: "0 4px 16px rgba(255,140,0,0.28)", transition: "all 0.5s ease" }
+              : { background: "white", color: "var(--app-text-alt)", borderColor: "rgba(13,27,62,0.08)", transition: "all 0.5s ease" }}>
             {cat.isFilter
               ? <Filter size={11} strokeWidth={2.5}/>
               : <div className="overflow-hidden" style={{ width: 18, height: 18 }}><LottieIcon icon={cat.icon} size={18} /></div>
@@ -131,7 +131,7 @@ export function Offers() {
                   whileHover={{ y: staggerY - 4, boxShadow: "0 12px 36px rgba(13,27,62,0.1)" }}
                   style={{ transition: "box-shadow 0.5s ease" }}>
                   <Link to={`/offer/${offer.id}`}>
-                    <div className="bg-white border rounded-3xl overflow-hidden"
+                    <div className="bg-[var(--app-bg)] border rounded-3xl overflow-hidden"
                       style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 3px 16px rgba(13,27,62,0.06)" }}>
 
                       {/* Image */}
@@ -169,7 +169,7 @@ export function Offers() {
                       <div className="p-5">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <div>
-                            <p className="font-black text-[14.5px] leading-snug" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>
+                            <p className="font-black text-[14.5px] leading-snug" style={{ fontFamily: "Agrandir, sans-serif", color: "var(--app-text-alt)" }}>
                               {offer.title}
                             </p>
                             <div className="flex items-center gap-1.5 mt-1">
@@ -179,7 +179,7 @@ export function Offers() {
                           </div>
                           <div className="text-right flex-shrink-0">
                             <p className="text-[9px] uppercase font-bold tracking-wide" style={{ color: "rgba(13,27,62,0.35)" }}>Price</p>
-                            <p className="font-bold text-[14px] mt-0.5" style={{ color: "#0D1B3E" }}>{offer.price}</p>
+                            <p className="font-bold text-[14px] mt-0.5" style={{ color: "var(--app-text-alt)" }}>{offer.price}</p>
                           </div>
                         </div>
 
@@ -201,7 +201,7 @@ export function Offers() {
                           <motion.button
                             whileTap={{ scale: 0.94 }} whileHover={{ y: -2 }}
                             className="text-white text-[11.5px] font-bold px-5 py-2 rounded-full flex items-center gap-1.5"
-                            style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", boxShadow: "0 4px 16px rgba(255,140,0,0.28)", transition: "transform 0.4s ease, box-shadow 0.4s ease" }}>
+                            style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-orange))", boxShadow: "0 4px 16px rgba(255,140,0,0.28)", transition: "transform 0.4s ease, box-shadow 0.4s ease" }}>
                             Participate <ArrowRight size={11} strokeWidth={2.5}/>
                           </motion.button>
                         </div>
@@ -218,7 +218,7 @@ export function Offers() {
                 <div className="flex justify-center mb-5">
                   <LottieIcon icon="empty" size={88} />
                 </div>
-                <p className="font-bold text-sm mb-1.5" style={{ color: "#0D1B3E" }}>No opportunities found</p>
+                <p className="font-bold text-sm mb-1.5" style={{ color: "var(--app-text-alt)" }}>No opportunities found</p>
                 <p className="text-[12px]" style={{ color: "rgba(13,27,62,0.4)" }}>Try a different category or search term</p>
               </motion.div>
             )}

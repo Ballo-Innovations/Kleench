@@ -94,15 +94,15 @@ function AdCard({ ad, type, onSelect }: { ad: AdItem; type: AdTab; onSelect: (ad
     <motion.div
       whileTap={{ scale: 0.97 }}
       onClick={() => onSelect(ad)}
-      className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden cursor-pointer active:shadow-none transition-all"
+      className="bg-[var(--app-bg)] rounded-2xl border border-slate-100 shadow-sm overflow-hidden cursor-pointer active:shadow-none transition-all"
     >
-      <div className="relative aspect-[4/3] bg-slate-900 overflow-hidden">
+      <div className="relative aspect-[4/3] bg-[var(--app-text-slate)] overflow-hidden">
         <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         {type === "video" && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg">
               <Play primary="#fff" size={16} />
             </div>
           </div>
@@ -110,7 +110,7 @@ function AdCard({ ad, type, onSelect }: { ad: AdItem; type: AdTab; onSelect: (ad
 
         {type === "audio" && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/15 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg">
               <Headphones primary="#fff" size={16} />
             </div>
           </div>
@@ -186,7 +186,7 @@ export function AdvertViewAds() {
               className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all active:scale-95 ${
                 activeTab === tab.key
                   ? "bg-orange-500 text-white shadow-md shadow-orange-500/25"
-                  : "bg-white text-slate-500 border border-slate-200"
+                  : "bg-[var(--app-bg)] text-slate-500 border border-slate-200"
               }`}
             >
               <tab.icon size={13} primary={activeTab === tab.key ? "#fff" : "#64748b"} />
@@ -242,7 +242,7 @@ export function AdvertViewAds() {
               </div>
               <button
                 onClick={handleCloseDetail}
-                className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 active:scale-90 transition-transform"
+                className="w-10 h-10 bg-[var(--app-bg)]/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 active:scale-90 transition-transform"
               >
                 <X size={20} />
               </button>
@@ -266,7 +266,7 @@ export function AdvertViewAds() {
 
             {/* ── Main Video / Photo / Audio Player ── */}
             <div className="relative flex-shrink-0">
-              <div className={`w-full ${activeTab === "audio" ? "aspect-square" : "aspect-[4/3]"} bg-slate-900 relative overflow-hidden`}>
+              <div className={`w-full ${activeTab === "audio" ? "aspect-square" : "aspect-[4/3]"} bg-[var(--app-text-slate)] relative overflow-hidden`}>
                 <img
                   src={selectedAd.image}
                   alt={selectedAd.title}
@@ -293,7 +293,7 @@ export function AdvertViewAds() {
                               Yes
                             </div>
                             <div className="w-4 h-4 rounded-full border border-green-500 bg-green-500 flex items-center justify-center">
-                              <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                              <div className="w-1.5 h-1.5 bg-[var(--app-bg)] rounded-full" />
                             </div>
                           </label>
                           <label className="flex items-center gap-2 cursor-pointer">
@@ -322,7 +322,7 @@ export function AdvertViewAds() {
                                   i === 1 ? "border-green-500 bg-green-500" : "border-slate-400"
                                 } flex items-center justify-center`}
                               >
-                                {i === 1 && <div className="w-1.5 h-1.5 bg-white rounded-full" />}
+                                {i === 1 && <div className="w-1.5 h-1.5 bg-[var(--app-bg)] rounded-full" />}
                               </div>
                             </label>
                           ))}
@@ -333,7 +333,7 @@ export function AdvertViewAds() {
                     {/* Complete button */}
                     <button
                       onClick={() => setDetailState("viewer")}
-                      className="w-full bg-[#003366] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
+                      className="w-full bg-[var(--app-text)] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
                     >
                       Complete
                     </button>
@@ -350,7 +350,7 @@ export function AdvertViewAds() {
 
                     {activeTab === "video" && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border-2 border-white flex items-center justify-center shadow-2xl cursor-pointer active:scale-90 transition-transform">
+                        <div className="relative z-10 w-16 h-16 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border-2 border-white flex items-center justify-center shadow-2xl cursor-pointer active:scale-90 transition-transform">
                           <Play primary="#fff" size={28} />
                         </div>
                       </div>
@@ -358,12 +358,12 @@ export function AdvertViewAds() {
 
                     {activeTab === "audio" && (
                       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                        <div className="w-24 h-24 rounded-full bg-white/15 backdrop-blur-md border-2 border-white/40 flex items-center justify-center shadow-2xl">
+                        <div className="w-24 h-24 rounded-full bg-[var(--app-bg)]/15 backdrop-blur-md border-2 border-white/40 flex items-center justify-center shadow-2xl">
                           <Headphones primary="#fff" size={40} />
                         </div>
-                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
+                        <div className="flex items-center gap-2 bg-[var(--app-bg)]/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
                           <Volume2 primary="#fb923c" size={14} />
-                          <div className="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
+                          <div className="w-32 h-1 bg-[var(--app-bg)]/20 rounded-full overflow-hidden">
                             <div className="w-[35%] h-full bg-orange-500 rounded-full" />
                           </div>
                           <span className="text-white/60 text-[10px] font-black">{selectedAd.duration}</span>
@@ -427,7 +427,7 @@ export function AdvertViewAds() {
 
                 {activeTab === "video" && (
                   <>
-                    <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                    <div className="w-full h-1 bg-[var(--app-bg)]/20 rounded-full overflow-hidden">
                       <div className="w-1/3 h-full bg-orange-500 rounded-full" />
                     </div>
                     <div className="flex justify-between text-white/40 text-[10px] font-bold tracking-widest -mt-3">

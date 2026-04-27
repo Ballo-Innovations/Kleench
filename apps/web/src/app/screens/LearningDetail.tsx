@@ -46,7 +46,7 @@ export function LearningDetail() {
         <motion.section 
           initial={{ opacity: 0, y: 15 }} 
           animate={{ opacity: 1, y: 0 }}
-          className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-black group border border-[#003366]/20"
+          className="relative aspect-video rounded-2xl overflow-hidden shadow-lg bg-black group border border-[var(--app-text)]/20"
         >
            <img src={HERO_BG} className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-1000" />
            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -56,14 +56,14 @@ export function LearningDetail() {
               <motion.button 
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowVideoModal(true)}
-                className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-lg transition-transform group-active:scale-95"
+                className="w-16 h-16 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-lg transition-transform group-active:scale-95"
               >
                  <Play fill="white" className="text-white ml-1" size={28} />
               </motion.button>
            </div>
 
            {/* Badge HUD */}
-           <div className="absolute top-4 right-4 bg-white text-slate-800 px-3 py-1.5 rounded-full border border-[#003366]/20 shadow-sm flex items-center gap-2">
+           <div className="absolute top-4 right-4 bg-[var(--app-bg)] text-slate-800 px-3 py-1.5 rounded-full border border-[var(--app-text)]/20 shadow-sm flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#E54D2E] animate-pulse" />
               <span className="text-[10px] font-black uppercase tracking-wide">Live Demo</span>
            </div>
@@ -72,10 +72,10 @@ export function LearningDetail() {
         {/* ── SECTION 02: TRUST LEDGER ── */}
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.3)} className="space-y-4">
            
-           <div className="bg-white border border-[#003366]/20 rounded-2xl p-5 shadow-lg flex flex-col justify-between gap-5">
+           <div className="bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl p-5 shadow-lg flex flex-col justify-between gap-5">
               <div className="flex items-center gap-4">
                  <div className="relative">
-                    <div className="w-14 h-14 border border-[#003366]/20 rounded-full overflow-hidden">
+                    <div className="w-14 h-14 border border-[var(--app-text)]/20 rounded-full overflow-hidden">
                        <img src={INSTRUCTOR_AVATAR} className="w-full h-full object-cover" />
                     </div>
                     <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white p-0.5 rounded-full border-2 border-white">
@@ -83,7 +83,7 @@ export function LearningDetail() {
                     </div>
                  </div>
                  <div>
-                    <h4 className="text-slate-900 text-[16px] font-black uppercase tracking-tight leading-none mb-1.5">EliteNodes Alpha</h4>
+                    <h4 className="text-[var(--app-text-slate)] text-[16px] font-black uppercase tracking-tight leading-none mb-1.5">EliteNodes Alpha</h4>
                     <div className="flex items-center gap-2">
                        <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-widest">Verified KYC</span>
                        <div className="flex items-center gap-1 text-yellow-500">
@@ -97,7 +97,7 @@ export function LearningDetail() {
               <div className="sm:text-right border-l-2 border-slate-100 pl-4">
                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Asset Value</p>
                  <div className="flex items-baseline gap-1">
-                    <span className="text-slate-900 text-3xl font-black tracking-tighter leading-none">49.99</span>
+                    <span className="text-[var(--app-text-slate)] text-3xl font-black tracking-tighter leading-none">49.99</span>
                     <span className="text-slate-500 text-xs font-bold uppercase">USD</span>
                  </div>
               </div>
@@ -108,20 +108,20 @@ export function LearningDetail() {
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.5)} className="space-y-6">
            
            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white border border-[#003366]/20 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
+              <div className="bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
                  <Clock size={20} strokeWidth={2.5} className="text-slate-800 mb-2" />
                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Duration</p>
-                 <p className="text-slate-900 text-[14px] font-black uppercase tracking-tight">8 Sessions</p>
+                 <p className="text-[var(--app-text-slate)] text-[14px] font-black uppercase tracking-tight">8 Sessions</p>
               </div>
-              <div className="bg-white border border-[#003366]/20 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
+              <div className="bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-xl p-4 shadow-sm flex flex-col items-center justify-center text-center">
                  <Trophy size={20} strokeWidth={2.5} className="text-slate-800 mb-2" />
                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Status</p>
-                 <p className="text-slate-900 text-[14px] font-black uppercase tracking-tight">Verified</p>
+                 <p className="text-[var(--app-text-slate)] text-[14px] font-black uppercase tracking-tight">Verified</p>
               </div>
            </div>
 
-           <div className="bg-white border border-[#003366]/20 rounded-2xl p-5 shadow-lg space-y-4">
-              <h4 className="text-slate-900 text-[13px] font-black uppercase tracking-wide border-b-2 border-slate-100 pb-3">What You Will Master</h4>
+           <div className="bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl p-5 shadow-lg space-y-4">
+              <h4 className="text-[var(--app-text-slate)] text-[13px] font-black uppercase tracking-wide border-b-2 border-slate-100 pb-3">What You Will Master</h4>
               <ul className="grid grid-cols-1 gap-3.5">
                  {[
                    "Advanced Component Architecture",
@@ -149,7 +149,7 @@ export function LearningDetail() {
                  <p className="text-white/80 text-[10px] font-bold uppercase tracking-wider mb-0.5">Referral Gateway</p>
                  <p className="text-white text-[16px] font-black uppercase tracking-tight leading-none mt-1">Share & Earn 5%</p>
               </div>
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center/30 transition-colors">
+              <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/20 flex items-center justify-center/30 transition-colors">
                 <Send size={18} className="text-white transition-transform" />
               </div>
            </motion.button>
@@ -162,7 +162,7 @@ export function LearningDetail() {
         <motion.div 
            initial={{ y: 50, opacity: 0 }}
            animate={{ y: 0, opacity: 1 }}
-           className="max-w-md mx-auto w-full bg-slate-900 rounded-2xl border border-[#003366]/20 p-4 shadow-2xl pointer-events-auto"
+           className="max-w-md mx-auto w-full bg-[var(--app-text-slate)] rounded-2xl border border-[var(--app-text)]/20 p-4 shadow-2xl pointer-events-auto"
         >
            <div className="flex items-center justify-between gap-4">
               <div className="hidden">
@@ -174,11 +174,11 @@ export function LearningDetail() {
               </div>
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 bg-white text-slate-900 py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 border-[1.5px] border-slate-200 active:bg-slate-100 transition-colors shadow-sm"
+                className="flex-1 bg-[var(--app-bg)] text-[var(--app-text-slate)] py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 border-[1.5px] border-slate-200 active:bg-slate-100 transition-colors shadow-sm"
                 onClick={handleEnroll}
               >
                  <span className="text-[13px] font-black uppercase tracking-tight pt-0.5">Enroll with Wallet</span>
-                 <Wallet size={16} className="text-slate-900" strokeWidth={2.5} />
+                 <Wallet size={16} className="text-[var(--app-text-slate)]" strokeWidth={2.5} />
               </motion.button>
            </div>
         </motion.div>
@@ -201,20 +201,20 @@ export function LearningDetail() {
       {/* ── Share Modal ── */}
       <AnimatePresence>
         {showShareModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-sm flex items-end justify-center p-4 pb-8">
-            <div className="bg-white rounded-3xl border border-gray-100 p-6 w-full max-w-sm shadow-xl relative mt-auto">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-[var(--app-text-slate)]/40 backdrop-blur-sm flex items-end justify-center p-4 pb-8">
+            <div className="bg-[var(--app-bg)] rounded-3xl border border-gray-100 p-6 w-full max-w-sm shadow-xl relative mt-auto">
               <button className="absolute top-5 right-5 text-slate-400 bg-slate-100 rounded-full p-1.5 transition-colors" onClick={() => setShowShareModal(false)}>
                 <X size={18} />
               </button>
-              <h2 className="text-slate-900 text-[20px] font-black uppercase tracking-tight mb-2">Share & Earn</h2>
+              <h2 className="text-[var(--app-text-slate)] text-[20px] font-black uppercase tracking-tight mb-2">Share & Earn</h2>
               <p className="text-slate-500 text-[12px] font-medium leading-relaxed mb-6">
                 Distribute your unique referral loop and receive 5% asset dividends on every successful enrollment.
               </p>
               <div className="space-y-4">
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-[12px] font-bold text-slate-700 break-all text-center">
+                <div className="p-3 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl text-[12px] font-bold text-slate-700 break-all text-center">
                   https://kleench.app/academy/m123
                 </div>
-                <button className="w-full bg-slate-900 text-white py-3.5 rounded-xl text-[13px] font-black uppercase tracking-wide active:scale-[0.98] transition-transform shadow-sm" onClick={() => setShowShareModal(false)}>
+                <button className="w-full bg-[var(--app-text-slate)] text-white py-3.5 rounded-xl text-[13px] font-black uppercase tracking-wide active:scale-[0.98] transition-transform shadow-sm" onClick={() => setShowShareModal(false)}>
                   Copy Referral Link
                 </button>
               </div>

@@ -20,7 +20,7 @@ export function Deposit() {
   ];
 
   return (
-    <div className="w-full relative min-h-screen bg-transparent flex flex-col font-sans text-[#003366] overflow-x-hidden">
+    <div className="w-full relative min-h-screen bg-transparent flex flex-col font-sans text-[var(--app-text)] overflow-x-hidden">
       {/* ── Standardized Header ── */}
       <PageHeader showBack useLogo />
 
@@ -32,7 +32,7 @@ export function Deposit() {
         </div>
 
         {/* Balance Card */}
-        <div className="bg-[#003366] rounded-xl p-5 mb-8 shadow-xl shadow-[#003366]/30 relative overflow-hidden group">
+        <div className="bg-[var(--app-text)] rounded-xl p-5 mb-8 shadow-xl shadow-[var(--app-text)]/30 relative overflow-hidden group">
           <div className="flex flex-col">
             <span className="text-white/40 text-[9px] font-black uppercase tracking-[0.2em] mb-1">balance</span>
             <div className="flex items-baseline gap-2">
@@ -41,15 +41,15 @@ export function Deposit() {
           </div>
           {/* Subtle decoration */}
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <div className="w-20 h-20 bg-white rounded-full blur-2xl" />
+            <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full blur-2xl" />
           </div>
         </div>
 
         {/* Amount Stepper */}
-        <div className="bg-white rounded-3xl p-8 mb-10 border-2 border-gray-100 shadow-[0_15px_35px_rgba(0,51,102,0.08)] flex items-center justify-between">
+        <div className="bg-[var(--app-bg)] rounded-3xl p-8 mb-10 border-2 border-gray-100 shadow-[0_15px_35px_rgba(0,51,102,0.08)] flex items-center justify-between">
           <button 
             onClick={() => setAmount(Math.max(0, amount - 50))}
-            className="w-12 h-12 rounded-full border border-gray-100 bg-slate-50 flex items-center justify-center text-[#003366] active:scale-90 transition-all shadow-sm"
+            className="w-12 h-12 rounded-full border border-gray-100 bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
           >
             <Minus size={22} strokeWidth={3} />
           </button>
@@ -60,7 +60,7 @@ export function Deposit() {
 
           <button 
             onClick={() => setAmount(amount + 50)}
-            className="w-12 h-12 rounded-full border border-gray-100 bg-slate-50 flex items-center justify-center text-[#003366] active:scale-90 transition-all shadow-sm"
+            className="w-12 h-12 rounded-full border border-gray-100 bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
           >
             <Plus size={22} strokeWidth={3} />
           </button>
@@ -71,7 +71,7 @@ export function Deposit() {
           <h3 className="text-sm font-black uppercase tracking-widest mb-4">Select Payment Method</h3>
           
           {/* Main Selector */}
-          <div className="bg-white rounded-2xl border-2 border-gray-100 p-5 shadow-[0_10px_25px_rgba(0,51,102,0.05)] mb-8 flex items-center justify-center">
+          <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-gray-100 p-5 shadow-[0_10px_25px_rgba(0,51,102,0.05)] mb-8 flex items-center justify-center">
             <span className="text-2xl font-medium text-gray-500 font-sans tracking-tight">Mobile Money</span>
           </div>
 
@@ -82,17 +82,17 @@ export function Deposit() {
                 <button 
                   onClick={() => setSelectedProvider(p.id)}
                   className={`w-20 h-20 rounded-full overflow-hidden border-2 transition-all relative ${
-                    selectedProvider === p.id ? "border-[#003366] scale-105 shadow-lg shadow-[#003366]/20" : "border-transparent"
+                    selectedProvider === p.id ? "border-[var(--app-text)] scale-105 shadow-lg shadow-[var(--app-text)]/20" : "border-transparent"
                   }`}
                 >
                   <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
                   {selectedProvider === p.id && (
-                    <div className="absolute inset-0 bg-[#003366]/10 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[var(--app-text)]/10 flex items-center justify-center">
                       {/* Selection indicator could go here */}
                     </div>
                   )}
                 </button>
-                <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedProvider === p.id ? "text-[#003366]" : "text-gray-400"}`}>
+                <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedProvider === p.id ? "text-[var(--app-text)]" : "text-gray-400"}`}>
                   {p.name}
                 </span>
               </div>
@@ -114,7 +114,7 @@ export function Deposit() {
               toast.success(`Processing deposit of ZMW ${amount} via ${providerName}`);
               setTimeout(() => navigate(-1), 1500);
             }}
-            className="w-1/2 h-11 bg-[#003366] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-[#003366]/25 transition-all"
+            className="w-1/2 h-11 bg-[var(--app-text)] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-[var(--app-text)]/25 transition-all"
           >
             Deposit Now
           </motion.button>

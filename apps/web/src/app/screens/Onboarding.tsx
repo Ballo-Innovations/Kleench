@@ -269,22 +269,22 @@ export function Onboarding() {
                   <div>
                     <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">User Name *</label>
                     <input type="text" value={kycName} onChange={(e) => setKycName(e.target.value)} required
-                      className="w-full px-4 py-3.5 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="e.g. johndoe99" />
+                      className="w-full px-4 py-3.5 rounded-xl bg-[var(--app-bg)] shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="e.g. johndoe99" />
                   </div>
                   <div>
                     <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Full Legal Name *</label>
                     <input type="text" value={kycFullName} onChange={(e) => setKycFullName(e.target.value)} required
-                      className="w-full px-4 py-3.5 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="As it appears on your ID" />
+                      className="w-full px-4 py-3.5 rounded-xl bg-[var(--app-bg)] shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="As it appears on your ID" />
                   </div>
                   <div>
                     <label className="block text-[12px] font-bold text-[#191c1e] mb-1.5 uppercase tracking-wide">Phone Number *</label>
                     <div className="flex gap-2">
-                      <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                      <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-[var(--app-bg)] border border-gray-100 shadow-sm">
                         <ZambiaFlag size={20} />
                         <span className="font-bold text-gray-500 text-[14px]">+260</span>
                       </div>
                       <input type="tel" value={kycPhone} onChange={(e) => setKycPhone(e.target.value.replace(/\D/g, "").slice(0, 10))} required
-                        className="flex-1 px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="9X XXX XXXX" />
+                        className="flex-1 px-4 py-3 rounded-xl bg-[var(--app-bg)] shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" placeholder="9X XXX XXXX" />
                     </div>
                   </div>
 
@@ -301,7 +301,7 @@ export function Onboarding() {
                      >
                         <motion.div 
                           animate={{ x: isWhatsappSame ? 24 : 0 }}
-                          className="w-4 h-4 bg-white rounded-full shadow-sm"
+                          className="w-4 h-4 bg-[var(--app-bg)] rounded-full shadow-sm"
                         />
                      </button>
                   </div>
@@ -316,7 +316,7 @@ export function Onboarding() {
                       >
                         <div className="pt-2">
                            <div className="flex gap-2">
-                              <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                              <div className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-[var(--app-bg)] border border-gray-100 shadow-sm">
                                 <ZambiaFlag size={20} />
                                 <span className="font-bold text-gray-500 text-[14px]">+260</span>
                               </div>
@@ -325,7 +325,7 @@ export function Onboarding() {
                                 value={kycWhatsappPhone} 
                                 onChange={(e) => setKycWhatsappPhone(e.target.value.replace(/\D/g, "").slice(0, 10))} 
                                 required={!isWhatsappSame}
-                                className="flex-1 px-4 py-3 rounded-xl bg-white shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" 
+                                className="flex-1 px-4 py-3 rounded-xl bg-[var(--app-bg)] shadow-sm border border-gray-100 font-medium text-[#191c1e] outline-none focus:ring-2 focus:ring-[#ff8c00]/30 transition-all placeholder-gray-300" 
                                 placeholder="WhatsApp Number" 
                               />
                            </div>
@@ -349,7 +349,7 @@ export function Onboarding() {
                 initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
                 className="flex flex-col items-center">
                 <div className="relative mb-7">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#ff8c00] bg-white shadow-xl">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#ff8c00] bg-[var(--app-bg)] shadow-xl">
                     {profilePhoto ? (
                       <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                     ) : (

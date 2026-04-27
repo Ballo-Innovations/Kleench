@@ -13,7 +13,7 @@ export function Withdraw() {
   const providers = ["AIRTEL", "MTN", "ZAMTEL", "BANK"];
 
   return (
-    <div className="min-h-screen bg-transparent text-[#003366] font-sans pb-32">
+    <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
       <PageHeader showBack title="Withdraw" />
 
       <div className="px-5 pt-4 space-y-8">
@@ -23,9 +23,9 @@ export function Withdraw() {
 
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
-          <div className="absolute inset-0 bg-[#003366]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
-          <div className="relative bg-[#003366] rounded-2xl p-6 shadow-lg shadow-[#003366]/25">
-            <p className="text-[10px] font-black text-[#FF8C00] uppercase tracking-[0.2em] mb-1">BALANCE</p>
+          <div className="absolute inset-0 bg-[var(--app-text)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+          <div className="relative bg-[var(--app-text)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
+            <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>
         </div>
@@ -33,10 +33,10 @@ export function Withdraw() {
         {/* Destination Selection */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-[#003366]">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-[var(--app-text)]">
                 <CreditCard size={18} />
             </div>
-            <h3 className="text-sm font-black text-[#003366] uppercase tracking-tight">Withdraw Money To</h3>
+            <h3 className="text-sm font-black text-[var(--app-text)] uppercase tracking-tight">Withdraw Money To</h3>
           </div>
 
           <motion.button 
@@ -50,21 +50,21 @@ export function Withdraw() {
         </div>
 
         {/* Amount Stepper */}
-        <div className="bg-white rounded-2xl border-2 border-[#E8F0FE] shadow-[0_8px_30px_rgba(232,240,254,0.3)] overflow-hidden flex divide-x-2 divide-[#E8F0FE]">
+        <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-[#E8F0FE] shadow-[0_8px_30px_rgba(232,240,254,0.3)] overflow-hidden flex divide-x-2 divide-[#E8F0FE]">
           <div className="flex-1 flex items-center justify-center py-6">
              <span className="text-[10px] font-black text-[#4285F4] uppercase tracking-widest">Amount</span>
           </div>
           <div className="flex-[2] flex items-center justify-between px-6 py-6">
             <button 
                 onClick={() => setAmount(Math.max(0, amount - 50))}
-                className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#003366] active:scale-90 transition-all font-black border-2 border-slate-100"
+                className="w-10 h-10 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all font-black border-2 border-slate-100"
             >
                 <Minus size={18} strokeWidth={3} />
             </button>
-            <span className="text-xl font-black text-[#003366] tracking-tighter">K{amount.toFixed(2)}</span>
+            <span className="text-xl font-black text-[var(--app-text)] tracking-tighter">K{amount.toFixed(2)}</span>
             <button 
                 onClick={() => setAmount(amount + 50)}
-                className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#003366] active:scale-90 transition-all font-black border-2 border-slate-100"
+                className="w-10 h-10 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all font-black border-2 border-slate-100"
             >
                 <Plus size={18} strokeWidth={3} />
             </button>
@@ -78,9 +78,9 @@ export function Withdraw() {
                     key={p}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedProvider(p)}
-                    className={`h-16 rounded-2xl border flex items-center justify-center transition-all bg-white ${
+                    className={`h-16 rounded-2xl border flex items-center justify-center transition-all bg-[var(--app-bg)] ${
                         selectedProvider === p
-                        ? "border-[#003366]/40 shadow-lg shadow-[#003366]/20 scale-[1.02]"
+                        ? "border-[var(--app-text)]/40 shadow-lg shadow-[var(--app-text)]/20 scale-[1.02]"
                         : "border-[#E8F0FE] shadow-sm text-[#5F6368]"
                     }`}
                 >
@@ -100,7 +100,7 @@ export function Withdraw() {
                   toast.success(`Processing withdrawal of ZMW ${amount} to ${selectedProvider}`);
                   setTimeout(() => navigate(-1), 1500);
                 }}
-                style={{ backgroundColor: "#003366" }}
+                style={{ backgroundColor: "var(--app-text)" }}
                 className="w-full h-14 rounded-2xl flex items-center justify-center text-white font-regular uppercase tracking-[0.3em] text-xs shadow-[0_10px_30px_rgba(0,51,102,0.3)] transition-all"
             >
                 Withdraw

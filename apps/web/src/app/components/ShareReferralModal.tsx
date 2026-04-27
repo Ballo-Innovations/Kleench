@@ -65,7 +65,7 @@ export function ShareReferralModal({ isOpen, onClose, productTitle, productPrice
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-md bg-white rounded-t-3xl px-5 pt-4 pb-8 flex flex-col gap-5"
+            className="w-full max-w-md bg-[var(--app-bg)] rounded-t-3xl px-5 pt-4 pb-8 flex flex-col gap-5"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Handle bar */}

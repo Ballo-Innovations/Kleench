@@ -25,16 +25,16 @@ export function Statements() {
   const profileName = localKyc?.fullName || (userEmail ? userEmail.split("@")[0] : "Kleench User");
 
   return (
-    <div className="min-h-screen bg-transparent text-[#003366] font-sans pb-32">
+    <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
       <PageHeader showBack title="Statement" />
 
       <div className="px-5 pt-4 space-y-8">
         {/* Balance Card Section */}
         <div className="space-y-3">
             <div className="relative group">
-                <div className="absolute inset-0 bg-[#003366]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
-                <div className="relative bg-[#003366] rounded-2xl p-6 shadow-lg shadow-[#003366]/25">
-                    <p className="text-[10px] font-black text-[#FF8C00] uppercase tracking-[0.2em] mb-1">BALANCE</p>
+                <div className="absolute inset-0 bg-[var(--app-text)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+                <div className="relative bg-[var(--app-text)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
+                    <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
                     <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
                 </div>
             </div>
@@ -45,7 +45,7 @@ export function Statements() {
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white rounded-3xl p-5 border-2 border-slate-100 shadow-[0_20px_50px_rgba(0,51,102,0.06)] space-y-5"
+          className="bg-[var(--app-bg)] rounded-3xl p-5 border-2 border-slate-100 shadow-[0_20px_50px_rgba(0,51,102,0.06)] space-y-5"
         >
           <div className="bg-[#5D56D8]/10 py-2.5 px-4 rounded-full flex items-center justify-center border border-[#5D56D8]/20">
             <span className="text-[10px] font-black text-[#5D56D8] uppercase tracking-widest text-center">05 Apr 2026 to 14 Apr 2026</span>
@@ -63,7 +63,7 @@ export function Statements() {
               {SUMMARY_DATA.map((item, i) => (
                 <div key={i} className="flex justify-between items-center">
                   <span className="text-[11px] font-bold text-[#6E7C91]">{item.label}</span>
-                  <span className="text-[12px] font-black text-[#003366]">{item.value}</span>
+                  <span className="text-[12px] font-black text-[var(--app-text)]">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -75,7 +75,7 @@ export function Statements() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="bg-white rounded-3xl p-5 border-2 border-slate-100 shadow-[0_20px_50px_rgba(0,51,102,0.06)] space-y-5"
+          className="bg-[var(--app-bg)] rounded-3xl p-5 border-2 border-slate-100 shadow-[0_20px_50px_rgba(0,51,102,0.06)] space-y-5"
         >
           <div className="space-y-4">
             <h3 className="text-sm font-black uppercase tracking-tight">Detailed Statement</h3>
@@ -85,7 +85,7 @@ export function Statements() {
           <div className="overflow-x-auto -mx-1">
             <table className="w-full text-left">
               <thead>
-                <tr className="text-[9px] font-black text-[#003366] uppercase tracking-tighter">
+                <tr className="text-[9px] font-black text-[var(--app-text)] uppercase tracking-tighter">
                   <th className="pb-4 pr-2">Date & Time</th>
                   <th className="pb-4 pr-2">Details</th>
                   <th className="pb-4 pr-1 text-right">Credited</th>
@@ -98,19 +98,19 @@ export function Statements() {
                   <tr key={i} className="group">
                     <td className="py-4 pr-2 align-top">
                       <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-[#003366]">{row.date}</span>
+                        <span className="text-[10px] font-bold text-[var(--app-text)]">{row.date}</span>
                         <span className="text-[8px] font-bold text-[#6E7C91]">{row.time}</span>
                       </div>
                     </td>
                     <td className="py-4 pr-2 align-top min-w-[100px]">
                       <div className="flex flex-col">
-                        <span className="text-[10px] font-black text-[#003366] leading-tight mb-0.5">{row.details}</span>
+                        <span className="text-[10px] font-black text-[var(--app-text)] leading-tight mb-0.5">{row.details}</span>
                         <span className="text-[8px] font-bold text-[#6E7C91] tracking-tighter truncate max-w-[80px]">({row.id})</span>
                       </div>
                     </td>
-                    <td className="py-4 pr-1 text-right align-top text-[10px] font-black text-[#003366]">{row.credited}</td>
-                    <td className="py-4 pr-1 text-right align-top text-[10px] font-black text-[#003366]">{row.debited}</td>
-                    <td className="py-4 text-right align-top text-[10px] font-black text-[#003366]">{row.balance}</td>
+                    <td className="py-4 pr-1 text-right align-top text-[10px] font-black text-[var(--app-text)]">{row.credited}</td>
+                    <td className="py-4 pr-1 text-right align-top text-[10px] font-black text-[var(--app-text)]">{row.debited}</td>
+                    <td className="py-4 text-right align-top text-[10px] font-black text-[var(--app-text)]">{row.balance}</td>
                   </tr>
                 ))}
               </tbody>

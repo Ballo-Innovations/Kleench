@@ -35,20 +35,20 @@ export function Savings() {
   ];
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[#003366]">
+    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--app-text)]">
       {/* ── PageHeader matching Wallet style ── */}
       <PageHeader 
         showBack 
         useLogo
         title="Savings" 
         customBalanceHUD={
-          <div className="flex items-center justify-between w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] shrink-0">
+          <div className="flex items-center justify-between w-full bg-[var(--app-bg)]/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] shrink-0">
             <div className="flex flex-col justify-center min-w-0 pl-1">
               <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Savings Balance</p>
               <h2 className="text-white text-[16px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 8,400.00</h2>
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white">
+              <div className="w-8 h-8 rounded-full bg-[var(--app-bg)]/20 flex items-center justify-center border border-white/30 text-white">
                 <DuotonePiggyBank size={16} primary="#ffffff" />
               </div>
             </div>
@@ -68,23 +68,23 @@ export function Savings() {
 
           <motion.div 
             {...grace(0.1)}
-            className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm active:scale-[0.99] transition-all"
+            className="bg-[var(--app-bg)] rounded-2xl border border-slate-200 p-5 shadow-sm active:scale-[0.99] transition-all"
           >
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full border border-slate-100 overflow-hidden bg-slate-50 flex items-center justify-center shrink-0 shadow-inner">
+              <div className="w-14 h-14 rounded-full border border-slate-100 overflow-hidden bg-[var(--app-bg-muted)] flex items-center justify-center shrink-0 shadow-inner">
                 {localPhoto ? (
                   <img src={localPhoto} alt={displayName} className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-lg font-black text-[#003366]">{initials}</span>
+                  <span className="text-lg font-black text-[var(--app-text)]">{initials}</span>
                 )}
               </div>
               <div className="flex flex-col min-w-0">
-                <h4 className="font-black text-[#003366] text-sm uppercase tracking-tight truncate">{displayName}</h4>
+                <h4 className="font-black text-[var(--app-text)] text-sm uppercase tracking-tight truncate">{displayName}</h4>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none px-2 py-1 bg-slate-50 rounded-full border border-slate-100">
+                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none px-2 py-1 bg-[var(--app-bg-muted)] rounded-full border border-slate-100">
                     ID: {displayId}
                   </span>
-                  <span className="text-[9px] font-black text-[#FF8C00] uppercase tracking-widest leading-none">Verified Access</span>
+                  <span className="text-[9px] font-black text-[var(--app-orange)] uppercase tracking-widest leading-none">Verified Access</span>
                 </div>
               </div>
             </div>
@@ -101,8 +101,8 @@ export function Savings() {
 
           <div className="grid grid-cols-2 gap-3">
             {[
-              { label: "Top Up", icon: DuotoneArrowUp, color: "bg-[#003366] text-white", primary: "#ffffff" },
-              { label: "Withdraw", icon: DuotoneArrowDown, color: "bg-[#FFC55A] text-[#003366]", primary: "#003366" }
+              { label: "Top Up", icon: DuotoneArrowUp, color: "bg-[var(--app-text)] text-white", primary: "#ffffff" },
+              { label: "Withdraw", icon: DuotoneArrowDown, color: "bg-[#FFC55A] text-[var(--app-text)]", primary: "var(--app-text)" }
             ].map((btn, i) => (
               <motion.button 
                 key={btn.label}
@@ -120,13 +120,13 @@ export function Savings() {
           <motion.button 
             {...grace(0.4)}
             whileTap={{ scale: 0.96 }}
-            className="w-full bg-white rounded-2xl border border-slate-200 p-4 flex items-center justify-between shadow-sm active:scale-95 transition-all"
+            className="w-full bg-[var(--app-bg)] rounded-2xl border border-slate-200 p-4 flex items-center justify-between shadow-sm active:scale-95 transition-all"
           >
             <div className="flex items-center gap-3">
-               <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100">
-                  <DuotonePiggyBank size={16} primary="#003366" />
+               <div className="w-8 h-8 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center border border-slate-100">
+                  <DuotonePiggyBank size={16} primary="var(--app-text)" />
                </div>
-               <span className="text-[10px] font-black text-[#003366] uppercase tracking-widest">Growth Rules</span>
+               <span className="text-[10px] font-black text-[var(--app-text)] uppercase tracking-widest">Growth Rules</span>
             </div>
             <span className="text-[#F5A623] font-black text-[9px] uppercase tracking-widest">Configure</span>
           </motion.button>
@@ -140,16 +140,16 @@ export function Savings() {
              <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
           </div>
 
-          <div className="bg-white rounded-[24px] border border-slate-100 shadow-sm overflow-hidden divide-y divide-slate-50">
+          <div className="bg-[var(--app-bg)] rounded-[24px] border border-slate-100 shadow-sm overflow-hidden divide-y divide-slate-50">
             {ledgerData.map((tx, idx) => (
               <motion.div 
                 key={tx.id}
                 {...grace(0.5 + idx * 0.05)}
-                className="p-4 flex items-center justify-between active:bg-slate-50 transition-colors"
+                className="p-4 flex items-center justify-between active:bg-[var(--app-bg-muted)] transition-colors"
                 style={{ backgroundImage: "radial-gradient(#e5e7eb 0.5px, transparent 0.5px)", backgroundSize: "16px 16px" }}
               >
                 <div className="flex flex-col relative z-10">
-                  <span className="font-black text-[#003366] text-xs uppercase tracking-tight">{tx.source}</span>
+                  <span className="font-black text-[var(--app-text)] text-xs uppercase tracking-tight">{tx.source}</span>
                   <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">{tx.date}</span>
                 </div>
                 <div className="text-right flex flex-col items-end relative z-10">
@@ -159,7 +159,7 @@ export function Savings() {
               </motion.div>
             ))}
             
-            <div className="p-4 flex items-center justify-center bg-gray-50/50">
+            <div className="p-4 flex items-center justify-center bg-[var(--app-bg-muted)]/50">
                <span className="text-[8px] font-black text-slate-300 uppercase tracking-[0.3em]">EndOfRecords</span>
             </div>
           </div>
@@ -168,7 +168,7 @@ export function Savings() {
         {/* Achievement / Security Wrap */}
         <motion.div 
           {...grace(0.8)}
-          className="rounded-2xl shadow-md bg-[#003366] overflow-hidden aspect-[4/1] relative flex items-center justify-center"
+          className="rounded-2xl shadow-md bg-[var(--app-text)] overflow-hidden aspect-[4/1] relative flex items-center justify-center"
         >
           <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Active Vault Protected</p>

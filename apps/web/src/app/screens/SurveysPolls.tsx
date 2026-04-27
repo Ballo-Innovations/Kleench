@@ -85,26 +85,26 @@ export function SurveysPolls() {
 
           {/* Active Survey Section */}
           <section className="px-5 py-5 border-b-[3px] border-gray-200">
-            <h3 className="text-[#003366] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
-            <div className="bg-white rounded-2xl border border-[#003366]/15 shadow-lg shadow-[#003366]/12 p-4 mb-6">
+            <h3 className="text-[var(--app-text)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/15 shadow-lg shadow-[var(--app-text)]/12 p-4 mb-6">
                {ACTIVE_SURVEYS.map((survey, i) => (
                   <div key={survey.id} className="mb-4 last:mb-0 relative py-1">
                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2 max-w-[70%]">
-                           <div className="w-6 h-6 text-[#003366]/40 shrink-0 flex items-center justify-center overflow-hidden">
+                           <div className="w-6 h-6 text-[var(--app-text)]/40 shrink-0 flex items-center justify-center overflow-hidden">
                               {survey.logo ? (
                                 <img src={survey.logo} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                               ) : (
                                 <FileText size={16} />
                               )}
                            </div>
-                           <p className="text-[11px] font-black text-[#003366] leading-tight break-words">{survey.title}</p>
+                           <p className="text-[11px] font-black text-[var(--app-text)] leading-tight break-words">{survey.title}</p>
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
                            <div className="w-16 h-4 bg-gray-200 rounded-full overflow-hidden flex">
                               <div className={`h-full ${survey.color}`} style={{ width: `${survey.percent}%` }} />
                            </div>
-                           <span className="text-[12px] font-black text-[#003366] w-8 text-right">{survey.percent}%</span>
+                           <span className="text-[12px] font-black text-[var(--app-text)] w-8 text-right">{survey.percent}%</span>
                         </div>
                      </div>
                      {i !== ACTIVE_SURVEYS.length - 1 && <div className="border-b border-gray-100 w-full mt-3" />}
@@ -113,8 +113,8 @@ export function SurveysPolls() {
             </div>
 
             {/* Interactive Element */}
-            <div className="bg-white rounded-2xl border border-[#003366]/15 shadow-lg shadow-[#003366]/12 p-2">
-               <div className="inline-block bg-[#E85D3F] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase border-[3px] border-[#003366] shadow-[2px_2px_0_#003366] -ml-2 mb-4 z-10 relative">
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/15 shadow-lg shadow-[var(--app-text)]/12 p-2">
+               <div className="inline-block bg-[#E85D3F] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase border-[3px] border-[var(--app-text)] shadow-[2px_2px_0_var(--app-text)] -ml-2 mb-4 z-10 relative">
                   Favorite Social Media Platform?
                </div>
                
@@ -123,7 +123,7 @@ export function SurveysPolls() {
                      <button 
                         key={opt.id} 
                         onClick={() => handleSelect(opt.id)} 
-                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' shadow-md shadow-[#003366]/20' : 'bg-transparent text-[#003366] border border-[#003366]/30'}`}
+                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' shadow-md shadow-[var(--app-text)]/20' : 'bg-transparent text-[var(--app-text)] border border-[var(--app-text)]/30'}`}
                      >
                         {opt.label}
                      </button>
@@ -133,10 +133,10 @@ export function SurveysPolls() {
           </section>
 
           {/* Active Poll Section */}
-          <section className="px-5 py-8 border-b-[3px] border-[#003366] bg-gray-50/50">
-            <h3 className="text-[#003366] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Poll</h3>
+          <section className="px-5 py-8 border-b-[3px] border-[var(--app-text)] bg-[var(--app-bg-muted)]/50">
+            <h3 className="text-[var(--app-text)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Poll</h3>
             
-            <div className="bg-white rounded-2xl border border-[#003366]/15 shadow-lg shadow-[#003366]/12 p-4">
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/15 shadow-lg shadow-[var(--app-text)]/12 p-4">
                {ACTIVE_POLLS.map((poll, i) => (
                   <div key={poll.id} className="mb-4 last:mb-0 relative">
                      <div className="flex items-center justify-between mb-2">
@@ -147,15 +147,15 @@ export function SurveysPolls() {
                                   <img src={poll.logo} alt={poll.title} className="w-full h-full object-contain mix-blend-multiply" />
                                 </div>
                               )}
-                              <span className="text-[10px] font-bold text-[#003366]/50 uppercase tracking-widest leading-none">{poll.title}</span>
-                              <div className="flex flex-col text-[12px] font-black text-[#003366] leading-tight gap-0.5 max-w-[85px] truncate">
+                              <span className="text-[10px] font-bold text-[var(--app-text)]/50 uppercase tracking-widest leading-none">{poll.title}</span>
+                              <div className="flex flex-col text-[12px] font-black text-[var(--app-text)] leading-tight gap-0.5 max-w-[85px] truncate">
                                  <span className="truncate">{poll.option1}</span>
                                  <span className="truncate">{poll.option2}</span>
                               </div>
                            </div>
                         </div>
                         <div className="flex flex-col w-[120px] shrink-0 justify-center">
-                           <div className="w-full h-[22px] border-[2px] border-[#003366] rounded-full flex overflow-hidden shadow-sm">
+                           <div className="w-full h-[22px] border-[2px] border-[var(--app-text)] rounded-full flex overflow-hidden shadow-sm">
                               <div className={`h-full flex items-center ${poll.val1 <= 15 ? 'justify-start pl-[3px]' : 'justify-center'} ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
                                  <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: poll.val1 <= 15 ? '8.5px' : '10px' }}>{poll.val1}%</span>
                               </div>
@@ -170,7 +170,7 @@ export function SurveysPolls() {
                ))}
                
                <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center">
-                  <span onClick={() => toast.info("Redirecting to analytics dashboard...")} className="text-[11px] font-black text-[#FF8C00] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
+                  <span onClick={() => toast.info("Redirecting to analytics dashboard...")} className="text-[11px] font-black text-[var(--app-orange)] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
                      View Results & Analytics <ChevronRight size={14} strokeWidth={3} />
                   </span>
                </div>
@@ -180,17 +180,17 @@ export function SurveysPolls() {
           {/* Survey & Poll Analytics header */}
           <section className="px-5 py-6">
             <div className="grid grid-cols-2 gap-4 mb-6">
-               <h4 className="text-[#FF8C00] font-black text-[14px] text-center uppercase tracking-wide">Survey Analytics</h4>
-               <h4 className="text-[#FF8C00] font-black text-[14px] text-center uppercase tracking-wide">Polls Analytics</h4>
+               <h4 className="text-[var(--app-orange)] font-black text-[14px] text-center uppercase tracking-wide">Survey Analytics</h4>
+               <h4 className="text-[var(--app-orange)] font-black text-[14px] text-center uppercase tracking-wide">Polls Analytics</h4>
             </div>
 
             {/* Neo-brutalist interaction blocks */}
             <div className="grid grid-cols-2 gap-4">
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[#003366]/20 rounded-2xl text-[#003366] shadow-md shadow-[#003366]/15 active:scale-95 transition-all cursor-pointer">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-text)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
                   <BarChart2 size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
                </button>
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[#003366]/20 rounded-2xl text-[#003366] shadow-md shadow-[#003366]/15 active:scale-95 transition-all cursor-pointer">
+               <button className="h-[60px] flex items-center justify-center gap-2 bg-[#E0F2FE] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-text)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
                   <FileText size={18} strokeWidth={3} />
                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
                </button>

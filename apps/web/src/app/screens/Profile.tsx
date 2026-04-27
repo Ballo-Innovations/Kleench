@@ -70,8 +70,8 @@ export function Profile() {
         <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
           <defs>
             <pattern id="xhatch-profile" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#xhatch-profile)"/>
@@ -89,7 +89,7 @@ export function Profile() {
               {isOwnProfile && localPhoto ? (
                 <img src={localPhoto} alt={displayName} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full bg-orange-50 flex items-center justify-center text-[#FF8C00] text-xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
+                <div className="w-full h-full bg-orange-50 flex items-center justify-center text-[var(--app-orange)] text-xl font-black" style={{ fontFamily: "Agrandir, sans-serif" }}>
                   {initials}
                 </div>
               )}
@@ -114,7 +114,7 @@ export function Profile() {
             </div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={grace(0.3)}
               className="flex items-center gap-4 text-white/80 text-[11px] font-black uppercase tracking-widest mt-1">
-              <span className="flex items-center gap-1.5"><MapPin size={12} className="text-[#FF8C00]" /> {profileData.location}</span>
+              <span className="flex items-center gap-1.5"><MapPin size={12} className="text-[var(--app-orange)]" /> {profileData.location}</span>
             </motion.div>
           </div>
         </div>
@@ -127,24 +127,24 @@ export function Profile() {
         
         {/* Stats Section (Industrial Ledger) */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.4)}
-          className="bg-white border-2 border-[#003366] p-7 shadow-[8px_8px_0px_#003366] relative">
+          className="bg-[var(--app-bg)] border-2 border-[var(--app-text)] p-7 shadow-[8px_8px_0px_var(--app-text)] relative">
           
-          <div className="absolute top-0 right-0 w-12 h-12 bg-[#003366]/5 flex items-center justify-center border-l-2 border-b-2 border-[#003366]">
-             <span className="text-[10px] font-black text-[#003366]/40 uppercase tracking-[0.2em]">{displayUsername.slice(1, 3)}</span>
+          <div className="absolute top-0 right-0 w-12 h-12 bg-[var(--app-text)]/5 flex items-center justify-center border-l-2 border-b-2 border-[var(--app-text)]">
+             <span className="text-[10px] font-black text-[var(--app-text)]/40 uppercase tracking-[0.2em]">{displayUsername.slice(1, 3)}</span>
           </div>
 
-          <p className="text-[13px] font-medium text-[#003366] leading-relaxed mb-8 pr-12">{profileData.bio}</p>
+          <p className="text-[13px] font-medium text-[var(--app-text)] leading-relaxed mb-8 pr-12">{profileData.bio}</p>
 
           <div className="grid grid-cols-1 gap-2 mb-8">
             {[
               { label: "Completed Transactions", value: profileData.stats.completedTransactions, color: "#00C853", num: "01" },
-              { label: "Average Community Rating", value: profileData.stats.averageRating, color: "#FF8C00", num: "02" },
-              { label: "Successful Referrals", value: profileData.stats.successfulReferrals, color: "#003366", num: "03" },
+              { label: "Average Community Rating", value: profileData.stats.averageRating, color: "var(--app-orange)", num: "02" },
+              { label: "Successful Referrals", value: profileData.stats.successfulReferrals, color: "var(--app-text)", num: "03" },
             ].map((stat) => (
-              <div key={stat.label} className="flex items-center justify-between p-4 bg-[#003366]/[0.02] border-2 border-[#003366] group/5 transition-colors">
+              <div key={stat.label} className="flex items-center justify-between p-4 bg-[var(--app-text)]/[0.02] border-2 border-[var(--app-text)] group/5 transition-colors">
                  <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-black text-[#003366]/20 tracking-tighter uppercase">{stat.num}.</span>
-                    <p className="text-[9px] font-black uppercase tracking-widest text-[#003366]">{stat.label}</p>
+                    <span className="text-[10px] font-black text-[var(--app-text)]/20 tracking-tighter uppercase">{stat.num}.</span>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]">{stat.label}</p>
                  </div>
                  <p className="text-[16px] font-black uppercase pr-2" style={{ fontFamily: "Outfit, sans-serif", color: stat.color }}>{stat.value}</p>
               </div>
@@ -153,28 +153,28 @@ export function Profile() {
 
           <div className="flex gap-4">
             <motion.button whileTap={{ scale: 0.98 }} onClick={() => setIsFollowing(!isFollowing)}
-              className={`flex-1 py-4 border-2 border-[#003366] font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none ${
+              className={`flex-1 py-4 border-2 border-[var(--app-text)] font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-[4px_4px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none ${
                 isFollowing 
-                  ? "bg-white text-[#003366]" 
-                  : "bg-[#003366] text-white"
+                  ? "bg-[var(--app-bg)] text-[var(--app-text)]" 
+                  : "bg-[var(--app-text)] text-white"
               }`}>
               {isFollowing ? "Connected ✓" : "Connect Circle"}
             </motion.button>
             <motion.button whileTap={{ scale: 0.98 }} onClick={() => navigate("/friends")}
-              className="flex-1 py-4 bg-[#FF8C00] text-white border-2 border-[#003366] font-black text-[10px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+              className="flex-1 py-4 bg-[var(--app-orange)] text-white border-2 border-[var(--app-text)] font-black text-[10px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
               Message
             </motion.button>
           </div>
         </motion.div>
 
         {/* Custom Tabs (Swiss Style) */}
-        <div className="flex border-4 border-[#003366] bg-[#003366] shadow-[4px_4px_0px_#FF8C00]">
+        <div className="flex border-4 border-[var(--app-text)] bg-[var(--app-text)] shadow-[4px_4px_0px_var(--app-orange)]">
           {(["reels", "marketplace", "verification"] as const).map((tab) => (
             <button key={tab} onClick={() => setActiveTab(tab)}
               className={`flex-1 py-3.5 text-[9px] font-black uppercase tracking-[0.2em] transition-all ${
                 activeTab === tab 
-                  ? "bg-[#FF8C00] text-white shadow-inner" 
-                  : "bg-white text-[#003366]"
+                  ? "bg-[var(--app-orange)] text-white shadow-inner" 
+                  : "bg-[var(--app-bg)] text-[var(--app-text)]"
               }`} style={{ fontFamily: "Outfit, sans-serif" }}>
               {tab === "reels" ? "Stories" : tab === "marketplace" ? "Shop" : "Trust"}
             </button>
@@ -188,11 +188,11 @@ export function Profile() {
               className="grid grid-cols-2 gap-4">
               {profileData.learningReels.map((reel, idx) => (
                 <motion.div key={reel.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(idx * 0.05)}>
-                  <Link to={`/product/${reel.id}`} className="block relative aspect-[9/14] border-2 border-[#003366] overflow-hidden group shadow-[4px_4px_0px_#003366] transition-all">
+                  <Link to={`/product/${reel.id}`} className="block relative aspect-[9/14] border-2 border-[var(--app-text)] overflow-hidden group shadow-[4px_4px_0px_var(--app-text)] transition-all">
                     <div className={`absolute inset-0 bg-gradient-to-br ${reel.color} transition-transform duration-700`} />
                     <div className="absolute inset-0 bg-black/10" />
                     <div className="absolute inset-0 p-5 flex flex-col justify-between">
-                      <div className="w-10 h-10 border-2 border-white bg-white/20 backdrop-blur-md flex items-center justify-center">
+                      <div className="w-10 h-10 border-2 border-white bg-[var(--app-bg)]/20 backdrop-blur-md flex items-center justify-center">
                         <Play size={16} fill="white" className="text-white translate-x-0.5" />
                       </div>
                       <div className="space-y-1">
@@ -211,14 +211,14 @@ export function Profile() {
               className="grid grid-cols-2 gap-4">
               {profileData.marketplace.map((product, i) => (
                 <motion.div key={product.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(i * 0.05)}>
-                  <Link to={`/product/${product.id}`} className="block bg-white p-4 border-2 border-[#003366] shadow-[6px_6px_0px_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group overflow-hidden">
-                    <div className="aspect-square bg-[#003366]/5 flex items-center justify-center mb-4 transition-transform duration-500 border border-[#003366]/10">
-                      <span className="text-3xl font-black text-[#003366]/10" style={{ fontFamily: "Outfit, sans-serif" }}>
+                  <Link to={`/product/${product.id}`} className="block bg-[var(--app-bg)] p-4 border-2 border-[var(--app-text)] shadow-[6px_6px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group overflow-hidden">
+                    <div className="aspect-square bg-[var(--app-text)]/5 flex items-center justify-center mb-4 transition-transform duration-500 border border-[var(--app-text)]/10">
+                      <span className="text-3xl font-black text-[var(--app-text)]/10" style={{ fontFamily: "Outfit, sans-serif" }}>
                         {product.title.charAt(0)}
                       </span>
                     </div>
-                    <h3 className="text-[12px] font-black uppercase tracking-tight text-[#003366] mb-2 line-clamp-1">{product.title}</h3>
-                    <p className="text-lg font-black text-[#FF8C00]" style={{ fontFamily: "Outfit, sans-serif" }}>K{product.price.toFixed(2)}</p>
+                    <h3 className="text-[12px] font-black uppercase tracking-tight text-[var(--app-text)] mb-2 line-clamp-1">{product.title}</h3>
+                    <p className="text-lg font-black text-[var(--app-orange)]" style={{ fontFamily: "Outfit, sans-serif" }}>K{product.price.toFixed(2)}</p>
                   </Link>
                 </motion.div>
               ))}
@@ -228,9 +228,9 @@ export function Profile() {
           {activeTab === "verification" && (
             <motion.div key="verification" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={grace()}
               className="space-y-6">
-              <div className="bg-white p-8 border-2 border-[#003366] shadow-[8px_8px_0px_#003366] space-y-8">
-                <div className="flex items-center justify-between pb-4 border-b-2 border-[#003366]/10">
-                  <h3 className="text-[10px] font-black text-[#003366]/40 uppercase tracking-[0.4em]">Verified Wall Ledger</h3>
+              <div className="bg-[var(--app-bg)] p-8 border-2 border-[var(--app-text)] shadow-[8px_8px_0px_var(--app-text)] space-y-8">
+                <div className="flex items-center justify-between pb-4 border-b-2 border-[var(--app-text)]/10">
+                  <h3 className="text-[10px] font-black text-[var(--app-text)]/40 uppercase tracking-[0.4em]">Verified Wall Ledger</h3>
                   <ShieldCheck size={20} className="text-[#00C853]" />
                 </div>
                 
@@ -242,12 +242,12 @@ export function Profile() {
                     { label: "Secure Email", value: isOwnProfile && localKyc ? localKyc.email : "sarah.m@example.com", icon: Mail },
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-5">
-                      <div className="w-12 h-12 border-2 border-[#003366] bg-[#003366]/5 flex items-center justify-center text-[#FF8C00]">
+                      <div className="w-12 h-12 border-2 border-[var(--app-text)] bg-[var(--app-text)]/5 flex items-center justify-center text-[var(--app-orange)]">
                         <item.icon size={18} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-black text-[#003366]/30 uppercase tracking-[0.2em] mb-1">{item.label}</p>
-                        <p className="text-[14px] font-black text-[#003366] uppercase tracking-tight" style={{ fontFamily: "Outfit, sans-serif" }}>{item.value}</p>
+                        <p className="text-[10px] font-black text-[var(--app-text)]/30 uppercase tracking-[0.2em] mb-1">{item.label}</p>
+                        <p className="text-[14px] font-black text-[var(--app-text)] uppercase tracking-tight" style={{ fontFamily: "Outfit, sans-serif" }}>{item.value}</p>
                       </div>
                     </div>
                   ))}
@@ -263,7 +263,7 @@ export function Profile() {
                 )}
               </div>
 
-              <div className="bg-[#FF8C00] p-5 border-2 border-[#003366] shadow-[4px_4px_0px_#003366]">
+              <div className="bg-[var(--app-orange)] p-5 border-2 border-[var(--app-text)] shadow-[4px_4px_0px_var(--app-text)]">
                 <p className="text-[10px] text-white font-black uppercase tracking-[0.1em] leading-relaxed text-center">
                   Privacy First. These details are only visible to verified community members to ensure safe transactions.
                 </p>

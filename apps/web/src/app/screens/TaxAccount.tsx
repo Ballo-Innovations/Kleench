@@ -26,9 +26,9 @@ export function TaxAccount() {
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#093463] rounded-[32px] p-8 border border-[#011427]/40 shadow-lg shadow-[#003366]/25 transition-all"
+            className="bg-[#093463] rounded-[32px] p-8 border border-[#011427]/40 shadow-lg shadow-[var(--app-text)]/25 transition-all"
           >
-            <p className="text-[#FF8C00] text-[10px] font-black uppercase tracking-[0.4em] mb-2 text-left">
+            <p className="text-[var(--app-orange)] text-[10px] font-black uppercase tracking-[0.4em] mb-2 text-left">
               AVAILABLE TAX BALANCE
             </p>
             <h2 className="text-white text-[32px] font-black tracking-tighter text-left leading-none">
@@ -47,7 +47,7 @@ export function TaxAccount() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-[32px] border border-[#003366]/15 p-6 shadow-lg shadow-[#003366]/8"
+            className="bg-[var(--app-bg)] rounded-[32px] border border-[var(--app-text)]/15 p-6 shadow-lg shadow-[var(--app-text)]/8"
           >
             <div className="inline-flex bg-[#093463]/5 border-[2px] border-[#093463]/10 px-4 py-2 rounded-2xl mb-6">
               <span className="text-[#093463] text-[9px] font-black uppercase tracking-widest">05 Apr 2026 - 14 Apr 2026</span>
@@ -87,7 +87,7 @@ export function TaxAccount() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-[32px] border border-[#003366]/15 overflow-hidden shadow-md shadow-[#003366]/8"
+            className="bg-[var(--app-bg)] rounded-[32px] border border-[var(--app-text)]/15 overflow-hidden shadow-md shadow-[var(--app-text)]/8"
            >
             <div className="divide-y-[2px] divide-[#011427]/5">
               {[
@@ -100,7 +100,7 @@ export function TaxAccount() {
               ].map((tx, i) => (
                 <div key={i} className="p-5 flex items-center justify-between group cursor-pointer hover:bg-[#093463]/[0.02] transition-colors relative">
                   {/* Kinetic Edge Indicator */}
-                  <div className={`absolute right-0 top-0 bottom-0 w-1.5 ${tx.pos ? 'bg-[#00D97E]' : 'bg-[#FF8C00]'}`} />
+                  <div className={`absolute right-0 top-0 bottom-0 w-1.5 ${tx.pos ? 'bg-[#00D97E]' : 'bg-[var(--app-orange)]'}`} />
 
                   <div className="flex-1 pr-4">
                     <h4 className="text-[11px] font-black text-[#093463] uppercase tracking-tight mb-1 transition-transform group-hover:translate-x-1">{tx.desc}</h4>
@@ -128,7 +128,7 @@ export function TaxAccount() {
             whileTap={{ scale: 0.95, x: 2, y: 2 }}
             onClick={() => navigate(-1)}
             style={{ backgroundColor: "#093463" }}
-            className="w-full h-14 rounded-full text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all"
+            className="w-full h-14 rounded-full text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all"
           >
             Back
           </motion.button>

@@ -42,7 +42,7 @@ const FILTERS = [
 
 const ACTIONS = [
   { label: "INVEST", icon: TrendingUp, color: "text-[#E85D3F]" },
-  { label: "PORTFOLIO", icon: Briefcase, color: "text-[#003366]" },
+  { label: "PORTFOLIO", icon: Briefcase, color: "text-[var(--app-text)]" },
   { label: "RETURNS", icon: History, color: "text-[#00C853]" }
 ];
 
@@ -107,25 +107,25 @@ export function Crowdfunding() {
 
       {loading ? (
         <div className="px-5 mt-6 space-y-4">
-           <div className="h-12 bg-white rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
-           <div className="h-24 bg-white rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
-           <div className="h-64 bg-white rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
+           <div className="h-12 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
+           <div className="h-24 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
+           <div className="h-64 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
         </div>
       ) : (
         <div className="relative z-10 w-full mt-6 space-y-6">
           
           {/* Search Bar */}
           <div className="px-5">
-             <div className="flex items-center bg-white border-[3px] border-[#003366] rounded-2xl h-[52px] px-3 shadow-[4px_4px_0_#003366]">
-                <Search size={22} className="text-[#003366]/40 shrink-0 ml-1" strokeWidth={2.5} />
+             <div className="flex items-center bg-[var(--app-bg)] border-[3px] border-[var(--app-text)] rounded-2xl h-[52px] px-3 shadow-[4px_4px_0_var(--app-text)]">
+                <Search size={22} className="text-[var(--app-text)]/40 shrink-0 ml-1" strokeWidth={2.5} />
                 <input 
                   type="text" 
                   placeholder="Search Investment Opportunities..." 
-                  className="flex-1 bg-transparent border-none outline-none font-bold text-[#003366] placeholder:text-[#003366]/40 text-[14px] px-3 w-full" 
+                  className="flex-1 bg-transparent border-none outline-none font-bold text-[var(--app-text)] placeholder:text-[var(--app-text)]/40 text-[14px] px-3 w-full" 
                 />
                 <div className="h-[28px] w-[2px] bg-gray-200 mx-1 shrink-0" />
-                <button className="flex items-center gap-1 text-[#003366] font-black uppercase text-[12px] tracking-widest shrink-0 px-2 active:opacity-50">
-                  Filters <ChevronRight size={16} strokeWidth={3} className="text-[#003366]" />
+                <button className="flex items-center gap-1 text-[var(--app-text)] font-black uppercase text-[12px] tracking-widest shrink-0 px-2 active:opacity-50">
+                  Filters <ChevronRight size={16} strokeWidth={3} className="text-[var(--app-text)]" />
                 </button>
              </div>
           </div>
@@ -136,11 +136,11 @@ export function Crowdfunding() {
                 {FILTERS.map((cat, i) => (
                    <button 
                      key={cat.label} 
-                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[#003366] text-white shadow-[2px_2px_0_#003366]' : 'bg-[#e2e8f0]/60 text-[#003366] hover:bg-gray-200'}`}
+                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[var(--app-text)] text-white shadow-[2px_2px_0_var(--app-text)]' : 'bg-[#e2e8f0]/60 text-[var(--app-text)] hover:bg-gray-200'}`}
                    >
-                      <span className={`text-[11px] font-black uppercase whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[#003366]'}`}>{cat.label}</span>
+                      <span className={`text-[11px] font-black uppercase whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[var(--app-text)]'}`}>{cat.label}</span>
                       {cat.count && (
-                        <div className={`ml-2 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-black ${i === 0 ? 'bg-white/20 text-white' : 'bg-white text-[#003366]'}`}>
+                        <div className={`ml-2 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-black ${i === 0 ? 'bg-[var(--app-bg)]/20 text-white' : 'bg-[var(--app-bg)] text-[var(--app-text)]'}`}>
                            {cat.count}
                         </div>
                       )}
@@ -151,14 +151,14 @@ export function Crowdfunding() {
 
           {/* Primary Action Row - Segmented Pill Bar */}
           <div className="px-5">
-             <div className="flex bg-white border-[2.5px] border-[#003366] rounded-full shadow-[3px_3px_0_#003366] p-0.5 mt-1 mb-1">
+             <div className="flex bg-[var(--app-bg)] border-[2.5px] border-[var(--app-text)] rounded-full shadow-[3px_3px_0_var(--app-text)] p-0.5 mt-1 mb-1">
                 {ACTIONS.map((act) => {
                    const isActive = activeAction === act.label;
                    return (
                      <button
                        key={act.label}
                        onClick={() => handleAction(act.label)}
-                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[#003366] text-white shadow-inner' : 'bg-transparent text-[#003366] hover:bg-gray-100'}`}
+                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[var(--app-text)] text-white shadow-inner' : 'bg-transparent text-[var(--app-text)] hover:bg-gray-100'}`}
                      >
                        <act.icon size={16} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
                        <span className="text-[10px] font-black tracking-widest uppercase">{act.label}</span>
@@ -170,10 +170,10 @@ export function Crowdfunding() {
 
           {/* Investment Projects Header */}
           <div className="px-5 pb-2">
-             <div className="flex items-center justify-between border-[3px] border-[#003366]/20 bg-white px-4 py-3 shadow-[2px_2px_0_#003366]/20 rounded-xl">
-                <h2 className="text-[#003366] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">INVESTMENT DEALS</h2>
+             <div className="flex items-center justify-between border-[3px] border-[var(--app-text)]/20 bg-[var(--app-bg)] px-4 py-3 shadow-[2px_2px_0_var(--app-text)]/20 rounded-xl">
+                <h2 className="text-[var(--app-text)] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">INVESTMENT DEALS</h2>
                 <button onClick={() => toast("Fetching full market catalogue...")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
-                  See All <div className="bg-[#003366] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
+                  See All <div className="bg-[var(--app-text)] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
                 </button>
              </div>
           </div>
@@ -181,11 +181,11 @@ export function Crowdfunding() {
           {/* Crowdfunding Property Cards */}
           <div className="px-5 flex flex-col gap-5 pb-8">
              {PROJECTS.map((proj) => (
-                <div key={proj.id} className="w-full bg-[#f4ebe1]/40 border-[3px] border-[#003366] rounded-[24px] p-3 shadow-[6px_6px_0_#003366] relative z-0 overflow-hidden">
+                <div key={proj.id} className="w-full bg-[#f4ebe1]/40 border-[3px] border-[var(--app-text)] rounded-[24px] p-3 shadow-[6px_6px_0_var(--app-text)] relative z-0 overflow-hidden">
                    
                    {/* Card Header Section */}
                    <div className="flex flex-col items-start gap-2 mb-3 mt-1">
-                       <div className="flex items-center gap-1 bg-[#00C853] border-[2px] border-[#003366] text-white px-2 py-1 rounded-full shadow-[2.5px_2.5px_0_#003366] shrink-0">
+                       <div className="flex items-center gap-1 bg-[#00C853] border-[2px] border-[var(--app-text)] text-white px-2 py-1 rounded-full shadow-[2.5px_2.5px_0_var(--app-text)] shrink-0">
                           <BadgeCheck size={12} strokeWidth={3} />
                           <span className="text-[8.5px] font-black uppercase tracking-widest">VERIFIED BUSINESS</span>
                        </div>
@@ -193,41 +193,41 @@ export function Crowdfunding() {
                    </div>
                    
                    {/* Full Width Image Container */}
-                   <div className="w-full h-[190px] relative rounded-[14px] border-[3px] border-[#003366] overflow-hidden mb-3 bg-white shadow-inner">
+                   <div className="w-full h-[190px] relative rounded-[14px] border-[3px] border-[var(--app-text)] overflow-hidden mb-3 bg-[var(--app-bg)] shadow-inner">
                       <ImageWithFallback src={proj.image} alt={proj.title} className="w-full h-full object-cover" />
                       
                       {/* Inner Category Pill */}
-                      <div className="absolute bottom-3 left-3 bg-white/80 backdrop-blur-md border-[2px] border-[#003366] px-2.5 py-1 rounded-full flex items-center shadow-sm">
-                         <span className="text-[9px] font-black text-[#003366] uppercase tracking-widest">{proj.category}</span>
+                      <div className="absolute bottom-3 left-3 bg-[var(--app-bg)]/80 backdrop-blur-md border-[2px] border-[var(--app-text)] px-2.5 py-1 rounded-full flex items-center shadow-sm">
+                         <span className="text-[9px] font-black text-[var(--app-text)] uppercase tracking-widest">{proj.category}</span>
                       </div>
                    </div>
                       
                    {/* Context & Description */}
-                   <p className="text-[10px] font-black text-[#003366] leading-[1.3] uppercase mb-4 px-1">{proj.desc}</p>
+                   <p className="text-[10px] font-black text-[var(--app-text)] leading-[1.3] uppercase mb-4 px-1">{proj.desc}</p>
 
                    {/* Key Metrics Grid */}
                    <div className="grid grid-cols-3 gap-2 mb-4">
-                      <div className="bg-white border-[2.5px] border-[#003366] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_#003366]">
-                         <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider mb-0.5 leading-tight">MINIMUM INVESTMENT</span>
-                         <span className="text-[10px] font-black text-[#003366] tracking-tighter">K{proj.minInvestment}</span>
+                      <div className="bg-[var(--app-bg)] border-[2.5px] border-[var(--app-text)] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_var(--app-text)]">
+                         <span className="text-[10px] font-black text-[var(--app-text)] uppercase tracking-wider mb-0.5 leading-tight">MINIMUM INVESTMENT</span>
+                         <span className="text-[10px] font-black text-[var(--app-text)] tracking-tighter">K{proj.minInvestment}</span>
                       </div>
-                      <div className="bg-white border-[2.5px] border-[#003366] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_#003366]">
-                         <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider mb-0.5 leading-tight">EST. ROI</span>
+                      <div className="bg-[var(--app-bg)] border-[2.5px] border-[var(--app-text)] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_var(--app-text)]">
+                         <span className="text-[10px] font-black text-[var(--app-text)] uppercase tracking-wider mb-0.5 leading-tight">EST. ROI</span>
                          <span className="text-[10px] font-black text-[#00C853] tracking-tighter">{proj.roi}</span>
                       </div>
-                      <div className="bg-white border-[2.5px] border-[#003366] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_#003366]">
-                         <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider mb-0.5 leading-tight">TARGET GOAL</span>
-                         <span className="text-[10px] font-black text-[#003366] tracking-tighter">K{proj.target}</span>
+                      <div className="bg-[var(--app-bg)] border-[2.5px] border-[var(--app-text)] rounded-xl p-2 flex flex-col items-center justify-center text-center shadow-[2px_2px_0_var(--app-text)]">
+                         <span className="text-[10px] font-black text-[var(--app-text)] uppercase tracking-wider mb-0.5 leading-tight">TARGET GOAL</span>
+                         <span className="text-[10px] font-black text-[var(--app-text)] tracking-tighter">K{proj.target}</span>
                       </div>
                    </div>
 
                    {/* Segmented Dual Tone Progress */}
                    <div className="flex justify-between items-end mb-1 px-1">
                       <span className="text-[10px] font-black text-[#E85D3F] uppercase tracking-wider">FUNDED K{proj.funded}</span>
-                      <span className="text-[10px] font-black text-[#003366] uppercase tracking-wider">AVAILABLE EQUITY</span>
+                      <span className="text-[10px] font-black text-[var(--app-text)] uppercase tracking-wider">AVAILABLE EQUITY</span>
                    </div>
-                   <div className="w-full h-[24px] border-[2px] border-[#003366] rounded-full mb-2 overflow-hidden flex shadow-[2px_2px_0_#003366]">
-                      <div className={`h-full bg-[#E85D3F] flex items-center ${proj.percent <= 15 ? 'justify-start pl-[5px]' : 'justify-center'} border-r-[2px] border-[#003366]`} style={{ width: `${proj.percent}%` }}>
+                   <div className="w-full h-[24px] border-[2px] border-[var(--app-text)] rounded-full mb-2 overflow-hidden flex shadow-[2px_2px_0_var(--app-text)]">
+                      <div className={`h-full bg-[#E85D3F] flex items-center ${proj.percent <= 15 ? 'justify-start pl-[5px]' : 'justify-center'} border-r-[2px] border-[var(--app-text)]`} style={{ width: `${proj.percent}%` }}>
                          <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: proj.percent <= 15 ? '8.5px' : '10px' }}>{proj.percent}%</span>
                       </div>
                       <div className="h-full bg-gray-200 flex items-center justify-center" style={{ width: `${100 - proj.percent}%` }} />
@@ -235,10 +235,10 @@ export function Crowdfunding() {
 
                    {/* Main Interaction Action Base */}
                    <div className="flex items-center gap-3 pt-2">
-                      <button onClick={() => toast.info("Downloading official prospectus PDF...")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={() => toast.info("Downloading official prospectus PDF...")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[var(--app-text)] shadow-[3px_3px_0_var(--app-text)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <LineChart size={16} strokeWidth={3} className="-ml-1 group-active:scale-110 transition-transform" /> VIEW PROSPECTUS
                       </button>
-                      <button onClick={() => toast.success("Preparing secure investment contract...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[#003366] shadow-[3px_3px_0_#003366] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={() => toast.success("Preparing secure investment contract...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[var(--app-text)] shadow-[3px_3px_0_var(--app-text)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <TrendingUp size={16} strokeWidth={3} className="group-active:scale-110 transition-transform" /> INVEST NOW
                       </button>
                    </div>

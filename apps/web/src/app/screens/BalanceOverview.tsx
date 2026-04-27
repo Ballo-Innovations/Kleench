@@ -74,9 +74,9 @@ export function BalanceOverview() {
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             whileHover={{ x: 4, y: 4, boxShadow: "0px 0px 0px #001F33" }}
-            className="bg-white rounded-[32px] p-8 border-[3px] border-[#001F33] shadow-[8px_8px_0px_#001F33] transition-all"
+            className="bg-[var(--app-bg)] rounded-[32px] p-8 border-[3px] border-[#001F33] shadow-[8px_8px_0px_#001F33] transition-all"
           >
-            <p className="text-[11px] font-black text-[#FF8C00] uppercase tracking-[0.4em] mb-2">Total Ledger</p>
+            <p className="text-[11px] font-black text-[var(--app-orange)] uppercase tracking-[0.4em] mb-2">Total Ledger</p>
             <h2 className="text-4xl font-black text-[#001F33] tracking-tighter mb-1">ZMW 2,450.00</h2>
             <div className="flex items-center gap-2 mt-4">
               <div className="h-1.5 w-1.5 rounded-full bg-[#00D97E] animate-pulse" />
@@ -101,7 +101,7 @@ export function BalanceOverview() {
         <div className="relative">
           <div className="absolute inset-x-0 top-0 h-10 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(#001F33 1.5px, transparent 1.5px)", backgroundSize: "16px 16px" }} />
           
-          <div className="relative flex bg-white border-[3px] border-[#001F33] rounded-2xl p-1.5 w-full justify-between items-center shadow-[4px_4px_0px_#001F33]">
+          <div className="relative flex bg-[var(--app-bg)] border-[3px] border-[#001F33] rounded-2xl p-1.5 w-full justify-between items-center shadow-[4px_4px_0px_#001F33]">
             {["ALL", "EARNINGS", "PAYMENTS", "TRANSFERS"].map((tab) => {
               const isActive = activeTab === tab;
               return (
@@ -131,7 +131,7 @@ export function BalanceOverview() {
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-white rounded-[32px] border-[3px] border-[#001F33] shadow-[12px_12px_0px_rgba(0,31,51,0.05)] overflow-hidden"
+            className="bg-[var(--app-bg)] rounded-[32px] border-[3px] border-[#001F33] shadow-[12px_12px_0px_rgba(0,31,51,0.05)] overflow-hidden"
           >
             <div className="divide-y-[3px] divide-[#001F33]/5">
               {filteredTransactions.map((tx, idx) => (
@@ -161,7 +161,7 @@ function TransactionItem({ tx, index }: { tx: Transaction; index: number }) {
   const getEdgeColor = () => {
     switch (tx.category) {
       case "EARNING": return "bg-[#00D97E]";
-      case "PAYMENT": return "bg-[#FF8C00]";
+      case "PAYMENT": return "bg-[var(--app-orange)]";
       case "TRANSFER": return "bg-slate-300";
       default: return "bg-slate-300";
     }

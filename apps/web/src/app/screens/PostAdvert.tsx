@@ -7,7 +7,7 @@ import { LottieIcon } from "../components/LottieIcon";
 type Step = 1 | 2 | 3;
 
 const AD_TYPES = [
-  { id: "product",   label: "Product Ad",      icon: "cart",      desc: "Sell a physical or digital product",   accent: "#FF8C00", bg: "#FFF7ED" },
+  { id: "product",   label: "Product Ad",      icon: "cart",      desc: "Sell a physical or digital product",   accent: "var(--app-orange)", bg: "#FFF7ED" },
   { id: "service",   label: "Service Ad",      icon: "target",    desc: "Promote a service you offer",          accent: "#0077B6", bg: "#EFF8FF" },
   { id: "awareness", label: "Brand Awareness", icon: "megaphone", desc: "Boost your brand visibility",          accent: "#7C3AED", bg: "#FAF5FF" },
   { id: "community", label: "Community Post",  icon: "users",     desc: "Reach your social circle",             accent: "#00695C", bg: "#F0FDF9" },
@@ -20,8 +20,8 @@ function CrossHatchBg() {
       <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
         <defs>
           <pattern id="xhatch-post" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-            <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+            <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
+            <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#xhatch-post)"/>
@@ -53,17 +53,17 @@ export function PostAdvert() {
     <div className="w-full max-w-md mx-auto pb-28 relative">
       <CrossHatchBg />
       <div className="absolute top-0 left-0 right-0 h-64 opacity-[0.03]"
-        style={{ background: "linear-gradient(135deg, #FF8C00, #0D1B3E)" }}/>
+        style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-text-alt))" }}/>
 
       {/* Header */}
       <div className="relative z-10 pt-4 pb-8 flex items-center gap-3">
         <button onClick={() => step > 1 ? setStep((s) => (s - 1) as Step) : navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white shadow-sm border flex items-center justify-center"
+          className="w-10 h-10 rounded-full bg-[var(--app-bg)] shadow-sm border flex items-center justify-center"
           style={{ borderColor: "rgba(13,27,62,0.06)" }}>
-          <ArrowLeft size={16} style={{ color: "#0D1B3E" }}/>
+          <ArrowLeft size={16} style={{ color: "var(--app-text-alt)" }}/>
         </button>
         <div className="flex-1">
-          <h1 className="font-bold tracking-tight" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.3rem", color: "#0D1B3E" }}>
+          <h1 className="font-bold tracking-tight" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.3rem", color: "var(--app-text-alt)" }}>
             Post an Advert
           </h1>
           <div className="flex items-center gap-2 mt-1">
@@ -71,7 +71,7 @@ export function PostAdvert() {
               <div key={s} className="h-1.5 rounded-full"
                 style={{
                   width: step >= s ? 32 : 16,
-                  background: step >= s ? "#FF8C00" : "rgba(13,27,62,0.1)",
+                  background: step >= s ? "var(--app-orange)" : "rgba(13,27,62,0.1)",
                   transition: "width 0.5s ease, background 0.5s ease",
                 }}/>
             ))}
@@ -121,7 +121,7 @@ export function PostAdvert() {
                       style={{ background: type.bg }}>
                       <LottieIcon icon={type.icon} size={46} />
                     </div>
-                    <p className="font-bold text-[13px] mb-1 leading-tight" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>
+                    <p className="font-bold text-[13px] mb-1 leading-tight" style={{ fontFamily: "Agrandir, sans-serif", color: "var(--app-text-alt)" }}>
                       {type.label}
                     </p>
                     <p className="text-[10px] leading-snug" style={{ color: "rgba(13,27,62,0.42)", lineHeight: 1.5 }}>{type.desc}</p>
@@ -135,7 +135,7 @@ export function PostAdvert() {
               disabled={!adType} onClick={() => setStep(2)}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-2 disabled:opacity-40"
-              style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 8px 32px rgba(255,140,0,0.28)" }}>
+              style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-orange))", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 8px 32px rgba(255,140,0,0.28)" }}>
               Continue <ArrowRight size={18} strokeWidth={2.5}/>
             </motion.button>
           </motion.div>
@@ -153,7 +153,7 @@ export function PostAdvert() {
                 style={{ background: selectedType.bg, borderColor: `${selectedType.accent}22` }}>
                 <LottieIcon icon={selectedType.icon} size={40} />
                 <div>
-                  <p className="font-bold text-[13px]" style={{ color: "#0D1B3E" }}>{selectedType.label}</p>
+                  <p className="font-bold text-[13px]" style={{ color: "var(--app-text-alt)" }}>{selectedType.label}</p>
                   <p className="text-[10px] mt-0.5" style={{ color: "rgba(13,27,62,0.45)" }}>Selected ad type</p>
                 </div>
               </motion.div>
@@ -163,7 +163,7 @@ export function PostAdvert() {
               className="border-2 border-dashed rounded-3xl h-36 flex flex-col items-center justify-center gap-3 cursor-pointer"
               style={{ borderColor: "rgba(13,27,62,0.1)", background: "rgba(248,249,251,0.7)" }}>
               <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "#FFF7ED" }}>
-                <Camera size={20} style={{ color: "#FF8C00" }}/>
+                <Camera size={20} style={{ color: "var(--app-orange)" }}/>
               </div>
               <div className="flex items-center gap-1.5" style={{ color: "rgba(13,27,62,0.38)" }}>
                 <Upload size={12}/><span className="text-[11px] font-medium">Upload advert image</span>
@@ -180,11 +180,11 @@ export function PostAdvert() {
                 {multi ? (
                   <textarea value={value} onChange={(e) => set(e.target.value)} placeholder={placeholder} rows={4}
                     className="w-full px-4 py-3.5 rounded-2xl text-sm font-medium outline-none resize-none"
-                    style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "#0D1B3E", lineHeight: 1.7 }}/>
+                    style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "var(--app-text-alt)", lineHeight: 1.7 }}/>
                 ) : (
                   <input type="text" value={value} onChange={(e) => set(e.target.value)} placeholder={placeholder}
                     className="w-full px-4 py-3.5 rounded-2xl text-sm font-medium outline-none"
-                    style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "#0D1B3E" }}/>
+                    style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "var(--app-text-alt)" }}/>
                 )}
               </motion.div>
             ))}
@@ -194,7 +194,7 @@ export function PostAdvert() {
               disabled={!title || !description} onClick={() => setStep(3)}
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.28)}
               className="w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-2 disabled:opacity-40"
-              style={{ background: "linear-gradient(135deg, #FF8C00, #e06900)", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 8px 32px rgba(255,140,0,0.28)" }}>
+              style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-orange))", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 8px 32px rgba(255,140,0,0.28)" }}>
               Next Step <ArrowRight size={18} strokeWidth={2.5}/>
             </motion.button>
           </motion.div>
@@ -209,7 +209,7 @@ export function PostAdvert() {
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace()}
               className="rounded-2xl p-5 flex items-center gap-4"
-              style={{ background: "#0D1B3E" }}>
+              style={{ background: "var(--app-text-alt)" }}>
               {selectedType && <LottieIcon icon={selectedType.icon} size={48} />}
               <div>
                 <p className="text-[9px] font-bold uppercase tracking-widest mb-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>Ad Summary</p>
@@ -226,7 +226,7 @@ export function PostAdvert() {
                 <DollarSign size={15} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "rgba(13,27,62,0.3)" }}/>
                 <input type="number" value={budget} onChange={(e) => setBudget(e.target.value)} placeholder="5.00"
                   className="w-full pl-10 pr-4 py-4 rounded-2xl text-sm font-bold outline-none"
-                  style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "#0D1B3E" }}/>
+                  style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "var(--app-text-alt)" }}/>
               </div>
             </motion.div>
 
@@ -242,8 +242,8 @@ export function PostAdvert() {
                     onClick={() => setDuration(d)}
                     className="py-3 rounded-2xl text-[12px] font-bold border"
                     style={duration === d
-                      ? { background: "#FF8C00", color: "white", borderColor: "#FF8C00", boxShadow: "0 4px 16px rgba(255,140,0,0.3)", transition: "all 0.5s ease" }
-                      : { background: "white", color: "#0D1B3E", borderColor: "rgba(13,27,62,0.09)", transition: "all 0.5s ease" }}>
+                      ? { background: "var(--app-orange)", color: "white", borderColor: "var(--app-orange)", boxShadow: "0 4px 16px rgba(255,140,0,0.3)", transition: "all 0.5s ease" }
+                      : { background: "white", color: "var(--app-text-alt)", borderColor: "rgba(13,27,62,0.09)", transition: "all 0.5s ease" }}>
                     {d}d
                   </motion.button>
                 ))}
@@ -258,8 +258,8 @@ export function PostAdvert() {
                 style={{ background: "linear-gradient(135deg, #FFF7ED, #FFECD0)", border: "1.5px solid rgba(255,140,0,0.18)" }}>
                 <LottieIcon icon="rocket" size={60} />
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: "#FF8C00" }}>Estimated Reach</p>
-                  <p className="font-black text-2xl leading-none" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>
+                  <p className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: "var(--app-orange)" }}>Estimated Reach</p>
+                  <p className="font-black text-2xl leading-none" style={{ fontFamily: "Agrandir, sans-serif", color: "var(--app-text-alt)" }}>
                     {(Number(budget) * Number(duration) * 120).toLocaleString()} users
                   </p>
                   <p className="text-[11px] mt-1" style={{ color: "rgba(13,27,62,0.5)" }}>
@@ -274,7 +274,7 @@ export function PostAdvert() {
               disabled={!budget} onClick={() => navigate("/")}
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.32)}
               className="w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-3 disabled:opacity-40"
-              style={{ background: "linear-gradient(135deg, #FF8C00, #0D1B3E)", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 10px 32px rgba(255,140,0,0.28)" }}>
+              style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-text-alt))", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 10px 32px rgba(255,140,0,0.28)" }}>
               <LottieIcon icon="megaphone" size={28} /> Launch Advert
             </motion.button>
           </motion.div>

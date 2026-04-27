@@ -17,10 +17,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
-  background: var(--clean-slate);
+  background: var(--app-bg, var(--clean-slate));
   min-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+:root {
+  --app-bg: #ffffff;
+  --app-bg-muted: #f9fafb;
+  --app-text: #003366; 
+  --app-text-alt: #0D1B3E;
+  --app-text-slate: #0f172a;
+  --app-orange: #FF8C00;
+  --app-header-shadow: rgba(255,140,0,0.12);
+}
+
+html.dark {
+  --app-bg: #000000;
+  --app-bg-muted: #111111;
+  --app-text: #ffffff;
+  --app-text-alt: #ffffff;
+  --app-text-slate: #ffffff;
+  --app-orange: #DD4C30;
+  --app-header-shadow: rgba(221,76,48,0.2);
 }
 
 /* Mobile container constraint */

@@ -15,15 +15,15 @@ export function GlobalTransaction() {
   const [verifiedName, setVerifiedName] = useState("---");
 
   return (
-    <div className="min-h-screen bg-transparent text-[#003366] font-sans pb-32">
+    <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
       <PageHeader showBack title="Global Transaction" />
 
       <div className="px-5 pt-4 space-y-8">
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
           <div className="absolute inset-0 bg-[#06111C] rounded-2xl translate-x-1 translate-y-1" />
-          <div className="relative bg-[#003366] rounded-2xl p-6 border-2 border-[#06111C]">
-            <p className="text-[10px] font-black text-[#FF8C00] uppercase tracking-[0.2em] mb-1">BALANCE</p>
+          <div className="relative bg-[var(--app-text)] rounded-2xl p-6 border-2 border-[#06111C]">
+            <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>
         </div>
@@ -32,12 +32,12 @@ export function GlobalTransaction() {
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white rounded-3xl p-6 border border-[#003366]/20 shadow-lg shadow-[#003366]/10 space-y-6"
+          className="bg-[var(--app-bg)] rounded-3xl p-6 border border-[var(--app-text)]/20 shadow-lg shadow-[var(--app-text)]/10 space-y-6"
         >
           {/* Destination Input */}
           <div className="space-y-3">
-            <div className="flex items-center gap-3 bg-slate-50 border-2 border-slate-100 rounded-full py-3.5 px-5 shadow-inner">
-              <div className="w-8 h-8 rounded-full bg-[#003366] flex items-center justify-center text-white shrink-0">
+            <div className="flex items-center gap-3 bg-[var(--app-bg-muted)] border-2 border-slate-100 rounded-full py-3.5 px-5 shadow-inner">
+              <div className="w-8 h-8 rounded-full bg-[var(--app-text)] flex items-center justify-center text-white shrink-0">
                 <ArrowUpRight size={18} />
               </div>
               <input 
@@ -54,8 +54,8 @@ export function GlobalTransaction() {
           {/* Verification Section */}
           <div className="flex items-center justify-between px-2">
             <div className="space-y-0.5">
-              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[#003366]">{verifiedName}</span></p>
-              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[#003366]">{recipientInput || "---"}</span></p>
+              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[var(--app-text)]">{verifiedName}</span></p>
+              <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[var(--app-text)]">{recipientInput || "---"}</span></p>
             </div>
             <button 
               onClick={() => {
@@ -69,7 +69,7 @@ export function GlobalTransaction() {
                   toast.success("Recipient Verified!", { id: "verify-toast" });
                 }, 1000);
               }}
-              className="bg-[#003366] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
+              className="bg-[var(--app-text)] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
             >
               Verify
             </button>
@@ -95,14 +95,14 @@ export function GlobalTransaction() {
               <div className="flex items-center justify-between">
                 <button 
                   onClick={() => setAmount(Math.max(0, amount - 50))}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#003366] border-2 border-slate-100 active:scale-90"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[var(--app-text)] border-2 border-slate-100 active:scale-90"
                 >
                   <Minus size={14} strokeWidth={3} />
                 </button>
-                <span className="text-sm font-black text-[#003366] tracking-tight">K{amount.toFixed(2)}</span>
+                <span className="text-sm font-black text-[var(--app-text)] tracking-tight">K{amount.toFixed(2)}</span>
                 <button 
                   onClick={() => setAmount(amount + 50)}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#003366] border-2 border-slate-100 active:scale-90"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[var(--app-text)] border-2 border-slate-100 active:scale-90"
                 >
                   <Plus size={14} strokeWidth={3} />
                 </button>
@@ -111,23 +111,23 @@ export function GlobalTransaction() {
               {/* Charge Row */}
               <div className="flex items-center justify-between pr-1">
                 <span className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-widest">per person</span>
-                <span className="text-sm font-black text-[#003366] tracking-tight">K{charge.toFixed(2)}</span>
+                <span className="text-sm font-black text-[var(--app-text)] tracking-tight">K{charge.toFixed(2)}</span>
               </div>
 
               {/* Total Row */}
               <div className="text-right pr-1">
-                <span className="text-sm font-black text-[#003366] tracking-tight">K{total.toFixed(2)}</span>
+                <span className="text-sm font-black text-[var(--app-text)] tracking-tight">K{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* Transaction Action Toggle */}
-        <div className="bg-white rounded-3xl p-4 border border-[#003366]/20 shadow-lg shadow-[#003366]/10 flex gap-4">
+        <div className="bg-[var(--app-bg)] rounded-3xl p-4 border border-[var(--app-text)]/20 shadow-lg shadow-[var(--app-text)]/10 flex gap-4">
           <button 
             onClick={() => setActiveTab("send")}
             className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl transition-all ${
-              activeTab === "send" ? "bg-[#003366] text-white shadow-lg" : "bg-slate-50 text-[#003366]/40"
+              activeTab === "send" ? "bg-[var(--app-text)] text-white shadow-lg" : "bg-[var(--app-bg-muted)] text-[var(--app-text)]/40"
             }`}
           >
             <ArrowUpRight size={20} />
@@ -137,7 +137,7 @@ export function GlobalTransaction() {
           <button 
             onClick={() => setActiveTab("received")}
             className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl transition-all ${
-              activeTab === "received" ? "bg-[#003366] text-white shadow-lg" : "bg-slate-50 text-[#003366]/40"
+              activeTab === "received" ? "bg-[var(--app-text)] text-white shadow-lg" : "bg-[var(--app-bg-muted)] text-[var(--app-text)]/40"
             }`}
           >
             <ArrowDownToLine size={20} />
@@ -159,7 +159,7 @@ export function GlobalTransaction() {
                   }
                   setTimeout(() => navigate(-1), 1500);
                 }}
-                className="w-full h-14 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)]"
+                className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)]"
             >
                 {activeTab === "send" ? "Execute Global Transfer" : "Back"}
             </motion.button>

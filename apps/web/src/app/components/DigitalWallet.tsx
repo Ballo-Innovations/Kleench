@@ -39,7 +39,7 @@ export function DigitalWallet({
     <div className={cn("relative w-full flex flex-col items-center justify-center", className)}>
       {/* Streamlined Balance Card — Premium Edition */}
       <motion.div 
-        className="relative w-full px-5 py-4 select-none rounded-2xl bg-[#003366] shadow-lg shadow-[#003366]/20 overflow-hidden"
+        className="relative w-full px-5 py-4 select-none rounded-2xl bg-[var(--app-text)] shadow-lg shadow-[var(--app-text)]/20 overflow-hidden"
         initial={false}
       >
         {/* Subtle grid texture */}
@@ -69,7 +69,7 @@ export function DigitalWallet({
            </div>
            
            <div className="flex flex-col items-end gap-2.5">
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm shadow-sm">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--app-bg)]/10 backdrop-blur-sm shadow-sm">
                 <TrendingUp size={10} className="text-[#00C853]" />
                 <span className="text-[9px] font-bold text-white uppercase tracking-wider">+2.4%</span>
               </div>

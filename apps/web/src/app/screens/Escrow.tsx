@@ -90,10 +90,10 @@ export function Escrow() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#003366] font-sans pb-32">
+    <div className="min-h-screen bg-[var(--app-bg)] text-[var(--app-text)] font-sans pb-32">
        {/* Background Accent Grid */}
        <div className="fixed inset-0 opacity-[0.03] pointer-events-none" 
-            style={{ backgroundImage: "radial-gradient(#003366 2px, transparent 2px)", backgroundSize: "24px 24px" }} 
+            style={{ backgroundImage: "radial-gradient(var(--app-text) 2px, transparent 2px)", backgroundSize: "24px 24px" }} 
        />
 
       <AnimatePresence mode="wait">
@@ -107,48 +107,48 @@ export function Escrow() {
             <div className="px-5 pt-6 space-y-8 relative z-10">
               {/* Ledger Section Header */}
               <div className="flex items-center gap-4">
-                <span className="text-[11px] font-black text-[#003366] uppercase tracking-[0.4em] whitespace-nowrap">Deal Parameters</span>
-                <div className="flex-1 h-[2px] bg-[#003366]/10" />
+                <span className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-[0.4em] whitespace-nowrap">Deal Parameters</span>
+                <div className="flex-1 h-[2px] bg-[var(--app-text)]/10" />
               </div>
 
               {/* Form Inputs with Neo-Brutalist Styling */}
               <div className="space-y-6">
                 {/* Title */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">TRANSACTION TITLE</label>
-                  <div className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 overflow-hidden">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--app-text)]/60 ml-1">TRANSACTION TITLE</label>
+                  <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 overflow-hidden">
                     <input 
                       type="text" 
                       value={transactionTitle}
                       onChange={(e) => setTransactionTitle(e.target.value)}
                       placeholder="e.g. Laptop Purchase"
-                      className="w-full p-4 bg-transparent outline-none text-sm font-black uppercase tracking-tight text-[#003366] placeholder:text-[#003366]/40"
+                      className="w-full p-4 bg-transparent outline-none text-sm font-black uppercase tracking-tight text-[var(--app-text)] placeholder:text-[var(--app-text)]/40"
                     />
                   </div>
                 </div>
 
                 {/* Seller */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">VERIFIED SELLER</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--app-text)]/60 ml-1">VERIFIED SELLER</label>
                   <div className="relative">
                     <motion.div 
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                       onClick={() => setShowRecipientDropdown(!showRecipientDropdown)}
-                      className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 p-4 flex justify-between items-center cursor-pointer"
+                      className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 p-4 flex justify-between items-center cursor-pointer"
                     >
-                      <span className={`text-sm font-black uppercase tracking-tight ${recipient ? "text-[#003366]" : "text-[#6E7C91]"}`}>
+                      <span className={`text-sm font-black uppercase tracking-tight ${recipient ? "text-[var(--app-text)]" : "text-[#6E7C91]"}`}>
                         {recipient || "Select Recipient..."}
                       </span>
-                      <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
+                      <ChevronDown size={20} className="text-[var(--app-text)]" strokeWidth={3} />
                     </motion.div>
                     {showRecipientDropdown && (
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 overflow-hidden z-20">
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 overflow-hidden z-20">
                         {["Computicket Ltd", "TechMart", "John Doe Merchants", "SneakerHead Hub"].map((merchant, idx) => (
                           <div 
                             key={idx}
                             onClick={() => { setRecipient(merchant); setShowRecipientDropdown(false); }}
-                            className="p-4 border-b last:border-0 border-[#003366]/10 hover:bg-[#003366]/5 cursor-pointer text-sm font-black text-[#003366] uppercase tracking-tight"
+                            className="p-4 border-b last:border-0 border-[var(--app-text)]/10 hover:bg-[var(--app-text)]/5 cursor-pointer text-sm font-black text-[var(--app-text)] uppercase tracking-tight"
                           >
                             {merchant}
                           </div>
@@ -160,37 +160,37 @@ export function Escrow() {
 
                 {/* Amount */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">STAKED AMOUNT</label>
-                  <div className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 p-4 flex items-center justify-between">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--app-text)]/60 ml-1">STAKED AMOUNT</label>
+                  <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 p-4 flex items-center justify-between">
                     <span className="text-[10px] font-black text-[#6E7C91]">ZMW</span>
                     <input 
                       type="text" 
                       value={amount}
                       onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ''))}
                       placeholder="0.00"
-                      className="bg-transparent border-none outline-none text-xl font-black text-[#003366] text-right w-full placeholder:text-[#003366]/30"
+                      className="bg-transparent border-none outline-none text-xl font-black text-[var(--app-text)] text-right w-full placeholder:text-[var(--app-text)]/30"
                     />
                   </div>
                 </div>
 
                 {/* Delivery Time */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003366]/60 ml-1">DISPATCH WINDOW</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--app-text)]/60 ml-1">DISPATCH WINDOW</label>
                   <div className="relative">
                     <div 
                       onClick={() => setShowDispatchDropdown(!showDispatchDropdown)}
-                      className="bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 p-4 flex justify-between items-center cursor-pointer"
+                      className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 p-4 flex justify-between items-center cursor-pointer"
                     >
-                      <span className="text-sm font-black text-[#003366] uppercase tracking-tight">{dispatchWindow}</span>
-                      <ChevronDown size={20} className="text-[#003366]" strokeWidth={3} />
+                      <span className="text-sm font-black text-[var(--app-text)] uppercase tracking-tight">{dispatchWindow}</span>
+                      <ChevronDown size={20} className="text-[var(--app-text)]" strokeWidth={3} />
                     </div>
                     {showDispatchDropdown && (
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/15 overflow-hidden z-20">
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 overflow-hidden z-20">
                         {["01 BUSINESS DAY", "03 BUSINESS DAYS", "07 BUSINESS DAYS", "14 BUSINESS DAYS"].map((window, idx) => (
                           <div 
                             key={idx}
                             onClick={() => { setDispatchWindow(window); setShowDispatchDropdown(false); }}
-                            className="p-4 border-b last:border-0 border-[#003366]/10 hover:bg-[#003366]/5 cursor-pointer text-sm font-black text-[#003366] uppercase tracking-tight"
+                            className="p-4 border-b last:border-0 border-[var(--app-text)]/10 hover:bg-[var(--app-text)]/5 cursor-pointer text-sm font-black text-[var(--app-text)] uppercase tracking-tight"
                           >
                             {window}
                           </div>
@@ -206,7 +206,7 @@ export function Escrow() {
                 <motion.button 
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full h-15 bg-white border border-[#003366]/20 shadow-md shadow-[#003366]/15 rounded-2xl p-4 flex items-center justify-between group"
+                  className="w-full h-15 bg-[var(--app-bg)] border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/15 rounded-2xl p-4 flex items-center justify-between group"
                 >
                   <span className="text-[11px] font-black uppercase tracking-[0.2em]">Terms of Engagement</span>
                   <DuotoneInfo size={18} primary="#5D56D8" />
@@ -215,7 +215,7 @@ export function Escrow() {
                 <motion.button 
                   whileTap={{ scale: 0.96 }}
                   onClick={() => setStep(2)}
-                  className="w-full h-16 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.3em] text-[12px] shadow-[8px_8px_0px_rgba(0,51,102,0.2)]"
+                  className="w-full h-16 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.3em] text-[12px] shadow-[8px_8px_0px_rgba(0,51,102,0.2)]"
                 >
                   Confirm Escrow Setup
                 </motion.button>
@@ -233,11 +233,11 @@ export function Escrow() {
             
             <div className="px-5 pt-6 space-y-10 relative z-10 pb-10">
               {/* Receiver Ledger Card */}
-              <div className="bg-white rounded-[32px] p-8 border border-[#003366]/20 shadow-lg shadow-[#003366]/15 text-center space-y-6">
+              <div className="bg-[var(--app-bg)] rounded-[32px] p-8 border border-[var(--app-text)]/20 shadow-lg shadow-[var(--app-text)]/15 text-center space-y-6">
                 <div className="space-y-2">
                   <p className="text-[10px] font-black text-[#5D56D8] uppercase tracking-[0.4em]">Counterparty</p>
                   <div className="flex flex-col items-center">
-                    <h3 className="text-3xl font-black text-[#003366] uppercase tracking-tighter">{profileName}</h3>
+                    <h3 className="text-3xl font-black text-[var(--app-text)] uppercase tracking-tighter">{profileName}</h3>
                     <div className="flex items-center gap-1.5 mt-1 text-[#6E7C91]">
                         <DuotoneBadgeCheck size={14} primary="#00D97E" />
                         <span className="text-[9px] font-black uppercase">Verified Merchant</span>
@@ -245,33 +245,33 @@ export function Escrow() {
                   </div>
                 </div>
 
-                <div className="h-[2px] bg-[#003366]/10 w-1/2 mx-auto" />
+                <div className="h-[2px] bg-[var(--app-text)]/10 w-1/2 mx-auto" />
 
                 <div className="space-y-1">
                   <p className="text-[10px] font-black text-[#6E7C91] uppercase tracking-[0.4em]">Ledger Amount</p>
-                  <h4 className="text-4xl font-black text-[#003366] tracking-tighter">ZMW 2,000.00</h4>
+                  <h4 className="text-4xl font-black text-[var(--app-text)] tracking-tighter">ZMW 2,000.00</h4>
                 </div>
               </div>
 
               {/* Bento Grid Delivery Section */}
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <span className="text-[11px] font-black text-[#003366] uppercase tracking-[0.4em] whitespace-nowrap">Delivery Protocol</span>
-                  <div className="flex-1 h-[2px] bg-[#003366]" />
+                  <span className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-[0.4em] whitespace-nowrap">Delivery Protocol</span>
+                  <div className="flex-1 h-[2px] bg-[var(--app-text)]" />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { id: 'road', name: 'Standard Road', Icon: Truck, color: '#003366' },
+                    { id: 'road', name: 'Standard Road', Icon: Truck, color: 'var(--app-text)' },
                     { id: 'sea', name: 'Freight Sea', Icon: Ship, color: '#00C8FF' },
-                    { id: 'air', name: 'Express Air', Icon: Plane, color: '#003366' },
+                    { id: 'air', name: 'Express Air', Icon: Plane, color: 'var(--app-text)' },
                     { id: 'global', name: 'Global Hub', Icon: DuotoneGlobe, color: '#5D56D8' }
                   ].map((method) => (
                     <motion.div 
                       key={method.id}
-                      whileHover={{ y: -4, x: -4, boxShadow: "8px 8px 0px #003366" }}
+                      whileHover={{ y: -4, x: -4, boxShadow: "8px 8px 0px var(--app-text)" }}
                       whileTap={{ scale: 0.98 }}
-                      className="bg-white border border-[#003366]/20 shadow-md shadow-[#003366]/12 rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group transition-all"
+                      className="bg-[var(--app-bg)] border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/12 rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer group transition-all"
                     >
                       <method.Icon size={28} color={method.color} strokeWidth={2.5} />
                       <span className="text-[10px] font-black uppercase tracking-tight text-center leading-tight">{method.name}</span>
@@ -285,7 +285,7 @@ export function Escrow() {
                 <motion.button 
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setStep(3)}
-                  className="w-full h-18 bg-[#003366] text-white rounded-2xl flex items-center justify-center group relative overflow-hidden shadow-lg shadow-[#003366]/20"
+                  className="w-full h-18 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center group relative overflow-hidden shadow-lg shadow-[var(--app-text)]/20"
                 >
                   <div className="relative z-10 flex items-center gap-4">
                      <span className="font-black uppercase tracking-[0.4em] text-xs">Authorize Dispatch</span>
@@ -311,7 +311,7 @@ export function Escrow() {
                     <DuotoneBadgeCheck size={32} primary="#FFFFFF" />
                  </div>
                  <div className="space-y-1">
-                    <h5 className="text-sm font-black text-[#003366] uppercase tracking-tight">PENDING RECEIPT</h5>
+                    <h5 className="text-sm font-black text-[var(--app-text)] uppercase tracking-tight">PENDING RECEIPT</h5>
                     <p className="text-[10px] font-bold text-[#6E7C91] leading-relaxed uppercase">FUNDS ARE STAKED & SECURED IN THE KLEENCH VAULT.</p>
                  </div>
               </div>
@@ -319,7 +319,7 @@ export function Escrow() {
               {/* Pin Entry Section */}
               <div className="space-y-10">
                  <div className="text-center space-y-2">
-                    <h3 className="text-2xl font-black text-[#003366] uppercase tracking-tighter">SECURE SETTLEMENT</h3>
+                    <h3 className="text-2xl font-black text-[var(--app-text)] uppercase tracking-tighter">SECURE SETTLEMENT</h3>
                     <p className="text-[10px] font-black text-[#6E7C91] uppercase tracking-[0.3em]">INPUT 4-DIGIT VERIFICATION KEY</p>
                   </div>
 
@@ -331,8 +331,8 @@ export function Escrow() {
                       {[0, 1, 2, 3].map((i) => (
                         <motion.div 
                           key={i}
-                          className={`w-14 h-14 bg-white border rounded-2xl shadow-[6px_6px_0px_#003366] flex items-center justify-center transition-colors ${
-                            pin.length > i ? "border-[#5D56D8]" : "border-[#003366]"
+                          className={`w-14 h-14 bg-[var(--app-bg)] border rounded-2xl shadow-[6px_6px_0px_var(--app-text)] flex items-center justify-center transition-colors ${
+                            pin.length > i ? "border-[#5D56D8]" : "border-[var(--app-text)]"
                           }`}
                         >
                           {pin.length > i && (
@@ -348,10 +348,10 @@ export function Escrow() {
 
                     <div className="flex flex-col items-center gap-6">
                       <div className="flex items-center gap-3">
-                         <div className="p-2 bg-slate-50 border border-[#003366]/20 rounded-xl">
-                             <DuotoneShieldCheck size={14} primary="#003366" />
+                         <div className="p-2 bg-[var(--app-bg-muted)] border border-[var(--app-text)]/20 rounded-xl">
+                             <DuotoneShieldCheck size={14} primary="var(--app-text)" />
                          </div>
-                         <span className="text-[9px] font-black uppercase tracking-widest text-[#003366]">SECURED BY KLEENCH VAULT</span>
+                         <span className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]">SECURED BY KLEENCH VAULT</span>
                       </div>
 
                       {/* Numerical Keypad */}
@@ -364,9 +364,9 @@ export function Escrow() {
                               whileHover={{ y: -2 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => k === "backspace" ? handleBackspace() : handleKeyPress(String(k))}
-                              className="h-14 bg-white border border-[#003366]/20 rounded-2xl shadow-md shadow-[#003366]/12 flex items-center justify-center text-lg font-black"
+                              className="h-14 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl shadow-md shadow-[var(--app-text)]/12 flex items-center justify-center text-lg font-black"
                             >
-                              {k === "backspace" ? <BackspaceKey size={20} color="#003366" /> : k}
+                              {k === "backspace" ? <BackspaceKey size={20} color="var(--app-text)" /> : k}
                             </motion.button>
                           );
                         })}
@@ -381,7 +381,7 @@ export function Escrow() {
                   disabled={pin.length < 4 || isVerifying || isSuccess}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleVerify}
-                  className={`w-full h-18 text-white rounded-[24px] border border-[#003366]/20 shadow-lg shadow-[#003366]/15 flex items-center justify-center font-black uppercase tracking-[0.5em] text-xs transition-all duration-300 ${
+                  className={`w-full h-18 text-white rounded-[24px] border border-[var(--app-text)]/20 shadow-lg shadow-[var(--app-text)]/15 flex items-center justify-center font-black uppercase tracking-[0.5em] text-xs transition-all duration-300 ${
                     isSuccess ? "bg-[#00D97E] shadow-[8px_8px_0px_#008F53]" : (pin.length < 4 ? "bg-[#6E7C91]" : "bg-[#5D56D8]")
                   }`}
                 >

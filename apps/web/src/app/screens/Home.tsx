@@ -46,7 +46,7 @@ const FEED_ITEMS = [
     comments: 42,
     shares: 18,
     tag: "ADVERT",
-    tagColor: "bg-[#FF8C00]",
+    tagColor: "bg-[var(--app-orange)]",
   },
   {
     id: 2,
@@ -64,7 +64,7 @@ const FEED_ITEMS = [
     comments: 24,
     shares: 12,
     tag: "ADVERT",
-    tagColor: "bg-[#FF8C00]",
+    tagColor: "bg-[var(--app-orange)]",
   },
   {
     id: 3,
@@ -82,7 +82,7 @@ const FEED_ITEMS = [
     comments: 18,
     shares: 9,
     tag: "HOT",
-    tagColor: "bg-[#003366]",
+    tagColor: "bg-[var(--app-text)]",
   },
   {
     id: 4,
@@ -198,9 +198,9 @@ export function Home() {
       {/* ── PRIMARY ACTIONS: UPLOAD, SHARE, REGISTER ── */}
       <div className="px-5 mt-4 relative z-10 flex items-center justify-center gap-6">
         {[
-          { id: "Upload", icon: DuotoneUpload, label: "UPLOAD", color: "text-[#003366]" },
-          { id: "Share", icon: DuotoneSend, label: "SHARE", color: "text-[#003366]" },
-          { id: "Register Agent", icon: DuotoneUserPlus, label: "REGISTER\nAGENT", color: "text-[#003366]" },
+          { id: "Upload", icon: DuotoneUpload, label: "UPLOAD", color: "text-[var(--app-text)]" },
+          { id: "Share", icon: DuotoneSend, label: "SHARE", color: "text-[var(--app-text)]" },
+          { id: "Register Agent", icon: DuotoneUserPlus, label: "REGISTER\nAGENT", color: "text-[var(--app-text)]" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -208,10 +208,10 @@ export function Home() {
             onClick={() => handleActionClick(item.id)}
             className="flex flex-col items-center justify-center gap-1 group outline-none cursor-pointer"
           >
-            <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-100 shadow-[0_4px_12px_rgba(0,51,102,0.05)] group-active:scale-95 transition-all">
+            <div className="w-10 h-10 bg-[var(--app-bg)] rounded-full flex flex-col items-center justify-center border border-slate-100 shadow-[0_4px_12px_rgba(0,51,102,0.05)] group-active:scale-95 transition-all">
               <item.icon size={22} />
             </div>
-            <span className="font-bold text-[#003366] text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-pre-line w-14">
+            <span className="font-bold text-[var(--app-text)] text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-pre-line w-14">
               {item.label}
             </span>
           </motion.div>
@@ -241,25 +241,25 @@ export function Home() {
               return (
                 <div key={block.id} className="px-5 relative z-10">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[#FF8C00] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
-                    <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">{block.title}</h3>
-                    <div className="flex-1 h-[2px] bg-[#003366]/5" />
+                    <span className="text-[var(--app-orange)] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
+                    <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--app-text)]/40">{block.title}</h3>
+                    <div className="flex-1 h-[2px] bg-[var(--app-text)]/5" />
                   </div>
                   <div className="flex gap-3 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none" style={{ scrollbarWidth: "none" }}>
                     {(block.data as typeof REELS).map((reel) => (
                       <Link key={reel.id} to={reel.to}>
                         <motion.div
                           whileTap={{ scale: 0.96 }}
-                          className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl"
+                          className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl"
                         >
                           <img src={reel.image} alt={reel.label} className="w-full h-full object-cover grayscale-[0.2] transition-all duration-700" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg transition-transform duration-500">
+                            <div className="w-8 h-8 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg transition-transform duration-500">
                               <Play size={12} className="text-white fill-white ml-0.5" />
                             </div>
                           </div>
-                          <div className="absolute top-1.5 right-1.5 bg-[#FF8C00] border border-[#003366] px-1.5 py-0.5 shadow-sm">
+                          <div className="absolute top-1.5 right-1.5 bg-[var(--app-orange)] border border-[var(--app-text)] px-1.5 py-0.5 shadow-sm">
                             <span className="text-[7px] font-black text-white uppercase tracking-tight block leading-none">{reel.reward}</span>
                           </div>
                           <div className="absolute bottom-2 left-2 right-2">
@@ -283,10 +283,10 @@ export function Home() {
                 <div key={block.id} className="px-5 relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-[#FF8C00] font-black text-xs tracking-[0.3em]">02.</span>
-                      <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[#003366]/40">{block.title}</h3>
+                      <span className="text-[var(--app-orange)] font-black text-xs tracking-[0.3em]">02.</span>
+                      <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--app-text)]/40">{block.title}</h3>
                     </div>
-                    <Link to="/marketplace" className="flex items-center gap-1.5 text-[9px] font-black text-[#FF8C00] uppercase tracking-widest decoration-2 underline-offset-4">
+                    <Link to="/marketplace" className="flex items-center gap-1.5 text-[9px] font-black text-[var(--app-orange)] uppercase tracking-widest decoration-2 underline-offset-4">
                       Browse All <ArrowRight size={11} />
                     </Link>
                   </div>
@@ -300,8 +300,8 @@ export function Home() {
                             <div className="relative aspect-square bg-slate-100 border border-slate-200 overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                             </div>
-                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
-                            <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
+                            <h4 className="text-[9px] font-black uppercase text-[var(--app-text)] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
+                            <span className="text-[12px] font-black text-[var(--app-orange)]">K{product.price}</span>
                           </Link>
                         </motion.div>
                       ))}
@@ -316,8 +316,8 @@ export function Home() {
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                               <div className="absolute top-0 right-0 bg-[#FF3000] text-white px-2 py-1 text-[7px] font-black uppercase tracking-[0.2em] rounded-bl-xl">TRENDY</div>
                             </div>
-                            <h4 className="text-[9px] font-black uppercase text-[#003366] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
-                            <span className="text-[12px] font-black text-[#FF8C00]">K{product.price}</span>
+                            <h4 className="text-[9px] font-black uppercase text-[var(--app-text)] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
+                            <span className="text-[12px] font-black text-[var(--app-orange)]">K{product.price}</span>
                           </Link>
                         </motion.div>
                       ))}
@@ -335,7 +335,7 @@ export function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  className="mx-5 border border-slate-200 bg-white shadow-sm overflow-hidden group transition-all rounded-3xl"
+                  className="mx-5 border border-slate-200 bg-[var(--app-bg)] shadow-sm overflow-hidden group transition-all rounded-3xl"
                 >
                   <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700" />
@@ -349,33 +349,33 @@ export function Home() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <h4 className="text-[#003366] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 transition-colors">{item.title}</h4>
-                    <p className="text-[#003366]/50 text-[11px] font-medium leading-relaxed line-clamp-2 mb-3">{item.body}</p>
+                    <h4 className="text-[var(--app-text)] font-black text-[13px] uppercase tracking-tight leading-snug mb-1.5 transition-colors">{item.title}</h4>
+                    <p className="text-[var(--app-text)]/50 text-[11px] font-medium leading-relaxed line-clamp-2 mb-3">{item.body}</p>
                     
                     {/* Interaction Bar - Parity with Socials */}
-                    <div className="flex flex-col border-t border-[#003366]/5 bg-white -mx-4">
+                    <div className="flex flex-col border-t border-[var(--app-text)]/5 bg-[var(--app-bg)] -mx-4">
                       <div className="flex items-center justify-between px-4 py-3">
                         <div className="flex items-center gap-6">
                            <button 
                              onClick={() => toggleLike(item.id)} 
-                             className={`transition-colors ${likedPosts.has(item.id) ? "text-[#FF8C00]" : "text-[#003366]/80"} active:scale-95`}
+                             className={`transition-colors ${likedPosts.has(item.id) ? "text-[var(--app-orange)]" : "text-[var(--app-text)]/80"} active:scale-95`}
                            >
-                              <DuotoneLike size={22} primary={likedPosts.has(item.id) ? "#FF8C00" : undefined} />
+                              <DuotoneLike size={22} primary={likedPosts.has(item.id) ? "var(--app-orange)" : undefined} />
                            </button>
-                           <button className="text-[#003366]/80 active:scale-95 transition-transform">
+                           <button className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
                               <DuotoneMessage size={22} />
                            </button>
-                           <button className="text-[#003366]/80 active:scale-95 transition-transform">
+                           <button className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
                               <DuotoneShare size={22} />
                            </button>
                         </div>
-                        <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[#003366]/30">
+                        <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[var(--app-text)]/30">
                           <span>{item.views} Views</span>
-                          <span className="w-1 h-1 rounded-full bg-[#003366]/20" />
+                          <span className="w-1 h-1 rounded-full bg-[var(--app-text)]/20" />
                           <span>{item.time}</span>
                         </div>
                       </div>
-                      <div className="px-4 py-2 bg-[#003366]/[0.02] border-t border-[#003366]/[0.05] flex items-center gap-4 text-[#003366]/60 text-[9px] font-black uppercase tracking-widest">
+                      <div className="px-4 py-2 bg-[var(--app-text)]/[0.02] border-t border-[var(--app-text)]/[0.05] flex items-center gap-4 text-[var(--app-text)]/60 text-[9px] font-black uppercase tracking-widest">
                          <span>Like | {likedPosts.has(item.id) ? (item.likes as number) + 1 : item.likes}</span>
                          <span>Comments | {item.comments || 0}</span>
                          <span>Share | {item.shares || 0}</span>
@@ -404,11 +404,11 @@ export function Home() {
             />
             <motion.div 
               initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t-[3px] border-[var(--app-text-slate)] shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-8">
-                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">{activeSheet}</h3>
+                  <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">{activeSheet}</h3>
                   <button onClick={() => setActiveSheet(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border border-slate-200">
                     <X size={20} className="text-slate-600" />
                   </button>
@@ -416,14 +416,14 @@ export function Home() {
 
                 {activeSheet === "Upload" && (
                   <div className="space-y-6">
-                    <div className="border-[3px] border-dashed border-slate-900 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
-                      <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-slate-900 mb-4">
+                    <div className="border-[3px] border-dashed border-[var(--app-text-slate)] bg-[var(--app-bg-muted)] rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
+                      <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-[var(--app-text-slate)] mb-4">
                         <DuotoneUpload size={32} />
                       </div>
-                      <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
+                      <h4 className="font-black text-[var(--app-text-slate)] text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
                       <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
                     </div>
-                    <button className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                    <button className="w-full h-16 bg-[var(--app-text-slate)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
                       Choose from Gallery
                     </button>
                   </div>
@@ -439,18 +439,18 @@ export function Home() {
                         { name: "Email", bg: "bg-slate-100", icon: DuotoneSend }
                       ].map(social => (
                         <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
-                          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
+                          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-[var(--app-text-slate)] shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-[var(--app-text-slate)]":""}`}>
                             {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                           </div>
-                          <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none">{social.name}</span>
+                          <span className="text-[9px] font-black text-[var(--app-text-slate)] uppercase tracking-widest leading-none">{social.name}</span>
                         </div>
                       ))}
                     </div>
                     <div className="space-y-3">
-                      <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Universal Link</p>
-                      <div className="flex h-14 bg-slate-50 rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_#0f172a] p-1.5 focus-within:translate-x-0.5 focus-within:translate-y-0.5 focus-within:shadow-none transition-all">
+                      <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Universal Link</p>
+                      <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border-2 border-[var(--app-text-slate)] shadow-[4px_4px_0px_#0f172a] p-1.5 focus-within:translate-x-0.5 focus-within:translate-y-0.5 focus-within:shadow-none transition-all">
                         <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
-                        <button className="px-6 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
+                        <button className="px-6 bg-[var(--app-text-slate)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                       </div>
                     </div>
                   </div>
@@ -459,14 +459,14 @@ export function Home() {
                 {activeSheet === "Register Agent" && (
                   <div className="space-y-5">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Full Name</label>
-                      <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                      <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Full Name</label>
+                      <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-[var(--app-bg)] border-2 border-[var(--app-text-slate)] rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Phone Number</label>
-                      <input type="tel" placeholder="+260..." className="w-full h-14 bg-white border-2 border-slate-900 rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                      <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Phone Number</label>
+                      <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border-2 border-[var(--app-text-slate)] rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
                     </div>
-                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-orange-500 text-white border-2 border-slate-900 rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
+                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-orange-500 text-white border-2 border-[var(--app-text-slate)] rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
                       Secure Application
                     </button>
                   </div>
