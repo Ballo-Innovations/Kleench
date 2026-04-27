@@ -68,7 +68,7 @@ export function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-5 py-4 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
+                className="w-full px-5 py-4 rounded-2xl bg-[var(--app-bg)] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
                 placeholder="your@email.com"
               />
             </div>
@@ -83,7 +83,7 @@ export function Login() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-5 py-4 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
+                  className="w-full px-5 py-4 rounded-2xl bg-[var(--app-bg)] shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100 font-medium text-[#191c1e] focus:outline-none focus:ring-2 focus:ring-[#ff8c00]/30 focus:border-[#ff8c00] transition-all"
                   placeholder="Enter your password"
                 />
                 <button
@@ -130,7 +130,7 @@ export function Login() {
           </form>
 
           {/* Sign Up Link */}
-          <div className="mt-8 text-center bg-white/50 backdrop-blur-sm py-4 rounded-2xl border border-gray-100">
+          <div className="mt-8 text-center bg-[var(--app-bg)]/50 backdrop-blur-sm py-4 rounded-2xl border border-gray-100">
             <p className="text-[13px] font-medium text-gray-500">
               Don't have an account?{" "}
               <Link to="/signup" className="font-bold text-[#ff8c00] ml-1">

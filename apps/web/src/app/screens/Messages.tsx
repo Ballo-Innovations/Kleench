@@ -78,15 +78,15 @@ export default function Messages() {
             <div className="px-5 -mt-4 relative z-10 space-y-10">
 
               {/* ── Theme-Synced Tabs (Swiss Style) ── */}
-              <div className="flex border-4 border-[#003366] bg-[#003366] shadow-[4px_4px_0px_#FF8C00]">
+              <div className="flex border-4 border-[var(--app-text)] bg-[var(--app-text)] shadow-[4px_4px_0px_var(--app-orange)]">
                 {(["all", "social", "market"] as MsgTab[]).map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`flex-1 py-3 text-[9px] font-black uppercase tracking-[0.2em] transition-all ${
                       activeTab === tab 
-                        ? "bg-[#FF8C00] text-white" 
-                        : "bg-white text-[#003366]"
+                        ? "bg-[var(--app-orange)] text-white" 
+                        : "bg-[var(--app-bg)] text-[var(--app-text)]"
                     }`}
                   >
                     {tab === "all" ? "All" : tab === "social" ? "Circle" : "Market"}
@@ -104,32 +104,32 @@ export default function Messages() {
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.04 }}
                     onClick={() => setSelectedConv(conv)}
-                    className="flex gap-4 p-5 bg-white border-2 border-[#003366] shadow-[6px_6px_0px_#003366] group active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer relative overflow-hidden"
+                    className="flex gap-4 p-5 bg-[var(--app-bg)] border-2 border-[var(--app-text)] shadow-[6px_6px_0px_var(--app-text)] group active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer relative overflow-hidden"
                   >
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-[#FF8C00] opacity-0 transition-opacity" />
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-[var(--app-orange)] opacity-0 transition-opacity" />
                     
                     <div className="relative shrink-0">
-                      <div className="w-14 h-14 border-2 border-[#003366] overflow-hidden">
+                      <div className="w-14 h-14 border-2 border-[var(--app-text)] overflow-hidden">
                         <img src={conv.avatar} alt="" className="w-full h-full object-cover" />
                       </div>
                       {conv.online && (
-                        <div className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#00C853] border-2 border-[#003366] shadow-sm z-10" />
+                        <div className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#00C853] border-2 border-[var(--app-text)] shadow-sm z-10" />
                       )}
                     </div>
 
                     <div className="flex-1 min-w-0 flex flex-col justify-center">
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-black text-[#003366] text-xs uppercase tracking-tight transition-colors">{conv.name}</h3>
-                        <span className="text-[9px] text-[#003366]/30 font-black uppercase tracking-widest">{conv.time}</span>
+                        <h3 className="font-black text-[var(--app-text)] text-xs uppercase tracking-tight transition-colors">{conv.name}</h3>
+                        <span className="text-[9px] text-[var(--app-text)]/30 font-black uppercase tracking-widest">{conv.time}</span>
                       </div>
-                      <p className={`text-[11px] uppercase tracking-tighter truncate ${conv.unread > 0 ? "text-[#003366] font-black" : "text-[#003366]/50 font-bold"}`}>
+                      <p className={`text-[11px] uppercase tracking-tighter truncate ${conv.unread > 0 ? "text-[var(--app-text)] font-black" : "text-[var(--app-text)]/50 font-bold"}`}>
                         {conv.lastMsg}
                       </p>
                     </div>
 
                     {conv.unread > 0 && (
                       <div className="flex items-center">
-                         <div className="w-6 h-6 border-2 border-[#003366] bg-[#FF8C00] text-white text-[9px] font-black flex items-center justify-center shrink-0 shadow-[2px_2px_0px_#003366]">
+                         <div className="w-6 h-6 border-2 border-[var(--app-text)] bg-[var(--app-orange)] text-white text-[9px] font-black flex items-center justify-center shrink-0 shadow-[2px_2px_0px_var(--app-text)]">
                            {conv.unread}
                          </div>
                       </div>
@@ -148,7 +148,7 @@ export default function Messages() {
             className="flex flex-col h-screen fixed inset-y-0 w-full max-w-md left-1/2 -translate-x-1/2 z-[60] bg-[#fcfcfc] shadow-2xl"
           >
             {/* ── Chat Header ── */}
-            <div className="px-5 pt-6 pb-4 bg-[#FF8C00] text-white rounded-b-[32px] shadow-lg relative overflow-hidden">
+            <div className="px-5 pt-6 pb-4 bg-[var(--app-orange)] text-white rounded-b-[32px] shadow-lg relative overflow-hidden">
                {/* grid texture */}
                <div className="absolute inset-0 opacity-[0.1]">
                  <svg width="100%" height="100%">
@@ -179,8 +179,8 @@ export default function Messages() {
                 <div key={msg.id} className={`flex ${msg.sender === "me" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[80%] px-4 py-3 rounded-2xl text-[13px] ${
                     msg.sender === "me" 
-                      ? "bg-[#FF8C00] text-white rounded-tr-none shadow-md" 
-                      : "bg-white text-[#003366] rounded-tl-none shadow-sm border border-gray-100"
+                      ? "bg-[var(--app-orange)] text-white rounded-tr-none shadow-md" 
+                      : "bg-[var(--app-bg)] text-[var(--app-text)] rounded-tl-none shadow-sm border border-gray-100"
                   }`}>
                     <p className="font-medium">{msg.text}</p>
                     <p className={`text-[9px] mt-1 opacity-60 text-right ${msg.sender === "me" ? "text-white" : "text-gray-400"}`}>
@@ -192,7 +192,7 @@ export default function Messages() {
             </div>
 
             {/* ── Chat Input ── */}
-            <div className="p-5 pb-14 bg-white/80 backdrop-blur-xl border-t border-gray-100 relative z-[70]">
+            <div className="p-5 pb-14 bg-[var(--app-bg)]/80 backdrop-blur-xl border-t border-gray-100 relative z-[70]">
                <div className="flex items-center gap-2 bg-gray-100/80 rounded-2xl px-4 py-2 border border-black/[0.02]">
                   <input 
                     type="text" 
@@ -200,12 +200,12 @@ export default function Messages() {
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                    className="flex-1 bg-transparent py-2 outline-none text-[#003366] text-sm font-medium" 
+                    className="flex-1 bg-transparent py-2 outline-none text-[var(--app-text)] text-sm font-medium" 
                   />
                   <motion.button 
                     whileTap={{ scale: 0.9 }}
                     onClick={handleSendMessage}
-                    className="w-10 h-10 rounded-xl bg-[#FF8C00] text-white flex items-center justify-center shadow-lg shadow-[#FF8C00]/20"
+                    className="w-10 h-10 rounded-xl bg-[var(--app-orange)] text-white flex items-center justify-center shadow-lg shadow-[var(--app-orange)]/20"
                   >
                     <Send size={18} />
                   </motion.button>
@@ -219,7 +219,7 @@ export default function Messages() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="fixed bottom-28 right-6 w-14 h-14 rounded-2xl bg-[#FF8C00] text-white flex items-center justify-center shadow-[0_10px_25px_rgba(255,140,0,0.3)] z-50"
+          className="fixed bottom-28 right-6 w-14 h-14 rounded-2xl bg-[var(--app-orange)] text-white flex items-center justify-center shadow-[0_10px_25px_rgba(255,140,0,0.3)] z-50"
         >
           <Plus size={28} />
         </motion.button>

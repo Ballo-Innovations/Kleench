@@ -20,18 +20,18 @@ interface Notification {
 }
 
 const NOTIFS: Notification[] = [
-  { id: 1, type: "earning",  title: "K5.00 Earned!",           body: "Your referral Chanda M. completed their first purchase.",   time: "2m ago",    read: false, icon: "coin",    accentColor: "#FF8C00", bgColor: "#FFF7ED" },
+  { id: 1, type: "earning",  title: "K5.00 Earned!",           body: "Your referral Chanda M. completed their first purchase.",   time: "2m ago",    read: false, icon: "coin",    accentColor: "var(--app-orange)", bgColor: "#FFF7ED" },
   { id: 2, type: "security", title: "Login from new device",   body: "A new sign-in was detected from Lusaka, Zambia.",          time: "14m ago",   read: false, icon: "shield",  accentColor: "#00695C", bgColor: "#F0FDF9" },
   { id: 3, type: "social",   title: "Blessing liked your ad",  body: "Your Solar Lights promotion got 3 new reactions.",         time: "1h ago",    read: false, icon: "users",   accentColor: "#7C3AED", bgColor: "#FAF5FF" },
-  { id: 4, type: "offer",    title: "Flash Offer: Cetane",     body: "Earn K1.00 per feedback. Offer expires in 2 hours.",       time: "2h ago",    read: true,  icon: "gift",    accentColor: "#FF8C00", bgColor: "#FFF7ED" },
-  { id: 5, type: "earning",  title: "K0.20 Reward Added",      body: "You watched an advert from AgriBoost Zambia.",             time: "5h ago",    read: true,  icon: "coin",    accentColor: "#FF8C00", bgColor: "#FFF7ED" },
-  { id: 6, type: "security", title: "PIN Changed",             body: "Your security PIN was updated at 10:41 AM.",               time: "Yesterday", read: true,  icon: "lock",    accentColor: "#0D1B3E", bgColor: "#F0F4FF" },
+  { id: 4, type: "offer",    title: "Flash Offer: Cetane",     body: "Earn K1.00 per feedback. Offer expires in 2 hours.",       time: "2h ago",    read: true,  icon: "gift",    accentColor: "var(--app-orange)", bgColor: "#FFF7ED" },
+  { id: 5, type: "earning",  title: "K0.20 Reward Added",      body: "You watched an advert from AgriBoost Zambia.",             time: "5h ago",    read: true,  icon: "coin",    accentColor: "var(--app-orange)", bgColor: "#FFF7ED" },
+  { id: 6, type: "security", title: "PIN Changed",             body: "Your security PIN was updated at 10:41 AM.",               time: "Yesterday", read: true,  icon: "lock",    accentColor: "var(--app-text-alt)", bgColor: "#F0F4FF" },
   { id: 7, type: "social",   title: "New follower: Moses K.",  body: "Moses K. started following your seller profile.",          time: "Yesterday", read: true,  icon: "share",   accentColor: "#00695C", bgColor: "#F0FDF9" },
 ];
 
 const TABS = [
-  { id: "all" as NotifType,      label: "All",      dot: "#FF8C00" },
-  { id: "earnings" as NotifType, label: "Earnings", dot: "#FF8C00" },
+  { id: "all" as NotifType,      label: "All",      dot: "var(--app-orange)" },
+  { id: "earnings" as NotifType, label: "Earnings", dot: "var(--app-orange)" },
   { id: "security" as NotifType, label: "Security", dot: "#00695C" },
   { id: "social" as NotifType,   label: "Social",   dot: "#7C3AED" },
 ];
@@ -64,15 +64,15 @@ export function Notifications() {
         <svg width="100%" height="100%" style={{ position: "absolute", top: 0, left: 0 }}>
           <defs>
             <pattern id="xhatch-notif" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#xhatch-notif)"/>
         </svg>
         {/* Accent circle top-right */}
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(circle, #FF8C00, transparent)" }}/>
+          style={{ background: "radial-gradient(circle, var(--app-orange), transparent)" }}/>
       </div>
 
       <PageHeader
@@ -85,7 +85,7 @@ export function Notifications() {
         <div className="relative z-10 flex justify-end mb-8">
           {unreadCount > 0 && (
             <motion.button whileTap={{ scale: 0.94 }} onClick={markAllRead}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold bg-white text-[#FF8C00] shadow-lg shadow-black/10 text-[11px] mb-1">
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold bg-[var(--app-bg)] text-[var(--app-orange)] shadow-lg shadow-black/10 text-[11px] mb-1">
               <Check size={14} strokeWidth={3} /> Mark all read
             </motion.button>
           )}
@@ -105,8 +105,8 @@ export function Notifications() {
             onClick={() => setActiveTab(tab.id)}
             className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap border transition-all"
             style={activeTab === tab.id
-              ? { background: "#0D1B3E", color: "#fff", borderColor: "#0D1B3E" }
-              : { background: "white", color: "#0D1B3E", borderColor: "rgba(13,27,62,0.1)" }}>
+              ? { background: "var(--app-text-alt)", color: "#fff", borderColor: "var(--app-text-alt)" }
+              : { background: "white", color: "var(--app-text-alt)", borderColor: "rgba(13,27,62,0.1)" }}>
             {activeTab === tab.id && <span className="w-1.5 h-1.5 rounded-full" style={{ background: tab.dot }}/>}
             {tab.label}
           </motion.button>
@@ -120,7 +120,7 @@ export function Notifications() {
             <motion.div key="empty" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               className="text-center py-16">
               <div className="flex justify-center mb-4"><LottieIcon icon="empty" size={80} /></div>
-              <p className="font-bold text-[#0D1B3E] mb-1">All caught up</p>
+              <p className="font-bold text-[var(--app-text-alt)] mb-1">All caught up</p>
               <p className="text-[12px]" style={{ color: "rgba(13,27,62,0.4)" }}>Nothing here in this category</p>
             </motion.div>
           ) : (
@@ -156,7 +156,7 @@ export function Notifications() {
                   </div>
                   <div className="flex-1 min-w-0 pt-0.5">
                     <div className="flex items-start justify-between gap-2 mb-1.5">
-                      <p className="font-bold text-[13.5px] leading-snug" style={{ fontFamily: "Agrandir, sans-serif", color: "#0D1B3E" }}>
+                      <p className="font-bold text-[13.5px] leading-snug" style={{ fontFamily: "Agrandir, sans-serif", color: "var(--app-text-alt)" }}>
                         {notif.title}
                       </p>
                       <span className="text-[9px] font-semibold whitespace-nowrap flex-shrink-0 mt-0.5" style={{ color: "rgba(13,27,62,0.35)" }}>

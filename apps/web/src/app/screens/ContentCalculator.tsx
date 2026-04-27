@@ -88,7 +88,7 @@ const KineticPillToggle = <T extends string>({
   value: T, 
   onChange: (v: T) => void 
 }) => (
-  <div className="flex bg-white border border-[#093463]/20 rounded-[18px] p-1 gap-1 shadow-[0_4px_10px_rgba(9,52,99,0.1)]">
+  <div className="flex bg-[var(--app-bg)] border border-[#093463]/20 rounded-[18px] p-1 gap-1 shadow-[0_4px_10px_rgba(9,52,99,0.1)]">
     {options.map((opt) => (
       <button
         key={opt}
@@ -147,7 +147,7 @@ const KineticDropdownPill = ({ label, value, onChange, placeholder, onClick }: {
 }) => (
   <div 
     onClick={onClick}
-    className="group w-full relative h-14 bg-white border border-[#093463]/20 rounded-[20px] px-5 flex items-center shadow-md shadow-[#093463]/12 active:scale-[0.99] transition-all overflow-hidden"
+    className="group w-full relative h-14 bg-[var(--app-bg)] border border-[#093463]/20 rounded-[20px] px-5 flex items-center shadow-md shadow-[#093463]/12 active:scale-[0.99] transition-all overflow-hidden"
   >
     <div className="flex-1 flex flex-col justify-center">
       <span className="text-[8px] font-black text-[#6E7C91] uppercase tracking-widest leading-none mb-0.5">{label}</span>
@@ -288,7 +288,7 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
         {/* Format */}
         <div className="space-y-3">
           <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Format</label>
-          <div className="flex gap-3 bg-white border border-[#093463]/20 rounded-[22px] p-1.5 shadow-[0_4px_12px_rgba(9,52,99,0.05)]">
+          <div className="flex gap-3 bg-[var(--app-bg)] border border-[#093463]/20 rounded-[22px] p-1.5 shadow-[0_4px_12px_rgba(9,52,99,0.05)]">
             {(["Video", "Picture", "Audio"] as FormatType[]).map((f) => {
               const isActive = state.format === f;
               return (
@@ -325,7 +325,7 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
         {/* Duration */}
         <div className="space-y-3">
           <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Duration (Days)</label>
-          <div className="flex items-center bg-white border border-[#093463]/20 rounded-[22px] overflow-hidden shadow-[0_4px_12px_rgba(9,52,99,0.08)]">
+          <div className="flex items-center bg-[var(--app-bg)] border border-[#093463]/20 rounded-[22px] overflow-hidden shadow-[0_4px_12px_rgba(9,52,99,0.08)]">
             <button 
               onClick={() => handlers.setDuration(Math.max(1, state.duration - 1))}
               className="w-16 h-14 bg-[#DEE5EF]/30 text-[#093463] flex items-center justify-center active:bg-[#DEE5EF] transition-colors"
@@ -418,8 +418,8 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
         />
 
         <div className="flex gap-4">
-          <button className="flex-1 h-14 bg-white border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Education</button>
-          <button className="flex-1 h-14 bg-white border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Occupation</button>
+          <button className="flex-1 h-14 bg-[var(--app-bg)] border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Education</button>
+          <button className="flex-1 h-14 bg-[var(--app-bg)] border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Occupation</button>
         </div>
 
         <div className="space-y-6">
@@ -434,7 +434,7 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
                       key={g} 
                       onClick={() => update("gender", g)}
                       className={`px-6 py-3 rounded-[12px] border-[2px] text-[11px] font-black uppercase tracking-widest transition-all ${
-                        state.gender === g ? "bg-[#C7D2FE] border-[#093463] text-[#093463] shadow-md" : "bg-white border-[#6E7C91]/20 text-[#6E7C91]"
+                        state.gender === g ? "bg-[#C7D2FE] border-[#093463] text-[#093463] shadow-md" : "bg-[var(--app-bg)] border-[#6E7C91]/20 text-[#6E7C91]"
                       }`}
                     >
                       {g}
@@ -446,11 +446,11 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
              <div className="flex items-center justify-between gap-4">
                 <span className="text-[13px] font-black text-[#6E7C91] opacity-70 whitespace-nowrap">Age Group</span>
                 <div className="flex-1 flex gap-2">
-                   <div className="flex-1 bg-white border-[2px] border-[#093463] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
+                   <div className="flex-1 bg-[var(--app-bg)] border-[2px] border-[#093463] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
                       <span className="text-[9px] font-bold text-[#6E7C91] opacity-60">Min age</span>
                       <span className="text-[14px] font-black">{state.minAge}</span>
                    </div>
-                   <div className="flex-1 bg-white border-[2px] border-[#093463] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
+                   <div className="flex-1 bg-[var(--app-bg)] border-[2px] border-[#093463] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
                       <span className="text-[9px] font-bold text-[#6E7C91] opacity-60">Max age</span>
                       <span className="text-[14px] font-black">{state.maxAge}</span>
                    </div>
@@ -490,7 +490,7 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
                       key={m} 
                       onClick={() => update("marital", m)}
                       className={`px-10 py-3 rounded-[12px] border-[2px] text-[11px] font-black uppercase tracking-widest transition-all ${
-                        state.marital === m ? "bg-[#C7D2FE] border-[#093463] text-[#093463] shadow-md" : "bg-white border-[#6E7C91]/20 text-[#6E7C91]"
+                        state.marital === m ? "bg-[#C7D2FE] border-[#093463] text-[#093463] shadow-md" : "bg-[var(--app-bg)] border-[#6E7C91]/20 text-[#6E7C91]"
                       }`}
                     >
                       {m}
@@ -549,7 +549,7 @@ function QuoteScreen({ next }: { next: () => void }) {
         
         <div className="space-y-6">
           <div className="flex flex-col items-center gap-4">
-            <div className="w-20 h-20 bg-white rounded-3xl p-4 shadow-xl border-2 border-slate-900 overflow-hidden flex items-center justify-center">
+            <div className="w-20 h-20 bg-[var(--app-bg)] rounded-3xl p-4 shadow-xl border-2 border-[var(--app-text-slate)] overflow-hidden flex items-center justify-center">
               <img src={kleenchLogo} alt="KLEENCH" className="w-full h-full object-contain" />
             </div>
             <div className="text-center">
@@ -574,20 +574,20 @@ function QuoteScreen({ next }: { next: () => void }) {
           </div>
 
           <div className="space-y-1">
-             <div className="flex text-[9px] font-black text-[#6E7C91] uppercase tracking-widest px-2 py-1 bg-white/40 rounded-t-lg">
+             <div className="flex text-[9px] font-black text-[#6E7C91] uppercase tracking-widest px-2 py-1 bg-[var(--app-bg)]/40 rounded-t-lg">
                 <span className="flex-1">Description</span>
                 <span className="w-20 text-right">Total</span>
              </div>
              <div className="space-y-0.5">
-               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-white/40 transition-colors">
+               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
                   <span className="flex-1">Advert</span>
                   <span className="w-20 text-right">K20,000.00</span>
                </div>
-               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-white/40 transition-colors">
+               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
                   <span className="flex-1">Tip to Viewers</span>
                   <span className="w-20 text-right">K1,000.00</span>
                </div>
-               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-white/40 transition-colors">
+               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
                   <span className="flex-1">Commission (15%)</span>
                   <span className="w-20 text-right">K150.00</span>
                </div>
@@ -633,7 +633,7 @@ function ReceiptScreen({ onDone }: { onDone: () => void }) {
         
         <div className="space-y-8">
           <div className="flex flex-col items-center gap-4">
-             <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-inner">
+             <div className="w-14 h-14 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-inner">
                 <DuotoneCheck size={28} primary="#00D97E" />
              </div>
              <div className="text-center">

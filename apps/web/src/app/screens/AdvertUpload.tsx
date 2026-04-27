@@ -61,7 +61,7 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
 
 function SectionCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-slate-100 shadow-sm p-4 space-y-4">
+    <div className="bg-[var(--app-bg)]/80 backdrop-blur-sm rounded-2xl border border-slate-100 shadow-sm p-4 space-y-4">
       {children}
     </div>
   );
@@ -129,11 +129,11 @@ export function AdvertUpload() {
               className={`relative flex-1 py-3 rounded-full font-black text-[11px] uppercase tracking-widest transition-all active:scale-95 ${
                 advertType === t
                   ? "bg-orange-500 text-white shadow-md shadow-orange-500/30"
-                  : "bg-white text-slate-500 border border-slate-200"
+                  : "bg-[var(--app-bg)] text-slate-500 border border-slate-200"
               }`}
             >
               <span className={`absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-black shadow-sm ${
-                advertType === t ? "bg-white text-orange-500 border border-orange-200" : "bg-orange-500 text-white"
+                advertType === t ? "bg-[var(--app-bg)] text-orange-500 border border-orange-200" : "bg-orange-500 text-white"
               }`}>
                 {t === "target" ? "1" : "2"}
               </span>
@@ -148,7 +148,7 @@ export function AdvertUpload() {
             {[1, 2, 3].map((s) => (
               <div key={s} className="flex items-center gap-2">
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
-                  step === s ? "bg-[#003366] text-white" : step > s ? "bg-orange-500 text-white" : "bg-slate-200 text-slate-400"
+                  step === s ? "bg-[var(--app-text)] text-white" : step > s ? "bg-orange-500 text-white" : "bg-slate-200 text-slate-400"
                 }`}>
                   {step > s ? <Check size={10} /> : s}
                 </div>
@@ -184,13 +184,13 @@ export function AdvertUpload() {
                           key={q.id}
                           onClick={() => setQuality(q.id)}
                           className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                            quality === q.id ? "border-orange-500 bg-orange-50" : "border-slate-200 bg-slate-50"
+                            quality === q.id ? "border-orange-500 bg-orange-50" : "border-slate-200 bg-[var(--app-bg-muted)]"
                           }`}
                         >
                           <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                             quality === q.id ? "border-orange-500 bg-orange-500" : "border-slate-300"
                           }`}>
-                            {quality === q.id && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            {quality === q.id && <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-bg)]" />}
                           </div>
                           <div className="text-left">
                             <p className="text-[11px] font-black text-slate-800">{q.label}</p>
@@ -237,13 +237,13 @@ export function AdvertUpload() {
                       value={field.value}
                       onChange={(e) => field.set(e.target.value)}
                       placeholder={field.placeholder}
-                      className="w-full h-11 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-semibold text-slate-800 outline-none focus:border-orange-400 transition-all"
+                      className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 text-sm font-semibold text-slate-800 outline-none focus:border-orange-400 transition-all"
                     />
                   </div>
                 ))}
               </SectionCard>
 
-              <button onClick={handleNext} className="w-full h-14 bg-[#003366] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all">
+              <button onClick={handleNext} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Next →
               </button>
             </motion.div>
@@ -262,12 +262,12 @@ export function AdvertUpload() {
                   <div className="flex items-center gap-3">
                     <div className="flex-1">
                       <label className="text-[10px] text-slate-400 font-bold block mb-1">Min Age</label>
-                      <input type="number" value={minAge} onChange={(e) => setMinAge(+e.target.value)} className="w-full h-11 bg-slate-50 border border-slate-200 rounded-xl px-3 text-sm font-black text-center outline-none focus:border-orange-400" />
+                      <input type="number" value={minAge} onChange={(e) => setMinAge(+e.target.value)} className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-3 text-sm font-black text-center outline-none focus:border-orange-400" />
                     </div>
                     <span className="text-slate-300 font-black mt-4">—</span>
                     <div className="flex-1">
                       <label className="text-[10px] text-slate-400 font-bold block mb-1">Max Age</label>
-                      <input type="number" value={maxAge} onChange={(e) => setMaxAge(+e.target.value)} className="w-full h-11 bg-slate-50 border border-slate-200 rounded-xl px-3 text-sm font-black text-center outline-none focus:border-orange-400" />
+                      <input type="number" value={maxAge} onChange={(e) => setMaxAge(+e.target.value)} className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-3 text-sm font-black text-center outline-none focus:border-orange-400" />
                     </div>
                   </div>
                 </div>
@@ -293,10 +293,10 @@ export function AdvertUpload() {
                   <div className="space-y-2">
                     {EARNING_RANGES.map((r) => (
                       <button key={r} onClick={() => setEarning(r)} className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                        earning === r ? "border-orange-500 bg-orange-50" : "border-slate-200 bg-slate-50"
+                        earning === r ? "border-orange-500 bg-orange-50" : "border-slate-200 bg-[var(--app-bg-muted)]"
                       }`}>
                         <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${earning === r ? "border-orange-500 bg-orange-500" : "border-slate-300"}`}>
-                          {earning === r && <div className="w-1.5 h-1.5 rounded-full bg-white m-auto mt-[2px]" />}
+                          {earning === r && <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-bg)] m-auto mt-[2px]" />}
                         </div>
                         <span className="text-[11px] font-black text-slate-700">{r}</span>
                       </button>
@@ -305,7 +305,7 @@ export function AdvertUpload() {
                 </div>
               </SectionCard>
 
-              <button onClick={handleNext} className="w-full h-14 bg-[#003366] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all">
+              <button onClick={handleNext} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Next →
               </button>
             </motion.div>
@@ -316,11 +316,11 @@ export function AdvertUpload() {
               <SectionCard>
                 <div>
                   <FieldLabel>Title</FieldLabel>
-                  <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter advert title" className="w-full h-11 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-semibold outline-none focus:border-orange-400 transition-all" />
+                  <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter advert title" className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 text-sm font-semibold outline-none focus:border-orange-400 transition-all" />
                 </div>
                 <div>
                   <FieldLabel>Description</FieldLabel>
-                  <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe your advert..." rows={3} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold outline-none focus:border-orange-400 transition-all resize-none" />
+                  <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe your advert..." rows={3} className="w-full bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold outline-none focus:border-orange-400 transition-all resize-none" />
                 </div>
                 <div>
                   <FieldLabel>Questionnaire — Optional</FieldLabel>
@@ -329,7 +329,7 @@ export function AdvertUpload() {
                       const updated = [...questions];
                       updated[i] = e.target.value;
                       setQuestions(updated);
-                    }} placeholder={`Question ${i + 1}`} className="w-full h-11 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-semibold outline-none focus:border-orange-400 transition-all mb-2" />
+                    }} placeholder={`Question ${i + 1}`} className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 text-sm font-semibold outline-none focus:border-orange-400 transition-all mb-2" />
                   ))}
                 </div>
                 <div>
@@ -337,10 +337,10 @@ export function AdvertUpload() {
                   <div className="space-y-2">
                     {(["Free", "Pay Per View K15", "Subscribers Only"] as const).map((opt) => (
                       <button key={opt} onClick={() => setPricing(opt)} className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                        pricing === opt ? "border-[#003366] bg-slate-50" : "border-slate-200"
+                        pricing === opt ? "border-[var(--app-text)] bg-[var(--app-bg-muted)]" : "border-slate-200"
                       }`}>
-                        <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${pricing === opt ? "border-[#003366] bg-[#003366]" : "border-slate-300"}`}>
-                          {pricing === opt && <div className="w-1.5 h-1.5 rounded-full bg-white m-auto mt-[2px]" />}
+                        <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${pricing === opt ? "border-[var(--app-text)] bg-[var(--app-text)]" : "border-slate-300"}`}>
+                          {pricing === opt && <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-bg)] m-auto mt-[2px]" />}
                         </div>
                         <span className="text-[11px] font-black text-slate-700">{opt}</span>
                       </button>
@@ -349,7 +349,7 @@ export function AdvertUpload() {
                 </div>
               </SectionCard>
 
-              <button onClick={handlePost} className="w-full h-14 bg-[#003366] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all">
+              <button onClick={handlePost} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Post Video
               </button>
             </motion.div>
@@ -380,18 +380,18 @@ export function AdvertUpload() {
                 </div>
 
                 <div className="flex gap-3">
-                  <div className="flex-1 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                  <div className="flex-1 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl p-3">
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">No. Ads</p>
                     <p className="text-lg font-black text-slate-800">{genNoAds.toLocaleString()}</p>
                   </div>
-                  <div className="flex-1 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                  <div className="flex-1 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl p-3">
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Budget Ads</p>
                     <p className="text-lg font-black text-slate-800">K{genBudget.toLocaleString()}</p>
                   </div>
                 </div>
 
                 <div className="flex gap-3">
-                  <button className="flex-1 h-11 bg-[#003366] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">
+                  <button className="flex-1 h-11 bg-[var(--app-text)] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">
                     Calculate
                   </button>
                   <button className="flex-1 h-11 bg-slate-100 text-slate-600 rounded-xl font-black text-[11px] uppercase tracking-wider border border-slate-200 active:scale-95 transition-all">
@@ -400,7 +400,7 @@ export function AdvertUpload() {
                 </div>
               </SectionCard>
 
-              <button onClick={handlePost} className="w-full h-14 bg-[#003366] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all">
+              <button onClick={handlePost} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
                 Next →
               </button>
             </motion.div>

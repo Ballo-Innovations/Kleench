@@ -14,7 +14,7 @@ export function Send() {
   const total = amount + charge;
 
   return (
-    <div className="min-h-screen bg-transparent text-[#003366] font-sans pb-32">
+    <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
       <PageHeader showBack title="Send To" />
 
       <div className="px-5 pt-4 space-y-8">
@@ -24,9 +24,9 @@ export function Send() {
 
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
-          <div className="absolute inset-0 bg-[#003366]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
-          <div className="relative bg-[#003366] rounded-2xl p-6 shadow-lg shadow-[#003366]/25">
-            <p className="text-[10px] font-black text-[#FF8C00] uppercase tracking-[0.2em] mb-1">BALANCE</p>
+          <div className="absolute inset-0 bg-[var(--app-text)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+          <div className="relative bg-[var(--app-text)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
+            <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>
         </div>
@@ -35,12 +35,12 @@ export function Send() {
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white rounded-3xl p-6 border-2 border-slate-100 shadow-[0_20px_50px_rgba(0,51,102,0.06)] space-y-6"
+          className="bg-[var(--app-bg)] rounded-3xl p-6 border-2 border-slate-100 shadow-[0_20px_50px_rgba(0,51,102,0.06)] space-y-6"
         >
           {/* Destination Input */}
           <div className="space-y-3">
-            <div className="flex items-center gap-3 bg-slate-50 border-2 border-slate-100 rounded-full py-3.5 px-5 shadow-inner group transition-all focus-within:border-[#003366]/20">
-              <div className="w-8 h-8 rounded-full bg-[#003366] flex items-center justify-center text-white shrink-0">
+            <div className="flex items-center gap-3 bg-[var(--app-bg-muted)] border-2 border-slate-100 rounded-full py-3.5 px-5 shadow-inner group transition-all focus-within:border-[var(--app-text)]/20">
+              <div className="w-8 h-8 rounded-full bg-[var(--app-text)] flex items-center justify-center text-white shrink-0">
                 <ArrowUpRight size={18} />
               </div>
               <input 
@@ -55,8 +55,8 @@ export function Send() {
             {/* Verification Section */}
             <div className="flex items-center justify-between px-2">
               <div className="space-y-0.5">
-                <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[#003366]">{verifiedName}</span></p>
-                <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[#003366]">{recipientInput || "---"}</span></p>
+                <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[var(--app-text)]">{verifiedName}</span></p>
+                <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[var(--app-text)]">{recipientInput || "---"}</span></p>
               </div>
               <button 
                 onClick={() => {
@@ -70,7 +70,7 @@ export function Send() {
                     toast.success("Recipient Verified!", { id: "verify-toast" });
                   }, 1000);
                 }}
-                className="bg-[#003366] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
+                className="bg-[var(--app-text)] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
               >
                 Verify
               </button>
@@ -97,14 +97,14 @@ export function Send() {
               <div className="flex items-center justify-between">
                 <button 
                   onClick={() => setAmount(Math.max(0, amount - 50))}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#003366] border-2 border-slate-100 active:scale-90"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[var(--app-text)] border-2 border-slate-100 active:scale-90"
                 >
                   <Minus size={14} strokeWidth={3} />
                 </button>
-                <span className="text-sm font-black text-[#003366] tracking-tight">K{amount.toFixed(2)}</span>
+                <span className="text-sm font-black text-[var(--app-text)] tracking-tight">K{amount.toFixed(2)}</span>
                 <button 
                   onClick={() => setAmount(amount + 50)}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#003366] border-2 border-slate-100 active:scale-90"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[var(--app-text)] border-2 border-slate-100 active:scale-90"
                 >
                   <Plus size={14} strokeWidth={3} />
                 </button>
@@ -112,12 +112,12 @@ export function Send() {
 
               {/* Charge Row */}
               <div className="text-right pr-1">
-                <span className="text-sm font-black text-[#003366] tracking-tight">K{charge.toFixed(2)}</span>
+                <span className="text-sm font-black text-[var(--app-text)] tracking-tight">K{charge.toFixed(2)}</span>
               </div>
 
               {/* Total Row */}
               <div className="text-right pr-1">
-                <span className="text-sm font-black text-[#003366] tracking-tight">K{total.toFixed(2)}</span>
+                <span className="text-sm font-black text-[var(--app-text)] tracking-tight">K{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -135,7 +135,7 @@ export function Send() {
                   toast.success(`Sent ZMW ${amount} to ${verifiedName} successfully!`);
                   setTimeout(() => navigate(-1), 1500);
                 }}
-                className="w-full h-14 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)] transition-all"
+                className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)] transition-all"
             >
                 Send
             </motion.button>

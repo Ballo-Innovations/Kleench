@@ -31,7 +31,7 @@ export function Videos() {
           >
             <div className="absolute inset-0 noise" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <motion.button whileTap={{ scale: 0.9 }} className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl">
+              <motion.button whileTap={{ scale: 0.9 }} className="w-14 h-14 rounded-2xl bg-[var(--app-bg)]/20 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl">
                 <Play size={24} fill="white" className="text-white ml-0.5" />
               </motion.button>
             </div>

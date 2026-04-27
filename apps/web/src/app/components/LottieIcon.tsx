@@ -65,7 +65,7 @@ export function LottieIcon({
       className={`flex-shrink-0 rounded-xl flex items-center justify-center ${className}`}
       style={{ width: size, height: size, background: "rgba(255,140,0,0.1)" }}
     >
-      <span style={{ fontSize: size * 0.4, color: "#FF8C00" }}>◈</span>
+      <span style={{ fontSize: size * 0.4, color: "var(--app-orange)" }}>◈</span>
     </div>
   );
 }

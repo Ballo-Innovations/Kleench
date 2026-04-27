@@ -41,7 +41,7 @@ export function PayBills() {
         </div>
 
         {/* Bill Selection Card */}
-        <div className="bg-white rounded-3xl p-6 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] space-y-6">
+        <div className="bg-[var(--app-bg)] rounded-3xl p-6 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] space-y-6">
           <h3 className="text-sm font-black uppercase tracking-tight">Choose Bill</h3>
           
           <div className="grid grid-cols-3 gap-4">
@@ -57,12 +57,12 @@ export function PayBills() {
                 className="aspect-square rounded-2xl bg-[#5D56D8]/10 shadow-[2px_2px_0px_rgba(93,86,216,0.2)] border border-[#5D56D8]/10 flex flex-col items-center justify-center p-2 gap-2"
               >
                 {biller.logo ? (
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-white flex items-center justify-center border border-slate-100 shadow-sm">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-[var(--app-bg)] flex items-center justify-center border border-slate-100 shadow-sm">
                     <img src={biller.logo} alt={biller.name} className="w-full h-full object-contain p-1" />
                   </div>
                 ) : (
                   biller.name && (
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-slate-100 shadow-sm">
+                    <div className="w-10 h-10 rounded-full bg-[var(--app-bg)] flex items-center justify-center border border-slate-100 shadow-sm">
                        <span className="text-[14px]">🏦</span>
                     </div>
                   )
@@ -84,7 +84,7 @@ export function PayBills() {
           <motion.div 
             whileTap={{ scale: 0.98 }}
             onClick={() => toast.info("Redirecting to ZRA PayPortal...")}
-            className="bg-white rounded-3xl p-5 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] flex items-center gap-4 cursor-pointer"
+            className="bg-[var(--app-bg)] rounded-3xl p-5 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] flex items-center gap-4 cursor-pointer"
           >
             <div className="relative">
               <Bell size={24} className="text-[#0D1B2A]" />

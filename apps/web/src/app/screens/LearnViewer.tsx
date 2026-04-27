@@ -104,14 +104,14 @@ export function LearnViewer() {
             {/* Avatar */}
             <div className="w-28 h-28 rounded-full border-4 border-black bg-slate-800 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden relative z-10">
                 <img src={learnMountain} alt="Profile" className="w-full h-full object-cover" />
-                <div className="absolute bottom-1 right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md">
+                <div className="absolute bottom-1 right-1 w-6 h-6 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-md">
                     <CheckCircle2 size={16} className="text-blue-500" />
                 </div>
             </div>
 
             {/* Info */}
             <div className="text-center mt-3 z-10 w-full relative">
-                <h2 className="font-black text-lg text-slate-900">{SUBSCRIPTION_PROFILE.name}</h2>
+                <h2 className="font-black text-lg text-[var(--app-text-slate)]">{SUBSCRIPTION_PROFILE.name}</h2>
                 <p className="text-sm text-slate-500 font-medium my-0.5">{SUBSCRIPTION_PROFILE.handle}</p>
                 <p className="text-xs text-slate-600 font-medium whitespace-pre-line leading-relaxed mt-1">
                     {SUBSCRIPTION_PROFILE.role}
@@ -119,19 +119,19 @@ export function LearnViewer() {
                 
                 {/* Stats */}
                 <div className="flex items-center justify-center gap-2 mt-6">
-                    <div className="bg-white/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
+                    <div className="bg-[var(--app-bg)]/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
                         <span className="font-black text-sm text-slate-800">{SUBSCRIPTION_PROFILE.stories}</span>
                         <span className="text-[9px] text-slate-500 mt-0.5">Stories</span>
                     </div>
-                    <div className="bg-white/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
+                    <div className="bg-[var(--app-bg)]/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
                         <span className="font-black text-sm text-slate-800">{SUBSCRIPTION_PROFILE.followers}</span>
                         <span className="text-[9px] text-slate-500 mt-0.5">Followers</span>
                     </div>
-                    <div className="bg-white/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
+                    <div className="bg-[var(--app-bg)]/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
                         <span className="font-black text-sm text-slate-800">{SUBSCRIPTION_PROFILE.following}</span>
                         <span className="text-[9px] text-slate-500 mt-0.5">Following</span>
                     </div>
-                    <div className="bg-white/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
+                    <div className="bg-[var(--app-bg)]/80 px-4 py-2 rounded-xl flex flex-col items-center min-w-[70px] border border-slate-200 shadow-sm">
                         <span className="font-black text-sm text-slate-800">{SUBSCRIPTION_PROFILE.likes}</span>
                         <span className="text-[9px] text-slate-500 mt-0.5">Likes</span>
                     </div>
@@ -187,11 +187,11 @@ export function LearnViewer() {
         <div className="w-full min-h-screen bg-transparent font-sans text-slate-800 flex flex-col pb-20 overflow-x-hidden">
             <PageHeader title="My Subscriptions" showBack onBack={handleBack} />
 
-            <div className="flex-1 px-5 pt-6 bg-white shadow-[inset_0_10px_20px_rgba(0,0,0,0.03)]">
+            <div className="flex-1 px-5 pt-6 bg-[var(--app-bg)] shadow-[inset_0_10px_20px_rgba(0,0,0,0.03)]">
                 <h3 className="font-black text-blue-900 text-[15px] mb-4">My Subscriptions</h3>
                 
                 {/* Subscription Card */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-4 flex gap-4 mb-8">
+                <div className="bg-[var(--app-bg)] rounded-xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-4 flex gap-4 mb-8">
                     <div className="w-14 h-14 rounded-full bg-blue-500 overflow-hidden flex-shrink-0 border-2 border-slate-100">
                         <img src={learnMountain} alt="" className="w-full h-full object-cover" />
                     </div>
@@ -208,7 +208,7 @@ export function LearnViewer() {
                 
                 <div className="space-y-4">
                     {PAYMENT_HISTORY.map((item, i) => (
-                        <div key={i} className="bg-white rounded-xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-4 flex items-center gap-4">
+                        <div key={i} className="bg-[var(--app-bg)] rounded-xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.05)] p-4 flex items-center gap-4">
                              <div className="w-4 h-4 rounded-full border border-slate-300 flex-shrink-0" />
                              <div>
                                  <h4 className="font-black text-slate-800 text-sm">{item.title}</h4>
@@ -223,10 +223,10 @@ export function LearnViewer() {
                      <span className="bg-[#e43f24] text-white px-3 py-1 rounded-r-lg font-black text-[12px]">Video Ads</span>
                 </div>
                 <div className="flex gap-2 overflow-x-auto pb-6 no-scrollbar">
-                     <div className="w-32 h-20 bg-slate-900 rounded-lg overflow-hidden flex-shrink-0">
+                     <div className="w-32 h-20 bg-[var(--app-text-slate)] rounded-lg overflow-hidden flex-shrink-0">
                          <img src={learnWoman} alt="" className="w-full h-full object-cover opacity-80" />
                      </div>
-                     <div className="w-32 h-20 bg-slate-900 rounded-lg overflow-hidden flex-shrink-0">
+                     <div className="w-32 h-20 bg-[var(--app-text-slate)] rounded-lg overflow-hidden flex-shrink-0">
                          <img src={learnMountain} alt="" className="w-full h-full object-cover opacity-80" />
                      </div>
                      <div className="w-32 h-20 bg-[#2d1b13] rounded-lg overflow-hidden flex-shrink-0 flex flex-col justify-center px-3 border border-orange-900/50">
@@ -252,7 +252,7 @@ export function LearnViewer() {
 
         {/* --- VIDEO PLAYER CONTAINER --- */}
         <div className="relative">
-          <div className="w-full aspect-[4/3] bg-slate-900 relative">
+          <div className="w-full aspect-[4/3] bg-[var(--app-text-slate)] relative">
             <img 
                 src={viewMode === "learn-earn" ? learnPresenter : viewMode === "free" ? learnWoman : learnBook} 
                 alt="Video" 
@@ -275,7 +275,7 @@ export function LearnViewer() {
                                         <CheckCircle2 size={10} /> Yes 
                                     </div>
                                     <div className="w-4 h-4 rounded-full border border-green-500 bg-green-500 flex items-center justify-center">
-                                       <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                                       <div className="w-1.5 h-1.5 bg-[var(--app-bg)] rounded-full"></div>
                                     </div>
                                 </label>
                                 <label className="flex items-center gap-2 cursor-pointer">
@@ -298,7 +298,7 @@ export function LearnViewer() {
                                             <span className="text-white text-[13px]">{uni}</span>
                                         </div>
                                         <div className={`w-4 h-4 rounded-full border ${i === 1 ? 'border-green-500 bg-green-500' : 'border-slate-400'} flex items-center justify-center`}>
-                                            {i === 1 && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
+                                            {i === 1 && <div className="w-1.5 h-1.5 bg-[var(--app-bg)] rounded-full"></div>}
                                         </div>
                                     </label>
                                 ))}
@@ -312,11 +312,11 @@ export function LearnViewer() {
                 <div className="absolute inset-0 flex flex-col justify-center items-center px-8 z-20">
                     <div className="w-full flex flex-col items-center">
                         <p className="text-white font-medium text-base mb-4 drop-shadow-md">Subscribe to watch this video</p>
-                        <div className="w-full h-[1px] bg-white/30 mb-4" />
+                        <div className="w-full h-[1px] bg-[var(--app-bg)]/30 mb-4" />
                         <p className="text-white text-sm mb-6 drop-shadow-md">Get access for K50/monthly</p>
                         
                         <div className="space-y-3 w-full max-w-[200px]">
-                            <button className="w-full bg-[#003366] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
+                            <button className="w-full bg-[var(--app-text)] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
                                 Subscribe
                             </button>
                             <button className="w-full bg-[#ff0000] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
@@ -422,7 +422,7 @@ export function LearnViewer() {
              <div className="absolute bottom-4 left-4 right-4 z-20">
                  <button 
                     onClick={() => setAppState("player")} 
-                    className="w-full bg-[#003366] text-white py-4 rounded-xl font-medium text-lg tracking-wide hover:opacity-90 active:scale-95 transition-all shadow-lg"
+                    className="w-full bg-[var(--app-text)] text-white py-4 rounded-xl font-medium text-lg tracking-wide hover:opacity-90 active:scale-95 transition-all shadow-lg"
                  >
                      Complete
                  </button>

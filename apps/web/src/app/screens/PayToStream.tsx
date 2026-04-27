@@ -38,7 +38,7 @@ export function PayToStream() {
         <div className="px-4 pt-4 space-y-4">
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active</p>
 
-          <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 flex items-center gap-3">
+          <div className="bg-[var(--app-bg)] rounded-2xl border border-slate-100 shadow-sm p-4 flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <span className="text-white font-black text-sm">PL</span>
             </div>
@@ -51,7 +51,7 @@ export function PayToStream() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+          <div className="bg-[var(--app-bg)] rounded-2xl border border-slate-100 shadow-sm p-4">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Payment History</p>
             <div className="space-y-3">
               {PAYMENT_HISTORY.map((item, i) => (
@@ -90,14 +90,14 @@ export function PayToStream() {
             <span className="text-white font-black text-2xl">PL</span>
           </div>
           <div>
-            <h2 className="font-black text-xl text-slate-900">Peter M S Lengalenga</h2>
+            <h2 className="font-black text-xl text-[var(--app-text-slate)]">Peter M S Lengalenga</h2>
             <p className="text-[12px] text-slate-500 mt-1">Premium Content Creator</p>
           </div>
 
-          <div className="bg-white border border-slate-100 rounded-2xl p-5 w-full space-y-4 shadow-sm">
+          <div className="bg-[var(--app-bg)] border border-slate-100 rounded-2xl p-5 w-full space-y-4 shadow-sm">
             <div className="flex items-center justify-between">
               <span className="font-bold text-slate-600 text-sm">Monthly subscription</span>
-              <span className="font-black text-slate-900 text-lg">K50<span className="text-[12px] text-slate-400 font-bold">/mo</span></span>
+              <span className="font-black text-[var(--app-text-slate)] text-lg">K50<span className="text-[12px] text-slate-400 font-bold">/mo</span></span>
             </div>
             <div className="space-y-2">
               {["Access all premium videos", "Early access to new content", "Cancel anytime"].map((benefit) => (
@@ -128,7 +128,7 @@ export function PayToStream() {
         <div className={`w-full aspect-[4/5] ${thumbnailColor} relative overflow-hidden`}>
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-white/20 border border-white/30 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-[var(--app-bg)]/20 border border-white/30 flex items-center justify-center">
               <Play size={24} className="text-white ml-1" />
             </div>
           </div>
@@ -139,7 +139,7 @@ export function PayToStream() {
 
         {/* Lock overlay cards */}
         <div className="px-5 -mt-8 relative z-10 space-y-3 pb-10">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+          <div className="bg-[var(--app-bg)]/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
             <p className="text-white font-black text-base text-center mb-1">{videoTitle}</p>
             <p className="text-slate-300 text-[12px] text-center">Subscribe to watch this video</p>
             <p className="text-slate-400 text-[11px] text-center mt-0.5">Get access for K50/monthly</p>

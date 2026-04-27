@@ -56,7 +56,7 @@ export function ProfileEdit() {
       <div className="flex items-center justify-between px-4 pt-2 pb-5">
         <Link
           to="/settings"
-          className="w-10 h-10 rounded-xl bg-white shadow-md border border-black/[0.04] flex items-center justify-center"
+          className="w-10 h-10 rounded-xl bg-[var(--app-bg)] shadow-md border border-black/[0.04] flex items-center justify-center"
         >
           <ArrowLeft size={18} className="text-[var(--ink-primary)]" />
         </Link>
@@ -122,7 +122,7 @@ export function ProfileEdit() {
             <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Full Name
             </label>
-            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
               <User size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
               <input
                 type="text"
@@ -139,7 +139,7 @@ export function ProfileEdit() {
             <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Username
             </label>
-            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
               <span className="text-[var(--ink-muted)] font-[var(--font-body)] text-sm">@</span>
               <input
                 type="text"
@@ -156,7 +156,7 @@ export function ProfileEdit() {
             <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Email
             </label>
-            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
               <Mail size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
               <input
                 type="email"
@@ -173,7 +173,7 @@ export function ProfileEdit() {
             <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Phone Number
             </label>
-            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
               <Phone size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
               <input
                 type="tel"
@@ -190,7 +190,7 @@ export function ProfileEdit() {
             <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Location
             </label>
-            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
               <MapPin size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
               <input
                 type="text"
@@ -207,7 +207,7 @@ export function ProfileEdit() {
             <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
               Bio
             </label>
-            <div className="bg-white rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
               <textarea
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}

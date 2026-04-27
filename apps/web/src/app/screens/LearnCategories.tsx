@@ -84,7 +84,7 @@ export function LearnCategories() {
       <div className="px-4 mt-1 relative z-20 space-y-3">
         {/* ── Search Bar ── */}
         <div className="flex items-center gap-2">
-          <div className="flex-1 bg-white rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
+          <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
             <Search size={14} primary="#94a3b8" className="mr-2 shrink-0" />
             <input
               type="text"
@@ -105,7 +105,7 @@ export function LearnCategories() {
               className={`flex-shrink-0 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-wider transition-all active:scale-95 ${
                 activeCategory === cat
                   ? "bg-orange-500 text-white shadow-sm shadow-orange-500/20"
-                  : "bg-white text-slate-500 border border-slate-200"
+                  : "bg-[var(--app-bg)] text-slate-500 border border-slate-200"
               }`}
             >
               {cat}
@@ -144,12 +144,12 @@ export function LearnCategories() {
                     whileTap={{ scale: 0.96 }}
                     onClick={() => navigate(`/learning/${vid.id}`)}
                     key={vid.id}
-                    className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
+                    className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
                   >
                     <img src={vid.image} alt={vid.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
 
-                    <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                    <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
                       <Play primary="#fff" size={12} />
                     </div>
 
@@ -195,7 +195,7 @@ export function LearnCategories() {
 
                     {/* Glassmorphism headphone badge */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                      <div className="w-8 h-8 rounded-full bg-[var(--app-bg)]/15 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
                         <Headphones primary="#fff" size={14} />
                       </div>
                     </div>
@@ -213,7 +213,7 @@ export function LearnCategories() {
                       </div>
                       <div className="flex items-center gap-1 mt-0.5">
                         <Headphones size={10} primary="#fb923c" />
-                        <div className="flex-1 h-[2px] bg-white/20 rounded-full relative overflow-hidden">
+                        <div className="flex-1 h-[2px] bg-[var(--app-bg)]/20 rounded-full relative overflow-hidden">
                           <div className="absolute left-0 top-0 bottom-0 w-[38%] bg-orange-500 rounded-full" />
                         </div>
                         <div className="text-[5px] font-black text-white/60 ml-0.5">{pod.duration}</div>
@@ -246,7 +246,7 @@ export function LearnCategories() {
                     whileTap={{ scale: 0.96 }}
                     onClick={() => navigate("/learning/pay-to-stream", { state: { title: vid.title } })}
                     key={vid.id}
-                    className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
+                    className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer"
                   >
                     <img src={vid.image} alt={vid.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
@@ -257,7 +257,7 @@ export function LearnCategories() {
                       <span className="text-[7px] font-black text-white/90 uppercase tracking-wider">Premium</span>
                     </div>
 
-                    <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                    <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
                       <Play primary="#fff" size={12} />
                     </div>
 
@@ -290,7 +290,7 @@ export function LearnCategories() {
                 <div
                   key={vid.id}
                   onClick={() => navigate(`/learning/${vid.id}`)}
-                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.07)] flex cursor-pointer active:scale-[0.99] transition-transform"
+                  className="bg-[var(--app-bg)] border border-slate-200 rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.07)] flex cursor-pointer active:scale-[0.99] transition-transform"
                 >
                   <div className="relative w-28 h-20 bg-slate-100 flex-shrink-0">
                     <img src={vid.image} alt={vid.title} className="w-full h-full object-cover" />

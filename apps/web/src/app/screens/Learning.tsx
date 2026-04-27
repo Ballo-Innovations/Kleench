@@ -115,7 +115,7 @@ export function Learning() {
 
           {/* Search Bar & Live Button */}
           <div className="flex items-center gap-2">
-             <div className="flex-1 bg-white rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
+             <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
                 <Search size={14} primary="#94a3b8" className="mr-2 shrink-0" />
                 <input 
                    type="text" 
@@ -125,11 +125,11 @@ export function Learning() {
                    className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[11px]"
                 />
              </div>
-             <button onClick={() => handleActionClick("Live Stream")} className="h-9 bg-white rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+             <button onClick={() => handleActionClick("Live Stream")} className="h-9 bg-[var(--app-bg)] rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
                 <span className="text-[#E54D2E] font-black text-[11px] tracking-tight pt-[1px]">LIVE</span>
                 <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={6} />
              </button>
-             <button onClick={() => navigate("/learning/categories")} className="h-9 bg-white rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+             <button onClick={() => navigate("/learning/categories")} className="h-9 bg-[var(--app-bg)] rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
                 <Search size={14} primary="#64748b" />
                 <span className="text-slate-700 font-black text-[11px] tracking-tight pt-[1px]">Explore</span>
              </button>
@@ -152,7 +152,7 @@ export function Learning() {
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-1 group outline-none shrink-0"
                  >
-                   <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all mx-2">
+                   <div className="w-10 h-10 bg-[var(--app-bg)] rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all mx-2">
                       <UserPlus size={18} />
                    </div>
                    <span className="font-bold text-slate-800 text-[6px] uppercase tracking-[0.15em] text-center leading-tight whitespace-normal break-words w-16">Register Agent</span>
@@ -176,11 +176,11 @@ export function Learning() {
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_1.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "learn-earn")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "learn-earn")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
-                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
                                  <Play primary="#fff" size={12} />
                               </div>
 
@@ -209,11 +209,11 @@ export function Learning() {
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_2.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "free")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "free")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
-                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
                                  <Play primary="#fff" size={12} />
                               </div>
 
@@ -242,11 +242,11 @@ export function Learning() {
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_3.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "pay-to-stream")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-slate-900 border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "pay-to-stream")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
-                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
+                              <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/30 ring-1 ring-white/10 flex items-center justify-center shadow-lg">
                                  <Play primary="#fff" size={12} />
                               </div>
 
@@ -265,7 +265,7 @@ export function Learning() {
                    </div>
 
                    {/* 04. Single Full-Width Masterclass Post */}
-                   <div onClick={() => handleCourseClick(video.id)} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.07)] flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
+                   <div onClick={() => handleCourseClick(video.id)} className="bg-[var(--app-bg)] border border-slate-200 rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.07)] flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
                       <div className="relative w-full aspect-[4/5] bg-slate-100">
                          <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover transition-opacity" />
                          
@@ -278,13 +278,13 @@ export function Learning() {
                          </div>
                          
                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 ring-1 ring-white/20 flex items-center justify-center shadow-2xl">
+                            <div className="w-14 h-14 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border border-white/40 ring-1 ring-white/20 flex items-center justify-center shadow-2xl">
                                <Play primary="#fff" size={22} />
                             </div>
                          </div>
                       </div>
                       
-                      <div className="p-4 flex flex-col bg-white border-t border-slate-50">
+                      <div className="p-4 flex flex-col bg-[var(--app-bg)] border-t border-slate-50">
                          <h4 className="font-bold text-slate-800 text-[10px] uppercase tracking-widest leading-none mb-1">{video.title}</h4>
                          <div className="flex items-center justify-between mt-2">
                             <div className="flex items-center gap-1.5 text-slate-500">
@@ -298,7 +298,7 @@ export function Learning() {
                                </div>
                                <button 
                                   onClick={(e) => { e.stopPropagation(); setActiveSheet("Options"); }}
-                                  className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-700 active:scale-90 transition-all shadow-sm border border-slate-100"
+                                  className="w-7 h-7 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-slate-500 hover:text-slate-700 active:scale-90 transition-all shadow-sm border border-slate-100"
                                >
                                   <MoreVertical size={16} />
                                </button>
@@ -327,11 +327,11 @@ export function Learning() {
                 />
                 <motion.div 
                   initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t border-[#003366]/15 shadow-[0_-20px_60px_rgba(0,51,102,0.12)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--app-text)]/15 shadow-[0_-20px_60px_rgba(0,51,102,0.12)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
                 >
                   <div className="p-6">
                     <div className="flex justify-between items-center mb-8">
-                      <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">{activeSheet}</h3>
+                      <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">{activeSheet}</h3>
                       <button onClick={() => setActiveSheet(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border border-slate-200 shadow-sm">
                         <X size={20} className="text-slate-600" />
                       </button>
@@ -339,14 +339,14 @@ export function Learning() {
 
                     {activeSheet === "Upload" && (
                       <div className="space-y-6">
-                        <div className="border-2 border-dashed border-[#003366]/25 bg-slate-50 rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-md shadow-[#003366]/8">
-                          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg shadow-[#003366]/15 border border-[#003366]/15 mb-4">
+                        <div className="border-2 border-dashed border-[var(--app-text)]/25 bg-[var(--app-bg-muted)] rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-md shadow-[var(--app-text)]/8">
+                          <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-lg shadow-[var(--app-text)]/15 border border-[var(--app-text)]/15 mb-4">
                             <Upload size={32} />
                           </div>
-                          <h4 className="font-black text-slate-900 text-sm mb-1 uppercase tracking-tight">Post Educational Content</h4>
+                          <h4 className="font-black text-[var(--app-text-slate)] text-sm mb-1 uppercase tracking-tight">Post Educational Content</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">Share your knowledge</p>
                         </div>
-                        <button className="w-full h-16 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-[#003366]/25">
+                        <button className="w-full h-16 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-[var(--app-text)]/25">
                           Upload Material
                         </button>
                       </div>
@@ -362,18 +362,18 @@ export function Learning() {
                             { name: "Email", bg: "bg-slate-100", icon: Send }
                           ].map((social, idx) => (
                             <div key={idx} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
-                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-md shadow-slate-900/15 ${social.bg} ${social.name==="Email" ? "text-slate-900":""}`}>
+                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-md shadow-slate-900/15 ${social.bg} ${social.name==="Email" ? "text-[var(--app-text-slate)]":""}`}>
                                 {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                               </div>
-                              <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none">{social.name}</span>
+                              <span className="text-[9px] font-black text-[var(--app-text-slate)] uppercase tracking-widest leading-none">{social.name}</span>
                             </div>
                           ))}
                         </div>
                         <div className="space-y-3">
-                          <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Universal Link</p>
-                          <div className="flex h-14 bg-slate-50 rounded-2xl border border-[#003366]/20 shadow-md shadow-[#003366]/10 p-1.5 focus-within:border-[#003366]/40 transition-all">
+                          <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Universal Link</p>
+                          <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/10 p-1.5 focus-within:border-[var(--app-text)]/40 transition-all">
                             <input type="text" readOnly value="https://kleench.com/l/82d2x" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
-                            <button className="px-6 bg-[#003366] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
+                            <button className="px-6 bg-[var(--app-text)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                           </div>
                         </div>
                       </div>
@@ -382,16 +382,16 @@ export function Learning() {
                     {activeSheet === "Register Agent" && (
                       <div className="space-y-5">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Learning Track</label>
-                          <select className="w-full h-14 bg-white border border-[#003366]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[#003366]/10 focus:border-[#003366]/40 transition-all">
+                          <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Learning Track</label>
+                          <select className="w-full h-14 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[var(--app-text)]/10 focus:border-[var(--app-text)]/40 transition-all">
                              <option>Financial Literacy</option>
                              <option>Crypto Compliance</option>
                              <option>Business Management</option>
                           </select>
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">Phone Number</label>
-                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-white border border-[#003366]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[#003366]/10 focus:border-[#003366]/40 transition-all" />
+                          <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Phone Number</label>
+                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[var(--app-text)]/10 focus:border-[var(--app-text)]/40 transition-all" />
                         </div>
                         <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-blue-600/25 mt-4">
                           Secure Track Access
@@ -403,19 +403,19 @@ export function Learning() {
                       <div className="space-y-3">
                          <button 
                            onClick={() => setActiveSheet("Share")}
-                           className="w-full h-14 bg-slate-50 flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-slate-900 border border-slate-200 shadow-sm"
+                           className="w-full h-14 bg-[var(--app-bg-muted)] flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-[var(--app-text-slate)] border border-slate-200 shadow-sm"
                          >
-                            <div className="w-8 h-8 rounded-full bg-[#003366]/10 flex items-center justify-center">
-                               <MessageCircle color="#003366" size={16} />
+                            <div className="w-8 h-8 rounded-full bg-[var(--app-text)]/10 flex items-center justify-center">
+                               <MessageCircle color="var(--app-text)" size={16} />
                             </div>
                             <span className="font-black text-[11px] uppercase tracking-widest">Share to peers</span>
                          </button>
                          <button 
                            onClick={() => setActiveSheet(null)}
-                           className="w-full h-14 bg-slate-50 flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-slate-900 border border-slate-200 shadow-sm"
+                           className="w-full h-14 bg-[var(--app-bg-muted)] flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-[var(--app-text-slate)] border border-slate-200 shadow-sm"
                          >
-                            <div className="w-8 h-8 rounded-full bg-[#003366]/10 flex items-center justify-center">
-                               <Bookmark size={16} className="text-[#003366]" />
+                            <div className="w-8 h-8 rounded-full bg-[var(--app-text)]/10 flex items-center justify-center">
+                               <Bookmark size={16} className="text-[var(--app-text)]" />
                             </div>
                             <span className="font-black text-[11px] uppercase tracking-widest">Bookmark Video</span>
                          </button>
@@ -436,19 +436,19 @@ export function Learning() {
                >
                  <div className="absolute top-0 left-0 right-0 p-4 pt-8 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent z-10">
                    <h3 className="text-white font-bold text-xs uppercase tracking-widest">Media Player</h3>
-                   <button onClick={() => setActiveMedia(null)} className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 active:scale-90 transition-transform"><X size={20} /></button>
+                   <button onClick={() => setActiveMedia(null)} className="w-10 h-10 bg-[var(--app-bg)]/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 active:scale-90 transition-transform"><X size={20} /></button>
                  </div>
                  
-                 <div className="relative w-full aspect-[4/5] bg-slate-900 border-y border-white/10 flex items-center justify-center overflow-hidden">
+                 <div className="relative w-full aspect-[4/5] bg-[var(--app-text-slate)] border-y border-white/10 flex items-center justify-center overflow-hidden">
                    <img src={activeMedia} alt="Media" className="absolute inset-0 w-full h-full object-cover opacity-60" />
                    
-                   <div className="relative z-10 w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-2xl active:scale-90 transition-transform cursor-pointer">
+                   <div className="relative z-10 w-20 h-20 rounded-full bg-[var(--app-bg)]/20 backdrop-blur-md border-[2px] border-white flex items-center justify-center shadow-2xl active:scale-90 transition-transform cursor-pointer">
                       <Play primary="#fff" size={32} />
                    </div>
                  </div>
 
                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col gap-4 pb-[env(safe-area-inset-bottom)]">
-                   <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                   <div className="w-full h-1 bg-[var(--app-bg)]/20 rounded-full overflow-hidden">
                       <div className="w-1/3 h-full bg-orange-500 rounded-full" />
                    </div>
                    <div className="flex justify-between items-center text-white/50 text-[10px] font-bold tracking-widest">

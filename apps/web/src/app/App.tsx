@@ -57,6 +57,7 @@ import { LearnUpload } from "./screens/LearnUpload";
 import { AdvertViewAds } from "./screens/AdvertViewAds";
 import { LearnViewer } from "./screens/LearnViewer";
 import { LearnCategories } from "./screens/LearnCategories";
+import { CreatorProfile } from "./screens/CreatorProfile";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -146,6 +147,7 @@ const router = createBrowserRouter([
       { path: "socials", element: <Socials /> },
       { path: "profile", element: <Profile /> },
       { path: "profile/:username", element: <Profile /> },
+      { path: "creator/:username", element: <CreatorProfile /> },
       { path: "friends", element: <Friends /> },
       { path: "videos", element: <Videos /> },
       { path: "settings", element: <Settings /> },

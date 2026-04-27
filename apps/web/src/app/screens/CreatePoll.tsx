@@ -17,8 +17,8 @@ function CrossHatchBg() {
       <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
         <defs>
           <pattern id="xhatch-poll" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="24" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
-            <line x1="24" y1="0" x2="0" y2="24" stroke="#FF8C00" strokeWidth="0.5" strokeOpacity="0.07"/>
+            <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
+            <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#xhatch-poll)"/>
@@ -55,7 +55,7 @@ export function CreatePoll() {
             <LottieIcon icon="success" size={110} />
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.35)}
-            className="font-black mb-3" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.5rem", color: "#0D1B3E" }}>
+            className="font-black mb-3" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.5rem", color: "var(--app-text-alt)" }}>
             Poll Published!
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.44)}
@@ -67,7 +67,7 @@ export function CreatePoll() {
             whileTap={{ scale: 0.97 }} whileHover={{ y: -2 }}
             onClick={() => navigate("/")}
             className="px-10 py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-2 mx-auto"
-            style={{ background: "linear-gradient(135deg, #00695C, #FF8C00)", fontFamily: "Agrandir, sans-serif", boxShadow: "0 12px 36px rgba(0,105,92,0.28)" }}>
+            style={{ background: "linear-gradient(135deg, #00695C, var(--app-orange))", fontFamily: "Agrandir, sans-serif", boxShadow: "0 12px 36px rgba(0,105,92,0.28)" }}>
             Back to Home <ChevronRight size={18}/>
           </motion.button>
         </div>
@@ -82,14 +82,14 @@ export function CreatePoll() {
       {/* Header */}
       <div className="relative z-10 pt-4 pb-7 flex items-center gap-3">
         <button onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white shadow-sm border flex items-center justify-center"
+          className="w-10 h-10 rounded-full bg-[var(--app-bg)] shadow-sm border flex items-center justify-center"
           style={{ borderColor: "rgba(13,27,62,0.06)" }}>
-          <ArrowLeft size={16} style={{ color: "#0D1B3E" }}/>
+          <ArrowLeft size={16} style={{ color: "var(--app-text-alt)" }}/>
         </button>
         <div className="flex items-center gap-3">
           <LottieIcon icon="chart" size={40} />
           <div>
-            <h1 className="font-black tracking-tight" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.3rem", color: "#0D1B3E" }}>
+            <h1 className="font-black tracking-tight" style={{ fontFamily: "Agrandir, sans-serif", fontSize: "1.3rem", color: "var(--app-text-alt)" }}>
               Create Poll
             </h1>
             <p className="text-[10px] font-semibold mt-0.5" style={{ color: "#00695C" }}>Community voice</p>
@@ -109,7 +109,7 @@ export function CreatePoll() {
             style={{
               background: "white",
               border: `1.5px solid ${question ? "#00695C" : "rgba(13,27,62,0.08)"}`,
-              color: "#0D1B3E",
+              color: "var(--app-text-alt)",
               lineHeight: 1.7,
               transition: "border-color 0.5s ease",
             }}/>
@@ -145,7 +145,7 @@ export function CreatePoll() {
                   <input type="text" value={opt} onChange={(e) => updateOption(idx, e.target.value)}
                     placeholder={`Option ${idx + 1}`}
                     className="flex-1 px-4 py-3 rounded-2xl text-sm outline-none"
-                    style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "#0D1B3E" }}/>
+                    style={{ background: "white", border: "1.5px solid rgba(13,27,62,0.08)", color: "var(--app-text-alt)" }}/>
                   {options.length > 2 && (
                     <motion.button whileTap={{ scale: 0.9 }} onClick={() => removeOption(idx)}
                       className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
@@ -189,8 +189,8 @@ export function CreatePoll() {
                 onClick={() => setDuration(h)}
                 className="py-3 rounded-2xl text-[11.5px] font-bold border"
                 style={duration === h
-                  ? { background: "#0D1B3E", color: "white", borderColor: "#0D1B3E", boxShadow: "0 4px 16px rgba(13,27,62,0.22)", transition: "all 0.5s ease" }
-                  : { background: "white", color: "#0D1B3E", borderColor: "rgba(13,27,62,0.09)", transition: "all 0.5s ease" }}>
+                  ? { background: "var(--app-text-alt)", color: "white", borderColor: "var(--app-text-alt)", boxShadow: "0 4px 16px rgba(13,27,62,0.22)", transition: "all 0.5s ease" }
+                  : { background: "white", color: "var(--app-text-alt)", borderColor: "rgba(13,27,62,0.09)", transition: "all 0.5s ease" }}>
                 {Number(h) < 24 ? `${h}h` : `${Number(h)/24}d`}
               </motion.button>
             ))}
@@ -226,7 +226,7 @@ export function CreatePoll() {
                 <div className="flex items-center gap-2 mb-2">
                   <LottieIcon icon={a.icon} size={32} />
                 </div>
-                <p className="font-bold text-[13px]" style={{ color: "#0D1B3E" }}>{a.label}</p>
+                <p className="font-bold text-[13px]" style={{ color: "var(--app-text-alt)" }}>{a.label}</p>
                 <p className="text-[10px] mt-1 leading-snug" style={{ color: "rgba(13,27,62,0.4)", lineHeight: 1.5 }}>{a.sub}</p>
               </motion.button>
             ))}
@@ -240,7 +240,7 @@ export function CreatePoll() {
           disabled={!isValid} onClick={() => setSubmitted(true)}
           className="w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-3 disabled:opacity-40"
           style={{
-            background: isValid ? "linear-gradient(135deg, #00695C, #FF8C00)" : "#ccc",
+            background: isValid ? "linear-gradient(135deg, #00695C, var(--app-orange))" : "#ccc",
             fontFamily: "Agrandir, sans-serif",
             fontSize: "15px",
             boxShadow: isValid ? "0 10px 32px rgba(0,105,92,0.26)" : "none",

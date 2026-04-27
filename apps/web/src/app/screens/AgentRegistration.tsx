@@ -101,7 +101,7 @@ export function AgentRegistration() {
               <p className="font-black text-orange-600 text-sm mt-0.5">{selectedAgent}</p>
             </div>
 
-            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 space-y-4">
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-slate-100 shadow-sm p-4 space-y-4">
               {/* Account type */}
               <div>
                 <label className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1.5 block">Type</label>
@@ -127,19 +127,19 @@ export function AgentRegistration() {
                 <label className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1.5 block">Specialized In?</label>
                 <button
                   onClick={() => setShowSpecDropdown(!showSpecDropdown)}
-                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-xl px-4 flex items-center justify-between text-sm font-semibold text-slate-700"
+                  className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 flex items-center justify-between text-sm font-semibold text-slate-700"
                 >
                   {specialization}
                   <ChevronRight size={14} className={`text-slate-400 transition-transform ${showSpecDropdown ? "rotate-90" : ""}`} />
                 </button>
                 {showSpecDropdown && (
-                  <div className="absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden">
+                  <div className="absolute z-50 w-full mt-1 bg-[var(--app-bg)] border border-slate-200 rounded-xl shadow-lg overflow-hidden">
                     {SPECIALIZATIONS.map((s) => (
                       <button
                         key={s}
                         onClick={() => { setSpecialization(s); setShowSpecDropdown(false); }}
                         className={`w-full px-4 py-2.5 text-left text-sm font-semibold transition-all ${
-                          specialization === s ? "bg-orange-50 text-orange-600" : "text-slate-700 hover:bg-slate-50"
+                          specialization === s ? "bg-orange-50 text-orange-600" : "text-slate-700 hover:bg-[var(--app-bg-muted)]"
                         }`}
                       >
                         {s}
@@ -150,9 +150,9 @@ export function AgentRegistration() {
               </div>
 
               {/* KYC */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3">
+              <div className="bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl p-3">
                 <p className="text-[11px] font-bold text-slate-500 mb-2">Complete verification to unlock full wallet access.</p>
-                <button onClick={() => navigate("/kyc-verification")} className="px-5 py-2 bg-[#003366] text-white rounded-lg font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">
+                <button onClick={() => navigate("/kyc-verification")} className="px-5 py-2 bg-[var(--app-text)] text-white rounded-lg font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all">
                   KYC
                 </button>
               </div>
@@ -166,7 +166,7 @@ export function AgentRegistration() {
                       {agentCode || "- - - - - - - -"}
                     </span>
                   </div>
-                  <button onClick={generateCode} className="px-4 h-11 bg-[#003366] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all whitespace-nowrap">
+                  <button onClick={generateCode} className="px-4 h-11 bg-[var(--app-text)] text-white rounded-xl font-black text-[11px] uppercase tracking-wider active:scale-95 transition-all whitespace-nowrap">
                     Generate
                   </button>
                 </div>
@@ -175,14 +175,14 @@ export function AgentRegistration() {
               {/* Dealer Licence */}
               <div>
                 <label className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1.5 block">Dealer Licence</label>
-                <button className="w-full h-11 bg-slate-50 border border-dashed border-slate-300 rounded-xl flex items-center justify-center gap-2 text-[11px] font-black text-slate-500 uppercase tracking-wider active:scale-95 transition-all">
+                <button className="w-full h-11 bg-[var(--app-bg-muted)] border border-dashed border-slate-300 rounded-xl flex items-center justify-center gap-2 text-[11px] font-black text-slate-500 uppercase tracking-wider active:scale-95 transition-all">
                   <Upload size={14} />
                   Upload
                 </button>
               </div>
             </div>
 
-            <button onClick={handleConfirm} className="w-full h-14 bg-[#003366] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[#003366]/25 active:scale-95 transition-all">
+            <button onClick={handleConfirm} className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-[var(--app-text)]/25 active:scale-95 transition-all">
               Confirm
             </button>
           </motion.div>
@@ -205,7 +205,7 @@ export function AgentRegistration() {
               <p className="font-black text-white text-sm uppercase tracking-[0.3em]">CONGRATULATIONS</p>
             </div>
 
-            <h2 className="text-xl font-black text-slate-900 mb-1">John Doe</h2>
+            <h2 className="text-xl font-black text-[var(--app-text-slate)] mb-1">John Doe</h2>
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">ID: KL-AGT-00291</p>
             <p className="text-[12px] text-slate-500 mb-6 leading-relaxed max-w-xs">
               You can now create, upload, share and sale.
@@ -215,7 +215,7 @@ export function AgentRegistration() {
               <span className="bg-green-500 text-white px-4 py-1.5 rounded-full font-black text-[11px] uppercase tracking-widest">REGISTERED</span>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 w-full mb-8">
+            <div className="bg-[var(--app-bg-muted)] border border-slate-200 rounded-2xl p-4 w-full mb-8">
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Earnings</p>
               <p className="text-3xl font-black text-slate-800">K000.00</p>
             </div>
@@ -224,7 +224,7 @@ export function AgentRegistration() {
               <button onClick={() => navigate("/advert")} className="flex-1 h-13 py-3.5 bg-orange-500 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-md shadow-orange-500/30 active:scale-95 transition-all">
                 Get Started
               </button>
-              <button onClick={() => navigate("/")} className="flex-1 py-3.5 bg-white text-slate-700 rounded-2xl font-black text-[11px] uppercase tracking-widest border border-slate-200 active:scale-95 transition-all">
+              <button onClick={() => navigate("/")} className="flex-1 py-3.5 bg-[var(--app-bg)] text-slate-700 rounded-2xl font-black text-[11px] uppercase tracking-widest border border-slate-200 active:scale-95 transition-all">
                 Home
               </button>
             </div>

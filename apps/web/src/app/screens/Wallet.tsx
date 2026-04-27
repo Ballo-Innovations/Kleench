@@ -130,7 +130,7 @@ export function Wallet() {
   const loading = usePageLoading(900);
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[#003366]">
+    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--app-text)]">
       
       {/* ── Standardized Orange Header ── */}
       <PageHeader 
@@ -139,7 +139,7 @@ export function Wallet() {
         searchValue={searchQuery}
         onSearchChange={setSearchQuery}
         customBalanceHUD={
-          <div className="flex items-center justify-between w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] shrink-0">
+          <div className="flex items-center justify-between w-full bg-[var(--app-bg)]/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] shrink-0">
             <div className="flex flex-col justify-center min-w-0 pl-1">
               <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Total Balance</p>
               <h2 className="text-white text-[16px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 2,450.00</h2>
@@ -157,7 +157,7 @@ export function Wallet() {
               ) : (
                 <button 
                    onClick={() => navigate("/kyc-verification")}
-                   className="bg-white/20 hover:bg-white/30 backdrop-blur-md active:scale-95 text-white px-4 py-1.5 rounded-full font-black uppercase tracking-[0.15em] text-[8px] transition-all shadow-lg flex items-center justify-center border border-white/20"
+                   className="bg-[var(--app-bg)]/20 hover:bg-[var(--app-bg)]/30 backdrop-blur-md active:scale-95 text-white px-4 py-1.5 rounded-full font-black uppercase tracking-[0.15em] text-[8px] transition-all shadow-lg flex items-center justify-center border border-white/20"
                 >
                   KYC Verification
                 </button>
@@ -192,10 +192,10 @@ export function Wallet() {
                   onClick={() => handleAction(action.id)} 
                   className="flex flex-col items-center gap-2 cursor-pointer group"
                 >
-                  <div className={`w-12 h-12 rounded-full border border-[#003366]/10 bg-white flex items-center justify-center transition-all group-active:scale-95 shadow-sm`}>
-                    <action.icon size={20} className="text-[#003366]" strokeWidth={1.5} />
+                  <div className={`w-12 h-12 rounded-full border border-[var(--app-text)]/10 bg-[var(--app-bg)] flex items-center justify-center transition-all group-active:scale-95 shadow-sm`}>
+                    <action.icon size={20} className="text-[var(--app-text)]" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[#003366] font-bold tracking-widest text-[8px] uppercase mt-0.5">{action.label}</span>
+                  <span className="text-[var(--app-text)] font-bold tracking-widest text-[8px] uppercase mt-0.5">{action.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -217,12 +217,12 @@ export function Wallet() {
                   { id: "qr", icon: DuotoneQrCode, label: "SCAN PAY", sub: "INSTANT PAD" },
                   { id: "global", icon: DuotoneGlobe, label: "GLOBAL", sub: "TRANSACTIONS" }
                 ].map(util => (
-                 <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-2 p-3 bg-white rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all">
-                    <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center bg-slate-50 border border-slate-100">
-                       <util.icon size={14} className="text-[#003366]" strokeWidth={1.5} />
+                 <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-2 p-3 bg-[var(--app-bg)] rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all">
+                    <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center bg-[var(--app-bg-muted)] border border-slate-100">
+                       <util.icon size={14} className="text-[var(--app-text)]" strokeWidth={1.5} />
                     </div>
                     <div className="flex flex-col items-start leading-none text-left">
-                       <span className="font-black text-[#003366] text-[7px] uppercase tracking-wide">{util.label}</span>
+                       <span className="font-black text-[var(--app-text)] text-[7px] uppercase tracking-wide">{util.label}</span>
                        <span className="font-bold text-[#F5A623] text-[6px] uppercase tracking-wide mt-0.5">{util.sub}</span>
                     </div>
                  </motion.button>
@@ -230,15 +230,15 @@ export function Wallet() {
              </div>
              <div className="grid grid-cols-2 gap-3">
                 {[
-                  { id: "escrow", icon: DuotoneShieldCheck, title: "ESCROW", metric: "K1,200", primary: "#003366" },
+                  { id: "escrow", icon: DuotoneShieldCheck, title: "ESCROW", metric: "K1,200", primary: "var(--app-text)" },
                   { id: "savings", icon: DuotonePiggyBank, title: "SAVINGS", metric: "K8,400", primary: "#4CAF50" }
                 ].map(util => (
                    <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] rounded-2xl shadow-sm active:scale-95 transition-all">
-                      <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 border border-white/50">
+                      <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/20 flex items-center justify-center shrink-0 border border-white/50">
                          <util.icon size={20} primary={util.primary} strokeWidth={1.5} />
                       </div>
                       <div className="flex flex-col items-start flex-1 leading-tight">
-                         <span className="font-bold text-[#003366] text-[9px] uppercase tracking-wide block">{util.title}</span>
+                         <span className="font-bold text-[var(--app-text)] text-[9px] uppercase tracking-wide block">{util.title}</span>
                          <span className="font-black text-white text-[12px] uppercase">{util.metric}</span>
                       </div>
                    </motion.button>
@@ -249,8 +249,8 @@ export function Wallet() {
                   { id: "calculator", icon: DuotoneCalculator, title: "CALCULATOR", metric: "-2%", primary: "#ffffff" },
                   { id: "tax", icon: DuotoneTaxAccount, title: "TAX ACCOUNT", metric: "K211", primary: "#ffffff" }
                 ].map(util => (
-                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#003366] rounded-2xl shadow-sm active:scale-95 transition-all">
-                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[var(--app-text)] rounded-2xl shadow-sm active:scale-95 transition-all">
+                      <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/10 flex items-center justify-center shrink-0 border border-white/20">
                          <util.icon size={20} primary={util.primary} strokeWidth={1.5} />
                       </div>
                       <div className="flex flex-col items-start flex-1 leading-tight overflow-visible">
@@ -272,13 +272,13 @@ export function Wallet() {
           </div>
 
           {/* Categorized Tabs */}
-          <div className="flex justify-between items-center bg-gray-50/50 p-2 rounded-full mb-6 border border-gray-100 shadow-sm overflow-x-auto no-scrollbar gap-2">
+          <div className="flex justify-between items-center bg-[var(--app-bg-muted)]/50 p-2 rounded-full mb-6 border border-gray-100 shadow-sm overflow-x-auto no-scrollbar gap-2">
             {(["all", "earnings", "payments", "transfers"] as TransTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTransTab(tab)}
                 className={`flex-1 min-w-[70px] py-2.5 text-[9px] font-black uppercase tracking-widest transition-all rounded-full ${
-                  activeTransTab === tab ? "bg-white text-[#003366] shadow-sm border border-gray-100" : "text-[#A0A0A0]"
+                  activeTransTab === tab ? "bg-[var(--app-bg)] text-[var(--app-text)] shadow-sm border border-gray-100" : "text-[#A0A0A0]"
                 }`}
               >
                 {tab}
@@ -287,8 +287,8 @@ export function Wallet() {
           </div>
 
           {/* Transaction Grid */}
-          <div className="bg-white overflow-hidden rounded-[24px] shadow-sm border border-gray-100 mb-8 divide-y divide-gray-50" style={{ backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)", backgroundSize: "20px 20px" }}>
-            <div className="bg-white/80 w-full h-full"> 
+          <div className="bg-[var(--app-bg)] overflow-hidden rounded-[24px] shadow-sm border border-gray-100 mb-8 divide-y divide-gray-50" style={{ backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)", backgroundSize: "20px 20px" }}>
+            <div className="bg-[var(--app-bg)]/80 w-full h-full"> 
             <AnimatePresence mode="popLayout">
               {(() => {
                 const filtered = TRANSACTION_DATA[activeTransTab].filter(tx => 
@@ -299,7 +299,7 @@ export function Wallet() {
                 if (filtered.length === 0) {
                   return (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-20 flex flex-col items-center">
-                       <p className="font-black text-[9px] uppercase tracking-[0.3em] opacity-20 text-[#003366]">NO RECORDS FOUND</p>
+                       <p className="font-black text-[9px] uppercase tracking-[0.3em] opacity-20 text-[var(--app-text)]">NO RECORDS FOUND</p>
                     </motion.div>
                   );
                 }
@@ -317,16 +317,16 @@ export function Wallet() {
                       <div className="p-5 flex items-center justify-between pointer-events-none">
                         <div className="flex items-center gap-4">
                           <div className="flex flex-col">
-                             <h4 className="font-black text-[#003366] text-[11px] uppercase tracking-tight transition-colors">{tx.title}</h4>
+                             <h4 className="font-black text-[var(--app-text)] text-[11px] uppercase tracking-tight transition-colors">{tx.title}</h4>
                              <div className="flex items-center gap-3 mt-1.5">
-                                <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-gray-100 text-[#003366]`}>{tx.type}</span>
+                                <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-gray-100 text-[var(--app-text)]`}>{tx.type}</span>
                                 <span className="text-[9px] font-bold text-gray-400 tracking-tight">{tx.date}</span>
                              </div>
                           </div>
                         </div>
                         <div className="flex items-center gap-4 shrink-0 pointer-events-auto">
                           <div className="text-right">
-                            <p className={`font-black text-sm tracking-tight ${isPositive ? "text-[#00C853]" : "text-[#003366]"}`}>
+                            <p className={`font-black text-sm tracking-tight ${isPositive ? "text-[#00C853]" : "text-[var(--app-text)]"}`}>
                               {isPositive ? "+" : ""}{tx.amount.toFixed(2)}
                             </p>
                             <div className="flex justify-end gap-1 items-center mt-1 opacity-20 transition-opacity">
@@ -349,13 +349,13 @@ export function Wallet() {
                                <div className="pt-4 space-y-3">
                                    <div className="flex justify-between items-center text-[10px]">
                                        <span className="text-gray-400 uppercase font-black tracking-widest">Transaction Ref</span>
-                                       <span className="text-[#003366] font-bold">#TRX-{tx.id}9X2A</span>
+                                       <span className="text-[var(--app-text)] font-bold">#TRX-{tx.id}9X2A</span>
                                    </div>
                                    <div className="flex justify-between items-center text-[10px]">
                                        <span className="text-gray-400 uppercase font-black tracking-widest">Status</span>
                                        <span className="text-[#00C853] font-bold">{tx.status}</span>
                                    </div>
-                                   <button onClick={(e) => { e.stopPropagation(); handleAction("Download Receipt"); }} className="mt-2 w-full py-2 border-[1.5px] border-[#003366] text-[#003366] text-[9px] font-black uppercase tracking-widest active:bg-gray-100 transition-colors">
+                                   <button onClick={(e) => { e.stopPropagation(); handleAction("Download Receipt"); }} className="mt-2 w-full py-2 border-[1.5px] border-[var(--app-text)] text-[var(--app-text)] text-[9px] font-black uppercase tracking-widest active:bg-gray-100 transition-colors">
                                        Download Receipt
                                    </button>
                                </div>
@@ -373,7 +373,7 @@ export function Wallet() {
 
         {/* Security Banner with soft premium wrap */}
         <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.3)}
-          className="rounded-2xl shadow-md bg-[#003366] overflow-hidden transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
+          className="rounded-2xl shadow-md bg-[var(--app-text)] overflow-hidden transition-all duration-700 aspect-[4/1] relative flex items-center justify-center">
           <img src={adBanner} alt="Transaction Assurance" className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Secure Gateway</p>
         </motion.div>
@@ -391,12 +391,12 @@ export function Wallet() {
             />
             <motion.div 
                initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-               className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+               className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t-[3px] border-[var(--app-text-slate)] shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
                <div className="p-8">
                   <div className="flex justify-between items-center mb-6">
                      <div className="flex-1 text-center">
-                        <h3 className="text-3xl font-black text-[#003366] uppercase tracking-tighter">Deposit</h3>
+                        <h3 className="text-3xl font-black text-[var(--app-text)] uppercase tracking-tighter">Deposit</h3>
                         <p className="text-[10px] font-bold text-gray-500 mt-1 uppercase tracking-widest leading-none">Select Amount to transfer into your wallet</p>
                      </div>
                      <button onClick={() => setShowDepositSheet(false)} className="absolute right-6 top-8 w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border border-slate-200">
@@ -406,8 +406,8 @@ export function Wallet() {
 
                   <div className="space-y-6">
                      {/* Balance Card */}
-                     <div className="bg-[#003366] rounded-2xl p-6 shadow-xl relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-10 -mt-10 blur-2xl group-hover:bg-white/10 transition-all" />
+                     <div className="bg-[var(--app-text)] rounded-2xl p-6 shadow-xl relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--app-bg)]/5 rounded-full -mr-10 -mt-10 blur-2xl group-hover:bg-[var(--app-bg)]/10 transition-all" />
                         <div className="relative z-10 flex flex-col">
                            <span className="text-orange-400 font-black text-[10px] uppercase tracking-[0.2em] mb-1">BALANCE</span>
                            <h4 className="text-white text-3xl font-black tracking-tight">ZMW 2,450.00</h4>
@@ -415,21 +415,21 @@ export function Wallet() {
                      </div>
 
                      {/* Amount Selector */}
-                     <div className="bg-white border-2 border-slate-200 rounded-[24px] p-10 shadow-lg flex items-center justify-between">
-                        <motion.button whileTap={{ scale: 0.8 }} onClick={() => setDepositAmount(Math.max(0, depositAmount - 50))} className="w-12 h-12 flex items-center justify-center text-[#003366]">
+                     <div className="bg-[var(--app-bg)] border-2 border-slate-200 rounded-[24px] p-10 shadow-lg flex items-center justify-between">
+                        <motion.button whileTap={{ scale: 0.8 }} onClick={() => setDepositAmount(Math.max(0, depositAmount - 50))} className="w-12 h-12 flex items-center justify-center text-[var(--app-text)]">
                            <Minus size={32} strokeWidth={4} />
                         </motion.button>
                         <div className="text-center">
-                           <span className="text-[#003366] text-4xl font-black tracking-tighter">K{depositAmount.toFixed(2)}</span>
+                           <span className="text-[var(--app-text)] text-4xl font-black tracking-tighter">K{depositAmount.toFixed(2)}</span>
                         </div>
-                        <motion.button whileTap={{ scale: 0.8 }} onClick={() => setDepositAmount(depositAmount + 50)} className="w-12 h-12 flex items-center justify-center text-[#003366]">
+                        <motion.button whileTap={{ scale: 0.8 }} onClick={() => setDepositAmount(depositAmount + 50)} className="w-12 h-12 flex items-center justify-center text-[var(--app-text)]">
                            <Plus size={32} strokeWidth={4} />
                         </motion.button>
                      </div>
 
                      <div className="space-y-4">
-                        <p className="text-[12px] font-black text-[#003366] uppercase tracking-widest ml-1">Select Payment Method</p>
-                        <button className="w-full h-16 bg-white border-2 border-slate-200 rounded-2xl px-6 flex items-center justify-center font-black text-2xl text-slate-500 transition-all shadow-sm">
+                        <p className="text-[12px] font-black text-[var(--app-text)] uppercase tracking-widest ml-1">Select Payment Method</p>
+                        <button className="w-full h-16 bg-[var(--app-bg)] border-2 border-slate-200 rounded-2xl px-6 flex items-center justify-center font-black text-2xl text-slate-500 transition-all shadow-sm">
                            Mobile Money
                         </button>
 
@@ -444,7 +444,7 @@ export function Wallet() {
                                onClick={() => setSelectedProvider(provider.id)}
                                className="flex flex-col items-center gap-2 group cursor-pointer"
                              >
-                               <div className={`w-20 h-20 rounded-full border-4 ${selectedProvider === provider.id ? provider.color : "border-slate-50"} bg-white shadow-xl flex items-center justify-center overflow-hidden transition-all active:scale-90`}>
+                               <div className={`w-20 h-20 rounded-full border-4 ${selectedProvider === provider.id ? provider.color : "border-slate-50"} bg-[var(--app-bg)] shadow-xl flex items-center justify-center overflow-hidden transition-all active:scale-90`}>
                                  <img src={provider.logo} alt={provider.name} className="w-full h-full object-cover scale-110" />
                                </div>
                                <span className="text-[11px] font-bold text-gray-500 uppercase tracking-widest">{provider.name}</span>
@@ -458,7 +458,7 @@ export function Wallet() {
                        onClick={() => {
                          setShowDepositSheet(false);
                        }}
-                       className="w-full h-16 bg-[#003366] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-sm shadow-[0_6px_0px_#002144] active:shadow-none active:translate-y-[4px] mt-6 transition-all"
+                       className="w-full h-16 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-sm shadow-[0_6px_0px_#002144] active:shadow-none active:translate-y-[4px] mt-6 transition-all"
                      >
                        Deposit
                      </motion.button>
@@ -480,20 +480,20 @@ export function Wallet() {
             />
             <motion.div 
               initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-white rounded-t-[40px] border-t-[3px] border-slate-900 shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t-[3px] border-[var(--app-text-slate)] shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
               <div className="p-8">
                 <div className="flex justify-between items-center mb-8">
-                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Feature Status</h3>
-                  <button onClick={() => setShowComingSoon(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-[2px_2px_0px_#000] active:scale-90 transition-all"><X size={20} /></button>
+                  <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">Feature Status</h3>
+                  <button onClick={() => setShowComingSoon(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-[var(--app-text-slate)] shadow-[2px_2px_0px_#000] active:scale-90 transition-all"><X size={20} /></button>
                 </div>
                 
                 <div className="flex flex-col items-center gap-6 py-4 text-center">
-                  <div className="w-20 h-20 bg-orange-50 rounded-3xl border-2 border-orange-500 flex items-center justify-center shadow-[6px_6px_0px_#FF8C00]">
+                  <div className="w-20 h-20 bg-orange-50 rounded-3xl border-2 border-orange-500 flex items-center justify-center shadow-[6px_6px_0px_var(--app-orange)]">
                     <DuotoneSparkles primary="#f59e0b" size={40} />
                   </div>
                   <div>
-                    <h4 className="text-lg font-black text-slate-900 uppercase tracking-tight mb-2">{showComingSoon} Module</h4>
+                    <h4 className="text-lg font-black text-[var(--app-text-slate)] uppercase tracking-tight mb-2">{showComingSoon} Module</h4>
                     <p className="text-sm font-bold text-slate-500 leading-relaxed max-w-[240px] mx-auto">This premium feature is currently being optimized for Zambian market compliance.</p>
                   </div>
                 </div>

@@ -60,7 +60,7 @@ export function ProductDetail() {
     <Skeleton loading={loading} name="productdetail">
     <div className="min-h-screen pb-32">
       {/* Top Navigation */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl shadow-sm">
+      <div className="sticky top-0 z-50 bg-[var(--app-bg)]/80 backdrop-blur-xl shadow-sm">
         <div className="flex items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center justify-center h-10 w-10 rounded-full(--clean-slate)] active:scale-95 transition-all">
             <ArrowLeft size={20} className="text-[var(--ink-primary)]" />
@@ -100,10 +100,10 @@ export function ProductDetail() {
         <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
           <div className="flex items-center gap-3 mb-4">
             <span className="bg-[var(--action-gold)] text-[var(--ink-primary)] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 animate-pulse">
-              <span className="w-2 h-2 rounded-full bg-white" />
+              <span className="w-2 h-2 rounded-full bg-[var(--app-bg)]" />
               {product.category}
             </span>
-            <span className="bg-white/10 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium">4K Demo</span>
+            <span className="bg-[var(--app-bg)]/10 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium">4K Demo</span>
           </div>
           <h2 className="font-extrabold text-white leading-tight max-w-2xl tracking-tight">
             {product.name}
@@ -127,7 +127,7 @@ export function ProductDetail() {
               key={i}
               onClick={() => setCurrentImageIndex(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === currentImageIndex ? "bg-white w-6 shadow-md" : "bg-white/40 w-1.5"
+                i === currentImageIndex ? "bg-[var(--app-bg)] w-6 shadow-md" : "bg-[var(--app-bg)]/40 w-1.5"
               }`}
             />
           ))}
@@ -215,7 +215,7 @@ export function ProductDetail() {
                 {product.stats.map((stat, i) => {
                   const Icon = iconMap[stat.icon];
                   return (
-                    <div key={i} className="bg-white p-5 rounded-[2rem] border border-black/[0.04] shadow-sm">
+                    <div key={i} className="bg-[var(--app-bg)] p-5 rounded-[2rem] border border-black/[0.04] shadow-sm">
                       <Icon size={24} className={`${stat.color} mb-2`} strokeWidth={2} />
                       <p className="text-xs text-[var(--ink-muted)] font-medium uppercase">{stat.label}</p>
                       <p className="text-xl font-bold text-[var(--ink-primary)]">{stat.value}</p>
@@ -276,7 +276,7 @@ export function ProductDetail() {
           <div className="overflow-x-auto no-scrollbar">
             <div className="flex gap-6 pb-4">
               {product.performance.map((perf, i) => (
-                <div key={i} className="w-72 flex-shrink-0 bg-white p-6 rounded-[2rem] border border-black/[0.04] shadow-sm">
+                <div key={i} className="w-72 flex-shrink-0 bg-[var(--app-bg)] p-6 rounded-[2rem] border border-black/[0.04] shadow-sm">
                   <p className="text-xs font-bold text-[var(--ink-muted)] uppercase mb-2">{perf.label}</p>
                   <p className={`text-3xl font-[var(--font-header)] font-black mb-4 ${
                     perf.type === "chart" ? "text-[var(--trust-blue)]" : "text-[var(--ink-primary)]"

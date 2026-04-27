@@ -34,23 +34,23 @@ export function OnboardingPage() {
       <div className="px-5 mt-6 space-y-6">
         {/* 1. Header & Search Architecture */}
         <div className="space-y-4">
-          <div className="relative w-full flex items-center bg-white border-[3px] border-[#003366] rounded-2xl px-4 py-3 shadow-[4px_4px_0_#003366]">
-            <Search size={20} className="text-[#003366] mr-3" strokeWidth={3} />
+          <div className="relative w-full flex items-center bg-[var(--app-bg)] border-[3px] border-[var(--app-text)] rounded-2xl px-4 py-3 shadow-[4px_4px_0_var(--app-text)]">
+            <Search size={20} className="text-[var(--app-text)] mr-3" strokeWidth={3} />
             <input 
               type="text" 
               placeholder="Search Product..." 
-              className="flex-1 bg-transparent outline-none text-sm font-black text-[#003366] placeholder:text-[#003366]/30"
+              className="flex-1 bg-transparent outline-none text-sm font-black text-[var(--app-text)] placeholder:text-[var(--app-text)]/30"
             />
-            <div className="h-6 w-[2px] bg-[#003366]/20 mx-3" />
+            <div className="h-6 w-[2px] bg-[var(--app-text)]/20 mx-3" />
             <button 
               onClick={() => toast.info("Opening categories...")}
-              className="flex items-center gap-1 text-[11px] font-black text-[#003366] uppercase tracking-widest"
+              className="flex items-center gap-1 text-[11px] font-black text-[var(--app-text)] uppercase tracking-widest"
             >
-              Categories <ChevronRight size={14} className="text-[#FF8C00]" strokeWidth={3} />
+              Categories <ChevronRight size={14} className="text-[var(--app-orange)]" strokeWidth={3} />
             </button>
           </div>
           
-          <p className="text-[#003366]/60 text-[11px] font-black uppercase tracking-[0.1em] leading-relaxed px-1">
+          <p className="text-[var(--app-text)]/60 text-[11px] font-black uppercase tracking-[0.1em] leading-relaxed px-1">
             Get onboard with essential services quickly and easily.
           </p>
         </div>
@@ -64,7 +64,7 @@ export function OnboardingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               onClick={() => toast.info(`${service.name} services initializing...`)}
-              className="bg-white rounded-3xl p-6 flex flex-col items-center justify-center gap-4 border-[3px] border-[#003366] shadow-[6px_6px_0_#003366] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+              className="bg-[var(--app-bg)] rounded-3xl p-6 flex flex-col items-center justify-center gap-4 border-[3px] border-[var(--app-text)] shadow-[6px_6px_0_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
             >
               <div className="w-16 h-16 flex items-center justify-center">
                 {service.type === 'logo' ? (
@@ -77,7 +77,7 @@ export function OnboardingPage() {
                   <service.icon size={36} />
                 )}
               </div>
-              <span className="text-[11px] font-black text-[#003366] uppercase tracking-wider text-center leading-tight">
+              <span className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-wider text-center leading-tight">
                 {service.name}
               </span>
             </motion.div>

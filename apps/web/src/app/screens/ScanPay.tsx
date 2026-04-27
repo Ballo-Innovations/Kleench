@@ -48,7 +48,7 @@ export function ScanPay() {
         </div>
 
         {/* Mode Toggle */}
-        <div className="w-full bg-white rounded-full border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] p-1.5 flex gap-1.5">
+        <div className="w-full bg-[var(--app-bg)] rounded-full border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] p-1.5 flex gap-1.5">
           <button 
             onClick={() => setMode("scanner")}
             className={`flex-1 h-12 rounded-full flex items-center justify-center gap-2 transition-all ${
@@ -72,7 +72,7 @@ export function ScanPay() {
         {/* Amount Input */}
         <div className="w-full flex items-center gap-4">
           <span className="text-sm font-black text-[#0D1B2A] uppercase tracking-tighter">Amount</span>
-          <div className="flex-1 h-16 bg-white rounded-2xl border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] px-6 flex items-center justify-between">
+          <div className="flex-1 h-16 bg-[var(--app-bg)] rounded-2xl border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] px-6 flex items-center justify-between">
             <motion.button 
               whileTap={{ scale: 0.8 }}
               onClick={() => setAmount(Math.max(0, amount - 50))} 
