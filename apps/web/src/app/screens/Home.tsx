@@ -82,7 +82,7 @@ const FEED_ITEMS = [
     comments: 18,
     shares: 9,
     tag: "HOT",
-    tagColor: "bg-[var(--app-text)]",
+    tagColor: "bg-[var(--app-shape-accent)]",
   },
   {
     id: 4,
@@ -243,7 +243,7 @@ export function Home() {
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-[var(--app-orange)] font-black text-[8px] uppercase tracking-[0.4em]">01.</span>
                     <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--app-text)]/40">{block.title}</h3>
-                    <div className="flex-1 h-[2px] bg-[var(--app-text)]/5" />
+                    <div className="flex-1 h-[2px] bg-[var(--app-shape-accent)]/5" />
                   </div>
                   <div className="flex gap-3 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none" style={{ scrollbarWidth: "none" }}>
                     {(block.data as typeof REELS).map((reel) => (
@@ -371,11 +371,11 @@ export function Home() {
                         </div>
                         <div className="flex items-center gap-3 text-[9px] font-black uppercase text-[var(--app-text)]/30">
                           <span>{item.views} Views</span>
-                          <span className="w-1 h-1 rounded-full bg-[var(--app-text)]/20" />
+                          <span className="w-1 h-1 rounded-full bg-[var(--app-shape-accent)]/20" />
                           <span>{item.time}</span>
                         </div>
                       </div>
-                      <div className="px-4 py-2 bg-[var(--app-text)]/[0.02] border-t border-[var(--app-text)]/[0.05] flex items-center gap-4 text-[var(--app-text)]/60 text-[9px] font-black uppercase tracking-widest">
+                      <div className="px-4 py-2 bg-[var(--app-shape-accent)]/[0.02] border-t border-[var(--app-text)]/[0.05] flex items-center gap-4 text-[var(--app-text)]/60 text-[9px] font-black uppercase tracking-widest">
                          <span>Like | {likedPosts.has(item.id) ? (item.likes as number) + 1 : item.likes}</span>
                          <span>Comments | {item.comments || 0}</span>
                          <span>Share | {item.shares || 0}</span>

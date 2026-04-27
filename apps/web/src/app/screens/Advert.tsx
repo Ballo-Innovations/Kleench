@@ -363,7 +363,7 @@ export function Advert() {
                           <h4 className="font-black text-[var(--app-text-slate)] text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
                         </div>
-                        <button className="w-full h-16 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-[var(--app-text)]/25">
+                        <button className="w-full h-16 bg-[var(--app-shape-accent)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-[var(--app-text)]/25">
                           Choose from Gallery
                         </button>
                       </div>
@@ -390,7 +390,7 @@ export function Advert() {
                           <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Universal Link</p>
                           <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/10 p-1.5 focus-within:border-[var(--app-text)]/40 transition-all">
                             <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
-                            <button className="px-6 bg-[var(--app-text)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
+                            <button className="px-6 bg-[var(--app-shape-accent)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                           </div>
                         </div>
                       </div>
@@ -418,7 +418,7 @@ export function Advert() {
                            onClick={() => setActiveSheet("Share")}
                            className="w-full h-14 bg-[var(--app-bg-muted)] flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-[var(--app-text-slate)] border border-slate-200 shadow-sm"
                          >
-                            <div className="w-8 h-8 rounded-full bg-[var(--app-text)]/10 flex items-center justify-center">
+                            <div className="w-8 h-8 rounded-full bg-[var(--app-shape-accent)]/10 flex items-center justify-center">
                                <Send color="var(--app-text)" />
                             </div>
                             <span className="font-black text-[11px] uppercase tracking-widest">Share to peers</span>
@@ -427,7 +427,7 @@ export function Advert() {
                            onClick={() => setActiveSheet(null)}
                            className="w-full h-14 bg-[var(--app-bg-muted)] flex items-center gap-4 px-6 rounded-xl active:scale-95 transition-all text-[var(--app-text-slate)] border border-slate-200 shadow-sm"
                          >
-                            <div className="w-8 h-8 rounded-full bg-[var(--app-text)]/10 flex items-center justify-center">
+                            <div className="w-8 h-8 rounded-full bg-[var(--app-shape-accent)]/10 flex items-center justify-center">
                                <Bookmark size={16} className="text-[var(--app-text)]" />
                             </div>
                             <span className="font-black text-[11px] uppercase tracking-widest">Bookmark Video</span>

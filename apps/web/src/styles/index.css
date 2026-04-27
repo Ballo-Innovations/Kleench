@@ -31,6 +31,10 @@ body {
   --app-text-slate: #0f172a;
   --app-orange: #FF8C00;
   --app-header-shadow: rgba(255,140,0,0.12);
+  --app-icon-primary: #093463;
+  --app-shape-accent: #003366;
+  --app-on-accent: #ffffff;
+  --app-sub-accent: #0D1B2A;
 }
 
 html.dark {
@@ -41,6 +45,10 @@ html.dark {
   --app-text-slate: #ffffff;
   --app-orange: #DD4C30;
   --app-header-shadow: rgba(221,76,48,0.2);
+  --app-icon-primary: #ffffff;
+  --app-shape-accent: #00C853;
+  --app-on-accent: #ffffff;
+  --app-sub-accent: #00C853;
 }
 
 /* Mobile container constraint */

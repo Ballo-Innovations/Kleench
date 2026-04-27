@@ -108,7 +108,7 @@ export function Escrow() {
               {/* Ledger Section Header */}
               <div className="flex items-center gap-4">
                 <span className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-[0.4em] whitespace-nowrap">Deal Parameters</span>
-                <div className="flex-1 h-[2px] bg-[var(--app-text)]/10" />
+                <div className="flex-1 h-[2px] bg-[var(--app-shape-accent)]/10" />
               </div>
 
               {/* Form Inputs with Neo-Brutalist Styling */}
@@ -148,7 +148,7 @@ export function Escrow() {
                           <div 
                             key={idx}
                             onClick={() => { setRecipient(merchant); setShowRecipientDropdown(false); }}
-                            className="p-4 border-b last:border-0 border-[var(--app-text)]/10 hover:bg-[var(--app-text)]/5 cursor-pointer text-sm font-black text-[var(--app-text)] uppercase tracking-tight"
+                            className="p-4 border-b last:border-0 border-[var(--app-text)]/10 hover:bg-[var(--app-shape-accent)]/5 cursor-pointer text-sm font-black text-[var(--app-text)] uppercase tracking-tight"
                           >
                             {merchant}
                           </div>
@@ -190,7 +190,7 @@ export function Escrow() {
                           <div 
                             key={idx}
                             onClick={() => { setDispatchWindow(window); setShowDispatchDropdown(false); }}
-                            className="p-4 border-b last:border-0 border-[var(--app-text)]/10 hover:bg-[var(--app-text)]/5 cursor-pointer text-sm font-black text-[var(--app-text)] uppercase tracking-tight"
+                            className="p-4 border-b last:border-0 border-[var(--app-text)]/10 hover:bg-[var(--app-shape-accent)]/5 cursor-pointer text-sm font-black text-[var(--app-text)] uppercase tracking-tight"
                           >
                             {window}
                           </div>
@@ -215,7 +215,7 @@ export function Escrow() {
                 <motion.button 
                   whileTap={{ scale: 0.96 }}
                   onClick={() => setStep(2)}
-                  className="w-full h-16 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.3em] text-[12px] shadow-[8px_8px_0px_rgba(0,51,102,0.2)]"
+                  className="w-full h-16 bg-[var(--app-shape-accent)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.3em] text-[12px] shadow-[8px_8px_0px_rgba(0,51,102,0.2)]"
                 >
                   Confirm Escrow Setup
                 </motion.button>
@@ -245,7 +245,7 @@ export function Escrow() {
                   </div>
                 </div>
 
-                <div className="h-[2px] bg-[var(--app-text)]/10 w-1/2 mx-auto" />
+                <div className="h-[2px] bg-[var(--app-shape-accent)]/10 w-1/2 mx-auto" />
 
                 <div className="space-y-1">
                   <p className="text-[10px] font-black text-[#6E7C91] uppercase tracking-[0.4em]">Ledger Amount</p>
@@ -257,7 +257,7 @@ export function Escrow() {
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <span className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-[0.4em] whitespace-nowrap">Delivery Protocol</span>
-                  <div className="flex-1 h-[2px] bg-[var(--app-text)]" />
+                  <div className="flex-1 h-[2px] bg-[var(--app-shape-accent)]" />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
@@ -285,7 +285,7 @@ export function Escrow() {
                 <motion.button 
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setStep(3)}
-                  className="w-full h-18 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center group relative overflow-hidden shadow-lg shadow-[var(--app-text)]/20"
+                  className="w-full h-18 bg-[var(--app-shape-accent)] text-white rounded-2xl flex items-center justify-center group relative overflow-hidden shadow-lg shadow-[var(--app-text)]/20"
                 >
                   <div className="relative z-10 flex items-center gap-4">
                      <span className="font-black uppercase tracking-[0.4em] text-xs">Authorize Dispatch</span>

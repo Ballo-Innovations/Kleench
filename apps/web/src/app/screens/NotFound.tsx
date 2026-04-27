@@ -50,7 +50,7 @@ export function NotFound() {
           <Link to="/" className="w-full group">
             <motion.button 
               whileTap={{ scale: 0.97 }}
-              className="bg-[var(--app-text)] transition-colors text-white w-full py-4 rounded-[20px] font-black text-[15px] flex items-center justify-center gap-2 shadow-xl shadow-[var(--app-text)]/20 border border-t-white/10"
+              className="bg-[var(--app-shape-accent)] transition-colors text-white w-full py-4 rounded-[20px] font-black text-[15px] flex items-center justify-center gap-2 shadow-xl shadow-[var(--app-text)]/20 border border-t-white/10"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
               <ArrowLeft size={18} strokeWidth={2.5} className="group-hover:-translate-x-1 transition-transform" /> 
               Back to Safety

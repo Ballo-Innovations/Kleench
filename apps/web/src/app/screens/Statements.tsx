@@ -32,13 +32,13 @@ export function Statements() {
         {/* Balance Card Section */}
         <div className="space-y-3">
             <div className="relative group">
-                <div className="absolute inset-0 bg-[var(--app-text)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
-                <div className="relative bg-[var(--app-text)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
+                <div className="absolute inset-0 bg-[var(--app-shape-accent)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+                <div className="relative bg-[var(--app-shape-accent)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
                     <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
                     <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
                 </div>
             </div>
-            <p className="text-[11px] font-bold text-[#6E7C91] tracking-wide ml-1">{profileName}</p>
+            <p className="text-[11px] font-bold text-[var(--app-text)]/60 tracking-wide ml-1">{profileName}</p>
         </div>
 
         {/* Summary Card */}
@@ -56,13 +56,13 @@ export function Statements() {
             <div className="h-[1px] bg-slate-100 w-full" />
             
             <div className="space-y-3 px-1">
-              <div className="flex justify-between items-center text-[10px] font-bold text-[#6E7C91] uppercase tracking-widest pb-1">
+              <div className="flex justify-between items-center text-[10px] font-bold text-[var(--app-text)]/40 uppercase tracking-widest pb-1">
                  <span>Transaction Type</span>
                  <span>Amount(ZMW)</span>
               </div>
               {SUMMARY_DATA.map((item, i) => (
                 <div key={i} className="flex justify-between items-center">
-                  <span className="text-[11px] font-bold text-[#6E7C91]">{item.label}</span>
+                  <span className="text-[11px] font-bold text-[var(--app-text)]/60">{item.label}</span>
                   <span className="text-[12px] font-black text-[var(--app-text)]">{item.value}</span>
                 </div>
               ))}
@@ -99,13 +99,13 @@ export function Statements() {
                     <td className="py-4 pr-2 align-top">
                       <div className="flex flex-col">
                         <span className="text-[10px] font-bold text-[var(--app-text)]">{row.date}</span>
-                        <span className="text-[8px] font-bold text-[#6E7C91]">{row.time}</span>
+                        <span className="text-[8px] font-bold text-[var(--app-text)]/40">{row.time}</span>
                       </div>
                     </td>
                     <td className="py-4 pr-2 align-top min-w-[100px]">
                       <div className="flex flex-col">
                         <span className="text-[10px] font-black text-[var(--app-text)] leading-tight mb-0.5">{row.details}</span>
-                        <span className="text-[8px] font-bold text-[#6E7C91] tracking-tighter truncate max-w-[80px]">({row.id})</span>
+                        <span className="text-[8px] font-bold text-[var(--app-text)]/40 tracking-tighter truncate max-w-[80px]">({row.id})</span>
                       </div>
                     </td>
                     <td className="py-4 pr-1 text-right align-top text-[10px] font-black text-[var(--app-text)]">{row.credited}</td>

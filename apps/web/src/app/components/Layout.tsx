@@ -191,7 +191,7 @@ export function Layout() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-[var(--app-text)]/60 backdrop-blur-sm max-w-md mx-auto"
+              className="fixed inset-0 z-[60] bg-[var(--app-shape-accent)]/60 backdrop-blur-sm max-w-md mx-auto"
               onClick={() => setShowMore(false)}
             />
             <motion.div

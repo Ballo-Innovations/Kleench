@@ -88,7 +88,7 @@ const KineticPillToggle = <T extends string>({
   value: T, 
   onChange: (v: T) => void 
 }) => (
-  <div className="flex bg-[var(--app-bg)] border border-[#093463]/20 rounded-[18px] p-1 gap-1 shadow-[0_4px_10px_rgba(9,52,99,0.1)]">
+  <div className="flex bg-[var(--app-bg)] border border-[var(--app-sub-accent)]/20 rounded-[18px] p-1 gap-1 shadow-[0_4px_10px_rgba(9,52,99,0.1)]">
     {options.map((opt) => (
       <button
         key={opt}
@@ -96,7 +96,7 @@ const KineticPillToggle = <T extends string>({
         className={`flex-1 py-2.5 rounded-[14px] text-[13px] font-black uppercase tracking-wider transition-all duration-300 ${
           value === opt 
             ? "bg-[#EE4D2D] text-white shadow-[0_4px_10px_rgba(238,77,45,0.3)]" 
-            : "bg-transparent text-[#093463] opacity-60 hover:opacity-100"
+            : "bg-transparent text-[var(--app-sub-accent)] opacity-60 hover:opacity-100"
         }`}
       >
         {opt}
@@ -121,11 +121,11 @@ const KineticRadioItem = ({
     className="w-full flex items-center justify-between group py-1"
   >
     <div className="flex flex-col items-start">
-      <span className={`text-[12px] font-black uppercase tracking-tight ${isActive ? "text-[#093463]" : "text-[#6E7C91]"}`}>
+      <span className={`text-[12px] font-black uppercase tracking-tight ${isActive ? "text-[var(--app-sub-accent)]" : "text-[var(--app-text)]/40"}`}>
         {label} {subLabel && <span className="font-normal opacity-60 normal-case italic">({subLabel})</span>}
       </span>
     </div>
-    <div className={`w-6 h-6 rounded-full border-[2.5px] flex items-center justify-center transition-all ${isActive ? "border-[#EE4D2D]" : "border-[#6E7C91]/30"}`}>
+    <div className={`w-6 h-6 rounded-full border-[2.5px] flex items-center justify-center transition-all ${isActive ? "border-[#EE4D2D]" : "border-[var(--app-text)]/20"}`}>
       {isActive && (
         <motion.div 
           layoutId="radio-indicator"
@@ -147,7 +147,7 @@ const KineticDropdownPill = ({ label, value, onChange, placeholder, onClick }: {
 }) => (
   <div 
     onClick={onClick}
-    className="group w-full relative h-14 bg-[var(--app-bg)] border border-[#093463]/20 rounded-[20px] px-5 flex items-center shadow-md shadow-[#093463]/12 active:scale-[0.99] transition-all overflow-hidden"
+    className="group w-full relative h-14 bg-[var(--app-bg)] border border-[var(--app-sub-accent)]/20 rounded-[20px] px-5 flex items-center shadow-md shadow-[var(--app-sub-accent)]/12 active:scale-[0.99] transition-all overflow-hidden"
   >
     <div className="flex-1 flex flex-col justify-center">
       <span className="text-[8px] font-black text-[#6E7C91] uppercase tracking-widest leading-none mb-0.5">{label}</span>
@@ -156,11 +156,11 @@ const KineticDropdownPill = ({ label, value, onChange, placeholder, onClick }: {
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
-        className="text-[12px] font-black text-[#093463] uppercase tracking-wider bg-transparent outline-none w-full placeholder:opacity-40"
+        className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-wider bg-transparent outline-none w-full placeholder:opacity-40"
         readOnly={!onChange}
       />
     </div>
-    <div className="relative z-10 w-8 h-8 rounded-full bg-[#093463] flex items-center justify-center -mr-1 shadow-[0_2px_4px_rgba(0,0,0,0.2)] flex-shrink-0">
+    <div className="relative z-10 w-8 h-8 rounded-full bg-[var(--app-sub-accent)] flex items-center justify-center -mr-1 shadow-[0_2px_4px_rgba(0,0,0,0.2)] flex-shrink-0">
       <DuotoneChevronRight size={16} primary="#FFFFFF" className="rotate-90 translate-x-[1px]" />
     </div>
   </div>
@@ -170,8 +170,8 @@ const MainActionButton = ({ children, onClick, color = "#093463" }: { children: 
   <motion.button
     whileTap={{ scale: 0.96 }}
     onClick={onClick}
-    style={{ backgroundColor: color }}
-    className="w-full h-[68px] rounded-[24px] text-white font-black uppercase tracking-[0.3em] text-[15px] shadow-[0_12px_24px_rgba(9,52,99,0.2)] active:scale-95 transition-all"
+    style={{ backgroundColor: color === "#093463" ? "var(--app-sub-accent)" : color }}
+    className="w-full h-[68px] rounded-[24px] text-white font-black uppercase tracking-[0.3em] text-[15px] shadow-[0_12px_24px_rgba(0,0,0,0.1)] active:scale-95 transition-all"
   >
     {children}
   </motion.button>
@@ -212,7 +212,7 @@ export function ContentCalculator() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent font-sans text-[#093463] pb-12 selection:bg-[#EE4D2D] selection:text-white overflow-x-hidden">
+    <div className="w-full min-h-screen bg-transparent font-sans text-[var(--app-text)] pb-12 selection:bg-[#EE4D2D] selection:text-white overflow-x-hidden">
       <div className="sticky top-0 z-50 bg-transparent">
         <PageHeader 
           showBack 
@@ -266,14 +266,14 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
       className="space-y-8"
     >
       <div className="text-center space-y-2">
-        <h1 className="text-[32px] font-header font-black leading-tight tracking-tight text-[#093463]">Content Cost Calculator</h1>
-        <p className="text-[13px] font-bold text-[#6E7C91] opacity-80 max-w-[280px] mx-auto leading-tight">
+        <h1 className="text-[32px] font-header font-black leading-tight tracking-tight text-[var(--app-sub-accent)]">Content Cost Calculator</h1>
+        <p className="text-[13px] font-bold text-[var(--app-text)]/40 max-w-[280px] mx-auto leading-tight">
           Estimate the cost of creating and posting an advert and educational content.
         </p>
       </div>
 
       {/* Balance Card - The Navy Box */}
-      <div className="bg-[#093463] rounded-[32px] p-8 text-center shadow-2xl shadow-[#093463]/25 relative overflow-hidden group">
+      <div className="bg-[var(--app-sub-accent)] rounded-[32px] p-8 text-center shadow-2xl shadow-[var(--app-sub-accent)]/25 relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
         <h2 className="text-3xl font-header font-black text-white tracking-tight relative z-10">ZMW 2,450.00</h2>
       </div>
@@ -281,14 +281,14 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
       <div className="space-y-6">
         {/* Content Type */}
         <div className="space-y-3">
-          <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Content Type</label>
+          <label className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest pl-2">Content Type</label>
           <KineticPillToggle options={["Advert", "Educational"]} value={state.contentType} onChange={handlers.setContentType} />
         </div>
 
         {/* Format */}
         <div className="space-y-3">
-          <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Format</label>
-          <div className="flex gap-3 bg-[var(--app-bg)] border border-[#093463]/20 rounded-[22px] p-1.5 shadow-[0_4px_12px_rgba(9,52,99,0.05)]">
+          <label className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest pl-2">Format</label>
+          <div className="flex gap-3 bg-[var(--app-bg)] border border-[var(--app-sub-accent)]/20 rounded-[22px] p-1.5 shadow-[0_4px_12px_rgba(9,52,99,0.05)]">
             {(["Video", "Picture", "Audio"] as FormatType[]).map((f) => {
               const isActive = state.format === f;
               return (
@@ -308,7 +308,7 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
 
         {/* Quality Level */}
         <div className="space-y-4 px-2">
-          <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest block">Quality Level</label>
+          <label className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest block">Quality Level</label>
           <div className="space-y-3">
             <KineticRadioItem label="Standard quality" isActive={state.quality === "Standard quality"} onClick={() => handlers.setQuality("Standard quality")} />
             <KineticRadioItem label="Premium" subLabel="780p to 1080p" isActive={state.quality === "Premium"} onClick={() => handlers.setQuality("Premium")} />
@@ -318,21 +318,21 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
 
         {/* Audience */}
         <div className="space-y-3">
-          <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Choose Audience</label>
+          <label className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest pl-2">Choose Audience</label>
           <KineticPillToggle options={["Targeted", "General"]} value={state.audience} onChange={handlers.setAudience} />
         </div>
 
         {/* Duration */}
         <div className="space-y-3">
-          <label className="text-[12px] font-black text-[#093463] uppercase tracking-widest pl-2">Duration (Days)</label>
-          <div className="flex items-center bg-[var(--app-bg)] border border-[#093463]/20 rounded-[22px] overflow-hidden shadow-[0_4px_12px_rgba(9,52,99,0.08)]">
+          <label className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest pl-2">Duration (Days)</label>
+          <div className="flex items-center bg-[var(--app-bg)] border border-[var(--app-sub-accent)]/20 rounded-[22px] overflow-hidden shadow-[0_4px_12px_rgba(9,52,99,0.08)]">
             <button 
               onClick={() => handlers.setDuration(Math.max(1, state.duration - 1))}
-              className="w-16 h-14 bg-[#DEE5EF]/30 text-[#093463] flex items-center justify-center active:bg-[#DEE5EF] transition-colors"
+              className="w-16 h-14 bg-[var(--app-sub-accent)]/5 text-[var(--app-sub-accent)] flex items-center justify-center active:bg-[var(--app-sub-accent)]/10 transition-colors"
             >
-              <div className="h-1 w-4 bg-[#093463]" />
+              <div className="h-1 w-4 bg-[var(--app-sub-accent)]" />
             </button>
-            <div className="flex-1 text-center font-black text-[22px] text-[#093463]">
+            <div className="flex-1 text-center font-black text-[22px] text-[var(--app-sub-accent)]">
               <input 
                 type="number" 
                 value={state.duration}
@@ -342,9 +342,9 @@ function CalculatorHome({ state, handlers }: CalculatorHomeProps) {
             </div>
             <button 
               onClick={() => handlers.setDuration(state.duration + 1)}
-              className="w-16 h-14 bg-[#DEE5EF]/30 text-[#093463] flex items-center justify-center active:bg-[#DEE5EF] transition-colors"
+              className="w-16 h-14 bg-[var(--app-sub-accent)]/5 text-[var(--app-sub-accent)] flex items-center justify-center active:bg-[var(--app-sub-accent)]/10 transition-colors"
             >
-              <DuotonePlus size={20} primary="#093463" />
+              <DuotonePlus size={20} primary="var(--app-sub-accent)" />
             </button>
           </div>
         </div>
@@ -367,8 +367,8 @@ function TargetAudienceScreen({ state, handlers }: TargetAudienceProps) {
       className="space-y-8"
     >
       <div className="text-center space-y-2">
-        <h1 className="text-[32px] font-header font-black leading-tight tracking-tight text-[#093463]">Target Audience</h1>
-        <p className="text-[13px] font-bold text-[#6E7C91] opacity-80 max-w-[280px] mx-auto leading-tight">
+        <h1 className="text-[32px] font-header font-black leading-tight tracking-tight text-[var(--app-sub-accent)]">Target Audience</h1>
+        <p className="text-[13px] font-bold text-[var(--app-text)]/40 max-w-[280px] mx-auto leading-tight">
           create a target list to reach more people.
         </p>
       </div>
@@ -377,7 +377,7 @@ function TargetAudienceScreen({ state, handlers }: TargetAudienceProps) {
         <KineticPillToggle options={["Individual", "Business"]} value={state.audienceType} onChange={handlers.setAudienceType} />
 
         <div className="space-y-4">
-          <label className="text-[14px] font-black text-[#093463] tracking-wider pl-2 block">Location</label>
+          <label className="text-[14px] font-black text-[var(--app-sub-accent)] tracking-wider pl-2 block">Location</label>
           <div className="space-y-4">
             <KineticDropdownPill label="Country" value={state.location.country} onChange={(v) => handlers.setLocation((p: LocationState) => ({...p, country: v}))} />
             <KineticDropdownPill label="Province" value={state.location.province} onChange={(v) => handlers.setLocation((p: LocationState) => ({...p, province: v}))} />
@@ -408,7 +408,7 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
       exit={{ opacity: 0, scale: 1.05 }}
       className="space-y-8"
     >
-      <h1 className="text-[32px] font-header font-black text-center tracking-tight text-[#093463]">Individual</h1>
+      <h1 className="text-[32px] font-header font-black text-center tracking-tight text-[var(--app-sub-accent)]">Individual</h1>
 
       <div className="space-y-6">
         <KineticDropdownPill 
@@ -418,23 +418,23 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
         />
 
         <div className="flex gap-4">
-          <button className="flex-1 h-14 bg-[var(--app-bg)] border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Education</button>
-          <button className="flex-1 h-14 bg-[var(--app-bg)] border border-[#093463]/20/20 rounded-[18px] text-[13px] font-bold text-[#6E7C91] uppercase tracking-widest text-center shadow-sm">Occupation</button>
+          <button className="flex-1 h-14 bg-[var(--app-bg)] border border-[var(--app-sub-accent)]/20 rounded-[18px] text-[13px] font-bold text-[var(--app-text)]/40 uppercase tracking-widest text-center shadow-sm">Education</button>
+          <button className="flex-1 h-14 bg-[var(--app-bg)] border border-[var(--app-sub-accent)]/20 rounded-[18px] text-[13px] font-bold text-[var(--app-text)]/40 uppercase tracking-widest text-center shadow-sm">Occupation</button>
         </div>
 
         <div className="space-y-6">
-          <label className="text-[14px] font-black text-[#093463] tracking-wider pl-1 block">Demographic Details</label>
+          <label className="text-[14px] font-black text-[var(--app-sub-accent)] tracking-wider pl-1 block">Demographic Details</label>
           
           <div className="space-y-4">
              <div className="flex items-center justify-between">
-                <span className="text-[13px] font-black text-[#6E7C91] opacity-70">Gender</span>
+                <span className="text-[13px] font-black text-[var(--app-text)]/40">Gender</span>
                 <div className="flex gap-2">
                   {(["All", "Male", "Female"] as const).map(g => (
                     <button 
                       key={g} 
                       onClick={() => update("gender", g)}
                       className={`px-6 py-3 rounded-[12px] border-[2px] text-[11px] font-black uppercase tracking-widest transition-all ${
-                        state.gender === g ? "bg-[#C7D2FE] border-[#093463] text-[#093463] shadow-md" : "bg-[var(--app-bg)] border-[#6E7C91]/20 text-[#6E7C91]"
+                        state.gender === g ? "bg-[var(--app-accent-light)] border-[var(--app-sub-accent)] text-[var(--app-sub-accent)] shadow-md" : "bg-[var(--app-bg)] border-[var(--app-text)]/20 text-[var(--app-text)]/60"
                       }`}
                     >
                       {g}
@@ -444,14 +444,14 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
              </div>
 
              <div className="flex items-center justify-between gap-4">
-                <span className="text-[13px] font-black text-[#6E7C91] opacity-70 whitespace-nowrap">Age Group</span>
+                <span className="text-[13px] font-black text-[var(--app-text)]/40 whitespace-nowrap">Age Group</span>
                 <div className="flex-1 flex gap-2">
-                   <div className="flex-1 bg-[var(--app-bg)] border-[2px] border-[#093463] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
-                      <span className="text-[9px] font-bold text-[#6E7C91] opacity-60">Min age</span>
+                   <div className="flex-1 bg-[var(--app-bg)] border-[2px] border-[var(--app-sub-accent)] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
+                      <span className="text-[9px] font-bold text-[var(--app-text)]/40">Min age</span>
                       <span className="text-[14px] font-black">{state.minAge}</span>
                    </div>
-                   <div className="flex-1 bg-[var(--app-bg)] border-[2px] border-[#093463] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
-                      <span className="text-[9px] font-bold text-[#6E7C91] opacity-60">Max age</span>
+                   <div className="flex-1 bg-[var(--app-bg)] border-[2px] border-[var(--app-sub-accent)] rounded-[14px] p-1 flex items-center justify-center gap-2 shadow-sm">
+                      <span className="text-[9px] font-bold text-[var(--app-text)]/40">Max age</span>
                       <span className="text-[14px] font-black">{state.maxAge}</span>
                    </div>
                 </div>
@@ -471,10 +471,10 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
                       onClick={() => update("lifeStage", stage.id)}
                       className="flex items-center gap-2 group"
                     >
-                      <div className={`w-4 h-4 rounded-full border-[2px] transition-all flex items-center justify-center ${isActive ? "border-[#00D97E]" : "border-[#6E7C91]/30"}`}>
-                        {isActive && <div className="w-1.5 h-1.5 bg-[#00D97E] rounded-full" />}
+                      <div className={`w-4 h-4 rounded-full border-[2px] transition-all flex items-center justify-center ${isActive ? "border-[var(--app-accent-green)]" : "border-[var(--app-text)]/30"}`}>
+                        {isActive && <div className="w-1.5 h-1.5 bg-[var(--app-accent-green)] rounded-full" />}
                       </div>
-                      <span className={`text-[12px] font-black uppercase tracking-tight ${isActive ? "text-[#00D97E]" : "text-[#6E7C91] opacity-40 group-hover:opacity-100"}`}>
+                      <span className={`text-[12px] font-black uppercase tracking-tight ${isActive ? "text-[var(--app-accent-green)]" : "text-[var(--app-text)]/40 group-hover:opacity-100"}`}>
                         {stage.id}
                       </span>
                     </button>
@@ -483,14 +483,14 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
              </div>
 
              <div className="flex items-center justify-between">
-                <span className="text-[13px] font-black text-[#6E7C91] opacity-70">Prompt</span>
+                <span className="text-[13px] font-black text-[var(--app-text)]/40">Prompt</span>
                 <div className="flex gap-2">
                   {(["Single", "Married"] as const).map(m => (
                     <button 
                       key={m} 
                       onClick={() => update("marital", m)}
                       className={`px-10 py-3 rounded-[12px] border-[2px] text-[11px] font-black uppercase tracking-widest transition-all ${
-                        state.marital === m ? "bg-[#C7D2FE] border-[#093463] text-[#093463] shadow-md" : "bg-[var(--app-bg)] border-[#6E7C91]/20 text-[#6E7C91]"
+                        state.marital === m ? "bg-[var(--app-accent-light)] border-[var(--app-sub-accent)] text-[var(--app-sub-accent)] shadow-md" : "bg-[var(--app-bg)] border-[var(--app-text)]/20 text-[var(--app-text)]/60"
                       }`}
                     >
                       {m}
@@ -506,7 +506,7 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
              />
              
              <div className="space-y-2 pt-2">
-               <span className="text-[11px] font-black text-[#6E7C91] opacity-60 uppercase tracking-widest">Earning If Employed</span>
+               <span className="text-[11px] font-black text-[var(--app-text)]/40 uppercase tracking-widest">Earning If Employed</span>
                <div className="flex flex-wrap gap-x-3 gap-y-1">
                  {["K1,000 - K3,000", "K3,000 - K9,000", "K9,000 - K18,000", "K18,000 - K30,000"].map(tier => (
                    <button 
@@ -514,8 +514,8 @@ function DemographicsScreen({ state, handlers }: DemographicsScreenProps) {
                     onClick={() => update("earningTier", tier)}
                     className="flex items-center gap-1 group"
                    >
-                     <DuotoneUser size={12} primary={state.earningTier === tier ? "#EE4D2D" : "#6E7C91"} secondaryOpacity={0.2} />
-                     <span className={`text-[9px] font-black uppercase tracking-tight transition-colors ${state.earningTier === tier ? "text-[#EE4D2D]" : "text-[#6E7C91] opacity-40"}`}>
+                     <DuotoneUser size={12} primary={state.earningTier === tier ? "var(--app-accent)" : "var(--app-text)"} secondaryOpacity={0.2} />
+                     <span className={`text-[9px] font-black uppercase tracking-tight transition-colors ${state.earningTier === tier ? "text-[var(--app-accent)]" : "text-[var(--app-text)]/40"}`}>
                        {tier}
                      </span>
                    </button>
@@ -542,10 +542,10 @@ function QuoteScreen({ next }: { next: () => void }) {
       exit={{ opacity: 0, scale: 1.05 }}
       className="space-y-10"
     >
-      <h1 className="text-[36px] font-header font-black text-center tracking-tight text-[#093463]">Quote</h1>
+      <h1 className="text-[36px] font-header font-black text-center tracking-tight text-[var(--app-sub-accent)]">Quote</h1>
 
-      <div className="bg-[#EBF2FA] border-[2px] border-[#093463]/20 rounded-[28px] p-6 shadow-xl relative overflow-hidden group">
-        <div className="absolute top-0 inset-x-0 h-[6px] bg-[#EE4D2D]/80" />
+      <div className="bg-[var(--app-bg-muted)] border-[2px] border-[var(--app-sub-accent)]/20 rounded-[28px] p-6 shadow-xl relative overflow-hidden group">
+        <div className="absolute top-0 inset-x-0 h-[6px] bg-[var(--app-accent)]/80" />
         
         <div className="space-y-6">
           <div className="flex flex-col items-center gap-4">
@@ -553,8 +553,8 @@ function QuoteScreen({ next }: { next: () => void }) {
               <img src={kleenchLogo} alt="KLEENCH" className="w-full h-full object-contain" />
             </div>
             <div className="text-center">
-              <h2 className="text-[12px] font-black text-[#093463] uppercase tracking-[0.4em]">Proforma Invoice</h2>
-              <p className="text-[8px] font-bold text-[#6E7C91] opacity-80 uppercase leading-relaxed mt-1">
+              <h2 className="text-[12px] font-black text-[var(--app-sub-accent)] uppercase tracking-[0.4em]">Proforma Invoice</h2>
+              <p className="text-[8px] font-bold text-[var(--app-text)]/60 uppercase leading-relaxed mt-1">
                 Address: Office 10, Floor 3, Addis Ababa<br/>
                 Corporate Block, Lusaka - Zambia<br/>
                 Phone No.: +260 975 781 222
@@ -562,44 +562,44 @@ function QuoteScreen({ next }: { next: () => void }) {
             </div>
           </div>
 
-          <div className="flex justify-between items-end border-b-[2px] border-[#093463]/10 pb-4">
+          <div className="flex justify-between items-end border-b-[2px] border-[var(--app-sub-accent)]/10 pb-4">
              <div className="space-y-1">
-                <p className="text-[8px] font-black text-[#6E7C91] uppercase opacity-50">Recipient</p>
-                <p className="text-[10px] font-black text-[#093463]">Valued Client</p>
+                <p className="text-[8px] font-black text-[var(--app-text)]/40 uppercase opacity-50">Recipient</p>
+                <p className="text-[10px] font-black text-[var(--app-sub-accent)]">Valued Client</p>
              </div>
              <div className="text-right space-y-1">
-                <p className="text-[10px] font-black text-[#093463]"><span className="opacity-40 font-bold">INV:</span> KZM00428</p>
-                <p className="text-[10px] font-black text-[#093463]"><span className="opacity-40 font-bold">DATE:</span> 15/04/2026</p>
+                <p className="text-[10px] font-black text-[var(--app-text)]"><span className="opacity-40 font-bold">INV:</span> KZM00428</p>
+                <p className="text-[10px] font-black text-[var(--app-text)]"><span className="opacity-40 font-bold">DATE:</span> 15/04/2026</p>
              </div>
           </div>
 
           <div className="space-y-1">
-             <div className="flex text-[9px] font-black text-[#6E7C91] uppercase tracking-widest px-2 py-1 bg-[var(--app-bg)]/40 rounded-t-lg">
+             <div className="flex text-[9px] font-black text-[var(--app-text)]/40 uppercase tracking-widest px-2 py-1 bg-[var(--app-bg)]/40 rounded-t-lg">
                 <span className="flex-1">Description</span>
                 <span className="w-20 text-right">Total</span>
              </div>
              <div className="space-y-0.5">
-               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
+               <div className="flex text-[11px] font-bold text-[var(--app-text)] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
                   <span className="flex-1">Advert</span>
                   <span className="w-20 text-right">K20,000.00</span>
                </div>
-               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
+               <div className="flex text-[11px] font-bold text-[var(--app-text)] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
                   <span className="flex-1">Tip to Viewers</span>
                   <span className="w-20 text-right">K1,000.00</span>
                </div>
-               <div className="flex text-[11px] font-bold text-[#093463] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
+               <div className="flex text-[11px] font-bold text-[var(--app-text)] p-2 hover:bg-[var(--app-bg)]/40 transition-colors">
                   <span className="flex-1">Commission (15%)</span>
                   <span className="w-20 text-right">K150.00</span>
                </div>
-               <div className="flex text-[11px] font-bold text-[#093463]/60 p-2 pt-4 border-t border-[#093463]/5">
+               <div className="flex text-[11px] font-bold text-[var(--app-text)]/60 p-2 pt-4 border-t border-[var(--app-text)]/10">
                   <span className="flex-1">Subtotal</span>
                   <span className="w-20 text-right">K21,150.00</span>
                </div>
-               <div className="flex text-[11px] font-bold text-[#093463]/60 p-2">
+               <div className="flex text-[11px] font-bold text-[var(--app-text)]/60 p-2">
                   <span className="flex-1">VAT 16%</span>
                   <span className="w-20 text-right">K104.00</span>
                </div>
-               <div className="flex text-[18px] font-header font-black text-[#093463] p-2 pt-4 border-t-[2.5px] border-[#093463]">
+               <div className="flex text-[18px] font-header font-black text-[var(--app-text)] p-2 pt-4 border-t-[2.5px] border-[var(--app-sub-accent)]">
                   <span className="flex-1">Total Due</span>
                   <span className="w-28 text-right italic tracking-tighter">K21,254.00</span>
                </div>
@@ -609,9 +609,9 @@ function QuoteScreen({ next }: { next: () => void }) {
       </div>
 
       <div className="flex gap-3">
-        <button onClick={next} className="flex-1 h-16 bg-[#093463] text-white font-black uppercase tracking-wider text-[11px] rounded-[22px] shadow-[0_8px_16px_rgba(9,52,99,0.2)] active:scale-95 transition-all">Save</button>
-        <button onClick={next} className="flex-1 h-16 bg-[#093463] text-white font-black uppercase tracking-wider text-[11px] rounded-[22px] shadow-[0_8px_16px_rgba(9,52,99,0.2)] active:scale-95 transition-all">Pay</button>
-        <button onClick={next} className="flex-[1.2] h-16 bg-[#093463] text-white font-black uppercase tracking-wider text-[11px] rounded-[22px] shadow-[0_8px_16px_rgba(9,52,99,0.2)] active:scale-95 transition-all">Pay+ Viewers</button>
+        <button onClick={next} className="flex-1 h-16 bg-[var(--app-sub-accent)] text-white font-black uppercase tracking-wider text-[11px] rounded-[22px] shadow-[0_8px_16px_rgba(0,0,0,0.1)] active:scale-95 transition-all">Save</button>
+        <button onClick={next} className="flex-1 h-16 bg-[var(--app-sub-accent)] text-white font-black uppercase tracking-wider text-[11px] rounded-[22px] shadow-[0_8px_16px_rgba(0,0,0,0.1)] active:scale-95 transition-all">Pay</button>
+        <button onClick={next} className="flex-[1.2] h-16 bg-[var(--app-sub-accent)] text-white font-black uppercase tracking-wider text-[11px] rounded-[22px] shadow-[0_8px_16px_rgba(0,0,0,0.1)] active:scale-95 transition-all">Pay+ Viewers</button>
       </div>
     </motion.div>
   );
@@ -626,33 +626,33 @@ function ReceiptScreen({ onDone }: { onDone: () => void }) {
       exit={{ opacity: 0, x: 20 }}
       className="space-y-10"
     >
-      <h1 className="text-[36px] font-header font-black text-center tracking-tight text-[#093463]">Reciept</h1>
+      <h1 className="text-[36px] font-header font-black text-center tracking-tight text-[var(--app-sub-accent)]">Reciept</h1>
 
-      <div className="bg-[#EBF2FA] border-[2px] border-[#093463]/20 rounded-[28px] p-8 shadow-xl relative overflow-hidden group">
-        <div className="absolute top-0 inset-x-0 h-[6px] bg-[#00D97E]/80" />
+      <div className="bg-[var(--app-bg-muted)] border-[2px] border-[var(--app-sub-accent)]/20 rounded-[28px] p-8 shadow-xl relative overflow-hidden group">
+        <div className="absolute top-0 inset-x-0 h-[6px] bg-[var(--app-accent-green)]/80" />
         
         <div className="space-y-8">
           <div className="flex flex-col items-center gap-4">
              <div className="w-14 h-14 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-inner">
-                <DuotoneCheck size={28} primary="#00D97E" />
+                <DuotoneCheck size={28} primary="var(--app-accent-green)" />
              </div>
              <div className="text-center">
-              <h2 className="text-[14px] font-black text-[#093463] uppercase tracking-[0.4em]">Tax Invoice / Receipt</h2>
-              <p className="text-[8px] font-bold text-[#6E7C91] opacity-70 uppercase leading-relaxed mt-2">
+              <h2 className="text-[14px] font-black text-[var(--app-sub-accent)] uppercase tracking-[0.4em]">Tax Invoice / Receipt</h2>
+              <p className="text-[8px] font-bold text-[var(--app-text)]/60 uppercase leading-relaxed mt-2">
                 Order Completed Successfullly<br/>
                 Kleench Secure Ledger Payment
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 text-[10px] font-black text-[#093463]/50 border-b-[2px] border-[#093463]/10 pb-6 uppercase tracking-wider">
+          <div className="grid grid-cols-2 gap-4 text-[10px] font-black text-[var(--app-text)]/40 border-b-[2px] border-[var(--app-text)]/10 pb-6 uppercase tracking-wider">
              <div>
-               <p className="text-[#6E7C91] mb-1">Receipt No</p>
-               <p className="text-[#093463]">#KRZ00741</p>
+               <p className="text-[var(--app-text)]/60 mb-1">Receipt No</p>
+               <p className="text-[var(--app-sub-accent)]">#KRZ00741</p>
              </div>
              <div className="text-right">
-               <p className="text-[#6E7C91] mb-1">Status</p>
-               <p className="text-[#00D97E]">Verified</p>
+               <p className="text-[var(--app-text)]/60 mb-1">Status</p>
+               <p className="text-[var(--app-accent-green)]">Verified</p>
              </div>
           </div>
 
@@ -664,18 +664,18 @@ function ReceiptScreen({ onDone }: { onDone: () => void }) {
                { l: "VAT 16%", v: "K104.00" }
              ].map(i => (
                <div key={i.l} className="flex justify-between text-[11px] font-bold">
-                  <span className="text-[#6E7C91]">{i.l}</span>
-                  <span className="text-[#093463]">{i.v}</span>
+                  <span className="text-[var(--app-text)]/60">{i.l}</span>
+                  <span className="text-[var(--app-text)]">{i.v}</span>
                </div>
              ))}
              
-             <div className="bg-[#093463] rounded-[20px] p-5 flex justify-between items-center text-white shadow-lg mt-4">
+             <div className="bg-[var(--app-sub-accent)] rounded-[20px] p-5 flex justify-between items-center text-white shadow-lg mt-4">
                 <span className="text-[12px] font-black uppercase tracking-[0.2em] opacity-60">Gross Total</span>
                 <span className="text-2xl font-header font-black italic tracking-tighter text-white">K21,254.00</span>
              </div>
           </div>
           
-          <p className="text-center text-[9px] font-bold text-[#6E7C91] opacity-50 uppercase tracking-[0.2em] pt-4">Thank you for your business!</p>
+          <p className="text-center text-[9px] font-bold text-[var(--app-text)]/40 uppercase tracking-[0.2em] pt-4">Thank you for your business!</p>
         </div>
       </div>
 

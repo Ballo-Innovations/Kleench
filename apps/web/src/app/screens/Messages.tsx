@@ -78,7 +78,7 @@ export default function Messages() {
             <div className="px-5 -mt-4 relative z-10 space-y-10">
 
               {/* ── Theme-Synced Tabs (Swiss Style) ── */}
-              <div className="flex border-4 border-[var(--app-text)] bg-[var(--app-text)] shadow-[4px_4px_0px_var(--app-orange)]">
+              <div className="flex border-4 border-[var(--app-text)] bg-[var(--app-shape-accent)] shadow-[4px_4px_0px_var(--app-orange)]">
                 {(["all", "social", "market"] as MsgTab[]).map((tab) => (
                   <button
                     key={tab}

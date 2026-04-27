@@ -401,7 +401,7 @@ export const PageSkeletons = {
             {[1, 2, 3].map(postIndex => (
               <div key={postIndex} className="bg-[var(--app-bg)] border border-[var(--app-text)]/10 rounded-[32px] p-5 shadow-lg shadow-[var(--app-text)]/8 space-y-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-1.5 h-4 rounded-full bg-[var(--app-text)]/20 shrink-0" />
+                  <div className="w-1.5 h-4 rounded-full bg-[var(--app-shape-accent)]/20 shrink-0" />
                   <div className="h-3 w-28 rounded-md bg-slate-100 opacity-40" />
                 </div>
                 <div className="flex gap-4 overflow-hidden">

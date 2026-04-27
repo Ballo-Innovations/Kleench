@@ -205,8 +205,8 @@ export function PageHeader({
                 {!isSocials ? (
                   <>
                     {[
-                      { icon: ArrowUpFromLine, label: "Withdraw", to: "/wallet" },
-                      { icon: ArrowDownToLine, label: "Deposit", to: "/wallet" },
+                      { icon: ArrowUpFromLine, label: "Deposit", to: "/deposit" },
+                      { icon: ArrowDownToLine, label: "Withdraw", to: "/withdraw" },
                     ].map(({ icon: Icon, label, to }) => (
                       <button 
                         key={label}

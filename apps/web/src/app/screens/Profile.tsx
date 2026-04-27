@@ -129,7 +129,7 @@ export function Profile() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.4)}
           className="bg-[var(--app-bg)] border-2 border-[var(--app-text)] p-7 shadow-[8px_8px_0px_var(--app-text)] relative">
           
-          <div className="absolute top-0 right-0 w-12 h-12 bg-[var(--app-text)]/5 flex items-center justify-center border-l-2 border-b-2 border-[var(--app-text)]">
+          <div className="absolute top-0 right-0 w-12 h-12 bg-[var(--app-shape-accent)]/5 flex items-center justify-center border-l-2 border-b-2 border-[var(--app-text)]">
              <span className="text-[10px] font-black text-[var(--app-text)]/40 uppercase tracking-[0.2em]">{displayUsername.slice(1, 3)}</span>
           </div>
 
@@ -141,7 +141,7 @@ export function Profile() {
               { label: "Average Community Rating", value: profileData.stats.averageRating, color: "var(--app-orange)", num: "02" },
               { label: "Successful Referrals", value: profileData.stats.successfulReferrals, color: "var(--app-text)", num: "03" },
             ].map((stat) => (
-              <div key={stat.label} className="flex items-center justify-between p-4 bg-[var(--app-text)]/[0.02] border-2 border-[var(--app-text)] group/5 transition-colors">
+              <div key={stat.label} className="flex items-center justify-between p-4 bg-[var(--app-shape-accent)]/[0.02] border-2 border-[var(--app-text)] group/5 transition-colors">
                  <div className="flex items-center gap-4">
                     <span className="text-[10px] font-black text-[var(--app-text)]/20 tracking-tighter uppercase">{stat.num}.</span>
                     <p className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]">{stat.label}</p>
@@ -156,7 +156,7 @@ export function Profile() {
               className={`flex-1 py-4 border-2 border-[var(--app-text)] font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-[4px_4px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none ${
                 isFollowing 
                   ? "bg-[var(--app-bg)] text-[var(--app-text)]" 
-                  : "bg-[var(--app-text)] text-white"
+                  : "bg-[var(--app-shape-accent)] text-white"
               }`}>
               {isFollowing ? "Connected ✓" : "Connect Circle"}
             </motion.button>
@@ -168,7 +168,7 @@ export function Profile() {
         </motion.div>
 
         {/* Custom Tabs (Swiss Style) */}
-        <div className="flex border-4 border-[var(--app-text)] bg-[var(--app-text)] shadow-[4px_4px_0px_var(--app-orange)]">
+        <div className="flex border-4 border-[var(--app-text)] bg-[var(--app-shape-accent)] shadow-[4px_4px_0px_var(--app-orange)]">
           {(["reels", "marketplace", "verification"] as const).map((tab) => (
             <button key={tab} onClick={() => setActiveTab(tab)}
               className={`flex-1 py-3.5 text-[9px] font-black uppercase tracking-[0.2em] transition-all ${
@@ -212,7 +212,7 @@ export function Profile() {
               {profileData.marketplace.map((product, i) => (
                 <motion.div key={product.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={grace(i * 0.05)}>
                   <Link to={`/product/${product.id}`} className="block bg-[var(--app-bg)] p-4 border-2 border-[var(--app-text)] shadow-[6px_6px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group overflow-hidden">
-                    <div className="aspect-square bg-[var(--app-text)]/5 flex items-center justify-center mb-4 transition-transform duration-500 border border-[var(--app-text)]/10">
+                    <div className="aspect-square bg-[var(--app-shape-accent)]/5 flex items-center justify-center mb-4 transition-transform duration-500 border border-[var(--app-text)]/10">
                       <span className="text-3xl font-black text-[var(--app-text)]/10" style={{ fontFamily: "Outfit, sans-serif" }}>
                         {product.title.charAt(0)}
                       </span>
@@ -242,7 +242,7 @@ export function Profile() {
                     { label: "Secure Email", value: isOwnProfile && localKyc ? localKyc.email : "sarah.m@example.com", icon: Mail },
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-5">
-                      <div className="w-12 h-12 border-2 border-[var(--app-text)] bg-[var(--app-text)]/5 flex items-center justify-center text-[var(--app-orange)]">
+                      <div className="w-12 h-12 border-2 border-[var(--app-text)] bg-[var(--app-shape-accent)]/5 flex items-center justify-center text-[var(--app-orange)]">
                         <item.icon size={18} />
                       </div>
                       <div>

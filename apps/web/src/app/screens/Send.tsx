@@ -19,13 +19,13 @@ export function Send() {
 
       <div className="px-5 pt-4 space-y-8">
         <div className="text-center">
-          <p className="text-[10px] font-bold text-[#6E7C91] uppercase tracking-widest leading-none">Select Amount to transfer into your wallet</p>
+          <p className="text-[10px] font-bold text-[var(--app-text)]/40 uppercase tracking-widest leading-none">Select Amount to transfer into your wallet</p>
         </div>
 
         {/* Neo-Brutalist Balance Card */}
         <div className="relative group">
-          <div className="absolute inset-0 bg-[var(--app-text)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
-          <div className="relative bg-[var(--app-text)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
+          <div className="absolute inset-0 bg-[var(--app-shape-accent)]/30 rounded-2xl translate-x-1 translate-y-1 blur-sm" />
+          <div className="relative bg-[var(--app-shape-accent)] rounded-2xl p-6 shadow-lg shadow-[var(--app-text)]/25">
             <p className="text-[10px] font-black text-[var(--app-orange)] uppercase tracking-[0.2em] mb-1">BALANCE</p>
             <h2 className="text-3xl font-black text-white tracking-tighter">ZMW 2,450.00</h2>
           </div>
@@ -40,7 +40,7 @@ export function Send() {
           {/* Destination Input */}
           <div className="space-y-3">
             <div className="flex items-center gap-3 bg-[var(--app-bg-muted)] border-2 border-slate-100 rounded-full py-3.5 px-5 shadow-inner group transition-all focus-within:border-[var(--app-text)]/20">
-              <div className="w-8 h-8 rounded-full bg-[var(--app-text)] flex items-center justify-center text-white shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[var(--app-shape-accent)] flex items-center justify-center text-white shrink-0">
                 <ArrowUpRight size={18} />
               </div>
               <input 
@@ -48,15 +48,15 @@ export function Send() {
                 value={recipientInput}
                 onChange={(e) => setRecipientInput(e.target.value)}
                 placeholder="Send to |" 
-                className="bg-transparent border-none outline-none text-[13px] font-black placeholder-[#6E7C91] w-full"
+                className="bg-transparent border-none outline-none text-[13px] font-black placeholder-[var(--app-text)]/40 w-full"
               />
             </div>
             
             {/* Verification Section */}
             <div className="flex items-center justify-between px-2">
               <div className="space-y-0.5">
-                <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Name: <span className="text-[var(--app-text)]">{verifiedName}</span></p>
-                <p className="text-[9px] font-bold text-[#6E7C91] uppercase tracking-wider">Number: <span className="text-[var(--app-text)]">{recipientInput || "---"}</span></p>
+                <p className="text-[9px] font-bold text-[var(--app-text)]/60 uppercase tracking-wider">Name: <span className="text-[var(--app-text)]">{verifiedName}</span></p>
+                <p className="text-[9px] font-bold text-[var(--app-text)]/60 uppercase tracking-wider">Number: <span className="text-[var(--app-text)]">{recipientInput || "---"}</span></p>
               </div>
               <button 
                 onClick={() => {
@@ -70,7 +70,7 @@ export function Send() {
                     toast.success("Recipient Verified!", { id: "verify-toast" });
                   }, 1000);
                 }}
-                className="bg-[var(--app-text)] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
+                className="bg-[var(--app-shape-accent)] text-white text-[8px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full active:scale-95 transition-all"
               >
                 Verify
               </button>
@@ -83,9 +83,9 @@ export function Send() {
           <div className="grid grid-cols-[1fr_2px_2fr] gap-x-6 items-center">
             {/* Labels */}
             <div className="space-y-6 text-right pt-1">
-              <span className="block text-[10px] font-black text-[#00C8FF] uppercase tracking-widest">Amount</span>
-              <span className="block text-[10px] font-black text-[#00C8FF] uppercase tracking-widest">Charge</span>
-              <span className="block text-[10px] font-black text-[#00C8FF] uppercase tracking-widest">Total</span>
+              <span className="block text-[10px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest">Amount</span>
+              <span className="block text-[10px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest">Charge</span>
+              <span className="block text-[10px] font-black text-[var(--app-sub-accent)] uppercase tracking-widest">Total</span>
             </div>
 
             {/* Vertical Divider */}
@@ -135,7 +135,7 @@ export function Send() {
                   toast.success(`Sent ZMW ${amount} to ${verifiedName} successfully!`);
                   setTimeout(() => navigate(-1), 1500);
                 }}
-                className="w-full h-14 bg-[var(--app-text)] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)] transition-all"
+                className="w-full h-14 bg-[var(--app-shape-accent)] text-white rounded-2xl flex items-center justify-center font-regular uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_30px_rgba(0,51,102,0.2)] transition-all"
             >
                 Send
             </motion.button>

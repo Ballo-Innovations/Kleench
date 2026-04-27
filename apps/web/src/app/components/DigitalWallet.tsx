@@ -39,7 +39,7 @@ export function DigitalWallet({
     <div className={cn("relative w-full flex flex-col items-center justify-center", className)}>
       {/* Streamlined Balance Card — Premium Edition */}
       <motion.div 
-        className="relative w-full px-5 py-4 select-none rounded-2xl bg-[var(--app-text)] shadow-lg shadow-[var(--app-text)]/20 overflow-hidden"
+        className="relative w-full px-5 py-4 select-none rounded-2xl bg-[var(--app-shape-accent)] shadow-lg shadow-[var(--app-text)]/20 overflow-hidden"
         initial={false}
       >
         {/* Subtle grid texture */}

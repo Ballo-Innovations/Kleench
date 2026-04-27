@@ -45,12 +45,12 @@ export function CreatorProfile() {
                   <p className="text-xl font-black text-[var(--app-text)]">87</p>
                   <p className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]/40 mt-1">Stories</p>
                </div>
-               <div className="w-px h-8 bg-[var(--app-text)]/10" />
+               <div className="w-px h-8 bg-[var(--app-shape-accent)]/10" />
                <div className="text-center flex-1">
                   <p className="text-xl font-black text-[var(--app-text)]">5.7K</p>
                   <p className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]/40 mt-1">Followers</p>
                </div>
-               <div className="w-px h-8 bg-[var(--app-text)]/10" />
+               <div className="w-px h-8 bg-[var(--app-shape-accent)]/10" />
                <div className="text-center flex-1">
                   <p className="text-xl font-black text-[var(--app-text)]">2.7K</p>
                   <p className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]/40 mt-1">Likes</p>
@@ -60,7 +60,7 @@ export function CreatorProfile() {
             <div className="flex gap-3 mt-6">
                <button 
                 onClick={() => setIsFollowing(!isFollowing)}
-                className={`flex-1 py-3.5 rounded-xl border border-[var(--app-text)] font-black text-[12px] uppercase tracking-widest transition-all ${isFollowing ? "bg-[var(--app-text)]/5 text-[var(--app-text)] shadow-none" : "bg-[var(--app-text)] text-white shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none"}`}
+                className={`flex-1 py-3.5 rounded-xl border border-[var(--app-text)] font-black text-[12px] uppercase tracking-widest transition-all ${isFollowing ? "bg-[var(--app-shape-accent)]/5 text-[var(--app-text)] shadow-none" : "bg-[var(--app-shape-accent)] text-white shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none"}`}
                >
                   {isFollowing ? "Following" : "Follow"}
                </button>

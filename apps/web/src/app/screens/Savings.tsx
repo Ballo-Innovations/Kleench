@@ -101,7 +101,7 @@ export function Savings() {
 
           <div className="grid grid-cols-2 gap-3">
             {[
-              { label: "Top Up", icon: DuotoneArrowUp, color: "bg-[var(--app-text)] text-white", primary: "#ffffff" },
+              { label: "Top Up", icon: DuotoneArrowUp, color: "bg-[var(--app-shape-accent)] text-white", primary: "#ffffff" },
               { label: "Withdraw", icon: DuotoneArrowDown, color: "bg-[#FFC55A] text-[var(--app-text)]", primary: "var(--app-text)" }
             ].map((btn, i) => (
               <motion.button 
@@ -168,7 +168,7 @@ export function Savings() {
         {/* Achievement / Security Wrap */}
         <motion.div 
           {...grace(0.8)}
-          className="rounded-2xl shadow-md bg-[var(--app-text)] overflow-hidden aspect-[4/1] relative flex items-center justify-center"
+          className="rounded-2xl shadow-md bg-[var(--app-shape-accent)] overflow-hidden aspect-[4/1] relative flex items-center justify-center"
         >
           <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Active Vault Protected</p>

@@ -16,7 +16,7 @@ export interface DuotoneIconProps extends SVGProps<SVGSVGElement> {
   secondaryOpacity?: number;
 }
 
-const DEFAULT_PRIMARY = "#093463";
+const DEFAULT_PRIMARY = "var(--app-icon-primary, #093463)";
 const DEFAULT_SECONDARY_OPACITY = 0.3;
 
 /* ─── Helpers ─── */

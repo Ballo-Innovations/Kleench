@@ -142,8 +142,8 @@ export function Marketplace() {
                        onClick={() => setActiveTab(tab)}
                        className={`flex-1 flex items-center justify-center h-[38px] transition-all duration-200 ${
                          isActive
-                           ? 'bg-[var(--app-text)] text-white'
-                           : 'bg-[var(--app-bg)] text-[var(--app-text)]/55 hover:text-[var(--app-text)] hover:bg-[var(--app-text)]/5'
+                           ? 'bg-[var(--app-shape-accent)] text-white'
+                           : 'bg-[var(--app-bg)] text-[var(--app-text)]/55 hover:text-[var(--app-text)] hover:bg-[var(--app-shape-accent)]/5'
                        } ${i === 0 ? 'border-r-[1.5px] border-[var(--app-text)]' : ''}`}
                      >
                        <span className="text-[10px] font-black tracking-[0.2em] uppercase">{tab}</span>
@@ -199,7 +199,7 @@ export function Marketplace() {
                           <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale-[0.2]" />
                           <div className="absolute inset-0 bg-black/40" />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
-                            <span className="text-[11px] font-black text-white px-2 py-1 bg-[var(--app-text)]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
+                            <span className="text-[11px] font-black text-white px-2 py-1 bg-[var(--app-shape-accent)]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
                           </div>
                        </div>
                        <div className="py-2.5 px-2 bg-[var(--app-bg)] flex items-center justify-center min-h-[40px]">
@@ -220,7 +220,7 @@ export function Marketplace() {
             
             <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_INTEL.map((intel) => (
-                  <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-[var(--app-text)] rounded-2xl p-3 border border-[var(--app-text)]/40 shadow-lg shadow-[var(--app-text)]/25 flex flex-col relative overflow-hidden h-[150px]">
+                  <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-[var(--app-shape-accent)] rounded-2xl p-3 border border-[var(--app-text)]/40 shadow-lg shadow-[var(--app-text)]/25 flex flex-col relative overflow-hidden h-[150px]">
                      {/* Y-axis labels */}
                      <div className="absolute inset-0 opacity-20 pointer-events-none flex flex-col justify-between p-3">
                         <span className="text-[6px] font-black text-white">100</span>
@@ -265,13 +265,13 @@ export function Marketplace() {
 
           {/* Business Listings — Unified Horizontal Directory Block */}
           <section>
-            <div className="bg-[var(--app-text)] px-4 py-2 border-t-[3px] border-x-[3px] border-[var(--app-text)] rounded-t-2xl">
+            <div className="bg-[var(--app-shape-accent)] px-4 py-2 border-t-[3px] border-x-[3px] border-[var(--app-text)] rounded-t-2xl">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">BUSINESS LISTINGS</h3>
             </div>
-            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--app-text)]/30 rounded-b-2xl shadow-lg shadow-[var(--app-text)]/20 bg-[var(--app-text)]">
+            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--app-text)]/30 rounded-b-2xl shadow-lg shadow-[var(--app-text)]/20 bg-[var(--app-shape-accent)]">
                {BUSINESSES.map((business, i) => (
                  <div key={i} onClick={() => toast(`Visiting ${business.name} profile...`)} className="shrink-0 snap-start w-[150px] bg-[var(--app-bg)] cursor-pointer group flex flex-col h-[185px] border-r-[1px] border-[var(--app-text)]/10 last:border-r-0">
-                   <div className="flex-1 bg-[#F8F9FA] flex items-center justify-center border-b-[2px] border-[var(--app-text)]/10 p-4 relative group-hover:bg-[var(--app-text)]/5 transition-colors">
+                   <div className="flex-1 bg-[#F8F9FA] flex items-center justify-center border-b-[2px] border-[var(--app-text)]/10 p-4 relative group-hover:bg-[var(--app-shape-accent)]/5 transition-colors">
                       <div className="w-16 h-16 rounded-full bg-[var(--app-bg)] border border-[var(--app-text)]/20 flex items-center justify-center overflow-hidden shadow-lg shadow-[var(--app-text)]/20 group-hover:scale-110 transition-transform duration-300">
                          {('image' in business && business.image) ? (
                             <img src={business.image as string} alt={business.name} className="w-[85%] h-[85%] object-contain" />
@@ -288,12 +288,12 @@ export function Marketplace() {
                         <span className="text-[9px] font-black text-[var(--app-text)] uppercase leading-tight line-clamp-2 tracking-wide">{business.name}</span>
                         <span className="text-[7px] font-black text-[var(--app-orange)] uppercase tracking-widest">{business.category}</span>
                       </div>
-                      <button className="w-full py-1.5 bg-[var(--app-text)] text-white text-[8px] font-black uppercase tracking-widest rounded-sm active:scale-95 transition-all">VIEW PROFILE</button>
+                      <button className="w-full py-1.5 bg-[var(--app-shape-accent)] text-white text-[8px] font-black uppercase tracking-widest rounded-sm active:scale-95 transition-all">VIEW PROFILE</button>
                    </div>
                  </div>
                ))}
                {/* Terminal VIEW ALL block */}
-               <div onClick={() => toast("Viewing all registered businesses...")} className="shrink-0 snap-start w-[120px] bg-[var(--app-text)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
+               <div onClick={() => toast("Viewing all registered businesses...")} className="shrink-0 snap-start w-[120px] bg-[var(--app-shape-accent)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
                   <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center">
                     <ChevronRight size={24} className="text-white ml-0.5" strokeWidth={3} />
                   </div>
@@ -304,10 +304,10 @@ export function Marketplace() {
 
           {/* Window Shopping — Unified Shop Directory Block */}
           <section>
-            <div className="bg-[var(--app-text)] px-4 py-2 border-t-[3px] border-x-[3px] border-[var(--app-text)] rounded-t-2xl">
+            <div className="bg-[var(--app-shape-accent)] px-4 py-2 border-t-[3px] border-x-[3px] border-[var(--app-text)] rounded-t-2xl">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">WINDOW SHOPPING</h3>
             </div>
-            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--app-text)]/30 rounded-b-2xl shadow-lg shadow-[var(--app-text)]/20 bg-[var(--app-text)]">
+            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--app-text)]/30 rounded-b-2xl shadow-lg shadow-[var(--app-text)]/20 bg-[var(--app-shape-accent)]">
                {[
                  { name: "THE SCENT STORE ZAMBIA",  category: "Beauty & Fragrance",   image: scentStoreImg },
                  { name: "LUSAKA TECH HUB",          category: "Electronics & Tech",    image: techHubImg },
@@ -325,7 +325,7 @@ export function Marketplace() {
                  </div>
                ))}
                {/* Terminal VIEW ALL block */}
-               <div onClick={() => toast("Viewing all shops...")} className="shrink-0 snap-start w-[110px] bg-[var(--app-text)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
+               <div onClick={() => toast("Viewing all shops...")} className="shrink-0 snap-start w-[110px] bg-[var(--app-shape-accent)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
                   <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center">
                     <ChevronRight size={24} className="text-white ml-0.5" strokeWidth={3} />
                   </div>

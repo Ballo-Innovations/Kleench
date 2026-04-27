@@ -25,13 +25,13 @@ const BILLERS = [
 
 export function PayBills() {
   return (
-    <div className="min-h-screen bg-transparent text-[#0D1B2A] font-sans pb-32">
+    <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
       <PageHeader showBack title="Pay Bills" />
 
       <div className="px-5 pt-4 space-y-8">
         {/* Search Bar */}
         <div className="bg-[#5D56D8]/10 rounded-2xl shadow-sm border border-[#5D56D8]/20 p-4 flex items-center gap-4">
-          <Search size={22} className="text-[#0D1B2A]" />
+          <Search size={22} className="text-[var(--app-sub-accent)]" />
           <div className="w-[1px] h-6 bg-[#6E7C91]/30" />
           <input 
             type="text" 
@@ -41,7 +41,7 @@ export function PayBills() {
         </div>
 
         {/* Bill Selection Card */}
-        <div className="bg-[var(--app-bg)] rounded-3xl p-6 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] space-y-6">
+        <div className="bg-[var(--app-bg)] rounded-3xl p-6 border-2 border-[var(--app-sub-accent)] shadow-[4px_4px_0px_var(--app-sub-accent)] space-y-6">
           <h3 className="text-sm font-black uppercase tracking-tight">Choose Bill</h3>
           
           <div className="grid grid-cols-3 gap-4">
@@ -68,7 +68,7 @@ export function PayBills() {
                   )
                 )}
                 {biller.name && (
-                  <span className="text-[9px] font-black text-[#0D1B2A] uppercase tracking-tighter text-center leading-tight">
+                  <span className="text-[9px] font-black text-[var(--app-text)] uppercase tracking-tighter text-center leading-tight">
                     {biller.name}
                   </span>
                 )}
@@ -84,10 +84,10 @@ export function PayBills() {
           <motion.div 
             whileTap={{ scale: 0.98 }}
             onClick={() => toast.info("Redirecting to ZRA PayPortal...")}
-            className="bg-[var(--app-bg)] rounded-3xl p-5 border-2 border-[#0D1B2A] shadow-[4px_4px_0px_#0D1B2A] flex items-center gap-4 cursor-pointer"
+            className="bg-[var(--app-bg)] rounded-3xl p-5 border-2 border-[var(--app-sub-accent)] shadow-[4px_4px_0px_var(--app-sub-accent)] flex items-center gap-4 cursor-pointer"
           >
             <div className="relative">
-              <Bell size={24} className="text-[#0D1B2A]" />
+              <Bell size={24} className="text-[var(--app-sub-accent)]" />
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FF4B4B] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white text-[8px] font-black">1</span>
               </div>
@@ -96,12 +96,12 @@ export function PayBills() {
             <div className="w-[1px] h-8 bg-[#6E7C91]/30" />
             
             <div className="flex-1">
-              <p className="text-[12px] font-bold text-[#0D1B2A] leading-tight flex items-center gap-2">
+              <p className="text-[12px] font-bold text-[var(--app-text)] leading-tight flex items-center gap-2">
                 You have unpaid Bill for <span className="font-black underline decoration-[#5D56D8]">ZRA</span>
               </p>
             </div>
             
-            <ChevronRight size={20} className="text-[#0D1B2A]" />
+            <ChevronRight size={20} className="text-[var(--app-sub-accent)]" />
           </motion.div>
         </div>
       </div>

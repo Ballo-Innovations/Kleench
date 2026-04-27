@@ -126,7 +126,7 @@ export function GoLive() {
           <button
             onClick={() => setStreamType("free")}
             className={`flex-1 py-3 rounded-xl font-black uppercase tracking-widest text-[11px] transition-all ${
-              streamType === "free" ? "bg-[var(--app-text)] text-white shadow-sm" : "text-[var(--app-text)]/50 hover:bg-[var(--app-text)]/5"
+              streamType === "free" ? "bg-[var(--app-shape-accent)] text-white shadow-sm" : "text-[var(--app-text)]/50 hover:bg-[var(--app-shape-accent)]/5"
             }`}
           >
             Free Stream
@@ -134,7 +134,7 @@ export function GoLive() {
           <button
             onClick={() => setStreamType("paid")}
             className={`flex-1 py-3 rounded-xl font-black uppercase tracking-widest text-[11px] transition-all ${
-              streamType === "paid" ? "bg-[var(--app-text)] text-white shadow-sm" : "text-[var(--app-text)]/50 hover:bg-[var(--app-text)]/5"
+              streamType === "paid" ? "bg-[var(--app-shape-accent)] text-white shadow-sm" : "text-[var(--app-text)]/50 hover:bg-[var(--app-shape-accent)]/5"
             }`}
           >
             Paid Stream
@@ -212,7 +212,7 @@ export function GoLive() {
         {selectedPeople.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap pt-2">
             {selectedPeople.map((name) => (
-              <span key={name} className="bg-[var(--app-text)] text-white px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-[2px_2px_0px_var(--app-orange)]">{name.split(" ")[0]}</span>
+              <span key={name} className="bg-[var(--app-shape-accent)] text-white px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-[2px_2px_0px_var(--app-orange)]">{name.split(" ")[0]}</span>
             ))}
           </div>
         )}
