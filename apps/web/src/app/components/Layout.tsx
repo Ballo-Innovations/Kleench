@@ -110,7 +110,7 @@ export function Layout() {
                 key={item.id}
                 to={item.path}
                 className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-                  active ? "text-[var(--app-orange)]" : "text-gray-400"
+                  active ? "text-[var(--color-primary)]" : "text-[var(--shape-outline)]"
                 }`}
               >
                 <Icon
@@ -127,7 +127,7 @@ export function Layout() {
           <button
             onClick={() => setShowMore(true)}
             className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? "text-[var(--app-orange)]" : "text-gray-400"
+              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? "text-[var(--color-primary)]" : "text-[var(--shape-outline)]"
             }`}
           >
             <Menu size={20} strokeWidth={showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? 3 : 2} className="mb-1" />
@@ -157,7 +157,7 @@ export function Layout() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
                   <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">Explore More</h3>
-                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 transition-all active:scale-90">
+                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-[var(--shape-secondary)] flex items-center justify-center text-[var(--shape-outline)] transition-all active:scale-90">
                     <X size={20} />
                   </button>
                 </div>
@@ -188,8 +188,8 @@ export function Layout() {
                 <div className="bg-[var(--app-bg-muted)] p-4 rounded-3xl border-2 border-[var(--app-text-slate)] shadow-[6px_6px_0px_#0f172a] mb-4">
                    <div className="flex items-center justify-between">
                       <div>
-                         <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest mb-1">Verify Account</p>
-                         <p className="text-xs font-bold text-slate-500">Enable premium features</p>
+                         <p className="text-[10px] font-black text-[var(--color-secondary)] uppercase tracking-widest mb-1">Verify Account</p>
+                         <p className="text-xs font-bold text-[var(--shape-outline)]">Enable premium features</p>
                       </div>
                       <button onClick={() => toast.success("Verification framework initializing...")} className="px-4 py-2 bg-[var(--app-text-slate)] text-white rounded-xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">
                         Verify

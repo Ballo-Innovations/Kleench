@@ -44,7 +44,7 @@ export function PageHeader({
     <div 
       className="sticky top-0 z-[100] pt-2 pb-3 px-5 overflow-hidden shadow-lg flex flex-col justify-between shrink-0"
       style={{ 
-        background: "linear-gradient(135deg, var(--app-orange), var(--app-orange))", 
+        background: "var(--color-primary)", 
         boxShadow: "0 10px 30px var(--app-header-shadow)",
         height: "115px", // STRICTLY LOCKED ENFORCED HEIGHT FOR ALL PAGES
         minHeight: "115px",
@@ -63,7 +63,7 @@ export function PageHeader({
         </svg>
       </div>
       <div className="absolute top-[-20%] left-[-10%] w-64 h-64 bg-[var(--app-bg)]/20 rounded-full blur-[60px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[#FFC300]/20 rounded-full blur-[50px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-[var(--shape-primary)]/20 rounded-full blur-[50px] pointer-events-none" />
 
       {/* Top Nav Row */}
       <div className="relative z-10 flex items-center justify-between h-12 gap-3 mt-0 border-b border-white/20 pb-2 mb-1">
@@ -88,10 +88,10 @@ export function PageHeader({
 
           {title && (
              <div className="flex flex-col min-w-0 flex-1 ml-1">
-               <h1 className="text-white text-[16px] leading-tight font-black tracking-wide uppercase truncate drop-shadow-sm" style={{ fontFamily: "Agrandir, system-ui, -apple-system, sans-serif" }}>
+               <h1 className="text-white text-[16px] leading-tight font-black tracking-wide uppercase truncate drop-shadow-sm" style={{ fontFamily: "var(--font-header)" }}>
                   {title}
                </h1>
-               {subtitle && <span className="text-white/80 text-[8px] font-bold uppercase tracking-[0.2em] mt-[1px] truncate">{subtitle}</span>}
+               {subtitle && <span className="text-white/80 text-[8px] font-bold uppercase tracking-[0.2em] mt-[1px] truncate" style={{ fontFamily: "var(--font-body)" }}>{subtitle}</span>}
              </div>
           )}
         </div>
@@ -147,7 +147,7 @@ export function PageHeader({
           </button>
           <button onClick={() => setShowNotifications(true)} className="relative text-white/80 transition-transform active:scale-95 outline-none">
             <Bell size={20} />
-            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#FFC300] rounded-full border border-[#e06900]" />
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[var(--shape-primary)] rounded-full border border-[var(--color-primary)]" />
           </button>
           <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full border-2 border-white/60 overflow-hidden bg-[var(--app-bg)]/20 shrink-0 shadow-sm transition-transform active:scale-95 outline-none">
             {localStorage.getItem("userProfilePhoto") ? (
@@ -184,8 +184,8 @@ export function PageHeader({
             >
               <div className="flex items-center gap-2">
                 <div className="min-w-0 flex-1">
-                  <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Balance</p>
-                  <h2 className="text-white text-[15px] font-black tracking-tight leading-none">
+                  <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1" style={{ fontFamily: "var(--font-body)" }}>Balance</p>
+                  <h2 className="text-white text-[15px] font-black tracking-tight leading-none" style={{ fontFamily: "var(--font-header)" }}>
                     {balanceHidden ? "••••••" : "ZMW 2,450.00"}
                   </h2>
                 </div>
@@ -225,10 +225,10 @@ export function PageHeader({
                 ) : (
                   <button 
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
-                    className="flex items-center gap-1.5 bg-red-600/20 border border-red-500/50 rounded-full px-3 py-1 animate-pulse"
+                    className="flex items-center gap-1.5 bg-[var(--shape-primary)]/20 border border-[var(--shape-primary)]/50 rounded-full px-3 py-1 animate-pulse"
                   >
-                     <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-                     <span className="text-white text-[10px] font-black uppercase tracking-widest">Live</span>
+                     <div className="w-2 h-2 rounded-full bg-[var(--shape-primary)] shadow-[0_0_8px_var(--shape-primary)]" />
+                     <span className="text-white text-[10px] font-black uppercase tracking-widest" style={{ fontFamily: "var(--font-body)" }}>Live</span>
                   </button>
                 )}
               </div>
@@ -327,7 +327,7 @@ export function PageHeader({
               ))}
               
               <div className="mt-10 pt-6 border-t-[3px] border-[var(--app-text-slate)] px-2">
-                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-3 text-red-600 font-black text-[10px] uppercase tracking-[0.2em] active:opacity-50 transition-opacity">
+                <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-3 text-[var(--shape-inverted)] font-black text-[10px] uppercase tracking-[0.2em] active:opacity-50 transition-opacity">
                   <LogOut size={18} strokeWidth={2.5} /> Sign Out Systems
                 </button>
               </div>

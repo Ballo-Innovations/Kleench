@@ -11,8 +11,8 @@ export function GlobalBackground() {
         className="absolute inset-0 z-0 opacity-[0.3]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, #d6d3d1 1px, transparent 1px),
-            linear-gradient(to bottom, #d6d3d1 1px, transparent 1px)
+            linear-gradient(to right, var(--color-secondary) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--color-secondary) 1px, transparent 1px)
           `,
           backgroundSize: "20px 20px",
           backgroundPosition: "0 0, 0 0",

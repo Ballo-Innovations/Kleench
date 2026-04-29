@@ -100,7 +100,7 @@ const FEED_ITEMS = [
     comments: 12,
     shares: 8,
     tag: "EARN",
-    tagColor: "bg-[#00C853]",
+    tagColor: "bg-[var(--color-tertiary)]",
   },
 ];
 
@@ -314,7 +314,7 @@ export function Home() {
                           <Link to={`/product/${product.id}`} className="block">
                             <div className="relative aspect-square bg-slate-100 border border-slate-200 overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
-                              <div className="absolute top-0 right-0 bg-[#FF3000] text-white px-2 py-1 text-[7px] font-black uppercase tracking-[0.2em] rounded-bl-xl">TRENDY</div>
+                              <div className="absolute top-0 right-0 bg-[var(--shape-primary)] text-white px-2 py-1 text-[7px] font-black uppercase tracking-[0.2em] rounded-bl-xl">TRENDY</div>
                             </div>
                             <h4 className="text-[9px] font-black uppercase text-[var(--app-text)] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
                             <span className="text-[12px] font-black text-[var(--app-orange)]">K{product.price}</span>
@@ -341,11 +341,11 @@ export function Home() {
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full border-2 border-[#FFC300] overflow-hidden flex-shrink-0 shadow-md">
+                      <div className="w-8 h-8 rounded-full border-2 border-[var(--color-primary)] overflow-hidden flex-shrink-0 shadow-md">
                         <img src={item.avatar} alt={item.user} className="w-full h-full object-cover" />
                       </div>
                       <span className="text-white font-black text-[11px] drop-shadow-md">@{item.user}</span>
-                      {item.verified && <BadgeCheck size={12} className="text-[#FFC300]" />}
+                      {item.verified && <BadgeCheck size={12} className="text-[var(--color-primary)]" />}
                     </div>
                   </div>
                   <div className="p-4">
@@ -433,7 +433,7 @@ export function Home() {
                   <div className="space-y-8">
                     <div className="grid grid-cols-4 gap-6">
                       {[
-                        { name: "WhatsApp", bg: "bg-[#25D366]", icon: MessageCircle },
+                        { name: "WhatsApp", bg: "bg-[var(--color-tertiary)]", icon: MessageCircle },
                         { name: "Twitter", bg: "bg-black", icon: 'X' },
                         { name: "Facebook", bg: "bg-[#1877F2]", icon: DuotoneUsers },
                         { name: "Email", bg: "bg-slate-100", icon: DuotoneSend }
@@ -466,7 +466,7 @@ export function Home() {
                       <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Phone Number</label>
                       <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border-2 border-[var(--app-text-slate)] rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
                     </div>
-                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-orange-500 text-white border-2 border-[var(--app-text-slate)] rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
+                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-[var(--color-primary)] text-white border-2 border-[var(--app-text-slate)] rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
                       Secure Application
                     </button>
                   </div>

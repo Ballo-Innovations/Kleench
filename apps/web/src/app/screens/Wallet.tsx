@@ -149,7 +149,7 @@ export function Wallet() {
               {hasFinancialKyc ? (
                 <button 
                    onClick={() => navigate("/kyc-verification")}
-                   className="flex items-center gap-1.5 bg-[#00C853] hover:bg-[#00C853]/90 text-white px-3 py-1.5 rounded-full active:scale-95 transition-all cursor-pointer shadow-sm border border-[#00C853]"
+                   className="flex items-center gap-1.5 bg-[var(--color-tertiary)] hover:bg-[var(--color-tertiary)]/90 text-white px-3 py-1.5 rounded-full active:scale-95 transition-all cursor-pointer shadow-sm border border-[var(--color-tertiary)]"
                 >
                   <Check size={10} strokeWidth={4} />
                   <span className="font-black uppercase tracking-widest text-[8px]">Update</span>
@@ -205,9 +205,9 @@ export function Wallet() {
         {/* Section 02. UTILITY BLOCKS */}
         <section className="space-y-4 pt-2">
           <div className="flex items-center gap-3 mb-6">
-             <span className="text-[#F5A623] font-black text-sm tracking-widest">02.</span>
-             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Utility Blocks</h3>
-             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
+             <span className="text-[var(--color-primary)] font-black text-sm tracking-widest">02.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[var(--shape-outline)]">Utility Blocks</h3>
+             <div className="flex-1 h-[2px] bg-[var(--shape-secondary)]" />
           </div>
 
           <div className="flex flex-col gap-4">
@@ -223,7 +223,7 @@ export function Wallet() {
                     </div>
                     <div className="flex flex-col items-start leading-none text-left">
                        <span className="font-black text-[var(--app-text)] text-[7px] uppercase tracking-wide">{util.label}</span>
-                       <span className="font-bold text-[#F5A623] text-[6px] uppercase tracking-wide mt-0.5">{util.sub}</span>
+                       <span className="font-bold text-[var(--color-primary)] text-[6px] uppercase tracking-wide mt-0.5">{util.sub}</span>
                     </div>
                  </motion.button>
                ))}
@@ -231,9 +231,9 @@ export function Wallet() {
              <div className="grid grid-cols-2 gap-3">
                 {[
                   { id: "escrow", icon: DuotoneShieldCheck, title: "ESCROW", metric: "K1,200", primary: "var(--app-text)" },
-                  { id: "savings", icon: DuotonePiggyBank, title: "SAVINGS", metric: "K8,400", primary: "#4CAF50" }
+                  { id: "savings", icon: DuotonePiggyBank, title: "SAVINGS", metric: "K8,400", primary: "var(--color-tertiary)" }
                 ].map(util => (
-                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[#FFC55A] rounded-2xl shadow-sm active:scale-95 transition-all">
+                   <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[var(--color-primary)] rounded-2xl shadow-sm active:scale-95 transition-all">
                       <div className="w-10 h-10 rounded-full bg-[var(--app-bg)]/20 flex items-center justify-center shrink-0 border border-white/50">
                          <util.icon size={20} primary={util.primary} strokeWidth={1.5} />
                       </div>
@@ -266,9 +266,9 @@ export function Wallet() {
         {/* Section 03. STATEMENT LEDGER */}
         <section className="space-y-4 pb-12 mt-10">
           <div className="flex items-center gap-3 mb-6">
-             <span className="text-[#F5A623] font-black text-sm tracking-widest">03.</span>
-             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Statement Ledger</h3>
-             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
+             <span className="text-[var(--color-primary)] font-black text-sm tracking-widest">03.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[var(--shape-outline)]">Statement Ledger</h3>
+             <div className="flex-1 h-[2px] bg-[var(--shape-secondary)]" />
           </div>
 
           {/* Categorized Tabs */}
@@ -326,7 +326,7 @@ export function Wallet() {
                         </div>
                         <div className="flex items-center gap-4 shrink-0 pointer-events-auto">
                           <div className="text-right">
-                            <p className={`font-black text-sm tracking-tight ${isPositive ? "text-[#00C853]" : "text-[var(--app-text)]"}`}>
+                            <p className={`font-black text-sm tracking-tight ${isPositive ? "text-[var(--color-tertiary)]" : "text-[var(--color-secondary)]"}`}>
                               {isPositive ? "+" : ""}{tx.amount.toFixed(2)}
                             </p>
                             <div className="flex justify-end gap-1 items-center mt-1 opacity-20 transition-opacity">
@@ -334,7 +334,7 @@ export function Wallet() {
                                <DuotoneExternalLink size={8} primary="#94a3b8" />
                             </div>
                           </div>
-                          <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[#00C853]' : tx.type === 'payment' ? 'bg-[#F5A623]' : 'bg-[#999999]'}`} />
+                          <div className={`w-1.5 h-10 rounded-full ${tx.type === 'earning' ? 'bg-[var(--color-tertiary)]' : tx.type === 'payment' ? 'bg-[var(--color-primary)]' : 'bg-[var(--shape-inverted)]'}`} />
                         </div>
                       </div>
                       
@@ -353,7 +353,7 @@ export function Wallet() {
                                    </div>
                                    <div className="flex justify-between items-center text-[10px]">
                                        <span className="text-gray-400 uppercase font-black tracking-widest">Status</span>
-                                       <span className="text-[#00C853] font-bold">{tx.status}</span>
+                                       <span className="text-[var(--color-tertiary)] font-bold">{tx.status}</span>
                                    </div>
                                    <button onClick={(e) => { e.stopPropagation(); handleAction("Download Receipt"); }} className="mt-2 w-full py-2 border-[1.5px] border-[var(--app-text)] text-[var(--app-text)] text-[9px] font-black uppercase tracking-widest active:bg-gray-100 transition-colors">
                                        Download Receipt
@@ -409,7 +409,7 @@ export function Wallet() {
                      <div className="bg-[var(--app-shape-accent)] rounded-2xl p-6 shadow-xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--app-bg)]/5 rounded-full -mr-10 -mt-10 blur-2xl group-hover:bg-[var(--app-bg)]/10 transition-all" />
                         <div className="relative z-10 flex flex-col">
-                           <span className="text-orange-400 font-black text-[10px] uppercase tracking-[0.2em] mb-1">BALANCE</span>
+                           <span className="text-[var(--color-primary)] font-black text-[10px] uppercase tracking-[0.2em] mb-1">BALANCE</span>
                            <h4 className="text-white text-3xl font-black tracking-tight">ZMW 2,450.00</h4>
                         </div>
                      </div>
@@ -435,9 +435,9 @@ export function Wallet() {
 
                         <div className="grid grid-cols-3 gap-6 pt-4 px-2">
                            {[
-                             { id: 'mtn', name: 'MTN', logo: mtnLogo, color: 'border-yellow-400' },
-                             { id: 'airtel', name: 'Airtel', logo: airtelLogo, color: 'border-red-500' },
-                             { id: 'zamtel', name: 'Zamtel', logo: zamtelLogo, color: 'border-green-500' }
+                             { id: 'mtn', name: 'MTN', logo: mtnLogo, color: 'border-[var(--color-primary)]' },
+                             { id: 'airtel', name: 'Airtel', logo: airtelLogo, color: 'border-[var(--shape-primary)]' },
+                             { id: 'zamtel', name: 'Zamtel', logo: zamtelLogo, color: 'border-[var(--color-tertiary)]' }
                            ].map(provider => (
                              <div 
                                key={provider.id} 
@@ -489,8 +489,8 @@ export function Wallet() {
                 </div>
                 
                 <div className="flex flex-col items-center gap-6 py-4 text-center">
-                  <div className="w-20 h-20 bg-orange-50 rounded-3xl border-2 border-orange-500 flex items-center justify-center shadow-[6px_6px_0px_var(--app-orange)]">
-                    <DuotoneSparkles primary="#f59e0b" size={40} />
+                  <div className="w-20 h-20 bg-[var(--color-neutral)] rounded-3xl border-2 border-[var(--color-primary)] flex items-center justify-center shadow-[6px_6px_0px_var(--color-primary)]">
+                    <DuotoneSparkles primary="var(--color-primary)" size={40} />
                   </div>
                   <div>
                     <h4 className="text-lg font-black text-[var(--app-text-slate)] uppercase tracking-tight mb-2">{showComingSoon} Module</h4>

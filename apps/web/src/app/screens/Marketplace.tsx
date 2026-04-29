@@ -95,10 +95,10 @@ export function Marketplace() {
           <div>
             <div className="flex justify-between items-center">
               {[
-                { icon: Tag, label: "SELL", color: "text-[#E85D3F]" },
-                { icon: FileText, label: "LIST", color: "text-[var(--app-text)]" },
-                { icon: UserPlus, label: "REFER", color: "text-[#00C853]" },
-                { icon: BadgeCheck, label: "AGENT", color: "text-[#FFC300]" }
+                { icon: Tag, label: "SELL", color: "text-[var(--color-primary)]" },
+                { icon: FileText, label: "LIST", color: "text-[var(--color-secondary)]" },
+                { icon: UserPlus, label: "REFER", color: "text-[var(--color-tertiary)]" },
+                { icon: BadgeCheck, label: "AGENT", color: "text-[var(--shape-primary)]" }
               ].map((action, i) => (
                 <motion.button 
                   key={i} 
@@ -199,7 +199,7 @@ export function Marketplace() {
                           <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale-[0.2]" />
                           <div className="absolute inset-0 bg-black/40" />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
-                            <span className="text-[11px] font-black text-white px-2 py-1 bg-[var(--app-shape-accent)]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_#FFC300] uppercase tracking-widest">{service.title}</span>
+                             <span className="text-[11px] font-black text-white px-2 py-1 bg-[var(--shape-primary)]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_var(--color-primary)] uppercase tracking-widest">{service.title}</span>
                           </div>
                        </div>
                        <div className="py-2.5 px-2 bg-[var(--app-bg)] flex items-center justify-center min-h-[40px]">
@@ -233,7 +233,7 @@ export function Marketplace() {
                      <span className="text-[10px] font-black text-white/50 tracking-[0.3em] z-10 uppercase leading-none mt-1">{intel.title}</span>
 
                      {/* Live price ticker */}
-                     <span className="text-[14px] font-black text-[#FFC300] z-10 leading-none mt-2 mb-1 tracking-tight">{intel.price}</span>
+                     <span className="text-[14px] font-black text-[var(--color-primary)] z-10 leading-none mt-2 mb-1 tracking-tight">{intel.price}</span>
 
                      {/* Sparkline */}
                      <div className="flex-1 w-full h-[60px] relative z-10 flex items-end justify-center mb-1">
@@ -241,7 +241,7 @@ export function Marketplace() {
                            <path
                               d={intel.graph}
                               fill="none"
-                              stroke="#FFC300"
+                              stroke="var(--color-primary)"
                               strokeWidth="3"
                               vectorEffect="non-scaling-stroke"
                               strokeLinecap="square"
@@ -253,10 +253,10 @@ export function Marketplace() {
                      {/* Live dot + X-axis */}
                      <div className="flex items-center justify-between mt-auto z-10 border-t-2 border-white/20 pt-2">
                         <div className="flex items-center gap-1.5">
-                           <span className="w-2 h-2 rounded-full bg-[#FFC300] animate-pulse block shadow-[0_0_8px_#FFC300]" />
+                           <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse block shadow-[0_0_8px_var(--color-primary)]" />
                            <span className="text-[7px] text-white font-black uppercase tracking-[0.2em] leading-none">LIVE</span>
                         </div>
-                        <span className="text-[7px] font-black tracking-widest text-[#FFC300]/50 leading-none">2026</span>
+                        <span className="text-[7px] font-black tracking-widest text-[var(--color-primary)]/50 leading-none">2026</span>
                      </div>
                   </div>
                ))}
@@ -280,7 +280,7 @@ export function Marketplace() {
                          )}
                       </div>
                       <div className="absolute top-2 right-2 flex gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#00C853] animate-pulse" />
+                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-tertiary)] animate-pulse" />
                       </div>
                    </div>
                    <div className="p-3 flex flex-col gap-1 h-[75px] justify-between">
@@ -338,20 +338,20 @@ export function Marketplace() {
           <section>
              <div className="mb-3 border-b-2 border-[var(--app-text)]/10 pb-2 flex items-center justify-between">
                 <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">BIG DEALS</h3>
-                <span className="text-[9px] font-black text-[#E85D3F] uppercase tracking-widest">🔥 Limited Time</span>
+                <span className="text-[9px] font-black text-[var(--color-primary)] uppercase tracking-widest">🔥 Limited Time</span>
              </div>
              <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_PRODUCTS.map((product) => (
                  <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[110px]">
                    <div className="bg-[var(--app-bg)] border-2 border-[var(--app-text)]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
                      <div className="aspect-square bg-[var(--app-bg)] relative border-b-2 border-[var(--app-text)]">
-                        <div className="absolute top-1.5 left-1.5 bg-[#E85D3F] text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 shadow-sm">HOT</div>
+                        <div className="absolute top-1.5 left-1.5 bg-[var(--color-primary)] text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 shadow-sm">HOT</div>
                         <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
                      </div>
                      <div className="p-2 bg-[var(--app-bg)] flex flex-col gap-0.5 justify-between flex-1">
                         <h4 className="text-[9px] font-black text-[var(--app-text)] leading-tight line-clamp-1 uppercase">{product.title}</h4>
                         <div className="flex items-center gap-1 mt-1">
-                           <span className="text-[8px] font-black text-[#E85D3F] line-through">K{Number(product.price.replace(/,/g,'')) + 1000}</span>
+                           <span className="text-[8px] font-black text-[var(--color-primary)] line-through">K{Number(product.price.replace(/,/g,'')) + 1000}</span>
                            <span className="text-[12px] font-black text-black">K{product.price}</span>
                         </div>
                      </div>

@@ -163,17 +163,17 @@ export function Socials() {
       />
 
       {/* ACTION BAR MOVED OUT OF HEADER (EXACTLY BELOW) */}
-      <div className="flex w-full bg-[var(--app-bg)] border-y border-[#E85D3F] items-stretch h-[46px] z-20 relative shadow-sm">
-         <Link to="/learning/go-live" className="flex-1 flex items-center justify-center gap-2 border-r border-[#E85D3F]/40 text-[#E85D3F] active:bg-[#E85D3F]/5 transition-colors">
+      <div className="flex w-full bg-[var(--app-bg)] border-y border-[var(--color-primary)] items-stretch h-[46px] z-20 relative shadow-sm">
+         <Link to="/learning/go-live" className="flex-1 flex items-center justify-center gap-2 border-r border-[var(--color-primary)]/40 text-[var(--color-primary)] active:bg-[var(--color-primary)]/5 transition-colors">
             <Radio size={18} className="animate-pulse" />
             <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Live</span>
          </Link>
-         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r border-[#E85D3F]/40 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
-            <PlusCircle size={18} primary="#E85D3F" />
+         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r border-[var(--color-primary)]/40 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
+            <PlusCircle size={18} primary="var(--color-primary)" />
             <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Post</span>
          </button>
          <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
-            <UserPlus size={18} primary="#E85D3F" />
+            <UserPlus size={18} primary="var(--color-primary)" />
             <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Friends</span>
          </Link>
       </div>
@@ -278,7 +278,7 @@ export function Socials() {
                                <Share size={24} />
                            </button>
                         </div>
-                        <button onClick={() => setActiveTipPostId(post.id)} className="bg-[#E85D3F] text-white px-5 py-1.5 rounded-[20px] font-black text-[10px] uppercase tracking-widest shadow-sm active:scale-95 transition-all">
+                        <button onClick={() => setActiveTipPostId(post.id)} className="bg-[var(--color-primary)] text-white px-5 py-1.5 rounded-[20px] font-black text-[10px] uppercase tracking-widest shadow-sm active:scale-95 transition-all">
                            Tip
                         </button>
                      </div>
@@ -487,8 +487,8 @@ export function Socials() {
                <div className="w-10" />
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 bg-[#f8fafc]">
-               <h2 className="font-black text-2xl uppercase tracking-tighter text-[var(--app-text)] mb-6 leading-tight">What's your story today?</h2>
+            <div className="flex-1 overflow-y-auto p-6 bg-[var(--color-neutral)]">
+               <h2 className="font-black text-2xl uppercase tracking-tighter text-[var(--app-text)] mb-6 leading-tight" style={{ fontFamily: "var(--font-header)" }}>What's your story today?</h2>
                
                <div className="grid grid-cols-2 gap-4 mb-8">
                   {[
