@@ -345,7 +345,7 @@ export function Home() {
                         <img src={item.avatar} alt={item.user} className="w-full h-full object-cover" />
                       </div>
                       <span className="text-white font-black text-[11px] drop-shadow-md">@{item.user}</span>
-                      {item.verified && <BadgeCheck size={12} className="text-[var(--color-primary)]" />}
+                      {item.verified && <BadgeCheck size={12} className="text-[var(--color-secondary)]" />}
                     </div>
                   </div>
                   <div className="p-4">

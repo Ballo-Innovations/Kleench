@@ -1,11 +1,12 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Kleench Premium Palette - Light Mode */
-  --color-primary: #FF8C00;      /* Vibrant Orange */
-  --color-secondary: #0D1B3E;    /* Deep Navy */
-  --color-tertiary: #00695C;     /* Teal */
-  --color-neutral: #F8F9FB;      /* Off-white Base */
+  /* Kleench Tonal Architecture - Light Mode */
+  --color-primary: #FF8C00;         /* Primary Action (Vibrant Energy / Heat) */
+  --color-secondary: #515D84;       /* Secondary Foundation (Trust / Institutional) */
+  --color-secondary-dim: #B9C5F2;   /* Secondary Fixed Dim (Navigation / Security / Utility) */
+  --color-tertiary: #00695C;        /* Tertiary (Legacy / Functional Teal) */
+  --color-neutral: #F8F9FB;         /* Neutral Base */
   
   /* Shapes & Functional Colors */
   --shape-inverted: #2E3132;     /* Charcoal */
@@ -29,8 +30,11 @@
   --primary: var(--color-primary);
   --primary-foreground: #FFFFFF;
   
-  --secondary: var(--shape-secondary);
-  --secondary-foreground: var(--color-secondary);
+  --secondary: var(--color-secondary);
+  --secondary-foreground: #FFFFFF;
+  
+  --secondary-dim: var(--color-secondary-dim);
+  --secondary-dim-foreground: var(--color-secondary);
   
   --accent: var(--color-tertiary);
   --accent-foreground: #FFFFFF;
@@ -74,6 +78,8 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-dim: var(--secondary-dim);
+  --color-secondary-dim-foreground: var(--secondary-dim-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);

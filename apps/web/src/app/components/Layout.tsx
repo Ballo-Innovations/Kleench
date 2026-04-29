@@ -110,7 +110,7 @@ export function Layout() {
                 key={item.id}
                 to={item.path}
                 className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-                  active ? "text-[var(--color-primary)]" : "text-[var(--shape-outline)]"
+                  active ? "text-[var(--color-secondary)]" : "text-[var(--color-secondary-dim)]"
                 }`}
               >
                 <Icon
@@ -127,7 +127,7 @@ export function Layout() {
           <button
             onClick={() => setShowMore(true)}
             className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? "text-[var(--color-primary)]" : "text-[var(--shape-outline)]"
+              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? "text-[var(--color-secondary)]" : "text-[var(--color-secondary-dim)]"
             }`}
           >
             <Menu size={20} strokeWidth={showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? 3 : 2} className="mb-1" />

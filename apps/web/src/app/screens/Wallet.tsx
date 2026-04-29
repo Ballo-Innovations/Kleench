@@ -149,7 +149,7 @@ export function Wallet() {
               {hasFinancialKyc ? (
                 <button 
                    onClick={() => navigate("/kyc-verification")}
-                   className="flex items-center gap-1.5 bg-[var(--color-tertiary)] hover:bg-[var(--color-tertiary)]/90 text-white px-3 py-1.5 rounded-full active:scale-95 transition-all cursor-pointer shadow-sm border border-[var(--color-tertiary)]"
+                   className="flex items-center gap-1.5 bg-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/90 text-white px-3 py-1.5 rounded-full active:scale-95 transition-all cursor-pointer shadow-sm border border-[var(--color-secondary)]"
                 >
                   <Check size={10} strokeWidth={4} />
                   <span className="font-black uppercase tracking-widest text-[8px]">Update</span>
@@ -230,7 +230,7 @@ export function Wallet() {
              </div>
              <div className="grid grid-cols-2 gap-3">
                 {[
-                  { id: "escrow", icon: DuotoneShieldCheck, title: "ESCROW", metric: "K1,200", primary: "var(--app-text)" },
+                  { id: "escrow", icon: DuotoneShieldCheck, title: "ESCROW", metric: "K1,200", primary: "var(--color-secondary)" },
                   { id: "savings", icon: DuotonePiggyBank, title: "SAVINGS", metric: "K8,400", primary: "var(--color-tertiary)" }
                 ].map(util => (
                    <motion.button key={util.id} whileTap={{ scale: 0.96 }} onClick={() => handleAction(util.id)} className="flex items-center gap-3 p-4 bg-[var(--color-primary)] rounded-2xl shadow-sm active:scale-95 transition-all">
@@ -278,7 +278,7 @@ export function Wallet() {
                 key={tab}
                 onClick={() => setActiveTransTab(tab)}
                 className={`flex-1 min-w-[70px] py-2.5 text-[9px] font-black uppercase tracking-widest transition-all rounded-full ${
-                  activeTransTab === tab ? "bg-[var(--app-bg)] text-[var(--app-text)] shadow-sm border border-gray-100" : "text-[#A0A0A0]"
+                  activeTransTab === tab ? "bg-[var(--app-bg)] text-[var(--app-text)] shadow-sm border border-gray-100" : "text-[var(--color-secondary-dim)]"
                 }`}
               >
                 {tab}
