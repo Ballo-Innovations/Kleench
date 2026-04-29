@@ -32,7 +32,7 @@ export function PayToStream() {
 
   if (view === "subscriptions") {
     return (
-      <div className="w-full min-h-screen bg-[#f8f9fb] pb-32 font-sans text-slate-800">
+      <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-slate-800">
         <PageHeader title="My Subscriptions" showBack onBack={() => navigate(-1)} />
 
         <div className="px-4 pt-4 space-y-4">
@@ -82,7 +82,7 @@ export function PayToStream() {
 
   if (view === "subscribe") {
     return (
-      <div className="w-full min-h-screen bg-[#f8f9fb] pb-32 font-sans text-slate-800">
+      <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-slate-800">
         <PageHeader title="Subscribe" showBack onBack={() => setView("gate")} />
 
         <div className="px-4 pt-6 flex flex-col items-center text-center space-y-4">
@@ -122,7 +122,7 @@ export function PayToStream() {
 
   // Gate view
   return (
-    <div className="w-full min-h-screen bg-black font-sans">
+    <div className="w-full min-h-screen bg-transparent font-sans">
       <div className="relative">
         {/* Blurred thumbnail */}
         <div className={`w-full aspect-[4/5] ${thumbnailColor} relative overflow-hidden`}>

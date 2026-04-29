@@ -229,7 +229,7 @@ export function AdvertViewAds() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black max-w-md mx-auto flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-[200] bg-transparent max-w-md mx-auto flex flex-col overflow-y-auto"
           >
             {/* ── Balance Bar ── */}
             <div className="bg-[#e43f24] px-4 py-3 flex items-center justify-between text-white flex-shrink-0 pt-8">
@@ -409,7 +409,7 @@ export function AdvertViewAds() {
 
             {/* ── Bottom Details — Brand Info ── */}
             {detailState === "viewer" && (
-              <div className="bg-gradient-to-b from-black to-[#1a1111] px-4 pt-4 space-y-5 pb-20 flex-1">
+              <div className="bg-transparent px-4 pt-4 space-y-5 pb-20 flex-1">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
                     <span className="text-white font-black text-sm">{selectedAd.brand[0]}</span>
