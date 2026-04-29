@@ -83,7 +83,7 @@ export function Offers() {
 
       {/* Banner Ad */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.1)}
-        className="relative z-10 mb-8 rounded-[32px] overflow-hidden shadow-lg border border-gray-100">
+        className="relative z-10 mb-8 rounded-[32px] overflow-hidden shadow-lg border border-[var(--border)]">
         <img src={adBanner} alt="Collective Impact" className="w-full h-auto object-cover" />
       </motion.div>
 
@@ -135,7 +135,7 @@ export function Offers() {
                       style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 3px 16px rgba(13,27,62,0.06)" }}>
 
                       {/* Image */}
-                      <div className="relative h-40 bg-gray-100">
+                      <div className="relative h-40 bg-[var(--muted)]">
                         <img src={offer.image} alt={offer.title}
                           className="w-full h-full object-cover"
                           style={{ transition: "transform 0.7s ease" }}
@@ -190,7 +190,7 @@ export function Offers() {
                         <div className="flex items-center justify-between">
                           {/* Deadline chip — teal */}
                           <span className="text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"
-                            style={{ background: "#F0FDF9", color: "#00695C" }}>
+                            style={{ background: "var(--tint-teal)", color: "#00695C" }}>
                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                               <circle cx="5" cy="5" r="4" stroke="#00695C" strokeWidth="1.2"/>
                               <path d="M5 2.5v2.5l1.5 1.5" stroke="#00695C" strokeWidth="1.2" strokeLinecap="round"/>

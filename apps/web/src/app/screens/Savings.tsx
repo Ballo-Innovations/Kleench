@@ -35,7 +35,7 @@ export function Savings() {
   ];
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--app-text)]">
+    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--color-secondary)]">
       {/* ── PageHeader matching Wallet style ── */}
       <PageHeader 
         showBack 
@@ -45,7 +45,7 @@ export function Savings() {
           <div className="flex items-center justify-between w-full bg-[var(--app-bg)]/10 backdrop-blur-md border border-white/20 rounded-full py-[6px] px-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)] shrink-0">
             <div className="flex flex-col justify-center min-w-0 pl-1">
               <p className="text-white/60 text-[8px] font-bold uppercase tracking-widest leading-none mb-1">Savings Balance</p>
-              <h2 className="text-white text-[16px] font-black tracking-tight leading-none" style={{ fontFamily: "Agrandir, system-ui, sans-serif" }}>ZMW 8,400.00</h2>
+              <h2 className="text-white text-[16px] font-black tracking-tight leading-none">ZMW 8,400.00</h2>
             </div>
             <div className="flex items-center">
               <div className="w-8 h-8 rounded-full bg-[var(--app-bg)]/20 flex items-center justify-center border border-white/30 text-white">
@@ -61,30 +61,30 @@ export function Savings() {
         {/* Section 01. PROFILE IDENTITY */}
         <section className="space-y-4">
           <div className="flex items-center gap-3 mb-4">
-             <span className="text-[#F5A623] font-black text-sm tracking-widest">01.</span>
-             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Identity</h3>
-             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
+             <span className="text-[var(--color-primary)] font-black text-sm tracking-widest">01.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">Identity</h3>
+             <div className="flex-1 h-[2px] bg-[var(--border)]" />
           </div>
 
           <motion.div 
             {...grace(0.1)}
-            className="bg-[var(--app-bg)] rounded-2xl border border-slate-200 p-5 shadow-sm active:scale-[0.99] transition-all"
+            className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] p-5 shadow-sm active:scale-[0.99] transition-all"
           >
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full border border-slate-100 overflow-hidden bg-[var(--app-bg-muted)] flex items-center justify-center shrink-0 shadow-inner">
+              <div className="w-14 h-14 rounded-full border border-[var(--border)] overflow-hidden bg-[var(--app-bg)] flex items-center justify-center shrink-0 shadow-inner">
                 {localPhoto ? (
                   <img src={localPhoto} alt={displayName} className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-lg font-black text-[var(--app-text)]">{initials}</span>
+                  <span className="text-lg font-black text-[var(--color-secondary)]">{initials}</span>
                 )}
               </div>
               <div className="flex flex-col min-w-0">
                 <h4 className="font-black text-[var(--app-text)] text-sm uppercase tracking-tight truncate">{displayName}</h4>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none px-2 py-1 bg-[var(--app-bg-muted)] rounded-full border border-slate-100">
+                  <span className="text-[9px] font-bold text-[var(--color-secondary-dim)] uppercase tracking-widest leading-none px-2 py-1 bg-[var(--app-bg)] rounded-full border border-[var(--border)]">
                     ID: {displayId}
                   </span>
-                  <span className="text-[9px] font-black text-[var(--app-orange)] uppercase tracking-widest leading-none">Verified Access</span>
+                  <span className="text-[9px] font-black text-[var(--color-primary)] uppercase tracking-widest leading-none">Verified Access</span>
                 </div>
               </div>
             </div>
@@ -94,15 +94,15 @@ export function Savings() {
         {/* Section 02. CAPITAL CONTROLS */}
         <section className="space-y-4 pt-2">
           <div className="flex items-center gap-3 mb-4">
-             <span className="text-[#F5A623] font-black text-sm tracking-widest">02.</span>
-             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">Capital Controls</h3>
-             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
+             <span className="text-[var(--color-primary)] font-black text-sm tracking-widest">02.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">Capital Controls</h3>
+             <div className="flex-1 h-[2px] bg-[var(--border)]" />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             {[
-              { label: "Top Up", icon: DuotoneArrowUp, color: "bg-[var(--app-shape-accent)] text-white", primary: "#ffffff" },
-              { label: "Withdraw", icon: DuotoneArrowDown, color: "bg-[#FFC55A] text-[var(--app-text)]", primary: "var(--app-text)" }
+              { label: "Top Up", icon: DuotoneArrowUp, color: "bg-[var(--color-primary)] text-white", primary: "#ffffff" },
+              { label: "Withdraw", icon: DuotoneArrowDown, color: "bg-[var(--color-secondary)] text-white", primary: "#ffffff" }
             ].map((btn, i) => (
               <motion.button 
                 key={btn.label}
@@ -123,24 +123,24 @@ export function Savings() {
             className="w-full bg-[var(--app-bg)] rounded-2xl border border-slate-200 p-4 flex items-center justify-between shadow-sm active:scale-95 transition-all"
           >
             <div className="flex items-center gap-3">
-               <div className="w-8 h-8 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center border border-slate-100">
-                  <DuotonePiggyBank size={16} primary="var(--app-text)" />
+               <div className="w-8 h-8 rounded-full bg-[var(--app-bg)] flex items-center justify-center border border-[var(--border)] shadow-sm">
+                  <DuotonePiggyBank size={16} primary="var(--color-secondary)" />
                </div>
-               <span className="text-[10px] font-black text-[var(--app-text)] uppercase tracking-widest">Growth Rules</span>
+               <span className="text-[10px] font-black text-[var(--color-secondary)] uppercase tracking-widest">Growth Rules</span>
             </div>
-            <span className="text-[#F5A623] font-black text-[9px] uppercase tracking-widest">Configure</span>
+            <span className="text-[var(--color-primary)] font-black text-[9px] uppercase tracking-widest">Configure</span>
           </motion.button>
         </section>
 
         {/* Section 03. SAVINGS LEDGER */}
         <section className="space-y-4 pt-4">
           <div className="flex items-center gap-3 mb-4">
-             <span className="text-[#F5A623] font-black text-sm tracking-widest">03.</span>
-             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[#999999]">History Ledger</h3>
-             <div className="flex-1 h-[2px] bg-[#E0E0E0]" />
+             <span className="text-[var(--color-primary)] font-black text-sm tracking-widest">03.</span>
+             <h3 className="font-black text-[13px] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">History Ledger</h3>
+             <div className="flex-1 h-[2px] bg-[var(--border)]" />
           </div>
 
-          <div className="bg-[var(--app-bg)] rounded-[24px] border border-slate-100 shadow-sm overflow-hidden divide-y divide-slate-50">
+          <div className="bg-[var(--app-bg)] rounded-[24px] border border-[var(--border)] shadow-sm overflow-hidden divide-y divide-[var(--border)]/30">
             {ledgerData.map((tx, idx) => (
               <motion.div 
                 key={tx.id}
@@ -149,7 +149,7 @@ export function Savings() {
                 style={{ backgroundImage: "radial-gradient(#e5e7eb 0.5px, transparent 0.5px)", backgroundSize: "16px 16px" }}
               >
                 <div className="flex flex-col relative z-10">
-                  <span className="font-black text-[var(--app-text)] text-xs uppercase tracking-tight">{tx.source}</span>
+                  <span className="font-black text-[var(--color-secondary)] text-xs uppercase tracking-tight">{tx.source}</span>
                   <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">{tx.date}</span>
                 </div>
                 <div className="text-right flex flex-col items-end relative z-10">
@@ -168,7 +168,7 @@ export function Savings() {
         {/* Achievement / Security Wrap */}
         <motion.div 
           {...grace(0.8)}
-          className="rounded-2xl shadow-md bg-[var(--app-shape-accent)] overflow-hidden aspect-[4/1] relative flex items-center justify-center"
+          className="rounded-2xl shadow-md bg-[var(--color-primary)] overflow-hidden aspect-[4/1] relative flex items-center justify-center border border-white/10"
         >
           <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <p className="relative z-10 text-white font-black uppercase tracking-[0.4em] text-[10px]">Active Vault Protected</p>

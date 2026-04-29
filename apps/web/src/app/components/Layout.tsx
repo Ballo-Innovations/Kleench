@@ -3,6 +3,7 @@ import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHan
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { GlobalBackground } from "./GlobalBackground";
 
 // Layout component with navigation
 export function Layout() {
@@ -86,65 +87,17 @@ export function Layout() {
   return (
     <div className="max-w-md mx-auto h-[100dvh] w-full relative bg-[var(--app-bg)] overflow-y-auto overflow-x-hidden shadow-2xl scrollbar-hide">
       {/* ── GLOBAL DASHED GRID BACKGROUND ── */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[var(--app-bg)]">
-        <div
-          className="absolute inset-0 z-0 opacity-[0.3]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #d6d3d1 1px, transparent 1px),
-              linear-gradient(to bottom, #d6d3d1 1px, transparent 1px)
-            `,
-            backgroundSize: "20px 20px",
-            backgroundPosition: "0 0, 0 0",
-            maskImage: `
-              repeating-linear-gradient(
-                to right,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              ),
-              repeating-linear-gradient(
-                to bottom,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              )
-            `,
-            WebkitMaskImage: `
-              repeating-linear-gradient(
-                to right,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              ),
-              repeating-linear-gradient(
-                to bottom,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              )
-            `,
-            maskComposite: "intersect",
-            WebkitMaskComposite: "source-in",
-          }}
-        />
-        {/* Subtle Brand Ambiance */}
-        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#ff8c00]/5 rounded-full blur-[100px]" />
-      </div>
+      <GlobalBackground />
 
 
       {/* Main Content */}
-      <main className={`relative w-full ${!isFullBleed ? "pt-20 px-4 pb-32" : ""}`}>
+      <main className={`relative w-full ${!isFullBleed ? "pt-20 px-[var(--grid-margin)] pb-32" : ""}`}>
         <Outlet />
       </main>
 
       {/* Bottom Navigation */}
       <motion.nav
-        className="fixed bottom-0 left-0 right-0 z-50 w-full max-w-md mx-auto bg-[var(--app-bg)]/95 backdrop-blur-3xl border-t border-gray-100 shadow-[0_-15px_40px_rgba(0,0,0,0.04)] rounded-t-[32px] pb-[env(safe-area-inset-bottom)]"
+        className="fixed bottom-0 left-0 right-0 z-50 w-full max-w-md mx-auto bg-[var(--app-bg)]/95 backdrop-blur-3xl border-t border-[var(--border)] shadow-[0_-15px_40px_rgba(0,0,0,0.04)] rounded-t-[32px] pb-[env(safe-area-inset-bottom)]"
         animate={keyboardOpen ? { y: 120, opacity: 0, pointerEvents: "none" } : { y: 0, opacity: 1, pointerEvents: "auto" }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -157,7 +110,7 @@ export function Layout() {
                 key={item.id}
                 to={item.path}
                 className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-                  active ? "text-[var(--app-orange)]" : "text-gray-400"
+                  active ? "text-[var(--color-secondary)]" : "text-[var(--color-secondary-dim)]"
                 }`}
               >
                 <Icon
@@ -174,7 +127,7 @@ export function Layout() {
           <button
             onClick={() => setShowMore(true)}
             className={`flex flex-col items-center flex-1 transition-all duration-300 outline-none ${
-              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? "text-[var(--app-orange)]" : "text-gray-400"
+              showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? "text-[var(--color-secondary)]" : "text-[var(--color-secondary-dim)]"
             }`}
           >
             <Menu size={20} strokeWidth={showMore || ["/marketplace", "/surveys-polls", "/poll/create", "/crowdfunding", "/donate"].includes(location.pathname) ? 3 : 2} className="mb-1" />
@@ -199,12 +152,12 @@ export function Layout() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[1000] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t-[3px] border-[var(--app-text-slate)] shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+              className="fixed bottom-0 left-0 right-0 z-[1000] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--border)] shadow-2xl overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
                   <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">Explore More</h3>
-                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 transition-all active:scale-90">
+                  <button onClick={() => setShowMore(false)} className="w-8 h-8 rounded-full bg-[var(--shape-secondary)] flex items-center justify-center text-[var(--shape-outline)] transition-all active:scale-90">
                     <X size={20} />
                   </button>
                 </div>
@@ -222,7 +175,7 @@ export function Layout() {
                       onClick={() => { navigate(item.path); setShowMore(false); }}
                       className="flex flex-col items-center gap-2.5 group cursor-pointer active:scale-95 transition-all"
                     >
-                      <div className="w-12 h-12 bg-[var(--app-bg)] rounded-2xl flex items-center justify-center border-2 border-[var(--app-text-slate)] shadow-[3px_3px_0px_#0f172a] transition-all">
+                      <div className="w-12 h-12 bg-[var(--app-bg)] rounded-2xl flex items-center justify-center border border-[var(--border)] shadow-md transition-all">
                         <item.icon size={22} className="text-[var(--app-text-slate)]" strokeWidth={2.5} />
                       </div>
                       <span className="text-[9px] font-black text-[var(--app-text-slate)] uppercase tracking-widest text-center leading-tight px-1">
@@ -232,11 +185,11 @@ export function Layout() {
                   ))}
                 </div>
 
-                <div className="bg-[var(--app-bg-muted)] p-4 rounded-3xl border-2 border-[var(--app-text-slate)] shadow-[6px_6px_0px_#0f172a] mb-4">
+                <div className="bg-[var(--app-bg-muted)] p-5 rounded-3xl border border-[var(--border)] shadow-md mb-4">
                    <div className="flex items-center justify-between">
                       <div>
-                         <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest mb-1">Verify Account</p>
-                         <p className="text-xs font-bold text-slate-500">Enable premium features</p>
+                         <p className="text-[10px] font-black text-[var(--color-secondary)] uppercase tracking-widest mb-1">Verify Account</p>
+                         <p className="text-xs font-bold text-[var(--shape-outline)]">Enable premium features</p>
                       </div>
                       <button onClick={() => toast.success("Verification framework initializing...")} className="px-4 py-2 bg-[var(--app-text-slate)] text-white rounded-xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">
                         Verify

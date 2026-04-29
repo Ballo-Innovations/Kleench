@@ -52,7 +52,7 @@ export function AdvertQuestionnaire() {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/90 flex flex-col justify-end z-50 max-w-md mx-auto">
+    <div className="fixed inset-0 bg-transparent flex flex-col justify-end z-50 max-w-md mx-auto">
       {/* Blurred ad thumbnail */}
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full h-full bg-gradient-to-b from-slate-800 to-slate-900 blur-sm" />
@@ -62,7 +62,7 @@ export function AdvertQuestionnaire() {
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="bg-black rounded-t-3xl px-6 pt-5 pb-[env(safe-area-inset-bottom)] pb-8"
+        className="bg-transparent backdrop-blur-md rounded-t-3xl px-6 pt-5 pb-[env(safe-area-inset-bottom)] pb-8"
       >
         <div className="w-10 h-1 bg-slate-700 rounded-full mx-auto mb-5" />
         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">

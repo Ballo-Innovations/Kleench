@@ -51,25 +51,24 @@ export function ProfileEdit() {
   };
 
   return (
-    <div className="min-h-screen pb-6">
+    <div className="min-h-screen bg-[var(--app-bg)] pb-10">
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-2 pb-5">
         <Link
           to="/settings"
-          className="w-10 h-10 rounded-xl bg-[var(--app-bg)] shadow-md border border-black/[0.04] flex items-center justify-center"
+          className="w-10 h-10 rounded-xl bg-[var(--app-bg)] shadow-sm border border-[var(--border)] flex items-center justify-center active:scale-95 transition-all"
         >
-          <ArrowLeft size={18} className="text-[var(--ink-primary)]" />
+          <ArrowLeft size={18} className="text-[var(--color-secondary)]" />
         </Link>
         <h1
-          className="font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-tight"
-          style={{ fontSize: "1.25rem" }}
+          className="font-black text-[var(--color-secondary)] tracking-tight uppercase text-sm"
         >
           Edit Profile
         </h1>
         <motion.button
           whileTap={{ scale: 0.92 }}
           onClick={handleSave}
-          className="px-5 py-2 rounded-xl bg-[var(--trust-blue)] text-white font-[var(--font-body)] font-bold text-sm shadow-md"
+          className="px-5 py-2 rounded-xl bg-[var(--color-primary)] text-white font-black text-[11px] uppercase tracking-widest shadow-sm border border-white/10"
         >
           Save
         </motion.button>
@@ -93,7 +92,7 @@ export function ProfileEdit() {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => fileInputRef.current?.click()}
-              className="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-[var(--trust-blue)] text-white flex items-center justify-center shadow-lg border-4 border-white"
+              className="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center shadow-lg border-4 border-[var(--app-bg)]"
             >
               <Camera size={18} strokeWidth={2} />
             </motion.button>
@@ -105,7 +104,7 @@ export function ProfileEdit() {
               className="hidden"
             />
           </div>
-          <p className="text-xs font-[var(--font-body)] text-[var(--ink-muted)]">
+          <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40">
             Tap to change profile photo
           </p>
         </motion.div>
@@ -119,11 +118,11 @@ export function ProfileEdit() {
         >
           {/* Full Name */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 ml-1">
               Full Name
             </label>
-            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
-              <User size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-[var(--border)] shadow-sm focus-within:border-[var(--color-primary)]/40 transition-colors">
+              <User size={18} className="text-[var(--color-secondary)]/40 shrink-0" strokeWidth={2} />
               <input
                 type="text"
                 value={fullName}
@@ -136,11 +135,11 @@ export function ProfileEdit() {
 
           {/* Username */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 ml-1">
               Username
             </label>
-            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
-              <span className="text-[var(--ink-muted)] font-[var(--font-body)] text-sm">@</span>
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-[var(--border)] shadow-sm focus-within:border-[var(--color-primary)]/40 transition-colors">
+              <span className="text-[var(--color-secondary)]/40 font-black text-sm">@</span>
               <input
                 type="text"
                 value={username}
@@ -153,11 +152,11 @@ export function ProfileEdit() {
 
           {/* Email */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 ml-1">
               Email
             </label>
-            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
-              <Mail size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-[var(--border)] shadow-sm focus-within:border-[var(--color-primary)]/40 transition-colors">
+              <Mail size={18} className="text-[var(--color-secondary)]/40 shrink-0" strokeWidth={2} />
               <input
                 type="email"
                 value={email}
@@ -170,11 +169,11 @@ export function ProfileEdit() {
 
           {/* Phone */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 ml-1">
               Phone Number
             </label>
-            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
-              <Phone size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-[var(--border)] shadow-sm focus-within:border-[var(--color-primary)]/40 transition-colors">
+              <Phone size={18} className="text-[var(--color-secondary)]/40 shrink-0" strokeWidth={2} />
               <input
                 type="tel"
                 value={phone}
@@ -187,11 +186,11 @@ export function ProfileEdit() {
 
           {/* Location */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 ml-1">
               Location
             </label>
-            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
-              <MapPin size={18} className="text-[var(--ink-muted)] shrink-0" strokeWidth={2} />
+            <div className="flex items-center gap-3 bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-[var(--border)] shadow-sm focus-within:border-[var(--color-primary)]/40 transition-colors">
+              <MapPin size={18} className="text-[var(--color-secondary)]/40 shrink-0" strokeWidth={2} />
               <input
                 type="text"
                 value={location}
@@ -204,10 +203,10 @@ export function ProfileEdit() {
 
           {/* Bio */}
           <div>
-            <label className="block text-xs font-[var(--font-body)] font-bold text-[var(--ink-secondary)] mb-2 ml-1">
+            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 ml-1">
               Bio
             </label>
-            <div className="bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-black/[0.05] shadow-sm focus-within:border-[var(--trust-blue)]/40 transition-colors">
+            <div className="bg-[var(--app-bg)] rounded-2xl px-4 py-3.5 border border-[var(--border)] shadow-sm focus-within:border-[var(--color-primary)]/40 transition-colors">
               <textarea
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
@@ -229,11 +228,11 @@ export function ProfileEdit() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-8 p-4 rounded-2xl bg-red-50 border border-red-100"
+          className="mt-8 p-4 rounded-2xl bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/10"
         >
-          <p className="text-xs font-[var(--font-body)] text-red-600 text-center">
+          <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/60 text-center">
             Need to delete your account? Contact support at{" "}
-            <span className="font-bold">support@kleench.com</span>
+            <span className="text-[var(--color-primary)]">support@kleench.com</span>
           </p>
         </motion.div>
       </div>

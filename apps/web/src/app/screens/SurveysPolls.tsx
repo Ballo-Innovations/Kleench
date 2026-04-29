@@ -47,7 +47,7 @@ export function SurveysPolls() {
   }
 
   return (
-    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-28">
+    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--color-secondary)]">
       
       {/* Sticky Header with global balance HUD */}
       <div className="sticky top-0 z-50">
@@ -55,26 +55,25 @@ export function SurveysPolls() {
       </div>
 
       <div className="w-full relative z-10">
-          {/* Quick Action Bar */}
-          <div className="px-5 py-4 border-b-[3px] border-[#E85D3F]">
+          <div className="px-5 py-4 border-b border-[var(--border)]">
             <div className="flex gap-4">
               <button onClick={() => toast.info("Survey creation tool coming soon.")} className="flex-1">
                 <motion.div 
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full h-[60px] rounded-xl bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-lg shadow-[#E85D3F]/25 active:scale-95 transition-all"
-                >
-                  <div className="w-6 h-6 rounded-full border-2 border-white/60 flex items-center justify-center">
-                    <Plus size={16} strokeWidth={3} />
-                  </div>
-                  <span className="font-black tracking-wider uppercase text-[12px]">Survey</span>
-                </motion.div>
+                   whileTap={{ scale: 0.95 }}
+                   className="w-full h-[60px] rounded-2xl bg-[var(--color-primary)] text-white flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all"
+                 >
+                   <div className="w-6 h-6 rounded-full border border-white/60 flex items-center justify-center">
+                     <Plus size={16} strokeWidth={3} />
+                   </div>
+                   <span className="font-black tracking-wider uppercase text-[12px]">Survey</span>
+                 </motion.div>
               </button>
               <button onClick={() => toast.info("Poll creation tool coming soon.")} className="flex-1">
                  <motion.div
                   whileTap={{ scale: 0.95 }}
-                  className="w-full h-[60px] rounded-xl bg-[#E85D3F] text-white flex items-center justify-center gap-2 shadow-lg shadow-[#E85D3F]/25 active:scale-95 transition-all"
+                  className="w-full h-[60px] rounded-2xl bg-[var(--color-primary)] text-white flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all"
                 >
-                  <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full border border-white flex items-center justify-center">
                     <Plus size={16} strokeWidth={3} />
                   </div>
                   <span className="font-black tracking-wider uppercase text-[12px]">Poll</span>
@@ -83,38 +82,37 @@ export function SurveysPolls() {
             </div>
           </div>
 
-          {/* Active Survey Section */}
-          <section className="px-5 py-5 border-b-[3px] border-gray-200">
-            <h3 className="text-[var(--app-text)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
-            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/15 shadow-lg shadow-[var(--app-text)]/12 p-4 mb-6">
+          <section className="px-5 py-5 border-b border-[var(--border)]">
+            <h3 className="text-[var(--color-secondary)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-4 mb-6">
                {ACTIVE_SURVEYS.map((survey, i) => (
                   <div key={survey.id} className="mb-4 last:mb-0 relative py-1">
                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2 max-w-[70%]">
-                           <div className="w-6 h-6 text-[var(--app-text)]/40 shrink-0 flex items-center justify-center overflow-hidden">
+                           <div className="w-6 h-6 text-[var(--color-secondary)]/40 shrink-0 flex items-center justify-center overflow-hidden">
                               {survey.logo ? (
                                 <img src={survey.logo} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                               ) : (
                                 <FileText size={16} />
                               )}
                            </div>
-                           <p className="text-[11px] font-black text-[var(--app-text)] leading-tight break-words">{survey.title}</p>
+                           <p className="text-[11px] font-black text-[var(--color-secondary)] leading-tight break-words">{survey.title}</p>
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
-                           <div className="w-16 h-4 bg-gray-200 rounded-full overflow-hidden flex">
+                           <div className="w-16 h-4 bg-[var(--muted)] rounded-full overflow-hidden flex">
                               <div className={`h-full ${survey.color}`} style={{ width: `${survey.percent}%` }} />
                            </div>
-                           <span className="text-[12px] font-black text-[var(--app-text)] w-8 text-right">{survey.percent}%</span>
+                           <span className="text-[12px] font-black text-[var(--color-secondary)] w-8 text-right">{survey.percent}%</span>
                         </div>
                      </div>
-                     {i !== ACTIVE_SURVEYS.length - 1 && <div className="border-b border-gray-100 w-full mt-3" />}
+                     {i !== ACTIVE_SURVEYS.length - 1 && <div className="border-b border-[var(--border)] w-full mt-3" />}
                   </div>
                ))}
             </div>
 
             {/* Interactive Element */}
-            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/15 shadow-lg shadow-[var(--app-text)]/12 p-2">
-               <div className="inline-block bg-[#E85D3F] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase border-[3px] border-[var(--app-text)] shadow-[2px_2px_0_var(--app-text)] -ml-2 mb-4 z-10 relative">
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-2">
+               <div className="inline-block bg-[var(--color-primary)] text-white px-4 py-1.5 rounded-full font-black text-[12px] uppercase shadow-sm -ml-2 mb-4 z-10 relative">
                   Favorite Social Media Platform?
                </div>
                
@@ -123,7 +121,7 @@ export function SurveysPolls() {
                      <button 
                         key={opt.id} 
                         onClick={() => handleSelect(opt.id)} 
-                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' shadow-md shadow-[var(--app-text)]/20' : 'bg-transparent text-[var(--app-text)] border border-[var(--app-text)]/30'}`}
+                        className={`flex items-center justify-center px-5 py-2.5 rounded-full font-black text-[12px] uppercase transition-all ${selectedSocial === opt.id ? opt.bg + ' ' + opt.text + ' shadow-sm' : 'bg-transparent text-[var(--color-secondary)] border border-[var(--border)]'}`}
                      >
                         {opt.label}
                      </button>
@@ -132,11 +130,10 @@ export function SurveysPolls() {
             </div>
           </section>
 
-          {/* Active Poll Section */}
-          <section className="px-5 py-8 border-b-[3px] border-[var(--app-text)] bg-[var(--app-bg-muted)]/50">
-            <h3 className="text-[var(--app-text)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Poll</h3>
+          <section className="px-5 py-8 border-b border-[var(--border)] bg-[var(--app-bg-muted)]/50">
+            <h3 className="text-[var(--color-secondary)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Poll</h3>
             
-            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--app-text)]/15 shadow-lg shadow-[var(--app-text)]/12 p-4">
+            <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
                {ACTIVE_POLLS.map((poll, i) => (
                   <div key={poll.id} className="mb-4 last:mb-0 relative">
                      <div className="flex items-center justify-between mb-2">
@@ -147,15 +144,15 @@ export function SurveysPolls() {
                                   <img src={poll.logo} alt={poll.title} className="w-full h-full object-contain mix-blend-multiply" />
                                 </div>
                               )}
-                              <span className="text-[10px] font-bold text-[var(--app-text)]/50 uppercase tracking-widest leading-none">{poll.title}</span>
-                              <div className="flex flex-col text-[12px] font-black text-[var(--app-text)] leading-tight gap-0.5 max-w-[85px] truncate">
+                              <span className="text-[10px] font-bold text-[var(--color-secondary)]/50 uppercase tracking-widest leading-none">{poll.title}</span>
+                              <div className="flex flex-col text-[12px] font-black text-[var(--color-secondary)] leading-tight gap-0.5 max-w-[85px] truncate">
                                  <span className="truncate">{poll.option1}</span>
                                  <span className="truncate">{poll.option2}</span>
                               </div>
                            </div>
                         </div>
-                        <div className="flex flex-col w-[120px] shrink-0 justify-center">
-                           <div className="w-full h-[22px] border-[2px] border-[var(--app-text)] rounded-full flex overflow-hidden shadow-sm">
+                         <div className="flex flex-col w-[120px] shrink-0 justify-center">
+                            <div className="w-full h-[22px] border border-[var(--border)] rounded-full flex overflow-hidden shadow-sm">
                               <div className={`h-full flex items-center ${poll.val1 <= 15 ? 'justify-start pl-[3px]' : 'justify-center'} ${poll.c1}`} style={{ width: `${poll.val1}%` }}>
                                  <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: poll.val1 <= 15 ? '8.5px' : '10px' }}>{poll.val1}%</span>
                               </div>
@@ -165,12 +162,12 @@ export function SurveysPolls() {
                            </div>
                         </div>
                      </div>
-                     {i !== ACTIVE_POLLS.length - 1 && <div className="border-b border-gray-100 w-full mt-3" />}
+                     {i !== ACTIVE_POLLS.length - 1 && <div className="border-b border-[var(--border)] w-full mt-3" />}
                   </div>
                ))}
                
-               <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center">
-                  <span onClick={() => toast.info("Redirecting to analytics dashboard...")} className="text-[11px] font-black text-[var(--app-orange)] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
+               <div className="mt-4 pt-3 border-t border-[var(--border)] flex justify-center">
+                  <span onClick={() => toast.info("Redirecting to analytics dashboard...")} className="text-[11px] font-black text-[var(--color-primary)] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
                      View Results & Analytics <ChevronRight size={14} strokeWidth={3} />
                   </span>
                </div>
@@ -179,22 +176,22 @@ export function SurveysPolls() {
 
           {/* Survey & Poll Analytics header */}
           <section className="px-5 py-6">
-            <div className="grid grid-cols-2 gap-4 mb-6">
-               <h4 className="text-[var(--app-orange)] font-black text-[14px] text-center uppercase tracking-wide">Survey Analytics</h4>
-               <h4 className="text-[var(--app-orange)] font-black text-[14px] text-center uppercase tracking-wide">Polls Analytics</h4>
-            </div>
+             <div className="grid grid-cols-2 gap-4 mb-6">
+                <h4 className="text-[var(--color-primary)] font-black text-[14px] text-center uppercase tracking-wide">Survey Analytics</h4>
+                <h4 className="text-[var(--color-primary)] font-black text-[14px] text-center uppercase tracking-wide">Polls Analytics</h4>
+             </div>
 
             {/* Neo-brutalist interaction blocks */}
-            <div className="grid grid-cols-2 gap-4">
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--app-shape-accent)] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-on-accent)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
-                  <BarChart2 size={18} strokeWidth={3} />
-                  <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
-               </button>
-               <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--app-shape-accent)] border border-[var(--app-text)]/20 rounded-2xl text-[var(--app-on-accent)] shadow-md shadow-[var(--app-text)]/15 active:scale-95 transition-all cursor-pointer">
-                  <FileText size={18} strokeWidth={3} />
-                  <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
-               </button>
-            </div>
+             <div className="grid grid-cols-2 gap-4">
+                <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--color-primary)] border border-[var(--border)] rounded-2xl text-white shadow-md active:scale-95 transition-all cursor-pointer">
+                   <BarChart2 size={18} strokeWidth={3} />
+                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
+                </button>
+                <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--color-primary)] border border-[var(--border)] rounded-2xl text-white shadow-md active:scale-95 transition-all cursor-pointer">
+                   <FileText size={18} strokeWidth={3} />
+                   <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
+                </button>
+             </div>
             
           </section>
 

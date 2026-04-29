@@ -190,7 +190,7 @@ export function Referral() {
         style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 4px 20px rgba(13,27,62,0.05)" }}>
         <p className="text-[9px] font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(13,27,62,0.38)" }}>Your Invite Link</p>
         <div className="flex items-center gap-2 mb-4">
-          <div className="flex-1 rounded-xl px-3.5 py-2.5 border overflow-hidden" style={{ background: "#F8F9FB", borderColor: "rgba(13,27,62,0.06)" }}>
+          <div className="flex-1 rounded-xl px-3.5 py-2.5 border overflow-hidden" style={{ background: "var(--tint-neutral)", borderColor: "rgba(13,27,62,0.06)" }}>
             <p className="text-[11px] font-bold truncate" style={{ color: "var(--app-orange)" }}>{REFERRAL_LINK}</p>
           </div>
           <motion.button
@@ -213,7 +213,7 @@ export function Referral() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             onClick={handleCopy}
             className="py-3 rounded-2xl font-bold text-[12px] flex items-center justify-center gap-1.5 border"
-            style={{ background: "#F8F9FB", color: "var(--app-text-alt)", borderColor: "rgba(13,27,62,0.08)" }}>
+            style={{ background: "var(--tint-neutral)", color: "var(--app-text-alt)", borderColor: "rgba(13,27,62,0.08)" }}>
             <Copy size={13}/> Copy Code
           </motion.button>
         </div>
@@ -285,7 +285,7 @@ export function Referral() {
               className={`flex items-center gap-4 px-5 py-4 ${idx < HISTORY.length - 1 ? "border-b" : ""}`}
               style={{ borderColor: "rgba(13,27,62,0.05)" }}>
               <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-[14px] flex-shrink-0"
-                style={{ background: "#FFF7ED", color: "var(--app-orange)" }}>
+                style={{ background: "var(--tint-orange)", color: "var(--app-orange)" }}>
                 {h.name[0]}
               </div>
               <div className="flex-1">
@@ -295,7 +295,7 @@ export function Referral() {
               <div className="text-right">
                 <p className="font-bold text-[14px]" style={{ color: "var(--app-orange)" }}>{h.earned}</p>
                 <span className="text-[9px] font-bold px-2 py-0.5 rounded-full"
-                  style={h.active ? { background: "#F0FDF9", color: "#00695C" } : { background: "#FFF7ED", color: "var(--app-orange)" }}>
+                  style={h.active ? { background: "var(--tint-teal)", color: "#00695C" } : { background: "var(--tint-orange)", color: "var(--app-orange)" }}>
                   {h.active ? "active" : "pending"}
                 </span>
               </div>

@@ -115,21 +115,21 @@ export function Learning() {
 
           {/* Search Bar & Live Button */}
           <div className="flex items-center gap-2">
-             <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
+             <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-[var(--border)]">
                 <Search size={14} primary="#94a3b8" className="mr-2 shrink-0" />
                 <input 
                    type="text" 
                    value={searchQuery}
                    onChange={(e) => setSearchQuery(e.target.value)}
                    placeholder="Search courses..." 
-                   className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[11px]"
+                   className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-[var(--muted-foreground)] text-[11px]"
                 />
              </div>
-             <button onClick={() => handleActionClick("Live Stream")} className="h-9 bg-[var(--app-bg)] rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+             <button onClick={() => handleActionClick("Live Stream")} className="h-9 bg-[var(--app-bg)] rounded-xl px-3 flex items-center gap-1.5 border border-[var(--border)] shadow-sm active:scale-95 transition-transform shrink-0">
                 <span className="text-[#E54D2E] font-black text-[11px] tracking-tight pt-[1px]">LIVE</span>
                 <Circle className="fill-[#E54D2E] text-[#E54D2E]" size={6} />
              </button>
-             <button onClick={() => navigate("/learning/categories")} className="h-9 bg-[var(--app-bg)] rounded-xl px-3 flex items-center gap-1.5 border border-gray-300 shadow-sm active:scale-95 transition-transform shrink-0">
+             <button onClick={() => navigate("/learning/categories")} className="h-9 bg-[var(--app-bg)] rounded-xl px-3 flex items-center gap-1.5 border border-[var(--border)] shadow-sm active:scale-95 transition-transform shrink-0">
                 <Search size={14} primary="#64748b" />
                 <span className="text-slate-700 font-black text-[11px] tracking-tight pt-[1px]">Explore</span>
              </button>
@@ -141,7 +141,7 @@ export function Learning() {
                 <motion.button 
                   onClick={() => handleActionClick("Upload")}
                   whileTap={{ scale: 0.96 }}
-                  className="flex-1 h-12 bg-orange-500 rounded-full flex items-center justify-center gap-2 shadow-md shadow-orange-500/20 active:scale-95 transition-all text-white"
+                  className="flex-1 h-12 bg-[var(--color-primary)] rounded-full flex items-center justify-center gap-2 shadow-lg shadow-[var(--color-primary)]/20 active:scale-95 transition-all text-white"
                 >
                    <Upload size={18} primary="#fff" />
                    <span className="font-black text-[11px] uppercase tracking-widest pl-1">Upload Content</span>
@@ -152,7 +152,7 @@ export function Learning() {
                    whileTap={{ scale: 0.92 }}
                    className="flex flex-col items-center justify-center gap-1 group outline-none shrink-0"
                  >
-                   <div className="w-10 h-10 bg-[var(--app-bg)] rounded-full flex flex-col items-center justify-center border border-slate-200 shadow-sm group-active:scale-95 transition-all mx-2">
+                   <div className="w-10 h-10 bg-[var(--app-bg)] rounded-full flex flex-col items-center justify-center border border-[var(--border)] shadow-sm group-active:scale-95 transition-all mx-2">
                       <UserPlus size={18} />
                    </div>
                    <span className="font-bold text-slate-800 text-[6px] uppercase tracking-[0.15em] text-center leading-tight whitespace-normal break-words w-16">Register Agent</span>
@@ -169,14 +169,14 @@ export function Learning() {
                    <div>
                      <div className="flex justify-between items-center mb-0.5 px-1">
                         <div className="flex items-center gap-2">
-                           <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                           <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Learn & Earn Videos</h3>
                         </div>
                         <span onClick={() => navigate("/learning/viewer?mode=learn-earn")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_1.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "learn-earn")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "learn-earn")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-[var(--border)] overflow-hidden shadow-sm group rounded-2xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
@@ -202,14 +202,14 @@ export function Learning() {
                    <div>
                      <div className="flex justify-between items-center mb-0.5 px-1">
                         <div className="flex items-center gap-2">
-                           <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                           <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Free Videos</h3>
                         </div>
                         <span onClick={() => navigate("/learning/viewer?mode=free")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_2.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "free")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "free")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-[var(--border)] overflow-hidden shadow-sm group rounded-2xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
@@ -235,14 +235,14 @@ export function Learning() {
                    <div>
                      <div className="flex justify-between items-center mb-0.5 px-1">
                         <div className="flex items-center gap-2">
-                           <span className="w-[3px] h-3.5 rounded-full bg-orange-500 shrink-0" />
+                           <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
                            <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Creator Showcases</h3>
                         </div>
                         <span onClick={() => navigate("/learning/viewer?mode=pay-to-stream")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">See All</span>
                      </div>
                      <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
                         {ROW_3.map(ad => (
-                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "pay-to-stream")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl cursor-pointer">
+                           <motion.div whileTap={{ scale: 0.96 }} onClick={() => handleMediaClick(ad.image, "pay-to-stream")} key={ad.id} className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-[var(--border)] overflow-hidden shadow-sm group rounded-2xl cursor-pointer">
                               <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover grayscale-[0.1] transition-all duration-700" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
                               
@@ -265,7 +265,7 @@ export function Learning() {
                    </div>
 
                    {/* 04. Single Full-Width Masterclass Post */}
-                   <div onClick={() => handleCourseClick(video.id)} className="bg-[var(--app-bg)] border border-slate-200 rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.07)] flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
+                   <div onClick={() => handleCourseClick(video.id)} className="bg-[var(--app-bg)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">
                       <div className="relative w-full aspect-[4/5] bg-slate-100">
                          <img src={video.image} alt={video.title} className="absolute inset-0 w-full h-full object-cover transition-opacity" />
                          
@@ -298,7 +298,7 @@ export function Learning() {
                                </div>
                                <button 
                                   onClick={(e) => { e.stopPropagation(); setActiveSheet("Options"); }}
-                                  className="w-7 h-7 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-slate-500 hover:text-slate-700 active:scale-90 transition-all shadow-sm border border-slate-100"
+                                  className="w-7 h-7 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center text-slate-500 hover:text-slate-700 active:scale-90 transition-all shadow-sm border border-[var(--border)]"
                                >
                                   <MoreVertical size={16} />
                                </button>
@@ -327,7 +327,7 @@ export function Learning() {
                 />
                 <motion.div 
                   initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--app-text)]/15 shadow-[0_-20px_60px_rgba(0,51,102,0.12)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+                  className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--app-text)]/15 shadow-2xl overflow-hidden pb-[env(safe-area-inset-bottom)]"
                 >
                   <div className="p-6">
                     <div className="flex justify-between items-center mb-8">
@@ -339,14 +339,14 @@ export function Learning() {
 
                     {activeSheet === "Upload" && (
                       <div className="space-y-6">
-                        <div className="border-2 border-dashed border-[var(--app-text)]/25 bg-[var(--app-bg-muted)] rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-md shadow-[var(--app-text)]/8">
-                          <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-lg shadow-[var(--app-text)]/15 border border-[var(--app-text)]/15 mb-4">
+                        <div className="border border-dashed border-[var(--border)] bg-[var(--app-bg-muted)] rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-sm">
+                          <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-md border border-[var(--border)] mb-4">
                             <Upload size={32} />
                           </div>
                           <h4 className="font-black text-[var(--app-text-slate)] text-sm mb-1 uppercase tracking-tight">Post Educational Content</h4>
                           <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">Share your knowledge</p>
                         </div>
-                        <button className="w-full h-16 bg-[var(--app-shape-accent)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-[var(--app-text)]/25">
+                        <button className="w-full h-16 bg-[var(--color-primary)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg">
                           Upload Material
                         </button>
                       </div>
@@ -362,7 +362,7 @@ export function Learning() {
                             { name: "Email", bg: "bg-slate-100", icon: Send }
                           ].map((social, idx) => (
                             <div key={idx} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
-                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-md shadow-slate-900/15 ${social.bg} ${social.name==="Email" ? "text-[var(--app-text-slate)]":""}`}>
+                              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-md ${social.bg} ${social.name==="Email" ? "text-[var(--app-text-slate)]":""}`}>
                                 {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                               </div>
                               <span className="text-[9px] font-black text-[var(--app-text-slate)] uppercase tracking-widest leading-none">{social.name}</span>
@@ -371,9 +371,9 @@ export function Learning() {
                         </div>
                         <div className="space-y-3">
                           <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Universal Link</p>
-                          <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border border-[var(--app-text)]/20 shadow-md shadow-[var(--app-text)]/10 p-1.5 focus-within:border-[var(--app-text)]/40 transition-all">
+                          <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border border-[var(--border)] shadow-sm p-1.5 focus-within:ring-2 focus-within:ring-[var(--color-primary)] transition-all">
                             <input type="text" readOnly value="https://kleench.com/l/82d2x" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
-                            <button className="px-6 bg-[var(--app-shape-accent)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
+                            <button className="px-6 bg-[var(--color-primary)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                           </div>
                         </div>
                       </div>
@@ -383,7 +383,7 @@ export function Learning() {
                       <div className="space-y-5">
                         <div className="space-y-2">
                           <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Learning Track</label>
-                          <select className="w-full h-14 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[var(--app-text)]/10 focus:border-[var(--app-text)]/40 transition-all">
+                          <select className="w-full h-14 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-sm font-black outline-none shadow-sm focus:border-[var(--color-primary)] transition-all">
                              <option>Financial Literacy</option>
                              <option>Crypto Compliance</option>
                              <option>Business Management</option>
@@ -391,9 +391,9 @@ export function Learning() {
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Phone Number</label>
-                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl px-5 text-sm font-black outline-none shadow-md shadow-[var(--app-text)]/10 focus:border-[var(--app-text)]/40 transition-all" />
+                          <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-sm font-black outline-none shadow-sm focus:border-[var(--color-primary)] transition-all" />
                         </div>
-                        <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg shadow-blue-600/25 mt-4">
+                        <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-[var(--color-primary)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg mt-4">
                           Secure Track Access
                         </button>
                       </div>

@@ -241,11 +241,11 @@ export function LearnViewer() {
 
   // DEFAULT PLAYER SCROLL VIEW
   return (
-    <div className="w-full relative min-h-screen bg-[#1a1111] overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
       <PageHeader title="Learn Video" showBack onBack={handleBack} />
 
       {/* Main Content Area */}
-      <div className={`relative pb-32 ${appState === "questionnaire" || appState === "pay-confirm" ? "bg-black min-h-screen" : "bg-gradient-to-b from-black to-[#1a1111] min-h-screen"}`}>
+      <div className={`relative pb-32 ${appState === "questionnaire" || appState === "pay-confirm" ? "bg-transparent min-h-screen" : "bg-transparent min-h-screen"}`}>
         
         {/* Categories if not full screen overlays */}
         {appState !== "questionnaire" && appState !== "pay-confirm" && <CategoryBar />}

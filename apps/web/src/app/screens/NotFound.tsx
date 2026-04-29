@@ -43,7 +43,7 @@ export function NotFound() {
           <h1 className="text-[var(--app-text-alt)] text-[56px] font-black tracking-tighter mb-1 leading-none drop-shadow-sm" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
             404
           </h1>
-          <p className="text-gray-500 font-bold mb-8 leading-snug text-[15px] px-2" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+          <p className="text-[var(--muted-foreground)] font-bold mb-8 leading-snug text-[15px] px-2" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
             Looks like you wandered off the map. This page is missing!
           </p>
           

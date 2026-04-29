@@ -34,7 +34,7 @@ export function ImageWithFallback({
     return (
       <div
         className={cn(
-          "bg-gray-100 text-center align-middle flex items-center justify-center overflow-hidden",
+          "bg-[var(--muted)] text-center align-middle flex items-center justify-center overflow-hidden",
           className
         )}
         style={style}

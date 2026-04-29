@@ -55,13 +55,13 @@ export function BalanceOverview() {
   });
 
   return (
-    <div className="min-h-screen bg-transparent text-[#001F33] font-sans pb-32">
+    <div className="min-h-screen bg-[var(--app-bg)] text-[var(--color-secondary)] font-sans pb-32">
       {/* Screen Header */}
       <header className="pt-8 pb-4 flex justify-center">
         <motion.h1 
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="text-3xl font-black text-[#001F33] uppercase tracking-tighter"
+          className="text-2xl font-black text-[var(--color-secondary)] uppercase tracking-widest"
         >
           Balance
         </motion.h1>
@@ -73,14 +73,13 @@ export function BalanceOverview() {
           <motion.div 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            whileHover={{ x: 4, y: 4, boxShadow: "0px 0px 0px #001F33" }}
-            className="bg-[var(--app-bg)] rounded-[32px] p-8 border-[3px] border-[#001F33] shadow-[8px_8px_0px_#001F33] transition-all"
+            className="bg-[var(--app-bg)] rounded-[32px] p-8 border border-[var(--border)] shadow-md transition-all"
           >
-            <p className="text-[11px] font-black text-[var(--app-orange)] uppercase tracking-[0.4em] mb-2">Total Ledger</p>
-            <h2 className="text-4xl font-black text-[#001F33] tracking-tighter mb-1">ZMW 2,450.00</h2>
+            <p className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-[0.4em] mb-2">Total Ledger</p>
+            <h2 className="text-4xl font-black text-[var(--color-secondary)] tracking-tight mb-1">ZMW 2,450.00</h2>
             <div className="flex items-center gap-2 mt-4">
               <div className="h-1.5 w-1.5 rounded-full bg-[#00D97E] animate-pulse" />
-              <span className="text-[9px] font-black text-[#001F33]/40 uppercase tracking-widest">Live Verified Balance</span>
+              <span className="text-[9px] font-black text-[var(--color-secondary)]/40 uppercase tracking-widest">Live Verified Balance</span>
             </div>
           </motion.div>
         </Skeleton>
@@ -90,18 +89,18 @@ export function BalanceOverview() {
           <motion.span 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-[11px] font-black text-[#001F33] uppercase tracking-[0.4em] whitespace-nowrap"
+            className="text-[10px] font-black text-[var(--color-secondary)] uppercase tracking-[0.4em] whitespace-nowrap"
           >
             Statement Ledger
           </motion.span>
-          <div className="flex-1 h-[3px] bg-[#001F33]" />
+          <div className="flex-1 h-[1px] bg-[var(--border)]" />
         </div>
 
         {/* Filter Navigation */}
         <div className="relative">
-          <div className="absolute inset-x-0 top-0 h-10 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(#001F33 1.5px, transparent 1.5px)", backgroundSize: "16px 16px" }} />
+          <div className="absolute inset-x-0 top-0 h-10 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(var(--color-secondary) 1.5px, transparent 1.5px)", backgroundSize: "16px 16px" }} />
           
-          <div className="relative flex bg-[var(--app-bg)] border-[3px] border-[#001F33] rounded-2xl p-1.5 w-full justify-between items-center shadow-[4px_4px_0px_#001F33]">
+          <div className="relative flex bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl p-1.5 w-full justify-between items-center shadow-sm">
             {["ALL", "EARNINGS", "PAYMENTS", "TRANSFERS"].map((tab) => {
               const isActive = activeTab === tab;
               return (
@@ -115,7 +114,7 @@ export function BalanceOverview() {
                   {isActive && (
                     <motion.div
                       layoutId="activeTabBrutal"
-                      className="absolute inset-0 bg-[#001F33] rounded-xl"
+                      className="absolute inset-0 bg-[var(--color-secondary)] rounded-xl"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
@@ -131,9 +130,9 @@ export function BalanceOverview() {
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[var(--app-bg)] rounded-[32px] border-[3px] border-[#001F33] shadow-[12px_12px_0px_rgba(0,31,51,0.05)] overflow-hidden"
+            className="bg-[var(--app-bg)] rounded-[32px] border border-[var(--border)] shadow-sm overflow-hidden"
           >
-            <div className="divide-y-[3px] divide-[#001F33]/5">
+            <div className="divide-y divide-[var(--border)]">
               {filteredTransactions.map((tx, idx) => (
                 <TransactionItem key={tx.id} tx={tx} index={idx} />
               ))}
@@ -144,10 +143,9 @@ export function BalanceOverview() {
         {/* Back Pill Button */}
         <div className="flex justify-center pt-2">
           <motion.button
-            whileTap={{ scale: 0.95, x: 2, y: 2, boxShadow: "0px 0px 0px #001F33" }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => navigate(-1)}
-            style={{ backgroundColor: "#093463" }}
-            className="w-full h-14 rounded-full text-white font-black uppercase tracking-[0.2em] text-xs shadow-[4px_4px_0px_#001F33] border-2 border-[#001F33] transition-all"
+            className="w-full h-14 rounded-full bg-[var(--color-secondary)] text-white font-black uppercase tracking-[0.2em] text-[10px] shadow-md border border-white/10 transition-all"
           >
             Back
           </motion.button>
@@ -161,9 +159,9 @@ function TransactionItem({ tx, index }: { tx: Transaction; index: number }) {
   const getEdgeColor = () => {
     switch (tx.category) {
       case "EARNING": return "bg-[#00D97E]";
-      case "PAYMENT": return "bg-[var(--app-orange)]";
-      case "TRANSFER": return "bg-slate-300";
-      default: return "bg-slate-300";
+      case "PAYMENT": return "bg-[var(--color-primary)]";
+      case "TRANSFER": return "bg-[var(--color-secondary-dim)]";
+      default: return "bg-[var(--color-secondary-dim)]";
     }
   };
 
@@ -172,7 +170,7 @@ function TransactionItem({ tx, index }: { tx: Transaction; index: number }) {
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
-      whileHover={{ backgroundColor: "rgba(0,31,51,0.02)" }}
+      whileHover={{ backgroundColor: "var(--color-secondary-dim)/5" }}
       className="relative p-6 flex items-center justify-between group cursor-pointer transition-colors"
     >
       {/* Kinetic Edge Indicator */}
@@ -182,26 +180,26 @@ function TransactionItem({ tx, index }: { tx: Transaction; index: number }) {
       />
 
       <div className="flex-1 pr-6">
-        <h4 className="text-[12px] font-black text-[#001F33] uppercase tracking-tight mb-2 group-hover:translate-x-1 transition-transform">{tx.title}</h4>
+        <h4 className="text-[12px] font-black text-[var(--color-secondary)] uppercase tracking-tight mb-2 group-hover:translate-x-1 transition-transform">{tx.title}</h4>
         
         <div className="flex items-center gap-4">
-          <div className="bg-[#001F33]/5 border border-[#001F33]/10 px-2.5 py-1 rounded-lg">
-            <span className="text-[8px] font-black text-[#001F33] uppercase tracking-widest">{tx.category}</span>
+          <div className="bg-[var(--color-secondary)]/5 border border-[var(--border)] px-2.5 py-1 rounded-lg">
+            <span className="text-[8px] font-black text-[var(--color-secondary)] uppercase tracking-widest">{tx.category}</span>
           </div>
-          <span className="text-[9px] font-bold text-[#001F33]/30 uppercase tracking-tighter">{tx.timestamp}</span>
+          <span className="text-[9px] font-bold text-[var(--color-secondary)]/30 uppercase tracking-tighter">{tx.timestamp}</span>
         </div>
       </div>
 
       <div className="text-right">
         <motion.span 
-          className={`text-[18px] font-black ${tx.category === "EARNING" ? "text-[#00D97E]" : "text-[#001F33]"}`}
+          className={`text-[18px] font-black ${tx.category === "EARNING" ? "text-[#00D97E]" : "text-[var(--color-secondary)]"}`}
           whileHover={{ scale: 1.1 }}
         >
           {tx.amount > 0 ? "+" : ""}{tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
         </motion.span>
         {tx.expandable && (
           <div className="flex items-center justify-end gap-1.5 mt-1 opacity-20 group-hover:opacity-100 transition-opacity">
-            <span className="text-[7px] font-black uppercase tracking-widest text-[#001F33]">Details</span>
+            <span className="text-[7px] font-black uppercase tracking-widest text-[var(--color-secondary)]">Details</span>
             <ChevronRight size={10} className="rotate-90" />
           </div>
         )}

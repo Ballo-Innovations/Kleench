@@ -96,7 +96,7 @@ export function SellProduct() {
 
             {/* Banner Ad */}
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.05)}
-              className="rounded-[32px] overflow-hidden shadow-md border border-gray-100">
+              className="rounded-[32px] overflow-hidden shadow-md border border-[var(--border)]">
               <img src={adBanner} alt="Transaction Assurance" className="w-full h-auto object-cover" />
             </motion.div>
 
@@ -104,7 +104,7 @@ export function SellProduct() {
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.06)}
               className="border-2 border-dashed rounded-3xl h-40 flex flex-col items-center justify-center gap-3 cursor-pointer"
               style={{ borderColor: "rgba(13,27,62,0.1)", background: "rgba(248,249,251,0.85)" }}>
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "#FFF7ED" }}>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "var(--tint-orange)" }}>
                 <Camera size={22} style={{ color: "var(--app-orange)" }}/>
               </div>
               <div className="text-center">
@@ -221,12 +221,12 @@ export function SellProduct() {
               className="w-full flex items-center gap-4 p-5 rounded-3xl border-2 text-left"
               style={{
                 borderColor: escrow ? "#00695C" : "rgba(13,27,62,0.08)",
-                background: escrow ? "#F0FDF9" : "white",
+                background: escrow ? "var(--tint-teal)" : "white",
                 boxShadow: escrow ? "0 6px 24px rgba(0,105,92,0.12)" : "0 2px 12px rgba(13,27,62,0.04)",
                 transition: "all 0.55s ease",
               }}>
               <div className="w-13 h-13 rounded-2xl flex items-center justify-center overflow-hidden flex-shrink-0"
-                style={{ background: escrow ? "#D1FAE5" : "#F8F9FB", width: 52, height: 52 }}>
+                style={{ background: escrow ? "#D1FAE5" : "var(--tint-neutral)", width: 52, height: 52 }}>
                 <LottieIcon icon="shield" size={44} />
               </div>
               <div className="flex-1">

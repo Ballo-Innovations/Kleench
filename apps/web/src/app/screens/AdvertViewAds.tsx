@@ -94,9 +94,9 @@ function AdCard({ ad, type, onSelect }: { ad: AdItem; type: AdTab; onSelect: (ad
     <motion.div
       whileTap={{ scale: 0.97 }}
       onClick={() => onSelect(ad)}
-      className="bg-[var(--app-bg)] rounded-2xl border border-slate-100 shadow-sm overflow-hidden cursor-pointer active:shadow-none transition-all"
+      className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm overflow-hidden cursor-pointer active:shadow-none transition-all"
     >
-      <div className="relative aspect-[4/3] bg-[var(--app-text-slate)] overflow-hidden">
+      <div className="relative aspect-[4/3] bg-[var(--muted)] overflow-hidden">
         <img src={ad.image} alt={ad.title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
@@ -129,12 +129,12 @@ function AdCard({ ad, type, onSelect }: { ad: AdItem; type: AdTab; onSelect: (ad
 
       <div className="p-3 flex items-center justify-between">
         <div className="flex items-center gap-2 min-w-0">
-          <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+          <div className="w-6 h-6 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
             <span className="text-white text-[8px] font-black">{ad.brand[0]}</span>
           </div>
           <div className="min-w-0">
-            <p className="text-[10px] font-black text-slate-700 truncate">{ad.brand}</p>
-            <div className="flex items-center gap-1.5 text-slate-400">
+            <p className="text-[10px] font-black text-[var(--color-secondary)] truncate">{ad.brand}</p>
+            <div className="flex items-center gap-1.5 text-[var(--color-secondary)]/40">
               <Eye size={9} />
               <span className="text-[8px] font-bold">{ad.views}</span>
               <MapPin size={8} />
@@ -142,7 +142,7 @@ function AdCard({ ad, type, onSelect }: { ad: AdItem; type: AdTab; onSelect: (ad
             </div>
           </div>
         </div>
-        <DuotoneHeart size={14} primary="#94a3b8" />
+        <DuotoneHeart size={14} primary="var(--color-secondary-dim)" />
       </div>
     </motion.div>
   );
@@ -173,11 +173,10 @@ export function AdvertViewAds() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-slate-800">
+    <div className="w-full min-h-screen bg-[var(--app-bg)] pb-32 font-sans text-[var(--color-secondary)]">
       <PageHeader title="Ad Gallery" showBack onBack={() => navigate(-1)} />
 
       <div className="px-4 pt-3 space-y-4">
-        {/* Tab Selector */}
         <div className="flex gap-2">
           {tabs.map((tab) => (
             <button
@@ -185,17 +184,16 @@ export function AdvertViewAds() {
               onClick={() => setActiveTab(tab.key)}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all active:scale-95 ${
                 activeTab === tab.key
-                  ? "bg-orange-500 text-white shadow-md shadow-orange-500/25"
-                  : "bg-[var(--app-bg)] text-slate-500 border border-slate-200"
+                  ? "bg-[var(--color-primary)] text-white shadow-md shadow-[var(--color-primary)]/20"
+                  : "bg-[var(--app-bg)] text-[var(--color-secondary)]/50 border border-[var(--border)]"
               }`}
             >
-              <tab.icon size={13} primary={activeTab === tab.key ? "#fff" : "#64748b"} />
+              <tab.icon size={13} primary={activeTab === tab.key ? "#fff" : "var(--color-secondary-dim)"} />
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Stats bar */}
         <div className="flex items-center justify-between px-1">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
             {activeAds.length} {activeTab} ads
@@ -206,7 +204,6 @@ export function AdvertViewAds() {
           </div>
         </div>
 
-        {/* Ad Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -222,7 +219,6 @@ export function AdvertViewAds() {
         </AnimatePresence>
       </div>
 
-      {/* Full-Screen Ad Viewer */}
       <AnimatePresence>
         {selectedAd && (
           <motion.div
@@ -231,8 +227,7 @@ export function AdvertViewAds() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] bg-black max-w-md mx-auto flex flex-col overflow-y-auto"
           >
-            {/* ── Balance Bar ── */}
-            <div className="bg-[#e43f24] px-4 py-3 flex items-center justify-between text-white flex-shrink-0 pt-8">
+            <div className="bg-[var(--color-primary)] px-4 py-3 flex items-center justify-between text-white flex-shrink-0 pt-8">
               <div>
                 <p className="text-[9px] font-bold uppercase tracking-widest opacity-80 mb-0.5">BALANCE</p>
                 <div className="flex items-center gap-2">
@@ -248,8 +243,7 @@ export function AdvertViewAds() {
               </button>
             </div>
 
-            {/* ── Category Bar ── */}
-            <div className="flex items-center gap-2 px-4 py-3 pb-4 bg-gradient-to-b from-[#e43f24] to-black overflow-x-auto no-scrollbar text-white flex-shrink-0">
+            <div className="flex items-center gap-2 px-4 py-3 pb-4 bg-gradient-to-b from-[var(--color-primary)] to-black overflow-x-auto no-scrollbar text-white flex-shrink-0">
               {CATEGORIES.map((cat, i) => (
                 <button
                   key={i}
@@ -264,9 +258,8 @@ export function AdvertViewAds() {
               ))}
             </div>
 
-            {/* ── Main Video / Photo / Audio Player ── */}
             <div className="relative flex-shrink-0">
-              <div className={`w-full ${activeTab === "audio" ? "aspect-square" : "aspect-[4/3]"} bg-[var(--app-text-slate)] relative overflow-hidden`}>
+              <div className={`w-full ${activeTab === "audio" ? "aspect-square" : "aspect-[4/3]"} bg-black/40 relative overflow-hidden`}>
                 <img
                   src={selectedAd.image}
                   alt={selectedAd.title}
@@ -278,7 +271,6 @@ export function AdvertViewAds() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 )}
 
-                {/* ── Questionnaire Overlay ── */}
                 {detailState === "questionnaire" && (
                   <div className="absolute inset-0 flex flex-col justify-center px-6 z-20">
                     <div className="space-y-5 mt-4">
@@ -330,20 +322,17 @@ export function AdvertViewAds() {
                       </div>
                     </div>
 
-                    {/* Complete button */}
                     <button
                       onClick={() => setDetailState("viewer")}
-                      className="w-full bg-[var(--app-shape-accent)] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
+                      className="w-full bg-[var(--color-primary)] text-white py-4 rounded-xl font-medium text-lg tracking-wide active:scale-95 transition-all shadow-lg mt-6"
                     >
                       Complete
                     </button>
                   </div>
                 )}
 
-                {/* ── Default Player Content ── */}
                 {detailState === "viewer" && (
                   <>
-                    {/* Title overlay on the player */}
                     <div className="absolute bottom-16 left-4 z-10">
                       <h3 className="text-white font-medium text-sm drop-shadow-md">{selectedAd.title}</h3>
                     </div>
@@ -362,16 +351,15 @@ export function AdvertViewAds() {
                           <Headphones primary="#fff" size={40} />
                         </div>
                         <div className="flex items-center gap-2 bg-[var(--app-bg)]/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
-                          <Volume2 primary="#fb923c" size={14} />
-                          <div className="w-32 h-1 bg-[var(--app-bg)]/20 rounded-full overflow-hidden">
-                            <div className="w-[35%] h-full bg-orange-500 rounded-full" />
+                          <Volume2 primary="var(--color-primary)" size={14} />
+                          <div className="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
+                            <div className="w-[35%] h-full bg-[var(--color-primary)] rounded-full" />
                           </div>
                           <span className="text-white/60 text-[10px] font-black">{selectedAd.duration}</span>
                         </div>
                       </div>
                     )}
 
-                    {/* Action Bar inside player */}
                     <div className="absolute bottom-4 left-4 right-4 z-10 border-b border-white/20 pb-3">
                       <div className="flex justify-between items-center px-2">
                         <button
@@ -407,11 +395,10 @@ export function AdvertViewAds() {
               </div>
             </div>
 
-            {/* ── Bottom Details — Brand Info ── */}
             {detailState === "viewer" && (
-              <div className="bg-gradient-to-b from-black to-[#1a1111] px-4 pt-4 space-y-5 pb-20 flex-1">
+              <div className="bg-black px-4 pt-4 space-y-5 pb-20 flex-1">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-[var(--color-primary)] flex items-center justify-center">
                     <span className="text-white font-black text-sm">{selectedAd.brand[0]}</span>
                   </div>
                   <div>
@@ -427,8 +414,8 @@ export function AdvertViewAds() {
 
                 {activeTab === "video" && (
                   <>
-                    <div className="w-full h-1 bg-[var(--app-bg)]/20 rounded-full overflow-hidden">
-                      <div className="w-1/3 h-full bg-orange-500 rounded-full" />
+                    <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                      <div className="w-1/3 h-full bg-[var(--color-primary)] rounded-full" />
                     </div>
                     <div className="flex justify-between text-white/40 text-[10px] font-bold tracking-widest -mt-3">
                       <span>00:00</span>
@@ -437,7 +424,6 @@ export function AdvertViewAds() {
                   </>
                 )}
 
-                {/* Action buttons row */}
                 <div className="flex items-center justify-around pt-2 border-t border-white/10">
                   <button onClick={() => setLiked(!liked)} className="flex flex-col items-center gap-1 active:scale-90 transition-all">
                     <Heart size={20} className={liked ? "text-red-500 fill-red-500" : "text-white"} />
@@ -457,7 +443,6 @@ export function AdvertViewAds() {
                   </button>
                 </div>
 
-                {/* ── More Ads ── */}
                 <div>
                   <h3 className="text-sm font-bold mb-3 text-slate-300">More Ads</h3>
                   <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
@@ -472,12 +457,11 @@ export function AdvertViewAds() {
                   </div>
                 </div>
 
-                {/* ── Trending Ads ── */}
                 <div>
                   <h3 className="text-sm font-bold mb-3 text-slate-300">Trending Ads</h3>
                   <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
                     {TRENDING_ADS.map((vid) => (
-                      <div key={vid.id} className="w-20 h-28 rounded-xl bg-slate-800 overflow-hidden flex-shrink-0 relative cursor-pointer active:scale-95 transition-transform">
+                      <div key={vid.id} className="w-20 h-28 rounded-xl bg-[var(--muted)] overflow-hidden flex-shrink-0 relative cursor-pointer active:scale-95 transition-transform">
                         <img src={vid.image} alt="" className="w-full h-full object-cover opacity-80" />
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                           <Play size={20} primary="#fff" />

@@ -8,7 +8,7 @@
  *   Primary:   var(--app-orange) (orange)
  *   Secondary: var(--app-text-alt) (navy)
  *   Tertiary:  #00695C (teal)
- *   Neutral:   #F8F9FB
+ *   Neutral:   var(--tint-neutral)
  */
 
 import type { ReactNode } from "react";
@@ -238,7 +238,7 @@ export function EmptyIcon({ size = 80 }: IconProps) {
       <style>{`.empty-float{animation:emptyFloat 3s ease-in-out infinite}.empty-fade{animation:emptyFade 3s ease-in-out infinite}@keyframes emptyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}@keyframes emptyFade{0%,100%{opacity:0.3}50%{opacity:0.8}}`}</style>
       <ellipse className="empty-fade" cx="40" cy="62" rx="22" ry="6" fill="var(--app-text-alt)" opacity="0.07"/>
       <g className="empty-float">
-        <rect x="16" y="22" width="48" height="36" rx="6" fill="#F8F9FB" stroke="var(--app-text-alt)" strokeWidth="1.5" strokeOpacity="0.15"/>
+        <rect x="16" y="22" width="48" height="36" rx="6" fill="var(--tint-neutral)" stroke="var(--app-text-alt)" strokeWidth="1.5" strokeOpacity="0.15"/>
         <line x1="26" y1="34" x2="54" y2="34" stroke="var(--app-text-alt)" strokeWidth="1.5" opacity="0.12" strokeLinecap="round"/>
         <line x1="26" y1="42" x2="48" y2="42" stroke="var(--app-text-alt)" strokeWidth="1.5" opacity="0.08" strokeLinecap="round"/>
         <circle cx="40" cy="20" r="8" fill="var(--app-orange)" opacity="0.2" stroke="var(--app-orange)" strokeWidth="1.5"/>

@@ -136,7 +136,7 @@ export function CreatePoll() {
                   className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-[11px] flex-shrink-0"
                     style={{
-                      background: opt.trim() ? "#00695C" : "#F8F9FB",
+                      background: opt.trim() ? "#00695C" : "var(--tint-neutral)",
                       color: opt.trim() ? "white" : "rgba(13,27,62,0.28)",
                       transition: "background 0.5s ease, color 0.5s ease",
                     }}>
@@ -219,7 +219,7 @@ export function CreatePoll() {
                 className="p-4 rounded-3xl border-2 text-left"
                 style={{
                   borderColor: audience === a.id ? "#00695C" : "rgba(13,27,62,0.07)",
-                  background: audience === a.id ? "#F0FDF9" : "white",
+                  background: audience === a.id ? "var(--tint-teal)" : "white",
                   boxShadow: audience === a.id ? "0 6px 24px rgba(0,105,92,0.12)" : "0 2px 10px rgba(13,27,62,0.04)",
                   transition: "all 0.55s ease",
                 }}>

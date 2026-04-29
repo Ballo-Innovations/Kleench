@@ -40,8 +40,8 @@ function TogglePills<T extends string>({
           onClick={() => onChange(opt)}
           className={`flex-1 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all active:scale-95 ${
             value === opt
-              ? "bg-orange-500 text-white shadow-sm"
-              : "bg-slate-100 text-slate-500 border border-slate-200"
+              ? "bg-[var(--color-primary)] text-white shadow-sm border border-white/20"
+              : "bg-[var(--app-bg)] text-[var(--color-secondary-dim)] border border-[var(--border)]"
           }`}
         >
           {opt}
@@ -53,7 +53,7 @@ function TogglePills<T extends string>({
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1.5 block">
+    <label className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-widest mb-1.5 block">
       {children}
     </label>
   );
@@ -61,7 +61,7 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
 
 function SectionCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-[var(--app-bg)]/80 backdrop-blur-sm rounded-2xl border border-slate-100 shadow-sm p-4 space-y-4">
+    <div className="bg-[var(--app-bg)]/80 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-md p-5 space-y-5">
       {children}
     </div>
   );
@@ -128,8 +128,8 @@ export function AdvertUpload() {
               onClick={() => { setAdvertType(t); setStep(1); }}
               className={`relative flex-1 py-3 rounded-full font-black text-[11px] uppercase tracking-widest transition-all active:scale-95 ${
                 advertType === t
-                  ? "bg-orange-500 text-white shadow-md shadow-orange-500/30"
-                  : "bg-[var(--app-bg)] text-slate-500 border border-slate-200"
+                  ? "bg-[var(--color-primary)] text-white shadow-lg border border-white/20"
+                  : "bg-[var(--app-bg)] text-[var(--color-secondary-dim)] border border-[var(--border)]"
               }`}
             >
               <span className={`absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-black shadow-sm ${
@@ -148,7 +148,7 @@ export function AdvertUpload() {
             {[1, 2, 3].map((s) => (
               <div key={s} className="flex items-center gap-2">
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
-                  step === s ? "bg-[var(--app-shape-accent)] text-white" : step > s ? "bg-orange-500 text-white" : "bg-slate-200 text-slate-400"
+                  step === s ? "bg-[var(--color-secondary)] text-white shadow-sm" : step > s ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-[var(--app-bg-muted)] text-[var(--color-secondary-dim)] border border-[var(--border)]"
                 }`}>
                   {step > s ? <Check size={10} /> : s}
                 </div>
@@ -183,8 +183,8 @@ export function AdvertUpload() {
                         <button
                           key={q.id}
                           onClick={() => setQuality(q.id)}
-                          className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                            quality === q.id ? "border-orange-500 bg-orange-50" : "border-slate-200 bg-[var(--app-bg-muted)]"
+                          className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all ${
+                            quality === q.id ? "border-[var(--color-primary)] bg-[var(--app-bg)] shadow-md" : "border-[var(--border)] bg-[var(--app-bg)]/40"
                           }`}
                         >
                           <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
@@ -212,11 +212,11 @@ export function AdvertUpload() {
                 <div>
                   <FieldLabel>Duration (Days)</FieldLabel>
                   <div className="flex items-center gap-4">
-                    <button onClick={() => setDuration(Math.max(1, duration - 1))} className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center active:scale-90 transition-all">
-                      <Minus size={14} className="text-slate-600" />
+                    <button onClick={() => setDuration(Math.max(1, duration - 1))} className="w-10 h-10 rounded-full bg-[var(--app-bg)] border border-[var(--border)] flex items-center justify-center active:scale-90 transition-all shadow-sm">
+                      <Minus size={14} className="text-[var(--color-secondary)]" />
                     </button>
-                    <span className="text-xl font-black text-slate-800 w-8 text-center">{duration}</span>
-                    <button onClick={() => setDuration(duration + 1)} className="w-9 h-9 rounded-full bg-orange-500 flex items-center justify-center shadow-sm shadow-orange-500/30 active:scale-90 transition-all">
+                    <span className="text-xl font-black text-[var(--color-secondary)] w-8 text-center">{duration}</span>
+                    <button onClick={() => setDuration(duration + 1)} className="w-10 h-10 rounded-full bg-[var(--color-primary)] border border-white/20 flex items-center justify-center shadow-lg active:scale-90 transition-all">
                       <Plus size={14} className="text-white" />
                     </button>
                   </div>
@@ -237,7 +237,7 @@ export function AdvertUpload() {
                       value={field.value}
                       onChange={(e) => field.set(e.target.value)}
                       placeholder={field.placeholder}
-                      className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 text-sm font-semibold text-slate-800 outline-none focus:border-orange-400 transition-all"
+                      className="w-full h-12 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-sm font-bold text-[var(--app-text)] outline-none focus:border-[var(--color-primary)] focus:shadow-md transition-all"
                     />
                   </div>
                 ))}
@@ -276,8 +276,8 @@ export function AdvertUpload() {
                   <FieldLabel>Life Stage</FieldLabel>
                   <div className="flex gap-2 flex-wrap">
                     {LIFE_STAGES.map((s) => (
-                      <button key={s} onClick={() => setLifeStage(s)} className={`px-4 py-2 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all active:scale-95 ${
-                        lifeStage === s ? "bg-orange-500 text-white" : "bg-slate-100 text-slate-500"
+                      <button key={s} onClick={() => setLifeStage(s)} className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all active:scale-95 shadow-sm border ${
+                        lifeStage === s ? "bg-[var(--color-primary)] text-white border-white/20" : "bg-[var(--app-bg)] text-[var(--color-secondary-dim)] border-[var(--border)]"
                       }`}>{s}</button>
                     ))}
                   </div>
@@ -292,13 +292,13 @@ export function AdvertUpload() {
                   <FieldLabel>Earning If Employed</FieldLabel>
                   <div className="space-y-2">
                     {EARNING_RANGES.map((r) => (
-                      <button key={r} onClick={() => setEarning(r)} className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                        earning === r ? "border-orange-500 bg-orange-50" : "border-slate-200 bg-[var(--app-bg-muted)]"
+                      <button key={r} onClick={() => setEarning(r)} className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all ${
+                        earning === r ? "border-[var(--color-primary)] bg-[var(--app-bg)] shadow-md" : "border-[var(--border)] bg-[var(--app-bg)]/40"
                       }`}>
-                        <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${earning === r ? "border-orange-500 bg-orange-500" : "border-slate-300"}`}>
-                          {earning === r && <div className="w-1.5 h-1.5 rounded-full bg-[var(--app-bg)] m-auto mt-[2px]" />}
+                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 ${earning === r ? "border-[var(--color-primary)] bg-[var(--color-primary)]" : "border-[var(--border)] bg-[var(--app-bg)]"}`}>
+                          {earning === r && <div className="w-2 h-2 rounded-full bg-white shadow-sm" />}
                         </div>
-                        <span className="text-[11px] font-black text-slate-700">{r}</span>
+                        <span className="text-[11px] font-black text-[var(--app-text)] uppercase tracking-tight">{r}</span>
                       </button>
                     ))}
                   </div>

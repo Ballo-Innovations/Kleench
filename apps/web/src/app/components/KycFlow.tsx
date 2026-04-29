@@ -136,7 +136,7 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
       {/* ── Progress Rhythm ── */}
       <div className="px-5 pt-8 mb-6">
         <h1 className="text-[var(--app-text)] text-3xl font-black text-center tracking-tighter mb-1 select-none">KYC</h1>
-        <p className="text-gray-400 text-[10px] font-bold text-center uppercase tracking-widest leading-none mb-8">
+        <p className="text-[var(--muted-foreground)] text-[10px] font-bold text-center uppercase tracking-widest leading-none mb-8">
           {currentStage === 3 ? "Tell us your interests to receive relevant adverts." : 
            currentStage === 2 ? "Provide additional information to complete your profile" :
            currentStage === 1 ? "Complete verification to unlock full wallet access." :
@@ -146,10 +146,10 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
         <div className="flex gap-2 w-full h-8 items-end px-2">
           {["Bio", "Bank & Mobile Detail", "Occupation", "Interests"].map((stage, idx) => (
             <div key={stage} className="flex-1 flex flex-col items-center">
-              <span className={`text-[7px] font-black uppercase tracking-tighter mb-2 transition-colors duration-500 whitespace-nowrap ${idx === currentStage ? "text-[#00C853]" : "text-gray-400"}`}>
+              <span className={`text-[7px] font-black uppercase tracking-tighter mb-2 transition-colors duration-500 whitespace-nowrap ${idx === currentStage ? "text-[#00C853]" : "text-[var(--muted-foreground)]"}`}>
                 {stage}
               </span>
-              <div className={`h-[5px] w-full rounded-full transition-all duration-700 ${idx <= currentStage ? "bg-[#00C853]" : "bg-gray-200"}`} />
+              <div className={`h-[5px] w-full rounded-full transition-all duration-700 ${idx <= currentStage ? "bg-[#00C853]" : "bg-[var(--muted)]"}`} />
             </div>
           ))}
         </div>
@@ -175,12 +175,12 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                     <DuotoneUsers size={24} />
                   </div>
                   <div className="flex-1 flex items-center px-4 gap-6">
-                    <span className="text-gray-400 font-bold text-sm">Gender</span>
+                    <span className="text-[var(--muted-foreground)] font-bold text-sm">Gender</span>
                     <div className="flex gap-4">
                       {["Male", "Female"].map(g => (
                         <button key={g} onClick={() => updateForm("gender", g)} className="flex items-center gap-2">
                           <div className={`w-4 h-4 rounded-full border-2 border-gray-300 flex items-center justify-center ${formData.gender === g ? "bg-[#00C853] border-[#00C853]" : ""}`} />
-                          <span className="text-gray-400 font-bold text-sm">{g}</span>
+                          <span className="text-[var(--muted-foreground)] font-bold text-sm">{g}</span>
                         </button>
                       ))}
                     </div>
@@ -192,28 +192,28 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 
                 <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-gray-500 w-16 leading-tight">NRC or Passport</span>
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">NRC or Passport</span>
                     <button onClick={() => updateDoc("nrc")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
                       <DuotoneUpload size={20} />
                       <span className="text-[var(--app-text)] font-black text-sm">Upload</span>
                     </button>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-gray-500 w-16 leading-tight">TPIN Certificate</span>
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">TPIN Certificate</span>
                     <button onClick={() => updateDoc("tpin")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
                       <DuotoneUpload size={20} />
                       <span className="text-[var(--app-text)] font-black text-sm">Upload</span>
                     </button>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-gray-500 w-16 leading-tight">Proof Of Residence</span>
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">Proof Of Residence</span>
                     <button onClick={() => updateDoc("residence")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
                       <DuotoneMapPin size={20} />
                       <span className="text-[var(--app-text)] font-black text-sm">Upload</span>
                     </button>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-gray-500 w-16 leading-tight">Take Face ID</span>
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">Take Face ID</span>
                     <button onClick={() => updateDoc("selfie")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
                       <DuotoneCamera size={24} />
                     </button>
@@ -242,11 +242,11 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 <InputGroup label="" placeholder="Account Name" value={formData.accName} onChange={v => updateForm("accName", v)} />
                 
                 <div className="flex gap-4 items-center">
-                  <span className="text-[10px] font-black text-gray-400 uppercase w-12 leading-none">sort code</span>
+                  <span className="text-[10px] font-black text-[var(--muted-foreground)] uppercase w-12 leading-none">sort code</span>
                   <div className="flex-1">
                     <input type="text" placeholder="***" className="w-full h-12 border border-slate-300 rounded-xl px-4 text-center font-bold text-[var(--app-text)] outline-none" value={formData.sortCode} onChange={e => updateForm("sortCode", e.target.value)} />
                   </div>
-                  <span className="text-[10px] font-black text-gray-400 uppercase w-12 leading-none">branch code</span>
+                  <span className="text-[10px] font-black text-[var(--muted-foreground)] uppercase w-12 leading-none">branch code</span>
                   <div className="flex-1">
                     <input type="text" placeholder="****" className="w-full h-12 border border-slate-300 rounded-xl px-4 text-center font-bold text-[var(--app-text)] outline-none" value={formData.branchCode} onChange={e => updateForm("branchCode", e.target.value)} />
                   </div>
@@ -255,11 +255,11 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 <InputGroup label="" placeholder="Card Number" value={formData.cardNumber} onChange={v => updateForm("cardNumber", v)} />
                 
                 <div className="flex gap-4 items-center">
-                  <span className="text-[10px] font-black text-gray-400 uppercase leading-none">Expire Date</span>
+                  <span className="text-[10px] font-black text-[var(--muted-foreground)] uppercase leading-none">Expire Date</span>
                   <input type="text" placeholder="MM/YY" className="w-24 h-12 border border-slate-300 rounded-xl px-4 text-center font-bold text-[var(--app-text)] outline-none" value={formData.cardExpiry} onChange={e => updateForm("cardExpiry", e.target.value)} />
-                  <span className="text-[10px] font-black text-gray-400 uppercase leading-none">CVV</span>
+                  <span className="text-[10px] font-black text-[var(--muted-foreground)] uppercase leading-none">CVV</span>
                   <input type="text" placeholder="***" className="w-16 h-12 border border-slate-300 rounded-xl px-4 text-center font-bold text-[var(--app-text)] outline-none" value={formData.cardCvv} onChange={e => updateForm("cardCvv", e.target.value)} />
-                  <span className="text-[10px] font-black text-gray-400 uppercase leading-none">PIN</span>
+                  <span className="text-[10px] font-black text-[var(--muted-foreground)] uppercase leading-none">PIN</span>
                   <input type="password" placeholder="****" className="w-20 h-12 border border-slate-300 rounded-xl px-4 text-center font-bold text-[var(--app-text)] outline-none" value={formData.cardPin} onChange={e => updateForm("cardPin", e.target.value)} />
                 </div>
 
@@ -283,7 +283,7 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 <InputGroup label="" placeholder="Employed or Not Employed" value={formData.employmentStatus} onChange={v => updateForm("employmentStatus", v)} icon={DuotoneBriefcase} />
                 
                 <div className="px-4">
-                  <p className="text-[12px] font-bold text-gray-400 mb-1 leading-none">Earning If Employed</p>
+                  <p className="text-[12px] font-bold text-[var(--muted-foreground)] mb-1 leading-none">Earning If Employed</p>
                   <p className="text-[10px] font-bold text-[#00C853] leading-none mb-1">
                     🤏 K1,000 - K3,000 | 🤏 K3,000 - K9,000 | 🤏 K9,000 - K18,000
                   </p>
@@ -303,7 +303,7 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 {/* Prefix Pill Input */}
                 <div className="border border-slate-300 rounded-xl h-14 flex items-center overflow-hidden bg-[var(--app-bg)] group focus-within:border-[var(--app-text)] transition-all">
                   <div className="w-16 h-full flex items-center justify-center bg-[var(--app-bg-muted)] border-r border-slate-300">
-                    <span className="text-gray-500 font-bold text-sm">+260</span>
+                    <span className="text-[var(--muted-foreground)] font-bold text-sm">+260</span>
                   </div>
                   <input 
                     type="text" 
@@ -321,7 +321,7 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
               </div>
 
               <div className="mb-4 mt-6">
-                <p className="font-bold text-gray-400 text-xs uppercase tracking-widest ml-1">Agreement</p>
+                <p className="font-bold text-[var(--muted-foreground)] text-xs uppercase tracking-widest ml-1">Agreement</p>
               </div>
 
               <div className="space-y-3 px-2">
@@ -329,13 +329,13 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                   <div className="w-6 h-6 border-2 border-[var(--app-text)] bg-black rounded flex items-center justify-center shadow-md">
                     <Check size={18} className="text-white" strokeWidth={4} />
                   </div>
-                  <span className="text-[11px] font-bold text-gray-400">i consent to identity verification</span>
+                  <span className="text-[11px] font-bold text-[var(--muted-foreground)]">i consent to identity verification</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 border-2 border-[var(--app-text)] bg-black rounded flex items-center justify-center shadow-md">
                     <Check size={18} className="text-white" strokeWidth={4} />
                   </div>
-                  <span className="text-[11px] font-bold text-gray-400">I agree to the processing of my personal data according to the applicable laws.</span>
+                  <span className="text-[11px] font-bold text-[var(--muted-foreground)]">I agree to the processing of my personal data according to the applicable laws.</span>
                 </div>
               </div>
             </motion.div>
@@ -351,32 +351,32 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
               </div>
               
               <div className="px-2 mb-4">
-                <p className="text-[11px] font-bold text-gray-500 leading-tight">Please answer a few quations to receive relevant adverts</p>
+                <p className="text-[11px] font-bold text-[var(--muted-foreground)] leading-tight">Please answer a few quations to receive relevant adverts</p>
               </div>
 
               <div className="space-y-5">
                 <div className="space-y-2">
-                  <p className="text-[12px] font-black text-gray-500 ml-1">1. What market sectors are you most interested in?</p>
+                  <p className="text-[12px] font-black text-[var(--muted-foreground)] ml-1">1. What market sectors are you most interested in?</p>
                   <InputGroup label="" placeholder="Agriculture, Construction, Logistics & Transport" value={formData.marketSectors} onChange={v => updateForm("marketSectors", v)} icon={DuotoneChevronRight} />
                 </div>
                 
                 <div className="space-y-2">
-                  <p className="text-[12px] font-black text-gray-500 ml-1">2. What Products interested in buying and selling?</p>
+                  <p className="text-[12px] font-black text-[var(--muted-foreground)] ml-1">2. What Products interested in buying and selling?</p>
                   <InputGroup label="" placeholder="Equipment & Machinery, Truck Spares, Fuel" value={formData.products} onChange={v => updateForm("products", v)} icon={DuotoneChevronRight} />
                 </div>
 
                 <div className="space-y-2">
-                  <p className="text-[12px] font-black text-gray-500 ml-1">3. What Educational content are you interested in?</p>
+                  <p className="text-[12px] font-black text-[var(--muted-foreground)] ml-1">3. What Educational content are you interested in?</p>
                   <InputGroup label="" placeholder="Academic Material, Business intelegence, general knowledge" value={formData.hobbies} onChange={v => updateForm("hobbies", v)} icon={DuotoneChevronRight} />
                 </div>
               </div>
 
               <div className="mb-4 mt-8">
-                <p className="font-bold text-gray-400 text-xs uppercase tracking-widest ml-1">Hobbies</p>
+                <p className="font-bold text-[var(--muted-foreground)] text-xs uppercase tracking-widest ml-1">Hobbies</p>
               </div>
 
               <div className="space-y-2">
-                <p className="text-[12px] font-black text-gray-500 ml-1">1. Share your hobbies or interests <span className="text-[#00C853]">(optional)</span></p>
+                <p className="text-[12px] font-black text-[var(--muted-foreground)] ml-1">1. Share your hobbies or interests <span className="text-[#00C853]">(optional)</span></p>
                 <InputGroup label="" placeholder="Reading, Sport, Traveling, jogging, football," value={formData.kinName} onChange={v => updateForm("kinName", v)} icon={DuotoneChevronRight} />
               </div>
             </motion.div>
@@ -385,7 +385,7 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
       </div>
 
       {/* Screenshot Footer */}
-      <div className="p-4 bg-[var(--app-bg)]/80 backdrop-blur-md border-t border-gray-100 flex gap-4 pb-24">
+      <div className="p-4 bg-[var(--app-bg)]/80 backdrop-blur-md border-t border-[var(--border)] flex gap-4 pb-24">
         {currentStage > 0 && (
           <motion.button 
             whileTap={{ scale: 0.95 }}
@@ -421,7 +421,7 @@ interface InputGroupProps {
 function InputGroup({ icon: Icon, label, placeholder, value, onChange }: InputGroupProps) {
   return (
     <div className="w-full">
-      {label && <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.1em] mb-2 block ml-1">{label}</label>}
+      {label && <label className="text-[10px] font-black text-[var(--muted-foreground)] uppercase tracking-[0.1em] mb-2 block ml-1">{label}</label>}
       <div className="border border-slate-300 rounded-xl h-14 flex items-center overflow-hidden bg-[var(--app-bg)] group focus-within:border-[var(--app-text)] transition-all">
         {Icon && (
           <div className="w-14 h-full flex items-center justify-center border-r border-slate-300">
