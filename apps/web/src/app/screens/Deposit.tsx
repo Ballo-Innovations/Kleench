@@ -20,23 +20,23 @@ export function Deposit() {
   ];
 
   return (
-    <div className="w-full relative min-h-screen bg-transparent flex flex-col font-sans text-[var(--app-text)] overflow-x-hidden">
+    <div className="w-full relative min-h-screen bg-[var(--app-bg)] flex flex-col font-sans text-[var(--color-secondary)] overflow-x-hidden">
       {/* ── Standardized Header ── */}
       <PageHeader showBack useLogo />
 
       <div className="flex-1 px-5 pt-8 pb-32">
         {/* Title Rhythm */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-black uppercase tracking-tighter mb-1">Deposit</h1>
-          <p className="text-[var(--app-text)]/40 text-[10px] font-bold uppercase tracking-widest">Select Amount to transfer into your wallet</p>
+          <h1 className="text-2xl font-black uppercase tracking-widest text-[var(--color-secondary)] mb-1">Deposit</h1>
+          <p className="text-[var(--color-secondary)]/40 text-[10px] font-black uppercase tracking-[0.2em]">Select Amount to transfer into your wallet</p>
         </div>
 
         {/* Balance Card */}
-        <div className="bg-[var(--app-shape-accent)] rounded-xl p-5 mb-8 shadow-xl shadow-[var(--app-text)]/30 relative overflow-hidden group">
+        <div className="bg-[var(--color-primary)] rounded-2xl p-6 mb-8 shadow-md relative overflow-hidden group border border-white/10">
           <div className="flex flex-col">
-            <span className="text-white/40 text-[9px] font-black uppercase tracking-[0.2em] mb-1">balance</span>
+            <span className="text-white/40 text-[9px] font-black uppercase tracking-[0.4em] mb-1">balance</span>
             <div className="flex items-baseline gap-2">
-              <span className="text-white text-2xl font-black tracking-tight">ZMW 2,450.00</span>
+              <span className="text-white text-3xl font-black tracking-tight">ZMW 2,450.00</span>
             </div>
           </div>
           {/* Subtle decoration */}
@@ -46,21 +46,21 @@ export function Deposit() {
         </div>
 
         {/* Amount Stepper */}
-        <div className="bg-[var(--app-bg)] rounded-3xl p-8 mb-10 border-2 border-[var(--border)] shadow-[0_15px_35px_rgba(0,51,102,0.08)] flex items-center justify-between">
+        <div className="bg-[var(--app-bg)] rounded-[32px] p-8 mb-10 border border-[var(--border)] shadow-sm flex items-center justify-between">
           <button 
             onClick={() => setAmount(Math.max(0, amount - 50))}
-            className="w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
+            className="w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--app-bg)] flex items-center justify-center text-[var(--color-secondary)] active:scale-90 transition-all shadow-sm"
           >
             <Minus size={22} strokeWidth={3} />
           </button>
           
           <div className="flex items-center gap-1">
-            <span className="text-4xl font-black tracking-tighter">K{amount.toFixed(2)}</span>
+            <span className="text-4xl font-black tracking-tight text-[var(--color-secondary)]">K{amount.toFixed(2)}</span>
           </div>
 
           <button 
             onClick={() => setAmount(amount + 50)}
-            className="w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
+            className="w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--app-bg)] flex items-center justify-center text-[var(--color-secondary)] active:scale-90 transition-all shadow-sm"
           >
             <Plus size={22} strokeWidth={3} />
           </button>
@@ -68,11 +68,11 @@ export function Deposit() {
 
         {/* Payment Method Section */}
         <div className="mb-6">
-          <h3 className="text-sm font-black uppercase tracking-widest mb-4">Select Payment Method</h3>
+          <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-4 ml-1">Select Payment Method</h3>
           
           {/* Main Selector */}
-          <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-[var(--border)] p-5 shadow-[0_10px_25px_rgba(0,51,102,0.05)] mb-8 flex items-center justify-center">
-            <span className="text-2xl font-medium text-[var(--app-text)]/40 font-sans tracking-tight">Mobile Money</span>
+          <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] p-5 shadow-sm mb-8 flex items-center justify-center">
+            <span className="text-xl font-black text-[var(--color-secondary)] uppercase tracking-widest">Mobile Money</span>
           </div>
 
           {/* Providers Grid */}
@@ -81,8 +81,8 @@ export function Deposit() {
               <div key={p.id} className="flex flex-col items-center gap-3">
                 <button 
                   onClick={() => setSelectedProvider(p.id)}
-                  className={`w-20 h-20 rounded-full overflow-hidden border-2 transition-all relative ${
-                    selectedProvider === p.id ? "border-[var(--app-text)] scale-105 shadow-lg shadow-[var(--app-text)]/20" : "border-transparent"
+                  className={`w-20 h-20 rounded-full overflow-hidden border transition-all relative ${
+                    selectedProvider === p.id ? "border-[var(--color-primary)] scale-105 shadow-md" : "border-[var(--border)]"
                   }`}
                 >
                   <img src={p.logo} alt={p.name} className="w-full h-full object-cover" />
@@ -92,7 +92,7 @@ export function Deposit() {
                     </div>
                   )}
                 </button>
-                <span className={`text-[10px] font-bold uppercase tracking-widest ${selectedProvider === p.id ? "text-[var(--app-text)]" : "text-[var(--app-text)]/40"}`}>
+                <span className={`text-[9px] font-black uppercase tracking-widest ${selectedProvider === p.id ? "text-[var(--color-secondary)]" : "text-[var(--color-secondary)]/40"}`}>
                   {p.name}
                 </span>
               </div>
@@ -104,7 +104,7 @@ export function Deposit() {
         {/* Action Button - Kinetic Pill */}
         <div className="flex justify-center pt-8">
           <motion.button 
-            whileTap={{ scale: 0.96, x: 2, y: 2, boxShadow: "0px 0px 0px var(--app-text)" }}
+            whileTap={{ scale: 0.96 }}
             onClick={() => {
               if (!selectedProvider) {
                 toast.error("Please select a mobile money provider first");
@@ -114,7 +114,7 @@ export function Deposit() {
               toast.success(`Processing deposit of ZMW ${amount} via ${providerName}`);
               setTimeout(() => navigate(-1), 1500);
             }}
-            className="w-1/2 h-11 bg-[var(--app-shape-accent)] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-[var(--app-text)]/25 transition-all"
+            className="w-full h-14 bg-[var(--color-primary)] text-white rounded-full flex items-center justify-center font-black uppercase tracking-[0.2em] text-[12px] shadow-lg border border-white/10 transition-all"
           >
             Deposit Now
           </motion.button>

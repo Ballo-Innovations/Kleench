@@ -111,22 +111,22 @@ export function GoLive() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-slate-800">
+    <div className="w-full min-h-screen bg-[var(--app-bg)] pb-32 font-sans text-[var(--color-secondary)]">
       <PageHeader title="Go Live" showBack onBack={() => navigate(-1)} />
 
       <div className="px-4 pt-3 space-y-5">
         <div className="text-center">
-          <p className="text-[12px] font-bold text-[var(--app-text)]/60 leading-relaxed uppercase tracking-widest">
+          <p className="text-[12px] font-black text-[var(--color-secondary)]/60 leading-relaxed uppercase tracking-widest">
             Go live with video or audio with friends or customers and interact in real-time.
           </p>
         </div>
 
         {/* Stream Type Toggle */}
-        <div className="flex bg-[var(--app-bg)]/20 backdrop-blur-md p-1 rounded-2xl border border-[var(--border)] shadow-sm">
+        <div className="flex bg-[var(--color-secondary)]/5 backdrop-blur-md p-1 rounded-2xl border border-[var(--border)] shadow-sm">
           <button
             onClick={() => setStreamType("free")}
             className={`flex-1 py-3 rounded-xl font-black uppercase tracking-widest text-[11px] transition-all ${
-              streamType === "free" ? "bg-[var(--app-shape-accent)] text-white shadow-sm" : "text-[var(--app-text)]/50 hover:bg-[var(--app-shape-accent)]/5"
+              streamType === "free" ? "bg-[var(--color-primary)] text-white shadow-sm" : "text-[var(--color-secondary)]/50 hover:bg-[var(--color-primary)]/5"
             }`}
           >
             Free Stream
@@ -134,7 +134,7 @@ export function GoLive() {
           <button
             onClick={() => setStreamType("paid")}
             className={`flex-1 py-3 rounded-xl font-black uppercase tracking-widest text-[11px] transition-all ${
-              streamType === "paid" ? "bg-[var(--app-shape-accent)] text-white shadow-sm" : "text-[var(--app-text)]/50 hover:bg-[var(--app-shape-accent)]/5"
+              streamType === "paid" ? "bg-[var(--color-primary)] text-white shadow-sm" : "text-[var(--color-secondary)]/50 hover:bg-[var(--color-primary)]/5"
             }`}
           >
             Paid Stream
@@ -156,13 +156,13 @@ export function GoLive() {
               }`}
             >
               <div className={`w-12 h-12 rounded-xl border flex items-center justify-center shadow-sm ${
-                mode === key ? "bg-[var(--app-orange)] border-[var(--app-orange)] text-white" : "bg-[var(--app-bg-muted)] border-[var(--app-text)]/20 text-[var(--app-text)]/60"
+                mode === key ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-white" : "bg-[var(--app-bg)] border-[var(--color-secondary)]/20 text-[var(--color-secondary)]/60"
               }`}>
                 <Icon size={22} />
               </div>
               <div className="flex-1 text-left">
-                <p className={`font-black text-[14px] uppercase tracking-tight mb-0.5 ${mode === key ? "text-[var(--app-text)]" : "text-[var(--app-text)]/80"}`}>{title}</p>
-                <p className="text-[10px] text-[var(--app-text)]/50 font-bold uppercase tracking-widest">{desc}</p>
+                <p className={`font-black text-[14px] uppercase tracking-tight mb-0.5 ${mode === key ? "text-[var(--color-secondary)]" : "text-[var(--color-secondary)]/80"}`}>{title}</p>
+                <p className="text-[10px] text-[var(--color-secondary)]/50 font-black uppercase tracking-widest">{desc}</p>
               </div>
               <div className={`w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 ${
                 mode === key ? "border-[var(--color-primary)] bg-[var(--color-primary)]" : "border-[var(--border)]"
@@ -174,12 +174,12 @@ export function GoLive() {
         </div>
 
         <div className="pt-2">
-          <p className="font-black text-[var(--app-text)] text-[12px] uppercase tracking-widest mb-3">Select People to Invite</p>
+          <p className="font-black text-[var(--color-secondary)] text-[12px] uppercase tracking-widest mb-3">Select People to Invite</p>
           <input
             value={contactSearch}
             onChange={(e) => setContactSearch(e.target.value)}
             placeholder="Search Network..."
-            className="w-full h-12 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-[13px] font-bold text-[var(--app-text)] outline-none focus:border-[var(--color-primary)] focus:shadow-md transition-all mb-5"
+            className="w-full h-12 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-[13px] font-black text-[var(--color-secondary)] outline-none focus:border-[var(--color-primary)] focus:shadow-md transition-all mb-5 uppercase tracking-widest"
           />
 
           <div className="grid grid-cols-4 gap-3">
@@ -197,12 +197,12 @@ export function GoLive() {
                   }`}>
                     <span className="text-white font-black text-[14px]">{initials(name)}</span>
                     {selected && (
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[var(--app-orange)] rounded-full flex items-center justify-center border border-white shadow-sm">
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[var(--color-primary)] rounded-full flex items-center justify-center border border-white shadow-sm">
                         <span className="text-white text-[8px] font-black">✓</span>
                       </div>
                     )}
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-[var(--app-text)]/80 text-center leading-tight mt-1">{name.split(" ")[0]}</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[var(--color-secondary)]/80 text-center leading-tight mt-1">{name.split(" ")[0]}</span>
                 </motion.button>
               );
             })}
