@@ -91,20 +91,7 @@ export function Settings() {
   }
 
   return (
-    <div className="w-full relative min-h-screen bg-[var(--app-bg-muted)] overflow-x-hidden font-sans pb-10">
-      
-      {/* ── Unified cross-hatch bg ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
-          <defs>
-            <pattern id="xhatch-settings" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#xhatch-settings)"/>
-        </svg>
-      </div>
+    <div className="w-full relative min-h-screen bg-transparent overflow-x-hidden font-sans pb-10">
 
       <PageHeader 
         title="Settings" 

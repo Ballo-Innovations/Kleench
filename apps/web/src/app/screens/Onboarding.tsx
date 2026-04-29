@@ -5,6 +5,7 @@ import { ArrowRight, Camera, Upload, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ZambiaFlag, BackspaceKey } from "../components/KleenchIcons";
 import { LottieAnimation } from "../components/LottieAnimation";
+import { GlobalBackground } from "../components/GlobalBackground";
 
 type OnboardingStep = "pin" | "confirm-pin" | "kyc" | "photo" | "features";
 
@@ -139,20 +140,8 @@ export function Onboarding() {
   const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, features: 3 }[step];
 
   return (
-    <div className="min-h-screen bg-[#fcfcfc] relative flex flex-col overflow-hidden font-[var(--font-body)]">
-      {/* Ambient background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div
-          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] opacity-[0.05] rounded-full blur-[120px] transition-colors duration-700"
-          style={{ backgroundColor: step === "features" ? currentFeature.color : "#ff8c00" }}
-        />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-[var(--trust-blue)] opacity-[0.03] rounded-full blur-[100px]" />
-        {/* subtle grid */}
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)",
-          backgroundSize: "16px 16px"
-        }} />
-      </div>
+    <div className="min-h-screen bg-transparent relative flex flex-col overflow-hidden font-[var(--font-body)]">
+      <GlobalBackground />
 
       {/* Progress bar */}
       {(step !== "features") && (

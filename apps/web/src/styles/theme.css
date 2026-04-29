@@ -67,6 +67,11 @@
   --mobile-max-width: 448px;
   --safe-top: 20px;
   --safe-bottom: 24px;
+
+  /* Premium Grid System (4 Columns, Stretch, 16px-30px) */
+  --grid-cols: 4;
+  --grid-margin: 24px;
+  --grid-gutter: 20px;
 }
 
 @theme inline {

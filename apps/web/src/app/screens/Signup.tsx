@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
+import { GlobalBackground } from "../components/GlobalBackground";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -37,13 +38,8 @@ export function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fcfcfc] relative flex flex-col font-[var(--font-body)]">
-      {/* Ambient background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 right-0 w-[400px] h-[300px] bg-[#ff8c00] opacity-[0.05] rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-[var(--trust-blue)] opacity-[0.03] rounded-full blur-[100px]" />
-        <div className="absolute inset-0 opacity-[0.2]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)', backgroundSize: '16px 16px' }} />
-      </div>
+    <div className="min-h-screen bg-transparent relative flex flex-col font-[var(--font-body)]">
+      <GlobalBackground />
 
       <div className="flex-1 flex flex-col items-center py-12 px-6 relative z-10">
         {/* Logo */}

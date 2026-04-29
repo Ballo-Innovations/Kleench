@@ -58,6 +58,17 @@ html.dark {
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+/* Premium Stretch Grid */
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gutter);
+  width: 100%;
+  align-items: stretch;
 }
 
 /* Safe area padding for mobile */
@@ -191,8 +202,8 @@ html.dark {
 /* Mobile-specific utilities */
 @media (max-width: 448px) {
   .px-mobile {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
   }
 }
 /* ── Swiss International Style Utilities ── */

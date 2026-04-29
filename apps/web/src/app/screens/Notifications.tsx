@@ -57,23 +57,7 @@ export function Notifications() {
   const markRead = (id: number) => setNotifications((p) => p.map((n) => n.id === id ? { ...n, read: true } : n));
 
   return (
-    <div className="w-full max-w-md mx-auto pb-6 relative">
-
-      {/* ── Unified cross-hatch background ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        <svg width="100%" height="100%" style={{ position: "absolute", top: 0, left: 0 }}>
-          <defs>
-            <pattern id="xhatch-notif" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
-              <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#xhatch-notif)"/>
-        </svg>
-        {/* Accent circle top-right */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(circle, var(--app-orange), transparent)" }}/>
-      </div>
+    <div className="w-full max-w-md mx-auto pb-6 relative bg-transparent">
 
       <PageHeader
         title="Notifications"

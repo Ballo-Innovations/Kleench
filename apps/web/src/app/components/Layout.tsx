@@ -3,6 +3,7 @@ import { Home, Wallet, Megaphone, GraduationCap, Users, Menu, X, Store, HeartHan
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { GlobalBackground } from "./GlobalBackground";
 
 // Layout component with navigation
 export function Layout() {
@@ -86,59 +87,11 @@ export function Layout() {
   return (
     <div className="max-w-md mx-auto h-[100dvh] w-full relative bg-[var(--app-bg)] overflow-y-auto overflow-x-hidden shadow-2xl scrollbar-hide">
       {/* ── GLOBAL DASHED GRID BACKGROUND ── */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[var(--app-bg)]">
-        <div
-          className="absolute inset-0 z-0 opacity-[0.3]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #d6d3d1 1px, transparent 1px),
-              linear-gradient(to bottom, #d6d3d1 1px, transparent 1px)
-            `,
-            backgroundSize: "20px 20px",
-            backgroundPosition: "0 0, 0 0",
-            maskImage: `
-              repeating-linear-gradient(
-                to right,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              ),
-              repeating-linear-gradient(
-                to bottom,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              )
-            `,
-            WebkitMaskImage: `
-              repeating-linear-gradient(
-                to right,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              ),
-              repeating-linear-gradient(
-                to bottom,
-                black 0px,
-                black 3px,
-                transparent 3px,
-                transparent 8px
-              )
-            `,
-            maskComposite: "intersect",
-            WebkitMaskComposite: "source-in",
-          }}
-        />
-        {/* Subtle Brand Ambiance */}
-        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#ff8c00]/5 rounded-full blur-[100px]" />
-      </div>
+      <GlobalBackground />
 
 
       {/* Main Content */}
-      <main className={`relative w-full ${!isFullBleed ? "pt-20 px-4 pb-32" : ""}`}>
+      <main className={`relative w-full ${!isFullBleed ? "pt-20 px-[var(--grid-margin)] pb-32" : ""}`}>
         <Outlet />
       </main>
 

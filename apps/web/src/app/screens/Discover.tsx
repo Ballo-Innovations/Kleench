@@ -24,22 +24,6 @@ const grace = (delay = 0) => ({
   delay, duration: 0.62, ease: [0.22, 1, 0.36, 1] as const,
 });
 
-/* Unified cross-hatch bg */
-function CrossHatchBg() {
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-      <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
-        <defs>
-          <pattern id="xhatch-disc" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="24" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
-            <line x1="24" y1="0" x2="0" y2="24" stroke="var(--app-orange)" strokeWidth="0.5" strokeOpacity="0.07"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#xhatch-disc)"/>
-      </svg>
-    </div>
-  );
-}
 
 import { usePageLoading, PageSkeletons } from "../components/PageSkeletons";
 
@@ -51,8 +35,7 @@ export function Discover() {
 
 
   return (
-    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen">
-      <CrossHatchBg />
+    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen bg-transparent">
 
       {/* ── Standardized Orange Header ── */}
       <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[90px] mb-6"
