@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { ArrowLeft, Camera, User, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { GlobalBackground } from "../components/GlobalBackground";
 
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1722270608841-35d7372a2e85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGF2YXRhciUyMHByb2ZpbGUlMjBwaG90b3xlbnwxfHx8fDE3NzM4NzA0NzB8MA&ixlib=rb-4.1.0&q=80&w=400";
 
@@ -51,7 +52,8 @@ export function ProfileEdit() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--app-bg)] pb-10">
+    <div className="min-h-screen bg-transparent pb-10">
+      <GlobalBackground />
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-2 pb-5">
         <Link

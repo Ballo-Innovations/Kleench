@@ -78,7 +78,7 @@ export function LearnCategories() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-[var(--app-bg)] overflow-x-hidden font-sans text-[var(--color-secondary)]">
+    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--color-secondary)]">
       <PageHeader title="Explore" showBack onBack={() => navigate(-1)} />
 
       <div className="px-4 mt-1 relative z-20 space-y-3">

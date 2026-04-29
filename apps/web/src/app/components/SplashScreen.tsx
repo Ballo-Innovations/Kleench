@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import kleenchLogo from "@/assets/kleench_logo.png";
+import { GlobalBackground } from "./GlobalBackground";
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -17,13 +18,12 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed inset-0 z-[100] bg-[var(--clean-slate)] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
     >
-      {/* Grid */}
-      <div className="absolute inset-0 grid-pattern opacity-60" />
-
+      <GlobalBackground />
+      
       {/* Subtle static ambient glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,140,0,0.05) 0%, transparent 70%)' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-20" style={{ background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 70%)' }} />
 
       {/* Content */}
       <div className="relative z-10 text-center">
@@ -50,7 +50,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 + i * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl font-[var(--font-header)] font-bold text-[var(--ink-primary)] tracking-wider"
+              className="text-5xl font-black text-[var(--color-secondary)] tracking-wider"
             >
               {letter}
             </motion.span>
@@ -61,7 +61,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="text-sm font-[var(--font-body)] text-[var(--ink-muted)] uppercase tracking-[0.3em]"
+          className="text-[10px] font-black text-[var(--color-secondary)]/40 uppercase tracking-[0.4em]"
         >
           Social Commerce
         </motion.p>
@@ -70,10 +70,10 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="mt-12 mx-auto w-32 h-0.5 bg-[var(--surface-raised)] rounded-full overflow-hidden"
+          className="mt-12 mx-auto w-32 h-[1px] bg-[var(--border)] rounded-full overflow-hidden"
         >
           <motion.div
-            className="h-full bg-gradient-to-r from-[#FB3616] to-[#FF8810] rounded-full"
+            className="h-full bg-[var(--color-primary)] rounded-full"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ delay: 1.3, duration: 0.8, ease: "easeInOut" }}
