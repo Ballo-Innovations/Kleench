@@ -20,7 +20,7 @@ export function Deposit() {
   ];
 
   return (
-    <div className="w-full relative min-h-screen bg-[var(--app-bg)] flex flex-col font-sans text-[var(--color-secondary)] overflow-x-hidden">
+    <div className="w-full relative min-h-screen bg-transparent flex flex-col font-sans text-[var(--color-secondary)] overflow-x-hidden">
       {/* ── Standardized Header ── */}
       <PageHeader showBack useLogo />
 
