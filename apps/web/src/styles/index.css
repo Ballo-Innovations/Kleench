@@ -36,7 +36,7 @@ body {
   --app-icon-primary: var(--color-secondary);
   --app-shape-accent: var(--shape-primary);
   --app-on-accent: #ffffff;
-  --app-sub-accent: var(--color-tertiary);
+  --app-sub-accent: var(--color-growth);
 }
 
 /* Mobile container constraint */
@@ -79,28 +79,28 @@ body {
 
 /* Glass effect aligned with new theme */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: color-mix(in srgb, var(--card) 70%, transparent);
   backdrop-filter: blur(16px) saturate(1.2);
   border: 1px solid var(--color-secondary-dim);
 }
 .glass-strong {
-  background: rgba(255, 255, 255, 0.9);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
   backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid var(--color-secondary-dim);
 }
 
 /* Card styles for mobile */
 .card-mobile {
-  background: #FFFFFF;
+  background: var(--card);
   border-radius: var(--radius);
-  border: 1px solid var(--shape-secondary);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
 }
 
 .card-mobile-elevated {
-  background: #FFFFFF;
+  background: var(--card);
   border-radius: var(--radius);
-  border: 1px solid var(--shape-secondary);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-md);
 }
 
@@ -132,7 +132,7 @@ body {
   background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dim) 100%);
 }
 .gradient-tertiary {
-  background: linear-gradient(135deg, var(--color-tertiary) 0%, #004d40 100%);
+  background: linear-gradient(135deg, var(--color-growth) 0%, #004d40 100%);
 }
 
 /* Shimmer text aligned with new primary */

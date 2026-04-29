@@ -5,14 +5,22 @@
   --color-primary: #FF8C00;         /* Primary Action (Vibrant Energy / Heat) */
   --color-secondary: #515D84;       /* Secondary Foundation (Trust / Institutional) */
   --color-secondary-dim: #B9C5F2;   /* Secondary Fixed Dim (Navigation / Security / Utility) */
-  --color-tertiary: #00695C;        /* Tertiary (Legacy / Functional Teal) */
+  --color-growth: #00695C;        /* Tertiary (Legacy / Functional Teal) */
   --color-neutral: #F8F9FB;         /* Neutral Base */
+  --header-bg: var(--color-primary);
   
   /* Shapes & Functional Colors */
   --shape-inverted: #2E3132;     /* Charcoal */
   --shape-outline: #564334;      /* Earthy Brown */
   --shape-primary: #904D00;      /* Deep Burnt Orange */
   --shape-secondary: #E7E8EA;    /* Light Gray Shape */
+  
+  /* Tinted Backgrounds */
+  --tint-orange: #FFF7ED;
+  --tint-teal: #F0FDF9;
+  --tint-purple: #FAF5FF;
+  --tint-blue: #F0F9FF;
+  --tint-neutral: #F8F9FB;
 
   /* Typography */
   --font-header: 'Space Grotesk', sans-serif;
@@ -36,7 +44,7 @@
   --secondary-dim: var(--color-secondary-dim);
   --secondary-dim-foreground: var(--color-secondary);
   
-  --accent: var(--color-tertiary);
+  --accent: var(--color-growth);
   --accent-foreground: #FFFFFF;
   
   --muted: var(--shape-secondary);
@@ -65,6 +73,48 @@
   --grid-cols: 4;
   --grid-margin: 24px;
   --grid-gutter: 20px;
+
+  /* Global App Variables */
+  --app-bg: var(--color-neutral);
+  --app-text: var(--color-secondary);
+}
+
+.dark {
+  --color-neutral: #090E1A;         /* Rich Midnight Background */
+  --color-secondary: #E2E8F0;       /* Slate 200 Text */
+  --color-secondary-dim: #334155;   /* Slate 700 Dimmed */
+  
+  --background: var(--color-neutral);
+  --foreground: var(--color-secondary);
+  --card: #111827;
+  --card-foreground: var(--color-secondary);
+  --popover: #111827;
+  --popover-foreground: var(--color-secondary);
+  
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-neutral);
+  
+  --secondary-dim: var(--color-secondary-dim);
+  --secondary-dim-foreground: var(--color-secondary);
+  
+  --muted: #1F2937;
+  --muted-foreground: #94A3B8;
+  
+  --border: #1F2937;
+  --shape-secondary: #1E293B;
+  
+  --header-bg: #0F172A;
+  --app-header-shadow: rgba(0, 0, 0, 0.4);
+  
+  /* Dark Tints - Using color-mix for depth */
+  --tint-orange: color-mix(in srgb, var(--color-primary) 10%, var(--color-neutral));
+  --tint-teal: color-mix(in srgb, var(--color-growth) 10%, var(--color-neutral));
+  --tint-purple: color-mix(in srgb, #7C3AED 10%, var(--color-neutral));
+  --tint-blue: color-mix(in srgb, #0284C7 10%, var(--color-neutral));
+  --tint-neutral: color-mix(in srgb, var(--color-secondary) 5%, var(--color-neutral));
+  
+  --app-bg: var(--color-neutral);
+  --app-text: var(--color-secondary);
 }
 
 @theme inline {

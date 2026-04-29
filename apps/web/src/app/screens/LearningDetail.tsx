@@ -202,7 +202,7 @@ export function LearningDetail() {
       <AnimatePresence>
         {showShareModal && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-[var(--app-text-slate)]/40 backdrop-blur-sm flex items-end justify-center p-4 pb-8">
-            <div className="bg-[var(--app-bg)] rounded-3xl border border-gray-100 p-6 w-full max-w-sm shadow-xl relative mt-auto">
+            <div className="bg-[var(--app-bg)] rounded-3xl border border-[var(--border)] p-6 w-full max-w-sm shadow-xl relative mt-auto">
               <button className="absolute top-5 right-5 text-slate-400 bg-slate-100 rounded-full p-1.5 transition-colors" onClick={() => setShowShareModal(false)}>
                 <X size={18} />
               </button>

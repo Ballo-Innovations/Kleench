@@ -122,7 +122,7 @@ export function GoLive() {
         </div>
 
         {/* Stream Type Toggle */}
-        <div className="flex bg-[var(--app-bg)] p-1.5 rounded-2xl border border-[var(--app-text)] shadow-[4px_4px_0px_var(--app-orange)]">
+        <div className="flex bg-[var(--app-bg)]/20 backdrop-blur-md p-1 rounded-2xl border border-[var(--border)] shadow-sm">
           <button
             onClick={() => setStreamType("free")}
             className={`flex-1 py-3 rounded-xl font-black uppercase tracking-widest text-[11px] transition-all ${
@@ -152,7 +152,7 @@ export function GoLive() {
               whileTap={{ scale: 0.97 }}
               onClick={() => setMode(key)}
               className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all ${
-                mode === key ? "border-[var(--app-orange)] bg-[var(--app-orange)]/5 shadow-[4px_4px_0px_var(--app-orange)]" : "border-[var(--app-text)]/20 bg-[var(--app-bg)]"
+                mode === key ? "border-[var(--color-primary)] bg-[var(--app-bg)] shadow-md" : "border-[var(--border)] bg-[var(--app-bg)]/50"
               }`}
             >
               <div className={`w-12 h-12 rounded-xl border flex items-center justify-center shadow-sm ${
@@ -165,9 +165,9 @@ export function GoLive() {
                 <p className="text-[10px] text-[var(--app-text)]/50 font-bold uppercase tracking-widest">{desc}</p>
               </div>
               <div className={`w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 ${
-                mode === key ? "border-[var(--app-orange)] bg-[var(--app-orange)]" : "border-[var(--app-text)]/20"
+                mode === key ? "border-[var(--color-primary)] bg-[var(--color-primary)]" : "border-[var(--border)]"
               }`}>
-                {mode === key && <div className="w-2.5 h-2.5 rounded-full bg-[var(--app-bg)]" />}
+                {mode === key && <div className="w-2.5 h-2.5 rounded-full bg-white shadow-sm" />}
               </div>
             </motion.button>
           ))}
@@ -179,7 +179,7 @@ export function GoLive() {
             value={contactSearch}
             onChange={(e) => setContactSearch(e.target.value)}
             placeholder="Search Network..."
-            className="w-full h-12 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-xl px-5 text-[13px] font-bold text-[var(--app-text)] outline-none focus:border-[var(--app-orange)] focus:shadow-[2px_2px_0px_var(--app-orange)] transition-all mb-5"
+            className="w-full h-12 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-[13px] font-bold text-[var(--app-text)] outline-none focus:border-[var(--color-primary)] focus:shadow-md transition-all mb-5"
           />
 
           <div className="grid grid-cols-4 gap-3">
@@ -193,7 +193,7 @@ export function GoLive() {
                   className="flex flex-col items-center gap-1.5"
                 >
                   <div className={`w-14 h-14 rounded-2xl ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center border transition-all shadow-sm ${
-                    selected ? "border-[var(--app-text)] shadow-[3px_3px_0px_var(--app-text)] -translate-y-1" : "border-transparent"
+                    selected ? "border-[var(--color-primary)] shadow-md -translate-y-1" : "border-transparent"
                   }`}>
                     <span className="text-white font-black text-[14px]">{initials(name)}</span>
                     {selected && (
@@ -212,7 +212,7 @@ export function GoLive() {
         {selectedPeople.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap pt-2">
             {selectedPeople.map((name) => (
-              <span key={name} className="bg-[var(--app-shape-accent)] text-white px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-[2px_2px_0px_var(--app-orange)]">{name.split(" ")[0]}</span>
+              <span key={name} className="bg-[var(--color-secondary)] text-white px-3 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-sm border border-white/10">{name.split(" ")[0]}</span>
             ))}
           </div>
         )}
@@ -221,9 +221,9 @@ export function GoLive() {
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={() => setIsLive(true)}
-            className="w-full h-14 bg-[var(--app-orange)] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-[14px] shadow-[4px_4px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3 border border-[var(--app-text)]"
+            className="w-full h-14 bg-[var(--color-primary)] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-[14px] shadow-lg active:scale-95 transition-all flex items-center justify-center gap-3 border border-white/20"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-[var(--app-bg)] animate-pulse shadow-sm" />
+            <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse shadow-sm" />
             Start Broadcast
           </motion.button>
         </div>

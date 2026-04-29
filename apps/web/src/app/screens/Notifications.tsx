@@ -20,13 +20,13 @@ interface Notification {
 }
 
 const NOTIFS: Notification[] = [
-  { id: 1, type: "earning",  title: "K5.00 Earned!",           body: "Your referral Chanda M. completed their first purchase.",   time: "2m ago",    read: false, icon: "coin",    accentColor: "var(--app-orange)", bgColor: "#FFF7ED" },
-  { id: 2, type: "security", title: "Login from new device",   body: "A new sign-in was detected from Lusaka, Zambia.",          time: "14m ago",   read: false, icon: "shield",  accentColor: "#00695C", bgColor: "#F0FDF9" },
-  { id: 3, type: "social",   title: "Blessing liked your ad",  body: "Your Solar Lights promotion got 3 new reactions.",         time: "1h ago",    read: false, icon: "users",   accentColor: "#7C3AED", bgColor: "#FAF5FF" },
-  { id: 4, type: "offer",    title: "Flash Offer: Cetane",     body: "Earn K1.00 per feedback. Offer expires in 2 hours.",       time: "2h ago",    read: true,  icon: "gift",    accentColor: "var(--app-orange)", bgColor: "#FFF7ED" },
-  { id: 5, type: "earning",  title: "K0.20 Reward Added",      body: "You watched an advert from AgriBoost Zambia.",             time: "5h ago",    read: true,  icon: "coin",    accentColor: "var(--app-orange)", bgColor: "#FFF7ED" },
+  { id: 1, type: "earning",  title: "K5.00 Earned!",           body: "Your referral Chanda M. completed their first purchase.",   time: "2m ago",    read: false, icon: "coin",    accentColor: "var(--app-orange)", bgColor: "var(--tint-orange)" },
+  { id: 2, type: "security", title: "Login from new device",   body: "A new sign-in was detected from Lusaka, Zambia.",          time: "14m ago",   read: false, icon: "shield",  accentColor: "#00695C", bgColor: "var(--tint-teal)" },
+  { id: 3, type: "social",   title: "Blessing liked your ad",  body: "Your Solar Lights promotion got 3 new reactions.",         time: "1h ago",    read: false, icon: "users",   accentColor: "#7C3AED", bgColor: "var(--tint-purple)" },
+  { id: 4, type: "offer",    title: "Flash Offer: Cetane",     body: "Earn K1.00 per feedback. Offer expires in 2 hours.",       time: "2h ago",    read: true,  icon: "gift",    accentColor: "var(--app-orange)", bgColor: "var(--tint-orange)" },
+  { id: 5, type: "earning",  title: "K0.20 Reward Added",      body: "You watched an advert from AgriBoost Zambia.",             time: "5h ago",    read: true,  icon: "coin",    accentColor: "var(--app-orange)", bgColor: "var(--tint-orange)" },
   { id: 6, type: "security", title: "PIN Changed",             body: "Your security PIN was updated at 10:41 AM.",               time: "Yesterday", read: true,  icon: "lock",    accentColor: "var(--app-text-alt)", bgColor: "#F0F4FF" },
-  { id: 7, type: "social",   title: "New follower: Moses K.",  body: "Moses K. started following your seller profile.",          time: "Yesterday", read: true,  icon: "share",   accentColor: "#00695C", bgColor: "#F0FDF9" },
+  { id: 7, type: "social",   title: "New follower: Moses K.",  body: "Moses K. started following your seller profile.",          time: "Yesterday", read: true,  icon: "share",   accentColor: "#00695C", bgColor: "var(--tint-teal)" },
 ];
 
 const TABS = [
@@ -78,7 +78,7 @@ export function Notifications() {
 
       {/* Banner Ad */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1, duration: 0.6 }}
-        className="mb-8 rounded-[32px] overflow-hidden shadow-md border border-gray-100">
+        className="mb-8 rounded-[32px] overflow-hidden shadow-md border border-[var(--border)]">
         <img src={adBanner} alt="Verified Efforts" className="w-full h-auto object-cover" />
       </motion.div>
 

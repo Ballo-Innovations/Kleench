@@ -31,7 +31,7 @@ export function CreatorProfile() {
       <div className="px-5 mt-6">
          <div className="bg-[var(--app-bg)] border border-[var(--app-text)] p-6 shadow-[6px_6px_0px_var(--app-orange)] relative">
             <div className="flex items-center gap-5">
-               <div className="w-20 h-20 border border-[var(--app-text)] overflow-hidden bg-gray-100 shrink-0">
+               <div className="w-20 h-20 border border-[var(--app-text)] overflow-hidden bg-[var(--muted)] shrink-0">
                   <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Creator" className="w-full h-full object-cover" />
                </div>
                <div className="flex-1">
@@ -81,7 +81,7 @@ export function CreatorProfile() {
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
                     key={i} 
-                    className="aspect-square bg-gray-200 border border-[var(--app-text)]/10 overflow-hidden relative group cursor-pointer rounded-lg"
+                    className="aspect-square bg-[var(--muted)] border border-[var(--app-text)]/10 overflow-hidden relative group cursor-pointer rounded-lg"
                   >
                      <img src={url} alt={`Post ${i}`} className="w-full h-full object-cover group-active:scale-105 transition-transform duration-300" />
                      <div className="absolute inset-0 bg-black/0 group-active:bg-black/20 transition-colors" />

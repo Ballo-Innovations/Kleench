@@ -44,7 +44,7 @@ export function PageHeader({
     <div 
       className="sticky top-0 z-[100] pt-2 pb-3 px-5 overflow-hidden shadow-lg flex flex-col justify-between shrink-0"
       style={{ 
-        background: "var(--color-primary)", 
+        background: "var(--header-bg, var(--color-primary))", 
         boxShadow: "0 10px 30px var(--app-header-shadow)",
         height: "115px", // STRICTLY LOCKED ENFORCED HEIGHT FOR ALL PAGES
         minHeight: "115px",
@@ -251,26 +251,26 @@ export function PageHeader({
           />
           <motion.div 
             initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -100, opacity: 0 }}
-            className="fixed top-4 right-4 left-4 z-[1010] bg-[var(--app-bg)] rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] border-[3px] border-[var(--app-text-slate)] overflow-hidden max-w-[380px] mx-auto"
+            className="fixed top-4 right-4 left-4 z-[1010] bg-[var(--app-bg)] rounded-[40px] shadow-2xl border border-[var(--border)] overflow-hidden max-w-[380px] mx-auto"
           >
-            <div className="p-5 border-b-[3px] border-[var(--app-text-slate)] flex items-center justify-between bg-[var(--app-bg)]">
-              <h3 className="font-black text-slate-800 uppercase tracking-widest text-xs">Notifications</h3>
-              <button onClick={() => setShowNotifications(false)} className="bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center text-slate-500 active:scale-90 transition-all border-2 border-[var(--app-text-slate)] shadow-[2px_2px_0px_#000]"><X size={18} /></button>
+            <div className="p-5 border-b border-[var(--border)] flex items-center justify-between bg-[var(--app-bg)]">
+              <h3 className="font-black text-[var(--app-text-slate)] uppercase tracking-widest text-xs">Notifications</h3>
+              <button onClick={() => setShowNotifications(false)} className="bg-[var(--muted)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--muted-foreground)] active:scale-90 transition-all border border-[var(--border)] shadow-sm"><X size={18} /></button>
             </div>
-            <div className="divide-y-2 divide-slate-900 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+            <div className="divide-y-2 divide-[var(--border)] max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
               {[
                 { id: 1, title: "Transaction Successful", desc: "You received ZMW 500.00 from John Doe.", time: "10m ago", icon: ArrowDownToLine, color: "text-emerald-500", bg: "bg-emerald-50" },
                 { id: 2, title: "New Agent Referral", desc: "Jane joined using your code. You earned K10.", time: "1h ago", icon: UserPlus, color: "text-blue-500", bg: "bg-blue-50" },
                 { id: 3, title: "Kleench Security", desc: "A new login was detected from Lusaka.", time: "Yesterday", icon: ShieldCheck, color: "text-amber-500", bg: "bg-amber-50" }
               ].map(notif => (
                 <div key={notif.id} className="p-5 flex gap-5 active:bg-[var(--app-bg-muted)] cursor-pointer transition-colors group">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border-2 border-[var(--app-text-slate)] shadow-[2px_2px_0px_#000] group-active:shadow-none group-active:translate-x-0.5 group-active:translate-y-0.5 transition-all ${notif.bg} ${notif.color}`}>
-                    <notif.icon size={20} strokeWidth={2.5} />
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-[var(--border)] shadow-sm group-active:scale-95 transition-all ${notif.bg} ${notif.color}`}>
+                    <notif.icon size={20} strokeWidth={2} />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-black text-slate-800 text-[11px] mb-1 leading-tight uppercase tracking-tight">{notif.title}</h4>
-                    <p className="text-slate-500 text-[10px] font-bold leading-snug mb-2">{notif.desc}</p>
-                    <span className="text-slate-400 text-[8px] uppercase font-black tracking-widest">{notif.time}</span>
+                    <h4 className="font-black text-[var(--app-text-slate)] text-[11px] mb-1 leading-tight uppercase tracking-tight">{notif.title}</h4>
+                    <p className="text-[var(--muted-foreground)] text-[10px] font-bold leading-snug mb-2">{notif.desc}</p>
+                    <span className="text-[var(--muted-foreground)]/60 text-[8px] uppercase font-black tracking-widest">{notif.time}</span>
                   </div>
                 </div>
               ))}
@@ -288,11 +288,11 @@ export function PageHeader({
           />
           <motion.div 
             initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 bottom-0 right-0 w-[85%] max-w-[320px] bg-[var(--app-bg)] z-[1010] shadow-[0_0_80px_rgba(0,0,0,0.4)] flex flex-col border-l-[3px] border-[var(--app-text-slate)]"
+            className="fixed top-0 bottom-0 right-0 w-[85%] max-w-[320px] bg-[var(--app-bg)] z-[1010] shadow-2xl flex flex-col border-l border-[var(--border)]"
           >
-            <div className="p-5 bg-[var(--app-bg)] border-b-[3px] border-[var(--app-text-slate)] flex items-start justify-between">
+            <div className="p-5 bg-[var(--app-bg)] border-b border-[var(--border)] flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-[16px] border-[2.5px] border-[var(--app-text-slate)] overflow-hidden bg-[var(--app-bg)] shrink-0 shadow-[3px_3px_0px_#000]">
+                <div className="w-12 h-12 rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--app-bg)] shrink-0 shadow-sm">
                   {localStorage.getItem("userProfilePhoto") ? (
                     <img src={localStorage.getItem("userProfilePhoto")!} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
@@ -306,10 +306,10 @@ export function PageHeader({
                       return raw ? JSON.parse(raw).fullName : "Kleench User"
                     })()}
                   </h4>
-                  <p className="text-slate-500 text-[8px] font-black uppercase tracking-widest">Premium Member</p>
+                  <p className="text-[var(--muted-foreground)] text-[8px] font-black uppercase tracking-widest">Premium Member</p>
                 </div>
               </div>
-              <button onClick={() => setShowSettings(false)} className="text-[var(--app-text-slate)] active:scale-90 transition-all bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center border-2 border-[var(--app-text-slate)] shadow-[2px_2px_0px_#000]"><X size={20} /></button>
+              <button onClick={() => setShowSettings(false)} className="text-[var(--app-text-slate)] active:scale-90 transition-all bg-[var(--muted)] w-10 h-10 rounded-full flex items-center justify-center border border-[var(--border)] shadow-sm"><X size={20} /></button>
             </div>
             
             <div className="flex-1 overflow-y-auto p-5 space-y-3.5">
@@ -320,15 +320,15 @@ export function PageHeader({
                 { icon: SettingsIcon, label: "App Preferences", to: "/settings" },
                 { icon: HelpCircle, label: "Advanced Support", to: "#" },
               ].map((item, i) => (
-                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-3.5 p-2.5 rounded-2xl bg-[var(--app-bg-muted)] border-2 border-[var(--app-text-slate)] shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all text-left">
-                  <div className="w-9 h-9 rounded-xl bg-[var(--app-bg)] text-[var(--app-text-slate)] flex items-center justify-center border border-slate-200"><item.icon size={16} strokeWidth={2.5} /></div>
+                <button key={i} onClick={() => { setShowSettings(false); if(item.to !== "#") navigate(item.to); }} className="w-full flex items-center gap-3.5 p-2.5 rounded-2xl bg-[var(--muted)] border border-[var(--border)] shadow-sm active:scale-95 transition-all text-left">
+                  <div className="w-9 h-9 rounded-xl bg-[var(--app-bg)] text-[var(--app-text-slate)] flex items-center justify-center border border-[var(--border)]"><item.icon size={16} strokeWidth={2} /></div>
                   <span className="font-black text-[var(--app-text-slate)] text-[10px] uppercase tracking-widest">{item.label}</span>
                 </button>
               ))}
               
-              <div className="mt-10 pt-6 border-t-[3px] border-[var(--app-text-slate)] px-2">
+              <div className="mt-10 pt-6 border-t border-[var(--border)] px-2">
                 <button onClick={() => { setShowSettings(false); navigate("/"); }} className="flex items-center gap-3 text-[var(--shape-inverted)] font-black text-[10px] uppercase tracking-[0.2em] active:opacity-50 transition-opacity">
-                  <LogOut size={18} strokeWidth={2.5} /> Sign Out Systems
+                  <LogOut size={18} strokeWidth={2} /> Sign Out Systems
                 </button>
               </div>
             </div>
@@ -345,33 +345,33 @@ export function PageHeader({
           />
           <motion.div 
             initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t-[3px] border-[var(--app-text-slate)] shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+            className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--border)] shadow-2xl overflow-hidden pb-[env(safe-area-inset-bottom)]"
           >
              <div className="p-6">
-                <div className="flex items-center justify-between mb-8">
-                   <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">Secure Messages</h3>
-                   <button onClick={() => setShowChat(false)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border-2 border-[var(--app-text-slate)] shadow-[2px_2px_0px_#000]"><X size={20} /></button>
-                </div>
+                 <div className="flex items-center justify-between mb-8">
+                    <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">Secure Messages</h3>
+                    <button onClick={() => setShowChat(false)} className="w-10 h-10 bg-[var(--muted)] rounded-full flex items-center justify-center active:scale-90 transition-all border border-[var(--border)] shadow-sm"><X size={20} /></button>
+                 </div>
                 
                 <div className="space-y-4 mb-8">
                    {[
                       { id: 1, name: "Kleench Support", msg: "Your ticket #284 has been updated.", time: "2m ago" },
                       { id: 2, name: "Escrow Manager", msg: "Payment for 'Solar Inverter' is released.", time: "1h ago" }
                    ].map(chat => (
-                      <div key={chat.id} className="p-4 bg-[var(--app-bg-muted)] border-2 border-[var(--app-text-slate)] rounded-2xl shadow-[4px_4px_0px_#000] flex gap-4 active:shadow-none transition-all cursor-pointer">
+                      <div key={chat.id} className="p-4 bg-[var(--app-bg-muted)] border border-[var(--border)] rounded-2xl shadow-sm flex gap-4 active:scale-95 transition-all cursor-pointer">
                          <div className="w-12 h-12 bg-[var(--app-text-slate)] rounded-xl flex items-center justify-center flex-shrink-0">
                             <MessageCircle className="text-white" size={24} />
                          </div>
-                         <div>
-                            <h4 className="font-black text-[var(--app-text-slate)] text-xs uppercase tracking-tight">{chat.name}</h4>
-                            <p className="text-[11px] font-bold text-slate-500 line-clamp-1">{chat.msg}</p>
-                            <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">{chat.time}</span>
-                         </div>
+                          <div>
+                             <h4 className="font-black text-[var(--app-text-slate)] text-xs uppercase tracking-tight">{chat.name}</h4>
+                             <p className="text-[11px] font-bold text-[var(--muted-foreground)] line-clamp-1">{chat.msg}</p>
+                             <span className="text-[8px] font-black text-[var(--muted-foreground)]/60 uppercase tracking-widest">{chat.time}</span>
+                          </div>
                       </div>
                    ))}
                 </div>
                 
-                <button className="w-full h-16 bg-[var(--app-text-slate)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                <button className="w-full h-16 bg-[var(--app-text-slate)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg">
                   Start New Conversation
                 </button>
              </div>

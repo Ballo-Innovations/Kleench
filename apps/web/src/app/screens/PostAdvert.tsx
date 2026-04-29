@@ -7,10 +7,10 @@ import { LottieIcon } from "../components/LottieIcon";
 type Step = 1 | 2 | 3;
 
 const AD_TYPES = [
-  { id: "product",   label: "Product Ad",      icon: "cart",      desc: "Sell a physical or digital product",   accent: "var(--app-orange)", bg: "#FFF7ED" },
+  { id: "product",   label: "Product Ad",      icon: "cart",      desc: "Sell a physical or digital product",   accent: "var(--app-orange)", bg: "var(--tint-orange)" },
   { id: "service",   label: "Service Ad",      icon: "target",    desc: "Promote a service you offer",          accent: "#0077B6", bg: "#EFF8FF" },
-  { id: "awareness", label: "Brand Awareness", icon: "megaphone", desc: "Boost your brand visibility",          accent: "#7C3AED", bg: "#FAF5FF" },
-  { id: "community", label: "Community Post",  icon: "users",     desc: "Reach your social circle",             accent: "#00695C", bg: "#F0FDF9" },
+  { id: "awareness", label: "Brand Awareness", icon: "megaphone", desc: "Boost your brand visibility",          accent: "#7C3AED", bg: "var(--tint-purple)" },
+  { id: "community", label: "Community Post",  icon: "users",     desc: "Reach your social circle",             accent: "#00695C", bg: "var(--tint-teal)" },
 ];
 
 /* ── Unified cross-hatch bg (same as Referral, SellProduct) ── */
@@ -162,7 +162,7 @@ export function PostAdvert() {
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.07)}
               className="border-2 border-dashed rounded-3xl h-36 flex flex-col items-center justify-center gap-3 cursor-pointer"
               style={{ borderColor: "rgba(13,27,62,0.1)", background: "rgba(248,249,251,0.7)" }}>
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "#FFF7ED" }}>
+              <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "var(--tint-orange)" }}>
                 <Camera size={20} style={{ color: "var(--app-orange)" }}/>
               </div>
               <div className="flex items-center gap-1.5" style={{ color: "rgba(13,27,62,0.38)" }}>
@@ -255,7 +255,7 @@ export function PostAdvert() {
                 initial={{ opacity: 0, y: 16, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="rounded-3xl p-5 flex items-center gap-5"
-                style={{ background: "linear-gradient(135deg, #FFF7ED, #FFECD0)", border: "1.5px solid rgba(255,140,0,0.18)" }}>
+                style={{ background: "linear-gradient(135deg, var(--tint-orange), #FFECD0)", border: "1.5px solid rgba(255,140,0,0.18)" }}>
                 <LottieIcon icon="rocket" size={60} />
                 <div>
                   <p className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: "var(--app-orange)" }}>Estimated Reach</p>

@@ -136,7 +136,7 @@ export function Settings() {
                       </span>
                       <button 
                         onClick={() => toggleTheme(item.mode)}
-                        className={`w-12 h-6 rounded-full p-1 transition-colors flex items-center shadow-inner ${isActive ? "bg-[var(--app-orange)]" : "bg-gray-200"}`}
+                        className={`w-12 h-6 rounded-full p-1 transition-colors flex items-center shadow-inner ${isActive ? "bg-[var(--app-orange)]" : "bg-[var(--muted)]"}`}
                       >
                         <motion.div 
                           initial={false}

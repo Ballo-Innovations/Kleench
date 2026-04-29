@@ -24,7 +24,7 @@ const ImageWithFallback = ({ src, alt, className, ...props }: FallbackImageProps
   const [error, setError] = useState(false);
   if (error || !src) {
     return (
-      <div className={`bg-gray-200 flex items-center justify-center text-gray-400 ${className}`}>
+      <div className={`bg-[var(--muted)] flex items-center justify-center text-[var(--muted-foreground)] ${className}`}>
         <span className="text-[10px] uppercase font-black tracking-widest">Image</span>
       </div>
     );
@@ -107,9 +107,9 @@ export function Crowdfunding() {
 
       {loading ? (
         <div className="px-5 mt-6 space-y-4">
-           <div className="h-12 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
-           <div className="h-24 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
-           <div className="h-64 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-gray-200 animate-pulse" />
+           <div className="h-12 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-[var(--border)] animate-pulse" />
+           <div className="h-24 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-[var(--border)] animate-pulse" />
+           <div className="h-64 bg-[var(--app-bg)] rounded-2xl w-full border-[3px] border-[var(--border)] animate-pulse" />
         </div>
       ) : (
         <div className="relative z-10 w-full mt-6 space-y-6">
@@ -123,7 +123,7 @@ export function Crowdfunding() {
                   placeholder="Search Investment Opportunities..." 
                   className="flex-1 bg-transparent border-none outline-none font-bold text-[var(--app-text)] placeholder:text-[var(--app-text)]/40 text-[14px] px-3 w-full" 
                 />
-                <div className="h-[28px] w-[2px] bg-gray-200 mx-1 shrink-0" />
+                <div className="h-[28px] w-[2px] bg-[var(--muted)] mx-1 shrink-0" />
                 <button className="flex items-center gap-1 text-[var(--app-text)] font-black uppercase text-[12px] tracking-widest shrink-0 px-2 active:opacity-50">
                   Filters <ChevronRight size={16} strokeWidth={3} className="text-[var(--app-text)]" />
                 </button>
@@ -136,7 +136,7 @@ export function Crowdfunding() {
                 {FILTERS.map((cat, i) => (
                    <button 
                      key={cat.label} 
-                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[var(--app-shape-accent)] text-white shadow-[2px_2px_0_var(--app-text)]' : 'bg-[#e2e8f0]/60 text-[var(--app-text)] hover:bg-gray-200'}`}
+                     className={`h-8 rounded-full flex items-center pr-1.5 pl-3 shrink-0 active:scale-95 transition-all ${i === 0 ? 'bg-[var(--app-shape-accent)] text-white shadow-[2px_2px_0_var(--app-text)]' : 'bg-[#e2e8f0]/60 text-[var(--app-text)] hover:bg-[var(--muted)]'}`}
                    >
                       <span className={`text-[11px] font-black uppercase whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[var(--app-text)]'}`}>{cat.label}</span>
                       {cat.count && (
@@ -158,7 +158,7 @@ export function Crowdfunding() {
                      <button
                        key={act.label}
                        onClick={() => handleAction(act.label)}
-                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[var(--app-shape-accent)] text-white shadow-inner' : 'bg-transparent text-[var(--app-text)] hover:bg-gray-100'}`}
+                       className={`flex-1 flex items-center justify-center gap-1.5 h-[38px] rounded-full transition-all duration-200 ${isActive ? 'bg-[var(--app-shape-accent)] text-white shadow-inner' : 'bg-transparent text-[var(--app-text)] hover:bg-[var(--muted)]'}`}
                      >
                        <act.icon size={16} strokeWidth={isActive ? 3 : 2.5} className={isActive ? 'text-white' : act.color} />
                        <span className="text-[10px] font-black tracking-widest uppercase">{act.label}</span>
@@ -230,7 +230,7 @@ export function Crowdfunding() {
                       <div className={`h-full bg-[#E85D3F] flex items-center ${proj.percent <= 15 ? 'justify-start pl-[5px]' : 'justify-center'} border-r-[2px] border-[var(--app-text)]`} style={{ width: `${proj.percent}%` }}>
                          <span className="text-[10px] font-black text-white whitespace-nowrap drop-shadow-md tracking-tighter" style={{ fontSize: proj.percent <= 15 ? '8.5px' : '10px' }}>{proj.percent}%</span>
                       </div>
-                      <div className="h-full bg-gray-200 flex items-center justify-center" style={{ width: `${100 - proj.percent}%` }} />
+                      <div className="h-full bg-[var(--muted)] flex items-center justify-center" style={{ width: `${100 - proj.percent}%` }} />
                    </div>
 
                    {/* Main Interaction Action Base */}

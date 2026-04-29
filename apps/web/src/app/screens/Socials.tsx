@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
 import { 
-  MoreVertical, 
   X,
   Video,
   Mic,
@@ -163,18 +162,18 @@ export function Socials() {
       />
 
       {/* ACTION BAR MOVED OUT OF HEADER (EXACTLY BELOW) */}
-      <div className="flex w-full bg-[var(--app-bg)] border-y border-[var(--color-primary)] items-stretch h-[46px] z-20 relative shadow-sm">
-         <Link to="/learning/go-live" className="flex-1 flex items-center justify-center gap-2 border-r border-[var(--color-primary)]/40 text-[var(--color-primary)] active:bg-[var(--color-primary)]/5 transition-colors">
+      <div className="flex w-full bg-[var(--app-bg)] border-y border-[var(--border)] items-stretch h-[48px] z-20 relative shadow-sm">
+         <Link to="/learning/go-live" className="flex-1 flex items-center justify-center gap-2 border-r border-[var(--border)] text-[var(--color-primary)] active:bg-[var(--color-primary)]/5 transition-colors">
             <Radio size={18} className="animate-pulse" />
-            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Live</span>
+            <span className="text-[12px] font-black uppercase tracking-widest mt-[2px]">Live</span>
          </Link>
-         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r border-[var(--color-primary)]/40 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
+         <button onClick={() => setShowCreatePost(true)} className="flex-1 flex items-center justify-center gap-2 border-r border-[var(--border)] text-[var(--color-secondary)] active:bg-[var(--color-secondary)]/5 transition-colors">
             <PlusCircle size={18} primary="var(--color-primary)" />
-            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Post</span>
+            <span className="text-[12px] font-black uppercase tracking-widest mt-[2px]">Post</span>
          </button>
-         <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[var(--app-text)] active:bg-[var(--app-shape-accent)]/5 transition-colors">
+         <Link to="/friends" className="flex-1 flex items-center justify-center gap-2 text-[var(--color-secondary)] active:bg-[var(--color-secondary)]/5 transition-colors">
             <UserPlus size={18} primary="var(--color-primary)" />
-            <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Friends</span>
+            <span className="text-[12px] font-black uppercase tracking-widest mt-[2px]">Friends</span>
          </Link>
       </div>
 
@@ -182,30 +181,30 @@ export function Socials() {
 
         {/* SECTION 02. REELS */}
         <section className="space-y-3">
-           <h3 className="font-black text-[18px] text-[var(--app-text)] tracking-tight ml-1">Reels</h3>
+           <h3 className="font-black text-[18px] text-[var(--color-secondary)] tracking-tight ml-1">Stories</h3>
            
            <div className="flex gap-2.5 overflow-x-auto pb-6 pt-1 -mx-5 px-5 scrollbar-hide no-scrollbar appearance-none">
               {MOCK_REELS.map((reel) => {
                  if (reel.isCreate) {
                     return (
-                       <button key={reel.id} onClick={() => setShowCreatePost(true)} className="min-w-[95px] w-[28vw] max-w-[120px] h-[155px] flex-shrink-0 flex flex-col items-center justify-between bg-[var(--app-bg)] border border-[var(--app-text)] rounded-xl active:scale-95 transition-transform overflow-hidden relative">
+                       <button key={reel.id} onClick={() => setShowCreatePost(true)} className="min-w-[95px] w-[28vw] max-w-[120px] h-[155px] flex-shrink-0 flex flex-col items-center justify-between bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl active:scale-95 transition-transform overflow-hidden relative shadow-sm">
                           <div className="flex-1 flex items-center justify-center w-full">
-                             <div className="w-12 h-12 rounded-full bg-[var(--app-shape-accent)] flex items-center justify-center text-white">
+                             <div className="w-12 h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white shadow-lg border border-white/20">
                                 <Plus size={32} primary="#fff" />
                              </div>
                           </div>
-                          <div className="w-full bg-[var(--app-bg)] border-t-2 border-[var(--app-text)]/20 py-2.5 flex items-center justify-center">
-                             <span className="text-[9px] font-black text-[var(--app-text)] leading-tight uppercase tracking-widest text-center">Create<br/>Content</span>
+                          <div className="w-full bg-[var(--app-bg)] border-t border-[var(--border)] py-2.5 flex items-center justify-center">
+                             <span className="text-[9px] font-black text-[var(--color-secondary)] leading-tight uppercase tracking-widest text-center">Create<br/>Story</span>
                           </div>
                        </button>
                     )
                  }
                  return (
                     <div key={reel.id} className="min-w-[95px] w-[28vw] max-w-[120px] h-[155px] flex-shrink-0 relative active:scale-95 transition-transform cursor-pointer">
-                       <div className="w-full h-full rounded-xl overflow-hidden bg-[var(--app-text-slate)] border border-[var(--app-text)]/10 relative">
+                       <div className="w-full h-full rounded-2xl overflow-hidden bg-[var(--muted)] border border-[var(--border)] relative shadow-sm">
                            <img src={reel.image} alt="" className="w-full h-full object-cover opacity-90" />
                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-lg">
                                  <Play size={16} primary="#fff" className="ml-0.5" />
                               </div>
                            </div>
@@ -222,9 +221,9 @@ export function Socials() {
         {/* SECTION 03. BROADCAST FEED */}
         <section className="space-y-8">
            <div className="flex items-center gap-3">
-              <span className="text-[var(--app-orange)] font-black text-xs tracking-[0.3em]">03.</span>
-              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--app-text)]/40">Global Feed</h3>
-              <div className="flex-1 h-[2px] bg-[var(--app-shape-accent)]/5" />
+              <span className="text-[var(--color-primary)] font-black text-xs tracking-[0.3em]">03.</span>
+              <h3 className="font-black text-[10px] uppercase tracking-[0.4em] text-[var(--color-secondary)]/40">Global Feed</h3>
+              <div className="flex-1 h-[1px] bg-[var(--border)]" />
            </div>
 
            <div className="flex flex-col gap-10">
@@ -234,7 +233,7 @@ export function Socials() {
                   initial={{ opacity: 0, y: 30 }} 
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  className="bg-[var(--app-bg)] border-x-4 border-[var(--app-text)]/5"
+                  className="bg-[var(--app-bg)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-sm"
                 >
                   <div className="flex items-center justify-between px-4 pt-4 mb-3">
                     <div className="flex items-center gap-2">
@@ -242,39 +241,36 @@ export function Socials() {
                          <img src={post.user.avatar} alt={post.user.name} className="w-10 h-10 rounded-full object-cover shadow-sm" />
                       </Link>
                       <div className="flex items-center gap-1">
-                         <Link to={`/creator/${post.user.name.toLowerCase().replace(/ /g, "-")}`} className="font-black text-[13px] text-[var(--app-text)] hover:underline">
+                         <Link to={`/creator/${post.user.name.toLowerCase().replace(/ /g, "-")}`} className="font-black text-[13px] text-[var(--color-secondary)] hover:underline">
                             {post.user.name}
                          </Link>
-                         {post.user.verified && <ShieldCheck size={12} primary="var(--app-orange)" />}
-                         <span className="text-[var(--app-text)]/30 text-xs mx-0.5">•</span>
-                         <span className="text-[11px] font-bold text-[var(--app-text)]/40">{post.time}</span>
+                         {post.user.verified && <ShieldCheck size={12} primary="var(--color-primary)" />}
+                         <span className="text-[var(--color-secondary)]/30 text-xs mx-0.5">•</span>
+                         <span className="text-[11px] font-bold text-[var(--color-secondary)]/40">{post.time}</span>
                       </div>
                     </div>
-                    <button className="w-8 h-8 flex items-center justify-center text-[var(--app-text)]/40 transition-colors">
-                       <MoreVertical size={20} />
-                    </button>
                   </div>
 
                   <div className="space-y-4">
-                    <p className="px-4 text-[13px] font-medium leading-[1.6] text-[var(--app-text)]/80 text-justify">
+                    <p className="px-4 text-[13px] font-medium leading-[1.6] text-[var(--color-secondary)]/80 text-justify">
                       {post.content}
                     </p>
-                    <div className="bg-gray-100 overflow-hidden border-y border-[var(--app-text)]/10">
+                    <div className="bg-[var(--muted)] overflow-hidden border-y border-[var(--border)]">
                        <img src={post.image} alt="Content" className="w-full aspect-[4/5] object-cover" />
                     </div>
                   </div>
 
                   {/* Action Bar */}
-                  <div className="flex flex-col border-b border-[var(--app-text)]/5 bg-[var(--app-bg)]">
+                  <div className="flex flex-col border-b border-[var(--border)] bg-[var(--app-bg)]">
                      <div className="flex items-center justify-between px-4 py-3">
                         <div className="flex items-center gap-6">
-                           <button onClick={() => toggleLike(post.id)} className={`transition-colors ${likedPosts.has(post.id) ? "text-[var(--app-orange)]" : "text-[var(--app-text)]/80"} active:scale-95`}>
-                               <ThumbsUp size={24} primary={likedPosts.has(post.id) ? "var(--app-orange)" : undefined} />
+                           <button onClick={() => toggleLike(post.id)} className={`transition-colors ${likedPosts.has(post.id) ? "text-[var(--color-primary)]" : "text-[var(--color-secondary)]/80"} active:scale-95`}>
+                               <ThumbsUp size={24} primary={likedPosts.has(post.id) ? "var(--color-primary)" : undefined} />
                            </button>
-                           <button onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)} className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
+                           <button onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)} className="text-[var(--color-secondary)]/80 active:scale-95 transition-transform">
                                <MessageSquare size={24} />
                            </button>
-                           <button className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
+                           <button className="text-[var(--color-secondary)]/80 active:scale-95 transition-transform">
                                <Share size={24} />
                            </button>
                         </div>
@@ -282,7 +278,7 @@ export function Socials() {
                            Tip
                         </button>
                      </div>
-                     <div className="px-4 py-2 bg-[var(--app-shape-accent)]/[0.02] border-t border-[var(--app-text)]/[0.05] flex items-center gap-4 text-[var(--app-text)]/60 text-[10px] font-black uppercase tracking-widest">
+                     <div className="px-4 py-2 bg-[var(--app-shape-accent)]/[0.02] border-t border-[var(--border)] flex items-center gap-4 text-[var(--color-secondary)]/60 text-[10px] font-black uppercase tracking-widest">
                         <span>Like | {post.likes}</span>
                         <span>Comments | {post.comments.length}</span>
                         <span>Share | {post.shares}</span>
@@ -296,7 +292,7 @@ export function Socials() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="bg-[var(--app-bg-muted)]/50 overflow-hidden"
+                        className="bg-[var(--muted)]/50 overflow-hidden"
                       >
                         <div className="p-4 space-y-4">
                            <div className="flex gap-3">
@@ -306,11 +302,11 @@ export function Socials() {
                                 value={commentText}
                                 onChange={(e) => setCommentText(e.target.value)}
                                 onKeyDown={(e) => e.key === "Enter" && handleAddComment(post.id)}
-                                className="flex-1 bg-[var(--app-bg)] border border-[var(--app-text)]/10 px-4 py-2 text-sm font-medium outline-none focus:border-[var(--app-orange)]"
+                                className="flex-1 bg-[var(--app-bg)] border border-[var(--border)] px-4 py-2 text-sm font-medium outline-none focus:border-[var(--color-primary)] rounded-xl transition-all"
                               />
                               <button 
                                 onClick={() => handleAddComment(post.id)}
-                                className="bg-[var(--app-shape-accent)] text-white px-4 flex items-center justify-center shadow-[3px_3px_0px_var(--app-orange)] active:translate-x-0.5 active:translate-y-0.5"
+                                className="bg-[var(--color-primary)] text-white px-4 rounded-xl flex items-center justify-center shadow-md active:scale-95 transition-all"
                               >
                                 <Send size={16} primary="#fff" />
                               </button>
@@ -320,10 +316,10 @@ export function Socials() {
                                <div key={c.id} className="flex gap-3">
                                   <img src={c.avatar} alt="" className="w-8 h-8 rounded-full object-cover shrink-0" />
                                   <div className="flex flex-col">
-                                     <span className="text-[11px] font-black text-[var(--app-text)]">{c.user}</span>
-                                     <p className="text-[12px] text-[var(--app-text)]/70 leading-tight">{c.text}</p>
+                                     <span className="text-[11px] font-black text-[var(--color-secondary)]">{c.user}</span>
+                                     <p className="text-[12px] text-[var(--color-secondary)]/70 leading-tight">{c.text}</p>
                                   </div>
-                               </div>
+                                </div>
                              ))}
                            </div>
                         </div>
@@ -333,12 +329,12 @@ export function Socials() {
 
                   {/* Inline Comment Preview (if not expanded) */}
                   {activeCommentId !== post.id && post.comments.length > 0 && (
-                    <div className="mt-4 px-2 py-4 bg-[var(--app-shape-accent)]/[0.02] border-l-4 border-[var(--app-orange)]">
+                    <div className="mt-4 px-2 py-4 bg-[var(--app-shape-accent)]/[0.02] border-l-2 border-[var(--color-primary)]">
                       <div className="flex gap-3">
                         <img src={post.comments[0].avatar} alt="" className="w-7 h-7 rounded-full object-cover shrink-0" />
                         <div className="flex flex-col gap-0.5">
-                          <span className="text-[11px] font-black text-[var(--app-text)]">{post.comments[0].user}</span>
-                          <p className="text-[12px] text-[var(--app-text)]/60 leading-tight italic line-clamp-1">"{post.comments[0].text}"</p>
+                           <span className="text-[11px] font-black text-[var(--color-secondary)]">{post.comments[0].user}</span>
+                           <p className="text-[12px] text-[var(--color-secondary)]/60 leading-tight italic line-clamp-1">"{post.comments[0].text}"</p>
                         </div>
                       </div>
                     </div>
@@ -360,17 +356,17 @@ export function Socials() {
             />
             <motion.div 
               initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[120] bg-[var(--app-bg)] rounded-t-[32px] border-t border-[var(--app-text)] p-6 shadow-[0_-20px_40px_rgba(0,0,0,0.2)] pb-[env(safe-area-inset-bottom,20px)]"
+              className="fixed bottom-0 left-0 right-0 z-[120] bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--border)] p-6 shadow-2xl pb-[env(safe-area-inset-bottom,20px)]"
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className="font-black text-[18px] uppercase tracking-tighter text-[var(--app-text)]">Send a Tip</h3>
-                <button onClick={() => setActiveTipPostId(null)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-[var(--app-text)] active:scale-95"><X size={18}/></button>
+                <h3 className="font-black text-[18px] uppercase tracking-tighter text-[var(--color-secondary)]">Send a Tip</h3>
+                <button onClick={() => setActiveTipPostId(null)} className="w-8 h-8 rounded-full bg-[var(--muted)] flex items-center justify-center text-[var(--color-secondary)] active:scale-95"><X size={18}/></button>
               </div>
 
               <div className="mb-6">
                 <div className="flex justify-between items-end mb-4">
-                  <p className="text-[11px] font-bold text-[var(--app-text)]/60 uppercase tracking-widest">Select Amount</p>
-                  <span className="text-4xl font-black text-[var(--app-orange)]">K{customTip || tipAmount}</span>
+                  <p className="text-[11px] font-bold text-[var(--color-secondary)]/60 uppercase tracking-widest">Select Amount</p>
+                  <span className="text-4xl font-black text-[var(--color-primary)]">K{customTip || tipAmount}</span>
                 </div>
                 
                 {!customTip && (
@@ -381,7 +377,7 @@ export function Socials() {
                       onChange={(e) => setTipAmount(Number(e.target.value))}
                       className="w-full accent-[var(--app-orange)] h-3 bg-[var(--app-shape-accent)]/10 rounded-lg appearance-none cursor-pointer"
                     />
-                    <div className="flex justify-between text-[9px] font-black text-[var(--app-text)]/40 mt-2 uppercase tracking-widest">
+                    <div className="flex justify-between text-[9px] font-black text-[var(--color-secondary)]/40 mt-2 uppercase tracking-widest">
                       <span>K1</span>
                       <span>K50</span>
                       <span>K100</span>
@@ -391,7 +387,7 @@ export function Socials() {
 
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
-                    <label className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]/60 mb-1.5 block">Own Amount</label>
+                    <label className="text-[9px] font-black uppercase tracking-widest text-[var(--color-secondary)]/60 mb-1.5 block">Own Amount</label>
                     <input 
                       type="number" 
                       placeholder="Enter amount"
@@ -399,15 +395,15 @@ export function Socials() {
                       onChange={(e) => {
                         setCustomTip(e.target.value);
                       }}
-                      className="w-full py-3.5 px-4 rounded-xl border border-[var(--app-text)]/20 font-black text-[14px] outline-none focus:border-[var(--app-orange)] focus:shadow-[2px_2px_0px_var(--app-orange)] transition-all bg-[var(--app-bg-muted)]"
+                      className="w-full py-3.5 px-4 rounded-xl border border-[var(--border)] font-black text-[14px] outline-none focus:border-[var(--color-primary)] transition-all bg-[var(--muted)]"
                     />
                   </div>
                   <div>
-                    <label className="text-[9px] font-black uppercase tracking-widest text-[var(--app-text)]/60 mb-1.5 block">Frequency</label>
+                    <label className="text-[9px] font-black uppercase tracking-widest text-[var(--color-secondary)]/60 mb-1.5 block">Frequency</label>
                     <select 
                       value={repeatTip}
                       onChange={(e) => setRepeatTip(e.target.value as "once" | "weekly" | "monthly")}
-                      className="w-full py-3.5 px-4 rounded-xl border border-[var(--app-text)]/20 font-black text-[13px] outline-none focus:border-[var(--app-orange)] focus:shadow-[2px_2px_0px_var(--app-orange)] transition-all bg-[var(--app-bg-muted)] appearance-none uppercase tracking-wider"
+                      className="w-full py-3.5 px-4 rounded-xl border border-[var(--border)] font-black text-[13px] outline-none focus:border-[var(--color-primary)] transition-all bg-[var(--muted)] appearance-none uppercase tracking-wider"
                     >
                       <option value="once">One-time</option>
                       <option value="weekly">Weekly</option>
@@ -419,11 +415,11 @@ export function Socials() {
 
               <button 
                 onClick={handleTipConfirm}
-                className="w-full bg-[var(--app-shape-accent)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+                className="w-full bg-[var(--color-primary)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all"
               >
                 Confirm Tip
               </button>
-            </motion.div>
+              </motion.div>
           </>
         )}
       </AnimatePresence>
@@ -437,21 +433,21 @@ export function Socials() {
           >
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[var(--app-bg)] w-full max-w-sm rounded-[32px] border border-[var(--app-orange)] shadow-[12px_12px_0px_#000] p-8 relative overflow-hidden"
+              className="bg-[var(--app-bg)] w-full max-w-sm rounded-[40px] border border-[var(--border)] shadow-2xl p-8 relative overflow-hidden"
             >
-              <button onClick={() => setShowTipPassword(false)} className="absolute top-5 right-5 text-[var(--app-text)]/40 active:scale-90 bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center"><X size={16}/></button>
+              <button onClick={() => setShowTipPassword(false)} className="absolute top-5 right-5 text-[var(--color-secondary)]/40 active:scale-90 bg-[var(--muted)] rounded-full w-8 h-8 flex items-center justify-center"><X size={16}/></button>
               
               <div className="text-center mb-8 mt-2">
-                 <div className="w-16 h-16 bg-[var(--app-orange)]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[var(--app-orange)]">
-                    <ShieldCheck size={32} primary="var(--app-orange)" />
+                 <div className="w-16 h-16 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[var(--color-primary)]/20 shadow-sm">
+                    <ShieldCheck size={32} primary="var(--color-primary)" />
                  </div>
-                 <h3 className="font-black text-2xl uppercase tracking-tighter text-[var(--app-text)]">Put Password</h3>
-                 <p className="text-[11px] font-bold text-[var(--app-text)]/50 uppercase tracking-widest mt-2">Enter your 4-digit PIN to authorize K{customTip || tipAmount}</p>
+                 <h3 className="font-black text-2xl uppercase tracking-tighter text-[var(--color-secondary)]">Put Password</h3>
+                 <p className="text-[11px] font-bold text-[var(--color-secondary)]/50 uppercase tracking-widest mt-2">Enter your 4-digit PIN to authorize K{customTip || tipAmount}</p>
               </div>
 
               <div className="flex justify-center gap-3 mb-8">
                  {[1,2,3,4].map((_, i) => (
-                    <div key={i} className={`w-14 h-16 rounded-xl border flex items-center justify-center text-3xl font-black transition-all ${tipPin.length > i ? 'border-[var(--app-orange)] bg-[var(--app-orange)]/10 text-[var(--app-text)]' : 'border-[var(--app-text)]/20 bg-[var(--app-bg-muted)]'}`}>
+                    <div key={i} className={`w-14 h-16 rounded-xl border flex items-center justify-center text-3xl font-black transition-all ${tipPin.length > i ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-secondary)] shadow-sm' : 'border-[var(--border)] bg-[var(--app-bg)]'}`}>
                        {tipPin.length > i ? '•' : ''}
                     </div>
                  ))}
@@ -465,7 +461,7 @@ export function Socials() {
               <button 
                 disabled={tipPin.length !== 4}
                 onClick={handleTipSubmit}
-                className="w-full bg-[var(--app-orange)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all disabled:opacity-50 disabled:active:translate-x-0 disabled:active:translate-y-0 disabled:shadow-[4px_4px_0px_var(--app-text)] border border-[var(--app-text)]"
+                className="w-full bg-[var(--color-primary)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-md active:scale-95 transition-all disabled:opacity-50 disabled:active:scale-100 border border-[var(--border)]"
               >
                 Confirm Payment
               </button>
@@ -481,14 +477,14 @@ export function Socials() {
             initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}
             className="fixed inset-0 z-[150] bg-[var(--app-bg)] flex flex-col"
           >
-            <div className="h-16 flex items-center justify-between px-4 border-b border-[var(--app-text)] bg-[var(--app-shape-accent)] text-white shadow-md z-10">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-[var(--border)] bg-[var(--color-primary)] text-white shadow-md z-10">
                <button onClick={() => setShowCreatePost(false)} className="w-10 h-10 flex items-center justify-center active:scale-90"><X size={24} /></button>
                <h3 className="font-black text-sm uppercase tracking-[0.2em] mt-1">Create Post</h3>
                <div className="w-10" />
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 bg-[var(--color-neutral)]">
-               <h2 className="font-black text-2xl uppercase tracking-tighter text-[var(--app-text)] mb-6 leading-tight" style={{ fontFamily: "var(--font-header)" }}>What's your story today?</h2>
+            <div className="flex-1 overflow-y-auto p-6 bg-[var(--app-bg)]">
+               <h2 className="font-black text-2xl uppercase tracking-tighter text-[var(--color-secondary)] mb-6 leading-tight" style={{ fontFamily: "var(--font-header)" }}>What's your story today?</h2>
                
                <div className="grid grid-cols-2 gap-4 mb-8">
                   {[
@@ -497,46 +493,46 @@ export function Socials() {
                     { id: 'audio', icon: Mic, label: 'Audio' },
                     { id: 'link', icon: LinkIcon, label: 'Link' },
                   ].map(t => (
-                     <button key={t.id} className="flex flex-col items-center justify-center h-28 rounded-2xl border border-[var(--app-text)] bg-[var(--app-bg)] shadow-[4px_4px_0px_var(--app-orange)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group">
-                        <t.icon size={32} className="mb-2 text-[var(--app-text)] group-active:text-[var(--app-orange)] transition-colors" />
-                        <span className="text-[12px] font-black uppercase tracking-widest text-[var(--app-text)] group-active:text-[var(--app-orange)] transition-colors">{t.label}</span>
+                     <button key={t.id} className="flex flex-col items-center justify-center h-28 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] shadow-sm active:scale-95 transition-all group">
+                        <t.icon size={32} className="mb-2 text-[var(--color-secondary)] group-active:text-[var(--color-primary)] transition-colors" />
+                        <span className="text-[12px] font-black uppercase tracking-widest text-[var(--color-secondary)] group-active:text-[var(--color-primary)] transition-colors">{t.label}</span>
                      </button>
                   ))}
                </div>
 
                <div className="space-y-6">
                   <div>
-                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--app-text)]/60 mb-2 block">Caption</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/60 mb-2 block">Caption</label>
                     <textarea 
                       placeholder="Share your thoughts..."
                       value={newPostText}
                       onChange={(e) => setNewPostText(e.target.value.slice(0, 200))}
-                      className="w-full h-32 bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl p-4 text-[14px] font-bold text-[var(--app-text)] outline-none focus:border-[var(--app-orange)] focus:shadow-[2px_2px_0px_var(--app-orange)] resize-none transition-all"
+                      className="w-full h-32 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl p-4 text-[14px] font-bold text-[var(--color-secondary)] outline-none focus:border-[var(--color-primary)] transition-all resize-none shadow-sm"
                     />
-                    <div className="text-right mt-1.5 text-[10px] font-black text-[var(--app-text)]/40 uppercase tracking-widest">{newPostText.length}/200 MAX</div>
+                    <div className="text-right mt-1.5 text-[10px] font-black text-[var(--color-secondary)]/40 uppercase tracking-widest">{newPostText.length}/200 MAX</div>
                   </div>
 
                   <div className="space-y-4">
-                     <div className="flex items-center justify-between p-4 rounded-xl border border-[var(--app-text)]/10 bg-[var(--app-bg)]">
-                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--app-text)]">Location Tagging</span>
-                        <div className="w-10 h-6 bg-gray-200 rounded-full relative cursor-pointer"><div className="w-5 h-5 bg-[var(--app-bg)] rounded-full absolute top-0.5 left-0.5 shadow-sm" /></div>
+                     <div className="flex items-center justify-between p-4 rounded-xl border border-[var(--border)] bg-[var(--app-bg)] shadow-sm">
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--color-secondary)]">Location Tagging</span>
+                        <div className="w-10 h-6 bg-[var(--muted)] rounded-full relative cursor-pointer"><div className="w-5 h-5 bg-[var(--app-bg)] rounded-full absolute top-0.5 left-0.5 shadow-sm" /></div>
                      </div>
-                     <div className="flex items-center justify-between p-4 rounded-xl border border-[var(--app-text)] bg-[var(--app-bg)] shadow-[2px_2px_0px_var(--app-orange)]">
-                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--app-text)]">Allow Comments</span>
-                        <div className="w-10 h-6 bg-[var(--app-orange)] rounded-full relative cursor-pointer"><div className="w-5 h-5 bg-[var(--app-bg)] rounded-full absolute top-0.5 right-0.5 shadow-sm border border-white" /></div>
+                     <div className="flex items-center justify-between p-4 rounded-xl border border-[var(--border)] bg-[var(--app-bg)] shadow-sm">
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--color-secondary)]">Allow Comments</span>
+                        <div className="w-10 h-6 bg-[var(--color-primary)] rounded-full relative cursor-pointer"><div className="w-5 h-5 bg-[var(--app-bg)] rounded-full absolute top-0.5 right-0.5 shadow-sm border border-white" /></div>
                      </div>
-                     <div className="flex items-center justify-between p-4 rounded-xl border border-[var(--app-text)]/10 bg-[var(--app-bg)]">
-                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--app-text)]">Who can see this?</span>
-                        <span className="text-[11px] font-black text-[var(--app-orange)] uppercase tracking-widest bg-[var(--app-orange)]/10 px-3 py-1 rounded-full">Public</span>
+                     <div className="flex items-center justify-between p-4 rounded-xl border border-[var(--border)] bg-[var(--app-bg)] shadow-sm">
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[var(--color-secondary)]">Who can see this?</span>
+                        <span className="text-[11px] font-black text-[var(--color-primary)] uppercase tracking-widest bg-[var(--color-primary)]/10 px-3 py-1 rounded-full">Public</span>
                      </div>
                   </div>
                </div>
             </div>
 
-            <div className="p-6 border-t border-[var(--app-text)] bg-[var(--app-bg)] pb-[env(safe-area-inset-bottom,24px)]">
+            <div className="p-6 border-t border-[var(--border)] bg-[var(--app-bg)] pb-[env(safe-area-inset-bottom,24px)]">
                <button 
                 onClick={handleCreatePost}
-                className="w-full bg-[var(--app-orange)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-[4px_4px_0px_var(--app-text)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all border border-[var(--app-text)]"
+                className="w-full bg-[var(--color-primary)] text-white py-4.5 rounded-xl font-black text-[14px] uppercase tracking-[0.2em] shadow-lg active:scale-95 transition-all border border-[var(--border)]"
                >
                  Share Story
                </button>

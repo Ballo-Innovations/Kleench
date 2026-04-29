@@ -100,7 +100,7 @@ const FEED_ITEMS = [
     comments: 12,
     shares: 8,
     tag: "EARN",
-    tagColor: "bg-[var(--color-tertiary)]",
+    tagColor: "bg-[var(--color-growth)]",
   },
 ];
 
@@ -208,7 +208,7 @@ export function Home() {
             onClick={() => handleActionClick(item.id)}
             className="flex flex-col items-center justify-center gap-1 group outline-none cursor-pointer"
           >
-            <div className="w-10 h-10 bg-[var(--app-bg)] rounded-full flex flex-col items-center justify-center border border-slate-100 shadow-[0_4px_12px_rgba(0,51,102,0.05)] group-active:scale-95 transition-all">
+            <div className="w-10 h-10 bg-[var(--app-bg)] rounded-full flex flex-col items-center justify-center border border-[var(--border)] shadow-sm group-active:scale-95 transition-all">
               <item.icon size={22} />
             </div>
             <span className="font-bold text-[var(--app-text)] text-[7px] uppercase tracking-[0.15em] text-center leading-tight whitespace-pre-line w-14">
@@ -250,7 +250,7 @@ export function Home() {
                       <Link key={reel.id} to={reel.to}>
                         <motion.div
                           whileTap={{ scale: 0.96 }}
-                          className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-slate-200 overflow-hidden shadow-sm group rounded-xl"
+                          className="relative flex-shrink-0 w-28 h-40 bg-[var(--app-text-slate)] border border-[var(--border)] overflow-hidden shadow-sm group rounded-xl"
                         >
                           <img src={reel.image} alt={reel.label} className="w-full h-full object-cover grayscale-[0.2] transition-all duration-700" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
@@ -297,7 +297,7 @@ export function Home() {
                       {row1.map((product) => (
                         <motion.div key={product.id} className="flex-shrink-0 w-36 group">
                           <Link to={`/product/${product.id}`} className="block">
-                            <div className="relative aspect-square bg-slate-100 border border-slate-200 overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
+                            <div className="relative aspect-square bg-[var(--muted)] border border-[var(--border)] overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                             </div>
                             <h4 className="text-[9px] font-black uppercase text-[var(--app-text)] leading-tight line-clamp-1 transition-colors">{product.title}</h4>
@@ -312,7 +312,7 @@ export function Home() {
                       {row2.map((product) => (
                         <motion.div key={product.id} className="flex-shrink-0 w-36 group">
                           <Link to={`/product/${product.id}`} className="block">
-                            <div className="relative aspect-square bg-slate-100 border border-slate-200 overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
+                            <div className="relative aspect-square bg-[var(--muted)] border border-[var(--border)] overflow-hidden shadow-sm transition-all mb-2 rounded-xl">
                               <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-700" />
                               <div className="absolute top-0 right-0 bg-[var(--shape-primary)] text-white px-2 py-1 text-[7px] font-black uppercase tracking-[0.2em] rounded-bl-xl">TRENDY</div>
                             </div>
@@ -335,9 +335,9 @@ export function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  className="mx-5 border border-slate-200 bg-[var(--app-bg)] shadow-sm overflow-hidden group transition-all rounded-3xl"
+                  className="mx-5 border border-[var(--border)] bg-[var(--app-bg)] shadow-sm overflow-hidden group transition-all rounded-3xl"
                 >
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[var(--muted)]">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 flex items-center gap-2">
@@ -404,26 +404,26 @@ export function Home() {
             />
             <motion.div 
               initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t-[3px] border-[var(--app-text-slate)] shadow-[0_-20px_60px_rgba(0,0,0,0.3)] overflow-hidden pb-[env(safe-area-inset-bottom)]"
+              className="fixed bottom-0 left-0 right-0 z-[1010] w-full max-w-md mx-auto bg-[var(--app-bg)] rounded-t-[40px] border-t border-[var(--border)] shadow-2xl overflow-hidden pb-[env(safe-area-inset-bottom)]"
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-8">
                   <h3 className="text-xl font-black text-[var(--app-text-slate)] uppercase tracking-tighter">{activeSheet}</h3>
-                  <button onClick={() => setActiveSheet(null)} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center active:scale-90 transition-all border border-slate-200">
+                  <button onClick={() => setActiveSheet(null)} className="w-10 h-10 bg-[var(--muted)] rounded-full flex items-center justify-center active:scale-90 transition-all border border-[var(--border)] shadow-sm">
                     <X size={20} className="text-slate-600" />
                   </button>
                 </div>
 
                 {activeSheet === "Upload" && (
                   <div className="space-y-6">
-                    <div className="border-[3px] border-dashed border-[var(--app-text-slate)] bg-[var(--app-bg-muted)] rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-[4px_4px_0px_#0f172a]">
-                      <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-[4px_4px_0px_#0f172a] border-2 border-[var(--app-text-slate)] mb-4">
+                    <div className="border border-dashed border-[var(--border)] bg-[var(--app-bg-muted)] rounded-[32px] p-10 flex flex-col items-center justify-center text-center shadow-sm">
+                      <div className="w-20 h-20 bg-[var(--app-bg)] rounded-full flex items-center justify-center shadow-md border border-[var(--border)] mb-4">
                         <DuotoneUpload size={32} />
                       </div>
                       <h4 className="font-black text-[var(--app-text-slate)] text-sm mb-1 uppercase tracking-tight">Drag & Drop media</h4>
-                      <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
+                      <p className="text-[var(--muted-foreground)] text-[10px] uppercase font-black tracking-[0.2em]">or tap to browse files</p>
                     </div>
-                    <button className="w-full h-16 bg-[var(--app-text-slate)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)]">
+                    <button className="w-full h-16 bg-[var(--app-text-slate)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg">
                       Choose from Gallery
                     </button>
                   </div>
@@ -433,13 +433,13 @@ export function Home() {
                   <div className="space-y-8">
                     <div className="grid grid-cols-4 gap-6">
                       {[
-                        { name: "WhatsApp", bg: "bg-[var(--color-tertiary)]", icon: MessageCircle },
+                        { name: "WhatsApp", bg: "bg-[var(--color-growth)]", icon: MessageCircle },
                         { name: "Twitter", bg: "bg-black", icon: 'X' },
                         { name: "Facebook", bg: "bg-[#1877F2]", icon: DuotoneUsers },
                         { name: "Email", bg: "bg-slate-100", icon: DuotoneSend }
                       ].map(social => (
                         <div key={social.name} className="flex flex-col items-center gap-3 group cursor-pointer active:scale-90 transition-all">
-                          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border-2 border-[var(--app-text-slate)] shadow-[4px_4px_0px_#0f172a] ${social.bg} ${social.name==="Email" ? "text-[var(--app-text-slate)]":""}`}>
+                          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white border border-[var(--border)] shadow-md ${social.bg} ${social.name==="Email" ? "text-[var(--app-text-slate)]":""}`}>
                             {typeof social.icon === "string" ? <span className="font-black text-2xl">{social.icon}</span> : <social.icon size={28} />}
                           </div>
                           <span className="text-[9px] font-black text-[var(--app-text-slate)] uppercase tracking-widest leading-none">{social.name}</span>
@@ -448,7 +448,7 @@ export function Home() {
                     </div>
                     <div className="space-y-3">
                       <p className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Universal Link</p>
-                      <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border-2 border-[var(--app-text-slate)] shadow-[4px_4px_0px_#0f172a] p-1.5 focus-within:translate-x-0.5 focus-within:translate-y-0.5 focus-within:shadow-none transition-all">
+                      <div className="flex h-14 bg-[var(--app-bg-muted)] rounded-2xl border border-[var(--border)] shadow-sm p-1.5 focus-within:ring-2 focus-within:ring-[var(--color-primary)] transition-all">
                         <input type="text" readOnly value="https://kleench.com/a/48f9q" className="flex-1 bg-transparent px-4 text-xs font-black text-slate-700 outline-none" />
                         <button className="px-6 bg-[var(--app-text-slate)] text-white rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all">Copy</button>
                       </div>
@@ -460,13 +460,13 @@ export function Home() {
                   <div className="space-y-5">
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Full Name</label>
-                      <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-[var(--app-bg)] border-2 border-[var(--app-text-slate)] rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                      <input type="text" placeholder="e.g. John Doe" className="w-full h-14 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-sm font-black outline-none shadow-sm focus:border-[var(--color-primary)] transition-all" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-[var(--app-text-slate)] uppercase tracking-widest ml-1">Phone Number</label>
-                      <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border-2 border-[var(--app-text-slate)] rounded-2xl px-5 text-sm font-black outline-none shadow-[4px_4px_0px_#0f172a] focus:shadow-none transition-all" />
+                      <input type="tel" placeholder="+260..." className="w-full h-14 bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl px-5 text-sm font-black outline-none shadow-sm focus:border-[var(--color-primary)] transition-all" />
                     </div>
-                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-[var(--color-primary)] text-white border-2 border-[var(--app-text-slate)] rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-[6px_6px_0px_#0f172a] mt-4">
+                    <button onClick={() => { setActiveSheet(null); }} className="w-full h-16 bg-[var(--color-primary)] text-white rounded-2xl flex items-center justify-center font-black uppercase tracking-[0.2em] text-xs active:scale-95 transition-all shadow-lg mt-4">
                       Secure Application
                     </button>
                   </div>

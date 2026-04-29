@@ -37,9 +37,9 @@ export function Discover() {
   return (
     <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen bg-transparent">
 
-      {/* ── Standardized Orange Header ── */}
-      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[90px] mb-6"
-        style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-orange))", boxShadow: "0 10px 30px rgba(255,140,0,0.12)" }}>
+      {/* ── Standardized Header ── */}
+      <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[100px] mb-6"
+        style={{ background: "var(--color-primary)", boxShadow: "var(--shadow-lg)" }}>
         
         {/* grid texture */}
         <div className="absolute inset-0 opacity-[0.1]">
@@ -65,14 +65,14 @@ export function Discover() {
         </div>
 
         {/* Segmented control */}
-        <div className="relative z-10 bg-[var(--app-bg)]/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10 mb-2">
+        <div className="relative z-10 bg-[var(--app-bg)]/10 backdrop-blur-md p-1 rounded-2xl flex border border-white/10 mb-3">
           {(["advertising", "learning"] as const).map((tab) => (
             <button key={tab}
               onClick={() => setActiveTab(tab)}
-              className="flex-1 py-2.5 rounded-xl text-[12.5px] font-bold transition-all"
+              className="flex-1 py-2.5 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all"
               style={activeTab === tab
-                ? { background: "white", color: "var(--app-orange)" }
-                : { color: "rgba(255,255,255,0.65)", transition: "all 0.5s ease" }}>
+                ? { background: "var(--app-bg)", color: "var(--color-primary)", boxShadow: "var(--shadow-sm)" }
+                : { color: "rgba(255,255,255,0.7)", transition: "all 0.5s ease" }}>
               {tab === "advertising" ? "Advertising" : "Education"}
             </button>
           ))}
@@ -100,11 +100,10 @@ export function Discover() {
               </motion.div>
 
               {/* Launch card */}
-              <div className="bg-[var(--app-bg)] rounded-3xl p-6 shadow-xl border"
-                style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 16px 48px rgba(13,27,62,0.1)" }}>
+              <div className="bg-[var(--app-bg)] rounded-3xl p-6 shadow-md border border-[var(--border)]">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden flex-shrink-0"
-                    style={{ background: "#FFF7ED" }}>
+                    style={{ background: "var(--tint-orange)" }}>
                     <LottieIcon icon="megaphone" size={52} />
                   </div>
                   <div>
@@ -116,12 +115,11 @@ export function Discover() {
                 </div>
 
                 <motion.button whileTap={{ scale: 0.975 }} whileHover={{ y: -2 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  onClick={() => navigate("/ads/post")}
-                  className="w-full py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-2 mb-6"
-                  style={{ background: "linear-gradient(135deg, var(--app-orange), var(--app-orange))", fontFamily: "Agrandir, sans-serif", fontSize: "15px", boxShadow: "0 8px 28px rgba(255,140,0,0.28)" }}>
-                  <Plus size={18} strokeWidth={2.5}/> Create Campaign
-                </motion.button>
+                   transition={{ duration: 0.4, ease: "easeOut" }}
+                   onClick={() => navigate("/ads/post")}
+                   className="w-full py-4.5 rounded-2xl text-white font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-2 mb-6 bg-[var(--color-primary)] shadow-lg active:scale-95 transition-all">
+                   <Plus size={18} strokeWidth={2.5}/> Create Campaign
+                 </motion.button>
 
                 <div className="border-t pt-5 grid grid-cols-3 gap-3" style={{ borderColor: "rgba(13,27,62,0.06)" }}>
                   {[
@@ -157,10 +155,10 @@ export function Discover() {
                     return (
                       <motion.div key={ad.id}
                         initial={{ opacity: 0, y: yOff + 16 }} animate={{ opacity: 1, y: yOff }}
-                        transition={grace(0.1 + i * 0.1)}
-                        whileHover={{ y: yOff - 3 }}
-                        className="bg-[var(--app-bg)] border rounded-3xl p-5 flex items-center gap-4"
-                        style={{ borderColor: "rgba(13,27,62,0.06)", boxShadow: "0 3px 16px rgba(13,27,62,0.05)", transition: "box-shadow 0.5s ease" }}>
+                         transition={grace(0.1 + i * 0.1)}
+                         whileHover={{ y: yOff - 3 }}
+                         className="bg-[var(--app-bg)] border border-[var(--border)] rounded-3xl p-5 flex items-center gap-4 shadow-sm"
+                       >
                         <div className="w-13 h-13 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden"
                           style={{ background: `${ad.accent}12`, width: 52, height: 52 }}>
                           <LottieIcon icon={ad.icon} size={40} />
@@ -170,7 +168,7 @@ export function Discover() {
                           <p className="text-[11px] mt-0.5" style={{ color: "rgba(13,27,62,0.42)" }}>Budget: <span style={{ color: "var(--app-text-alt)", fontWeight: 700 }}>{ad.budget}</span></p>
                         </div>
                         <div className="px-3 py-1.5 rounded-full flex items-center gap-1.5"
-                          style={{ background: "#FFF7ED" }}>
+                          style={{ background: "var(--tint-orange)" }}>
                           <TrendingUp size={10} style={{ color: "var(--app-orange)" }}/>
                           <p className="text-[11px] font-bold" style={{ color: "var(--app-orange)" }}>{ad.reach}</p>
                         </div>

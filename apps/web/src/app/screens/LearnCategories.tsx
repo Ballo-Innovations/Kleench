@@ -84,14 +84,14 @@ export function LearnCategories() {
       <div className="px-4 mt-1 relative z-20 space-y-3">
         {/* ── Search Bar ── */}
         <div className="flex items-center gap-2">
-          <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-gray-100">
+          <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-[var(--border)]">
             <Search size={14} primary="#94a3b8" className="mr-2 shrink-0" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search topics, courses..."
-              className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-gray-400 text-[11px]"
+              className="flex-1 h-full bg-transparent outline-none text-slate-800 font-bold placeholder:text-[var(--muted-foreground)] text-[11px]"
             />
           </div>
         </div>

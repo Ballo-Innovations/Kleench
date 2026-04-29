@@ -46,10 +46,10 @@ export function Deposit() {
         </div>
 
         {/* Amount Stepper */}
-        <div className="bg-[var(--app-bg)] rounded-3xl p-8 mb-10 border-2 border-gray-100 shadow-[0_15px_35px_rgba(0,51,102,0.08)] flex items-center justify-between">
+        <div className="bg-[var(--app-bg)] rounded-3xl p-8 mb-10 border-2 border-[var(--border)] shadow-[0_15px_35px_rgba(0,51,102,0.08)] flex items-center justify-between">
           <button 
             onClick={() => setAmount(Math.max(0, amount - 50))}
-            className="w-12 h-12 rounded-full border border-gray-100 bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
+            className="w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
           >
             <Minus size={22} strokeWidth={3} />
           </button>
@@ -60,7 +60,7 @@ export function Deposit() {
 
           <button 
             onClick={() => setAmount(amount + 50)}
-            className="w-12 h-12 rounded-full border border-gray-100 bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
+            className="w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--app-bg-muted)] flex items-center justify-center text-[var(--app-text)] active:scale-90 transition-all shadow-sm"
           >
             <Plus size={22} strokeWidth={3} />
           </button>
@@ -71,7 +71,7 @@ export function Deposit() {
           <h3 className="text-sm font-black uppercase tracking-widest mb-4">Select Payment Method</h3>
           
           {/* Main Selector */}
-          <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-gray-100 p-5 shadow-[0_10px_25px_rgba(0,51,102,0.05)] mb-8 flex items-center justify-center">
+          <div className="bg-[var(--app-bg)] rounded-2xl border-2 border-[var(--border)] p-5 shadow-[0_10px_25px_rgba(0,51,102,0.05)] mb-8 flex items-center justify-center">
             <span className="text-2xl font-medium text-[var(--app-text)]/40 font-sans tracking-tight">Mobile Money</span>
           </div>
 

@@ -97,7 +97,7 @@ export function Marketplace() {
               {[
                 { icon: Tag, label: "SELL", color: "text-[var(--color-primary)]" },
                 { icon: FileText, label: "LIST", color: "text-[var(--color-secondary)]" },
-                { icon: UserPlus, label: "REFER", color: "text-[var(--color-tertiary)]" },
+                { icon: UserPlus, label: "REFER", color: "text-[var(--color-growth)]" },
                 { icon: BadgeCheck, label: "AGENT", color: "text-[var(--shape-primary)]" }
               ].map((action, i) => (
                 <motion.button 
@@ -107,7 +107,7 @@ export function Marketplace() {
                   className="flex flex-col items-center gap-2 group cursor-pointer"
                   style={{ touchAction: "manipulation" }}
                 >
-                  <div className={`w-[60px] h-[60px] rounded-2xl border border-[var(--app-text)]/20 bg-[var(--app-bg)] flex items-center justify-center shadow-lg shadow-[var(--app-text)]/15 active:scale-95 transition-all ${action.color}`}>
+                  <div className={`w-[60px] h-[60px] rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] flex items-center justify-center shadow-lg active:scale-95 transition-all ${action.color}`}>
                     <action.icon size={26} strokeWidth={('stroke' in action ? action.stroke : 2.5) as number} />
                   </div>
                   <span className="text-[10px] font-black tracking-widest text-[var(--app-text)] uppercase">{action.label}</span>
@@ -133,7 +133,7 @@ export function Marketplace() {
 
           {/* Fused Segmented Pill Tabs — zero gap toggle */}
           <div className="w-full">
-             <div className="flex border border-[var(--app-text)]/20 rounded-full shadow-md shadow-[var(--app-text)]/10 overflow-hidden">
+             <div className="flex border border-[var(--border)] rounded-full shadow-md shadow-[var(--app-text)]/10 overflow-hidden">
                 {(["PRODUCTS", "SERVICES"] as const).map((tab, i) => {
                    const isActive = activeTab === tab;
                    return (
@@ -144,7 +144,7 @@ export function Marketplace() {
                          isActive
                            ? 'bg-[var(--app-shape-accent)] text-white'
                            : 'bg-[var(--app-bg)] text-[var(--app-text)]/55 hover:text-[var(--app-text)] hover:bg-[var(--app-shape-accent)]/5'
-                       } ${i === 0 ? 'border-r-[1.5px] border-[var(--app-text)]' : ''}`}
+                       } ${i === 0 ? 'border-r-[1.5px] border-[var(--border)]' : ''}`}
                      >
                        <span className="text-[10px] font-black tracking-[0.2em] uppercase">{tab}</span>
                      </button>
@@ -155,18 +155,18 @@ export function Marketplace() {
 
           {activeTab === "PRODUCTS" ? (
              <section>
-               <div className="flex items-center justify-between mb-3 border-b-2 border-[var(--app-text)]/10 pb-2">
+               <div className="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-2">
                   <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">PRODUCTS</h3>
                   <button onClick={() => toast.success("Loading complete catalog...")} className="text-[var(--app-orange)] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
-                    See All <ChevronRight size={12} strokeWidth={3} />
+                    See All <ChevronRight size={12} strokeWidth={2} />
                   </button>
                </div>
                
                <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar w-full">
                  {MARKET_PRODUCTS.map((product) => (
                    <Link to={`/product/${product.id}`} key={product.id} className="block shrink-0 snap-start w-[110px]">
-                     <div className="bg-[var(--app-bg)] border-2 border-[var(--app-text)]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
-                       <div className="aspect-square bg-[var(--app-bg)] relative border-b-2 border-[var(--app-text)]">
+                     <div className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
+                       <div className="aspect-square bg-[var(--app-bg)] relative border-b border-[var(--border)]">
                           <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
                        </div>
                        <div className="p-2 bg-[var(--app-bg)] flex flex-col gap-0.5 justify-between flex-1">
@@ -183,7 +183,7 @@ export function Marketplace() {
              </section>
           ) : (
              <section>
-               <div className="flex items-center justify-between mb-3 border-b-[3px] border-[var(--app-text)] pb-2">
+               <div className="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-2">
                   <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">SERVICES</h3>
                </div>
                <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
@@ -194,12 +194,12 @@ export function Marketplace() {
                    { id: "zppa", label: "HIRE TALENT", title: "ZPPA", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&q=80", isLogo: false },
                  ].map((service) => (
                    <motion.button whileTap={{ scale: 0.97 }} onClick={() => toast("Redirecting to " + service.title + " portal...")} key={service.id} className="block shrink-0 snap-start w-[140px] focus:outline-none">
-                     <div className="bg-[var(--app-bg)] border border-[var(--app-text)]/20 rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-lg shadow-[var(--app-text)]/15 transition-colors">
-                       <div className="h-[100px] relative border-b-[3px] border-[var(--app-text)] bg-[var(--app-bg)]">
+                     <div className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl overflow-hidden flex flex-col h-full relative cursor-pointer shadow-md transition-colors">
+                       <div className="h-[100px] relative border-b border-[var(--border)] bg-[var(--muted)]">
                           <img src={service.image} alt={service.title} className="w-full h-full object-cover grayscale-[0.2]" />
                           <div className="absolute inset-0 bg-black/40" />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-3 text-center">
-                             <span className="text-[11px] font-black text-white px-2 py-1 bg-[var(--shape-primary)]/80 border-2 border-white transform -rotate-12 shadow-[4px_4px_0_var(--color-primary)] uppercase tracking-widest">{service.title}</span>
+                             <span className="text-[11px] font-black text-white px-2 py-1 bg-[var(--shape-primary)]/80 border border-white transform -rotate-12 shadow-md uppercase tracking-widest">{service.title}</span>
                           </div>
                        </div>
                        <div className="py-2.5 px-2 bg-[var(--app-bg)] flex items-center justify-center min-h-[40px]">
@@ -214,13 +214,13 @@ export function Marketplace() {
 
           {/* Market Intelligence Ticker */}
           <section>
-            <div className="mb-4 border-b-[3px] border-[var(--app-text)] pb-2">
+            <div className="mb-4 border-b border-[var(--border)] pb-2">
                <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">MARKET INTELLIGENCE</h3>
             </div>
             
             <div className="flex overflow-x-auto snap-x snap-mandatory pb-5 gap-4 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_INTEL.map((intel) => (
-                  <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-[var(--app-shape-accent)] rounded-2xl p-3 border border-[var(--app-text)]/40 shadow-lg shadow-[var(--app-text)]/25 flex flex-col relative overflow-hidden h-[150px]">
+                  <div key={intel.id} className="shrink-0 snap-start w-[110px] bg-[var(--app-shape-accent)] rounded-2xl p-3 border border-[var(--border)] shadow-sm flex flex-col relative overflow-hidden h-[150px]">
                      {/* Y-axis labels */}
                      <div className="absolute inset-0 opacity-20 pointer-events-none flex flex-col justify-between p-3">
                         <span className="text-[6px] font-black text-white">100</span>
@@ -251,7 +251,7 @@ export function Marketplace() {
                      </div>
 
                      {/* Live dot + X-axis */}
-                     <div className="flex items-center justify-between mt-auto z-10 border-t-2 border-white/20 pt-2">
+                     <div className="flex items-center justify-between mt-auto z-10 border-t border-white/20 pt-2">
                         <div className="flex items-center gap-1.5">
                            <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse block shadow-[0_0_8px_var(--color-primary)]" />
                            <span className="text-[7px] text-white font-black uppercase tracking-[0.2em] leading-none">LIVE</span>
@@ -265,14 +265,14 @@ export function Marketplace() {
 
           {/* Business Listings — Unified Horizontal Directory Block */}
           <section>
-            <div className="bg-[var(--app-shape-accent)] px-4 py-2 border-t-[3px] border-x-[3px] border-[var(--app-text)] rounded-t-2xl">
+            <div className="bg-[var(--app-shape-accent)] px-4 py-2 border-t border-x border-[var(--border)] rounded-t-2xl">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">BUSINESS LISTINGS</h3>
             </div>
-            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--app-text)]/30 rounded-b-2xl shadow-lg shadow-[var(--app-text)]/20 bg-[var(--app-shape-accent)]">
+            <div className="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--border)] rounded-b-2xl shadow-sm bg-[var(--app-shape-accent)]">
                {BUSINESSES.map((business, i) => (
-                 <div key={i} onClick={() => toast(`Visiting ${business.name} profile...`)} className="shrink-0 snap-start w-[150px] bg-[var(--app-bg)] cursor-pointer group flex flex-col h-[185px] border-r-[1px] border-[var(--app-text)]/10 last:border-r-0">
-                   <div className="flex-1 bg-[#F8F9FA] flex items-center justify-center border-b-[2px] border-[var(--app-text)]/10 p-4 relative group-hover:bg-[var(--app-shape-accent)]/5 transition-colors">
-                      <div className="w-16 h-16 rounded-full bg-[var(--app-bg)] border border-[var(--app-text)]/20 flex items-center justify-center overflow-hidden shadow-lg shadow-[var(--app-text)]/20 group-hover:scale-110 transition-transform duration-300">
+                 <div key={i} onClick={() => toast(`Visiting ${business.name} profile...`)} className="shrink-0 snap-start w-[150px] bg-[var(--app-bg)] cursor-pointer group flex flex-col h-[185px] border-r-[1px] border-[var(--border)] last:border-r-0">
+                   <div className="flex-1 bg-[var(--muted)] flex items-center justify-center border-b border-[var(--border)] p-4 relative group-hover:bg-[var(--app-shape-accent)]/5 transition-colors">
+                      <div className="w-16 h-16 rounded-full bg-[var(--app-bg)] border border-[var(--border)] flex items-center justify-center overflow-hidden shadow-sm group-hover:scale-110 transition-transform duration-300">
                          {('image' in business && business.image) ? (
                             <img src={business.image as string} alt={business.name} className="w-[85%] h-[85%] object-contain" />
                          ) : (
@@ -280,7 +280,7 @@ export function Marketplace() {
                          )}
                       </div>
                       <div className="absolute top-2 right-2 flex gap-1">
-                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-tertiary)] animate-pulse" />
+                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-growth)] animate-pulse" />
                       </div>
                    </div>
                    <div className="p-3 flex flex-col gap-1 h-[75px] justify-between">
@@ -294,7 +294,7 @@ export function Marketplace() {
                ))}
                {/* Terminal VIEW ALL block */}
                <div onClick={() => toast("Viewing all registered businesses...")} className="shrink-0 snap-start w-[120px] bg-[var(--app-shape-accent)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
-                  <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full border border-white/50 flex items-center justify-center">
                     <ChevronRight size={24} className="text-white ml-0.5" strokeWidth={3} />
                   </div>
                   <span className="text-[9px] font-black text-white uppercase tracking-[0.2em] text-center leading-tight">VIEW ALL<br/>BUSINESSES →</span>
@@ -304,10 +304,10 @@ export function Marketplace() {
 
           {/* Window Shopping — Unified Shop Directory Block */}
           <section>
-            <div className="bg-[var(--app-shape-accent)] px-4 py-2 border-t-[3px] border-x-[3px] border-[var(--app-text)] rounded-t-2xl">
+            <div className="bg-[var(--app-shape-accent)] px-4 py-2 border-t border-x border-[var(--border)] rounded-t-2xl">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">WINDOW SHOPPING</h3>
             </div>
-            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--app-text)]/30 rounded-b-2xl shadow-lg shadow-[var(--app-text)]/20 bg-[var(--app-shape-accent)]">
+            <div className="flex gap-[3px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--border)] rounded-b-2xl shadow-sm bg-[var(--app-shape-accent)]">
                {[
                  { name: "THE SCENT STORE ZAMBIA",  category: "Beauty & Fragrance",   image: scentStoreImg },
                  { name: "LUSAKA TECH HUB",          category: "Electronics & Tech",    image: techHubImg },
@@ -315,7 +315,7 @@ export function Marketplace() {
                  { name: "GREENLEAF ORGANICS",       category: "Food & Health",         image: greenleafImg },
                ].map((shop, i) => (
                  <div key={i} onClick={() => toast(`Opening ${shop.name}...`)} className="shrink-0 snap-start w-[140px] bg-[var(--app-bg)] cursor-pointer group flex flex-col h-[185px]">
-                   <div className="flex-1 flex items-center justify-center border-b-[2px] border-[var(--app-text)]/10 overflow-hidden bg-[var(--app-bg-muted)]">
+                   <div className="flex-1 flex items-center justify-center border-b border-[var(--border)] overflow-hidden bg-[var(--muted)]">
                       <img src={shop.image} alt={shop.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                    </div>
                    <div className="p-3 flex flex-col gap-1 h-[65px] justify-center">
@@ -326,7 +326,7 @@ export function Marketplace() {
                ))}
                {/* Terminal VIEW ALL block */}
                <div onClick={() => toast("Viewing all shops...")} className="shrink-0 snap-start w-[110px] bg-[var(--app-shape-accent)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
-                  <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full border border-white/50 flex items-center justify-center">
                     <ChevronRight size={24} className="text-white ml-0.5" strokeWidth={3} />
                   </div>
                   <span className="text-[9px] font-black text-white uppercase tracking-[0.2em] text-center leading-tight">VIEW ALL<br/>SHOPS →</span>
@@ -336,15 +336,15 @@ export function Marketplace() {
 
           {/* New Section: BIG DEALS */}
           <section>
-             <div className="mb-3 border-b-2 border-[var(--app-text)]/10 pb-2 flex items-center justify-between">
+             <div className="mb-3 border-b border-[var(--border)] pb-2 flex items-center justify-between">
                 <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">BIG DEALS</h3>
                 <span className="text-[9px] font-black text-[var(--color-primary)] uppercase tracking-widest">🔥 Limited Time</span>
              </div>
              <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_PRODUCTS.map((product) => (
                  <Link to={`/product/${product.id}`} key={`deal-${product.id}`} className="block shrink-0 snap-start w-[110px]">
-                   <div className="bg-[var(--app-bg)] border-2 border-[var(--app-text)]/10 rounded-xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
-                     <div className="aspect-square bg-[var(--app-bg)] relative border-b-2 border-[var(--app-text)]">
+                   <div className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm flex flex-col h-full active:scale-95 transition-transform">
+                     <div className="aspect-square bg-[var(--app-bg)] relative border-b border-[var(--border)]">
                         <div className="absolute top-1.5 left-1.5 bg-[var(--color-primary)] text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase transform -rotate-3 z-10 shadow-sm">HOT</div>
                         <ImageWithFallback src={product.image} alt={product.title} className="w-full h-full object-cover" />
                      </div>
