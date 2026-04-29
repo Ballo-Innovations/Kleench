@@ -22,8 +22,6 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
     >
       <GlobalBackground />
       
-      {/* Subtle static ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-20" style={{ background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 70%)' }} />
 
       {/* Content */}
       <div className="relative z-10 text-center">
