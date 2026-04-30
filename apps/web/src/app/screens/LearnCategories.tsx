@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  DuotoneSearch as Search,
   DuotonePlay as Play,
   DuotoneHeadphones as Headphones,
   DuotoneUser as UserIcon,

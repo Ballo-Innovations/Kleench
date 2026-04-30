@@ -23,11 +23,12 @@
   --tint-neutral: #F8F9FB;
 
   /* Typography */
-  --font-header: 'Space Grotesk', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-header: 'Editorial', serif;
+  --font-body: 'Maqui', sans-serif;
+  --font-display: 'Maqui', sans-serif;
 
   /* Semantic Mappings */
-  --font-size: 16px;
+  --font-size: 18px; /* Increased from 16px */
   --background: var(--color-neutral);
   --foreground: var(--color-secondary);
   --card: #FFFFFF;
@@ -167,15 +168,16 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-header);
-    font-weight: 700;
-    line-height: 1.2;
+    font-weight: normal; /* Qunko is already bold by nature */
+    line-height: 1.1;
     color: var(--color-secondary);
+    letter-spacing: -0.02em;
   }
 
-  h1 { font-size: var(--text-3xl); }
-  h2 { font-size: var(--text-2xl); }
-  h3 { font-size: var(--text-xl); }
-  h4 { font-size: var(--text-lg); }
+  h1 { font-size: 3.5rem; letter-spacing: -0.04em; }
+  h2 { font-size: 2.75rem; letter-spacing: -0.03em; }
+  h3 { font-size: 2rem; letter-spacing: -0.02em; }
+  h4 { font-size: 1.5rem; letter-spacing: -0.01em; }
 
   label {
     font-size: var(--text-sm);
@@ -184,10 +186,11 @@
   }
 
   button {
-    font-family: var(--font-body);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-weight: normal;
     text-transform: uppercase;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.1em;
+    font-size: 1.1rem;
   }
 
   input {
