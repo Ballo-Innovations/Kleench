@@ -8,7 +8,7 @@ export function GlobalBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[var(--app-bg)]">
       <div
-        className="absolute inset-0 z-0 opacity-[0.3]"
+        className="absolute inset-0 z-0 opacity-[0.15]"
         style={{
           backgroundImage: `
             linear-gradient(to right, var(--color-secondary) 1px, transparent 1px),
