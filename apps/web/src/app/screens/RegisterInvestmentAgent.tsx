@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ChevronRight, UserCheck, ShieldCheck, HandCoins, Handshake, Megaphone } from "lucide-react";
+import { ChevronRight, UserCheck, Building2, LineChart, Megaphone } from "lucide-react";
 import { useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
 
@@ -9,14 +9,13 @@ const grace = (delay = 0) => ({
 });
 
 const AGENT_TYPES = [
-  { id: "referral", label: "Referral Agent", desc: "Refer donors and campaigns to earn commissions", icon: UserCheck },
-  { id: "verification", label: "Verification Agent", desc: "Verify campaign authenticity and donor identities", icon: ShieldCheck },
-  { id: "fundraising", label: "Fundraising Agent", desc: "Drive campaign fundraising and community outreach", icon: HandCoins },
-  { id: "relationship", label: "Donor Relationship Agent", desc: "Build and manage donor relationships", icon: Handshake },
-  { id: "digital", label: "Digital Promotion Agent", desc: "Promote campaigns across digital channels", icon: Megaphone },
+  { id: "referral", label: "Referral Agent", desc: "Refer investors and projects to earn commissions", icon: UserCheck },
+  { id: "corporate", label: "Corporate Agent", desc: "Represent companies seeking investment capital", icon: Building2 },
+  { id: "analyst", label: "Investment Analyst Agent", desc: "Provide project analysis and due diligence reports", icon: LineChart },
+  { id: "digital", label: "Digital Promotion Agent", desc: "Promote investment campaigns across digital channels", icon: Megaphone },
 ];
 
-export function DonateAgentRegister() {
+export function RegisterInvestmentAgent() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState("");
 
@@ -28,7 +27,7 @@ export function DonateAgentRegister() {
 
       <div className="px-5 pt-6">
         <h2 className="font-black text-[20px] text-[var(--color-secondary)] uppercase tracking-tight mb-2">Agent Category</h2>
-        <p className="text-[13px] font-semibold text-[var(--color-secondary)]/50 mb-6">Select the agent role you want to fill within the Kleench donate ecosystem.</p>
+        <p className="text-[13px] font-semibold text-[var(--color-secondary)]/50 mb-6">Select the agent role you want to fill within the Kleench invest ecosystem.</p>
 
         <div className="space-y-3 mb-10">
           {AGENT_TYPES.map(({ id, label, desc, icon: Icon }, i) => (
@@ -49,7 +48,7 @@ export function DonateAgentRegister() {
           ))}
         </div>
 
-        <button disabled={!selected} onClick={() => navigate("/donate/register-agent/details", { state: { agentType: selected } })}
+        <button disabled={!selected} onClick={() => navigate("/crowdfunding/register-agent/details", { state: { agentType: selected } })}
           className="w-full py-4 rounded-2xl bg-[#E85D3F] text-white font-black uppercase tracking-widest text-[13px] flex items-center justify-center gap-3 disabled:opacity-40 shadow-md active:scale-95 transition-all">
           Continue <ChevronRight size={18} />
         </button>

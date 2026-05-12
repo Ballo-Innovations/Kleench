@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { ChevronRight } from "lucide-react";
-import { 
-  DuotoneSearch as Search, 
-  DuotoneTrendingUp as TrendingUp, 
-  DuotoneBriefcase as Briefcase, 
-  DuotoneHistory as History, 
-  DuotoneLineChart as LineChart, 
-  DuotoneBadgeCheck as BadgeCheck 
+import {
+  DuotoneSearch as Search,
+  DuotoneTrendingUp as TrendingUp,
+  DuotoneUsers as Users,
+  DuotoneLineChart as LineChart,
+  DuotoneBadgeCheck as BadgeCheck,
 } from "../components/DuotoneIcon";
 import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
@@ -41,9 +40,9 @@ const FILTERS = [
 ];
 
 const ACTIONS = [
-  { label: "INVEST", icon: TrendingUp, color: "text-[#E85D3F]" },
-  { label: "PORTFOLIO", icon: Briefcase, color: "text-[var(--app-text)]" },
-  { label: "RETURNS", icon: History, color: "text-[#00C853]" }
+  { label: "CREATE", icon: TrendingUp, color: "text-[#E85D3F]" },
+  { label: "INVESTOR", icon: Users, color: "text-[var(--app-text)]" },
+  { label: "REFERRAL", icon: LineChart, color: "text-[#00C853]" },
 ];
 
 const PROJECTS = [
@@ -92,8 +91,9 @@ export function Crowdfunding() {
 
   const handleAction = (label: string) => {
     setActiveAction(label);
-    if (label === "INVEST") toast.success("Live investment markets locked. Standby.");
-    else if (label === "PORTFOLIO" || label === "RETURNS") navigate("/wallet");
+    if (label === "CREATE") navigate("/crowdfunding/create");
+    else if (label === "INVESTOR") navigate("/crowdfunding/listed-investors");
+    else if (label === "REFERRAL") navigate("/crowdfunding/register-agent");
   };
 
   return (
@@ -181,7 +181,7 @@ export function Crowdfunding() {
           {/* Crowdfunding Property Cards */}
           <div className="px-5 flex flex-col gap-5 pb-8">
              {PROJECTS.map((proj) => (
-                <div key={proj.id} className="w-full bg-[#f4ebe1]/40 border-[3px] border-[var(--app-text)] rounded-[24px] p-3 shadow-[6px_6px_0_var(--app-text)] relative z-0 overflow-hidden">
+                <div key={proj.id} onClick={() => navigate(`/crowdfunding/project/${proj.id}`)} className="w-full bg-[#f4ebe1]/40 border-[3px] border-[var(--app-text)] rounded-[24px] p-3 shadow-[6px_6px_0_var(--app-text)] relative z-0 overflow-hidden cursor-pointer">
                    
                    {/* Card Header Section */}
                    <div className="flex flex-col items-start gap-2 mb-3 mt-1">
@@ -235,10 +235,10 @@ export function Crowdfunding() {
 
                    {/* Main Interaction Action Base */}
                    <div className="flex items-center gap-3 pt-2">
-                      <button onClick={() => toast.info("Downloading official prospectus PDF...")} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[var(--app-text)] shadow-[3px_3px_0_var(--app-text)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={(e) => { e.stopPropagation(); toast.info("Downloading official prospectus PDF..."); }} className="flex-1 bg-[#1877F2] text-white border-[3px] border-[var(--app-text)] shadow-[3px_3px_0_var(--app-text)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <LineChart size={16} strokeWidth={3} className="-ml-1 group-active:scale-110 transition-transform" /> VIEW PROSPECTUS
                       </button>
-                      <button onClick={() => toast.success("Preparing secure investment contract...")} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[var(--app-text)] shadow-[3px_3px_0_var(--app-text)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
+                      <button onClick={(e) => { e.stopPropagation(); navigate(`/crowdfunding/project/${proj.id}`); }} className="flex-1 bg-[#ff7345] text-white border-[3px] border-[var(--app-text)] shadow-[3px_3px_0_var(--app-text)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all group">
                          <TrendingUp size={16} strokeWidth={3} className="group-active:scale-110 transition-transform" /> INVEST NOW
                       </button>
                    </div>

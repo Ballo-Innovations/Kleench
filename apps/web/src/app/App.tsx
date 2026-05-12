@@ -77,6 +77,20 @@ import { DonateDetail } from "./screens/DonateDetail";
 import { DonatePayment } from "./screens/DonatePayment";
 import { DonateConfirm } from "./screens/DonateConfirm";
 import { DonateSuccess } from "./screens/DonateSuccess";
+import { CreateInvestment } from "./screens/CreateInvestment";
+import { ListedInvestors } from "./screens/ListedInvestors";
+import { InvestorTypeSelection } from "./screens/InvestorTypeSelection";
+import { InvestorRegistrationDetails } from "./screens/InvestorRegistrationDetails";
+import { InvestmentPreferences } from "./screens/InvestmentPreferences";
+import { InvestorReviewSubmit } from "./screens/InvestorReviewSubmit";
+import { InvestorSuccess } from "./screens/InvestorSuccess";
+import { RegisterInvestmentAgent } from "./screens/RegisterInvestmentAgent";
+import { InvestmentAgentDetails } from "./screens/InvestmentAgentDetails";
+import { InvestmentAgentSuccess } from "./screens/InvestmentAgentSuccess";
+import { InvestmentDetails } from "./screens/InvestmentDetails";
+import { InvestmentAmount } from "./screens/InvestmentAmount";
+import { InvestmentConfirmation } from "./screens/InvestmentConfirmation";
+import { InvestmentSuccess } from "./screens/InvestmentSuccess";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -199,6 +213,20 @@ const router = createBrowserRouter([
       { path: "donate/campaign/:campaignId/confirm", element: <DonateConfirm /> },
       { path: "donate/campaign/:campaignId/success", element: <DonateSuccess /> },
       { path: "crowdfunding", element: <Crowdfunding /> },
+      { path: "crowdfunding/create", element: <CreateInvestment /> },
+      { path: "crowdfunding/listed-investors", element: <ListedInvestors /> },
+      { path: "crowdfunding/register-investor", element: <InvestorTypeSelection /> },
+      { path: "crowdfunding/register-investor/details", element: <InvestorRegistrationDetails /> },
+      { path: "crowdfunding/register-investor/preferences", element: <InvestmentPreferences /> },
+      { path: "crowdfunding/register-investor/review", element: <InvestorReviewSubmit /> },
+      { path: "crowdfunding/register-investor/success", element: <InvestorSuccess /> },
+      { path: "crowdfunding/register-agent", element: <RegisterInvestmentAgent /> },
+      { path: "crowdfunding/register-agent/details", element: <InvestmentAgentDetails /> },
+      { path: "crowdfunding/register-agent/success", element: <InvestmentAgentSuccess /> },
+      { path: "crowdfunding/project/:projectId", element: <InvestmentDetails /> },
+      { path: "crowdfunding/project/:projectId/amount", element: <InvestmentAmount /> },
+      { path: "crowdfunding/project/:projectId/confirm", element: <InvestmentConfirmation /> },
+      { path: "crowdfunding/project/:projectId/success", element: <InvestmentSuccess /> },
       { path: "referral", element: <Referral /> },
       { path: "onboarding-page", element: <OnboardingPage /> },
       { path: "offers", element: <Offers /> },

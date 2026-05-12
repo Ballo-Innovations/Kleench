@@ -39,7 +39,7 @@ export function DonateDonors() {
 
       <div className="px-5 pt-5 space-y-4">
         {/* Search */}
-        <div className="flex items-center bg-white border border-[var(--border)] rounded-2xl h-[52px] px-4 gap-3 shadow-sm focus-within:border-[#E85D3F] transition-colors">
+        <div className="flex items-center bg-[var(--card)] border border-[var(--border)] rounded-2xl h-[52px] px-4 gap-3 shadow-sm focus-within:border-[#E85D3F] transition-colors">
           <Search size={18} className="text-[var(--color-secondary)]/40 shrink-0" strokeWidth={1.5} />
           <input value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search donors..."
@@ -50,7 +50,7 @@ export function DonateDonors() {
         <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
           {FILTER_CATS.map(cat => (
             <button key={cat} onClick={() => setActiveFilter(cat)}
-              className={`px-4 py-2 rounded-full font-black text-[11px] uppercase tracking-wider shrink-0 transition-all ${activeFilter === cat ? 'bg-[#E85D3F] text-white shadow-sm' : 'bg-white border border-[var(--border)] text-[var(--color-secondary)]/60'}`}>
+              className={`px-4 py-2 rounded-full font-black text-[11px] uppercase tracking-wider shrink-0 transition-all ${activeFilter === cat ? 'bg-[#E85D3F] text-white shadow-sm' : 'bg-[var(--card)] border border-[var(--border)] text-[var(--color-secondary)]/60'}`}>
               {cat}
             </button>
           ))}
@@ -58,11 +58,11 @@ export function DonateDonors() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-white rounded-2xl border border-[var(--border)] p-4 shadow-sm">
+          <div className="bg-[var(--card)] rounded-2xl border border-[var(--border)] p-4 shadow-sm">
             <p className="font-black text-[22px] text-[var(--color-secondary)]">{MOCK_DONORS.length}</p>
             <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40">Registered Donors</p>
           </div>
-          <div className="bg-white rounded-2xl border border-[var(--border)] p-4 shadow-sm">
+          <div className="bg-[var(--card)] rounded-2xl border border-[var(--border)] p-4 shadow-sm">
             <p className="font-black text-[22px] text-[var(--color-secondary)]">K 1.5M</p>
             <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40">Total Donated</p>
           </div>
@@ -72,7 +72,7 @@ export function DonateDonors() {
         <div className="space-y-3">
           {filtered.map((donor, i) => (
             <motion.div key={donor.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.05 * i)}
-              className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4 flex items-center gap-3 active:scale-[0.99] transition-transform cursor-pointer">
+              className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4 flex items-center gap-3 active:scale-[0.99] transition-transform cursor-pointer">
               <div className={`w-12 h-12 rounded-full ${INITIALS_COLORS[i % INITIALS_COLORS.length]} flex items-center justify-center text-white font-black text-[14px] shrink-0`}>
                 {donor.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
               </div>

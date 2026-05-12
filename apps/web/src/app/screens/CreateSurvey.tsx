@@ -126,7 +126,7 @@ export function CreateSurvey() {
           <motion.button initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.72)}
             whileTap={{ scale: 0.97 }}
             onClick={handleCopyLink}
-            className="w-full py-3 rounded-2xl border border-[var(--border)] bg-white text-[var(--color-secondary)] font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 mb-6 shadow-sm">
+            className="w-full py-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] text-[var(--color-secondary)] font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 mb-6 shadow-sm">
             <Link size={14} /> Copy Survey Link
           </motion.button>
 
@@ -147,7 +147,7 @@ export function CreateSurvey() {
       <CrossHatchBg />
 
       {/* Header */}
-      <div className="sticky top-0 z-50 pt-4 pb-4 px-5 flex items-center justify-between bg-white/80 backdrop-blur-xl border-b border-[var(--border)]">
+      <div className="sticky top-0 z-50 pt-4 pb-4 px-5 flex items-center justify-between bg-[var(--card)]/80 backdrop-blur-xl border-b border-[var(--border)]">
         <div className="flex items-center gap-3">
           <button onClick={handleBack}
             className="w-10 h-10 rounded-full bg-[var(--app-bg)] shadow-sm border border-[var(--border)] flex items-center justify-center active:scale-90 transition-transform">
@@ -180,7 +180,7 @@ export function CreateSurvey() {
                 <label className="block text-[11px] font-black uppercase tracking-widest mb-3 text-[var(--color-secondary)]/50">Survey Objective *</label>
                 <textarea value={title} onChange={(e) => setTitle(e.target.value)}
                   placeholder="What is the goal of this survey?" rows={3}
-                  className="w-full px-5 py-4 rounded-2xl text-[14px] font-bold outline-none resize-none bg-white border border-[var(--border)] text-[var(--color-secondary)] transition-all focus:border-[var(--color-primary)] focus:shadow-sm"
+                  className="w-full px-5 py-4 rounded-2xl text-[14px] font-bold outline-none resize-none bg-[var(--card)] border border-[var(--border)] text-[var(--color-secondary)] transition-all focus:border-[var(--color-primary)] focus:shadow-sm"
                 />
               </div>
 
@@ -191,7 +191,7 @@ export function CreateSurvey() {
                     <motion.div key={t.id}
                       initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1 + idx * 0.1)}
                       onClick={() => setSurveyType(t.id)}
-                      className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center gap-4 ${surveyType === t.id ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5' : 'border-[var(--border)] bg-white'}`}>
+                      className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center gap-4 ${surveyType === t.id ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5' : 'border-[var(--border)] bg-[var(--card)]'}`}>
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${surveyType === t.id ? 'bg-[var(--color-primary)] text-white' : 'bg-[var(--app-bg-muted)] text-[var(--color-secondary)]'}`}>
                         {t.id === "standard" && <FileText size={20} />}
                         {t.id === "quantitative" && <Target size={20} />}
@@ -230,7 +230,7 @@ export function CreateSurvey() {
                   <div className="grid grid-cols-3 gap-3 mb-8">
                     {QUALITATIVE_MODES.map((mode) => (
                       <button key={mode} onClick={() => setQualMode(mode)}
-                        className={`py-5 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 transition-all font-black text-[12px] uppercase tracking-widest ${qualMode === mode ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)]' : 'border-[var(--border)] bg-white text-[var(--color-secondary)]/60'}`}>
+                        className={`py-5 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 transition-all font-black text-[12px] uppercase tracking-widest ${qualMode === mode ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)]' : 'border-[var(--border)] bg-[var(--card)] text-[var(--color-secondary)]/60'}`}>
                         {mode === "Text" && <FileText size={22} />}
                         {mode === "Audio" && (
                           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -246,7 +246,7 @@ export function CreateSurvey() {
                       </button>
                     ))}
                   </div>
-                  <div className="p-4 rounded-2xl border border-[var(--border)] bg-white mb-8">
+                  <div className="p-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] mb-8">
                     <p className="text-[11px] font-bold text-[var(--color-secondary)]/50 mb-1 uppercase tracking-widest">Prompt</p>
                     <textarea rows={3} placeholder={`Ask participants to record a ${qualMode.toLowerCase()} response...`}
                       className="w-full bg-transparent outline-none font-bold text-[14px] text-[var(--color-secondary)] resize-none placeholder:text-[var(--color-secondary)]/30" />
@@ -259,7 +259,7 @@ export function CreateSurvey() {
                 <div className="space-y-6 mb-8">
                   <label className="block text-[11px] font-black uppercase tracking-widest mb-1 text-[var(--color-secondary)]/50">Quantitative Questions</label>
                   {["Age range of target participants", "Monthly income bracket", "Satisfaction scale (1–10)"].map((q, idx) => (
-                    <div key={idx} className="p-4 bg-white border border-[var(--border)] rounded-2xl shadow-sm">
+                    <div key={idx} className="p-4 bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-sm">
                       <span className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-widest block mb-3">Question {idx + 1}</span>
                       <input type="text" defaultValue={q}
                         className="w-full bg-transparent outline-none font-bold text-[14px] text-[var(--color-secondary)] placeholder:text-[var(--color-secondary)]/30 mb-3" />
@@ -284,7 +284,7 @@ export function CreateSurvey() {
                   </div>
                   <div className="space-y-6">
                     {questions.map((q, idx) => (
-                      <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-white border border-[var(--border)] rounded-2xl shadow-sm relative">
+                      <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-sm relative">
                         <div className="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-3">
                           <span className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-widest">Question {idx + 1}</span>
                           {questions.length > 1 && (
@@ -351,14 +351,14 @@ export function CreateSurvey() {
               <div className="flex p-1 bg-[var(--app-bg-muted)] rounded-2xl mb-8">
                 {(["general", "targeted"] as const).map((opt) => (
                   <button key={opt} onClick={() => setAudience(opt)}
-                    className={`flex-1 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all ${audience === opt ? 'bg-white text-[var(--color-primary)] shadow-sm' : 'text-[var(--color-secondary)]/50'}`}>
+                    className={`flex-1 py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all ${audience === opt ? 'bg-[var(--card)] text-[var(--color-primary)] shadow-sm' : 'text-[var(--color-secondary)]/50'}`}>
                     {opt}
                   </button>
                 ))}
               </div>
 
               {audience === "general" ? (
-                <div className="p-5 rounded-2xl border border-[var(--border)] bg-white shadow-sm text-center">
+                <div className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-sm text-center">
                   <div className="w-14 h-14 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-4">
                     <Target size={24} className="text-[var(--color-primary)]" />
                   </div>
@@ -367,7 +367,7 @@ export function CreateSurvey() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="p-4 bg-white rounded-2xl border border-[var(--border)] shadow-sm">
+                  <div className="p-4 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40 block mb-2">Gender</label>
                     <div className="flex gap-2">
                       {["All", "Male", "Female"].map(g => (
@@ -379,7 +379,7 @@ export function CreateSurvey() {
                     </div>
                   </div>
 
-                  <div className="p-4 bg-white rounded-2xl border border-[var(--border)] shadow-sm">
+                  <div className="p-4 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40 block mb-2">Age Range</label>
                     <div className="flex items-center gap-3">
                       <input type="number" value={targetCriteria.ageMin} min={13} max={99}
@@ -393,7 +393,7 @@ export function CreateSurvey() {
                     </div>
                   </div>
 
-                  <div className="p-4 bg-white rounded-2xl border border-[var(--border)] shadow-sm">
+                  <div className="p-4 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40 block mb-2">Region / Province</label>
                     <input type="text" value={targetCriteria.region} placeholder="e.g. Lusaka, Copperbelt..."
                       onChange={e => setTargetCriteria(c => ({ ...c, region: e.target.value }))}
@@ -417,7 +417,7 @@ export function CreateSurvey() {
               <label className="block text-[11px] font-black uppercase tracking-widest mb-4 text-[var(--color-secondary)]/50">Survey Duration</label>
 
               {/* Duration stepper */}
-              <div className="p-5 bg-white rounded-2xl border border-[var(--border)] shadow-sm mb-8 flex items-center justify-between">
+              <div className="p-5 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm mb-8 flex items-center justify-between">
                 <button onClick={() => setDurationDays(d => Math.max(1, d - 1))}
                   className="w-12 h-12 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center font-black text-[20px] text-[var(--color-secondary)] active:scale-90 transition-transform">
                   −
@@ -443,7 +443,7 @@ export function CreateSurvey() {
               </div>
 
               {/* Summary review card */}
-              <div className="p-4 bg-white rounded-2xl border border-[var(--border)] shadow-sm mb-10">
+              <div className="p-4 bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm mb-10">
                 <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary)] mb-3">Summary</p>
                 <div className="space-y-2">
                   <div className="flex justify-between items-start">

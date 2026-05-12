@@ -61,7 +61,7 @@ export function PollAnalytics() {
 
         {/* Featured poll stats */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.05)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <div className="flex items-start justify-between mb-1">
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary)] mb-0.5">Featured Poll</p>
@@ -76,7 +76,7 @@ export function PollAnalytics() {
 
         {/* Donut + legend */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.15)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest mb-4">Vote Distribution</h3>
           <div className="flex items-center gap-6">
             <ResponsiveContainer width={130} height={130}>
@@ -109,7 +109,7 @@ export function PollAnalytics() {
 
         {/* Voting timeline — Line chart */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.25)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest">Voting Timeline</h3>
             <span className="text-[10px] font-bold text-[var(--color-secondary)]/40 uppercase">Today</span>
@@ -130,7 +130,7 @@ export function PollAnalytics() {
 
         {/* Demographics */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.35)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest mb-4">Demographics</h3>
           <div className="space-y-3">
             {DEMOGRAPHICS.map((d) => (
@@ -154,7 +154,7 @@ export function PollAnalytics() {
 
         {/* All polls summary */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.45)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest mb-3">All Polls</h3>
           {ACTIVE_POLLS.map((p, i) => (
             <div key={p.id}>
@@ -177,17 +177,17 @@ export function PollAnalytics() {
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.55)}
           className="grid grid-cols-3 gap-3">
           <button onClick={() => {}}
-            className="h-[52px] flex flex-col items-center justify-center gap-1 bg-white border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
+            className="h-[52px] flex flex-col items-center justify-center gap-1 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
             <Share2 size={16} strokeWidth={2} className="text-[var(--color-primary)]" />
             Share
           </button>
           <button onClick={() => {}}
-            className="h-[52px] flex flex-col items-center justify-center gap-1 bg-white border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
+            className="h-[52px] flex flex-col items-center justify-center gap-1 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
             <Download size={16} strokeWidth={2} className="text-[var(--color-primary)]" />
             Export
           </button>
           <button onClick={() => {}}
-            className="h-[52px] flex flex-col items-center justify-center gap-1 bg-white border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
+            className="h-[52px] flex flex-col items-center justify-center gap-1 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
             <GitCompare size={16} strokeWidth={2} className="text-[var(--color-primary)]" />
             Compare
           </button>

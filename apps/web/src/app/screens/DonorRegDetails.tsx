@@ -38,7 +38,7 @@ export function DonorRegDetails() {
             return (
               <motion.button key={cause} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={grace(0.04 * i)}
                 onClick={() => toggle(cause)}
-                className={`p-4 rounded-2xl border-2 flex flex-col items-start gap-3 text-left transition-all active:scale-[0.97] ${isSelected ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-white'}`}>
+                className={`p-4 rounded-2xl border-2 flex flex-col items-start gap-3 text-left transition-all active:scale-[0.97] ${isSelected ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-[var(--card)]'}`}>
                 <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${isSelected ? 'border-[#E85D3F] bg-[#E85D3F]' : 'border-[var(--border)]'}`}>
                   {isSelected && <Check size={12} className="text-white" strokeWidth={3} />}
                 </div>
