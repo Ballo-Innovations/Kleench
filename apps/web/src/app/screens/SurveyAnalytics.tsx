@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { ChevronRight, TrendingUp, Users, Clock, Zap } from "lucide-react";
+import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
 import {
   ResponsiveContainer,
@@ -161,7 +162,7 @@ export function SurveyAnalytics() {
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.65)}
           className="grid grid-cols-2 gap-3">
           <button
-            onClick={() => {}}
+            onClick={() => { if (navigator.share) { navigator.share({ title: "Survey Analytics Report", text: "Check out this survey report", url: window.location.href }).catch(() => {}); } else { navigator.clipboard.writeText(window.location.href).catch(() => {}); toast.success("Link copied to clipboard!"); } }}
             className="h-[56px] flex items-center justify-center gap-2 bg-[var(--color-primary)] rounded-2xl text-white font-black text-[11px] uppercase tracking-widest shadow-sm active:scale-95 transition-all">
             Share Report <ChevronRight size={14} strokeWidth={3} />
           </button>

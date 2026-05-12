@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Minus, Plus, Check } from "lucide-react";
+import { Minus, Plus, Check, FileText, X, ImagePlus } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 type AdvertType = "target" | "general";
 type Step = 1 | 2 | 3;
@@ -71,6 +72,9 @@ export function LearnUpload() {
   const [genNoAds] = useState(1000);
   const [genBudget] = useState(3000);
 
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [thumbFile, setThumbFile] = useState<File | null>(null);
+
   const handleNext = () => { if (step < 3) setStep((s) => (s + 1) as Step); };
   const handleBack = () => { if (step > 1) setStep((s) => (s - 1) as Step); else navigate(-1); };
   const handlePost = () => navigate("/learning");
@@ -114,6 +118,78 @@ export function LearnUpload() {
                 <div>
                   <FieldLabel>Content Type</FieldLabel>
                   <span className="inline-block bg-orange-500 text-white px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider">Learn</span>
+                </div>
+                <div>
+                  <FieldLabel>Upload Video</FieldLabel>
+                  <label
+                    htmlFor="learn-video-upload"
+                    className={`w-full flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-4 cursor-pointer transition-all active:scale-[0.98]
+                      ${videoFile ? 'border-orange-500 bg-orange-50/60' : 'border-orange-300 bg-orange-50/50'}`}
+                  >
+                    {videoFile ? (
+                      <div className="w-full flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
+                          <FileText size={18} className="text-orange-500" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-black text-[12px] text-slate-800 truncate">{videoFile.name}</p>
+                          <p className="text-[10px] font-bold text-slate-400">{(videoFile.size / 1024).toFixed(0)} KB</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setVideoFile(null); }}
+                          className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center shrink-0"
+                        >
+                          <X size={12} className="text-slate-500" />
+                        </button>
+                      </div>
+                    ) : (
+                      <span className="text-[11px] font-black text-orange-500 uppercase tracking-wider">Tap to Upload Video</span>
+                    )}
+                    <input
+                      id="learn-video-upload"
+                      type="file"
+                      accept="video/*"
+                      className="hidden"
+                      onChange={(e) => { const f = e.target.files?.[0]; if (f) { setVideoFile(f); toast.success(`${f.name} attached!`); } }}
+                    />
+                  </label>
+                </div>
+                <div>
+                  <FieldLabel>Upload Thumbnail</FieldLabel>
+                  <label
+                    htmlFor="learn-thumb-upload"
+                    className={`w-full flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-4 cursor-pointer transition-all active:scale-[0.98]
+                      ${thumbFile ? 'border-slate-500 bg-slate-50/80' : 'border-slate-300 bg-slate-50/50'}`}
+                  >
+                    {thumbFile ? (
+                      <div className="w-full flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+                          <ImagePlus size={18} className="text-slate-500" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-black text-[12px] text-slate-800 truncate">{thumbFile.name}</p>
+                          <p className="text-[10px] font-bold text-slate-400">{(thumbFile.size / 1024).toFixed(0)} KB</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setThumbFile(null); }}
+                          className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center shrink-0"
+                        >
+                          <X size={12} className="text-slate-500" />
+                        </button>
+                      </div>
+                    ) : (
+                      <span className="text-[11px] font-black text-slate-500 uppercase tracking-wider">Tap to Upload Thumbnail</span>
+                    )}
+                    <input
+                      id="learn-thumb-upload"
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => { const f = e.target.files?.[0]; if (f) { setThumbFile(f); toast.success(`${f.name} attached!`); } }}
+                    />
+                  </label>
                 </div>
                 <div>
                   <FieldLabel>Format</FieldLabel>
@@ -314,6 +390,7 @@ export function LearnUpload() {
           )}
         </AnimatePresence>
       </div>
+
     </div>
   );
 }

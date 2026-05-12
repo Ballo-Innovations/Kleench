@@ -147,7 +147,7 @@ export function Discover() {
                   <h3 className="font-black text-[16px]" style={{ fontFamily: "Agrandir, sans-serif", color: "var(--app-text-alt)" }}>
                     Top Community Adverts
                   </h3>
-                  <span className="text-[11px] font-bold" style={{ color: "var(--app-orange)" }}>View All</span>
+                  <span onClick={() => navigate("/advert")} className="text-[11px] font-bold cursor-pointer active:opacity-60 transition-opacity" style={{ color: "var(--app-orange)" }}>View All</span>
                 </div>
                 <div className="space-y-4">
                   {COMMUNITY_ADVERTS.map((ad, i) => {

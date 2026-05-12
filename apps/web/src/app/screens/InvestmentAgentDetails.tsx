@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ChevronRight, Upload, ShieldCheck, Copy, Check } from "lucide-react";
+import { ChevronRight, Upload, ShieldCheck, Copy, Check, X, FileText } from "lucide-react";
 import { useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
 import { toast } from "sonner";
@@ -19,7 +19,7 @@ export function InvestmentAgentDetails() {
   const [specialization, setSpecialization] = useState("");
   const [catOpen, setCatOpen] = useState(false);
   const [agentCode, setAgentCode] = useState("");
-  const [licenseUploaded, setLicenseUploaded] = useState(false);
+  const [licenceFile, setLicenceFile] = useState<File | null>(null);
   const [codeCopied, setCodeCopied] = useState(false);
 
   const generateCode = () => {
@@ -104,20 +104,53 @@ export function InvestmentAgentDetails() {
           </div>
         </motion.div>
 
+        {/* Dealer License Upload */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.34)}>
           <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/50 block mb-2">Dealer Licence (Optional)</label>
-          <button onClick={() => setLicenseUploaded(true)}
-            className={`w-full p-4 rounded-2xl border-2 flex items-center gap-4 transition-all active:scale-[0.98] ${licenseUploaded ? 'border-green-400 bg-green-50' : 'border-dashed border-[var(--border)] bg-[var(--card)]'}`}>
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${licenseUploaded ? 'bg-green-100' : 'bg-[var(--app-bg-muted)]'}`}>
-              {licenseUploaded ? <Check size={20} className="text-green-500" strokeWidth={2.5} /> : <Upload size={20} className="text-[var(--color-secondary)]/40" strokeWidth={1.5} />}
-            </div>
-            <div className="text-left">
-              <p className={`font-black text-[13px] uppercase tracking-wide ${licenseUploaded ? 'text-green-600' : 'text-[var(--color-secondary)]'}`}>
-                {licenseUploaded ? 'Licence Uploaded' : 'Upload Dealer Licence'}
-              </p>
-              <p className="text-[11px] font-semibold text-[var(--color-secondary)]/40">PDF or image — Max 5MB</p>
-            </div>
-          </button>
+          <label
+            htmlFor="invest-agent-licence"
+            className={`w-full flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-6 cursor-pointer transition-all active:scale-[0.98]
+              ${licenceFile ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-[var(--card)]'}`}
+          >
+            {licenceFile ? (
+              <div className="w-full flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#E85D3F]/10 flex items-center justify-center shrink-0">
+                  <FileText size={20} className="text-[#E85D3F]" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-black text-[13px] text-[var(--color-secondary)] truncate">{licenceFile.name}</p>
+                  <p className="text-[10px] font-bold text-[var(--color-secondary)]/40">{(licenceFile.size / 1024).toFixed(0)} KB</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLicenceFile(null); }}
+                  className="w-7 h-7 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center shrink-0"
+                >
+                  <X size={14} className="text-[var(--color-secondary)]/60" />
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="w-12 h-12 rounded-2xl bg-[var(--app-bg-muted)] flex items-center justify-center">
+                  <Upload size={24} className="text-[var(--color-secondary)]/40" strokeWidth={1.5} />
+                </div>
+                <div className="text-center">
+                  <p className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-wide">Upload Dealer Licence</p>
+                  <p className="text-[10px] font-bold text-[var(--color-secondary)]/40 mt-0.5">PDF or image — Max 5MB</p>
+                </div>
+              </>
+            )}
+            <input
+              id="invest-agent-licence"
+              type="file"
+              accept=".pdf,image/*"
+              className="hidden"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) { setLicenceFile(f); toast.success("Licence uploaded!"); }
+              }}
+            />
+          </label>
         </motion.div>
 
         <button disabled={!isValid} onClick={() => navigate("/crowdfunding/register-agent/success")}

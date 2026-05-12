@@ -182,7 +182,6 @@ const router = createBrowserRouter([
       { path: "profile/:username", element: <Profile /> },
       { path: "creator/:username", element: <CreatorProfile /> },
       { path: "friends", element: <Friends /> },
-      { path: "videos", element: <Videos /> },
       { path: "settings", element: <Settings /> },
       { path: "settings/change-pin", element: <ChangePin /> },
       { path: "settings/change-password", element: <ChangePassword /> },

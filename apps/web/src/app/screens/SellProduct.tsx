@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, ArrowRight, Camera, Upload, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Camera, Upload, Tag, FileText, X } from "lucide-react";
 import { useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
 import adBanner from "@/assets/ads/Transaction Assurance.png";
+import { toast } from "sonner";
 
 const CATEGORIES = ["Electronics","Fashion","Food & Groceries","Digital Products","Courses","Services","Agriculture","Other"];
 type Step = 1 | 2 | 3;
@@ -47,6 +48,7 @@ export function SellProduct() {
   const [description, setDescription] = useState("");
   const [escrow, setEscrow] = useState(true);
   const [commission, setCommission] = useState("5");
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
 
   
 
@@ -101,18 +103,57 @@ export function SellProduct() {
             </motion.div>
 
             {/* Upload */}
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.06)}
-              className="border-2 border-dashed rounded-3xl h-40 flex flex-col items-center justify-center gap-3 cursor-pointer"
-              style={{ borderColor: "rgba(13,27,62,0.1)", background: "rgba(248,249,251,0.85)" }}>
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "var(--tint-orange)" }}>
-                <Camera size={22} style={{ color: "var(--app-orange)" }}/>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-1.5 mb-1" style={{ color: "rgba(13,27,62,0.42)" }}>
-                  <Upload size={12}/><span className="text-[11px] font-medium">Upload product photos</span>
-                </div>
-                <span className="text-[10px]" style={{ color: "rgba(13,27,62,0.25)" }}>Up to 5 photos</span>
-              </div>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.06)}>
+              <label
+                htmlFor="sell-product-photo"
+                className="border-2 border-dashed rounded-3xl flex flex-col items-center justify-center gap-3 cursor-pointer active:scale-[0.98] transition-all p-6"
+                style={{
+                  borderColor: photoFile ? "var(--app-orange)" : "rgba(13,27,62,0.1)",
+                  background: photoFile ? "rgba(255,140,0,0.04)" : "rgba(248,249,251,0.85)",
+                }}
+              >
+                {photoFile ? (
+                  <div className="w-full flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "var(--tint-orange)" }}>
+                      <FileText size={22} style={{ color: "var(--app-orange)" }} strokeWidth={1.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-black text-[13px] truncate" style={{ color: "var(--app-text-alt)" }}>{photoFile.name}</p>
+                      <p className="text-[10px] font-bold" style={{ color: "rgba(13,27,62,0.4)" }}>{(photoFile.size / 1024).toFixed(0)} KB</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); setPhotoFile(null); }}
+                      className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                      style={{ background: "rgba(13,27,62,0.06)" }}
+                    >
+                      <X size={14} style={{ color: "rgba(13,27,62,0.5)" }} />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "var(--tint-orange)" }}>
+                      <Camera size={22} style={{ color: "var(--app-orange)" }}/>
+                    </div>
+                    <div className="text-center">
+                      <div className="flex items-center justify-center gap-1.5 mb-1" style={{ color: "rgba(13,27,62,0.42)" }}>
+                        <Upload size={12}/><span className="text-[11px] font-medium">Upload product photos</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: "rgba(13,27,62,0.25)" }}>Up to 5 photos</span>
+                    </div>
+                  </>
+                )}
+                <input
+                  id="sell-product-photo"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) { setPhotoFile(f); toast.success(`${f.name} attached!`); }
+                  }}
+                />
+              </label>
             </motion.div>
 
             {/* Name */}
@@ -299,6 +340,7 @@ export function SellProduct() {
           </motion.div>
         )}
       </AnimatePresence>
+
     </div>
       </Skeleton>
   );

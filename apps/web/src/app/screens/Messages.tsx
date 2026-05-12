@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, Plus, Send } from "lucide-react";
+import { ChevronLeft, Plus, Send, Paperclip } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 type MsgTab = "all" | "social" | "market";
 
@@ -31,6 +32,7 @@ export default function Messages() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedConv, setSelectedConv] = useState<Conversation | null>(null);
   const [newMessage, setNewMessage] = useState("");
+  const attachInputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState([
     { id: 1, text: "Hey! How's the project going?", sender: "them", time: "10:00 AM" },
     { id: 2, text: "It's going great, just finished the new UI!", sender: "me", time: "10:05 AM" },
@@ -195,15 +197,22 @@ export default function Messages() {
             {/* ── Chat Input ── */}
             <div className="p-5 pb-14 bg-[var(--app-bg)]/80 backdrop-blur-xl border-t border-[var(--border)] relative z-[70]">
                <div className="flex items-center gap-2 bg-[var(--muted)]/80 rounded-2xl px-4 py-2 border border-black/[0.02]">
-                  <input 
-                    type="text" 
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => attachInputRef.current?.click()}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-[var(--app-text)]/40 shrink-0"
+                  >
+                    <Paperclip size={16} />
+                  </motion.button>
+                  <input
+                    type="text"
                     placeholder="Type a message..."
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                    className="flex-1 bg-transparent py-2 outline-none text-[var(--app-text)] text-sm font-medium" 
+                    className="flex-1 bg-transparent py-2 outline-none text-[var(--app-text)] text-sm font-medium"
                   />
-                  <motion.button 
+                  <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={handleSendMessage}
                     className="w-10 h-10 rounded-xl bg-[var(--color-primary)] text-white flex items-center justify-center shadow-lg shadow-[var(--color-primary)]/20"
@@ -211,6 +220,16 @@ export default function Messages() {
                     <Send size={18} />
                   </motion.button>
                </div>
+               <input
+                 ref={attachInputRef}
+                 type="file"
+                 accept="image/*,video/*,audio/*,.pdf"
+                 className="hidden"
+                 onChange={(e) => {
+                   const file = e.target.files?.[0];
+                   if (file) toast.success("File attached!");
+                 }}
+               />
             </div>
           </motion.div>
         )}

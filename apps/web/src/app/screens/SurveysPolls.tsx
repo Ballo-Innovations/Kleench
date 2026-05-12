@@ -169,7 +169,7 @@ export function SurveysPolls() {
                ))}
                
                <div className="mt-4 pt-3 border-t border-[var(--border)] flex justify-center">
-                  <span onClick={() => toast.info("Redirecting to analytics dashboard...")} className="text-[11px] font-black text-[var(--color-primary)] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
+                  <span onClick={() => navigate("/poll/analytics")} className="text-[11px] font-black text-[var(--color-primary)] uppercase tracking-widest cursor-pointer active:scale-95 transition-transform flex items-center gap-1">
                      View Results & Analytics <ChevronRight size={14} strokeWidth={3} />
                   </span>
                </div>
@@ -185,11 +185,11 @@ export function SurveysPolls() {
 
             {/* Neo-brutalist interaction blocks */}
              <div className="grid grid-cols-2 gap-4">
-                <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--color-primary)] border border-[var(--border)] rounded-2xl text-white shadow-md active:scale-95 transition-all cursor-pointer">
+                <button onClick={() => navigate("/survey/analytics")} className="h-[60px] flex items-center justify-center gap-2 bg-[var(--color-primary)] border border-[var(--border)] rounded-2xl text-white shadow-md active:scale-95 transition-all cursor-pointer">
                    <BarChart2 size={18} strokeWidth={3} />
                    <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">View Results</span>
                 </button>
-                <button className="h-[60px] flex items-center justify-center gap-2 bg-[var(--color-primary)] border border-[var(--border)] rounded-2xl text-white shadow-md active:scale-95 transition-all cursor-pointer">
+                <button onClick={() => navigate("/poll/analytics")} className="h-[60px] flex items-center justify-center gap-2 bg-[var(--color-primary)] border border-[var(--border)] rounded-2xl text-white shadow-md active:scale-95 transition-all cursor-pointer">
                    <FileText size={18} strokeWidth={3} />
                    <span className="text-[13px] font-black uppercase tracking-widest mt-[2px]">Analyze</span>
                 </button>

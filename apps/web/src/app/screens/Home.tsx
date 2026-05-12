@@ -3,12 +3,12 @@ import {
   BadgeCheck,
   X, MessageCircle
 } from "lucide-react";
-import { 
-  DuotoneUpload, 
-  DuotoneSend, 
-  DuotoneUserPlus, 
-  DuotoneLike, 
-  DuotoneMessage, 
+import {
+  DuotoneUpload,
+  DuotoneSend,
+  DuotoneUserPlus,
+  DuotoneLike,
+  DuotoneMessage,
   DuotoneShare,
   DuotoneUsers
 } from "../components/DuotoneIcon";
@@ -19,6 +19,7 @@ import { Link } from "react-router";
 import { usePageLoading } from "../components/PageSkeletons";
 import { Skeleton } from "boneyard-js/react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -362,10 +363,10 @@ export function Home() {
                            >
                               <DuotoneLike size={22} primary={likedPosts.has(item.id) ? "var(--app-orange)" : undefined} />
                            </button>
-                           <button className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
+                           <button onClick={() => toast.info("Comments coming soon!")} className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
                               <DuotoneMessage size={22} />
                            </button>
-                           <button className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
+                           <button onClick={() => { if (navigator.share) { navigator.share({ title: "Kleench", text: "Check this out on Kleench", url: window.location.href }).catch(() => {}); } else { navigator.clipboard.writeText(window.location.href).catch(() => {}); toast.success("Link copied to clipboard!"); } }} className="text-[var(--app-text)]/80 active:scale-95 transition-transform">
                               <DuotoneShare size={22} />
                            </button>
                         </div>
