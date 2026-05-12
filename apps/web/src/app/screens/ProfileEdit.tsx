@@ -4,6 +4,7 @@ import { ArrowLeft, Camera, User, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GlobalBackground } from "../components/GlobalBackground";
+import { toast } from "sonner";
 
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1722270608841-35d7372a2e85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGF2YXRhciUyMHByb2ZpbGUlMjBwaG90b3xlbnwxfHx8fDE3NzM4NzA0NzB8MA&ixlib=rb-4.1.0&q=80&w=400";
 
@@ -30,6 +31,7 @@ export function ProfileEdit() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfilePhoto(reader.result as string);
+        toast.success("Profile photo updated!");
       };
       reader.readAsDataURL(file);
     }

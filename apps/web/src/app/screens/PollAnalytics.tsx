@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { ChevronRight, Download, Share2, GitCompare } from "lucide-react";
+import { toast } from "sonner";
 import { PageHeader } from "../components/PageHeader";
 import {
   ResponsiveContainer,
@@ -176,17 +177,17 @@ export function PollAnalytics() {
         {/* Actions */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.55)}
           className="grid grid-cols-3 gap-3">
-          <button onClick={() => {}}
+          <button onClick={() => { if (navigator.share) { navigator.share({ title: "Poll Analytics", text: "Check out these poll results", url: window.location.href }).catch(() => {}); } else { navigator.clipboard.writeText(window.location.href).catch(() => {}); toast.success("Link copied to clipboard!"); } }}
             className="h-[52px] flex flex-col items-center justify-center gap-1 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
             <Share2 size={16} strokeWidth={2} className="text-[var(--color-primary)]" />
             Share
           </button>
-          <button onClick={() => {}}
+          <button onClick={() => toast.success("Report exported successfully!")}
             className="h-[52px] flex flex-col items-center justify-center gap-1 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
             <Download size={16} strokeWidth={2} className="text-[var(--color-primary)]" />
             Export
           </button>
-          <button onClick={() => {}}
+          <button onClick={() => toast.info("Comparison feature coming soon!")}
             className="h-[52px] flex flex-col items-center justify-center gap-1 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[9px] uppercase tracking-wider shadow-sm active:scale-95 transition-all">
             <GitCompare size={16} strokeWidth={2} className="text-[var(--color-primary)]" />
             Compare

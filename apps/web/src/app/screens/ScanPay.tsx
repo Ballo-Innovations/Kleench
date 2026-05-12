@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { QrCode, Scan, Minus, Plus } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { PageHeader } from "../components/PageHeader";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
@@ -9,6 +9,7 @@ export function ScanPay() {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(250);
   const [mode, setMode] = useState<"scanner" | "viewer">("scanner");
+  const cameraRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
@@ -36,7 +37,14 @@ export function ScanPay() {
             className="absolute left-12 right-12 h-1.5 bg-[#6E7C91]/40 rounded-full blur-[1px]"
           />
 
-          <p className="text-[var(--app-sub-accent)]/40 font-black text-xs uppercase tracking-[0.3em]">Scanner Active</p>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => cameraRef.current?.click()}
+            className="flex flex-col items-center gap-2"
+          >
+            <p className="text-[var(--app-sub-accent)]/40 font-black text-xs uppercase tracking-[0.3em]">Scanner Active</p>
+            <p className="text-[var(--app-sub-accent)]/30 font-bold text-[9px] uppercase tracking-widest">Tap to scan</p>
+          </motion.button>
         </div>
 
         {/* Instructional Text */}
@@ -109,6 +117,24 @@ export function ScanPay() {
           </motion.button>
         </div>
       </div>
+
+      <input
+        ref={cameraRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        {...({ capture: "environment" } as object)}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) {
+            toast.success("Scanning...");
+            setTimeout(() => {
+              toast.success("QR code scanned! Redirecting to payment...");
+              setTimeout(() => navigate("/send"), 1500);
+            }, 1500);
+          }
+        }}
+      />
     </div>
   );
 }

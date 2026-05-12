@@ -38,7 +38,7 @@ export function InvestmentAgentSuccess() {
           className="w-full py-4 rounded-2xl bg-[#E85D3F] text-white font-black uppercase tracking-widest text-[13px] shadow-md active:scale-95 transition-all">
           Get Started
         </button>
-        <button onClick={() => navigate("/crowdfunding")}
+        <button onClick={() => navigate("/")}
           className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all">
           Return to Home Page
         </button>

@@ -157,7 +157,7 @@ export function Marketplace() {
              <section>
                <div className="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-2">
                   <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">PRODUCTS</h3>
-                  <button onClick={() => toast.success("Loading complete catalog...")} className="text-[var(--app-orange)] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
+                  <button onClick={() => navigate("/marketplace")} className="text-[var(--app-orange)] font-black text-[11px] flex items-center gap-1 uppercase tracking-widest">
                     See All <ChevronRight size={12} strokeWidth={2} />
                   </button>
                </div>

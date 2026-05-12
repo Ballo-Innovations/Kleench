@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Minus, Plus, Check } from "lucide-react";
+import { Minus, Plus, Check, FileText, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 type AdvertType = "target" | "general";
 type Step = 1 | 2 | 3;
@@ -101,6 +102,8 @@ export function AdvertUpload() {
   const [genSize, setGenSize] = useState("");
   const [genNoAds] = useState(1000);
   const [genBudget] = useState(3000);
+
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const handleNext = () => {
     if (step < 3) setStep((s) => (s + 1) as Step);
@@ -315,6 +318,48 @@ export function AdvertUpload() {
             <motion.div key="target-3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
               <SectionCard>
                 <div>
+                  <FieldLabel>Upload Media</FieldLabel>
+                  <label
+                    htmlFor="advert-upload-media"
+                    className={`w-full flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-5 cursor-pointer transition-all active:scale-[0.98]
+                      ${uploadedFile ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5' : 'border-orange-300 bg-orange-50/50'}`}
+                  >
+                    {uploadedFile ? (
+                      <div className="w-full flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
+                          <FileText size={20} className="text-[var(--color-primary)]" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-black text-[13px] text-[var(--color-secondary)] truncate">{uploadedFile.name}</p>
+                          <p className="text-[10px] font-bold text-[var(--color-secondary)]/40">{(uploadedFile.size / 1024).toFixed(0)} KB</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setUploadedFile(null); }}
+                          className="w-7 h-7 rounded-full bg-[var(--app-bg-muted)] flex items-center justify-center shrink-0"
+                        >
+                          <X size={14} className="text-[var(--color-secondary)]/60" />
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <span className="text-[12px] font-black text-orange-500 uppercase tracking-wider">Tap to Upload Media</span>
+                        <span className="text-[10px] text-slate-400 font-medium">Image or Video</span>
+                      </>
+                    )}
+                    <input
+                      id="advert-upload-media"
+                      type="file"
+                      accept="image/*,video/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        const f = e.target.files?.[0];
+                        if (f) { setUploadedFile(f); toast.success(`${f.name} attached!`); }
+                      }}
+                    />
+                  </label>
+                </div>
+                <div>
                   <FieldLabel>Title</FieldLabel>
                   <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter advert title" className="w-full h-11 bg-[var(--app-bg-muted)] border border-slate-200 rounded-xl px-4 text-sm font-semibold outline-none focus:border-orange-400 transition-all" />
                 </div>
@@ -407,6 +452,7 @@ export function AdvertUpload() {
           )}
         </AnimatePresence>
       </div>
+
     </div>
   );
 }

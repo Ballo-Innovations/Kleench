@@ -21,6 +21,7 @@ import {
 import { Link } from "react-router";
 import { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
+import { toast } from "sonner";
 
 // --- MOCKS FOR FEED ---
 const MOCK_REELS = [
@@ -270,7 +271,7 @@ export function Socials() {
                            <button onClick={() => setActiveCommentId(activeCommentId === post.id ? null : post.id)} className="text-[var(--color-secondary)]/80 active:scale-95 transition-transform">
                                <MessageSquare size={24} />
                            </button>
-                           <button className="text-[var(--color-secondary)]/80 active:scale-95 transition-transform">
+                           <button onClick={() => { if (navigator.share) { navigator.share({ title: post.user.name, text: post.content, url: window.location.href }).catch(() => {}); } else { navigator.clipboard.writeText(window.location.href).catch(() => {}); toast.success("Link copied to clipboard!"); } }} className="text-[var(--color-secondary)]/80 active:scale-95 transition-transform">
                                <Share size={24} />
                            </button>
                         </div>

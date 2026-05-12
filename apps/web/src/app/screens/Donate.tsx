@@ -176,7 +176,7 @@ export function Donate() {
           <div className="px-5 pb-2">
              <div className="flex items-center justify-between border border-[var(--app-text)]/10 bg-[var(--app-bg)] px-4 py-3 shadow-md shadow-[var(--app-text)]/8 rounded-xl">
                 <h2 className="text-[var(--app-text)] font-black text-[15px] uppercase tracking-wider drop-shadow-sm">FUNDRAISING PROJECTS</h2>
-                <button onClick={() => toast.success("Loading full catalogue...")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
+                <button onClick={() => navigate("/donate")} className="text-[#E85D3F] font-black text-[11px] flex items-center gap-1 active:scale-95 transition-transform uppercase tracking-widest">
                   See All <div className="bg-[var(--app-shape-accent)] text-white rounded-full flex items-center justify-center w-4 h-4 ml-0.5"><ChevronRight size={12} strokeWidth={4} /></div>
                 </button>
              </div>

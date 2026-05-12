@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { 
+import {
   Check,
+  X,
 } from "lucide-react";
+import { toast } from "sonner";
 import { 
   DuotoneUser, 
   DuotoneFlag, 
@@ -23,6 +25,7 @@ interface KycData {
   nationality: string;
   nrcPassport: string;
   docs: { nrc: boolean; tpin: boolean; residence: boolean; selfie: boolean };
+  docFiles?: { nrc: File | null; tpin: File | null; residence: File | null; selfie: File | null };
   town: string;
   residentialAddress: string;
   bankName: string;
@@ -63,6 +66,11 @@ type KycStage = "Bio" | "Financial" | "Employment" | "Interests";
 const STAGES: KycStage[] = ["Bio", "Financial", "Employment", "Interests"];
 
 export function KycFlow({ onComplete, externalStage: currentStage, onStageChange: setCurrentStage, isUpdate = false }: KycFlowProps) {
+  const [nrcFile, setNrcFile] = useState<File | null>(null);
+  const [tpinFile, setTpinFile] = useState<File | null>(null);
+  const [residenceFile, setResidenceFile] = useState<File | null>(null);
+  const [selfieFile, setSelfieFile] = useState<File | null>(null);
+
   const [formData, setFormData] = useState<KycData>(() => {
     const saved = localStorage.getItem("userKyc");
     if (saved) {
@@ -190,33 +198,74 @@ export function KycFlow({ onComplete, externalStage: currentStage, onStageChange
                 <InputGroup icon={DuotoneFlag} label="" placeholder="Nationality" value={formData.nationality} onChange={v => updateForm("nationality", v)} />
                 <InputGroup icon={DuotoneIdCard} label="" placeholder="NRC or Passport No." value={formData.nrcPassport} onChange={v => updateForm("nrcPassport", v)} />
                 
-                <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">NRC or Passport</span>
-                    <button onClick={() => updateDoc("nrc")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
-                      <DuotoneUpload size={20} />
-                      <span className="text-[var(--app-text)] font-black text-sm">Upload</span>
-                    </button>
+                <div className="space-y-3">
+                  {/* NRC */}
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 shrink-0 leading-tight">NRC or Passport</span>
+                    <label
+                      htmlFor="kyc-nrc"
+                      className={`flex-1 bg-[var(--app-bg)] border-2 rounded-xl flex items-center gap-2 px-3 py-2 cursor-pointer shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all min-w-0 ${nrcFile ? 'border-green-500' : 'border-[var(--app-text)]'}`}
+                    >
+                      {nrcFile ? <Check size={16} className="text-green-500 shrink-0" /> : <DuotoneUpload size={18} />}
+                      <span className="text-[var(--app-text)] font-black text-xs truncate flex-1">{nrcFile ? nrcFile.name : 'Upload'}</span>
+                      {nrcFile && (
+                        <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setNrcFile(null); setFormData(p => ({ ...p, docs: { ...p.docs, nrc: false } })); }} className="shrink-0">
+                          <X size={12} className="text-[var(--muted-foreground)]" />
+                        </button>
+                      )}
+                      <input id="kyc-nrc" type="file" accept="image/*,.pdf" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setNrcFile(f); updateDoc("nrc"); toast.success("Document uploaded successfully!"); } }} />
+                    </label>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">TPIN Certificate</span>
-                    <button onClick={() => updateDoc("tpin")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
-                      <DuotoneUpload size={20} />
-                      <span className="text-[var(--app-text)] font-black text-sm">Upload</span>
-                    </button>
+                  {/* TPIN */}
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 shrink-0 leading-tight">TPIN Certificate</span>
+                    <label
+                      htmlFor="kyc-tpin"
+                      className={`flex-1 bg-[var(--app-bg)] border-2 rounded-xl flex items-center gap-2 px-3 py-2 cursor-pointer shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all min-w-0 ${tpinFile ? 'border-green-500' : 'border-[var(--app-text)]'}`}
+                    >
+                      {tpinFile ? <Check size={16} className="text-green-500 shrink-0" /> : <DuotoneUpload size={18} />}
+                      <span className="text-[var(--app-text)] font-black text-xs truncate flex-1">{tpinFile ? tpinFile.name : 'Upload'}</span>
+                      {tpinFile && (
+                        <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTpinFile(null); setFormData(p => ({ ...p, docs: { ...p.docs, tpin: false } })); }} className="shrink-0">
+                          <X size={12} className="text-[var(--muted-foreground)]" />
+                        </button>
+                      )}
+                      <input id="kyc-tpin" type="file" accept="image/*,.pdf" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setTpinFile(f); updateDoc("tpin"); toast.success("Document uploaded successfully!"); } }} />
+                    </label>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">Proof Of Residence</span>
-                    <button onClick={() => updateDoc("residence")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
-                      <DuotoneMapPin size={20} />
-                      <span className="text-[var(--app-text)] font-black text-sm">Upload</span>
-                    </button>
+                  {/* Residence */}
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 shrink-0 leading-tight">Proof Of Residence</span>
+                    <label
+                      htmlFor="kyc-residence"
+                      className={`flex-1 bg-[var(--app-bg)] border-2 rounded-xl flex items-center gap-2 px-3 py-2 cursor-pointer shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all min-w-0 ${residenceFile ? 'border-green-500' : 'border-[var(--app-text)]'}`}
+                    >
+                      {residenceFile ? <Check size={16} className="text-green-500 shrink-0" /> : <DuotoneMapPin size={18} />}
+                      <span className="text-[var(--app-text)] font-black text-xs truncate flex-1">{residenceFile ? residenceFile.name : 'Upload'}</span>
+                      {residenceFile && (
+                        <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setResidenceFile(null); setFormData(p => ({ ...p, docs: { ...p.docs, residence: false } })); }} className="shrink-0">
+                          <X size={12} className="text-[var(--muted-foreground)]" />
+                        </button>
+                      )}
+                      <input id="kyc-residence" type="file" accept="image/*,.pdf" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setResidenceFile(f); updateDoc("residence"); toast.success("Document uploaded successfully!"); } }} />
+                    </label>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 leading-tight">Take Face ID</span>
-                    <button onClick={() => updateDoc("selfie")} className="flex-1 bg-[var(--app-bg)] border-2 border-[var(--app-text)] rounded-xl h-12 flex items-center justify-center gap-2 shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all">
-                      <DuotoneCamera size={24} />
-                    </button>
+                  {/* Selfie */}
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] w-16 shrink-0 leading-tight">Take Face ID</span>
+                    <label
+                      htmlFor="kyc-selfie"
+                      className={`flex-1 bg-[var(--app-bg)] border-2 rounded-xl flex items-center gap-2 px-3 py-2 cursor-pointer shadow-[2px_2px_0px_var(--app-text)] active:translate-y-0.5 active:shadow-none transition-all min-w-0 ${selfieFile ? 'border-green-500' : 'border-[var(--app-text)]'}`}
+                    >
+                      {selfieFile ? <Check size={16} className="text-green-500 shrink-0" /> : <DuotoneCamera size={18} />}
+                      <span className="text-[var(--app-text)] font-black text-xs truncate flex-1">{selfieFile ? selfieFile.name : 'Capture'}</span>
+                      {selfieFile && (
+                        <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setSelfieFile(null); setFormData(p => ({ ...p, docs: { ...p.docs, selfie: false } })); }} className="shrink-0">
+                          <X size={12} className="text-[var(--muted-foreground)]" />
+                        </button>
+                      )}
+                      <input id="kyc-selfie" type="file" accept="image/*" className="hidden" {...({ capture: "user" } as object)} onChange={(e) => { const f = e.target.files?.[0]; if (f) { setSelfieFile(f); updateDoc("selfie"); toast.success("Selfie captured successfully!"); } }} />
+                    </label>
                   </div>
                 </div>
 

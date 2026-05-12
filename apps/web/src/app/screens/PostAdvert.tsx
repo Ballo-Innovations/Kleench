@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, ArrowRight, Upload, DollarSign, Camera, CheckCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Upload, DollarSign, Camera, CheckCircle, FileText, X } from "lucide-react";
 import { useNavigate } from "react-router";
 import { LottieIcon } from "../components/LottieIcon";
+import { toast } from "sonner";
 
 type Step = 1 | 2 | 3;
 
@@ -45,6 +46,7 @@ export function PostAdvert() {
   const [description, setDescription] = useState("");
   const [budget, setBudget] = useState("");
   const [duration, setDuration] = useState("7");
+  const [adFile, setAdFile] = useState<File | null>(null);
 
   const selectedType = AD_TYPES.find((t) => t.id === adType);
   const steps = ["Choose Type", "Ad Details", "Budget & Launch"];
@@ -159,15 +161,54 @@ export function PostAdvert() {
               </motion.div>
             )}
 
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.07)}
-              className="border-2 border-dashed rounded-3xl h-36 flex flex-col items-center justify-center gap-3 cursor-pointer"
-              style={{ borderColor: "rgba(13,27,62,0.1)", background: "rgba(248,249,251,0.7)" }}>
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "var(--tint-orange)" }}>
-                <Camera size={20} style={{ color: "var(--app-orange)" }}/>
-              </div>
-              <div className="flex items-center gap-1.5" style={{ color: "rgba(13,27,62,0.38)" }}>
-                <Upload size={12}/><span className="text-[11px] font-medium">Upload advert image</span>
-              </div>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.07)}>
+              <label
+                htmlFor="post-advert-file"
+                className="border-2 border-dashed rounded-3xl flex flex-col items-center justify-center gap-3 cursor-pointer active:scale-[0.98] transition-all p-5"
+                style={{
+                  borderColor: adFile ? "var(--app-orange)" : "rgba(13,27,62,0.1)",
+                  background: adFile ? "rgba(255,140,0,0.05)" : "rgba(248,249,251,0.7)",
+                }}
+              >
+                {adFile ? (
+                  <div className="w-full flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "var(--tint-orange)" }}>
+                      <FileText size={20} style={{ color: "var(--app-orange)" }} strokeWidth={1.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-black text-[13px] truncate" style={{ color: "var(--app-text-alt)" }}>{adFile.name}</p>
+                      <p className="text-[10px] font-bold" style={{ color: "rgba(13,27,62,0.4)" }}>{(adFile.size / 1024).toFixed(0)} KB</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); setAdFile(null); }}
+                      className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                      style={{ background: "rgba(13,27,62,0.06)" }}
+                    >
+                      <X size={14} style={{ color: "rgba(13,27,62,0.5)" }} />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "var(--tint-orange)" }}>
+                      <Camera size={20} style={{ color: "var(--app-orange)" }}/>
+                    </div>
+                    <div className="flex items-center gap-1.5" style={{ color: "rgba(13,27,62,0.38)" }}>
+                      <Upload size={12}/><span className="text-[11px] font-medium">Upload advert image</span>
+                    </div>
+                  </>
+                )}
+                <input
+                  id="post-advert-file"
+                  type="file"
+                  accept="image/*,video/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) { setAdFile(f); toast.success(`${f.name} attached!`); }
+                  }}
+                />
+              </label>
             </motion.div>
 
             {[
@@ -280,6 +321,7 @@ export function PostAdvert() {
           </motion.div>
         )}
       </AnimatePresence>
+
     </div>
   );
 }
