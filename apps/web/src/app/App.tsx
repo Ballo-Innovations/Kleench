@@ -30,6 +30,9 @@ import { PostAdvert } from "./screens/PostAdvert";
 import { SellProduct } from "./screens/SellProduct";
 import { CreatePoll } from "./screens/CreatePoll";
 import { SurveysPolls } from "./screens/SurveysPolls";
+import { CreateSurvey } from "./screens/CreateSurvey";
+import { SurveyViewer } from "./screens/SurveyViewer";
+import { PollViewer } from "./screens/PollViewer";
 import { Referral } from "./screens/Referral";
 import { Offers } from "./screens/Offers";
 import { Donate } from "./screens/Donate";
@@ -58,6 +61,22 @@ import { AdvertViewAds } from "./screens/AdvertViewAds";
 import { LearnViewer } from "./screens/LearnViewer";
 import { LearnCategories } from "./screens/LearnCategories";
 import { CreatorProfile } from "./screens/CreatorProfile";
+import { SurveyAnalytics } from "./screens/SurveyAnalytics";
+import { PollAnalytics } from "./screens/PollAnalytics";
+import { DonateCreate } from "./screens/DonateCreate";
+import { DonateDonors } from "./screens/DonateDonors";
+import { DonorTypeSelect } from "./screens/DonorTypeSelect";
+import { DonorRegDetails } from "./screens/DonorRegDetails";
+import { DonorPreferences } from "./screens/DonorPreferences";
+import { DonorReview } from "./screens/DonorReview";
+import { DonorSuccess } from "./screens/DonorSuccess";
+import { DonateAgentRegister } from "./screens/DonateAgentRegister";
+import { DonateAgentDetails } from "./screens/DonateAgentDetails";
+import { DonateAgentSuccess } from "./screens/DonateAgentSuccess";
+import { DonateDetail } from "./screens/DonateDetail";
+import { DonatePayment } from "./screens/DonatePayment";
+import { DonateConfirm } from "./screens/DonateConfirm";
+import { DonateSuccess } from "./screens/DonateSuccess";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -158,8 +177,27 @@ const router = createBrowserRouter([
       { path: "ads/post", element: <PostAdvert /> },
       { path: "sell", element: <SellProduct /> },
       { path: "poll/create", element: <CreatePoll /> },
+      { path: "survey/create", element: <CreateSurvey /> },
       { path: "surveys-polls", element: <SurveysPolls /> },
+      { path: "survey/analytics", element: <SurveyAnalytics /> },
+      { path: "survey/:id", element: <SurveyViewer /> },
+      { path: "poll/analytics", element: <PollAnalytics /> },
+      { path: "poll/:id", element: <PollViewer /> },
       { path: "donate", element: <Donate /> },
+      { path: "donate/create", element: <DonateCreate /> },
+      { path: "donate/listed-donors", element: <DonateDonors /> },
+      { path: "donate/register-donor", element: <DonorTypeSelect /> },
+      { path: "donate/register-donor/details", element: <DonorRegDetails /> },
+      { path: "donate/register-donor/preferences", element: <DonorPreferences /> },
+      { path: "donate/register-donor/review", element: <DonorReview /> },
+      { path: "donate/register-donor/success", element: <DonorSuccess /> },
+      { path: "donate/register-agent", element: <DonateAgentRegister /> },
+      { path: "donate/register-agent/details", element: <DonateAgentDetails /> },
+      { path: "donate/register-agent/success", element: <DonateAgentSuccess /> },
+      { path: "donate/campaign/:campaignId", element: <DonateDetail /> },
+      { path: "donate/campaign/:campaignId/amount", element: <DonatePayment /> },
+      { path: "donate/campaign/:campaignId/confirm", element: <DonateConfirm /> },
+      { path: "donate/campaign/:campaignId/success", element: <DonateSuccess /> },
       { path: "crowdfunding", element: <Crowdfunding /> },
       { path: "referral", element: <Referral /> },
       { path: "onboarding-page", element: <OnboardingPage /> },

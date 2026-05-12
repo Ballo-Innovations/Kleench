@@ -17,6 +17,7 @@ import { usePageLoading } from "../components/PageSkeletons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 
+
 // Relative Asset Mapping for Vercel Pipeline
 import schoolChildrenImg from "@/assets/donate_school_children.png";
 import accidentImg from "@/assets/donate_accident.png";
@@ -93,9 +94,9 @@ export function Donate() {
 
   const handleAction = (label: string) => {
     setActiveAction(label);
-    if (label === "REFERRAL") navigate("/referral");
-    else if (label === "CREATE") toast.info("Campaign creation coming soon.");
-    else if (label === "DONORS") toast("Loading donor network...");
+    if (label === "REFERRAL") navigate("/donate/register-agent");
+    else if (label === "CREATE") navigate("/donate/create");
+    else if (label === "DONORS") navigate("/donate/listed-donors");
   };
 
   return (
@@ -184,7 +185,7 @@ export function Donate() {
           {/* Secondary Event Feeds & Cards */}
           <div className="px-5 flex flex-col gap-5 pb-8">
              {PROJECTS.map((proj) => (
-                <div key={proj.id} className="w-full bg-[#f4ebe1]/30 border border-[var(--app-text)]/15 rounded-2xl p-3 shadow-lg shadow-[var(--app-text)]/12">
+                <div key={proj.id} onClick={() => navigate(`/donate/campaign/${proj.id}`)} className="w-full bg-[#f4ebe1]/30 border border-[var(--app-text)]/15 rounded-2xl p-3 shadow-lg shadow-[var(--app-text)]/12 cursor-pointer active:scale-[0.99] transition-transform">
                    {/* Title */}
                    <h3 className="text-[#E85D3F] font-black text-[12px] uppercase tracking-widest mb-2 drop-shadow-sm">{proj.title}</h3>
                    
@@ -199,7 +200,7 @@ export function Donate() {
                          <p className="text-[9px] font-black text-[var(--app-text)] leading-[1.3] uppercase break-words pr-1">{proj.desc}</p>
                          {/* Main Interaction Action Base */}
                          <div className="flex items-center gap-3 pt-2">
-                             <button onClick={() => toast.success("Donation portal secure. Initiating...")} className="flex-1 bg-[#ff7345] text-white shadow-lg shadow-[#ff7345]/25 active:scale-95 h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
+                             <button onClick={(e) => { e.stopPropagation(); navigate(`/donate/campaign/${proj.id}`); }} className="flex-1 bg-[#ff7345] text-white shadow-lg shadow-[#ff7345]/25 active:scale-95 h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
                                 <DuotoneArrowUpToLine size={16} primary="#fff" /> DONATE
                              </button>
                              <button onClick={() => toast("Share link copied to clipboard!")} className="flex-1 bg-[#1877F2] text-white shadow-lg shadow-blue-500/25 active:scale-95 h-11 rounded-xl text-[12px] font-black uppercase flex items-center justify-center gap-2 transition-all">
