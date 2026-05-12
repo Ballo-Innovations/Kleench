@@ -64,7 +64,7 @@ export function SurveyViewer() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-white/5 pointer-events-none" />
 
         <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", delay: 0.1 }}
-          className="mb-6 bg-white/10 p-6 rounded-full backdrop-blur-sm">
+          className="mb-6 bg-[var(--card)]/10 p-6 rounded-full backdrop-blur-sm">
           <CheckCircle2 size={64} strokeWidth={1.5} />
         </motion.div>
 
@@ -86,8 +86,8 @@ export function SurveyViewer() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
               className="mb-8 w-full">
-              <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-5 border border-white/20 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <div className="bg-[var(--card)]/15 backdrop-blur-sm rounded-2xl p-5 border border-white/20 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-[var(--card)]/20 flex items-center justify-center shrink-0">
                   <Sparkles size={28} className="text-white" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
@@ -110,11 +110,11 @@ export function SurveyViewer() {
         {/* CTA buttons */}
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={grace(0.4)} className="w-full space-y-3">
           <button onClick={() => navigate("/wallet")}
-            className="w-full bg-white text-[var(--color-primary)] py-4 rounded-2xl font-black uppercase tracking-widest text-[12px] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2">
+            className="w-full bg-[var(--card)] text-[var(--color-primary)] py-4 rounded-2xl font-black uppercase tracking-widest text-[12px] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2">
             <Wallet size={16} /> View Wallet
           </button>
           <button onClick={() => { setCompleted(false); setCurrentQ(0); setAnswers({}); setRewardVisible(false); }}
-            className="w-full bg-white/15 border border-white/20 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all backdrop-blur-sm">
+            className="w-full bg-[var(--card)]/15 border border-white/20 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all backdrop-blur-sm">
             Take Another Survey
           </button>
           <button onClick={() => navigate("/surveys-polls")}
@@ -133,9 +133,9 @@ export function SurveyViewer() {
     <div className="w-full max-w-md mx-auto min-h-screen font-sans bg-transparent relative">
 
       {/* Sticky Header + Progress */}
-      <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-xl border-b border-[var(--border)]">
+      <div className="sticky top-0 z-20 bg-[var(--card)]/80 backdrop-blur-xl border-b border-[var(--border)]">
         <div className="pt-4 pb-3 px-5 flex items-center justify-between">
-          <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-white shadow-sm border border-[var(--border)] flex items-center justify-center active:scale-90 transition-transform">
+          <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-[var(--card)] shadow-sm border border-[var(--border)] flex items-center justify-center active:scale-90 transition-transform">
             <ArrowLeft size={16} className="text-[var(--color-secondary)]"/>
           </button>
           <span className="font-black text-[10px] text-[var(--color-secondary)] uppercase tracking-widest">
@@ -159,7 +159,7 @@ export function SurveyViewer() {
 
           {q.type === "multiple" && q.options?.map((opt) => (
             <button key={opt} onClick={() => handleAnswer(opt)}
-              className="w-full p-4 rounded-2xl border border-[var(--border)] bg-white text-left active:scale-95 transition-all flex items-center justify-between group hover:border-[var(--color-primary)]">
+              className="w-full p-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] text-left active:scale-95 transition-all flex items-center justify-between group hover:border-[var(--color-primary)]">
               <span className="font-bold text-[14px] text-[var(--color-secondary)] group-hover:text-[var(--color-primary)] transition-colors">{opt}</span>
               <div className="w-5 h-5 rounded-full border-2 border-[var(--border)] group-hover:border-[var(--color-primary)] transition-colors" />
             </button>
@@ -169,7 +169,7 @@ export function SurveyViewer() {
             <div className="grid grid-cols-2 gap-4">
               {["Yes", "No"].map((opt) => (
                 <button key={opt} onClick={() => handleAnswer(opt)}
-                  className="py-5 rounded-2xl border border-[var(--border)] bg-white active:scale-95 transition-all flex flex-col items-center justify-center gap-2 hover:border-[var(--color-primary)] group">
+                  className="py-5 rounded-2xl border border-[var(--border)] bg-[var(--card)] active:scale-95 transition-all flex flex-col items-center justify-center gap-2 hover:border-[var(--color-primary)] group">
                   <span className="font-black uppercase tracking-widest text-[16px] text-[var(--color-secondary)] group-hover:text-[var(--color-primary)]">{opt}</span>
                 </button>
               ))}
@@ -180,7 +180,7 @@ export function SurveyViewer() {
             <div className="flex justify-between gap-2 py-4">
               {RATING_ICONS.map(({ Icon, label, val, color }) => (
                 <button key={val} onClick={() => handleAnswer(String(val))}
-                  className="flex-1 flex flex-col items-center gap-2 p-3 rounded-2xl border border-[var(--border)] bg-white active:scale-90 transition-all hover:border-[var(--color-primary)] group">
+                  className="flex-1 flex flex-col items-center gap-2 p-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] active:scale-90 transition-all hover:border-[var(--color-primary)] group">
                   <Icon size={22} className={`${color} group-hover:scale-110 transition-transform`} strokeWidth={1.5} />
                   <span className="text-[9px] font-black text-[var(--color-secondary)]/40 uppercase tracking-wide">{label}</span>
                 </button>
@@ -191,7 +191,7 @@ export function SurveyViewer() {
           {q.type === "text" && (
             <div>
               <textarea
-                className="w-full p-4 rounded-2xl border border-[var(--border)] bg-white font-bold text-[14px] text-[var(--color-secondary)] outline-none focus:border-[var(--color-primary)] transition-colors resize-none min-h-[120px]"
+                className="w-full p-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] font-bold text-[14px] text-[var(--color-secondary)] outline-none focus:border-[var(--color-primary)] transition-colors resize-none min-h-[120px]"
                 placeholder="Type your answer here..."
                 onChange={(e) => setAnswers({...answers, [currentQ]: e.target.value})}
                 value={answers[currentQ] || ""}

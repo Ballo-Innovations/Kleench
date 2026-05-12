@@ -58,7 +58,7 @@ const KPI_CARDS = [
 function KpiCard({ icon: Icon, label, value, delta, color, bg }: typeof KPI_CARDS[0]) {
   const isPositive = delta.startsWith("+") || delta.startsWith("-1") === false;
   return (
-    <div className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4 flex flex-col gap-2">
+    <div className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4 flex flex-col gap-2">
       <div className={`w-9 h-9 rounded-full ${bg} flex items-center justify-center`}>
         <Icon size={16} className={color} />
       </div>
@@ -96,7 +96,7 @@ export function SurveyAnalytics() {
 
         {/* Response Trend — Line Chart */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.35)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest">Response Trend</h3>
             <span className="text-[10px] font-bold text-[var(--color-secondary)]/40 uppercase">Last 7 Days</span>
@@ -117,7 +117,7 @@ export function SurveyAnalytics() {
 
         {/* Audience Distribution — Pie Chart */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.45)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest mb-4">Audience Breakdown</h3>
           <div className="flex items-center gap-4">
             <ResponsiveContainer width={130} height={130}>
@@ -143,7 +143,7 @@ export function SurveyAnalytics() {
 
         {/* Category Scores — Bar Chart */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.55)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <h3 className="font-black text-[13px] text-[var(--color-secondary)] uppercase tracking-widest mb-4">Category Scores</h3>
           <ResponsiveContainer width="100%" height={160}>
             <BarChart data={CATEGORY_DATA} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }} barSize={10}>
@@ -167,7 +167,7 @@ export function SurveyAnalytics() {
           </button>
           <button
             onClick={() => navigate("/surveys-polls")}
-            className="h-[56px] flex items-center justify-center gap-2 bg-white border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[11px] uppercase tracking-widest shadow-sm active:scale-95 transition-all">
+            className="h-[56px] flex items-center justify-center gap-2 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-[var(--color-secondary)] font-black text-[11px] uppercase tracking-widest shadow-sm active:scale-95 transition-all">
             All Surveys
           </button>
         </motion.div>

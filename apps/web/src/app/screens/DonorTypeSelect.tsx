@@ -33,7 +33,7 @@ export function DonorTypeSelect() {
           {DONOR_TYPES.map(({ id, label, desc, icon: Icon }, i) => (
             <motion.button key={id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.07 * i)}
               onClick={() => setSelected(id)}
-              className={`w-full p-4 rounded-2xl border-2 flex items-center gap-4 text-left transition-all active:scale-[0.98] ${selected === id ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-white'}`}>
+              className={`w-full p-4 rounded-2xl border-2 flex items-center gap-4 text-left transition-all active:scale-[0.98] ${selected === id ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-[var(--card)]'}`}>
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${selected === id ? 'bg-[#E85D3F] text-white' : 'bg-[var(--app-bg-muted)] text-[var(--color-secondary)]/50'}`}>
                 <Icon size={22} strokeWidth={1.5} />
               </div>

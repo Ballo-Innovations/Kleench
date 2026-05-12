@@ -14,7 +14,7 @@ const SPECIALIZATIONS = [
   "Real Estate", "Retail", "Technology", "Transport", "Others",
 ];
 
-export function DonateAgentDetails() {
+export function InvestmentAgentDetails() {
   const navigate = useNavigate();
   const [specialization, setSpecialization] = useState("");
   const [catOpen, setCatOpen] = useState(false);
@@ -23,7 +23,7 @@ export function DonateAgentDetails() {
   const [codeCopied, setCodeCopied] = useState(false);
 
   const generateCode = () => {
-    const code = "KDA-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+    const code = "KIA-" + Math.random().toString(36).substring(2, 8).toUpperCase();
     setAgentCode(code);
   };
 
@@ -48,7 +48,6 @@ export function DonateAgentDetails() {
           <p className="text-[13px] font-semibold text-[var(--color-secondary)]/50">Fill in your details to finalize agent registration.</p>
         </div>
 
-        {/* Specialization */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1)} className="relative">
           <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/50 block mb-2">Specialization *</label>
           <button onClick={() => setCatOpen(v => !v)}
@@ -70,7 +69,6 @@ export function DonateAgentDetails() {
           )}
         </motion.div>
 
-        {/* KYC */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.18)}>
           <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/50 block mb-2">KYC Verification</label>
           <button onClick={() => navigate("/kyc-verification")}
@@ -86,7 +84,6 @@ export function DonateAgentDetails() {
           </button>
         </motion.div>
 
-        {/* Agent Code Generator */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.26)}>
           <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/50 block mb-2">Agent Code</label>
           <div className="bg-[var(--card)] rounded-2xl border border-[var(--border)] p-4">
@@ -107,7 +104,6 @@ export function DonateAgentDetails() {
           </div>
         </motion.div>
 
-        {/* Dealer License Upload */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.34)}>
           <label className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/50 block mb-2">Dealer Licence (Optional)</label>
           <button onClick={() => setLicenseUploaded(true)}
@@ -124,7 +120,7 @@ export function DonateAgentDetails() {
           </button>
         </motion.div>
 
-        <button disabled={!isValid} onClick={() => navigate("/donate/register-agent/success")}
+        <button disabled={!isValid} onClick={() => navigate("/crowdfunding/register-agent/success")}
           className="w-full py-4 rounded-2xl bg-[#E85D3F] text-white font-black uppercase tracking-widest text-[13px] shadow-md active:scale-95 transition-all disabled:opacity-40">
           Confirm Registration
         </button>

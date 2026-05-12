@@ -1,72 +1,79 @@
 import { motion } from "motion/react";
-import { MapPin, Users, Tag, ChevronRight, Calendar } from "lucide-react";
+import { MapPin, Tag, ChevronRight, Clock } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { PageHeader } from "../components/PageHeader";
 
-import schoolChildrenImg from "@/assets/donate_school_children.png";
-import accidentImg from "@/assets/donate_accident.png";
-import waterImg from "@/assets/donate_clean_water.png";
+import solarFarmImg from "@/assets/crowdfund_solar_farm.png";
+import poultryImg from "@/assets/crowdfund_poultry.png";
+import realEstateImg from "@/assets/crowdfund_real_estate.png";
 
 const grace = (delay = 0) => ({
   delay, duration: 0.45, ease: [0.22, 1, 0.36, 1] as const,
 });
 
 const PROJECTS: Record<string, {
-  title: string; desc: string; image: string; raised: string;
-  target: string; percent: number; date: string; days: string;
-  location: string; beneficiaries: string; category: string;
+  title: string; desc: string; image: string; category: string;
+  location: string; minInvestment: string; roi: string;
+  target: string; funded: string; percent: number; daysLeft: string;
 }> = {
   "1": {
-    title: "Support School Children",
-    desc: "Providing books, uniforms, and school supplies to children from underprivileged families in rural schools across Magoye, Southern Province. Your donation goes directly to purchasing educational materials that transform futures.",
-    image: schoolChildrenImg,
-    raised: "56,002.00", target: "100,002.00", percent: 56,
-    date: "30th March 2026", days: "13",
-    location: "Magoye, Southern Province",
-    beneficiaries: "240 children",
-    category: "Education",
+    title: "Solar Farm Expansion – Lusaka",
+    desc: "Scaling up renewable energy infrastructure to power 50,000 homes in peri-urban Lusaka. This project directly reduces dependence on the national grid and lowers electricity costs for local communities.",
+    image: solarFarmImg,
+    category: "Energy",
+    location: "Lusaka, Zambia",
+    minInvestment: "5,000.00",
+    roi: "15% Annually",
+    target: "500,000.00",
+    funded: "120,000.00",
+    percent: 24,
+    daysLeft: "42",
   },
   "2": {
-    title: "Event: Accident Victims",
-    desc: "Raising funds for a road show event to spread road safety awareness across Zambia. All proceeds fund hospital bills for accident victims who cannot afford treatment.",
-    image: accidentImg,
-    raised: "5,002.00", target: "90,000.00", percent: 5,
-    date: "24th March 2026", days: "31",
-    location: "Lusaka, Zambia",
-    beneficiaries: "80 families",
-    category: "Disaster",
+    title: "Agri-Tech Poultry Automation",
+    desc: "Modernizing poultry farming with smart sensors and automated feeding systems. The project significantly reduces feed waste and increases output per farmer by up to 30%.",
+    image: poultryImg,
+    category: "Agriculture",
+    location: "Kabwe, Zambia",
+    minInvestment: "2,500.00",
+    roi: "18% Annually",
+    target: "250,000.00",
+    funded: "105,000.00",
+    percent: 42,
+    daysLeft: "28",
   },
   "3": {
-    title: "Clean Water for Villages",
-    desc: "Building wells and safe water sources for communities in Mtendere. Access to clean water reduces disease and improves quality of life for thousands of families.",
-    image: waterImg,
-    raised: "20,002.00", target: "100,000.00", percent: 20,
-    date: "12th January 2026", days: "5",
-    location: "Mtendere, Lusaka",
-    beneficiaries: "1,200 residents",
-    category: "Water & Sanitation",
+    title: "Residential Real Estate Fund",
+    desc: "Constructing modern, affordable housing complexes for middle-income families. The fund targets high-density areas near Lusaka's economic corridors.",
+    image: realEstateImg,
+    category: "Real Estate",
+    location: "Chilanga, Zambia",
+    minInvestment: "10,000.00",
+    roi: "12% Annually",
+    target: "1,500,000.00",
+    funded: "1,275,000.00",
+    percent: 85,
+    daysLeft: "14",
   },
 };
 
-export function DonateDetail() {
+export function InvestmentDetails() {
   const navigate = useNavigate();
-  const { campaignId } = useParams();
-  const proj = PROJECTS[campaignId ?? "1"] ?? PROJECTS["1"];
+  const { projectId } = useParams();
+  const proj = PROJECTS[projectId ?? "1"] ?? PROJECTS["1"];
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen font-sans pb-36">
       <div className="sticky top-0 z-50">
-        <PageHeader title="CAMPAIGN DETAIL" showBack onBack={() => navigate(-1)} />
+        <PageHeader title="INVESTMENT DETAIL" showBack onBack={() => navigate(-1)} />
       </div>
 
-      {/* Campaign image */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={grace(0.05)}
         className="w-full h-[200px] bg-[var(--app-bg-muted)] overflow-hidden">
         <img src={proj.image} alt={proj.title} className="w-full h-full object-cover" />
       </motion.div>
 
       <div className="px-5 pt-5 space-y-5">
-        {/* Title + category */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.1)}>
           <div className="flex items-start justify-between gap-3 mb-2">
             <h1 className="font-black text-[20px] text-[var(--color-secondary)] uppercase tracking-tight leading-tight flex-1">{proj.title}</h1>
@@ -74,14 +81,13 @@ export function DonateDetail() {
           </div>
         </motion.div>
 
-        {/* Meta info */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.17)}
           className="grid grid-cols-2 gap-3">
           {[
             { icon: MapPin, label: "Location", value: proj.location },
-            { icon: Users, label: "Beneficiaries", value: proj.beneficiaries },
             { icon: Tag, label: "Category", value: proj.category },
-            { icon: Calendar, label: "Deadline", value: proj.date },
+            { icon: Clock, label: "Days Left", value: `${proj.daysLeft} days` },
+            { icon: ChevronRight, label: "Min Investment", value: `K ${proj.minInvestment}` },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="bg-[var(--card)] rounded-2xl border border-[var(--border)] p-3 shadow-sm">
               <div className="flex items-center gap-1.5 mb-1">
@@ -93,13 +99,12 @@ export function DonateDetail() {
           ))}
         </motion.div>
 
-        {/* Progress */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.24)}
           className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
           <div className="flex justify-between items-end mb-2">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40">Raised</p>
-              <p className="font-black text-[18px] text-[#E85D3F]">K {proj.raised}</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40">Funded</p>
+              <p className="font-black text-[18px] text-[#E85D3F]">K {proj.funded}</p>
             </div>
             <div className="text-right">
               <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40">Target</p>
@@ -108,26 +113,27 @@ export function DonateDetail() {
           </div>
           <div className="w-full h-[22px] rounded-full overflow-hidden border border-[var(--border)] flex shadow-sm">
             <motion.div initial={{ width: 0 }} animate={{ width: `${proj.percent}%` }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-              className="h-full bg-[#00C853] flex items-center justify-center">
+              className="h-full bg-[#E85D3F] flex items-center justify-center">
               <span className="text-[10px] font-black text-white whitespace-nowrap px-1">{proj.percent}%</span>
             </motion.div>
             <div className="h-full bg-[var(--app-bg-muted)] flex-1" />
           </div>
-          <p className="text-[10px] font-bold text-[var(--color-secondary)]/40 mt-2">{proj.days} days remaining</p>
+          <div className="flex justify-between mt-2">
+            <p className="text-[10px] font-bold text-[var(--color-secondary)]/40">Est. ROI: <span className="text-[#00C853]">{proj.roi}</span></p>
+            <p className="text-[10px] font-bold text-[var(--color-secondary)]/40">{proj.daysLeft} days remaining</p>
+          </div>
         </motion.div>
 
-        {/* Description */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.32)}>
-          <h3 className="font-black text-[12px] uppercase tracking-widest text-[var(--color-secondary)]/50 mb-2">About This Campaign</h3>
+          <h3 className="font-black text-[12px] uppercase tracking-widest text-[var(--color-secondary)]/50 mb-2">About This Investment</h3>
           <p className="text-[13px] font-semibold text-[var(--color-secondary)]/70 leading-relaxed">{proj.desc}</p>
         </motion.div>
       </div>
 
-      {/* Sticky Donate CTA */}
       <div className="fixed bottom-20 left-0 right-0 max-w-md mx-auto px-5 z-40">
-        <button onClick={() => navigate(`/donate/campaign/${campaignId}/amount`, { state: { title: proj.title } })}
+        <button onClick={() => navigate(`/crowdfunding/project/${projectId}/amount`, { state: { title: proj.title } })}
           className="w-full py-4 rounded-2xl bg-[#E85D3F] text-white font-black uppercase tracking-widest text-[13px] shadow-xl flex items-center justify-center gap-2 active:scale-95 transition-all">
-          Donate Now <ChevronRight size={16} strokeWidth={3} />
+          Invest Now <ChevronRight size={16} strokeWidth={3} />
         </button>
       </div>
     </div>

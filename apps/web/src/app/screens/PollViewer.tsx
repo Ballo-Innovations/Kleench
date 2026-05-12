@@ -83,11 +83,11 @@ function PollCard({ poll, voted, onVote }: { poll: Poll; voted: Record<string, s
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.05)}
-      className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4 mb-4">
+      className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4 mb-4">
       {/* Poll header */}
       <div className="flex items-center gap-2 mb-3">
         {poll.logo && (
-          <div className="w-7 h-7 rounded-full overflow-hidden border border-[var(--border)] flex items-center justify-center bg-white shrink-0">
+          <div className="w-7 h-7 rounded-full overflow-hidden border border-[var(--border)] flex items-center justify-center bg-[var(--card)] shrink-0">
             <img src={poll.logo} alt={poll.title} className="w-full h-full object-contain mix-blend-multiply" />
           </div>
         )}
@@ -112,7 +112,7 @@ function PollCard({ poll, voted, onVote }: { poll: Poll; voted: Record<string, s
             key={opt.id}
             onClick={() => !hasVoted && poll.status === "open" && onVote(poll.id, opt.id)}
             disabled={hasVoted || poll.status === "completed"}
-            className={`w-full relative overflow-hidden rounded-xl border text-left transition-all min-h-[48px] ${userVote === opt.id ? 'border-[var(--color-primary)] shadow-sm' : 'border-[var(--border)]'} bg-white`}>
+            className={`w-full relative overflow-hidden rounded-xl border text-left transition-all min-h-[48px] ${userVote === opt.id ? 'border-[var(--color-primary)] shadow-sm' : 'border-[var(--border)]'} bg-[var(--card)]`}>
 
             {/* Progress fill after voting */}
             {(hasVoted || poll.status === "completed") && (
@@ -175,8 +175,8 @@ export function PollViewer() {
     <div className="w-full max-w-md mx-auto min-h-screen font-sans bg-[var(--app-bg)] relative">
 
       {/* Header */}
-      <div className="sticky top-0 pt-4 pb-4 px-5 flex items-center justify-between z-20 bg-white/80 backdrop-blur-xl border-b border-[var(--border)]">
-        <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-white shadow-sm border border-[var(--border)] flex items-center justify-center active:scale-90 transition-transform">
+      <div className="sticky top-0 pt-4 pb-4 px-5 flex items-center justify-between z-20 bg-[var(--card)]/80 backdrop-blur-xl border-b border-[var(--border)]">
+        <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-[var(--card)] shadow-sm border border-[var(--border)] flex items-center justify-center active:scale-90 transition-transform">
           <ArrowLeft size={16} className="text-[var(--color-secondary)]"/>
         </button>
         <span className="font-black text-[10px] text-[var(--color-secondary)] uppercase tracking-widest">Live Polls</span>
@@ -190,7 +190,7 @@ export function PollViewer() {
         <div className="flex gap-1 p-1 bg-[var(--app-bg-muted)] rounded-2xl">
           {TABS.map(({ id, label, icon: Icon }) => (
             <button key={id} onClick={() => setActiveTab(id)}
-              className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 font-black text-[10px] uppercase tracking-wider transition-all ${activeTab === id ? 'bg-white text-[var(--color-primary)] shadow-sm' : 'text-[var(--color-secondary)]/50'}`}>
+              className={`flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 font-black text-[10px] uppercase tracking-wider transition-all ${activeTab === id ? 'bg-[var(--card)] text-[var(--color-primary)] shadow-sm' : 'text-[var(--color-secondary)]/50'}`}>
               <Icon size={12} strokeWidth={2.5} />
               {label}
             </button>
@@ -205,7 +205,7 @@ export function PollViewer() {
               <p className="text-[11px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40 mb-4">Community Discussion</p>
               <div className="space-y-3">
                 {DISCUSSION_MESSAGES.map((msg) => (
-                  <div key={msg.id} className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-4">
+                  <div key={msg.id} className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-black text-[12px] text-[var(--color-secondary)]">{msg.user}</span>
                       <span className="text-[10px] font-bold text-[var(--color-secondary)]/40">{msg.time}</span>

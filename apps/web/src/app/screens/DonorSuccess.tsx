@@ -43,7 +43,7 @@ export function DonorSuccess() {
           Start Donating
         </button>
         <button onClick={() => navigate("/")}
-          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-white text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all">
+          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all">
           Return to Home
         </button>
       </motion.div>

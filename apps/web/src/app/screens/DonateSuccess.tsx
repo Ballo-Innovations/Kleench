@@ -36,7 +36,7 @@ export function DonateSuccess() {
 
       {/* Receipt card */}
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.52)}
-        className="w-full bg-white border border-[var(--border)] rounded-2xl p-5 mb-8 shadow-sm text-left">
+        className="w-full bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 mb-8 shadow-sm text-left">
         <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40 mb-3">Donation Receipt</p>
         <div className="space-y-2">
           <div className="flex justify-between">
@@ -62,7 +62,7 @@ export function DonateSuccess() {
           Donate Again
         </button>
         <button onClick={() => navigate("/")}
-          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-white text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all">
+          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] active:scale-95 transition-all">
           Return to Home Page
         </button>
       </motion.div>

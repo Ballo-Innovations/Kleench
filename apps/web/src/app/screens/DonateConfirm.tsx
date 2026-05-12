@@ -40,7 +40,7 @@ export function DonateConfirm() {
       <div className="px-5 pt-5 space-y-5">
         {/* Donation summary */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={grace(0.05)}
-          className="bg-white rounded-2xl border border-[var(--border)] shadow-sm p-5">
+          className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm p-5">
           <p className="text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/40 mb-4">Donation Summary</p>
           <div className="space-y-3">
             <div className="flex justify-between items-start">
@@ -74,7 +74,7 @@ export function DonateConfirm() {
           <div className="space-y-2">
             {PAYMENT_METHODS.map(({ id, label, desc, icon: Icon }) => (
               <button key={id} onClick={() => setPayMethod(id)}
-                className={`w-full p-4 rounded-2xl border-2 flex items-center gap-3 text-left transition-all active:scale-[0.98] ${payMethod === id ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-white'}`}>
+                className={`w-full p-4 rounded-2xl border-2 flex items-center gap-3 text-left transition-all active:scale-[0.98] ${payMethod === id ? 'border-[#E85D3F] bg-[#E85D3F]/5' : 'border-[var(--border)] bg-[var(--card)]'}`}>
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${payMethod === id ? 'bg-[#E85D3F] text-white' : 'bg-[var(--app-bg-muted)] text-[var(--color-secondary)]/50'}`}>
                   <Icon size={18} strokeWidth={1.5} />
                 </div>

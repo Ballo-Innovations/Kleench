@@ -60,7 +60,7 @@ export function Layout() {
     location.pathname.startsWith("/survey") ||
     location.pathname.startsWith("/poll") ||
     location.pathname.startsWith("/donate") ||
-    location.pathname === "/crowdfunding" ||
+    location.pathname.startsWith("/crowdfunding") ||
     location.pathname === "/profile" || 
     location.pathname.startsWith("/creator") || 
     location.pathname.startsWith("/learning") || 
