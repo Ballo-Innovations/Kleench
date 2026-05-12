@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { PageHeader } from "../components/PageHeader";
 import { motion } from "motion/react";
 import { ChevronRight } from "lucide-react";
@@ -36,6 +37,7 @@ const ACTIVE_POLLS = [
 export function SurveysPolls() {
   const isLoading = usePageLoading();
   const [selectedSocial, setSelectedSocial] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleSelect = (id: string) => {
     setSelectedSocial(id);
@@ -57,7 +59,7 @@ export function SurveysPolls() {
       <div className="w-full relative z-10">
           <div className="px-5 py-4 border-b border-[var(--border)]">
             <div className="flex gap-4">
-              <button onClick={() => toast.info("Survey creation tool coming soon.")} className="flex-1">
+              <button onClick={() => navigate("/survey/create")} className="flex-1">
                 <motion.div 
                    whileTap={{ scale: 0.95 }}
                    className="w-full h-[60px] rounded-2xl bg-[var(--color-primary)] text-white flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all"
@@ -68,7 +70,7 @@ export function SurveysPolls() {
                    <span className="font-black tracking-wider uppercase text-[12px]">Survey</span>
                  </motion.div>
               </button>
-              <button onClick={() => toast.info("Poll creation tool coming soon.")} className="flex-1">
+              <button onClick={() => navigate("/poll/create")} className="flex-1">
                  <motion.div
                   whileTap={{ scale: 0.95 }}
                   className="w-full h-[60px] rounded-2xl bg-[var(--color-primary)] text-white flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all"
@@ -86,7 +88,7 @@ export function SurveysPolls() {
             <h3 className="text-[var(--color-secondary)] font-black tracking-[0.2em] text-[16px] mb-4 uppercase drop-shadow-sm">Active Survey</h3>
             <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-4 mb-6">
                {ACTIVE_SURVEYS.map((survey, i) => (
-                  <div key={survey.id} className="mb-4 last:mb-0 relative py-1">
+                  <div key={survey.id} className="mb-4 last:mb-0 relative py-1 cursor-pointer active:scale-95 transition-transform" onClick={() => navigate(`/survey/${survey.id}`)}>
                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2 max-w-[70%]">
                            <div className="w-6 h-6 text-[var(--color-secondary)]/40 shrink-0 flex items-center justify-center overflow-hidden">
@@ -135,7 +137,7 @@ export function SurveysPolls() {
             
             <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-4">
                {ACTIVE_POLLS.map((poll, i) => (
-                  <div key={poll.id} className="mb-4 last:mb-0 relative">
+                  <div key={poll.id} className="mb-4 last:mb-0 relative cursor-pointer active:scale-95 transition-transform" onClick={() => navigate(`/poll/${poll.id}`)}>
                      <div className="flex items-center justify-between mb-2">
                         <div className="flex flex-col gap-1 w-[140px] shrink-0">
                            <div className="flex items-center gap-2">

@@ -57,7 +57,9 @@ export function Layout() {
     location.pathname === "/wallet" || 
     location.pathname === "/marketplace" || 
     location.pathname.startsWith("/surveys") ||
-    location.pathname === "/donate" ||
+    location.pathname.startsWith("/survey") ||
+    location.pathname.startsWith("/poll") ||
+    location.pathname.startsWith("/donate") ||
     location.pathname === "/crowdfunding" ||
     location.pathname === "/profile" || 
     location.pathname.startsWith("/creator") || 
