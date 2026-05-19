@@ -91,6 +91,31 @@ import { InvestmentDetails } from "./screens/InvestmentDetails";
 import { InvestmentAmount } from "./screens/InvestmentAmount";
 import { InvestmentConfirmation } from "./screens/InvestmentConfirmation";
 import { InvestmentSuccess } from "./screens/InvestmentSuccess";
+// Insurance Flow
+import { InsuranceGrid } from "./screens/InsuranceGrid";
+import { InsuranceType } from "./screens/InsuranceType";
+import { InsuranceCoverage } from "./screens/InsuranceCoverage";
+import { InsurancePlan } from "./screens/InsurancePlan";
+import { InsuranceDetails } from "./screens/InsuranceDetails";
+import { InsuranceSummary } from "./screens/InsuranceSummary";
+import { InsurancePayment } from "./screens/InsurancePayment";
+import { InsuranceReceipt } from "./screens/InsuranceReceipt";
+// Vendor Registration Flow
+import { VendorEntry } from "./screens/VendorEntry";
+import { VendorInfo } from "./screens/VendorInfo";
+import { VendorBankDetails } from "./screens/VendorBankDetails";
+import { VendorServices } from "./screens/VendorServices";
+import { VendorUploads } from "./screens/VendorUploads";
+import { VendorReview } from "./screens/VendorReview";
+import { VendorUnderReview } from "./screens/VendorUnderReview";
+import { VendorDashboard } from "./screens/VendorDashboard";
+// Road Tax Flow
+import { RoadTaxEntry } from "./screens/RoadTaxEntry";
+import { RoadTaxDetails } from "./screens/RoadTaxDetails";
+import { RoadTaxPeriod } from "./screens/RoadTaxPeriod";
+import { RoadTaxPolicy } from "./screens/RoadTaxPolicy";
+import { RoadTaxPayment } from "./screens/RoadTaxPayment";
+import { RoadTaxReceipt } from "./screens/RoadTaxReceipt";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -252,6 +277,31 @@ const router = createBrowserRouter([
       { path: "advert/view-ads", element: <AdvertViewAds /> },
       { path: "learning/viewer", element: <LearnViewer /> },
       { path: "learning/categories", element: <LearnCategories /> },
+      // Insurance Flow
+      { path: "insurance", element: <InsuranceGrid /> },
+      { path: "insurance/type", element: <InsuranceType /> },
+      { path: "insurance/coverage", element: <InsuranceCoverage /> },
+      { path: "insurance/plan", element: <InsurancePlan /> },
+      { path: "insurance/details", element: <InsuranceDetails /> },
+      { path: "insurance/summary", element: <InsuranceSummary /> },
+      { path: "insurance/payment", element: <InsurancePayment /> },
+      { path: "insurance/receipt", element: <InsuranceReceipt /> },
+      // Vendor Registration Flow
+      { path: "vendor", element: <VendorEntry /> },
+      { path: "vendor/info", element: <VendorInfo /> },
+      { path: "vendor/bank", element: <VendorBankDetails /> },
+      { path: "vendor/services", element: <VendorServices /> },
+      { path: "vendor/uploads", element: <VendorUploads /> },
+      { path: "vendor/review", element: <VendorReview /> },
+      { path: "vendor/under-review", element: <VendorUnderReview /> },
+      { path: "vendor/dashboard", element: <VendorDashboard /> },
+      // Road Tax Flow
+      { path: "road-tax", element: <RoadTaxEntry /> },
+      { path: "road-tax/details", element: <RoadTaxDetails /> },
+      { path: "road-tax/period", element: <RoadTaxPeriod /> },
+      { path: "road-tax/policy", element: <RoadTaxPolicy /> },
+      { path: "road-tax/payment", element: <RoadTaxPayment /> },
+      { path: "road-tax/receipt", element: <RoadTaxReceipt /> },
       { id: "notfound", path: "*", element: <NotFound /> },
     ],
   },
