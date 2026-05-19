@@ -84,6 +84,9 @@ export function Layout() {
     location.pathname === "/content-calculator" ||
     location.pathname === "/kyc-verification" ||
     location.pathname === "/tax-account" ||
+    location.pathname.startsWith("/insurance") ||
+    location.pathname.startsWith("/vendor") ||
+    location.pathname.startsWith("/road-tax") ||
     isNotFound;
 
   return (
