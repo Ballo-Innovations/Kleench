@@ -137,22 +137,23 @@ export function Marketplace() {
             {notification && showNotification && (() => {
               const c = notifColors[notification.type];
               return (
-                <motion.button
+                <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  onClick={() => navigate(notification.href)}
-                  className={`w-full flex items-center gap-2.5 ${c.bg} border ${c.border} rounded-xl px-3 py-2.5 text-left`}
+                  className={`w-full flex items-center gap-2.5 ${c.bg} border ${c.border} rounded-xl px-3 py-2.5 cursor-pointer`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full ${c.dot} animate-pulse shrink-0`} />
-                  <p className={`text-[10px] font-black flex-1 uppercase tracking-wide ${c.text}`}>{notification.text}</p>
+                  <span onClick={() => navigate(notification.href)} className="flex items-center gap-2.5 flex-1 min-w-0">
+                    <span className={`w-1.5 h-1.5 rounded-full ${c.dot} animate-pulse shrink-0`} />
+                    <p className={`text-[10px] font-black flex-1 uppercase tracking-wide ${c.text} truncate`}>{notification.text}</p>
+                  </span>
                   <button
                     onClick={(e) => { e.stopPropagation(); setShowNotification(false); }}
                     className="shrink-0 active:opacity-50 p-0.5"
                   >
                     <X size={13} className={c.text + " opacity-60"} />
                   </button>
-                </motion.button>
+                </motion.div>
               );
             })()}
           </AnimatePresence>
