@@ -55,7 +55,18 @@ export function Layout() {
     location.pathname === "/socials" || 
     location.pathname === "/friends" || 
     location.pathname === "/wallet" || 
-    location.pathname === "/marketplace" || 
+    location.pathname === "/marketplace" ||
+    location.pathname.startsWith("/marketplace/sell") ||
+    location.pathname.startsWith("/marketplace/order") ||
+    location.pathname.startsWith("/marketplace/service") ||
+    location.pathname.startsWith("/marketplace/asset") ||
+    location.pathname.startsWith("/marketplace/intel") ||
+    location.pathname.startsWith("/marketplace/list") ||
+    location.pathname.startsWith("/marketplace/refer") ||
+    location.pathname.startsWith("/marketplace/agent") ||
+    location.pathname.startsWith("/marketplace/featured") ||
+    location.pathname.startsWith("/marketplace/services") ||
+    location.pathname.startsWith("/marketplace/intelligence") ||
     location.pathname.startsWith("/surveys") ||
     location.pathname.startsWith("/survey") ||
     location.pathname.startsWith("/poll") ||
@@ -87,6 +98,7 @@ export function Layout() {
     location.pathname.startsWith("/insurance") ||
     location.pathname.startsWith("/vendor") ||
     location.pathname.startsWith("/road-tax") ||
+    location.pathname.startsWith("/product") ||
     isNotFound;
 
   return (

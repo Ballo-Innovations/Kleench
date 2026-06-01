@@ -91,6 +91,59 @@ import { InvestmentDetails } from "./screens/InvestmentDetails";
 import { InvestmentAmount } from "./screens/InvestmentAmount";
 import { InvestmentConfirmation } from "./screens/InvestmentConfirmation";
 import { InvestmentSuccess } from "./screens/InvestmentSuccess";
+// Marketplace Extension — Sell Flows
+import { SellHub } from "./screens/SellHub";
+import { SellIdentity } from "./screens/SellIdentity";
+import { SellProductInfo } from "./screens/SellProductInfo";
+import { SellProductBoost } from "./screens/SellProductBoost";
+import { SellProductTargeting } from "./screens/SellProductTargeting";
+import { SellProductSuccess } from "./screens/SellProductSuccess";
+import { SellServiceCategory } from "./screens/SellServiceCategory";
+import { SellServiceInfo } from "./screens/SellServiceInfo";
+import { SellServicePackages } from "./screens/SellServicePackages";
+import { SellServiceAvailability } from "./screens/SellServiceAvailability";
+import { SellServiceReview } from "./screens/SellServiceReview";
+import { SellServiceSuccess } from "./screens/SellServiceSuccess";
+import { SellComplexInfo } from "./screens/SellComplexInfo";
+import { SellComplexPricing } from "./screens/SellComplexPricing";
+import { SellComplexTerms } from "./screens/SellComplexTerms";
+import { SellComplexSuccess } from "./screens/SellComplexSuccess";
+// Marketplace Extension — Buyer Flows
+import { MarketOrderSummary } from "./screens/MarketOrderSummary";
+import { MarketOrderSuccess } from "./screens/MarketOrderSuccess";
+import { MarketServiceDetail } from "./screens/MarketServiceDetail";
+import { MarketServicePackages } from "./screens/MarketServicePackages";
+import { MarketServiceCalendar } from "./screens/MarketServiceCalendar";
+import { MarketServiceInquiry } from "./screens/MarketServiceInquiry";
+import { MarketServicePayment } from "./screens/MarketServicePayment";
+import { MarketAssetOverview } from "./screens/MarketAssetOverview";
+import { MarketAssetPrice } from "./screens/MarketAssetPrice";
+import { MarketAssetDocuments } from "./screens/MarketAssetDocuments";
+import { MarketAssetChat } from "./screens/MarketAssetChat";
+import { MarketAssetOrder } from "./screens/MarketAssetOrder";
+import { MarketAssetEscrow } from "./screens/MarketAssetEscrow";
+import { MarketIntelDetail } from "./screens/MarketIntelDetail";
+// Marketplace — List Business Flow
+import { ListBizInfo } from "./screens/ListBizInfo";
+import { ListBizCategory } from "./screens/ListBizCategory";
+import { ListBizDescription } from "./screens/ListBizDescription";
+import { ListBizMedia } from "./screens/ListBizMedia";
+import { ListBizContact } from "./screens/ListBizContact";
+import { ListBizHours } from "./screens/ListBizHours";
+import { ListBizSuccess } from "./screens/ListBizSuccess";
+// Marketplace — Referral Flow
+import { MarketReferral } from "./screens/MarketReferral";
+import { MarketReferralInvite } from "./screens/MarketReferralInvite";
+import { MarketReferralHistory } from "./screens/MarketReferralHistory";
+// Marketplace — Agent Flow
+import { AgentLanding } from "./screens/AgentLanding";
+import { AgentComplexType } from "./screens/AgentComplexType";
+// Marketplace — Entry Screens
+import { FeaturedProducts } from "./screens/FeaturedProducts";
+import { ServicesMarketplace } from "./screens/ServicesMarketplace";
+import { MarketIntelHub } from "./screens/MarketIntelHub";
+import { MarketIntelForecast } from "./screens/MarketIntelForecast";
+import { MarketIntelOpportunities } from "./screens/MarketIntelOpportunities";
 // Insurance Flow
 import { InsuranceGrid } from "./screens/InsuranceGrid";
 import { InsuranceType } from "./screens/InsuranceType";
@@ -199,6 +252,59 @@ const router = createBrowserRouter([
       { path: "videos", element: <Videos /> },
       { path: "marketplace", element: <Marketplace /> },
       { path: "product/:id", element: <ProductDetail /> },
+      // Marketplace Extension — Sell Flows
+      { path: "marketplace/sell", element: <SellHub /> },
+      { path: "marketplace/sell/identity", element: <SellIdentity /> },
+      { path: "marketplace/sell/product/info", element: <SellProductInfo /> },
+      { path: "marketplace/sell/product/boost", element: <SellProductBoost /> },
+      { path: "marketplace/sell/product/targeting", element: <SellProductTargeting /> },
+      { path: "marketplace/sell/product/success", element: <SellProductSuccess /> },
+      { path: "marketplace/sell/service/category", element: <SellServiceCategory /> },
+      { path: "marketplace/sell/service/info", element: <SellServiceInfo /> },
+      { path: "marketplace/sell/service/packages", element: <SellServicePackages /> },
+      { path: "marketplace/sell/service/availability", element: <SellServiceAvailability /> },
+      { path: "marketplace/sell/service/review", element: <SellServiceReview /> },
+      { path: "marketplace/sell/service/success", element: <SellServiceSuccess /> },
+      { path: "marketplace/sell/complex/info", element: <SellComplexInfo /> },
+      { path: "marketplace/sell/complex/pricing", element: <SellComplexPricing /> },
+      { path: "marketplace/sell/complex/terms", element: <SellComplexTerms /> },
+      { path: "marketplace/sell/complex/success", element: <SellComplexSuccess /> },
+      // Marketplace Extension — Buyer Flows
+      { path: "marketplace/order/summary", element: <MarketOrderSummary /> },
+      { path: "marketplace/order/success", element: <MarketOrderSuccess /> },
+      { path: "marketplace/service/:id", element: <MarketServiceDetail /> },
+      { path: "marketplace/service/:id/packages", element: <MarketServicePackages /> },
+      { path: "marketplace/service/:id/availability", element: <MarketServiceCalendar /> },
+      { path: "marketplace/service/:id/inquiry", element: <MarketServiceInquiry /> },
+      { path: "marketplace/service/:id/payment", element: <MarketServicePayment /> },
+      { path: "marketplace/asset/:id", element: <MarketAssetOverview /> },
+      { path: "marketplace/asset/:id/price", element: <MarketAssetPrice /> },
+      { path: "marketplace/asset/:id/documents", element: <MarketAssetDocuments /> },
+      { path: "marketplace/asset/:id/chat", element: <MarketAssetChat /> },
+      { path: "marketplace/asset/:id/order", element: <MarketAssetOrder /> },
+      { path: "marketplace/asset/:id/escrow", element: <MarketAssetEscrow /> },
+      { path: "marketplace/intel/:id", element: <MarketIntelDetail /> },
+      // Marketplace — List Business Flow
+      { path: "marketplace/list", element: <ListBizInfo /> },
+      { path: "marketplace/list/category", element: <ListBizCategory /> },
+      { path: "marketplace/list/description", element: <ListBizDescription /> },
+      { path: "marketplace/list/media", element: <ListBizMedia /> },
+      { path: "marketplace/list/contact", element: <ListBizContact /> },
+      { path: "marketplace/list/hours", element: <ListBizHours /> },
+      { path: "marketplace/list/success", element: <ListBizSuccess /> },
+      // Marketplace — Referral Flow
+      { path: "marketplace/refer", element: <MarketReferral /> },
+      { path: "marketplace/refer/invite", element: <MarketReferralInvite /> },
+      { path: "marketplace/refer/history", element: <MarketReferralHistory /> },
+      // Marketplace — Agent Flow
+      { path: "marketplace/agent", element: <AgentLanding /> },
+      { path: "marketplace/agent/list", element: <AgentComplexType /> },
+      // Marketplace — Entry Screens (Featured Products, Services, Market Intelligence)
+      { path: "marketplace/featured", element: <FeaturedProducts /> },
+      { path: "marketplace/services", element: <ServicesMarketplace /> },
+      { path: "marketplace/intelligence", element: <MarketIntelHub /> },
+      { path: "marketplace/intel/:id/forecast", element: <MarketIntelForecast /> },
+      { path: "marketplace/intel/:id/opportunities", element: <MarketIntelOpportunities /> },
       { path: "learning", element: <Learning /> },
       { path: "learning/:id", element: <LearningDetail /> },
       { path: "discover", element: <Discover /> },
