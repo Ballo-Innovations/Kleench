@@ -80,7 +80,7 @@ export function SellProductTargeting() {
               <div className="flex flex-wrap gap-2">
                 {AGE_RANGES.map((a) => (
                   <button key={a} onClick={() => toggleAge(a)}
-                    className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${ages.includes(a) ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                    className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${ages.includes(a) ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                     {a}
                   </button>
                 ))}
@@ -91,7 +91,7 @@ export function SellProductTargeting() {
               <div className="flex gap-2">
                 {GENDERS.map((g) => (
                   <button key={g} onClick={() => setGender(g)}
-                    className={`flex-1 py-2 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${gender === g ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                    className={`flex-1 py-2 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${gender === g ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                     {g}
                   </button>
                 ))}
@@ -102,14 +102,14 @@ export function SellProductTargeting() {
               <div className="flex flex-wrap gap-2">
                 {INTERESTS.map((i) => (
                   <button key={i} onClick={() => toggleInterest(i)}
-                    className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${interests.includes(i) ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                    className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${interests.includes(i) ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                     {i}
                   </button>
                 ))}
                 {customInterests.map((ci) => (
-                  <span key={ci} className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-[var(--color-primary)] bg-[var(--color-primary)]/10">
-                    <span className="text-[10px] font-black uppercase tracking-wide text-[var(--color-primary)]">{ci}</span>
-                    <button onClick={() => setCustomInterests((p) => p.filter((x) => x !== ci))} className="text-[var(--color-primary)]/60 active:opacity-50">
+                  <span key={ci} className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-[var(--color-primary)] bg-[var(--color-primary)]">
+                    <span className="text-[10px] font-black uppercase tracking-wide text-white">{ci}</span>
+                    <button onClick={() => setCustomInterests((p) => p.filter((x) => x !== ci))} className="text-white/60 active:opacity-50">
                       <X size={9} strokeWidth={2.5} />
                     </button>
                   </span>
@@ -147,7 +147,7 @@ export function SellProductTargeting() {
                     : "border-[var(--border)] bg-[var(--app-bg)]"
                 }`}>
                 <Icon size={18} color={visibility === id ? "var(--color-primary)" : "var(--color-secondary)"} strokeWidth={2} />
-                <p className={`text-[11px] font-black uppercase tracking-wide ${visibility === id ? "text-[var(--color-primary)]" : "text-[var(--color-secondary)]/70"}`}>{label}</p>
+                <p className={`text-[11px] font-black uppercase tracking-wide ${visibility === id ? "text-[var(--app-text)]" : "text-[var(--color-secondary)]/70"}`}>{label}</p>
                 <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50">{desc}</p>
               </button>
             ))}

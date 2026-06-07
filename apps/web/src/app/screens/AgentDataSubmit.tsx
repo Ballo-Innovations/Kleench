@@ -44,7 +44,7 @@ export function AgentDataSubmit() {
             <div className="flex flex-wrap gap-2">
               {COMMODITIES.map((c) => (
                 <button key={c} onClick={() => setCommodity(c)}
-                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${commodity === c ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${commodity === c ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                   {c}
                 </button>
               ))}
@@ -86,7 +86,7 @@ export function AgentDataSubmit() {
             <div className="flex flex-wrap gap-2">
               {AVAILABILITY.map((a) => (
                 <button key={a} onClick={() => setAvailability(a)}
-                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${availability === a ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${availability === a ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                   {a}
                 </button>
               ))}
