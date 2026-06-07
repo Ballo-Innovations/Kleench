@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, Upload } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { FileUploadZone, UploadedFile } from "../components/FileUploadZone";
 
 const AGENT_LABEL: Record<string, string> = {
   onboarding: "Onboarding Agent",
@@ -20,7 +21,7 @@ export function AgentInfo() {
   const [bizType, setBizType] = useState("");
   const [experience, setExperience] = useState("");
   const [agentCode, setAgentCode] = useState("");
-  const [hasLicense, setHasLicense] = useState(false);
+  const [licenseFiles, setLicenseFiles] = useState<UploadedFile[]>([]);
 
   const canContinue = entityType && experience;
 
@@ -80,21 +81,18 @@ export function AgentInfo() {
               className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-[13px] font-semibold text-[var(--app-text)] bg-[var(--app-bg)] outline-none focus:border-[var(--app-text)] transition-all placeholder:text-[var(--color-secondary)]/30" />
           </div>
 
-          <div className={`p-4 rounded-xl border ${hasLicense ? "border-[var(--color-primary)]/40 bg-[var(--color-primary)]/5" : "border-[var(--border)]"}`}>
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-[10px] font-black uppercase tracking-wider text-[var(--color-secondary)]/60">License / Certificate <span className="text-[var(--color-secondary)]/40">(Optional)</span></p>
-              {hasLicense && <span className="text-[8px] font-black uppercase tracking-widest text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-2 py-0.5 rounded-full">Uploaded</span>}
-            </div>
-            <button onClick={() => setHasLicense(!hasLicense)}
-              className="w-full py-2.5 rounded-lg border-2 border-dashed border-[var(--border)] text-[10px] font-black uppercase tracking-widest text-[var(--color-secondary)]/50 flex items-center justify-center gap-2 active:scale-95 transition-all">
-              <Upload size={13} strokeWidth={2} /> {hasLicense ? "Replace" : "Upload"}
-            </button>
-          </div>
+          <FileUploadZone
+            label="License / Certificate"
+            accept=".pdf,image/*"
+            multiple={false}
+            hint="Optional"
+            onFilesChange={setLicenseFiles}
+          />
         </motion.div>
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button onClick={() => navigate("/marketplace/agent/terms", { state: { ...state, entityType, bizType, experience, agentCode, hasLicense } })}
+        <button onClick={() => navigate("/marketplace/agent/terms", { state: { ...state, entityType, bizType, experience, agentCode, license: licenseFiles[0] ? { name: licenseFiles[0].file.name, size: licenseFiles[0].file.size, preview: licenseFiles[0].preview } : null } })}
           disabled={!canContinue}
           className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all">
           Continue <ArrowRight size={18} />

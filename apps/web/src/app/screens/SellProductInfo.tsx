@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { X, Image, Video, ArrowRight, Save, Users, Info } from "lucide-react";
+import { ArrowRight, Save, Users, Info } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { FileUploadZone, UploadedFile } from "../components/FileUploadZone";
 
 const CATEGORIES = ["Electronics", "Clothing & Fashion", "Food & Groceries", "Furniture", "Vehicles", "Tools & Equipment", "Books", "Other"];
 const CONDITIONS = ["Brand New", "Like New", "Good", "Fair", "For Parts"];
@@ -16,12 +17,10 @@ const STEPS = 4;
 export function SellProductInfo() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const imgRef = useRef<HTMLInputElement>(null);
-  const vidRef = useRef<HTMLInputElement>(null);
-
   const [form, setForm] = useState({ name: "", category: state?.category || "", subCategory: "", condition: "", price: "", quantity: "1", description: "" });
   const [delivery, setDelivery] = useState<string[]>([]);
-  const [images, setImages] = useState<string[]>([]);
+  const [imageFiles, setImageFiles] = useState<UploadedFile[]>([]);
+  const [videoFiles, setVideoFiles] = useState<UploadedFile[]>([]);
   const [draftSaved, setDraftSaved] = useState(false);
   const draftTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -41,15 +40,6 @@ export function SellProductInfo() {
   const toggleDelivery = (id: string) => setDelivery((p) => p.includes(id) ? p.filter((x) => x !== id) : [...p, id]);
 
   const canContinue = form.name && form.category && form.condition && form.price && delivery.length > 0;
-
-  const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    files.forEach((f) => {
-      const reader = new FileReader();
-      reader.onload = (ev) => setImages((p) => [...p, ev.target?.result as string]);
-      reader.readAsDataURL(f);
-    });
-  };
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
@@ -124,37 +114,24 @@ export function SellProductInfo() {
           </div>
         </div>
 
-        <div className="bg-[var(--app-bg)] rounded-3xl border-[3px] border-[var(--app-text)] shadow-[6px_6px_0_var(--app-text)] p-5 space-y-4">
-          <div className="flex items-center justify-between">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Media</p>
-            {images.length > 0 && (
-              <span className="text-[9px] font-black text-[var(--color-primary)] uppercase tracking-widest">{images.length} Image{images.length !== 1 ? "s" : ""} Uploaded</span>
-            )}
-          </div>
-          <input ref={imgRef} type="file" accept="image/*" multiple className="hidden" onChange={handleImages} />
-          <input ref={vidRef} type="file" accept="video/*" className="hidden" />
-          <div className="flex flex-wrap gap-2">
-            {images.map((src, i) => (
-              <div key={i} className="relative w-16 h-16 rounded-xl overflow-hidden border-2 border-[var(--border)]">
-                <img src={src} alt="" className="w-full h-full object-cover" />
-                <button onClick={() => setImages((p) => p.filter((_, j) => j !== i))}
-                  className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/60 flex items-center justify-center">
-                  <X size={8} className="text-white" />
-                </button>
-              </div>
-            ))}
-            <button onClick={() => imgRef.current?.click()}
-              className="w-16 h-16 rounded-xl border-2 border-dashed border-[var(--color-primary)]/40 flex flex-col items-center justify-center gap-1 text-[var(--color-primary)]">
-              <Image size={16} strokeWidth={2} />
-              <span className="text-[8px] font-black uppercase">Photos</span>
-            </button>
-            <button onClick={() => vidRef.current?.click()}
-              className="w-16 h-16 rounded-xl border-2 border-dashed border-[var(--color-secondary)]/30 flex flex-col items-center justify-center gap-1 text-[var(--color-secondary)]/50">
-              <Video size={16} strokeWidth={2} />
-              <span className="text-[8px] font-black uppercase">Video</span>
-            </button>
-          </div>
-          <div className="flex items-start gap-1.5 pt-1">
+        <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-5 space-y-4">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Media</p>
+          <FileUploadZone
+            label="Product Photos"
+            accept="image/*"
+            multiple
+            maxFiles={8}
+            hint="Up to 8 photos"
+            onFilesChange={setImageFiles}
+          />
+          <FileUploadZone
+            label="Product Video"
+            accept="video/*"
+            multiple={false}
+            hint="Optional · max 1 video"
+            onFilesChange={setVideoFiles}
+          />
+          <div className="flex items-start gap-1.5">
             <Info size={10} className="text-[var(--color-primary)]/60 shrink-0 mt-0.5" strokeWidth={2} />
             <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50 leading-snug">Use bright, clear photos on a plain background. Listings with 3+ photos get 2× more clicks.</p>
           </div>
@@ -189,7 +166,7 @@ export function SellProductInfo() {
 
       <div className="px-5 pt-4 pb-8">
         <button
-          onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, productInfo: { ...form, images }, delivery } })}
+          onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, productInfo: { ...form, images: imageFiles.map((f) => ({ name: f.file.name, size: f.file.size, preview: f.preview })), video: videoFiles[0] ? { name: videoFiles[0].file.name, size: videoFiles[0].file.size } : null }, delivery } })}
           disabled={!canContinue}
           className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
         >
