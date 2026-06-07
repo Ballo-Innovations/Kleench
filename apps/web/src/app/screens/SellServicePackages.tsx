@@ -12,7 +12,7 @@ const DEFAULTS: Package[] = [
   { name: "Premium", price: "", features: ["", "", ""], deliverables: "" },
 ];
 const COLORS = ["#059669", "var(--color-primary)", "#7C3AED", "#DC2626", "#D97706", "#0077B6"];
-const STEPS = 7;
+const STEPS = 5;
 
 export function SellServicePackages() {
   const navigate = useNavigate();
@@ -36,12 +36,12 @@ export function SellServicePackages() {
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
-      <PageHeader title="PACKAGES" subtitle="Step 5 of 7" showBack />
+      <PageHeader title="PACKAGES" subtitle="Step 3 of 5 — Service Packages" showBack />
 
       <div className="px-5 pt-5 space-y-5">
         <div className="flex gap-1.5">
           {Array.from({ length: STEPS }).map((_, i) => (
-            <div key={i} className={`h-1.5 flex-1 rounded-full ${i < 5 ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`} />
+            <div key={i} className={`h-1.5 flex-1 rounded-full ${i < 3 ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`} />
           ))}
         </div>
 
@@ -111,7 +111,7 @@ export function SellServicePackages() {
 
       <div className="px-5 pt-4 pb-8">
         <button
-          onClick={() => navigate("/marketplace/sell/service/availability", { state: { ...state, packages } })}
+          onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, packages } })}
           disabled={!canContinue}
           className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
         >

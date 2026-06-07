@@ -1,25 +1,26 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { ArrowRight, Share2, Tag, Plus, X } from "lucide-react";
+import { ArrowRight, Tag, Plus, X, Globe, Lock } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 
 const PROVINCES = ["Lusaka", "Copperbelt", "Northern", "Eastern", "Western", "Southern", "Luapula", "Muchinga", "Central", "North-Western"];
 const AGE_RANGES = ["18–24", "25–34", "35–44", "45–54", "55+"];
 const GENDERS = ["All", "Male", "Female"];
 const INTERESTS = ["Tech", "Fashion", "Automotive", "Agriculture", "Food", "Education", "Health", "Business"];
-const STEPS = 5;
+const STEPS = 4;
 
 export function SellProductTargeting() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [province, setProvince] = useState("");
+  const [district, setDistrict] = useState("");
   const [location, setLocation] = useState("");
   const [ages, setAges] = useState<string[]>([]);
   const [gender, setGender] = useState("All");
   const [interests, setInterests] = useState<string[]>([]);
   const [customInterests, setCustomInterests] = useState<string[]>([]);
   const [customInput, setCustomInput] = useState("");
-  const [shareListing, setShareListing] = useState(false);
+  const [visibility, setVisibility] = useState<"public" | "private">("public");
   const [allowOffers, setAllowOffers] = useState(false);
 
   const toggleAge = (a: string) => setAges((p) => p.includes(a) ? p.filter((x) => x !== a) : [...p, a]);
@@ -33,26 +34,19 @@ export function SellProductTargeting() {
     setCustomInput("");
   };
 
-  const removeCustomInterest = (val: string) => setCustomInterests((p) => p.filter((x) => x !== val));
-
-  const getSuccessRoute = () => {
-    const { sellType, saleType } = state || {};
-    if (sellType === "service") return "/marketplace/sell/service/success";
-    if (sellType === "complex" || saleType === "complex") return "/marketplace/sell/complex/terms";
-    return "/marketplace/sell/product/success";
-  };
-
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
-      <PageHeader title="TARGET MARKET" subtitle="Step 5 of 5" showBack />
+      <PageHeader title="TARGET MARKET" subtitle="Step 4 of 4 — Audience & Visibility" showBack />
 
       <div className="px-5 pt-5 space-y-5">
+        {/* Progress — all 4 filled */}
         <div className="flex gap-1.5">
           {Array.from({ length: STEPS }).map((_, i) => (
             <div key={i} className="h-1.5 flex-1 rounded-full bg-[var(--color-primary)]" />
           ))}
         </div>
 
+        {/* Location */}
         <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-5 space-y-4">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Location</p>
           <div className="space-y-3">
@@ -65,6 +59,11 @@ export function SellProductTargeting() {
               </select>
             </div>
             <div className="space-y-1">
+              <label className="text-[10px] font-black uppercase tracking-wider text-[var(--color-secondary)]/60">District</label>
+              <input value={district} onChange={(e) => setDistrict(e.target.value)} placeholder="e.g. Chilanga, Kafue"
+                className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-[13px] font-semibold text-[var(--app-text)] bg-[var(--app-bg)] outline-none focus:border-[var(--app-text)] transition-all placeholder:text-[var(--color-secondary)]/30" />
+            </div>
+            <div className="space-y-1">
               <label className="text-[10px] font-black uppercase tracking-wider text-[var(--color-secondary)]/60">Specific Location</label>
               <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Kabulonga, Lusaka"
                 className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-[13px] font-semibold text-[var(--app-text)] bg-[var(--app-bg)] outline-none focus:border-[var(--app-text)] transition-all placeholder:text-[var(--color-secondary)]/30" />
@@ -72,6 +71,7 @@ export function SellProductTargeting() {
           </div>
         </div>
 
+        {/* Audience */}
         <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-5 space-y-4">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Audience</p>
           <div className="space-y-3">
@@ -109,7 +109,7 @@ export function SellProductTargeting() {
                 {customInterests.map((ci) => (
                   <span key={ci} className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-[var(--color-primary)] bg-[var(--color-primary)]/10">
                     <span className="text-[10px] font-black uppercase tracking-wide text-[var(--color-primary)]">{ci}</span>
-                    <button onClick={() => removeCustomInterest(ci)} className="text-[var(--color-primary)]/60 active:opacity-50">
+                    <button onClick={() => setCustomInterests((p) => p.filter((x) => x !== ci))} className="text-[var(--color-primary)]/60 active:opacity-50">
                       <X size={9} strokeWidth={2.5} />
                     </button>
                   </span>
@@ -132,32 +132,54 @@ export function SellProductTargeting() {
           </div>
         </div>
 
+        {/* Visibility */}
         <div className="bg-[var(--app-bg)] rounded-2xl border border-[var(--border)] shadow-sm p-5 space-y-3">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Options</p>
-          {[
-            { key: "share", label: "Share Listing", desc: "Allow users to share this listing", icon: Share2, value: shareListing, toggle: setShareListing },
-            { key: "offers", label: "Allow Offers", desc: "Buyers can make price offers", icon: Tag, value: allowOffers, toggle: setAllowOffers },
-          ].map(({ key, label, desc, icon: Icon, value, toggle }) => (
-            <div key={key} className="flex items-center justify-between py-2">
-              <div className="flex items-center gap-3">
-                <Icon size={16} className="text-[var(--color-secondary)]" strokeWidth={2} />
-                <div>
-                  <p className="text-[12px] font-black text-[var(--app-text)] uppercase tracking-wide">{label}</p>
-                  <p className="text-[10px] font-semibold text-[var(--color-secondary)]/50">{desc}</p>
-                </div>
-              </div>
-              <button onClick={() => toggle(!value)}
-                className={`w-12 h-6 rounded-full transition-all relative ${value ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`}>
-                <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${value ? "left-6" : "left-0.5"}`} />
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Visibility</p>
+          <div className="flex gap-3">
+            {([
+              { id: "public" as const, label: "Public", desc: "Visible to all buyers", icon: Globe },
+              { id: "private" as const, label: "Private", desc: "Only shared via link", icon: Lock },
+            ]).map(({ id, label, desc, icon: Icon }) => (
+              <button key={id} onClick={() => setVisibility(id)}
+                className={`flex-1 flex flex-col items-center gap-2 py-3 rounded-2xl border transition-all ${
+                  visibility === id
+                    ? "border-[var(--color-primary)] bg-[var(--color-primary)]/8"
+                    : "border-[var(--border)] bg-[var(--app-bg)]"
+                }`}>
+                <Icon size={18} color={visibility === id ? "var(--color-primary)" : "var(--color-secondary)"} strokeWidth={2} />
+                <p className={`text-[11px] font-black uppercase tracking-wide ${visibility === id ? "text-[var(--color-primary)]" : "text-[var(--color-secondary)]/70"}`}>{label}</p>
+                <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50">{desc}</p>
               </button>
+            ))}
+          </div>
+
+          {/* Allow Offers toggle */}
+          <div className="flex items-center justify-between pt-2 border-t border-[var(--border)]">
+            <div className="flex items-center gap-3">
+              <Tag size={16} className="text-[var(--color-secondary)]" strokeWidth={2} />
+              <div>
+                <p className="text-[12px] font-black text-[var(--app-text)] uppercase tracking-wide">Allow Offers</p>
+                <p className="text-[10px] font-semibold text-[var(--color-secondary)]/50">Buyers can make price offers</p>
+              </div>
             </div>
-          ))}
+            <button onClick={() => setAllowOffers(!allowOffers)}
+              className={`w-12 h-6 rounded-full transition-all relative ${allowOffers ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`}>
+              <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${allowOffers ? "left-6" : "left-0.5"}`} />
+            </button>
+          </div>
         </div>
       </div>
 
       <div className="px-5 pt-4 pb-8">
         <button
-          onClick={() => navigate(getSuccessRoute(), { state: { ...state, targeting: { province, location, ages, gender, interests: [...interests, ...customInterests] }, shareListing, allowOffers } })}
+          onClick={() => navigate("/marketplace/sell/product/success", {
+            state: {
+              ...state,
+              targeting: { province, district, location, ages, gender, interests: [...interests, ...customInterests] },
+              visibility,
+              allowOffers,
+            }
+          })}
           className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all"
         >
           Publish Listing <ArrowRight size={18} />

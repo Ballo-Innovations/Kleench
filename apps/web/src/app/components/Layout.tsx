@@ -66,6 +66,8 @@ export function Layout() {
     location.pathname.startsWith("/marketplace/agent") ||
     location.pathname.startsWith("/marketplace/featured") ||
     location.pathname.startsWith("/marketplace/services") ||
+    location.pathname.startsWith("/marketplace/business-listings") ||
+    location.pathname.startsWith("/marketplace/business/") ||
     location.pathname.startsWith("/marketplace/intelligence") ||
     location.pathname.startsWith("/surveys") ||
     location.pathname.startsWith("/survey") ||

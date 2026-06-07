@@ -397,7 +397,7 @@ export function Marketplace() {
                    </div>
                  </div>
                ))}
-               <div onClick={() => toast("Viewing all registered businesses...")} className="shrink-0 snap-start w-[120px] bg-[var(--color-secondary)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-full min-h-[185px]">
+               <div onClick={() => navigate("/marketplace/business-listings")} className="shrink-0 snap-start w-[120px] bg-[var(--color-secondary)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-full min-h-[185px]">
                   <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center">
                     <ChevronRight size={24} className="text-white/60 ml-0.5" strokeWidth={2.5} />
                   </div>

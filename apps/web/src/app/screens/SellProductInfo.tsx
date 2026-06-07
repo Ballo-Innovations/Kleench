@@ -11,7 +11,7 @@ const DELIVERY = [
   { id: "courier", label: "Courier" },
   { id: "kleench", label: "KLeench Delivery" },
 ];
-const STEPS = 5;
+const STEPS = 4;
 
 export function SellProductInfo() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export function SellProductInfo() {
   const imgRef = useRef<HTMLInputElement>(null);
   const vidRef = useRef<HTMLInputElement>(null);
 
-  const [form, setForm] = useState({ name: "", category: "", subCategory: "", condition: "", price: "", quantity: "1", description: "" });
+  const [form, setForm] = useState({ name: "", category: state?.category || "", subCategory: "", condition: "", price: "", quantity: "1", description: "" });
   const [delivery, setDelivery] = useState<string[]>([]);
   const [images, setImages] = useState<string[]>([]);
   const [draftSaved, setDraftSaved] = useState(false);
@@ -53,13 +53,13 @@ export function SellProductInfo() {
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
-      <PageHeader title="PRODUCT INFO" subtitle="Step 3 of 5" showBack />
+      <PageHeader title="PRODUCT INFO" subtitle="Step 2 of 4 — Product Information" showBack />
 
       <div className="px-5 pt-5 space-y-5">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5 flex-1">
             {Array.from({ length: STEPS }).map((_, i) => (
-              <div key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${i < 3 ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`} />
+              <div key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${i < 2 ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`} />
             ))}
           </div>
           {draftSaved && (
@@ -125,7 +125,12 @@ export function SellProductInfo() {
         </div>
 
         <div className="bg-[var(--app-bg)] rounded-3xl border-[3px] border-[var(--app-text)] shadow-[6px_6px_0_var(--app-text)] p-5 space-y-4">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Media</p>
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Media</p>
+            {images.length > 0 && (
+              <span className="text-[9px] font-black text-[var(--color-primary)] uppercase tracking-widest">{images.length} Image{images.length !== 1 ? "s" : ""} Uploaded</span>
+            )}
+          </div>
           <input ref={imgRef} type="file" accept="image/*" multiple className="hidden" onChange={handleImages} />
           <input ref={vidRef} type="file" accept="video/*" className="hidden" />
           <div className="flex flex-wrap gap-2">
@@ -184,7 +189,7 @@ export function SellProductInfo() {
 
       <div className="px-5 pt-4 pb-8">
         <button
-          onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, productInfo: form, delivery } })}
+          onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, productInfo: { ...form, images }, delivery } })}
           disabled={!canContinue}
           className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
         >
