@@ -1,52 +1,52 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { Zap, TrendingUp, ArrowRight, SkipForward } from "lucide-react";
+import { Zap, TrendingUp, ArrowRight, SkipForward, Users } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 
 const BOOST_PLANS = [
   {
-    id: "3days", label: "3 Days", price: "K25", color: "#059669",
-    stats: { impressions: "6,000", clicks: "420", leads: "18" },
+    id: "standard", label: "Standard", price: "K25", color: "#059669",
+    reach: "4,000", stats: { impressions: "6,000", clicks: "420", leads: "18" },
   },
   {
-    id: "7days", label: "7 Days", price: "K55", color: "var(--color-primary)", popular: true,
-    stats: { impressions: "18,000", clicks: "1,260", leads: "54" },
+    id: "premium", label: "Premium", price: "K55", color: "var(--color-primary)", popular: true,
+    reach: "12,000", stats: { impressions: "18,000", clicks: "1,260", leads: "54" },
   },
   {
-    id: "15days", label: "15 Days", price: "K99", color: "#7C3AED",
-    stats: { impressions: "42,000", clicks: "3,100", leads: "130" },
+    id: "featured", label: "Featured", price: "K99", color: "#7C3AED",
+    reach: "28,000", stats: { impressions: "42,000", clicks: "3,100", leads: "130" },
   },
 ];
-const STEPS = 5;
 
 export function SellProductBoost() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selected, setSelected] = useState<string | null>(null);
 
-  const getNextRoute = () => {
-    const { sellType } = state || {};
-    if (sellType === "service") return "/marketplace/sell/service/review";
-    return "/marketplace/sell/product/targeting";
-  };
+  const isService = state?.sellType === "service";
+  const STEPS = isService ? 5 : 4;
+  const currentStep = isService ? 4 : 3;
+  const subtitle = isService ? "Step 4 of 5 — Boost Service" : "Step 3 of 4 — Boost Product";
+  const nextRoute = isService ? "/marketplace/sell/service/review" : "/marketplace/sell/product/targeting";
 
   const proceed = (skip = false) => {
-    navigate(getNextRoute(), { state: { ...state, boost: skip ? null : selected } });
+    navigate(nextRoute, { state: { ...state, boost: skip ? null : selected } });
   };
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
-      <PageHeader title="BOOST LISTING" subtitle="Step 4 of 5" showBack />
+      <PageHeader title={isService ? "BOOST SERVICE" : "BOOST PRODUCT"} subtitle={subtitle} showBack />
 
       <div className="px-5 pt-5 space-y-5">
+        {/* Progress */}
         <div className="flex gap-1.5">
           {Array.from({ length: STEPS }).map((_, i) => (
-            <div key={i} className={`h-1.5 flex-1 rounded-full ${i < 4 ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`} />
+            <div key={i} className={`h-1.5 flex-1 rounded-full ${i < currentStep ? "bg-[var(--color-primary)]" : "bg-[var(--border)]"}`} />
           ))}
         </div>
 
-        <div className="bg-[var(--color-primary)]/8 border-2 border-[var(--color-primary)]/20 rounded-2xl p-4 flex gap-3">
+        <div className="bg-[var(--color-primary)]/8 border border-[var(--color-primary)]/20 rounded-2xl p-4 flex gap-3">
           <TrendingUp size={18} className="text-[var(--color-primary)] shrink-0 mt-0.5" strokeWidth={2} />
           <p className="text-[11px] font-semibold text-[var(--color-secondary)]/70 leading-snug">
             Boosted listings get up to <span className="font-black text-[var(--color-primary)]">6× more views</span> and appear at the top of search results.
@@ -59,7 +59,7 @@ export function SellProductBoost() {
               key={plan.id}
               whileTap={{ scale: 0.98 }}
               onClick={() => setSelected(plan.id)}
-              className={`w-full flex items-center gap-4 p-4 rounded-2xl border-[3px] transition-all text-left relative ${
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all text-left relative ${
                 selected === plan.id
                   ? "border-[var(--app-text)] shadow-[4px_4px_0_var(--app-text)]"
                   : "border-[var(--border)] bg-[var(--app-bg)]"
@@ -71,7 +71,7 @@ export function SellProductBoost() {
                   Popular
                 </div>
               )}
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ backgroundColor: plan.color + "18" }}>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ backgroundColor: plan.color + "18" }}>
                 <Zap size={22} style={{ color: plan.color }} strokeWidth={2} />
               </div>
               <div className="flex-1">
@@ -82,7 +82,12 @@ export function SellProductBoost() {
                     <p className="text-[9px] font-black uppercase text-[var(--color-secondary)]/40">once-off</p>
                   </div>
                 </div>
-                <div className="flex gap-3 mt-2">
+                {/* Estimated Reach */}
+                <div className="flex items-center gap-1.5 mt-1.5 mb-2">
+                  <Users size={10} style={{ color: plan.color }} strokeWidth={2} />
+                  <span className="text-[10px] font-black" style={{ color: plan.color }}>Estimated Reach: {plan.reach} Users</span>
+                </div>
+                <div className="flex gap-3">
                   {[
                     { key: "Impr.", val: plan.stats.impressions },
                     { key: "Clicks", val: plan.stats.clicks },

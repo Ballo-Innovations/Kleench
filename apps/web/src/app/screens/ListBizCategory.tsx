@@ -24,7 +24,7 @@ export function ListBizCategory() {
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
-      <PageHeader title="LIST YOUR BUSINESS" subtitle="Step 2 of 6 — Industry & Category" showBack />
+      <PageHeader title="LIST YOUR BUSINESS" subtitle="Step 3 — Industry & Category" showBack />
 
       <div className="px-5 pt-5 space-y-5">
         <div className="flex gap-1.5">
@@ -62,7 +62,7 @@ export function ListBizCategory() {
 
       <div className="px-5 pt-4 pb-8">
         <button
-          onClick={() => navigate("/marketplace/list/description", { state: { ...state, industry, category } })}
+          onClick={() => navigate("/marketplace/list/upload", { state: { ...state, industry, category } })}
           disabled={!industry || !category}
           className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
         >

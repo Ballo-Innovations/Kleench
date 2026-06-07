@@ -93,6 +93,8 @@ import { InvestmentConfirmation } from "./screens/InvestmentConfirmation";
 import { InvestmentSuccess } from "./screens/InvestmentSuccess";
 // Marketplace Extension — Sell Flows
 import { SellHub } from "./screens/SellHub";
+import { SellProductEntry } from "./screens/SellProductEntry";
+import { SellServiceEntry } from "./screens/SellServiceEntry";
 import { SellIdentity } from "./screens/SellIdentity";
 import { SellProductInfo } from "./screens/SellProductInfo";
 import { SellProductBoost } from "./screens/SellProductBoost";
@@ -123,24 +125,40 @@ import { MarketAssetChat } from "./screens/MarketAssetChat";
 import { MarketAssetOrder } from "./screens/MarketAssetOrder";
 import { MarketAssetEscrow } from "./screens/MarketAssetEscrow";
 import { MarketIntelDetail } from "./screens/MarketIntelDetail";
-// Marketplace — List Business Flow
-import { ListBizInfo } from "./screens/ListBizInfo";
+// Marketplace — List Business Flow (new corrected flow)
+import { ListEntry } from "./screens/ListEntry";
+import { ListTypeSelect } from "./screens/ListTypeSelect";
+import { ListBizType } from "./screens/ListBizType";
 import { ListBizCategory } from "./screens/ListBizCategory";
-import { ListBizDescription } from "./screens/ListBizDescription";
-import { ListBizMedia } from "./screens/ListBizMedia";
-import { ListBizContact } from "./screens/ListBizContact";
-import { ListBizHours } from "./screens/ListBizHours";
+import { ListUpload } from "./screens/ListUpload";
+import { ListBizDetail } from "./screens/ListBizDetail";
+import { ListPriorityLocation } from "./screens/ListPriorityLocation";
+import { ListPriorityReferences } from "./screens/ListPriorityReferences";
+import { ListShowcase } from "./screens/ListShowcase";
+import { ListVisibility } from "./screens/ListVisibility";
 import { ListBizSuccess } from "./screens/ListBizSuccess";
+import { ListPrioritySuccess } from "./screens/ListPrioritySuccess";
 // Marketplace — Referral Flow
 import { MarketReferral } from "./screens/MarketReferral";
 import { MarketReferralInvite } from "./screens/MarketReferralInvite";
 import { MarketReferralHistory } from "./screens/MarketReferralHistory";
-// Marketplace — Agent Flow
-import { AgentLanding } from "./screens/AgentLanding";
-import { AgentComplexType } from "./screens/AgentComplexType";
+// Marketplace — Agent Flow (new corrected flow)
+import { AgentEntry } from "./screens/AgentEntry";
+import { AgentTypeSelect } from "./screens/AgentTypeSelect";
+import { AgentInfo } from "./screens/AgentInfo";
+import { AgentTerms } from "./screens/AgentTerms";
+import { AgentSuccess } from "./screens/AgentSuccess";
+import { AgentSpecializedIntro } from "./screens/AgentSpecializedIntro";
+import { AgentSpecializedInfo } from "./screens/AgentSpecializedInfo";
+import { AgentSpecializedData } from "./screens/AgentSpecializedData";
+import { AgentSpecializedMarket } from "./screens/AgentSpecializedMarket";
+import { AgentSpecializedSuccess } from "./screens/AgentSpecializedSuccess";
+import { AgentDataSubmit } from "./screens/AgentDataSubmit";
+import { AgentDataSuccess } from "./screens/AgentDataSuccess";
 // Marketplace — Entry Screens
 import { FeaturedProducts } from "./screens/FeaturedProducts";
 import { ServicesMarketplace } from "./screens/ServicesMarketplace";
+import { BusinessListings } from "./screens/BusinessListings";
 import { MarketIntelHub } from "./screens/MarketIntelHub";
 import { MarketIntelForecast } from "./screens/MarketIntelForecast";
 import { MarketIntelOpportunities } from "./screens/MarketIntelOpportunities";
@@ -254,6 +272,8 @@ const router = createBrowserRouter([
       { path: "product/:id", element: <ProductDetail /> },
       // Marketplace Extension — Sell Flows
       { path: "marketplace/sell", element: <SellHub /> },
+      { path: "marketplace/sell/product", element: <SellProductEntry /> },
+      { path: "marketplace/sell/service", element: <SellServiceEntry /> },
       { path: "marketplace/sell/identity", element: <SellIdentity /> },
       { path: "marketplace/sell/product/info", element: <SellProductInfo /> },
       { path: "marketplace/sell/product/boost", element: <SellProductBoost /> },
@@ -284,24 +304,40 @@ const router = createBrowserRouter([
       { path: "marketplace/asset/:id/order", element: <MarketAssetOrder /> },
       { path: "marketplace/asset/:id/escrow", element: <MarketAssetEscrow /> },
       { path: "marketplace/intel/:id", element: <MarketIntelDetail /> },
-      // Marketplace — List Business Flow
-      { path: "marketplace/list", element: <ListBizInfo /> },
+      // Marketplace — List Business Flow (corrected)
+      { path: "marketplace/list", element: <ListEntry /> },
+      { path: "marketplace/list/type", element: <ListTypeSelect /> },
+      { path: "marketplace/list/biz-type", element: <ListBizType /> },
       { path: "marketplace/list/category", element: <ListBizCategory /> },
-      { path: "marketplace/list/description", element: <ListBizDescription /> },
-      { path: "marketplace/list/media", element: <ListBizMedia /> },
-      { path: "marketplace/list/contact", element: <ListBizContact /> },
-      { path: "marketplace/list/hours", element: <ListBizHours /> },
+      { path: "marketplace/list/upload", element: <ListUpload /> },
+      { path: "marketplace/list/detail", element: <ListBizDetail /> },
+      { path: "marketplace/list/location", element: <ListPriorityLocation /> },
+      { path: "marketplace/list/references", element: <ListPriorityReferences /> },
+      { path: "marketplace/list/showcase", element: <ListShowcase /> },
+      { path: "marketplace/list/visibility", element: <ListVisibility /> },
       { path: "marketplace/list/success", element: <ListBizSuccess /> },
+      { path: "marketplace/list/priority/success", element: <ListPrioritySuccess /> },
       // Marketplace — Referral Flow
       { path: "marketplace/refer", element: <MarketReferral /> },
       { path: "marketplace/refer/invite", element: <MarketReferralInvite /> },
       { path: "marketplace/refer/history", element: <MarketReferralHistory /> },
-      // Marketplace — Agent Flow
-      { path: "marketplace/agent", element: <AgentLanding /> },
-      { path: "marketplace/agent/list", element: <AgentComplexType /> },
-      // Marketplace — Entry Screens (Featured Products, Services, Market Intelligence)
+      // Marketplace — Agent Flow (corrected)
+      { path: "marketplace/agent", element: <AgentEntry /> },
+      { path: "marketplace/agent/type", element: <AgentTypeSelect /> },
+      { path: "marketplace/agent/info", element: <AgentInfo /> },
+      { path: "marketplace/agent/terms", element: <AgentTerms /> },
+      { path: "marketplace/agent/success", element: <AgentSuccess /> },
+      { path: "marketplace/agent/specialized", element: <AgentSpecializedIntro /> },
+      { path: "marketplace/agent/specialized/info", element: <AgentSpecializedInfo /> },
+      { path: "marketplace/agent/specialized/data", element: <AgentSpecializedData /> },
+      { path: "marketplace/agent/specialized/market", element: <AgentSpecializedMarket /> },
+      { path: "marketplace/agent/specialized/success", element: <AgentSpecializedSuccess /> },
+      { path: "marketplace/agent/submit", element: <AgentDataSubmit /> },
+      { path: "marketplace/agent/submit/success", element: <AgentDataSuccess /> },
+      // Marketplace — Browse Screens
       { path: "marketplace/featured", element: <FeaturedProducts /> },
       { path: "marketplace/services", element: <ServicesMarketplace /> },
+      { path: "marketplace/business-listings", element: <BusinessListings /> },
       { path: "marketplace/intelligence", element: <MarketIntelHub /> },
       { path: "marketplace/intel/:id/forecast", element: <MarketIntelForecast /> },
       { path: "marketplace/intel/:id/opportunities", element: <MarketIntelOpportunities /> },

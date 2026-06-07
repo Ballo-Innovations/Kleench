@@ -1,13 +1,41 @@
+import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { CheckCircle, Building2, Share2, Home } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
 
+const SEED_BUSINESSES = [
+  { id: "biz1", name: "Zambia Tech Solutions", category: "Technology", type: "SME", listing: "ordinary", province: "Lusaka", tagline: "Digital transformation for Zambian enterprises", visibility: "public" },
+  { id: "biz2", name: "African Grain Traders Ltd", category: "Agriculture", type: "Local Company", listing: "priority", province: "Eastern", tagline: "Connecting farmers to markets across Southern Africa", visibility: "public" },
+  { id: "biz3", name: "Copperbelt Automotive Hub", category: "Automotive", type: "SME", listing: "ordinary", province: "Copperbelt", tagline: "Your one-stop vehicle service centre", visibility: "public" },
+];
+
 export function ListBizSuccess() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const bizName = state?.name || "Your Business";
+  const bizName = state?.bizName || state?.name || "Your Business";
   const listingId = `BIZ-${Date.now().toString().slice(-6)}`;
+
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("kleench_businesses") || "null");
+      const existing: unknown[] = Array.isArray(stored) ? stored : SEED_BUSINESSES;
+      const newBiz = {
+        id: `biz-${Date.now()}`,
+        name: bizName,
+        category: state?.category || "General",
+        type: state?.bizType || "SME",
+        listing: "ordinary",
+        province: state?.province || "Lusaka",
+        tagline: state?.tagline || "",
+        desc: state?.desc || "",
+        showcase: state?.showcase || [],
+        visibility: state?.visibility || "public",
+        listingId,
+      };
+      localStorage.setItem("kleench_businesses", JSON.stringify([...existing, newBiz]));
+    } catch { /* noop */ }
+  }, []);
 
   return (
     <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
@@ -33,7 +61,7 @@ export function ListBizSuccess() {
             {[
               { label: "Business Name", value: bizName },
               { label: "Category", value: state?.category || "—" },
-              { label: "Province", value: state?.province || "—" },
+              { label: "Province", value: state?.province || state?.area || "—" },
               { label: "Status", value: "Under Review" },
             ].map(({ label, value }) => (
               <div key={label} className="flex items-center justify-between py-2.5 border-b border-[var(--border)] last:border-0">

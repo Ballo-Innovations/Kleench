@@ -70,7 +70,7 @@ export function MarketIntelDetail() {
       <div className="px-5 pt-5 space-y-5">
         {/* Price Hero */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-          className="bg-[var(--app-shape-accent)] rounded-2xl border border-[var(--border)] shadow-md overflow-hidden">
+          className="bg-[var(--color-secondary)] rounded-2xl shadow-md overflow-hidden">
           <div className="px-5 pt-5 pb-4">
             <div className="flex items-start justify-between mb-1">
               <div>
@@ -83,7 +83,7 @@ export function MarketIntelDetail() {
               </div>
             </div>
             <p className="text-[11px] font-bold text-white/50 mt-1">vs. {data.prev} last period</p>
-            <h2 className="text-[22px] font-black text-[var(--color-primary)] uppercase tracking-widest mt-3">{data.title}</h2>
+            <h2 className="text-[22px] font-black text-white uppercase tracking-widest mt-3">{data.title}</h2>
             <p className="text-[11px] font-semibold text-white/60 mt-0.5">{data.desc}</p>
           </div>
 
@@ -92,19 +92,19 @@ export function MarketIntelDetail() {
             <svg className="w-full h-full" viewBox="0 0 60 50" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
+                  <stop offset="0%" stopColor="white" stopOpacity="0.2" />
+                  <stop offset="100%" stopColor="white" stopOpacity="0" />
                 </linearGradient>
               </defs>
               <path d={`${data.graph} L 60 50 L 0 50 Z`} fill="url(#areaGrad)" />
-              <path d={data.graph} fill="none" stroke="var(--color-primary)" strokeWidth="2.5"
+              <path d={data.graph} fill="none" stroke="white" strokeWidth="2.5"
                 vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
 
           <div className="border-t border-white/10 px-5 py-3 flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse block shadow-[0_0_8px_var(--color-primary)]" />
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse block" />
               <span className="text-[8px] font-black uppercase tracking-widest text-white/40">LIVE DATA</span>
             </div>
             <span className="text-[8px] font-black tracking-widest text-white/30">Source: {data.source}</span>
