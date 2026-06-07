@@ -56,7 +56,7 @@ export function SellServiceEntry() {
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${active ? "bg-[var(--color-primary)]/15" : "bg-[var(--border)]/30"}`}>
                     <Icon size={20} color={active ? "var(--color-primary)" : "var(--color-secondary)"} strokeWidth={2} />
                   </div>
-                  <p className={`text-[11px] font-black uppercase tracking-wide ${active ? "text-[var(--color-primary)]" : "text-[var(--color-secondary)]/70"}`}>{pt.label}</p>
+                  <p className={`text-[11px] font-black uppercase tracking-wide ${active ? "text-[var(--app-text)]" : "text-[var(--color-secondary)]/70"}`}>{pt.label}</p>
                   <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50 text-center px-1 leading-snug">{pt.desc}</p>
                 </motion.button>
               );
@@ -76,7 +76,7 @@ export function SellServiceEntry() {
                     active ? "border-[var(--color-primary)] bg-[var(--color-primary)]/8" : "border-[var(--border)] bg-[var(--app-bg)]"
                   }`}>
                   <div>
-                    <p className={`text-[12px] font-black uppercase tracking-wide ${active ? "text-[var(--color-primary)]" : "text-[var(--app-text)]"}`}>{cat.label}</p>
+                    <p className="text-[12px] font-black uppercase tracking-wide text-[var(--app-text)]">{cat.label}</p>
                     <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50 mt-0.5">{cat.examples}</p>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${active ? "border-[var(--color-primary)] bg-[var(--color-primary)]" : "border-[var(--border)]"}`}>

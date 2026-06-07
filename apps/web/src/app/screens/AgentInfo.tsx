@@ -42,7 +42,7 @@ export function AgentInfo() {
           <div className="grid grid-cols-2 gap-2.5">
             {(["individual", "company"] as const).map((t) => (
               <button key={t} onClick={() => setEntityType(t)}
-                className={`py-3.5 px-3 rounded-xl border text-[11px] font-black uppercase tracking-wide transition-all capitalize ${entityType === t ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                className={`py-3.5 px-3 rounded-xl border text-[11px] font-black uppercase tracking-wide transition-all capitalize ${entityType === t ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                 {t}
               </button>
             ))}
@@ -68,7 +68,7 @@ export function AgentInfo() {
             <div className="flex flex-wrap gap-2">
               {["0-1 years", "1-3 years", "3-5 years", "5+ years"].map((e) => (
                 <button key={e} onClick={() => setExperience(e)}
-                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${experience === e ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${experience === e ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                   {e}
                 </button>
               ))}

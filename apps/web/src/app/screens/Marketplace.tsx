@@ -199,7 +199,7 @@ export function Marketplace() {
                />
                <button
                  onClick={() => navigate("/marketplace/featured")}
-                 className="absolute right-4 text-[var(--color-primary)] font-black text-[11px] flex items-center gap-1 active:opacity-70 uppercase tracking-widest"
+                 className="absolute right-4 text-[var(--app-text)]/50 font-black text-[11px] flex items-center gap-1 active:opacity-70 uppercase tracking-widest"
                >
                  Categories <ChevronRight size={14} strokeWidth={3} className="text-[var(--color-secondary)]/40" />
                </button>
@@ -379,19 +379,19 @@ export function Marketplace() {
                       </div>
                       <div className="flex gap-1.5">
                         <button onClick={() => toast.info(`Calling ${business.name}...`)}
-                          className="flex-1 py-1.5 flex items-center justify-center gap-1 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20 rounded-lg active:scale-95 transition-all">
-                          <Phone size={10} className="text-[var(--color-primary)]" strokeWidth={2.5} />
-                          <span className="text-[7px] font-black text-[var(--color-primary)] uppercase tracking-wide">Call</span>
+                          className="flex-1 py-1.5 flex items-center justify-center gap-1 bg-[var(--border)]/50 border border-[var(--border)] rounded-lg active:scale-95 transition-all">
+                          <Phone size={10} className="text-[var(--app-text)]/60" strokeWidth={2.5} />
+                          <span className="text-[7px] font-black text-[var(--app-text)]/60 uppercase tracking-wide">Call</span>
                         </button>
                         <button onClick={() => toast.info(`Messaging ${business.name}...`)}
-                          className="flex-1 py-1.5 flex items-center justify-center gap-1 bg-[var(--color-secondary)]/8 border border-[var(--color-secondary)]/20 rounded-lg active:scale-95 transition-all">
-                          <MessageCircle size={10} className="text-[var(--color-secondary)]" strokeWidth={2.5} />
-                          <span className="text-[7px] font-black text-[var(--color-secondary)] uppercase tracking-wide">Chat</span>
+                          className="flex-1 py-1.5 flex items-center justify-center gap-1 bg-[var(--border)]/50 border border-[var(--border)] rounded-lg active:scale-95 transition-all">
+                          <MessageCircle size={10} className="text-[var(--app-text)]/60" strokeWidth={2.5} />
+                          <span className="text-[7px] font-black text-[var(--app-text)]/60 uppercase tracking-wide">Chat</span>
                         </button>
                         <button onClick={() => navigate(`/marketplace/asset/${business.id}`)}
-                          className="flex-1 py-1.5 flex items-center justify-center gap-1 bg-[var(--color-secondary)]/8 border border-[var(--color-secondary)]/20 rounded-lg active:scale-95 transition-all">
-                          <MapPin size={10} className="text-[var(--color-secondary)]" strokeWidth={2.5} />
-                          <span className="text-[7px] font-black text-[var(--color-secondary)] uppercase tracking-wide">View</span>
+                          className="flex-1 py-1.5 flex items-center justify-center gap-1 bg-[var(--border)]/50 border border-[var(--border)] rounded-lg active:scale-95 transition-all">
+                          <MapPin size={10} className="text-[var(--app-text)]/60" strokeWidth={2.5} />
+                          <span className="text-[7px] font-black text-[var(--app-text)]/60 uppercase tracking-wide">View</span>
                         </button>
                       </div>
                    </div>
@@ -441,7 +441,7 @@ export function Marketplace() {
           <section>
              <div className="mb-3 border-b border-[var(--border)] pb-2 flex items-center justify-between">
                 <h3 className="text-[var(--app-text)] font-black text-sm tracking-widest uppercase">BIG DEALS</h3>
-                <span className="text-[9px] font-black text-[var(--color-primary)] uppercase tracking-widest">🔥 Limited Time</span>
+                <span className="text-[9px] font-black text-white bg-[var(--color-primary)] px-2 py-0.5 rounded-full uppercase tracking-widest">Limited Time</span>
              </div>
              <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-3 scrollbar-hide no-scrollbar w-full pr-5">
                {MARKET_PRODUCTS.map((product) => (

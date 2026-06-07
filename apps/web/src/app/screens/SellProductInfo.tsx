@@ -97,7 +97,7 @@ export function SellProductInfo() {
               <div className="flex flex-wrap gap-2">
                 {CONDITIONS.map((c) => (
                   <button key={c} onClick={() => set("condition", c)}
-                    className={`px-3 py-1.5 rounded-xl border-2 text-[10px] font-black uppercase tracking-wide transition-all ${form.condition === c ? "border-[var(--app-text)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                    className={`px-3 py-1.5 rounded-xl border-2 text-[10px] font-black uppercase tracking-wide transition-all ${form.condition === c ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                     {c}
                   </button>
                 ))}

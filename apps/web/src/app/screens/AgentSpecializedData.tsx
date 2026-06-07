@@ -39,7 +39,7 @@ export function AgentSpecializedData() {
           <div className="flex flex-wrap gap-2">
             {COMMODITIES.map((c) => (
               <button key={c} onClick={() => toggleItem(c, selectedCommodities, setSelectedCommodities)}
-                className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${selectedCommodities.includes(c) ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${selectedCommodities.includes(c) ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                 {c}
               </button>
             ))}
@@ -59,7 +59,7 @@ export function AgentSpecializedData() {
           <div className="flex flex-wrap gap-2">
             {METHODS.map((m) => (
               <button key={m} onClick={() => toggleItem(m, selectedMethods, setSelectedMethods)}
-                className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${selectedMethods.includes(m) ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
+                className={`px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-wide transition-all ${selectedMethods.includes(m) ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--border)] text-[var(--color-secondary)]/60"}`}>
                 {m}
               </button>
             ))}

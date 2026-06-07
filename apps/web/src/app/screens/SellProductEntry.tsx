@@ -54,7 +54,7 @@ export function SellProductEntry() {
               <button key={cat} onClick={() => setCategory(cat)}
                 className={`px-3.5 py-2 rounded-xl border text-[11px] font-black uppercase tracking-wide transition-all ${
                   category === cat
-                    ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
+                    ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white"
                     : "border-[var(--border)] text-[var(--color-secondary)]/60 bg-[var(--app-bg)]"
                 }`}>
                 {cat}
