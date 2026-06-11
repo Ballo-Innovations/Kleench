@@ -10,7 +10,7 @@ export function MarketOrderSuccess() {
   const product = state?.product || { title: "Your Order" };
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="ORDER PLACED!" showBack={false} />
 
       <div className="px-5 pt-8 space-y-6">

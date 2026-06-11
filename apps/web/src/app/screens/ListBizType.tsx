@@ -20,7 +20,7 @@ export function ListBizType() {
   const [selected, setSelected] = useState("");
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="LIST YOUR BUSINESS" subtitle="Step 2 — Type of Business" showBack />
 
       <div className="px-5 pt-5 space-y-5">

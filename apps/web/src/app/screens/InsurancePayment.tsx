@@ -16,7 +16,7 @@ export function InsurancePayment() {
   const fmt = (d: Date) => d.toLocaleDateString("en-ZM", { day: "2-digit", month: "short", year: "numeric" });
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans">
       <PageHeader title="PAYMENT DONE" showBack />
 
       <div className="px-5 pt-10 pb-36 flex flex-col items-center space-y-6">

@@ -16,7 +16,7 @@ export function RoadTaxPayment() {
   const fmt = (d: Date) => d.toLocaleDateString("en-ZM", { day: "2-digit", month: "short", year: "numeric" });
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-36">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-36">
       <PageHeader title="PAYMENT DONE" showBack={false} />
 
       <div className="px-5 pt-10 pb-36 flex flex-col items-center space-y-6">

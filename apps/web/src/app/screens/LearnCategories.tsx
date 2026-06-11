@@ -77,19 +77,19 @@ export function LearnCategories() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--color-secondary)]">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-[var(--color-secondary)]">
       <PageHeader title="Explore" showBack onBack={() => navigate(-1)} />
 
       <div className="px-4 mt-1 relative z-20 space-y-3">
         {/* ── Search Bar ── */}
         <div className="flex items-center gap-2">
-          <div className="flex-1 bg-[var(--app-bg)] rounded-xl h-9 flex items-center px-3 shadow-sm border border-[var(--border)]">
+          <div className="flex-1 bg-[var(--app-bg)] rounded-2xl h-12 flex items-center px-4 shadow-sm border border-[var(--border)]">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search topics, courses..."
-              className="flex-1 h-full bg-transparent outline-none text-[var(--color-secondary)] font-bold placeholder:text-[var(--color-secondary)]/40 text-[11px]"
+              className="flex-1 h-full bg-transparent outline-none text-[var(--color-secondary)] font-bold placeholder:text-[var(--color-secondary)]/40 text-[12px]"
             />
           </div>
         </div>
@@ -125,13 +125,13 @@ export function LearnCategories() {
               <div className="flex items-center justify-between mb-1 px-1">
                 <div className="flex items-center gap-2">
                   <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
-                  <h3 className="text-[9px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.2em] leading-none">
+                  <h3 className="text-[11px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.18em] leading-none">
                     Free Videos
                   </h3>
                 </div>
                 <span
                   onClick={() => navigate("/learning/viewer?mode=free")}
-                  className="text-[var(--color-secondary)]/40 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer"
+                  className="text-[var(--color-secondary)]/40 font-bold text-[10px] uppercase tracking-widest whitespace-nowrap cursor-pointer"
                 >
                   See All
                 </span>
@@ -173,11 +173,11 @@ export function LearnCategories() {
               <div className="flex items-center justify-between mb-1 px-1">
                 <div className="flex items-center gap-2">
                   <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
-                  <h3 className="text-[9px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.2em] leading-none">
+                  <h3 className="text-[11px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.18em] leading-none">
                     Free Podcast
                   </h3>
                 </div>
-                <span className="text-[var(--color-secondary)]/40 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer">
+                <span className="text-[var(--color-secondary)]/40 font-bold text-[10px] uppercase tracking-widest whitespace-nowrap cursor-pointer">
                   See All
                 </span>
               </div>
@@ -227,13 +227,13 @@ export function LearnCategories() {
               <div className="flex items-center justify-between mb-1 px-1">
                 <div className="flex items-center gap-2">
                   <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
-                  <h3 className="text-[9px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.2em] leading-none">
+                  <h3 className="text-[11px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.18em] leading-none">
                     Pay to Stream Videos
                   </h3>
                 </div>
                 <span
                   onClick={() => navigate("/learning/viewer?mode=pay-to-stream")}
-                  className="text-[var(--color-secondary)]/40 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer"
+                  className="text-[var(--color-secondary)]/40 font-bold text-[10px] uppercase tracking-widest whitespace-nowrap cursor-pointer"
                 >
                   See All
                 </span>
@@ -280,7 +280,7 @@ export function LearnCategories() {
             <section className="space-y-3">
               <div className="flex items-center gap-2 px-1">
                 <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
-                <h3 className="text-[9px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.2em] leading-none">
+                <h3 className="text-[11px] font-black text-[var(--color-secondary)]/80 uppercase tracking-[0.18em] leading-none">
                   Explore Courses
                 </h3>
               </div>

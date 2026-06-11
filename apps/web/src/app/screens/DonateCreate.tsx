@@ -36,7 +36,7 @@ export function DonateCreate() {
 
   if (submitted) {
     return (
-      <div className="w-full max-w-md mx-auto min-h-screen font-sans flex flex-col items-center justify-center px-8 text-center">
+      <div className="w-full max-w-md mx-auto font-sans flex flex-col items-center justify-center px-8 text-center">
         <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 200, damping: 18, delay: 0.05 }}>
           <LottieIcon icon="success" size={110} />
         </motion.div>
@@ -63,7 +63,7 @@ export function DonateCreate() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen font-sans pb-32 relative">
+    <div className="w-full max-w-md mx-auto font-sans pb-24 relative">
       {/* Sticky Header */}
       <div className="sticky top-0 z-50">
         <PageHeader title="CREATE CAMPAIGN" showBack onBack={() => step === 1 ? navigate(-1) : setStep(s => s - 1)} />

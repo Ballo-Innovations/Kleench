@@ -65,7 +65,7 @@ export function InsuranceGrid() {
 
   const visible = active === "all" ? ALL_TILES : ALL_TILES.filter((t) => t.category === active);
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="INSURANCE" subtitle="Essential Services" showBack />
 
       <div className="pt-5 space-y-5">

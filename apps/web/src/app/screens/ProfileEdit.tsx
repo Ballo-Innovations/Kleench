@@ -54,7 +54,7 @@ export function ProfileEdit() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent pb-10">
+    <div className="bg-transparent pb-10">
       <GlobalBackground />
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-2 pb-5">

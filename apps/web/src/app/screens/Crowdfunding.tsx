@@ -97,7 +97,7 @@ export function Crowdfunding() {
   };
 
   return (
-    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
+    <div className="w-full relative min-h-[100dvh] bg-transparent font-sans pb-24">
       
       {/* ── Standardized Header ── */}
       <PageHeader 

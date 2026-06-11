@@ -91,7 +91,7 @@ export function CreateSurvey() {
 
   if (submitted) {
     return (
-      <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center min-h-screen text-center relative font-sans pb-16">
+      <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center text-center relative font-sans pb-16">
         <CrossHatchBg />
         <div className="relative z-10 px-8 w-full">
           <motion.div
@@ -143,7 +143,7 @@ export function CreateSurvey() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto pb-32 relative font-sans min-h-screen">
+    <div className="w-full max-w-md mx-auto pb-24 relative font-sans">
       <CrossHatchBg />
 
       {/* Header */}

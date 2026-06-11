@@ -58,7 +58,7 @@ export function SurveyViewer() {
 
   if (completed) {
     return (
-      <div className="w-full max-w-md mx-auto min-h-screen bg-[var(--color-primary)] flex flex-col items-center justify-center text-white px-6 font-sans relative overflow-hidden">
+      <div className="w-full max-w-md mx-auto bg-[var(--color-primary)] flex flex-col items-center justify-center text-white px-6 font-sans relative overflow-hidden">
         {/* Decorative rings */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-white/5 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-white/5 pointer-events-none" />
@@ -130,7 +130,7 @@ export function SurveyViewer() {
   const progress = (currentQ / MOCK_QUESTIONS.length) * 100;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen font-sans bg-transparent relative">
+    <div className="w-full max-w-md mx-auto font-sans bg-transparent relative">
 
       {/* Sticky Header + Progress */}
       <div className="sticky top-0 z-20 bg-[var(--card)]/80 backdrop-blur-xl border-b border-[var(--border)]">

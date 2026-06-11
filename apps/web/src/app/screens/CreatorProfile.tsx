@@ -21,7 +21,7 @@ export function CreatorProfile() {
   const creatorName = username ? username.replace("-", " ").toUpperCase() : "PETER M S LENGALENGA";
 
   return (
-    <div className="w-full relative min-h-[100dvh] bg-[#f8fafc] font-sans pb-32 overflow-x-hidden">
+    <div className="w-full relative min-h-[100dvh] bg-[#f8fafc] font-sans pb-24">
       <PageHeader 
         title={creatorName}
         showBack

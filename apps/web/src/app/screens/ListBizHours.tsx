@@ -18,7 +18,7 @@ export function ListBizHours() {
   const toggleDay = (d: string) => setDays((p) => p.includes(d) ? p.filter((x) => x !== d) : [...p, d]);
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="LIST YOUR BUSINESS" subtitle="Step 6 of 6 — Operating Hours" showBack />
 
       <div className="px-5 pt-5 space-y-5">

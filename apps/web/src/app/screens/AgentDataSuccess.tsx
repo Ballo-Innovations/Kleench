@@ -9,7 +9,7 @@ export function AgentDataSuccess() {
   const submissionId = `SUB-${Date.now().toString().slice(-6)}`;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="DATA SUBMITTED" />
 
       <div className="px-5 pt-8 space-y-5">

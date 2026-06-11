@@ -49,7 +49,7 @@ export function LearningProfile() {
   ];
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Learning Profile" subtitle="Achievements & Certification" showBack />
 
       <div className="px-4 mt-4 relative z-20 space-y-6">

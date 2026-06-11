@@ -13,7 +13,7 @@ export function Withdraw() {
   const providers = ["AIRTEL", "MTN", "ZAMTEL", "BANK"];
 
   return (
-    <div className="min-h-screen bg-transparent text-[var(--app-text)] font-sans pb-32">
+    <div className="bg-transparent text-[var(--app-text)] font-sans pb-24">
       <PageHeader showBack title="Withdraw" />
 
       <div className="px-5 pt-4 space-y-8">

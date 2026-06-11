@@ -37,7 +37,7 @@ export function CreateInvestment() {
   const STEPS = ["Basics", "Financials", "Documents", "Review"];
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen font-sans pb-32">
+    <div className="w-full max-w-md mx-auto font-sans pb-24">
       <div className="sticky top-0 z-50">
         <PageHeader title="CREATE INVESTMENT" showBack onBack={() => navigate(-1)} />
       </div>

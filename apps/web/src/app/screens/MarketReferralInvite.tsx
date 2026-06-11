@@ -15,7 +15,7 @@ export function MarketReferralInvite() {
   const shareSMS = () => { const msg = encodeURIComponent(`Join KLeench! Code ${REFERRAL_CODE}: ${REFERRAL_LINK}`); window.open(`sms:?body=${msg}`, "_blank"); };
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="INVITE FRIENDS" showBack />
 
       <div className="px-5 pt-5 space-y-5">

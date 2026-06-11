@@ -33,7 +33,7 @@ export function ProductDetail() {
 
   return (
     <Skeleton loading={loading} name="productdetail">
-      <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+      <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
 
         <PageHeader title={product.category.toUpperCase()} showBack />
 

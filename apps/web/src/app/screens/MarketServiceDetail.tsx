@@ -36,7 +36,7 @@ export function MarketServiceDetail() {
   const service = MOCK_SERVICE;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title={service.category.toUpperCase()} showBack />
 
       <div className="space-y-4">

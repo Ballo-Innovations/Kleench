@@ -49,7 +49,7 @@ export function SurveysPolls() {
   }
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--color-secondary)]">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-[var(--color-secondary)]">
       
       {/* Sticky Header with global balance HUD */}
       <div className="sticky top-0 z-50">

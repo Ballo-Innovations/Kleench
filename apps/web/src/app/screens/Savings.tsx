@@ -35,7 +35,7 @@ export function Savings() {
   ];
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-[var(--color-secondary)]">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-[var(--color-secondary)]">
       {/* ── PageHeader matching Wallet style ── */}
       <PageHeader 
         showBack 

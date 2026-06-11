@@ -23,7 +23,7 @@ export function AgentDataSubmit() {
   const canSubmit = commodity && market && price && unit && availability && date;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="SUBMIT MARKET DATA" showBack />
 
       <div className="px-5 pt-5 space-y-5">

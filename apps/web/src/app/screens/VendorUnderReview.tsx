@@ -17,7 +17,7 @@ export function VendorUnderReview() {
   const refNo = `KL-VND-${Date.now().toString().slice(-8)}`;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-36">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-36">
       <PageHeader title="APPLICATION SUBMITTED" showBack={false} />
 
       <div className="px-5 pt-8 pb-36 space-y-6">

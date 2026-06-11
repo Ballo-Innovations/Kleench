@@ -23,7 +23,7 @@ export function MarketAssetPrice() {
   const monthlyPayment = Math.round(balance / installments);
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="PRICE ANALYSIS" showBack />
 
       <div className="px-5 pt-5 space-y-5">

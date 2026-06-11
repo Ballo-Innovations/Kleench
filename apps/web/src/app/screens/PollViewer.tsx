@@ -172,7 +172,7 @@ export function PollViewer() {
   });
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen font-sans bg-[var(--app-bg)] relative">
+    <div className="w-full max-w-md mx-auto font-sans bg-[var(--app-bg)] relative">
 
       {/* Header */}
       <div className="sticky top-0 pt-4 pb-4 px-5 flex items-center justify-between z-20 bg-[var(--card)]/80 backdrop-blur-xl border-b border-[var(--border)]">

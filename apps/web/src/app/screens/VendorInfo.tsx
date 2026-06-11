@@ -45,7 +45,7 @@ export function VendorInfo() {
   );
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-36">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-36">
       <PageHeader title="BUSINESS INFORMATION" subtitle="Step 1 of 5" showBack />
 
       <div className="px-5 pt-6 space-y-4">

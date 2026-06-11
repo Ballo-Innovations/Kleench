@@ -73,7 +73,7 @@ export function CourseAssessment() {
   // ══════════════ SCREEN 4.6 — TEST SUBMITTED ══════════════
   if (phase === "submitted") {
     return (
-      <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+      <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
         <PageHeader title="Test Submitted" subtitle={course.title} showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
         <div className="px-4 mt-10 relative z-20 space-y-6 text-center">
           <motion.div {...rise(0)}>
@@ -113,7 +113,7 @@ export function CourseAssessment() {
   // ══════════════ SCREEN 4.5 — TEST REVIEW ══════════════
   if (phase === "review") {
     return (
-      <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+      <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
         <PageHeader title="Test Review" subtitle={`Module Test · ${module.title}`} showBack onBack={() => setPhase("test")} />
         <div className="px-4 mt-4 relative z-20 space-y-5">
           <Bezel innerClassName="p-5">
@@ -169,7 +169,7 @@ export function CourseAssessment() {
   const value = answers[question.id];
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Assessment" subtitle={`Module Test · ${module.title}`} showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-4 relative z-20 space-y-5">

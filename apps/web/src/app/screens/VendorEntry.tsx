@@ -13,7 +13,7 @@ export function VendorEntry() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-36">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-36">
       <PageHeader title="VENDOR REGISTRATION" subtitle="Business Setup" showBack />
 
       <div className="px-5 pt-8 flex flex-col items-center space-y-6">

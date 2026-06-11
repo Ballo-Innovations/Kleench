@@ -41,7 +41,7 @@ export function RoadTaxPolicy() {
   );
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-36">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-36">
       <PageHeader title="TAX POLICY" subtitle="Step 3 of 3" showBack />
 
       <div className="px-5 pt-6 space-y-4">

@@ -26,7 +26,7 @@ export function SellHub() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="SELL HUB" showBack />
 
       <div className="px-5 pt-6 space-y-6">

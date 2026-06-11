@@ -115,7 +115,7 @@ export function ModuleCertificate() {
   useClaimCertificate(course.id, module.id);
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Certificate" subtitle="Module Completion Award" showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-5 relative z-20 space-y-5">
@@ -159,7 +159,7 @@ export function CourseCompletion() {
   );
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Course Complete" subtitle={course.title} showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-8 relative z-20 space-y-6">
@@ -220,7 +220,7 @@ export function FinalCertificate() {
   useClaimCertificate(course.id, "final");
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Full Certificate" subtitle="Certified Course Award" showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-5 relative z-20 space-y-5">

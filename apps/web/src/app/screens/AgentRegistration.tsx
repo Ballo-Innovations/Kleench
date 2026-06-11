@@ -75,7 +75,7 @@ export function AgentRegistration() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent pb-32 font-sans">
+    <div className="w-full bg-transparent pb-24 font-sans">
       {step !== "success" && (
         <PageHeader title="REGISTER AGENT" showBack onBack={handleBack} />
       )}

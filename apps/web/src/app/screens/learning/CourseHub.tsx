@@ -33,7 +33,7 @@ export function CourseHub() {
   const goLesson = () => navigate(`/learning/viewer?mode=learn-earn&course=${course.id}&lesson=${upNext?.id ?? ""}`);
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Course Hub" subtitle="Certified Learning Track" showBack />
 
       <div className="px-4 mt-4 relative z-20 space-y-5">

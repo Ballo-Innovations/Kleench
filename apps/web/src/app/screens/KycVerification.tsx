@@ -8,7 +8,7 @@ export function KycVerification() {
   const [currentStage, setCurrentStage] = React.useState<number>(0);
 
   return (
-    <div className="w-full relative min-h-screen bg-transparent flex flex-col overflow-hidden">
+    <div className="w-full relative bg-transparent flex flex-col overflow-hidden">
       {/* ── FULL BLEED FIXED HEADER (Home Page Behavior) ── */}
       <PageHeader 
         useLogo 

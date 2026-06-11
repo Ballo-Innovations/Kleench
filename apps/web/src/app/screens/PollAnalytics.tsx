@@ -53,7 +53,7 @@ export function PollAnalytics() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent font-sans text-[var(--color-secondary)]">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-[var(--color-secondary)]">
       <div className="sticky top-0 z-50">
         <PageHeader title="POLL ANALYTICS" showBack onBack={() => navigate(-1)} />
       </div>

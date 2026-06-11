@@ -14,7 +14,7 @@ export function MarketServiceInquiry() {
   const pkg = state?.selectedPackage || { name: "Standard", price: 6000 };
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="SEND INQUIRY" showBack />
 
       <div className="px-5 pt-5 space-y-5">
