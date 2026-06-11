@@ -1,10 +1,13 @@
-import { 
+import {
   Circle,
   X,
   MessageCircle,
   MoreVertical,
-  Bookmark
+  Bookmark,
+  Award,
+  GraduationCap
 } from "lucide-react";
+import { COURSES, loadProgress, courseStats } from "./learning/courseData";
 import { 
   DuotoneSearch as Search, 
   DuotoneUpload as Upload, 
@@ -263,6 +266,66 @@ export function Learning() {
                         ))}
                      </div>
                    </div>
+
+                   {/* 03b. Certified Courses — structured learning tracks (Learn → Test → Certify) */}
+                   {video.id === EXPLORE_MORE_VIDEOS[0].id && (
+                     <div>
+                       <div className="flex justify-between items-center mb-0.5 px-1">
+                          <div className="flex items-center gap-2">
+                             <span className="w-[3px] h-3.5 rounded-full bg-[var(--color-primary)] shrink-0" />
+                             <h3 className="text-[9px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">Certified Courses</h3>
+                          </div>
+                          <span onClick={() => navigate("/learning/profile")} className="text-slate-400 font-bold text-[8px] uppercase tracking-widest whitespace-nowrap cursor-pointer transition-colors">My Certificates</span>
+                       </div>
+                       <div className="-mx-5 flex gap-3 overflow-x-auto pb-2 pl-5 pr-5 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
+                          {COURSES.map(course => {
+                             const stats = courseStats(course, loadProgress(course.id));
+                             const started = stats.pct > 0;
+                             return (
+                                <motion.div
+                                  whileTap={{ scale: 0.97 }}
+                                  onClick={() => navigate(`/learning/course/${course.id}`)}
+                                  key={course.id}
+                                  className="relative flex-shrink-0 w-56 bg-[var(--app-bg)] border border-[var(--border)] overflow-hidden shadow-md rounded-3xl cursor-pointer"
+                                >
+                                   {/* Thumbnail */}
+                                   <div className="relative w-full h-28 bg-[var(--app-text-slate)]">
+                                      <img src={course.image} alt={course.title} className="absolute inset-0 w-full h-full object-cover" />
+                                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                                      {/* Certificate badge */}
+                                      <div className="absolute top-2 left-2 bg-[var(--app-bg)]/15 backdrop-blur-md border border-white/30 rounded-full px-2.5 py-1 flex items-center gap-1 shadow-lg">
+                                         <Award size={10} className="text-white" />
+                                         <span className="text-white text-[7px] font-black uppercase tracking-[0.18em]">Certificate</span>
+                                      </div>
+                                      <div className="absolute bottom-2 left-3 right-3">
+                                         <p className="text-white/60 text-[7px] font-black uppercase tracking-[0.2em] mb-0.5">{course.category}</p>
+                                         <p className="text-white font-black text-[11px] uppercase tracking-tight leading-snug drop-shadow-xl line-clamp-2">{course.title}</p>
+                                      </div>
+                                   </div>
+                                   {/* Body */}
+                                   <div className="p-3">
+                                      <div className="flex items-center justify-between mb-2">
+                                         <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest truncate pr-2">{course.instructor}</span>
+                                         <span className="text-[8px] font-black text-slate-400 tracking-widest whitespace-nowrap">{stats.lessonsTotal} Lessons</span>
+                                      </div>
+                                      <div className="flex items-center justify-between mb-1">
+                                         <span className="text-[7px] font-black uppercase tracking-[0.2em] text-slate-400">Progress</span>
+                                         <span className="text-[9px] font-black text-[var(--color-primary)]">{stats.pct}%</span>
+                                      </div>
+                                      <div className="w-full h-1 bg-[var(--app-bg-muted)] border border-[var(--border)] rounded-full overflow-hidden mb-3">
+                                         <div className="h-full bg-[var(--color-primary)] rounded-full transition-all duration-700" style={{ width: `${stats.pct}%` }} />
+                                      </div>
+                                      <button className="w-full h-9 bg-[var(--color-primary)] text-white rounded-full flex items-center justify-center gap-1.5 font-black text-[9px] uppercase tracking-[0.18em] shadow-md shadow-[var(--color-primary)]/20 active:scale-95 transition-transform">
+                                         <GraduationCap size={12} />
+                                         {started ? "Continue Course" : "Start Course"}
+                                      </button>
+                                   </div>
+                                </motion.div>
+                             );
+                          })}
+                       </div>
+                     </div>
+                   )}
 
                    {/* 04. Single Full-Width Masterclass Post */}
                    <div onClick={() => handleCourseClick(video.id)} className="bg-[var(--app-bg)] border border-[var(--border)] rounded-3xl overflow-hidden shadow-md flex flex-col group cursor-pointer active:scale-[0.99] transition-transform">

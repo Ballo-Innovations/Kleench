@@ -14,6 +14,12 @@ import { Friends } from "./screens/Friends";
 import { Videos } from "./screens/Videos";
 import { Learning } from "./screens/Learning";
 import { LearningDetail } from "./screens/LearningDetail";
+import { CourseHub } from "./screens/learning/CourseHub";
+import { LessonCompleted, LessonQuestions } from "./screens/learning/LessonFlow";
+import { CourseAssessment } from "./screens/learning/CourseAssessment";
+import { AssessmentUnderReview, AssessmentResults, DetailedResults } from "./screens/learning/AssessmentResults";
+import { ModuleCertificate, CourseCompletion, FinalCertificate } from "./screens/learning/CourseCertificates";
+import { LearningProfile } from "./screens/learning/LearningProfile";
 import { Discover } from "./screens/Discover";
 import { Socials } from "./screens/Socials";
 import { Advert } from "./screens/Advert";
@@ -419,6 +425,18 @@ const router = createBrowserRouter([
       { path: "advert/view-ads", element: <AdvertViewAds /> },
       { path: "learning/viewer", element: <LearnViewer /> },
       { path: "learning/categories", element: <LearnCategories /> },
+      // Certified Courses Flow — Learn → Complete → Test → Pass → Certify
+      { path: "learning/profile", element: <LearningProfile /> },
+      { path: "learning/course/:id", element: <CourseHub /> },
+      { path: "learning/course/:id/lesson-complete", element: <LessonCompleted /> },
+      { path: "learning/course/:id/questions", element: <LessonQuestions /> },
+      { path: "learning/course/:id/assessment", element: <CourseAssessment /> },
+      { path: "learning/course/:id/under-review", element: <AssessmentUnderReview /> },
+      { path: "learning/course/:id/results", element: <AssessmentResults /> },
+      { path: "learning/course/:id/results/detail", element: <DetailedResults /> },
+      { path: "learning/course/:id/certificate", element: <ModuleCertificate /> },
+      { path: "learning/course/:id/complete", element: <CourseCompletion /> },
+      { path: "learning/course/:id/final-certificate", element: <FinalCertificate /> },
       // Insurance Flow
       { path: "insurance", element: <InsuranceGrid /> },
       { path: "insurance/type", element: <InsuranceType /> },
