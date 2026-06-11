@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { toast } from "sonner";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  getCourse, loadProgress, saveProgress, courseStats,
+  courseLessons, lessonAfter, moduleOfLesson, nextLesson,
+} from "./learning/courseData";
 import {
   DuotonePlay as Play,
   DuotoneUser as UserIcon,
@@ -72,6 +77,31 @@ export function LearnViewer() {
   const [viewMode] = useState<ViewMode>(initialMode);
   const [appState, setAppState] = useState<AppState>("player");
   const [liked, setLiked] = useState(false);
+  const [descExpanded, setDescExpanded] = useState(false);
+
+  // ── Certified lesson context (Screen 4.0) ──
+  // Resolves the active lesson from ?course= & ?lesson= params,
+  // falling back to the learner's next unfinished lesson (resume).
+  const course = getCourse(searchParams.get("course") ?? undefined);
+  const lessonProgress = loadProgress(course.id);
+  const activeLesson =
+    courseLessons(course).find((l) => l.id === searchParams.get("lesson")) ??
+    nextLesson(course, lessonProgress) ??
+    courseLessons(course)[0];
+  const activeModule = moduleOfLesson(course, activeLesson.id);
+  const upNext = lessonAfter(course, activeLesson.id);
+  const stats = courseStats(course, lessonProgress);
+
+  const handleMarkCompleted = () => {
+    const p = loadProgress(course.id);
+    saveProgress(course.id, {
+      completedLessons: p.completedLessons.includes(activeLesson.id)
+        ? p.completedLessons
+        : [...p.completedLessons, activeLesson.id],
+      lastLessonId: activeLesson.id,
+    });
+    navigate(`/learning/course/${course.id}/lesson-complete?lesson=${activeLesson.id}`);
+  };
 
   // Navigation handlers
   const handleBack = () => {
@@ -434,6 +464,100 @@ export function LearnViewer() {
         {/* Scrollable Lists Below Player (Only when in viewer state) */}
         {appState === "player" && (
             <div className="px-4 pt-6 space-y-6 pb-20">
+
+                {/* ── SCREEN 4.0 — Lesson Context Block (Learn & Earn only) ── */}
+                {viewMode === "learn-earn" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className="space-y-3"
+                  >
+                    {/* Lesson Context Card */}
+                    <div className="p-1.5 rounded-[2rem] bg-white/[0.04] border border-white/10">
+                      <div className="rounded-[calc(2rem-0.375rem)] bg-slate-900/80 border border-white/10 p-5">
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className="min-w-0">
+                            <span className="inline-block rounded-full px-2.5 py-1 text-[7px] uppercase tracking-[0.25em] font-black bg-[#e43f24]/15 text-[#ff7a5c] border border-[#e43f24]/30 mb-2">
+                              {course.category} · Certified
+                            </span>
+                            <h3 className="text-white font-black text-[13px] uppercase tracking-tight leading-snug">{activeLesson.title}</h3>
+                            <p className="text-white/50 text-[9px] font-bold uppercase tracking-widest mt-1">
+                              {course.instructor} · {activeModule.title}
+                            </p>
+                          </div>
+                          <div className="text-right shrink-0">
+                            <p className="text-white/40 text-[7px] font-black uppercase tracking-[0.2em] mb-0.5">Progress</p>
+                            <p className="text-[#ff7a5c] font-black text-sm leading-none">{stats.pct}%</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mb-4">
+                          <motion.div
+                            className="h-full bg-[#e43f24] rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${stats.pct}%` }}
+                            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                          />
+                        </div>
+
+                        {/* Expandable Description */}
+                        <AnimatePresence initial={false}>
+                          <motion.p
+                            key={descExpanded ? "full" : "clamped"}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.4 }}
+                            className={`text-white/60 text-[11px] font-medium leading-relaxed ${descExpanded ? "" : "line-clamp-2"}`}
+                          >
+                            {activeLesson.description}
+                          </motion.p>
+                        </AnimatePresence>
+                        <button
+                          onClick={() => setDescExpanded(!descExpanded)}
+                          className="mt-2 text-[8px] font-black uppercase tracking-[0.25em] text-[#ff7a5c] active:opacity-60 transition-opacity"
+                        >
+                          {descExpanded ? "Read Less" : "Read More"}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Up Next */}
+                    {upNext && (
+                      <button
+                        onClick={() => navigate(`/learning/viewer?mode=learn-earn&course=${course.id}&lesson=${upNext.id}`)}
+                        className="w-full flex items-center gap-3 p-3 rounded-3xl bg-[var(--app-bg)] border border-[var(--border)] shadow-sm text-left active:scale-[0.98] transition-transform"
+                      >
+                        <div className="w-12 h-12 rounded-2xl overflow-hidden relative shrink-0 bg-slate-800">
+                          <img src={upNext.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                            <Play size={12} primary="#fff" />
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[7px] font-black uppercase tracking-[0.25em] text-[#e43f24] mb-1">Up Next · Next Lesson</p>
+                          <p className="text-[var(--app-text-slate)] font-black text-[10px] uppercase tracking-wider leading-tight truncate">{upNext.title}</p>
+                          <p className="text-slate-400 text-[8px] font-bold tracking-widest mt-0.5">{upNext.duration}</p>
+                        </div>
+                        <div className="w-8 h-8 rounded-full bg-[var(--app-bg-muted)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                          <ChevronDown size={14} className="text-slate-500 -rotate-90" />
+                        </div>
+                      </button>
+                    )}
+
+                    {/* Completion CTA */}
+                    <motion.button
+                      whileTap={{ scale: 0.97 }}
+                      onClick={handleMarkCompleted}
+                      className="group w-full h-14 rounded-full bg-[#e43f24] text-white flex items-center justify-between pl-7 pr-2 shadow-lg shadow-[#e43f24]/30 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                    >
+                      <span className="font-black text-[11px] uppercase tracking-[0.2em]">Mark Lesson Completed</span>
+                      <span className="w-10 h-10 rounded-full bg-white/15 border border-white/20 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:scale-105">
+                        <CheckCircle2 size={16} />
+                      </span>
+                    </motion.button>
+                  </motion.div>
+                )}
+
                 {/* More Videos Section */}
                 <div>
                      <h3 className={`text-sm font-bold mb-3 ${viewMode === "pay-to-stream" ? "text-green-500" : "text-white/90"}`}>
