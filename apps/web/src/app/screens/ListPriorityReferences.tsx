@@ -22,7 +22,7 @@ export function ListPriorityReferences() {
   const hasOne = references.some((r) => r.client.trim() && r.project.trim());
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="LIST YOUR BUSINESS" subtitle="Step 7 — Business References" showBack />
 
       <div className="px-5 pt-5 space-y-5">

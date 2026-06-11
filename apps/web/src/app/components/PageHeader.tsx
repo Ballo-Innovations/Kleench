@@ -168,7 +168,7 @@ export function PageHeader({
         </div>
       </div>
 
-      <div className="relative z-10 w-full mt-2">
+      <div className="relative z-10 w-full mb-3">
         {customBalanceHUD ? (
           // Renders custom wallet HUD but restricts to the same spatial box
           <div className="h-[46px] flex items-center w-full">

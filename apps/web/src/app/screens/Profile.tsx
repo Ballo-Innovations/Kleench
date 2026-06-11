@@ -63,7 +63,7 @@ export function Profile() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen bg-transparent">
+    <div className="w-full max-w-md mx-auto pb-24 relative bg-transparent">
 
       {/* ── Standardized Header ── */}
       <PageHeader 

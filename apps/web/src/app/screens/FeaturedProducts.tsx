@@ -46,7 +46,7 @@ export function FeaturedProducts() {
   });
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="FEATURED PRODUCTS" showBack />
 
       <div className="px-5 pt-4 space-y-4">

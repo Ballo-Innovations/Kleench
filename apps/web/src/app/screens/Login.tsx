@@ -30,7 +30,7 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent relative flex flex-col font-[var(--font-body)]">
+    <div className="bg-transparent relative flex flex-col font-[var(--font-body)]">
       <GlobalBackground />
 
       <div className="flex-1 flex flex-col items-center justify-center px-6 relative z-10 pt-8">

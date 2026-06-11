@@ -39,7 +39,7 @@ export function OnboardingPage() {
   };
 
   return (
-    <div className="w-full relative min-h-[100dvh] bg-transparent overflow-x-hidden font-sans pb-32">
+    <div className="w-full relative min-h-[100dvh] bg-transparent font-sans pb-24">
       <PageHeader useLogo />
 
       <div className="px-5 mt-6 space-y-6">

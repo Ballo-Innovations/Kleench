@@ -20,11 +20,11 @@ export function Deposit() {
   ];
 
   return (
-    <div className="w-full relative min-h-screen bg-transparent flex flex-col font-sans text-[var(--color-secondary)] overflow-x-hidden">
+    <div className="w-full relative bg-transparent flex flex-col font-sans text-[var(--color-secondary)]">
       {/* ── Standardized Header ── */}
       <PageHeader showBack useLogo />
 
-      <div className="flex-1 px-5 pt-8 pb-32">
+      <div className="flex-1 px-5 pt-8 pb-24">
         {/* Title Rhythm */}
         <div className="text-center mb-8">
           <h1 className="text-2xl font-black uppercase tracking-widest text-[var(--color-secondary)] mb-1">Deposit</h1>

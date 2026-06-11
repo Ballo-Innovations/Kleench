@@ -19,7 +19,7 @@ export function RoadTaxPeriod() {
   const multiplier = vehicleClass === "commercial" ? 1.8 : 1;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-36">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-36">
       <PageHeader title="TAX PERIOD" subtitle="Step 2 of 3" showBack />
 
       <div className="px-5 pt-6 space-y-4">

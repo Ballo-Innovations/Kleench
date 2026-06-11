@@ -31,7 +31,7 @@ export function LearningDetail() {
 
   return (
     <Skeleton loading={loading} name="learningdetail">
-    <div className="min-h-screen bg-transparent pb-32 font-sans overflow-x-hidden text-slate-800">
+    <div className="bg-transparent pb-24 font-sans text-slate-800">
       
       {/* ── Standardized Academy Detail Header ── */}
       <PageHeader 

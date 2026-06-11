@@ -17,7 +17,7 @@ export function SellServiceInfo() {
   const canContinue = name.trim() && description.trim() && deliverables.trim();
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="SERVICE INFO" subtitle="Step 2 of 5 — Service Information" showBack />
 
       <div className="px-5 pt-5 space-y-5">

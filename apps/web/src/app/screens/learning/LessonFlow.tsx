@@ -30,7 +30,7 @@ export function LessonCompleted() {
   const moduleReady = module.lessons.every((l) => progress.completedLessons.includes(l.id));
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Lesson Completed" subtitle={course.title} showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-8 relative z-20 space-y-6">

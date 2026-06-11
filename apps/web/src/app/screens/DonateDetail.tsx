@@ -54,7 +54,7 @@ export function DonateDetail() {
   const proj = PROJECTS[campaignId ?? "1"] ?? PROJECTS["1"];
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen font-sans pb-36">
+    <div className="w-full max-w-md mx-auto font-sans pb-36">
       <div className="sticky top-0 z-50">
         <PageHeader title="CAMPAIGN DETAIL" showBack onBack={() => navigate(-1)} />
       </div>

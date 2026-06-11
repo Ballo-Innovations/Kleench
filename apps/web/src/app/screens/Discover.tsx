@@ -35,7 +35,7 @@ export function Discover() {
 
 
   return (
-    <div className="w-full max-w-md mx-auto pb-32 relative min-h-screen bg-transparent">
+    <div className="w-full max-w-md mx-auto pb-24 relative bg-transparent">
 
       {/* ── Standardized Header ── */}
       <div className="relative pt-4 pb-0 px-6 overflow-hidden rounded-b-[40px] flex flex-col justify-between h-[100px] mb-6"

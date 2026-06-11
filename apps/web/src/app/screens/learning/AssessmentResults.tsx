@@ -25,7 +25,7 @@ export function AssessmentUnderReview() {
   const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Under Review" subtitle={course.title} showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-10 relative z-20 space-y-6">
@@ -99,7 +99,7 @@ export function AssessmentResults() {
   };
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Results" subtitle={`Module Test · ${module.title}`} showBack onBack={() => navigate(`/learning/course/${course.id}`)} />
 
       <div className="px-4 mt-5 relative z-20 space-y-5">
@@ -174,7 +174,7 @@ export function DetailedResults() {
   };
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Detailed Results" subtitle={`Module Test · ${module.title}`} showBack onBack={() => navigate(`/learning/course/${course.id}/results?module=${module.id}`)} />
 
       <div className="px-4 mt-4 relative z-20 space-y-4">

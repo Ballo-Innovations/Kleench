@@ -119,7 +119,7 @@ export function AdvertUpload() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-slate-800">
+    <div className="w-full bg-transparent pb-24 font-sans text-slate-800">
       <PageHeader title="Upload Advert" showBack onBack={handleBack} />
 
       <div className="px-4 pt-4 space-y-4">

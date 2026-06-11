@@ -11,7 +11,7 @@ const videos = [
 
 export function Videos() {
   return (
-    <motion.div className="min-h-screen px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.div className="px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-2xl font-[var(--font-header)] font-bold text-[var(--ink-primary)]">Videos</h1>
         <div className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[var(--live-red)]/10 border border-[var(--live-red)]/15">

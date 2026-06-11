@@ -55,7 +55,7 @@ export function BalanceOverview() {
   });
 
   return (
-    <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-[var(--color-secondary)]">
+    <div className="w-full bg-transparent pb-24 font-sans text-[var(--color-secondary)]">
       {/* Screen Header */}
       <header className="pt-8 pb-4 flex justify-center">
         <motion.h1 

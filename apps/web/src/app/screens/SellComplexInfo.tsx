@@ -16,7 +16,7 @@ export function SellComplexInfo() {
   const canContinue = form.name && form.category && form.condition && form.description;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="ASSET INFO" subtitle="Step 3 of 7" showBack />
 
       <div className="px-5 pt-5 space-y-5">

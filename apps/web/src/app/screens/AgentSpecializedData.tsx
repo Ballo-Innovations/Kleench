@@ -22,7 +22,7 @@ export function AgentSpecializedData() {
   const canContinue = selectedCommodities.length > 0 && collectionArea.trim() && selectedMethods.length > 0;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="SPECIALIZED AGENT" subtitle="Step 3 — Data Information" showBack />
 
       <div className="px-5 pt-5 space-y-5">

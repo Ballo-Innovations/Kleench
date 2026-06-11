@@ -35,7 +35,7 @@ export function SellServicePackages() {
   const canContinue = packages.every((p) => p.price.trim()) && packages.length > 0;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="PACKAGES" subtitle="Step 3 of 5 — Service Packages" showBack />
 
       <div className="px-5 pt-5 space-y-5">

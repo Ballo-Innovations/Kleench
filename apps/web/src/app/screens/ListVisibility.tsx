@@ -21,7 +21,7 @@ export function ListVisibility() {
   const nextPath = isPriority ? "/marketplace/list/priority/success" : "/marketplace/list/success";
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="LIST YOUR BUSINESS" subtitle={`Step ${stepIndex} — Visibility`} showBack />
 
       <div className="px-5 pt-5 space-y-5">

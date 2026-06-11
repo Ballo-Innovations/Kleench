@@ -11,7 +11,7 @@ export function DonorSuccess() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen font-sans flex flex-col items-center justify-center px-8 text-center">
+    <div className="w-full max-w-md mx-auto font-sans flex flex-col items-center justify-center px-8 text-center">
       <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 200, damping: 18, delay: 0.05 }}>
         <LottieIcon icon="success" size={110} />
       </motion.div>

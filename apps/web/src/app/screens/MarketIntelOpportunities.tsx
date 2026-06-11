@@ -55,7 +55,7 @@ export function MarketIntelOpportunities() {
   const displayBusinesses = relatedBusinesses.length > 0 ? relatedBusinesses : BUSINESSES.slice(0, 2);
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="OPPORTUNITIES" showBack />
 
       <div className="px-5 pt-4 space-y-5">

@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 export function NotFound() {
   return (
-    <div className="w-full relative min-h-[100dvh] bg-[var(--app-bg-muted)] overflow-hidden font-sans flex flex-col items-center justify-center pb-32">
+    <div className="w-full relative min-h-[100dvh] bg-[var(--app-bg-muted)] overflow-hidden font-sans flex flex-col items-center justify-center pb-24">
       
       {/* ── Unified cross-hatch bg ── */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>

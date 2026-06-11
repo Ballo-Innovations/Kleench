@@ -91,7 +91,7 @@ export function Settings() {
   }
 
   return (
-    <div className="w-full relative min-h-screen bg-transparent overflow-x-hidden font-sans pb-10">
+    <div className="w-full relative bg-transparent font-sans pb-10">
 
       <PageHeader 
         title="Settings" 

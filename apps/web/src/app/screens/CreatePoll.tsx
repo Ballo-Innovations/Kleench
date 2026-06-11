@@ -76,7 +76,7 @@ export function CreatePoll() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto pb-32 relative">
+    <div className="w-full max-w-md mx-auto pb-24 relative">
       <CrossHatchBg />
 
       {/* Header */}

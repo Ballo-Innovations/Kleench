@@ -173,7 +173,7 @@ export function AdvertViewAds() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent pb-32 font-sans text-[var(--color-secondary)]">
+    <div className="w-full bg-transparent pb-24 font-sans text-[var(--color-secondary)]">
       <PageHeader title="Ad Gallery" showBack onBack={() => navigate(-1)} />
 
       <div className="px-4 pt-3 space-y-4">

@@ -92,7 +92,7 @@ export function Advert() {
   ];
 
   return (
-    <div className="w-full pb-32 relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full pb-24 relative bg-transparent font-sans text-slate-800">
       
       {/* ── Standardized Header ── */}
       <PageHeader 

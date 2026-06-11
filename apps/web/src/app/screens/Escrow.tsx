@@ -90,7 +90,7 @@ export function Escrow() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--app-bg)] text-[var(--app-text)] font-sans pb-32">
+    <div className="bg-[var(--app-bg)] text-[var(--app-text)] font-sans pb-24">
        {/* Background Accent Grid */}
        <div className="fixed inset-0 opacity-[0.03] pointer-events-none" 
             style={{ backgroundImage: "radial-gradient(var(--app-text) 2px, transparent 2px)", backgroundSize: "24px 24px" }} 

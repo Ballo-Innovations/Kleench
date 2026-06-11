@@ -128,7 +128,7 @@ export function LearnViewer() {
 
   if (appState === "profile") {
     return (
-      <div className="w-full min-h-screen bg-transparent font-sans text-slate-800 relative pb-20 overflow-x-hidden">
+      <div className="w-full bg-transparent font-sans text-slate-800 relative pb-24">
         <PageHeader title="Creator Profile" showBack onBack={handleBack} />
         <div className="relative pt-4 px-4 flex flex-col items-center flex-1">
             {/* Avatar */}
@@ -214,7 +214,7 @@ export function LearnViewer() {
 
   if (appState === "subscriptions") {
     return (
-        <div className="w-full min-h-screen bg-transparent font-sans text-slate-800 flex flex-col pb-20 overflow-x-hidden">
+        <div className="w-full bg-transparent font-sans text-slate-800 flex flex-col pb-24">
             <PageHeader title="My Subscriptions" showBack onBack={handleBack} />
 
             <div className="flex-1 px-5 pt-6 bg-[var(--app-bg)] shadow-[inset_0_10px_20px_rgba(0,0,0,0.03)]">
@@ -271,18 +271,28 @@ export function LearnViewer() {
 
   // DEFAULT PLAYER SCROLL VIEW
   return (
-    <div className="w-full relative min-h-screen bg-transparent overflow-x-hidden font-sans text-slate-800">
+    <div className="w-full relative bg-transparent font-sans text-slate-800">
       <PageHeader title="Learn Video" showBack onBack={handleBack} />
 
       {/* Main Content Area */}
-      <div className={`relative pb-32 ${appState === "questionnaire" || appState === "pay-confirm" ? "bg-transparent min-h-screen" : "bg-transparent min-h-screen"}`}>
+      <div className="relative bg-transparent">
         
         {/* Categories if not full screen overlays */}
         {appState !== "questionnaire" && appState !== "pay-confirm" && <CategoryBar />}
 
         {/* --- VIDEO PLAYER CONTAINER --- */}
         <div className="relative">
-          <div className="w-full aspect-[4/3] bg-[var(--app-text-slate)] relative">
+          <div className={`w-full bg-[var(--app-text-slate)] relative ${appState === "questionnaire" || appState === "pay-confirm" ? "min-h-[calc(100dvh-115px)]" : "aspect-[4/3]"}`}>
+            {/* Overlay close button — always visible in non-player states */}
+            {(appState === "questionnaire" || appState === "pay-confirm") && (
+              <button
+                onClick={() => setAppState("player")}
+                className="absolute top-4 left-4 z-30 flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-full px-3 h-9 text-white active:scale-95 transition-transform shadow-lg"
+              >
+                <ChevronDown size={16} className="rotate-90" />
+                <span className="text-[10px] font-black uppercase tracking-widest">Back to video</span>
+              </button>
+            )}
             <img 
                 src={viewMode === "learn-earn" ? learnPresenter : viewMode === "free" ? learnWoman : learnBook} 
                 alt="Video" 
@@ -339,24 +349,27 @@ export function LearnViewer() {
             )}
 
             {appState === "pay-confirm" && (
-                <div className="absolute inset-0 flex flex-col justify-center items-center px-8 z-20">
-                    <div className="w-full flex flex-col items-center">
-                        <p className="text-white font-medium text-base mb-4 drop-shadow-md">Subscribe to watch this video</p>
-                        <div className="w-full h-[1px] bg-[var(--app-bg)]/30 mb-4" />
-                        <p className="text-white text-sm mb-6 drop-shadow-md">Get access for K50/monthly</p>
-                        
-                        <div className="space-y-3 w-full max-w-[200px]">
-                            <button className="w-full bg-[var(--app-shape-accent)] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
-                                Subscribe
+                <div className="absolute inset-0 flex flex-col justify-center items-center px-6 z-20 pb-28">
+                    <div className="w-full max-w-xs flex flex-col items-center gap-4">
+                        <p className="text-white font-black text-[15px] uppercase tracking-tight text-center drop-shadow-md">
+                          Subscribe to watch this video
+                        </p>
+                        <div className="w-full h-px bg-white/20" />
+                        <p className="text-white/70 text-[12px] font-bold text-center">
+                          Get full access for <span className="text-white font-black">K50/month</span>
+                        </p>
+                        <div className="w-full space-y-3 mt-2">
+                            <button className="w-full h-13 bg-[#e43f24] text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] shadow-lg shadow-[#e43f24]/30 active:scale-95 transition-all">
+                                Subscribe — K50/mo
                             </button>
-                            <button className="w-full bg-[#ff0000] text-white py-2.5 rounded text-sm font-semibold shadow-lg active:scale-95 transition-all">
-                                Unlock for K15
+                            <button className="w-full h-13 bg-white/15 backdrop-blur-sm text-white border border-white/30 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] active:scale-95 transition-all">
+                                Unlock this video — K15
                             </button>
-                            <button 
+                            <button
                                 onClick={() => setAppState("player")}
-                                className="w-full bg-slate-800/80 text-white border border-white/40 py-2.5 rounded text-sm font-semibold active:scale-95 transition-all"
+                                className="w-full h-11 text-white/60 text-[10px] font-black uppercase tracking-[0.2em] active:opacity-50 transition-opacity"
                             >
-                                Preview
+                                Preview only
                             </button>
                         </div>
                     </div>
@@ -447,12 +460,12 @@ export function LearnViewer() {
 
           </div>
 
-          {/* Special completion bar for questionnaire overlay */}
+          {/* Complete button — cleared above the bottom nav */}
           {appState === "questionnaire" && (
-             <div className="absolute bottom-4 left-4 right-4 z-20">
-                 <button 
-                    onClick={() => setAppState("player")} 
-                    className="w-full bg-[var(--app-shape-accent)] text-white py-4 rounded-xl font-medium text-lg tracking-wide hover:opacity-90 active:scale-95 transition-all shadow-lg"
+             <div className="absolute bottom-24 left-4 right-4 z-20">
+                 <button
+                    onClick={() => setAppState("player")}
+                    className="w-full h-14 bg-[#e43f24] text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] active:scale-95 transition-all shadow-xl shadow-[#e43f24]/30"
                  >
                      Complete
                  </button>
@@ -463,7 +476,7 @@ export function LearnViewer() {
 
         {/* Scrollable Lists Below Player (Only when in viewer state) */}
         {appState === "player" && (
-            <div className="px-4 pt-6 space-y-6 pb-20">
+            <div className="px-4 pt-6 space-y-6 pb-28">
 
                 {/* ── SCREEN 4.0 — Lesson Context Block (Learn & Earn only) ── */}
                 {viewMode === "learn-earn" && (
@@ -560,49 +573,59 @@ export function LearnViewer() {
 
                 {/* More Videos Section */}
                 <div>
-                     <h3 className={`text-sm font-bold mb-3 ${viewMode === "pay-to-stream" ? "text-green-500" : "text-white/90"}`}>
-                         {viewMode === "pay-to-stream" ? "More Premium Videos" : "More Videos"}
-                     </h3>
-                     <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
-                         {MORE_VIDEOS.map((vid, i) => (
-                             <div 
-                               key={i} 
-                               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                               className="w-24 h-24 rounded-2xl bg-slate-800 overflow-hidden flex-shrink-0 relative group cursor-pointer active:scale-95 transition-transform"
-                             >
-                                 <img src={vid.image} alt="" className="w-full h-full object-cover opacity-70 group-hover:opacity-50 transition-all" />
-                                 <div className="absolute inset-0 flex items-center justify-center">
-                                     <Play size={24} primary="#fff" className="opacity-90" />
-                                 </div>
-                                 {vid.label && (
-                                     <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-black/40">
-                                         <span className="font-black text-[9px] tracking-[0.2em]">{vid.label}</span>
-                                     </div>
-                                 )}
-                             </div>
-                         ))}
-                     </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-[3px] h-4 rounded-full bg-[#e43f24] shrink-0" />
+                    <h3 className="text-[11px] font-black text-[var(--color-secondary)] uppercase tracking-[0.18em]">
+                      {viewMode === "pay-to-stream" ? "More Premium Videos" : "More Videos"}
+                    </h3>
+                  </div>
+                  <div className="-mx-4 flex gap-3 overflow-x-auto no-scrollbar pl-4 pr-4 pb-1">
+                    {MORE_VIDEOS.map((vid, i) => (
+                      <motion.div
+                        key={i}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        className="w-[108px] h-[152px] rounded-[16px] bg-slate-800 overflow-hidden flex-shrink-0 relative cursor-pointer"
+                      >
+                        <img src={vid.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
+                          <Play size={14} primary="#fff" />
+                        </div>
+                        {vid.label && (
+                          <p className="absolute bottom-2 left-2 right-2 text-white font-black text-[9px] uppercase tracking-tight leading-snug">
+                            {vid.label}
+                          </p>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Trending / Subscription Section */}
                 <div>
-                     <h3 className="text-sm font-bold mb-3 text-white/90">
-                         {viewMode === "pay-to-stream" ? "Subscription Videos" : "Trending Videos"}
-                     </h3>
-                     <div className="flex gap-2.5 overflow-x-auto no-scrollbar">
-                         {TRENDING_VIDEOS.map((vid, i) => (
-                             <div 
-                               key={i} 
-                               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                               className="w-20 h-28 rounded-xl bg-slate-800 overflow-hidden flex-shrink-0 relative cursor-pointer active:scale-95 transition-transform"
-                             >
-                                 <img src={vid.image} alt="" className="w-full h-full object-cover opacity-80" />
-                                 <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                                     <Play size={20} primary="#fff" className="opacity-90 drop-shadow-md" />
-                                 </div>
-                             </div>
-                         ))}
-                     </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-[3px] h-4 rounded-full bg-[#e43f24] shrink-0" />
+                    <h3 className="text-[11px] font-black text-[var(--color-secondary)] uppercase tracking-[0.18em]">
+                      {viewMode === "pay-to-stream" ? "Subscription Videos" : "Trending Videos"}
+                    </h3>
+                  </div>
+                  <div className="-mx-4 flex gap-3 overflow-x-auto no-scrollbar pl-4 pr-4 pb-1">
+                    {TRENDING_VIDEOS.map((vid, i) => (
+                      <motion.div
+                        key={i}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        className="w-[108px] h-[152px] rounded-[16px] bg-slate-800 overflow-hidden flex-shrink-0 relative cursor-pointer"
+                      >
+                        <img src={vid.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center">
+                          <Play size={14} primary="#fff" />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
             </div>
         )}

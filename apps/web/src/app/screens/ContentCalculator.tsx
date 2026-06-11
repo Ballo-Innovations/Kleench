@@ -212,7 +212,7 @@ export function ContentCalculator() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-transparent font-sans text-[var(--app-text)] pb-12 selection:bg-[#EE4D2D] selection:text-white overflow-x-hidden">
+    <div className="w-full bg-transparent font-sans text-[var(--app-text)] pb-12 selection:bg-[#EE4D2D] selection:text-white">
       <div className="sticky top-0 z-50 bg-transparent">
         <PageHeader 
           showBack 

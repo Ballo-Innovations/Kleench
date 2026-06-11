@@ -58,7 +58,7 @@ export default function Messages() {
   };
 
   return (
-    <div className="w-full min-h-screen pb-32">
+    <div className="w-full pb-24">
       <AnimatePresence mode="wait">
         {!selectedConv ? (
           <motion.div 

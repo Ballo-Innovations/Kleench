@@ -23,7 +23,7 @@ export function AgentSpecializedMarket() {
   const canContinue = frequency && sources.length > 0 && points.length > 0;
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans pb-32">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
       <PageHeader title="SPECIALIZED AGENT" subtitle="Step 4 — Market Intelligence Data" showBack />
 
       <div className="px-5 pt-5 space-y-5">

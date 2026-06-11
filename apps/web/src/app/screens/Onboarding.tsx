@@ -140,7 +140,7 @@ export function Onboarding() {
   const stepIndex = { pin: 0, "confirm-pin": 0, kyc: 1, photo: 2, features: 3 }[step];
 
   return (
-    <div className="min-h-screen bg-transparent relative flex flex-col overflow-hidden font-[var(--font-body)]">
+    <div className="bg-transparent relative flex flex-col overflow-hidden font-[var(--font-body)]">
       <GlobalBackground />
 
       {/* Progress bar */}

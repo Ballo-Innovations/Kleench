@@ -35,7 +35,7 @@ export function MarketAssetChat() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen bg-transparent font-sans flex flex-col">
+    <div className="w-full max-w-md mx-auto bg-transparent font-sans flex flex-col">
       <PageHeader title="CHAT SELLER" showBack />
 
       <div className="px-4 py-3 bg-[var(--app-bg)] border-b border-[var(--border)] flex items-center gap-3">

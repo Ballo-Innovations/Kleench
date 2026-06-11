@@ -13,7 +13,7 @@ export function TaxAccount() {
   const profileName = localKyc?.fullName || (userEmail ? userEmail.split("@")[0] : "Kleench User");
 
   return (
-    <div className="w-full min-h-screen bg-transparent font-sans text-[var(--app-text)] pb-12 selection:bg-[#EE4D2D] selection:text-white">
+    <div className="w-full bg-transparent font-sans text-[var(--app-text)] pb-12 selection:bg-[#EE4D2D] selection:text-white">
       <PageHeader 
         showBack
         onBack={() => navigate(-1)}
