@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { ArrowRight, Tag, Plus, X, Globe, Lock } from "lucide-react";
+import { Tag, Plus, X, Globe, Lock } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const PROVINCES = ["Lusaka", "Copperbelt", "Northern", "Eastern", "Western", "Southern", "Luapula", "Muchinga", "Central", "North-Western"];
 const AGE_RANGES = ["18–24", "25–34", "35–44", "45–54", "55+"];
@@ -171,19 +172,7 @@ export function SellProductTargeting() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/sell/product/success", {
-            state: {
-              ...state,
-              targeting: { province, district, location, ages, gender, interests: [...interests, ...customInterests] },
-              visibility,
-              allowOffers,
-            }
-          })}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all"
-        >
-          Publish Listing <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/sell/product/success", { state: { ...state, targeting: { province, district, location, ages, gender, interests: [...interests, ...customInterests] }, visibility, allowOffers } })}>Publish Listing</CtaButton>
       </div>
     </div>
   );

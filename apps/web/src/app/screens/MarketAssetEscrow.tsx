@@ -2,6 +2,7 @@ import { useNavigate, useLocation, useParams } from "react-router";
 import { motion } from "motion/react";
 import { Shield, CheckCircle, Clock, Package, Truck, Home, ShieldCheck } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const STEPS = [
   { id: "secured", label: "Payment Secured", desc: "Funds held in KLeench Escrow", icon: Shield, done: true },
@@ -98,11 +99,7 @@ export function MarketAssetEscrow() {
         </motion.div>
 
       <div className="px-5 pt-4 pb-8 space-y-3">
-        <button onClick={() => navigate("/marketplace")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-          <Package size={18} strokeWidth={2} />
-          View Order
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace")}><Package size={18} strokeWidth={2} /> View Order</CtaButton>
         <button onClick={() => navigate("/")}
           className="w-full py-4 rounded-2xl border-2 border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
           <Home size={18} strokeWidth={2} />

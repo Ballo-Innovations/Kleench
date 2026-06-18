@@ -479,6 +479,159 @@ export const DuotoneVolume = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacit
     <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke={primary} strokeWidth="2" />
   </Svg>
 );
+export const DuotoneConstruction = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Building body */}
+    <rect x="3" y="10" width="14" height="12" rx="1" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" strokeLinejoin="round" />
+    {/* Crane arm */}
+    <line x1="8" y1="10" x2="8" y2="3" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <line x1="8" y1="3" x2="20" y2="3" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <line x1="20" y1="3" x2="20" y2="8" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    {/* Hook */}
+    <path d="M20 8 Q20 10 18 10" stroke={primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+    {/* Windows */}
+    <rect x="6" y="14" width="3" height="3" rx="0.5" fill={primary} />
+    <rect x="11" y="14" width="3" height="3" rx="0.5" fill={primary} />
+  </Svg>
+);
+
+export const DuotoneStorefront = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Awning */}
+    <path d="M2 7h20l-2-4H4L2 7z" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" strokeLinejoin="round" />
+    {/* Store body */}
+    <rect x="4" y="7" width="16" height="14" rx="1" fill={primary} fillOpacity={secondaryOpacity * 0.5} stroke={primary} strokeWidth="2" />
+    {/* Door */}
+    <rect x="9" y="13" width="6" height="8" rx="1" fill={primary} />
+    {/* Window */}
+    <rect x="5" y="10" width="4" height="3" rx="0.5" fill={primary} fillOpacity={secondaryOpacity * 2} stroke={primary} strokeWidth="1.5" />
+    <rect x="15" y="10" width="4" height="3" rx="0.5" fill={primary} fillOpacity={secondaryOpacity * 2} stroke={primary} strokeWidth="1.5" />
+  </Svg>
+);
+
+export const DuotoneTruck = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Cargo box */}
+    <rect x="1" y="5" width="13" height="12" rx="1" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+    {/* Cab */}
+    <path d="M14 9h4l3 4v4h-7V9z" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" strokeLinejoin="round" />
+    {/* Wheels */}
+    <circle cx="5" cy="18" r="2" fill={primary} stroke={primary} strokeWidth="1.5" />
+    <circle cx="17" cy="18" r="2" fill={primary} stroke={primary} strokeWidth="1.5" />
+    {/* Cab window */}
+    <path d="M15 9.5h2.5l2 2.5H15V9.5z" fill={primary} />
+  </Svg>
+);
+
+export const DuotoneHotel = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Bed frame */}
+    <path d="M3 19V9a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10" stroke={primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Mattress */}
+    <rect x="3" y="13" width="18" height="6" rx="1" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+    {/* Pillows */}
+    <rect x="5" y="10" width="4" height="3" rx="1" fill={primary} />
+    <rect x="11" y="10" width="4" height="3" rx="1" fill={primary} />
+    {/* Legs */}
+    <line x1="5" y1="19" x2="5" y2="22" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <line x1="19" y1="19" x2="19" y2="22" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+  </Svg>
+);
+
+export const DuotoneGradCap = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Cap top */}
+    <path d="M12 3L2 8l10 5 10-5-10-5z" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" strokeLinejoin="round" />
+    {/* Body */}
+    <path d="M6 10.5v5c0 2 3 4 6 4s6-2 6-4v-5" stroke={primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill={primary} fillOpacity={secondaryOpacity * 0.8} />
+    {/* Tassel string */}
+    <line x1="22" y1="8" x2="22" y2="14" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <circle cx="22" cy="15" r="1" fill={primary} />
+  </Svg>
+);
+
+export const DuotoneMedical = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Heart */}
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+    {/* Cross */}
+    <line x1="12" y1="9" x2="12" y2="15" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <line x1="9" y1="12" x2="15" y2="12" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+  </Svg>
+);
+
+export const DuotoneMonitor = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Screen */}
+    <rect x="2" y="3" width="20" height="14" rx="2" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+    {/* Stand */}
+    <line x1="8" y1="21" x2="16" y2="21" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <line x1="12" y1="17" x2="12" y2="21" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    {/* Screen glare */}
+    <line x1="6" y1="7" x2="9" y2="7" stroke={primary} strokeWidth="1.5" strokeLinecap="round" />
+    <line x1="6" y1="10" x2="10" y2="10" stroke={primary} strokeWidth="1.5" strokeLinecap="round" />
+  </Svg>
+);
+
+export const DuotoneWheat = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Stem */}
+    <line x1="12" y1="22" x2="12" y2="6" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    {/* Grain clusters - left */}
+    <path d="M12 6 Q8 5 7 2" stroke={primary} strokeWidth="2" strokeLinecap="round" fill="none" />
+    <path d="M12 9 Q8 8 6 5" stroke={primary} strokeWidth="2" strokeLinecap="round" fill="none" />
+    <path d="M12 12 Q8 11 7 8" stroke={primary} strokeWidth="2" strokeLinecap="round" fill="none" />
+    {/* Grain clusters - right */}
+    <path d="M12 6 Q16 5 17 2" stroke={primary} strokeWidth="2" strokeLinecap="round" fill="none" />
+    <path d="M12 9 Q16 8 18 5" stroke={primary} strokeWidth="2" strokeLinecap="round" fill="none" />
+    <path d="M12 12 Q16 11 17 8" stroke={primary} strokeWidth="2" strokeLinecap="round" fill="none" />
+    {/* Grain heads */}
+    <ellipse cx="7" cy="2" rx="1.5" ry="1" fill={primary} fillOpacity={secondaryOpacity * 2.5} />
+    <ellipse cx="17" cy="2" rx="1.5" ry="1" fill={primary} fillOpacity={secondaryOpacity * 2.5} />
+  </Svg>
+);
+
+export const DuotoneBank = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Pediment */}
+    <path d="M2 9L12 3l10 6H2z" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" strokeLinejoin="round" />
+    {/* Base */}
+    <rect x="2" y="19" width="20" height="2" rx="0.5" fill={primary} stroke={primary} strokeWidth="1.5" />
+    {/* Columns */}
+    <line x1="6" y1="9" x2="6" y2="19" stroke={primary} strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="10" y1="9" x2="10" y2="19" stroke={primary} strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="14" y1="9" x2="14" y2="19" stroke={primary} strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="18" y1="9" x2="18" y2="19" stroke={primary} strokeWidth="2.5" strokeLinecap="round" />
+  </Svg>
+);
+
+export const DuotoneFork = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    {/* Plate */}
+    <circle cx="12" cy="12" r="9" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+    {/* Fork */}
+    <line x1="9" y1="8" x2="9" y2="16" stroke={primary} strokeWidth="2" strokeLinecap="round" />
+    <path d="M7 8v3a2 2 0 0 0 4 0V8" stroke={primary} strokeWidth="1.5" strokeLinecap="round" />
+    {/* Knife */}
+    <path d="M15 8c0 0 2 1 2 3s-2 2-2 2v3" stroke={primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+export const DuotoneLightning = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    <path d="M13 2L4.5 13.5H11L10 22L20 10H13.5L13 2z" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+  </Svg>
+);
+
+export const DuotoneGrid = ({ size, primary = DEFAULT_PRIMARY, secondaryOpacity = DEFAULT_SECONDARY_OPACITY, ...props }: DuotoneIconProps) => (
+  <Svg size={size} {...props}>
+    <rect x="3" y="3" width="7" height="7" rx="1" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+    <rect x="14" y="3" width="7" height="7" rx="1" fill={primary} stroke={primary} strokeWidth="2" />
+    <rect x="3" y="14" width="7" height="7" rx="1" fill={primary} stroke={primary} strokeWidth="2" />
+    <rect x="14" y="14" width="7" height="7" rx="1" fill={primary} fillOpacity={secondaryOpacity} stroke={primary} strokeWidth="2" />
+  </Svg>
+);
+
 export { DuotoneInsurance as DuotoneShieldCheck };
 export { DuotoneMessage as DuotoneMessageSquare };
 export { DuotoneUpload as DuotoneArrowUpToLine };

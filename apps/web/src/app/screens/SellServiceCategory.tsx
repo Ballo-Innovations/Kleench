@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { Music, Monitor, BookOpen, Briefcase, HardHat, Heart, Camera, Coffee, ArrowRight, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
+import {
+  DuotoneRadio,
+  DuotoneMonitor,
+  DuotoneGradCap,
+  DuotoneBriefcase,
+  DuotoneConstruction,
+  DuotoneMedical,
+  DuotoneCamera,
+  DuotoneFork,
+} from "../components/DuotoneIcon";
 
 const SERVICE_CATEGORIES = [
-  { id: "events", label: "Events", icon: Music, color: "#DC2626" },
-  { id: "technology", label: "Technology", icon: Monitor, color: "#0077B6" },
-  { id: "education", label: "Education", icon: BookOpen, color: "#059669" },
-  { id: "consulting", label: "Consulting", icon: Briefcase, color: "var(--color-secondary)" },
-  { id: "construction", label: "Construction", icon: HardHat, color: "#D97706" },
-  { id: "health", label: "Health & Wellness", icon: Heart, color: "#DC2626" },
-  { id: "media", label: "Photography & Media", icon: Camera, color: "#7C3AED" },
-  { id: "hospitality", label: "Hospitality", icon: Coffee, color: "var(--color-primary)" },
+  { id: "events", label: "Events", Icon: DuotoneRadio },
+  { id: "technology", label: "Technology", Icon: DuotoneMonitor },
+  { id: "education", label: "Education", Icon: DuotoneGradCap },
+  { id: "consulting", label: "Consulting", Icon: DuotoneBriefcase },
+  { id: "construction", label: "Construction", Icon: DuotoneConstruction },
+  { id: "health", label: "Health & Wellness", Icon: DuotoneMedical },
+  { id: "media", label: "Photography & Media", Icon: DuotoneCamera },
+  { id: "hospitality", label: "Hospitality", Icon: DuotoneFork },
 ];
 const SERVICE_TYPES: Record<string, string[]> = {
   events: ["Wedding Planning", "Corporate Events", "Birthday Parties", "Concerts", "Private Functions", "Product Launches"],
@@ -51,22 +62,30 @@ export function SellServiceCategory() {
         <div className="space-y-3">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Category</p>
           <div className="grid grid-cols-2 gap-3">
-            {SERVICE_CATEGORIES.map((cat) => (
-              <motion.button
-                key={cat.id}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => { setCategory(cat.id); setServiceType(""); setServiceSearch(""); }}
-                className={`flex flex-col items-center gap-2.5 p-4 rounded-2xl border transition-all ${
-                  category === cat.id ? "border-[var(--color-primary)] bg-[var(--app-bg)] shadow-sm" : "border-[var(--border)] bg-[var(--app-bg)]"
-                }`}
-                style={category === cat.id ? { backgroundColor: cat.color + "10" } : {}}
-              >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: cat.color + "15" }}>
-                  <cat.icon size={20} style={{ color: cat.color }} strokeWidth={2} />
-                </div>
-                <span className="text-[10px] font-black uppercase tracking-wide text-[var(--app-text)] text-center leading-tight">{cat.label}</span>
-              </motion.button>
-            ))}
+            {SERVICE_CATEGORIES.map(({ id, label, Icon }) => {
+              const isSelected = category === id;
+              return (
+                <motion.button
+                  key={id}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => { setCategory(id); setServiceType(""); setServiceSearch(""); }}
+                  className={`flex flex-col items-center gap-2.5 p-4 rounded-2xl border-2 transition-all ${
+                    isSelected
+                      ? "border-[var(--color-primary)] bg-[var(--color-primary)]/6 shadow-sm"
+                      : "border-[var(--border)] bg-[var(--app-bg)]"
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                    isSelected ? "bg-[var(--color-secondary)]/12" : "bg-[var(--border)]/40"
+                  }`}>
+                    <Icon size={20} primary="var(--color-secondary)" secondaryOpacity={isSelected ? 0.35 : 0.2} />
+                  </div>
+                  <span className={`text-[10px] font-black uppercase tracking-wide text-center leading-tight ${
+                    isSelected ? "text-[var(--color-primary)]" : "text-[var(--app-text)]"
+                  }`}>{label}</span>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
 
@@ -114,13 +133,7 @@ export function SellServiceCategory() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/sell/service/info", { state: { ...state, serviceCategory: category, serviceType } })}
-          disabled={!category || !serviceType}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/sell/service/info", { state: { ...state, serviceCategory: category, serviceType } })} disabled={!category || !serviceType}>Continue</CtaButton>
       </div>
     </div>
   );

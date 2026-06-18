@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { Building2, ArrowRight, CheckCircle } from "lucide-react";
+import { Building2, CheckCircle } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const BENEFITS = [
   "Appear in the Business Listings directory",
@@ -14,7 +15,7 @@ export function ListEntry() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
+    <div className="w-full bg-transparent font-sans pb-24">
       <PageHeader title="LIST YOUR BUSINESS" showBack />
 
       <div className="px-5 pt-5 space-y-5">
@@ -51,16 +52,13 @@ export function ListEntry() {
           </div>
           <div className="bg-[var(--color-secondary)] rounded-2xl shadow-sm p-4 text-center">
             <p className="text-[22px] font-black text-white">Priority</p>
-            <p className="text-[9px] font-black uppercase tracking-widest text-white/50 mt-0.5">Featured Placement</p>
+            <p className="text-[9px] font-black uppercase tracking-widest text-white/50 mt-0.5">$10 / Year</p>
           </div>
         </motion.div>
       </div>
 
       <div className="px-5 pt-6 pb-8">
-        <button onClick={() => navigate("/marketplace/list/type")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-          Create Business Listing <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/list/type")}>Create Business Listing</CtaButton>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, Calculator, Shield } from "lucide-react";
+import { Calculator, Shield } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const INSTALLMENT_OPTIONS = [3, 6, 12] as const;
 
@@ -101,12 +102,7 @@ export function MarketAssetPrice() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate(`/marketplace/asset/${id}/order`, { state: { ...state, total: Math.round(total), deposit } })}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all"
-        >
-          Proceed To Order <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate(`/marketplace/asset/${id}/order`, { state: { ...state, total: Math.round(total), deposit } })}>Proceed To Order</CtaButton>
       </div>
     </div>
   );

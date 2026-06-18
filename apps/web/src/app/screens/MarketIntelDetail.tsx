@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router";
 import { motion } from "motion/react";
 import { TrendingUp, TrendingDown, Bell, Share2, AlertTriangle } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const INTEL_DATA: Record<string, {
@@ -132,10 +133,7 @@ export function MarketIntelDetail() {
       </div>
 
       <div className="px-5 pt-4 pb-8 space-y-3">
-        <button onClick={() => navigate(`/marketplace/intel/${id}/forecast`)}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-2 active:scale-95 transition-all">
-          <Bell size={16} strokeWidth={2} /> View Forecast
-        </button>
+        <CtaButton onClick={() => navigate(`/marketplace/intel/${id}/forecast`)}><Bell size={16} strokeWidth={2} /> View Forecast</CtaButton>
         <button onClick={() => navigate(`/marketplace/intel/${id}/opportunities`)}
           className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-2 active:scale-95 transition-all">
           <Share2 size={16} strokeWidth={2} /> Related Opportunities

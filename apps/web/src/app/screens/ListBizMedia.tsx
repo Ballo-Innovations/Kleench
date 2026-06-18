@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { ArrowRight, Image, X, Info } from "lucide-react";
+import { Image, X, Info } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const STEPS = 6;
 
@@ -112,12 +113,7 @@ export function ListBizMedia() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/list/contact", { state: { ...state, logo, cover, gallery } })}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/list/contact", { state: { ...state, logo, cover, gallery } })}>Continue</CtaButton>
       </div>
     </div>
   );

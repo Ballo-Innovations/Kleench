@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { Download, Share2, Home } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 import { toast } from "sonner";
 import rtsaLogo from "@/assets/Ratsa logo.png";
 
@@ -79,11 +80,7 @@ export function RoadTaxReceipt() {
 
         {/* Actions */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="space-y-3">
-          <button onClick={() => toast.success("Receipt downloaded!")}
-            className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-            <Download size={18} strokeWidth={2} />
-            Download Receipt
-          </button>
+          <CtaButton onClick={() => toast.success("Receipt downloaded!")}><Download size={18} strokeWidth={2} /> Download Receipt</CtaButton>
           <button onClick={() => toast.success("Sharing receipt...")}
             className="w-full py-4 rounded-2xl border-2 border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
             <Share2 size={18} strokeWidth={2} />

@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { Clock, CheckCircle, Bell, FileText, Home, ChevronRight } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const NEXT_STEPS = [
   { icon: FileText, title: "Application Received", desc: "Your application has been submitted successfully", done: true },
@@ -77,13 +78,7 @@ export function VendorUnderReview() {
 
         {/* Actions */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }} className="space-y-3">
-          <button
-            onClick={() => navigate("/vendor/dashboard", { state })}
-            className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all"
-          >
-            <FileText size={18} strokeWidth={2} />
-            View My Application
-          </button>
+          <CtaButton onClick={() => navigate("/vendor/dashboard", { state })}><FileText size={18} strokeWidth={2} /> View My Application</CtaButton>
           <button
             onClick={() => navigate("/")}
             className="w-full py-4 rounded-2xl border-2 border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all"

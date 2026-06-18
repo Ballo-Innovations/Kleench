@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { CheckCircle, Database, Plus, Home } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 export function AgentDataSuccess() {
@@ -56,10 +57,7 @@ export function AgentDataSuccess() {
       </div>
 
       <div className="px-5 pt-4 pb-8 space-y-3">
-        <button onClick={() => navigate("/marketplace/agent/submit")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-          <Plus size={18} strokeWidth={2} /> Submit Another
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/agent/submit")}><Plus size={18} strokeWidth={2} /> Submit Another</CtaButton>
         <button onClick={() => navigate("/")}
           className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
           <Home size={18} strokeWidth={2} /> Back Home

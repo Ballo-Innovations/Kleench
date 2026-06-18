@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, UserCheck, Handshake, Megaphone, Users, Database } from "lucide-react";
+import { UserCheck, Handshake, Megaphone, Users, Database } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const AGENT_TYPES = [
@@ -66,10 +67,7 @@ export function AgentTypeSelect() {
       </div>
 
       <div className="px-5 pt-6 pb-8">
-        <button onClick={handleContinue} disabled={!selected}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all">
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={handleContinue} disabled={!selected}>Continue</CtaButton>
       </div>
     </div>
   );

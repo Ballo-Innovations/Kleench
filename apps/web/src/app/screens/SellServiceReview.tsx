@@ -1,7 +1,8 @@
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { Edit2, ArrowRight, Package, CheckCircle, Zap } from "lucide-react";
+import { Edit2, Package, CheckCircle, Zap } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const STEPS = 5;
 
@@ -85,12 +86,7 @@ export function SellServiceReview() {
       </div>
 
       <div className="px-5 pt-4 pb-8 space-y-3">
-        <button
-          onClick={() => navigate("/marketplace/sell/service/success", { state })}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all"
-        >
-          Publish Service <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/sell/service/success", { state })}>Publish Service</CtaButton>
         <button onClick={() => navigate(-1)}
           className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center active:scale-95 transition-all">
           Go Back

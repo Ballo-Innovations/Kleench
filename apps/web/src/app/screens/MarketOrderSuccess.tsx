@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { CheckCircle, Package, Home } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 export function MarketOrderSuccess() {
   const navigate = useNavigate();
@@ -51,11 +52,7 @@ export function MarketOrderSuccess() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-3">
-          <button onClick={() => navigate("/marketplace")}
-            className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-            <Package size={18} strokeWidth={2} />
-            View Order
-          </button>
+          <CtaButton onClick={() => navigate("/marketplace")}><Package size={18} strokeWidth={2} /> View Order</CtaButton>
           <button onClick={() => navigate("/")}
             className="w-full py-4 rounded-2xl border-2 border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
             <Home size={18} strokeWidth={2} />

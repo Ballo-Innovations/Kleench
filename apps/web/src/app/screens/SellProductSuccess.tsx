@@ -1,7 +1,8 @@
 import { useNavigate, useLocation } from "react-router";
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { CheckCircle, Eye, Plus, Home, Store } from "lucide-react";
+import { CheckCircle, List } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const SEED_PRODUCTS = [
@@ -15,7 +16,8 @@ const SEED_PRODUCTS = [
 export function SellProductSuccess() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const listingId = `MKT-${Date.now().toString().slice(-8)}`;
+  const year = new Date().getFullYear();
+  const listingId = `LST-${year}-${Date.now().toString().slice(-8)}`;
   const productName = state?.productInfo?.name || "Your Product";
 
   useEffect(() => {
@@ -53,24 +55,14 @@ export function SellProductSuccess() {
           transition={{ type: "spring", damping: 15, stiffness: 200 }}
           className="flex flex-col items-center gap-4 py-6"
         >
-          <div className="w-24 h-24 rounded-full bg-[#059669]/12 flex items-center justify-center shadow-lg">
-            <CheckCircle size={48} color="#059669" strokeWidth={1.5} />
+          <div className="w-24 h-24 rounded-full bg-[var(--color-secondary)] flex items-center justify-center shadow-lg">
+            <CheckCircle size={48} color="white" strokeWidth={1.5} />
           </div>
-          <div className="text-center space-y-1">
-            <h2 className="text-2xl font-black text-[var(--app-text)] uppercase tracking-tighter">Listing Submitted!</h2>
-            <p className="text-[12px] font-semibold text-[var(--color-secondary)]/60">{productName} is now visible to buyers</p>
-          </div>
-        </motion.div>
-
-        {/* Where it appears */}
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-          className="bg-[var(--color-secondary)] rounded-2xl shadow-md p-5 space-y-3">
-          <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50">Your product now appears under</p>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-              <Store size={20} color="white" strokeWidth={2} />
-            </div>
-            <p className="text-[18px] font-black text-white uppercase tracking-widest">FEATURED PRODUCTS</p>
+          <div className="text-center space-y-1.5">
+            <h2 className="text-2xl font-black text-[var(--app-text)] uppercase tracking-tighter">Submit For Selling</h2>
+            <p className="text-[12px] font-semibold text-[var(--color-secondary)]/60 max-w-[260px] mx-auto leading-relaxed">
+              {productName} is now visible to thousands of buyers on KLeench Marketplace
+            </p>
           </div>
         </motion.div>
 
@@ -97,19 +89,8 @@ export function SellProductSuccess() {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-3">
-          <button onClick={() => navigate("/marketplace/featured")}
-            className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-            <Eye size={18} strokeWidth={2} /> View Listing
-          </button>
-          <button onClick={() => navigate("/marketplace/sell")}
-            className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-            <Plus size={18} strokeWidth={2} /> Create Another Listing
-          </button>
-          <button onClick={() => navigate("/marketplace")}
-            className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-            <Home size={18} strokeWidth={2} /> Return To Marketplace
-          </button>
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+          <CtaButton onClick={() => navigate("/marketplace")}><List size={18} strokeWidth={2} /> Go to Dashboard</CtaButton>
         </motion.div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { CheckCircle, ShieldCheck, Home } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const AGENT_LABEL: Record<string, string> = {
@@ -61,10 +62,7 @@ export function AgentSuccess() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button onClick={() => navigate("/")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-          <Home size={18} strokeWidth={2} /> Back Home
-        </button>
+        <CtaButton onClick={() => navigate("/")}><Home size={18} strokeWidth={2} /> Back Home</CtaButton>
       </div>
     </div>
   );

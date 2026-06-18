@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { User, Building2, ArrowRight } from "lucide-react";
+import { User, Building2 } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const PROVIDER_TYPES = [
   { id: "individual", label: "Individual", desc: "Freelancer or solo professional", icon: User },
@@ -90,15 +91,7 @@ export function SellServiceEntry() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/sell/service/info", {
-            state: { sellType: "service", providerType, serviceCategory }
-          })}
-          disabled={!canContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/sell/service/info", { state: { sellType: "service", providerType, serviceCategory } })} disabled={!canContinue}>Continue</CtaButton>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { ShieldCheck, ArrowRight, TrendingUp, Users, DollarSign } from "lucide-react";
+import { ShieldCheck, TrendingUp, Users, DollarSign } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const BENEFITS = [
@@ -62,10 +63,7 @@ export function AgentEntry() {
       </div>
 
       <div className="px-5 pt-6 pb-8">
-        <button onClick={() => navigate("/marketplace/agent/type")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-          Get Started <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/agent/type")}>Get Started</CtaButton>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { motion } from "motion/react";
 import { CheckCircle, Eye, Share2, Home, Briefcase } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 import { toast } from "sonner";
 
 const SEED_SERVICES = [
@@ -103,10 +104,7 @@ export function SellServiceSuccess() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="space-y-3">
-          <button onClick={() => navigate("/marketplace/services")}
-            className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-            <Eye size={18} strokeWidth={2} /> View Service
-          </button>
+          <CtaButton onClick={() => navigate("/marketplace/services")}><Eye size={18} strokeWidth={2} /> View Service</CtaButton>
           <button onClick={() => toast.success("Share link copied!")}
             className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
             <Share2 size={18} strokeWidth={2} /> Share Service
