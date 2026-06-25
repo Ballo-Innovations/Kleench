@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
+const CATEGORIES = ["Agriculture", "Construction", "Logistics & Transport", "Finance & Banking", "Retail & Commerce", "Technology", "Health & Wellness", "Education", "Mining & Resources", "Tourism & Hospitality"];
 const COMMODITIES = ["Maize", "Beans", "Rice", "Cassava", "Groundnuts", "Sunflower", "Sorghum", "Wheat", "Fuel", "Fertilizer", "Cement", "Zinc", "Copper"];
 const METHODS = ["Physical Visit", "Phone Survey", "Market Network", "Farm Gate", "Online Research"];
 
@@ -11,6 +12,7 @@ export function AgentSpecializedData() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  const [category, setCategory] = useState("");
   const [selectedCommodities, setSelectedCommodities] = useState<string[]>([]);
   const [collectionArea, setCollectionArea] = useState("");
   const [selectedMethods, setSelectedMethods] = useState<string[]>([]);
@@ -19,7 +21,7 @@ export function AgentSpecializedData() {
     setList(list.includes(item) ? list.filter((x) => x !== item) : [...list, item]);
   };
 
-  const canContinue = selectedCommodities.length > 0 && collectionArea.trim() && selectedMethods.length > 0;
+  const canContinue = category && selectedCommodities.length > 0 && collectionArea.trim() && selectedMethods.length > 0;
 
   return (
     <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
@@ -33,6 +35,16 @@ export function AgentSpecializedData() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+          className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm p-5 space-y-3">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Specialized Category <span className="text-[var(--color-primary)]">*</span></p>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}
+            className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-[13px] font-semibold text-[var(--app-text)] bg-[var(--app-bg)] outline-none focus:border-[var(--app-text)] transition-all">
+            <option value="">Select category</option>
+            {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
           className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm p-5 space-y-3">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">Commodity Types <span className="text-[var(--color-primary)]">*</span></p>
           <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50">Select all commodities you will report on</p>
@@ -68,7 +80,7 @@ export function AgentSpecializedData() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <CtaButton onClick={() => navigate("/marketplace/agent/specialized/market", { state: { ...state, commodities: selectedCommodities, collectionArea, collectionMethods: selectedMethods } })} disabled={!canContinue}>Continue</CtaButton>
+        <CtaButton onClick={() => navigate("/marketplace/agent/specialized/market", { state: { ...state, specializedCategory: category, commodities: selectedCommodities, collectionArea, collectionMethods: selectedMethods } })} disabled={!canContinue}>Continue</CtaButton>
       </div>
     </div>
   );

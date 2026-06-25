@@ -48,6 +48,13 @@ export function AgentDataSuccess() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+          className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm p-5 text-center space-y-1">
+          <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[var(--color-secondary)]/50">Earnings</p>
+          <p className="text-[28px] font-black text-[var(--app-text)]">K0.00</p>
+          <p className="text-[10px] font-semibold text-[var(--color-secondary)]/50">Earnings credited once submission is verified</p>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}
           className="flex items-start gap-3 bg-[#059669]/8 border border-[#059669]/20 rounded-2xl px-4 py-3">
           <Database size={14} className="text-[#059669] shrink-0 mt-0.5" strokeWidth={2} />
           <p className="text-[11px] font-semibold text-[var(--color-secondary)]/70 leading-snug">
@@ -60,7 +67,7 @@ export function AgentDataSuccess() {
         <CtaButton onClick={() => navigate("/marketplace/agent/submit")}><Plus size={18} strokeWidth={2} /> Submit Another</CtaButton>
         <button onClick={() => navigate("/")}
           className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-          <Home size={18} strokeWidth={2} /> Back Home
+          Return to Home Page
         </button>
       </div>
     </div>

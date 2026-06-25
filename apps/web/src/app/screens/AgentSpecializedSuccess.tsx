@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { CheckCircle, Database, Home } from "lucide-react";
+import { CheckCircle, Database } from "lucide-react";
 import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
@@ -16,10 +16,12 @@ export function AgentSpecializedSuccess() {
       <div className="px-5 pt-8 space-y-5">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 200 }}
           className="flex flex-col items-center gap-3 py-6">
-          <div className="w-20 h-20 rounded-full bg-[#059669]/15 flex items-center justify-center">
-            <CheckCircle size={40} color="#059669" strokeWidth={1.5} />
+          <div className="w-20 h-20 rounded-full bg-[#059669] flex items-center justify-center shadow-lg">
+            <CheckCircle size={40} color="white" strokeWidth={2} />
           </div>
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#059669]">Specialized Agent Approved!</p>
+          <div className="bg-[var(--color-secondary)] px-6 py-1.5 rounded-full">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Registered</p>
+          </div>
           <p className="text-[22px] font-black text-[var(--app-text)] uppercase tracking-tight text-center leading-tight">Market Data<br />Contributor</p>
         </motion.div>
 
@@ -34,7 +36,8 @@ export function AgentSpecializedSuccess() {
               { label: "Commodities", value: (state?.commodities || []).slice(0, 3).join(", ") || "—" },
               { label: "Coverage Area", value: state?.collectionArea || "—" },
               { label: "Reporting", value: state?.frequency || "—" },
-              { label: "Status", value: "Under Review" },
+              { label: "Category", value: state?.specializedCategory || "—" },
+            { label: "Status", value: "Active" },
             ].map(({ label, value }) => (
               <div key={label} className="flex items-center justify-between py-2.5 border-b border-[var(--border)] last:border-0">
                 <span className="text-[10px] font-black uppercase tracking-wide text-[var(--color-secondary)]/50">{label}</span>
@@ -45,19 +48,26 @@ export function AgentSpecializedSuccess() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+          className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm p-5 text-center space-y-1">
+          <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[var(--color-secondary)]/50">Earnings</p>
+          <p className="text-[28px] font-black text-[var(--app-text)]">K0.00</p>
+          <p className="text-[10px] font-semibold text-[var(--color-secondary)]/50">Earn rewards for every verified data submission</p>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}
           className="flex items-start gap-3 bg-[#059669]/8 border border-[#059669]/20 rounded-2xl px-4 py-3">
           <Database size={14} className="text-[#059669] shrink-0 mt-0.5" strokeWidth={2} />
           <p className="text-[11px] font-semibold text-[var(--color-secondary)]/70 leading-snug">
-            Once approved, you can begin submitting market data from the Agent Hub. Your reports will power KLeench Market Intelligence.
+            You can now begin submitting market data from the Agent Hub. Your reports will power KLeench Market Intelligence.
           </p>
         </motion.div>
       </div>
 
       <div className="px-5 pt-4 pb-8 space-y-3">
-        <CtaButton onClick={() => navigate("/marketplace/agent/submit")}>Submit Market Data</CtaButton>
+        <CtaButton onClick={() => navigate("/marketplace/agent/submit")}>Get Started</CtaButton>
         <button onClick={() => navigate("/")}
-          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-          <Home size={18} strokeWidth={2} /> Back Home
+          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center active:scale-95 transition-all">
+          Return to Home Page
         </button>
       </div>
     </div>

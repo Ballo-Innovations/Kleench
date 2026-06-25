@@ -408,17 +408,18 @@ export function Marketplace() {
 
           {/* Window Shopping */}
           <section>
-            <div className="bg-[var(--color-secondary)] px-4 py-2 border-t border-x border-[var(--color-secondary)]/20 rounded-t-2xl">
+            <button onClick={() => navigate("/marketplace/window")} className="w-full bg-[var(--color-secondary)] px-4 py-2 border-t border-x border-[var(--color-secondary)]/20 rounded-t-2xl flex items-center justify-between active:opacity-90 transition-all">
                <h3 className="text-white font-black text-[11px] tracking-[0.2em] uppercase">WINDOW SHOPPING</h3>
-            </div>
+               <span className="flex items-center gap-1 text-white/60 text-[8px] font-black uppercase tracking-[0.2em]">Open <ChevronRight size={12} strokeWidth={3} /></span>
+            </button>
             <div className="flex gap-[1px] overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar w-full border border-[var(--color-secondary)]/20 rounded-b-2xl shadow-sm bg-[var(--color-secondary)]">
                {[
-                 { id: "10", name: "THE SCENT STORE ZAMBIA", category: "Beauty & Fragrance", image: scentStoreImg },
-                 { id: "11", name: "LUSAKA TECH HUB", category: "Electronics & Tech", image: techHubImg },
-                 { id: "12", name: "STYLE AVENUE ZM", category: "Clothing & Fashion", image: styleAvenueImg },
-                 { id: "13", name: "GREENLEAF ORGANICS", category: "Food & Health", image: greenleafImg },
+                 { id: "scent", name: "THE SCENT STORE ZAMBIA", category: "Beauty & Fragrance", image: scentStoreImg },
+                 { id: "win", name: "WIN ELECTRONICS", category: "Electronics & Tech", image: techHubImg },
+                 { id: "style", name: "STYLE AVENUE ZM", category: "Clothing & Fashion", image: styleAvenueImg },
+                 { id: "greenleaf", name: "GREENLEAF ORGANICS", category: "Food & Health", image: greenleafImg },
                ].map((shop, i) => (
-                 <div key={i} onClick={() => navigate(`/marketplace/service/${shop.id}`)} className="shrink-0 snap-start w-[140px] bg-[var(--app-bg)] cursor-pointer group flex flex-col h-[185px]">
+                 <div key={i} onClick={() => navigate(`/marketplace/window/store/${shop.id}`)} className="shrink-0 snap-start w-[140px] bg-[var(--app-bg)] cursor-pointer group flex flex-col h-[185px]">
                    <div className="flex-1 flex items-center justify-center border-b border-[var(--border)] overflow-hidden bg-[var(--muted)]">
                       <img src={shop.image} alt={shop.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                    </div>
@@ -428,7 +429,7 @@ export function Marketplace() {
                    </div>
                  </div>
                ))}
-               <div onClick={() => toast("Viewing all shops...")} className="shrink-0 snap-start w-[110px] bg-[var(--color-secondary)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
+               <div onClick={() => navigate("/marketplace/window/stores")} className="shrink-0 snap-start w-[110px] bg-[var(--color-secondary)] cursor-pointer flex flex-col items-center justify-center p-4 gap-3 h-[185px]">
                   <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center">
                     <ChevronRight size={24} className="text-white/60 ml-0.5" strokeWidth={2.5} />
                   </div>
