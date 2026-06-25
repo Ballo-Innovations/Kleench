@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { ArrowRight, Phone, Mail, Globe, MapPin } from "lucide-react";
+import { Phone, Mail, Globe, MapPin } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const STEPS = 6;
 const PROVINCES = ["Lusaka", "Copperbelt", "Northern", "Eastern", "Western", "Southern", "Luapula", "Muchinga", "Central", "North-Western"];
@@ -61,13 +62,7 @@ export function ListBizContact() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/list/hours", { state: { ...state, phone, email, website, address, province } })}
-          disabled={!canContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/list/hours", { state: { ...state, phone, email, website, address, province } })} disabled={!canContinue}>Continue</CtaButton>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { Plus, X, ArrowRight, Image } from "lucide-react";
+import { Plus, X, Image } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const PROVINCES = ["Lusaka", "Copperbelt", "Northern", "Eastern", "Western", "Southern", "Luapula", "Muchinga", "Central", "North-Western"];
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -126,12 +127,7 @@ export function SellServiceAvailability() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={handleContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={handleContinue}>Continue</CtaButton>
       </div>
     </div>
   );

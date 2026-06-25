@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { CheckCircle, Star, Share2, Home } from "lucide-react";
+import { CheckCircle, Star, List } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const SEED_BUSINESSES = [
   { id: "biz1", name: "Zambia Tech Solutions", category: "Technology", type: "SME", listing: "ordinary", province: "Lusaka", tagline: "Digital transformation for Zambian enterprises", visibility: "public" },
@@ -14,7 +15,8 @@ export function ListPrioritySuccess() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const bizName = state?.bizName || "Your Business";
-  const listingId = `BIZ-P${Date.now().toString().slice(-6)}`;
+  const year = new Date().getFullYear();
+  const listingId = `CLS-${year}-${Date.now().toString().slice(-8)}`;
 
   useEffect(() => {
     try {
@@ -52,7 +54,7 @@ export function ListPrioritySuccess() {
             <CheckCircle size={40} color="#059669" strokeWidth={1.5} />
           </div>
           <div className="flex items-center gap-2">
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#059669]">Priority Listing Active!</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#059669]">Your Business is now Listed</p>
             <Star size={13} color="var(--color-primary)" fill="var(--color-primary)" />
           </div>
           <p className="text-[22px] font-black text-[var(--app-text)] uppercase tracking-tight text-center leading-tight">{bizName}</p>
@@ -61,7 +63,7 @@ export function ListPrioritySuccess() {
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
           className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm overflow-hidden">
           <div className="bg-[var(--color-secondary)] px-5 py-4">
-            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50">Priority Reference</p>
+            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50">Order ID</p>
             <div className="flex items-center gap-2 mt-0.5">
               <p className="text-[18px] font-black text-white tracking-wider">{listingId}</p>
               <span className="text-[7px] font-black px-1.5 py-0.5 bg-[var(--color-primary)] text-white rounded uppercase tracking-widest">Priority</span>
@@ -92,15 +94,8 @@ export function ListPrioritySuccess() {
         </motion.div>
       </div>
 
-      <div className="px-5 pt-4 pb-8 space-y-3">
-        <button onClick={() => navigate("/marketplace")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-          <Share2 size={18} strokeWidth={2} /> Share Listing
-        </button>
-        <button onClick={() => navigate("/")}
-          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-          <Home size={18} strokeWidth={2} /> Back Home
-        </button>
+      <div className="px-5 pt-4 pb-8">
+        <CtaButton onClick={() => navigate("/marketplace")}><List size={18} strokeWidth={2} /> Go to Listings</CtaButton>
       </div>
     </div>
   );

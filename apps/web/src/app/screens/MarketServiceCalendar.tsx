@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router";
 import { motion } from "motion/react";
-import { ChevronLeft, ChevronRight, Clock, Users, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Users } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -141,15 +142,7 @@ export function MarketServiceCalendar() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate(`/marketplace/service/${id}/inquiry`, {
-            state: { ...state, booking: { date: `${MONTHS[month]} ${selectedDate}, ${year}`, time: selectedTime, guests } }
-          })}
-          disabled={!canContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Check Availability <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate(`/marketplace/service/${id}/inquiry`, { state: { ...state, booking: { date: `${MONTHS[month]} ${selectedDate}, ${year}`, time: selectedTime, guests } } })} disabled={!canContinue}>Check Availability</CtaButton>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { CheckCircle, Building2, Share2, Home } from "lucide-react";
+import { CheckCircle, Building2, List } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const SEED_BUSINESSES = [
   { id: "biz1", name: "Zambia Tech Solutions", category: "Technology", type: "SME", listing: "ordinary", province: "Lusaka", tagline: "Digital transformation for Zambian enterprises", visibility: "public" },
@@ -14,7 +15,8 @@ export function ListBizSuccess() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const bizName = state?.bizName || state?.name || "Your Business";
-  const listingId = `BIZ-${Date.now().toString().slice(-6)}`;
+  const year = new Date().getFullYear();
+  const listingId = `CLS-${year}-${Date.now().toString().slice(-8)}`;
 
   useEffect(() => {
     try {
@@ -47,14 +49,14 @@ export function ListBizSuccess() {
           <div className="w-20 h-20 rounded-full bg-[#059669]/15 flex items-center justify-center">
             <CheckCircle size={40} color="#059669" strokeWidth={1.5} />
           </div>
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#059669]">Business Listed!</p>
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#059669]">Your Business is now Listed</p>
           <p className="text-[22px] font-black text-[var(--app-text)] uppercase tracking-tight text-center leading-tight">{bizName}</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
           className="bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm overflow-hidden">
           <div className="bg-[var(--color-secondary)] px-5 py-4">
-            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50">Listing Reference</p>
+            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50">Order ID</p>
             <p className="text-[18px] font-black text-white tracking-wider">{listingId}</p>
           </div>
           <div className="px-5 py-4 space-y-0">
@@ -81,15 +83,8 @@ export function ListBizSuccess() {
         </motion.div>
       </div>
 
-      <div className="px-5 pt-4 pb-8 space-y-3">
-        <button onClick={() => navigate("/marketplace")}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-          <Share2 size={18} strokeWidth={2} /> Share Listing
-        </button>
-        <button onClick={() => navigate("/")}
-          className="w-full py-4 rounded-2xl border border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
-          <Home size={18} strokeWidth={2} /> Back Home
-        </button>
+      <div className="px-5 pt-4 pb-8">
+        <CtaButton onClick={() => navigate("/marketplace")}><List size={18} strokeWidth={2} /> Go to Listings</CtaButton>
       </div>
     </div>
   );

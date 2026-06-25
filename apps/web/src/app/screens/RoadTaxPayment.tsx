@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { CheckCircle, FileText, Home } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const PERIOD_LABELS: Record<string, string> = { "3months": "3 Months", "6months": "6 Months", "12months": "12 Months" };
 
@@ -65,11 +66,7 @@ export function RoadTaxPayment() {
 
         {/* CTAs */}
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="w-full space-y-3">
-          <button onClick={() => navigate("/road-tax/receipt", { state })}
-            className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all">
-            <FileText size={18} strokeWidth={2} />
-            View Tax Receipt
-          </button>
+          <CtaButton onClick={() => navigate("/road-tax/receipt", { state })}><FileText size={18} strokeWidth={2} /> View Tax Receipt</CtaButton>
           <button onClick={() => navigate("/")}
             className="w-full py-4 rounded-2xl border-2 border-[var(--border)] bg-[var(--app-bg)] text-[var(--color-secondary)] font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 active:scale-95 transition-all">
             <Home size={18} strokeWidth={2} />

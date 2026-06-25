@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 export function AgentSpecializedInfo() {
@@ -15,6 +15,7 @@ export function AgentSpecializedInfo() {
 
   const PROVINCES = ["Lusaka", "Copperbelt", "Eastern", "Southern", "Western", "Northern", "North-Western", "Luapula", "Muchinga", "Central"];
 
+  const [whyAgent, setWhyAgent] = useState("");
   const canContinue = entityType && name.trim() && province;
 
   return (
@@ -59,6 +60,13 @@ export function AgentSpecializedInfo() {
               className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-[13px] font-semibold text-[var(--app-text)] bg-[var(--app-bg)] outline-none focus:border-[var(--app-text)] transition-all placeholder:text-[var(--color-secondary)]/30" />
           </div>
 
+          <div className="space-y-1">
+            <label className="text-[10px] font-black uppercase tracking-wider text-[var(--color-secondary)]/60">Why do you want to become an agent? <span className="text-[var(--color-secondary)]/40">(Optional)</span></label>
+            <textarea value={whyAgent} onChange={(e) => setWhyAgent(e.target.value)} rows={3}
+              placeholder="Tell us about your motivation and goals..."
+              className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-[13px] font-semibold text-[var(--app-text)] bg-[var(--app-bg)] outline-none focus:border-[var(--app-text)] transition-all resize-none placeholder:text-[var(--color-secondary)]/30" />
+          </div>
+
           <div className="space-y-2">
             <label className="text-[10px] font-black uppercase tracking-wider text-[var(--color-secondary)]/60">Base Province <span className="text-[var(--color-primary)]">*</span></label>
             <div className="flex flex-wrap gap-2">
@@ -74,11 +82,7 @@ export function AgentSpecializedInfo() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button onClick={() => navigate("/marketplace/agent/specialized/data", { state: { ...state, entityType, name, phone, province } })}
-          disabled={!canContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all">
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/agent/specialized/data", { state: { ...state, entityType, name, phone, province, whyAgent } })} disabled={!canContinue}>Continue</CtaButton>
       </div>
     </div>
   );

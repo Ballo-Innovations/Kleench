@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { motion } from "motion/react";
-import { Plus, X, ArrowRight, Trash2 } from "lucide-react";
+import { Plus, X, Trash2 } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 type Package = { name: string; price: string; features: string[]; deliverables: string };
 
@@ -110,13 +111,7 @@ export function SellServicePackages() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, packages } })}
-          disabled={!canContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/sell/product/boost", { state: { ...state, packages } })} disabled={!canContinue}>Continue</CtaButton>
       </div>
     </div>
   );

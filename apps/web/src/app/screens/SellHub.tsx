@@ -1,84 +1,150 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { Package, Briefcase, ArrowRight } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
+import {
+  DuotoneBriefcase,
+  DuotoneTag,
+  DuotoneShieldCheck,
+  DuotoneUsers,
+  DuotoneGlobe,
+} from "../components/DuotoneIcon";
 
-const SELL_OPTIONS = [
+const SELL_TYPES = [
   {
     id: "product" as const,
     label: "Sell a Product",
-    desc: "Physical goods and merchandise.",
-    examples: ["Phones", "Clothing", "Electronics", "Furniture"],
-    icon: Package,
-    route: "/marketplace/sell/product",
+    sub: "Sell physical or digital products",
+    Icon: DuotoneTag,
   },
   {
     id: "service" as const,
     label: "Offer a Service",
-    desc: "Professional and business services.",
-    examples: ["Photography", "Consulting", "Training", "Construction"],
-    icon: Briefcase,
-    route: "/marketplace/sell/service",
+    sub: "List services and get bookings",
+    Icon: DuotoneBriefcase,
+  },
+];
+
+const SALE_TYPES = [
+  {
+    id: "simple" as const,
+    label: "Simple Sale",
+    desc: "Straight forward sales with a fixed price",
+    Icon: DuotoneTag,
+  },
+  {
+    id: "ordinary" as const,
+    label: "Ordinary Sale",
+    desc: "Covers third party, fire and theft of vehicle",
+    Icon: DuotoneShieldCheck,
+  },
+  {
+    id: "complex" as const,
+    label: "Complex Sale",
+    desc: "Involves multiple options, customization or contracts",
+    Icon: DuotoneUsers,
   },
 ];
 
 export function SellHub() {
   const navigate = useNavigate();
+  const [sellType, setSellType] = useState<"product" | "service" | null>(null);
+  const [saleType, setSaleType] = useState<"simple" | "ordinary" | "complex">("simple");
+
+  const canContinue = !!sellType;
+
+  const handleContinue = () => {
+    navigate("/marketplace/sell/identity", { state: { sellType, saleType } });
+  };
 
   return (
-    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
-      <PageHeader title="SELL HUB" showBack />
+    <div className="w-full bg-transparent font-sans pb-24">
+      <PageHeader title="SELL" showBack />
 
-      <div className="px-5 pt-6 space-y-6">
-        <div className="space-y-1">
-          <h2 className="text-[22px] font-black text-[var(--app-text)] uppercase tracking-tight leading-tight">
-            What would you like to sell?
-          </h2>
-          <p className="text-[12px] font-semibold text-[var(--color-secondary)]/60 leading-snug">
-            Create a product listing or offer a service to the KLeench marketplace.
+      <div className="px-5 pt-5 space-y-6">
+
+        {/* What would you like to do */}
+        <div className="space-y-3">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">
+            What would you like to do?
           </p>
+          <div className="grid grid-cols-2 gap-3">
+            {SELL_TYPES.map(({ id, label, sub, Icon }) => {
+              const isSelected = sellType === id;
+              return (
+                <motion.button
+                  key={id}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => setSellType(id)}
+                  className={`p-4 rounded-2xl border-2 text-left transition-all ${
+                    isSelected
+                      ? "border-[var(--color-primary)] bg-[var(--color-primary)]/8"
+                      : "border-[var(--border)] bg-[var(--app-bg)]"
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
+                    isSelected ? "bg-[var(--color-secondary)]/12" : "bg-[var(--border)]/40"
+                  }`}>
+                    <Icon size={20} primary="var(--color-secondary)" secondaryOpacity={isSelected ? 0.35 : 0.2} />
+                  </div>
+                  <p className={`text-[11px] font-black uppercase tracking-wide leading-tight ${
+                    isSelected ? "text-[var(--color-primary)]" : "text-[var(--app-text)]"
+                  }`}>{label}</p>
+                  <p className="text-[9px] font-semibold text-[var(--color-secondary)]/50 mt-0.5 leading-snug">{sub}</p>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="space-y-4">
-          {SELL_OPTIONS.map((opt, i) => {
-            const Icon = opt.icon;
-            return (
-              <motion.button
-                key={opt.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => navigate(opt.route)}
-                className="w-full bg-[var(--app-bg)] border border-[var(--border)] rounded-2xl shadow-sm overflow-hidden text-left active:shadow-md transition-all"
-              >
-                {/* Card header */}
-                <div className="bg-[var(--color-secondary)] px-5 py-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-                      <Icon size={20} color="white" strokeWidth={2} />
-                    </div>
-                    <p className="text-[14px] font-black text-white uppercase tracking-widest">{opt.label}</p>
+        {/* Select Sale Type */}
+        <div className="space-y-3">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-secondary)]/50">
+            Select Sale Type
+          </p>
+          <p className="text-[10px] font-semibold text-[var(--color-secondary)]/50 -mt-1">
+            Choose the type of sale that best describes your offering.
+          </p>
+          <div className="space-y-2.5">
+            {SALE_TYPES.map(({ id, label, desc, Icon }) => {
+              const isSelected = saleType === id;
+              return (
+                <motion.button
+                  key={id}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setSaleType(id)}
+                  className={`w-full flex items-center gap-3 p-4 rounded-2xl border transition-all text-left ${
+                    isSelected
+                      ? "border-[var(--color-primary)] bg-[var(--color-primary)]/6 shadow-sm"
+                      : "border-[var(--border)] bg-[var(--app-bg)] shadow-sm"
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                    isSelected ? "bg-[var(--color-secondary)]/12" : "bg-[var(--border)]/40"
+                  }`}>
+                    <Icon size={20} primary="var(--color-secondary)" secondaryOpacity={isSelected ? 0.35 : 0.2} />
                   </div>
-                  <ArrowRight size={18} color="white" strokeWidth={2.5} />
-                </div>
-
-                {/* Card body */}
-                <div className="px-5 py-4 space-y-3">
-                  <p className="text-[12px] font-semibold text-[var(--color-secondary)]/70">{opt.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {opt.examples.map((ex) => (
-                      <span key={ex}
-                        className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-[var(--color-secondary)]/8 text-[var(--color-secondary)]/60 border border-[var(--border)]">
-                        {ex}
-                      </span>
-                    ))}
+                  <div className="flex-1">
+                    <p className={`text-[12px] font-black uppercase tracking-wide ${
+                      isSelected ? "text-[var(--color-primary)]" : "text-[var(--app-text)]"
+                    }`}>{label}</p>
+                    <p className="text-[10px] font-semibold text-[var(--color-secondary)]/55 mt-0.5 leading-snug">{desc}</p>
                   </div>
-                </div>
-              </motion.button>
-            );
-          })}
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                    isSelected ? "border-[var(--color-primary)] bg-[var(--color-primary)]" : "border-[var(--border)]"
+                  }`}>
+                    {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                  </div>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
+      </div>
+
+      <div className="px-5 pt-6 pb-8">
+        <CtaButton onClick={handleContinue} disabled={!canContinue}>Continue</CtaButton>
       </div>
     </div>
   );

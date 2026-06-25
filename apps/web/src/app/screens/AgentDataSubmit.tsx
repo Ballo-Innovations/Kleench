@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, Send } from "lucide-react";
+import { Send } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 
 const COMMODITIES = ["Maize", "Beans", "Rice", "Cassava", "Groundnuts", "Sunflower", "Fuel", "Fertilizer", "Cement", "Zinc", "Copper"];
@@ -108,11 +109,7 @@ export function AgentDataSubmit() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button onClick={() => navigate("/marketplace/agent/submit/success", { state: { commodity, market, price, unit, availability, date } })}
-          disabled={!canSubmit}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all">
-          Submit Data <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/agent/submit/success", { state: { commodity, market, price, unit, availability, date } })} disabled={!canSubmit}>Submit Data</CtaButton>
       </div>
     </div>
   );

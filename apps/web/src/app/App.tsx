@@ -130,7 +130,13 @@ import { MarketAssetDocuments } from "./screens/MarketAssetDocuments";
 import { MarketAssetChat } from "./screens/MarketAssetChat";
 import { MarketAssetOrder } from "./screens/MarketAssetOrder";
 import { MarketAssetEscrow } from "./screens/MarketAssetEscrow";
-import { MarketIntelDetail } from "./screens/MarketIntelDetail";
+// Marketplace — Market Intelligence Flow (catalog 4.1.x)
+import { MarketIntelligence } from "./screens/intel/MarketIntelligence";
+import { CropCategory } from "./screens/intel/CropCategory";
+import { CommodityDetail } from "./screens/intel/CommodityDetail";
+import { CommodityMap } from "./screens/intel/CommodityMap";
+import { CommodityList } from "./screens/intel/CommodityList";
+import { ProductAlert } from "./screens/intel/ProductAlert";
 // Marketplace — List Business Flow (new corrected flow)
 import { ListEntry } from "./screens/ListEntry";
 import { ListTypeSelect } from "./screens/ListTypeSelect";
@@ -149,6 +155,7 @@ import { MarketReferral } from "./screens/MarketReferral";
 import { MarketReferralInvite } from "./screens/MarketReferralInvite";
 import { MarketReferralHistory } from "./screens/MarketReferralHistory";
 // Marketplace — Agent Flow (new corrected flow)
+import { AgentLanding } from "./screens/AgentLanding";
 import { AgentEntry } from "./screens/AgentEntry";
 import { AgentTypeSelect } from "./screens/AgentTypeSelect";
 import { AgentInfo } from "./screens/AgentInfo";
@@ -161,11 +168,20 @@ import { AgentSpecializedMarket } from "./screens/AgentSpecializedMarket";
 import { AgentSpecializedSuccess } from "./screens/AgentSpecializedSuccess";
 import { AgentDataSubmit } from "./screens/AgentDataSubmit";
 import { AgentDataSuccess } from "./screens/AgentDataSuccess";
+// Marketplace — Window Shopping Flow
+import { WindowShop } from "./screens/window/WindowShop";
+import { WindowCategories } from "./screens/window/WindowCategories";
+import { WindowCategory } from "./screens/window/WindowCategory";
+import { WindowStores } from "./screens/window/WindowStores";
+import { WindowStore } from "./screens/window/WindowStore";
+import { WindowProduct } from "./screens/window/WindowProduct";
+import { WindowCart } from "./screens/window/WindowCart";
+import { WindowCheckout } from "./screens/window/WindowCheckout";
+import { WindowSuccess } from "./screens/window/WindowSuccess";
 // Marketplace — Entry Screens
 import { FeaturedProducts } from "./screens/FeaturedProducts";
 import { ServicesMarketplace } from "./screens/ServicesMarketplace";
 import { BusinessListings } from "./screens/BusinessListings";
-import { MarketIntelHub } from "./screens/MarketIntelHub";
 import { MarketIntelForecast } from "./screens/MarketIntelForecast";
 import { MarketIntelOpportunities } from "./screens/MarketIntelOpportunities";
 // Insurance Flow
@@ -309,7 +325,9 @@ const router = createBrowserRouter([
       { path: "marketplace/asset/:id/chat", element: <MarketAssetChat /> },
       { path: "marketplace/asset/:id/order", element: <MarketAssetOrder /> },
       { path: "marketplace/asset/:id/escrow", element: <MarketAssetEscrow /> },
-      { path: "marketplace/intel/:id", element: <MarketIntelDetail /> },
+      { path: "marketplace/intel/:id", element: <CommodityDetail /> },
+      { path: "marketplace/intel/:id/map", element: <CommodityMap /> },
+      { path: "marketplace/intel/:id/list", element: <CommodityList /> },
       // Marketplace — List Business Flow (corrected)
       { path: "marketplace/list", element: <ListEntry /> },
       { path: "marketplace/list/type", element: <ListTypeSelect /> },
@@ -327,7 +345,18 @@ const router = createBrowserRouter([
       { path: "marketplace/refer", element: <MarketReferral /> },
       { path: "marketplace/refer/invite", element: <MarketReferralInvite /> },
       { path: "marketplace/refer/history", element: <MarketReferralHistory /> },
+      // Marketplace — Window Shopping
+      { path: "marketplace/window", element: <WindowShop /> },
+      { path: "marketplace/window/categories", element: <WindowCategories /> },
+      { path: "marketplace/window/category/:id", element: <WindowCategory /> },
+      { path: "marketplace/window/stores", element: <WindowStores /> },
+      { path: "marketplace/window/store/:id", element: <WindowStore /> },
+      { path: "marketplace/window/product/:id", element: <WindowProduct /> },
+      { path: "marketplace/window/cart", element: <WindowCart /> },
+      { path: "marketplace/window/checkout", element: <WindowCheckout /> },
+      { path: "marketplace/window/success", element: <WindowSuccess /> },
       // Marketplace — Agent Flow (corrected)
+      { path: "marketplace/agent/hub", element: <AgentLanding /> },
       { path: "marketplace/agent", element: <AgentEntry /> },
       { path: "marketplace/agent/type", element: <AgentTypeSelect /> },
       { path: "marketplace/agent/info", element: <AgentInfo /> },
@@ -344,7 +373,9 @@ const router = createBrowserRouter([
       { path: "marketplace/featured", element: <FeaturedProducts /> },
       { path: "marketplace/services", element: <ServicesMarketplace /> },
       { path: "marketplace/business-listings", element: <BusinessListings /> },
-      { path: "marketplace/intelligence", element: <MarketIntelHub /> },
+      { path: "marketplace/intelligence", element: <MarketIntelligence /> },
+      { path: "marketplace/intelligence/crops", element: <CropCategory /> },
+      { path: "marketplace/intelligence/alerts", element: <ProductAlert /> },
       { path: "marketplace/intel/:id/forecast", element: <MarketIntelForecast /> },
       { path: "marketplace/intel/:id/opportunities", element: <MarketIntelOpportunities /> },
       { path: "learning", element: <Learning /> },

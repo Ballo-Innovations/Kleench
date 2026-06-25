@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { ArrowRight } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const CONDITIONS = ["Brand New", "Excellent", "Good", "Fair", "For Parts / Repair"];
 const ASSET_CATEGORIES = ["Vehicles", "Industrial Machinery", "Agricultural Equipment", "Commercial Property", "Construction Equipment", "Medical Equipment", "Other"];
@@ -81,13 +81,7 @@ export function SellComplexInfo() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate("/marketplace/sell/complex/pricing", { state: { ...state, assetInfo: form } })}
-          disabled={!canContinue}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Save & Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/sell/complex/pricing", { state: { ...state, assetInfo: form } })} disabled={!canContinue}>Save & Continue</CtaButton>
       </div>
     </div>
   );

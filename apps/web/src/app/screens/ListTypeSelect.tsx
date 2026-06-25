@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { Building2, Star, ArrowRight } from "lucide-react";
+import { Building2, Star } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const TYPES = [
   {
@@ -19,6 +20,7 @@ const TYPES = [
     icon: Star,
     badges: ["Featured", "Full Profile", "References"],
     premium: true,
+    price: "$10 / Year",
   },
 ];
 
@@ -27,7 +29,7 @@ export function ListTypeSelect() {
   const [selected, setSelected] = useState<"ordinary" | "priority" | null>(null);
 
   return (
-    <div className="w-full max-w-md mx-auto bg-transparent font-sans pb-24">
+    <div className="w-full bg-transparent font-sans pb-24">
       <PageHeader title="LIST YOUR BUSINESS" subtitle="Step 1 — Choose Listing Type" showBack />
 
       <div className="px-5 pt-5 space-y-5">
@@ -55,6 +57,7 @@ export function ListTypeSelect() {
                     {opt.premium && <span className="text-[7px] font-black px-1.5 py-0.5 rounded bg-[var(--color-secondary)] text-white uppercase tracking-widest">Premium</span>}
                   </div>
                   <p className="text-[10px] font-semibold text-[var(--color-secondary)]/60 leading-snug">{opt.desc}</p>
+                  {opt.price && <p className="text-[10px] font-black text-[var(--color-primary)] mt-1">{opt.price}</p>}
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {opt.badges.map((b) => (
                       <span key={b} className={`text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${isSelected ? "bg-[var(--color-primary)] text-white" : "bg-[var(--border)]/50 text-[var(--color-secondary)]/60"}`}>{b}</span>
@@ -71,11 +74,7 @@ export function ListTypeSelect() {
       </div>
 
       <div className="px-5 pt-6 pb-8">
-        <button onClick={() => navigate("/marketplace/list/biz-type", { state: { listingType: selected } })}
-          disabled={!selected}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all">
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate("/marketplace/list/biz-type", { state: { listingType: selected } })} disabled={!selected}>Continue</CtaButton>
       </div>
     </div>
   );

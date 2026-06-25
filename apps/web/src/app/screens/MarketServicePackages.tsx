@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router";
 import { motion } from "motion/react";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { PageHeader } from "../components/PageHeader";
+import { CtaButton } from "../components/CtaButton";
 
 const MOCK_PACKAGES = [
   { name: "Basic", price: 3500, features: ["4 hours coverage", "200 edited photos", "Online gallery"], color: "#059669" },
@@ -66,15 +67,7 @@ export function MarketServicePackages() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate(`/marketplace/service/${id}/availability`, {
-            state: { ...state, selectedPackage: packages.find((p: any) => p.name === selected) }
-          })}
-          disabled={!selected}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-all"
-        >
-          Continue <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate(`/marketplace/service/${id}/availability`, { state: { ...state, selectedPackage: packages.find((p: any) => p.name === selected) } })} disabled={!selected}>Continue</CtaButton>
       </div>
     </div>
   );

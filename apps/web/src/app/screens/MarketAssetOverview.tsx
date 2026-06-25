@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { motion } from "motion/react";
-import { Star, MessageCircle, Eye, Shield, ChevronRight, ArrowRight, CalendarCheck, BadgeCheck } from "lucide-react";
+import { Star, MessageCircle, Eye, Shield, ChevronRight, CalendarCheck, BadgeCheck } from "lucide-react";
+import { CtaButton } from "../components/CtaButton";
 import { PageHeader } from "../components/PageHeader";
 import { toast } from "sonner";
 
@@ -173,12 +174,7 @@ export function MarketAssetOverview() {
       </div>
 
       <div className="px-5 pt-4 pb-8">
-        <button
-          onClick={() => navigate(`/marketplace/asset/${id}/price`, { state: { asset } })}
-          className="w-full py-4 rounded-2xl bg-[var(--color-secondary)] text-white font-black uppercase tracking-widest text-[12px] flex items-center justify-center gap-3 shadow-md active:scale-95 transition-all"
-        >
-          View Details <ArrowRight size={18} />
-        </button>
+        <CtaButton onClick={() => navigate(`/marketplace/asset/${id}/price`, { state: { asset } })}>View Details</CtaButton>
       </div>
     </div>
   );
